@@ -50,15 +50,15 @@ if (isset($_POST['next'])) {
     $nbid1 = date_format($datenbi, "m/d/Y");
     $psa1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['psa']))));
     $remarks1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks']))));
-
+    $fullname = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
     $resultempl = mysqli_query($link, "SELECT * FROM employees WHERE lastnameko = '$lastnameko1' AND firstnameko = '$firstnameko1' AND mnko='$mnko1' AND birthday = '$birthday1'");
     $row = $resultempl->fetch_assoc();
 
     if (mysqli_num_rows($resultempl) === 0) {
         $InsertApplicantQuery = "INSERT INTO employees
-      (tracking,photopath,dapplied,appno,source,lastnameko,firstnameko,mnko,extnname,paddress,cityn,regionn,peraddress,birthday,age,gendern,civiln,cpnum,landline,emailadd,despo,classn,idenn,sssnum,pagibignum,phnum,tinnum,policed,brgyd,nbid,psa,remarks,e_person,e_address,e_number)
+      (tracking,photopath,dapplied,appno,source,lastnameko,firstnameko,mnko,extnname,paddress,cityn,regionn,peraddress,birthday,age,gendern,civiln,cpnum,landline,emailadd,despo,classn,idenn,sssnum,pagibignum,phnum,tinnum,policed,brgyd,nbid,psa,remarks,e_person,e_address,e_number, created_by)
       VALUES
-      ('$appno1','$photoko2','$dapplied1','$appno1','$source1','$lastnameko1','$firstnameko1','$mnko1','$extnname1','$paddress1','$cityn1','$regionn1','$peraddress1','$birthday1','$age1','$gendern','$civiln1','$cpnum1','$landline1','$emailadd1','$despo1','$classn1','$idenn1','$sssnum1','$pagibignum1','$phnum1','$tinnum1','$policed1x','$brgyd1x','$nbid1x','$psa1','$remarks1','$e_person1','$e_address1','$e_contact1')
+      ('$appno1','$photoko2','$dapplied1','$appno1','$source1','$lastnameko1','$firstnameko1','$mnko1','$extnname1','$paddress1','$cityn1','$regionn1','$peraddress1','$birthday1','$age1','$gendern','$civiln1','$cpnum1','$landline1','$emailadd1','$despo1','$classn1','$idenn1','$sssnum1','$pagibignum1','$phnum1','$tinnum1','$policed1x','$brgyd1x','$nbid1x','$psa1','$remarks1','$e_person1','$e_address1','$e_contact1', '$fullname')
       ";
         $InsertApplicantResult = mysqli_query($link, $InsertApplicantQuery);
 
@@ -420,7 +420,7 @@ if (isset($_POST['remove_button_click'])) {
                 echo json_encode($response);
                 exit;
             } else {
-                $query_deleted = "DELETE FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1'";
+                $query_deleted = "DELETE FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
                 $result_deleted = mysqli_query($link, $query_deleted);
 
                 if ($result_deleted) {
@@ -437,6 +437,109 @@ if (isset($_POST['remove_button_click'])) {
             $response = array('message' => 'Error!');
             echo json_encode($response);
             exit;
+        }
+    }
+}
+
+// For deploying applicants(Not Verified)
+if (isset($_POST['deploy_button_click'])) {
+    $id1 = $_POST['deploy_id'];
+    $dtnow = date("m/d/Y");
+    $query_deploy = "UPDATE employees SET actionpoint = 'EWB', ewbdeploy = '0', ewbdate = '$dtnow', ewb_status = 'NOT VERIFY' WHERE appno = '$id1'";
+    $result_deploy = mysqli_query($link, $query_deploy);
+    $data = $_SESSION["data"];
+
+    if ($result_deploy) {
+        $dtnow = date("m/d/Y");
+        $querchk1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
+        $resultchk = mysqli_query($link, $querchk1);
+        if (mysqli_num_rows($resultchk) == 0) {
+            // kapag wala pang user name na kaparehas
+            $_SESSION['errorMessage'] = "Cannot locate applicant!";
+        } else {
+            $query_update = "UPDATE shortlist_master SET ewb = 'EWB', ewbdate = '$dtnow' WHERE appnumto = '$id1'";
+            $result_update = mysqli_query($link, $query_update);
+            if ($result_update) {
+                $_SESSION['successMessage'] = "Applicant transferred for EWB Checking!";
+                header("Location: recruitment.php");
+            } else {
+                $_SESSION['errorMessage'] = "Error";
+                header("Location: recruitment.php");
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+        header("Location: recruitment.php");
+    }
+}
+
+
+// For Declining EWB
+if (isset($_POST['declined_button'])) {
+    $id = $_POST['declinedID'];
+    $ewb_reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+    $datenow = date("m/d/Y");
+    $ewb_status = "DECLINED";
+
+    $declined_query = "UPDATE employees SET ewb_status = '$ewb_status', ewb_reason = '$ewb_reason', ewb_date_declined = '$datenow' WHERE appno = '$id'";
+    $declined_result = mysqli_query($link, $declined_query);
+
+    if ($declined_result) {
+        $queryem = "SELECT * FROM employees WHERE appno = '$id'";
+        $resultem = mysqli_query($link, $queryem);
+        $rowem = mysqli_fetch_assoc($resultem);
+
+        $tracking = $row['tracking'];
+        $photopath = $row['photopath'];
+        $dapplied = $row['dapplied'];
+        $appno = $row['appno'];
+        $source = $row['source'];
+        $lastnameko = $row['lastnameko'];
+        $firstnameko = $row['firstnameko'];
+        $mnko = $row['mnko'];
+        $extname = $row['extnname'];
+        $paddress = $row['paddress'];
+        $cityn = $row['cityn'];
+        $regionn = $row['regionn'];
+        $peraddress = $row['peraddress'];
+        $birthday = $row['birthday'];
+        $age = $row['age'];
+        $gendern = $row['gendern'];
+        $civiln = $row['civiln'];
+        $cpnum = $row['cpnum'];
+        $landline = $row['landline'];
+        $emailadd = $row['emailadd'];
+        $despo = $row['despo'];
+        $classn = $row['classn'];
+        $idenn = $row['idenn'];
+        $sssnum = $row['sssnum'];
+        $pagibignum = $row['pagibignum'];
+        $phnum = $row['phnum'];
+        $tinnum = $row['tinnum'];
+        $policed = $row['policed'];
+        $brgyd = $row['brgyd'];
+        $nbid = $row['nbid'];
+        $psa = $row['psa'];
+        $remarks = $row['remarks'];
+
+
+        $declined_history_query = "INSERT INTO ewb_declined_history(tracking ,photopath, dapplied, appno, source,
+            lastnameko, firstnameko, mnko, extnname, paddress, cityn, regionn, peraddress, birthday, age, gendern, civiln,
+            cpnum, landline, emailadd, despo, classn, idenn, sssnum, pagibignum, phnum, tinnum, policed, brgyd, nbid, psa, remarks,
+            ewb_reason, ewb_date_declined)
+                VALUES ('$tracking','$photopath','$dapplied','$appno','$source','$lastnameko','$firstnameko','$mnko','$extname',
+                '$paddress','$cityn','$regionn','$peraddress','$birthday','$age','$gendern','$civiln','$cpnum','$landline','$emailadd',
+                '$despo','$classn','$idenn','$sssnum','$pagibignum','$phnum','$tinnum','$policed','$brgyd','$nbid','$psa','$remarks',
+                '$ewb_reason','$datenow')";
+
+        $declined_history_result = mysqli_query($link, $declined_history_query);
+
+        if ($declined_history_result) {
+            $_SESSION['successMessage'] = "Declined successfully!";
+            header("Location: recruitment.php");
+        } else {
+            $_SESSION['errorMessage'] = "Declined error!";
+            header("Location: recruitment.php");
         }
     }
 }

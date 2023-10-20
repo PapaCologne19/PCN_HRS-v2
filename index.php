@@ -8,198 +8,203 @@ $date = date('D : F d, Y');
 
 
 if (isset($_POST['SubButton'])) {
-  $Username = $_POST['Username'];
-  $Password = $_POST['Password'];
+  $Username = mysqli_real_escape_string($link, $_POST['Username']);
+  $Password = mysqli_real_escape_string($link, $_POST['Password']);
   $Usert1 = "ADMIN";
 
   if (strlen($Username) == 0 || strlen($Password) == 0) {
-    $kekelpogi = "Invalid Input";
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi . '<br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "next1" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px"></form>
-    
-  </div></div>';
+    $_SESSION['errorMessage'] = "Invalid Input";
   }
 
   $query = "SELECT * FROM data WHERE uname = '$Username' AND pname = '$Password' ";
   $result = mysqli_query($link, $query);
 
-  if (mysqli_num_rows($result) == 0) {
-    // kapag wala pang user name na kaparehas
-    $kekel = "No Such User Here !";
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekel . '<br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "next1" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
-    </form>
-    
-  </div></div>';
-  } else {
-
+  if (mysqli_num_rows($result) === 0) {
+    $_SESSION['errorMessage'] = "No Such User Here!";
+  } 
+  else {
     $query1 = "SELECT * FROM data WHERE uname = '$Username' and pname = '$Password' and approve = '1'";
     $result1 = mysqli_query($link, $query1);
-    while ($rowd = mysqli_fetch_array($result1))
+    while ($rowd = mysqli_fetch_assoc($result1))
 
+      if ($rowd["typenya"] == "EWB") {
 
-      if ($rowd[9] == "EWB") {
-
-        // Set session variables
-
-        $_SESSION["dmark"] = $rowd[7];
-        $_SESSION["dmark1"] = $rowd[7] . $rowd[8];
+        $_SESSION["dmark"] = $rowd["uname"];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
         $_SESSION["darkk"] = "ewb";
-        $_SESSION["dept"] = $rowd[6];
-        $_SESSION["data"] = $rowd[0];
+        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["data"] = $rowd["id"];
 
-        //log control
         $dtnow = date("m/d/Y");
 
-        $query3 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'RECRUITMENT login Accepted')";
+        $query3 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'EWB login Accepted')";
         $result3 = mysqli_query($link, $query3);
 
-        header("location:ewb.php");
-      } else if ($rowd[9] == "DEPLOYMENT") {
+        if($result3){
+          $_SESSION[] = "Successfully Login";
+          header("location:ewb.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "DEPLOYMENT") {
 
-        // Set session variables
-
-        $_SESSION["dmark"] = $rowd[7];
-        $_SESSION["dmark1"] = $rowd[7] . $rowd[8];
+        $_SESSION["dmark"] = $rowd["uname"];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
         $_SESSION["darkk"] = "deployment";
-        $_SESSION["dept"] = $rowd[6];
-        $_SESSION["data"] = $rowd[0];
+        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["data"] = $rowd["id"];
 
-        //log control
         $dtnow = date("m/d/Y");
 
-        $query4 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'RECRUITMENT login Accepted')";
+        $query4 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'DEPLOYMENT login Accepted')";
         $result4  = mysqli_query($link, $query4);
 
-        header("location:deployment.php");
-      } else	if ($rowd[9] == "RECRUITMENT") {
+        if($result4){
+          $_SESSION[] = "Successfully Login";
+          header("location:deployment.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else	if ($rowd["typenya"] == "RECRUITMENT") {
 
-        // Set session variables
-
-        $_SESSION["dmark"] = $rowd[7];
-        $_SESSION["dmark1"] = $rowd[7] . $rowd[8];
+        $_SESSION["dmark"] = $rowd["uname"];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
         $_SESSION["darkk"] = "recruitment";
-        $_SESSION["dept"] = $rowd[6];
-        $_SESSION["data"] = $rowd[0];
+        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["data"] = $rowd["id"];
 
-        //log control
         $dtnow = date("m/d/Y");
 
-        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'RECRUITMENT login Accepted')";
+        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'RECRUITMENT login Accepted')";
         $result5 = mysqli_query($link, $query5);
 
-        header("location:recruitment.php");
+        if ($result5) {
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("Location: recruitment.php?success");
+        } else {
+          $_SESSION['errorMessage'] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "MRF") {
 
-      } else if($rowd[9] == "MRF"){
-        // Set session variables
-
-        $_SESSION["username"] = $rowd[7];
-        $_SESSION["password"] = $rowd[8];
-        $_SESSION["firstname"] = $rowd[2];
-        $_SESSION["lastname"] = $rowd[1];
-        $_SESSION["dmark1"] = $rowd[7] . $rowd[8];
+        $_SESSION["username"] = $rowd["uname"];
+        $_SESSION["password"] = $rowd["pname"];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
         $_SESSION["darkk"] = "mrf";
-        $_SESSION["dept"] = $rowd[6];
-        $_SESSION["id"] = $rowd[0];
+        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["id"] = $rowd["id"];
 
-        //log control
         $dtnow = date("m/d/Y");
 
-        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'MRF login Accepted')";
+        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'MRF login Accepted')";
         $result5 = mysqli_query($link, $query5);
 
-        header("location: mrf/index.php");
+        if($result5){
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("location: mrf/index.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "CASHIER") {
 
-      } else if ($rowd[9] == "CASHIER") {
-
-        // Set session variables
         $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["dmark1"] = $rowd[9];
+        $_SESSION["dmark1"] = $rowd["typenya"];
         $_SESSION["darkk"] = "Cashier";
-        $_SESSION["data"] = $rowd[0];
-        //log control
+        $_SESSION["data"] = $rowd["id"];
         $dtnow = date("m/d/Y");
 
-        $query6 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'Cashier login Accepted')";
-        mysqli_query($link, $query6);
+        $query6 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'Cashier login Accepted')";
+        $result6 = mysqli_query($link, $query6);
 
-        //header("location:hrencodeedit.php");
-        header("location:cashier.php");
-      } else if ($rowd[9] == "REPORT") {
+        if($result6){
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("location:cashier.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "REPORT") {
 
-        // Set session variables
         $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["dmark1"] = $rowd[9];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["typenya"];
         $_SESSION["darkk"] = "report";
         $_SESSION["dept"] = "Report";
-        $_SESSION["data"] = $rowd[0];
-        //log control
+        $_SESSION["data"] = $rowd["id"];
+
         $dtnow = date("m/d/Y");
 
-        $query7 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$rowd[7]','$dtnow',now(),'report log in identified')";
+        $query7 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'report log in identified')";
         $result7 = mysqli_query($link, $query7);
 
-
-        header("location:report.php");
-      } else if ($rowd[9] == "ADMIN") {
+        if($result7){
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("location:report.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "ADMIN") {
         $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["dmark1"] = $rowd[9];
-        $_SESSION["data"] = $rowd[0];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["dmark1"] = $rowd["typenya"];
+        $_SESSION["data"] = $rowd["id"];
         $_SESSION["darkk"] = "green";
         //log control
         $dtnow = date("m/d/Y");
 
-        $query8 = "INSERT INTO log(Username,Datelog,time,activitynya) VALUES('$rowd[7]','$dtnow',now(),'Admin login Accepted')";
+        $query8 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'Admin login Accepted')";
         $result8 = mysqli_query($link, $query8);
 
-        //echo $dtnow;
-        header("Location: adminfinal.php");
-      } else if ($rowd[9] == "OTHERS") {
+        if($result8){
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("Location: adminfinal.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($rowd["typenya"] == "OTHERS") {
         $_SESSION["dmark"] = $rowd[1];
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
         $_SESSION["dmark1"] = $rowd[3] . $rowd[4];
-        $_SESSION["data"] = $rowd[0];
+        $_SESSION["data"] = $rowd["id"];
 
-        //log control
         $dtnow = date("m/d/Y");
 
-        $query9 = "INSERT INTO log(Username,Datelog,time,activitynya) VALUES('$rowd[7]','$dtnow',now(),'OTHERS login Accepted')";
+        $query9 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'OTHERS login Accepted')";
         $result9 = mysqli_query($link, $query9);
 
-        //echo $dtnow;
-        header("location:declaration.php");
-      } 
-      else if ($result1 = mysqli_query($link, "SELECT * FROM data WHERE uname = '$Username' and pname = '$Password' and approve = '0'")); {
-      $kekelpogi = "User not allowed by MIS, Please notify Mike or Deo";
-      echo '<div class = "how1"><div class = "many"><br> 
-                ' . $kekelpogi . ' 
-                <br> 
-                <form action = "" method = "POST"><br>
-                <input type = "submit" name = "next1" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px"></form>
-                
-              </div></div>';
+        if($result9){
+          $_SESSION['successMessage'] = "Successfully Login";
+          header("location:declaration.php");
+        }
+        else{
+          $_SESSION["errorMessage"] = "Error Login";
+        }
+      } else if ($resultsss = mysqli_query($link, "SELECT * FROM data WHERE uname = '$Username' AND pname = '$Password' AND approve = '0'")); {
+        $_SESSION['errorMessage'] = "User not allowed by MIS, Please notify Mike or Deo";
     }
   }
 }
-
-
-
-
 
 if (isset($_POST['next1'])) {
   header("location:index.php");
 }
 
-//================================
-
 if (isset($_POST['SavenewUser1'])) {
-
-
-  //$Usertype = strtoupper($_POST['user_type']);
-
 
   $lastname = strtoupper($_POST['lastnameko']);
   $firstname = strtoupper($_POST['firstnameko']);
@@ -210,15 +215,9 @@ if (isset($_POST['SavenewUser1'])) {
   $uname = $_POST['uname'];
   $pname = $_POST['pname'];
   $idno = $_POST['idnoko'];
-  //$approve = $_POST['approve'];
-
-
-
-
-
 
   if (strlen($lastname) == 0 || strlen($firstname) == 0 || strlen($contactno) == 0 || $fms == "Select FMS Name" || strlen($uname) == 0 || strlen($pname) == 0) {
-    $kekelpogi = "All Fields are required. Try Again !";
+    $_SESSION['errorMessage'] = "All Fields are required. Try Again !";
   } else {
 
     //check if username exist na
@@ -226,11 +225,8 @@ if (isset($_POST['SavenewUser1'])) {
     $result = mysqli_query($link, $query10);
 
     if (mysqli_num_rows($result) == 0) {
-
       $query11 = "INSERT INTO data(lastname,firstname,mi,contactno,emailadd,fms,uname,pname,typenya,approve,idnum) VALUES('$lastname','$firstname','$mi','$contactno','email','$fms','$uname','$pname','DISER','0','$idno')";
       mysqli_query($link, $query11);
-
-
 
       $fmsnamelog = $lastname . ", " . $firstname . " " . $mi;
       $dtnow = date("m/d/Y");
@@ -238,102 +234,80 @@ if (isset($_POST['SavenewUser1'])) {
       $query12 = "INSERT INTO log(Username,Datelog,time,activitynya) VALUES('$fmsnamelog','$dtnow',now(),'Account Created')";
       mysqli_query($link, $query12);
 
-
-
-
-
-
-
-
-      $kekelpogi1 = "Save Successful!";
+      $_SESSION['successMessage'] = "Save Successful!";
     } else {
-      $kekelpogi = "username already taken! Try Again";
+      $_SESSION['errorMessage'] = "username already taken! Try Again";
     }
   }
 }
-
-//===============================
-
-
-
-
 ?>
-
-
-
-
-
-
 <html>
-<style type="text/css">
-  .wrapper {
-    width: 250px;
-    height: 250px;
-    position: absolute;
-    left: 40%;
-    top: 30%;
 
-  }
-
-
-  /* Center the loader */
-  #loader {
-    position: absolute;
-    left: 40%;
-    top: 30%;
-    z-index: 1;
-    width: 250px;
-    height: 250px;
-    margin: -75px 0 0 -100px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-  }
-
-  .wrapper {
-    background: url('pcn_logo.jpg') center no-repeat;
-    background-size: 80%;
-  }
-
-  @-webkit-keyframes spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-</style>
 
 <head>
 
   <title>Welcome</title>
   <meta charset="utf-8">
 
-  <script src="strap/jquery.min.js"></script>
-  <script src="strap/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="strap/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link rel="stylesheet" type="text/css" href="deo1.css">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Julius+Sans+One&family=Poppins&family=Quicksand&family=Roboto&family=Thasadith&display=swap" rel="stylesheet">
 
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style type="text/css">
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+  </style>
 
 </head>
 
 <body onload="myFunction()" style="background-image: url(bg3a.jpg); background-size:100% 100%; background-repeat: no-repeat;">
+
+  <?php
+  if (isset($_SESSION['successMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'success',
+        title: "<?php echo $_SESSION['successMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['successMessage']);
+  } ?>
+
+  <?php
+  if (isset($_SESSION['errorMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'error',
+        title: "<?php echo $_SESSION['errorMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['errorMessage']);
+  } ?>
+  <?php
+  if (isset($_SESSION['warningMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'warning',
+        title: "<?php echo $_SESSION['warningMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['warningMessage']);
+  } ?>
+
+
+
   <div id="wrapper" class="wrapper">
     <div id="loader"></div>
   </div>
@@ -359,36 +333,16 @@ if (isset($_POST['SavenewUser1'])) {
         </label>
         <input type="password" name="Password" class="form-control" placeholder="Password" style="height:45px;width:250px;">
       </div>
-
-
       <input type="submit" name="SubButton" value=" " class="loginButton">;
-      <!--<input type = "submit" name = "register" value = " " class="signupbutton">	-->
-
-
-
     </form>
-
 
     <br><br><br>
     <div class="container signin">
-      <!--<p><b><font color="white">No Account Yet? <a href="" data-toggle="modal" data-target="#Modaladduser">Sign up</font></a></a>.</p>-->
     </div>
-
-
-
   </div>
 
-
-
-
-  <!--Modal Control / Adding new user-->
-
-
   <form action="" method="POST">
-    <!--Modal Control / Adding new user-->
-    <!--<div class="container">
-
- <!--  Modal -->
+    <!--  Modal -->
     <div class="modal fade" id="Modaladduser" role="dialog">
       <div class="modal-dialog modal-med"> <!--//sm,med, lg , xl-->
         <div class="modal-content">
@@ -426,12 +380,6 @@ if (isset($_POST['SavenewUser1'])) {
                   <input type="username" name="contactno" maxlength="11" class="form-control" placeholder="Contact Number" style="height:45px;width:250px;">
                 </div>
 
-                <!-- <div class="form-group" >
-                              <label for="email">Email Address:</font></label>
-                            <input type="text" name = "email" id="email" class="form-control"  placeholder="Email Address" style= "height:45px;width:250px;" onblur="myFunctionemail()">
-                            
-                        </div>-->
-
                 <div class="form-group">
                   <label for="pwd">* Division :</font></label>
                   <select class="form-control cbo" name="fmsname" data-placeholder="Select User type" style="height:45px;width:250px"> ;
@@ -440,23 +388,11 @@ if (isset($_POST['SavenewUser1'])) {
                     $query13 = "SELECT * FROM divisionnya";
                     $resultpop1 = mysqli_query($link, $query13);
                     while ($rowm1 = mysqli_fetch_array($resultpop1)) {
-
-
-
                       echo '<option  value=' . $rowm1[1] . '>' . $rowm1[1] . ' </option> "';
                     }
                     ?>
-
-
-
-
-
-
                   </select>
                 </div>
-
-
-
 
                 <br>
                 <div class="form-group">
@@ -473,13 +409,8 @@ if (isset($_POST['SavenewUser1'])) {
                 <div class="checkbox">
                   <label><input type="checkbox" id="myCheck" onclick="myFunctiondiser()">Show Password</font></label>
                 </div>
-
-
-
               </form>
             </center>
-
-
           </div>
 
           <div class="modal-footer">
@@ -492,34 +423,7 @@ if (isset($_POST['SavenewUser1'])) {
     </div>
     </div>
   </form>
-
   </div>
-
-  <!--Modal Control / Adding new user-->
-
-
-
-
-  <?php
-  if (isset($kekelpogi)) {
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi . '<br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px"></form>
-    
-  </div></div>';
-  }
-
-  if (isset($kekelpogi1)) {
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi1 . '<br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "next1" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px"></form>
-    
-  </div></div>';
-  }
-
-  ?>
 
   <script type="text/javascript">
     function myFunctiondiser() {

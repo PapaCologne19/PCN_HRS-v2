@@ -282,9 +282,6 @@ if (isset($_POST['Back1'])) {
     if (isset($_POST['addtoshortlistbtn1'])) {
 
       $id1 = $_POST['shadowE1'];
-
-
-
       mysqli_query($link, "UPDATE employees
           SET
           
