@@ -268,6 +268,7 @@ echo '
 
   <title>HRS RECRUITMENT</title>
 </head>
+
 <body>
 
   <?php
@@ -291,7 +292,7 @@ echo '
     </script>
   <?php unset($_SESSION['errorMessage']);
   } ?>
-<?php
+  <?php
   if (isset($_SESSION['warningMessage'])) { ?>
     <script>
       Swal.fire({
@@ -447,7 +448,8 @@ echo '
                                                   <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModaladdshort" ><i class="bi bi-file-earmark-plus" style="margin-right: 1rem;"></i> Add to Shortlist</button></li>
                                                   <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModaldelshort" ><i class="bi bi-file-earmark-minus" style="margin-right: 1rem;"></i> Remove from shortlist</button></li>
                                                   <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalewb" ><i class="bi bi-layer-forward" style="margin-right: 1rem;"></i> Deploy</button></li>
-                                                  <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalfr" ><i class="bi bi-layer-forward" style="margin-right: 1rem;"></i> For Requirements</button></li>
+                                                  <li class="cd-side__btn"> <a><BUTTON class="btn" name = "for_requirements"><i class="bi bi-person-rolodex" style="margin-right: 1rem;"></i>  For Requirements</button></a></li>
+                                                 
                                                   <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalmrf" ><i class="bi bi-person" style="margin-right: 1rem;"></i> MRF </button></li>
                                                 </form> 
                                               </ul>
@@ -708,7 +710,7 @@ echo '
                 echo '  <td> ' . $rowx['peraddress'] . '   </td> ';
                 if ($rowx['actionpoint'] === "ACTIVE") { ?>
                   <td class="badge bg-success rounded-pill p-2 text-white"><?php echo $rowx['actionpoint']; ?></td>
-                <?php } else{ ?>
+                <?php } else { ?>
                   <td><?php echo $rowx['actionpoint']; ?></td>
               <?php }
                 echo '<td> 
@@ -754,18 +756,67 @@ echo '
     </div>
   <?php
   }
+  if (isset($_POST['for_requirements'])) {
+  ?>
 
+    <div class="containers" id="databaselist">
+      <div class="cd-content-wrappers">
+        <div class="text-component text-center">
+          <h2 class="fs-2">For Requirements</h2>
+          <table class="table p-3 table-bordered align-middle mb-0 border border-dark border-start-0 border-end-0 rounded-end" style="border: 1px solid whitesmoke !important; width: 100%; font-size: 13px !important;" id="example">
+            <thead>
+              <tr>
+                <th>Applicant ID</th>
+                <th>Name</th>
+                <th>SSS</th>
+                <th>Pag-IBIG</th>
+                <th>Philhealth</th>
+                <th>TIN</th>
+                <th>Birthday</th>
+                <th>Comment</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $query = "SELECT * FROM employees WHERE ewb_status = 'DECLINED'";
+              $result = $link->query($query);
+              while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+                <tr>
+                  <td><?php echo $row['id'] ?></td>
+                  <td><?php echo $row['lastnameko'] . ", " . $row['firstnameko'] . " " . $row['mnko'] ?></td>
+                  <td><?php echo $row['sssnum'] ?></td>
+                  <td><?php echo $row['pagibignum'] ?></td>
+                  <td><?php echo $row['phnum'] ?></td>
+                  <td><?php echo $row['tinnum'] ?></td>
+                  <td><?php echo $row['birthday'] ?></td>
+                  <td><?php echo $row['ewb_reason'] ?></td>
+                  <td>
+                    <input type="hidden" name="for_reverification_id" class="for_reverification_id" id="for_reverification_id" value="<?php echo $row['id'] ?>" class="form-control">
+                    <button type="button" name="for_reverification_btn" class="btn btn-primary for_reverification_btn" id="for_reverification_btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="For verification"><i class="bi bi-send-check"></i></button>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  <?php
+  }
   if (isset($_POST['Editbtn'])) {
     $idshadow = $_POST['shadowE'];
     $resulted = mysqli_query($link, "SELECT * FROM employees WHERE id = '$idshadow'");
-    while ($rowed = mysqli_fetch_array($resulted)) {
+    while ($rowed = mysqli_fetch_assoc($resulted)) {
       echo '   
                       <div class="container" style="padding-left: 20rem; padding-right: 20rem; padding-top: 5rem; ">
                         <div class="row ">
                   <!--- laman -->
     <form action = "action.php" method = "POST">
                       <center>
-                          <img src="' . $rowed[2] . '" alt="" class="img-circle" style="width:200px;height:200px;">
+                          <img src="' . $rowed["photopath"] . '" alt="" class="img-circle" style="width:200px;height:200px;">
                           </center>
                           </div>
                                 <div class="row mt-5">
@@ -773,11 +824,11 @@ echo '
                                     <label class="form-label">Sources :</font></label>
                                   </div>
                                   <div class="col-md-10">
-                                    <select class="form-select" name="source" value= "' . $rowed[5] . '" data-placeholder="Select Source";';
-      echo '<option>' . $rowed[5] . '</option>';
+                                    <select class="form-select" name="source" value= "' . $rowed["source"] . '" data-placeholder="Select Source";';
+      echo '<option>' . $rowed["source"] . '</option>';
       $results = mysqli_query($link, "SELECT * FROM sources");
-      while ($rows = mysqli_fetch_array($results)) {
-        echo '<option value="' . $rows[1] . '">' . $rows[1] . '</option>';
+      while ($rows = mysqli_fetch_assoc($results)) {
+        echo '<option value="' . $rows["description"] . '">' . $rows["description"] . '</option>';
       }
       echo '          
                                     </select>
@@ -789,7 +840,7 @@ echo '
                                       <label class="form-label">Last Name</font></label>
                                     </div>  
                                     <div class="col-md-10">
-                                      <input type="text" name = "lastnameko" value= "' . $rowed[6] . '" class="form-control" >
+                                      <input type="text" name = "lastnameko" value= "' . $rowed["lastnameko"] . '" class="form-control" >
                                     </div>
                                   </div>
                                                       
@@ -798,7 +849,7 @@ echo '
                                       <label class="form-label">First Name:</font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "firstnameko" value= "' . $rowed[7] . '" class="form-control" >
+                                      <input type="text" name = "firstnameko" value= "' . $rowed["firstnameko"] . '" class="form-control" >
                                     </div>
                                   </div>
                                   <div class="row mt-3" >
@@ -806,7 +857,7 @@ echo '
                                       <label class="form-label">Middle Name:</font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text`" name = "mnko" value= "' . $rowed[8] . '" class="form-control" >
+                                      <input type="text`" name = "mnko" value= "' . $rowed["mnko"] . '" class="form-control" >
                                     </div>
                                   </div>
                                                       
@@ -815,7 +866,7 @@ echo '
                                       <label class="form-label">Extension Name:</font></label>
                                      </div>
                                      <div class="col-md-10">
-                                      <input type="text" name = "extnname" value= "' . $rowed[9] . '" maxlength="5" class="form-control"  placeholder="">
+                                      <input type="text" name = "extnname" value= "' . $rowed["extnname"] . '" maxlength="5" class="form-control"  placeholder="">
                                      </div>
                                   </div>
                                                       
@@ -824,7 +875,7 @@ echo '
                                       <label class="form-label">Present Address:</font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "paddress" value= "' . $rowed[10] . '" class="form-control" >
+                                      <input type="text" name = "paddress" value= "' . $rowed["paddress"] . '" class="form-control" >
                                     </div>
                                   </div>
                                                       
@@ -858,7 +909,7 @@ echo '
                                       <label class="form-label">Permanent Address </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "peraddress" value= "' . $rowed[13] . '" class="form-control" >
+                                      <input type="text" name = "peraddress" value= "' . $rowed["peraddress"] . '" class="form-control" >
                                     </div>
                                   </div>  
                                   
@@ -867,7 +918,7 @@ echo '
                                       <label class="form-label">Date of Birth </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="date" name = "birthday" value= "' . $rowed[14] . '"  class="form-control" >
+                                      <input type="date" name = "birthday" id="birthdate" onchange="calculateAge()" value= "' . $rowed["birthday"] . '"  class="form-control" >
                                     </div>
                                   </div>
                                                       
@@ -876,7 +927,7 @@ echo '
                                       <label class="form-label">Age </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "agen" id ="agen" value= "' . $rowed[15] . '" class="form-control"  placeholder="" readonly>
+                                      <input type="text" name = "agen" id ="agen" value= "' . $rowed["age"] . '" class="form-control"  placeholder="" disabled>
                                     </div>
                                   </div>
                                           
@@ -885,7 +936,7 @@ echo '
                                       <label class="form-label">Gender </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <select class="form-select cbo" name="gendern"  value= "' . $rowed[16] . '" data-placeholder="Select Gendert "  > ;';
+                                      <select class="form-select cbo" name="gendern"  value= "' . $rowed["gendern"] . '" data-placeholder="Select Gendert "  > ;';
       echo '<option>' . $rowed[16] . '</option> ';
       $resultg = mysqli_query($link, "SELECT * FROM gender");
       while ($rowg = mysqli_fetch_array($resultg)) {
@@ -901,7 +952,7 @@ echo '
                                       <label class="form-label">Civil Status </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <select class="form-select cbo" name="civiln" value= "' . $rowed[17] . '" data-placeholder=""  > ;';
+                                      <select class="form-select cbo" name="civiln" value= "' . $rowed["civiln"] . '" data-placeholder=""  > ;';
       echo '<option>' . $rowed[17] . '</option> ';
       $resultt = mysqli_query($link, "SELECT * FROM tax_status");
       while ($rowtt = mysqli_fetch_array($resultt)) {
@@ -917,7 +968,7 @@ echo '
                                       <label class="form-label">Cell Phone Number </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "cpnum"  value= "' . $rowed[18] . '" class="form-control"  placeholder="">
+                                      <input type="text" name = "cpnum"  value= "' . $rowed["cpnum"] . '" class="form-control"  placeholder="">
                                     </div>
                                   </div>  
                                                       
@@ -926,7 +977,7 @@ echo '
                                       <label class="form-label">landline </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "landline" value= "' . $rowed[19] . '" class="form-control"  placeholder="">
+                                      <input type="text" name = "landline" value= "' . $rowed["landline"] . '" class="form-control"  placeholder="">
                                     </div>
                                   </div>  
                                     
@@ -935,7 +986,7 @@ echo '
                                       <label class="form-label">Email Address </font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <input type="text" name = "emailadd" value= "' . $rowed[20] . '" class="form-control"  placeholder="">
+                                      <input type="text" name = "emailadd" value= "' . $rowed["emailadd"] . '" class="form-control"  placeholder="">
                                     </div>
                                   </div>  
                                                       
@@ -945,7 +996,7 @@ echo '
                                     </div>
                                                             
                                     <div class="col-md-10">
-                                      <select class="form-select cbo" name="despo"  value= "' . $rowed[21] . '" data-placeholder=""  > ;';
+                                      <select class="form-select cbo" name="despo"  value= "' . $rowed["despo"] . '" data-placeholder=""  > ;';
       echo '<option>' . $rowed[21] . '</option> ';
       $resultjt = mysqli_query($link, "SELECT * FROM job_title ");
       while ($rowjt = mysqli_fetch_array($resultjt)) {
@@ -962,7 +1013,7 @@ echo '
                                   </div>
                                                             
                                    <div class="col-md-10">
-                                   <select class="form-select cbo" name="classn"  value= "' . $rowed[22] . '" data-placeholder=""  > ;';
+                                   <select class="form-select cbo" name="classn"  value= "' . $rowed["classn"] . '" data-placeholder=""  > ;';
       echo '<option>' . $rowed[22] . '</option> ';
       $resultca = mysqli_query($link, "SELECT * FROM classifications");
       while ($rowca = mysqli_fetch_array($resultca)) {
@@ -979,7 +1030,7 @@ echo '
                                   </div>
                                                             
                                   <div class="col-md-10">
-                                  <select class="form-select cbo" name="idenn"  value= "' . $rowed[23] . '" data-placeholder="" > ;';
+                                  <select class="form-select cbo" name="idenn"  value= "' . $rowed["idenn"] . '" data-placeholder="" > ;';
       echo '<option>' . $rowed[23] . '</option> ';
       $resultide = mysqli_query($link, "SELECT * FROM distinguishing_qualification_marks");
       while ($rowider = mysqli_fetch_array($resultide)) {
@@ -996,7 +1047,7 @@ echo '
                                   </div>
                                   
                                   <div class="col-md-10">
-                                    <input type="text" name = "sssnum" value= "' . $rowed[24] . '" class="form-control" >
+                                    <input type="text" name = "sssnum" value= "' . $rowed["sssnum"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1006,7 +1057,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="text" name = "pagibignum" value= "' . $rowed[25] . '" class="form-control" >
+                                    <input type="text" name = "pagibignum" value= "' . $rowed["pagibignum"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1016,7 +1067,7 @@ echo '
                                   </div>
                                     
                                   <div class="col-md-10">
-                                    <input type="text" name = "phnum" value= "' . $rowed[26] . '" class="form-control" >
+                                    <input type="text" name = "phnum" value= "' . $rowed["phnum"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1026,7 +1077,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="text" name = "tinnum" value= "' . $rowed[27] . '" class="form-control" >
+                                    <input type="text" name = "tinnum" value= "' . $rowed["tinnum"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1036,7 +1087,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="date" name = "policed" value= "' . $rowed[28] . '" class="form-control" >
+                                    <input type="date" name = "policed" value= "' . $rowed["policed"] . '" class="form-control" >
                                   </div>       
                                 </div>
                                      
@@ -1046,7 +1097,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="date" name = "brgyd" value= "' . $rowed[29] . '" class="form-control" >
+                                    <input type="date" name = "brgyd" value= "' . $rowed["brgyd"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1056,7 +1107,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="date" name = "nbid" value= "' . $rowed[30] . '" class="form-control" >
+                                    <input type="date" name = "nbid" value= "' . $rowed["nbid"] . '" class="form-control" >
                                   </div>
                                 </div>
                                      
@@ -1066,8 +1117,8 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <select class="form-select cbo" name="psa" value= "' . $rowed[31] . '"  data-placeholder=""> ;      
-                                      <option>' . $rowed[31] . '</option> 
+                                    <select class="form-select cbo" name="psa" value= "' . $rowed["psa"] . '"  data-placeholder=""> ;      
+                                      <option>' . $rowed["psa"] . '</option> 
                                       <option value="With">With</option>
                                       <option value="Without">Without</option>
                                     </select> 
@@ -1080,7 +1131,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="text" name = "e_person" value= "' . $rowed[38] . '" class="form-control" >
+                                    <input type="text" name = "e_person" value= "' . $rowed["e_person"] . '" class="form-control" >
                                   </div>     
                                 </div>
                                      
@@ -1090,7 +1141,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="text" name = "e_address" value= "' . $rowed[39] . '" class="form-control" >
+                                    <input type="text" name = "e_address" value= "' . $rowed["e_address"] . '" class="form-control" >
                                   </div>   
                                 </div>
                                      
@@ -1100,7 +1151,7 @@ echo '
                                   </div>
                                      
                                   <div class="col-md-10">
-                                    <input type="text" name="e_contact" value= "' . $rowed[40] . '" class="form-control" >
+                                    <input type="text" name="e_contact" value= "' . $rowed["e_contact"] . '" class="form-control" >
                                   </div>
                                 </div>
                                                       
@@ -1110,11 +1161,11 @@ echo '
                                   </div>
                                 
                                   <div class="col-md-10">
-                                    <input type="text" name = "remarks" value= "' . $rowed[32] . '" class="form-control" >
+                                    <input type="text" name = "remarks" value= "' . $rowed["remarks"] . '" class="form-control" >
                                   </div>
                                 </div>
        
-                                <input type="hidden" name = "shadowEdit" value= "' . $rowed[0] . '" class="form-control" >
+                                <input type="hidden" name = "shadowEdit" value= "' . $rowed["id"] . '" class="form-control" >
                                 <button <input type = "submit" name = "updateit" value = "" class="btn btn-info btn-lg mb-5" style="vertical-align:middle">Update It</button>
                                 <a href = "recruitment.php" name = "Cancel" value = "" class="btn btn-info btn-lg mb-5" style="vertical-align:middle">Cancel</a>
                                 
@@ -1278,7 +1329,7 @@ echo '
                                                       
                       <div class="col-md-10">
                         <select class="form-select cbo" name="regionn" id="regionn"  data-placeholder="Select User type"  > ;';
-      echo '<option>Select Region:</option> ';
+      echo '<option value="" selected disabled>Select Region</option> ';
       $resultrg = mysqli_query($link, "SELECT * FROM region");
       while ($rowrg = mysqli_fetch_array($resultrg)) {
         echo '<option  value="' . $rowrg[3] . '">' . $rowrg[2] . '</option>';
@@ -1308,24 +1359,23 @@ echo '
                       </div>
                     </div>                                      
                                                       
-                    <div class="row mt-3" >
-                      <div class="col-md-2">
-                        <label class="form-label">Date of Birth </font></label>
-                      </div>
-                      <div class="col-md-10">
-                        <input type="date" name = "birthday"  class="form-control"  placeholder="" >
-                      </div>
+                    <div class="row mt-3">
+                    <div class="col-md-2">
+                      <label class="form-label">Date of Birth</label>
                     </div>
-
-                    <div class="row mt-3" >
-                      <div class="col-md-2">
-                        <label class="form-label">Age </font></label>
-                      </div>                                      
-                                                      
-                      <div class="col-md-10">
-                        <input type="text" name = "age" id ="age"  class="form-control"  placeholder="">
-                      </div>
-                    </div>                                                        
+                    <div class="col-md-10">
+                      <input type="date" name="birthday" id="birthdate" onchange="calculateAge()" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  
+                  <div class="row mt-3">
+                    <div class="col-md-2">
+                      <label class="form-label">Age</label>
+                    </div>
+                    <div class="col-md-10">
+                      <input type="text" name="age" id="age" class="form-control" placeholder="" disabled>
+                    </div>
+                  </div>                                               
                     
                     <div class="row mt-3" >
                       <div class="col-md-2">
@@ -2188,6 +2238,90 @@ echo '
 
     $_SESSION["dataexport1"] = $data;
     echo '
+
+
+    <div class="modal fade" id="addtoshortlist"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Applicant to Shortlist</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+              </div>
+            <form action="action.php" method="POST" class="form-group row">
+              <div class="col-md-6 form-check">
+                <input type="checkbox" name="select-all" id="select-all" class="form-check-input"> Select All
+              </div>
+              <table class="table table-striped table-sm align-middle mb-0 p-3 border border-info border-start-0 border-end-0 rounded-end" id="myTable" style="width:100%; font-size: 14px !important;">
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>EWB Status</th>
+                  </tr>
+                </thead>' ?>
+    <tbody>
+      <tr>
+        <?php
+
+        $queryxx1 = "SELECT DISTINCT appnumto
+        FROM shortlist_master
+        WHERE shortlistnameto != '$data'
+        AND appnumto NOT IN (
+            SELECT appnumto
+            FROM shortlist_master
+            WHERE shortlistnameto = '$data'
+        );";
+        $resultxx1 = mysqli_query($link, $queryxx1);
+
+        while ($rowxx1 = mysqli_fetch_assoc($resultxx1)) {
+
+          $app_num = $rowxx1['appnumto'];
+
+          $uniqueUsers[$app_num] = true;
+          $query = "SELECT * FROM employees WHERE appno = '$app_num'";
+          $result = $link->query($query);
+
+          while ($row = $result->fetch_assoc()) {
+            $id = $row["appno"];
+            $birth_date = $row['birthday'];
+            $timestamp_birthdate = strtotime($birth_date);
+            $formattedDate_birthdate = date("F d, Y", $timestamp_birthdate);
+            // if(mysqli_num_rows($result) === 0){
+
+        ?>
+            <td>
+              <div class="col-md-6 form-check">
+                <input type="checkbox" name="user[]" class="form-check-input" value="<?php echo $id ?>">
+              </div>
+            </td>
+            <td><?php echo $row['id'] ?></td>
+            <td><?php echo $row['lastnameko'] . ", " . $row['firstnameko'] . " " . $row['mnko'] ?></td>
+            <td><?php echo $formattedDate_birthdate ?></td>
+            <td><?php echo $row['ewb_status'] ?></td>
+      </tr>
+    </tbody>
+<?php }
+        }
+        echo '</table>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="add_to_shortlist" class="btn btn-primary">Add to Shortlist</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
         <div class="cd-content-wrapper">
         <div class="text-component text-center">
       <div class = "container">
@@ -2197,7 +2331,10 @@ echo '
     <br><br><br>
               <h2><font color="black"> ' . $view . ' </font> </h2>
               <br><br>
-    
+                <div class="col-md-6 mb-5">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addtoshortlist" style="float: left !important; background: green !important; color: white !important;"><i class="bi bi-plus-circle-fill"></i> &nbsp;Add shortlist</button>
+                </div>
+                <br>
                       <table id="example" class="table table-striped table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end " style="width:100%;font-size:14 !important;">
                                   <thead class="bg-success">
                                   <tr>
@@ -2218,40 +2355,38 @@ echo '
                                   <tbody> 
                       ';
 
-    $resultx1 = mysqli_query($link, "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data'");
-    while ($rowx1 = mysqli_fetch_assoc($resultx1)) {
-      $app_num = $rowx1['appnumto'];
+        $queryx1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data'";
+        $resultx1 = mysqli_query($link, $queryx1);
 
-      $queryx1 = "SELECT * FROM employees WHERE appno = '$app_num'";
-      $resultx = mysqli_query($link, $queryx1);
-      while ($rowx = mysqli_fetch_assoc($resultx)) {
-        $police = $rowx['policed'];
-        $barangay = $rowx['brgyd'];
-        $nbi = $rowx['nbid'];
-        $timestamp_police = strtotime($police);
-        $timestamp_barangay = strtotime($barangay);
-        $timestamp_nbi = strtotime($nbi);
-        $formattedDate_police = date("F d, Y", $timestamp_police);
-        $formattedDate_barangay = date("F d, Y", $timestamp_barangay);
-        $formattedDate_nbi = date("F d, Y", $timestamp_nbi);
-        if ( $rowx['actionpoint'] == "DEPLOYED" or  $rowx["ewbdate"] != '') {
-          echo ' <tr> ';
-          echo '  <td> ' . $rowx['id'] . '   </td> ';
-          echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
-          echo '  <td> ' . $rowx['sssnum'] . '   </td> ';
-          echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
-          echo '  <td> ' . $rowx["phnum"] . '   </td> ';
-          echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
-          echo '  <td> ' . $formattedDate_police . '   </td> ';
-          echo '  <td> ' . $formattedDate_barangay . '   </td> ';
-          echo '  <td> ' . $formattedDate_nbi . '   </td> ';
-          echo '  <td> ' . $rowx["psa"] . '   </td> ';
+        while ($rowx1 = mysqli_fetch_assoc($resultx1)) {
+          $app_num = $rowx1['appnumto'];
 
-
-
-
-
-          echo '<td> 
+          $queryx1 = "SELECT * FROM employees WHERE appno = '$app_num'";
+          $resultx = mysqli_query($link, $queryx1);
+          while ($rowx = mysqli_fetch_assoc($resultx)) {
+            $police = $rowx['policed'];
+            $barangay = $rowx['brgyd'];
+            $nbi = $rowx['nbid'];
+            $timestamp_police = strtotime($police);
+            $timestamp_barangay = strtotime($barangay);
+            $timestamp_nbi = strtotime($nbi);
+            $formattedDate_police = date("F d, Y", $timestamp_police);
+            $formattedDate_barangay = date("F d, Y", $timestamp_barangay);
+            $formattedDate_nbi = date("F d, Y", $timestamp_nbi);
+            // or  $rowx["ewbdate"] != ''
+            if ($rowx['actionpoint'] == "DEPLOYED") {
+              echo ' <tr> ';
+              echo '  <td> ' . $rowx['id'] . '   </td> ';
+              echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
+              echo '  <td> ' . $rowx['sssnum'] . '   </td> ';
+              echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
+              echo '  <td> ' . $rowx["phnum"] . '   </td> ';
+              echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
+              echo '  <td> ' . $formattedDate_police . '   </td> ';
+              echo '  <td> ' . $formattedDate_barangay . '   </td> ';
+              echo '  <td> ' . $formattedDate_nbi . '   </td> ';
+              echo '  <td> ' . $rowx["psa"] . '   </td> ';
+              echo '<td> 
                                <form action = "" method = "POST">
            
                             <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
@@ -2259,11 +2394,11 @@ echo '
     
     
                       ';
-          $appno = $rowx["appno"];
-          $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
-          $corow = mysqli_num_rows($resultcem);
+              $appno = $rowx["appno"];
+              $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
+              $corow = mysqli_num_rows($resultcem);
 
-          echo '
+              echo '
                       <input type = "hidden" name = "shad" value = "' . $corow . '">
            
                       <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
@@ -2272,20 +2407,19 @@ echo '
                       </form>
                       </td>
             </tr> ';
-        } else {
-          echo ' <tr> ';
-          echo '  <td> ' . $rowx['id'] . '   </td> ';
-          echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
-          echo '  <td> ' . $rowx['sssnum'] . '   </td> ';
-          echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
-          echo '  <td> ' . $rowx["phnum"] . '   </td> ';
-          echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
-          echo '  <td> ' . $formattedDate_police . '   </td> ';
-          echo '  <td> ' . $formattedDate_barangay . '   </td> ';
-          echo '  <td> ' . $formattedDate_nbi . '   </td> ';
-          echo '  <td> ' . $rowx["psa"] . '   </td> ';
-          echo '  <td> ' . $rowx["ewb_status"] . '   </td> ';
-          echo '<td> 
+            } else {
+              echo ' <tr> ';
+              echo '  <td> ' . $rowx['id'] . '   </td> ';
+              echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
+              echo '  <td> ' . $rowx['sssnum'] . '   </td> ';
+              echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
+              echo '  <td> ' . $rowx["phnum"] . '   </td> ';
+              echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
+              echo '  <td> ' . $formattedDate_police . '   </td> ';
+              echo '  <td> ' . $formattedDate_barangay . '   </td> ';
+              echo '  <td> ' . $formattedDate_nbi . '   </td> ';
+              echo '  <td> ' . $rowx["psa"] . '   </td> ';
+              echo '<td> 
                                <form action = "" method = "POST">
            
                             <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
@@ -2293,11 +2427,11 @@ echo '
     
     
                       ';
-          $appno = $rowx["appno"];
-          $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
-          $corow = mysqli_num_rows($resultcem);
+              $appno = $rowx["appno"];
+              $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
+              $corow = mysqli_num_rows($resultcem);
 
-          echo '
+              echo '
                       <input type = "hidden" name = "shad" value = "' . $corow . '">
            
                           <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
@@ -2306,10 +2440,10 @@ echo '
                       </form>
                       </td>
                   </tr> ';
+            }
+          }
         }
-      }
-    }
-    '
+        '
     
                            </tbody>
                               </table> 
@@ -2318,550 +2452,698 @@ echo '
     </div>
     </div>
     </div>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
                 ';
-  }
-  ?>
-  </main> <!-- .cd-main-content -->
-
-
-
-  <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
-  <script src="assets/js/menu-aim.js"></script>
-  <script src="assets/js/main.js"></script>
-  <!-- Configure a few settings and attach camera -->
-  <script language="JavaScript">
-    function take_snapshot() {
-      Webcam.snap(function(data_uri) {
-        $(".image-tag").val(data_uri);
-        document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
-      });
-    }
-
-    function myFunctioncam() {
-      Webcam.set({
-        width: 250,
-        height: 200,
-        image_format: 'jpeg',
-        jpeg_quality: 100
-      });
-
-      Webcam.attach('#my_camera');
-
-      document.getElementById("my_camera").style.visibility = "hidden";
-      var x = document.getElementById("my_camera");
-      if (x.style.visibility === "hidden") {
-        x.style.visibility = "visible";
-      } else {
-        x.style.visibility = "hidden";
       }
+?>
+</main> <!-- .cd-main-content -->
+
+
+
+<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+<script src="assets/js/menu-aim.js"></script>
+<script src="assets/js/main.js"></script>
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+  function take_snapshot() {
+    Webcam.snap(function(data_uri) {
+      $(".image-tag").val(data_uri);
+      document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
+    });
+  }
+
+
+  // For birthday and age 
+  function calculateAge() {
+    // Get the date of birth from the input field
+    const birthdate = document.getElementById("birthdate").value;
+
+    // Calculate the age
+    const birthTimestamp = new Date(birthdate).getTime();
+    const currentTimestamp = new Date().getTime();
+    const age = new Date(currentTimestamp - birthTimestamp).getUTCFullYear() - 1970;
+
+    // Update the age input field with the calculated age
+    document.getElementById("age").value = age;
+  }
+
+  // For Search Box
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, j, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those that don't match the search query
+    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+      td = tr[i].getElementsByTagName("td");
+      let match = false; // Assume there is no match
+      for (j = 0; j < td.length; j++) {
+        txtValue = td[j].textContent || td[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          match = true;
+          break; // If a match is found in this row, no need to check other columns
+        }
+      }
+      tr[i].style.display = match ? "" : "none";
     }
+  }
 
-    $(document).ready(function() {
-      $("#myTab a").click(function(e) {
-        e.preventDefault();
-        $(this).tab('show');
-      });
+
+
+  function myFunctioncam() {
+    Webcam.set({
+      width: 250,
+      height: 200,
+      image_format: 'jpeg',
+      jpeg_quality: 100
     });
 
-    $(document).ready(function() {
-      $("#e99").DataTable();
+    Webcam.attach('#my_camera');
+
+    document.getElementById("my_camera").style.visibility = "hidden";
+    var x = document.getElementById("my_camera");
+    if (x.style.visibility === "hidden") {
+      x.style.visibility = "visible";
+    } else {
+      x.style.visibility = "hidden";
+    }
+  }
+
+  $(document).ready(function() {
+    $("#myTab a").click(function(e) {
+      e.preventDefault();
+      $(this).tab('show');
     });
+  });
+
+  $(document).ready(function() {
+    $("#e99").DataTable();
+  });
 
 
-    $("#regionn").on("change", function() {
+  $("#regionn").on("change", function() {
 
-      var x_values = $("#regionn").find(":selected").val();
+    var x_values = $("#regionn").find(":selected").val();
 
-      $.ajax({
-        url: 'ajaxregion.php',
-        type: 'POST',
-        //dataType:'JSON',
-        data: {
-          city_code: x_values
-        },
-        success: function(result) {
+    $.ajax({
+      url: 'ajaxregion.php',
+      type: 'POST',
+      //dataType:'JSON',
+      data: {
+        city_code: x_values
+      },
+      success: function(result) {
 
-          result = JSON.parse(result);
+        result = JSON.parse(result);
 
-          //Empty option on change
+        //Empty option on change
+        var select = document.getElementById("cityn");
+        var length = select.options.length;
+
+        for (i = length - 1; i >= 0; i--) {
+          select.options[i] = null;
+        }
+        //end
+
+        result.forEach(function(item, index) {
+
+          //console.log(item[2]);
+
+          var option = document.createElement("option");
+          option.text = item['city_name'];
+          option.value = item['city_name'];
           var select = document.getElementById("cityn");
-          var length = select.options.length;
+          select.appendChild(option);
+        });
+      },
 
-          for (i = length - 1; i >= 0; i--) {
-            select.options[i] = null;
+      error: function(result) {
+        console.log(result)
+      }
+    });
+
+  });
+
+
+  // For Blacklisting
+  $(document).ready(function() {
+    $('.blackbtn').click(function(e) {
+      e.preventDefault();
+
+      var blacklistingID = $(this).closest("tr").find('.blackbtnID').val();
+
+      Swal.fire({
+        title: "Are you sure you want to blacklist this person?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, blacklist it!",
+        cancelButtonText: "No, cancel",
+        showCloseButton: true, // Add a close button
+
+        // Customize the content of the modal
+        html: '<input type="text" id="blacklistReason" placeholder="Enter reason for blacklisting" class="swal2-input">',
+
+        preConfirm: () => {
+          // Retrieve the entered reason from the input field
+          var reason = document.getElementById("blacklistReason").value;
+
+          if (!reason) {
+            Swal.showValidationMessage("Reason is required");
           }
-          //end
 
-          result.forEach(function(item, index) {
+          // Log the reason to the console for debugging
+          console.log("Reason for blacklisting: " + reason);
 
-            //console.log(item[2]);
-
-            var option = document.createElement("option");
-            option.text = item['city_name'];
-            option.value = item['city_name'];
-            var select = document.getElementById("cityn");
-            select.appendChild(option);
-          });
-        },
-
-        error: function(result) {
-          console.log(result)
+          // Send the reason along with the AJAX request
+          return {
+            reason: reason
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var reason = result.value.reason; // Get the reason entered by the user
+          if (reason) {
+            // Send the reason along with the AJAX request
+            $.ajax({
+              type: "POST",
+              url: "action.php",
+              data: {
+                "blacklist_button": 1,
+                "blacklistID": blacklistingID,
+                "reason": reason, // Include the reason
+              },
+              success: function(response) {
+                Swal.fire({
+                  title: "Successfully Blacklisted!",
+                  icon: "success",
+                }).then((result) => {
+                  location.reload();
+                });
+              },
+              error: function(xhr, status, error) {
+                console.log("AJAX Error: " + error);
+              }
+            });
+          }
         }
       });
-
     });
+  });
 
 
-// For Blacklisting
-    $(document).ready(function() {
-      $('.blackbtn').click(function(e) {
-        e.preventDefault();
+  // For deleting Applicants
+  $(document).ready(function() {
+    $('.deletebtn').click(function(e) {
+      e.preventDefault();
 
-        var blacklistingID = $(this).closest("tr").find('.blackbtnID').val();
+      var deleteApplicantID = $(this).closest("tr").find('.deleteID').val();
 
-        Swal.fire({
-          title: "Are you sure you want to blacklist this person?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, blacklist it!",
-          cancelButtonText: "No, cancel",
-          showCloseButton: true, // Add a close button
+      Swal.fire({
+        title: "Are you sure you want to delete this person?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel",
+        showCloseButton: true, // Add a close button
 
-          // Customize the content of the modal
-          html: '<input type="text" id="blacklistReason" placeholder="Enter reason for blacklisting" class="swal2-input">',
+        // Customize the content of the modal
+        html: '<input type="text" id="deleteReason" placeholder="Enter reason for delete" class="swal2-input">',
 
-          preConfirm: () => {
-            // Retrieve the entered reason from the input field
-            var reason = document.getElementById("blacklistReason").value;
+        preConfirm: () => {
+          // Retrieve the entered reason from the input field
+          var reason = document.getElementById("deleteReason").value;
 
-            if (!reason) {
-              Swal.showValidationMessage("Reason is required");
-            }
-
-            // Log the reason to the console for debugging
-            console.log("Reason for blacklisting: " + reason);
-
+          if (!reason) {
+            Swal.showValidationMessage("Reason is required");
+          }
+          // Send the reason along with the AJAX request
+          return {
+            reason: reason
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var reason = result.value.reason; // Get the reason entered by the user
+          if (reason) {
             // Send the reason along with the AJAX request
-            return {
-              reason: reason
-            };
-          }
-        }).then((result) => {
-          if (result.isConfirmed) {
-            var reason = result.value.reason; // Get the reason entered by the user
-            if (reason) {
-              // Send the reason along with the AJAX request
-              $.ajax({
-                type: "POST",
-                url: "action.php",
-                data: {
-                  "blacklist_button": 1,
-                  "blacklistID": blacklistingID,
-                  "reason": reason, // Include the reason
-                },
-                success: function(response) {
-                  Swal.fire({
-                    title: "Successfully Blacklisted!",
-                    icon: "success",
-                  }).then((result) => {
-                    location.reload();
-                  });
-                },
-                error: function(xhr, status, error) {
-                  console.log("AJAX Error: " + error);
-                }
-              });
-            }
-          }
-        });
-      });
-    });
-
-
-    // For deleting Applicants
-    $(document).ready(function() {
-      $('.deletebtn').click(function(e) {
-        e.preventDefault();
-
-        var deleteApplicantID = $(this).closest("tr").find('.deleteID').val();
-
-        Swal.fire({
-          title: "Are you sure you want to delete this person?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, delete it!",
-          cancelButtonText: "No, cancel",
-          showCloseButton: true, // Add a close button
-
-          // Customize the content of the modal
-          html: '<input type="text" id="deleteReason" placeholder="Enter reason for delete" class="swal2-input">',
-
-          preConfirm: () => {
-            // Retrieve the entered reason from the input field
-            var reason = document.getElementById("deleteReason").value;
-
-            if (!reason) {
-              Swal.showValidationMessage("Reason is required");
-            }
-            // Send the reason along with the AJAX request
-            return {
-              reason: reason
-            };
-          }
-        }).then((result) => {
-          if (result.isConfirmed) {
-            var reason = result.value.reason; // Get the reason entered by the user
-            if (reason) {
-              // Send the reason along with the AJAX request
-              $.ajax({
-                type: "POST",
-                url: "action.php",
-                data: {
-                  "delete_applicant_button": 1,
-                  "delete_applicant_ID": deleteApplicantID,
-                  "reason": reason, // Include the reason
-                },
-                success: function(response) {
-                  Swal.fire({
-                    title: "Successfully Deleted!",
-                    icon: "success",
-                  }).then((result) => {
-                    location.reload();
-                  });
-                },
-                error: function(xhr, status, error) {
-                  console.log("AJAX Error: " + error);
-                }
-              });
-            }
-          }
-        });
-      });
-    });
-
-    // For Undo Blacklisted Applicants
-    $(document).ready(function() {
-      $('.undoblacklistbtn').click(function(e) {
-        e.preventDefault();
-
-        var undoblacklistID = $(this).closest("tr").find('.undoblacklistID').val();
-        Swal.fire({
-          title: "Are you sure you want to undo this blacklisted applicant?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, undo this!",
-          cancelButtonText: "No, cancel",
-        }).then((willDelete) => {
-          if (willDelete.isConfirmed) {
             $.ajax({
               type: "POST",
               url: "action.php",
               data: {
-                "undo_button_click": 1,
-                "undoblacklist_id": undoblacklistID,
+                "delete_applicant_button": 1,
+                "delete_applicant_ID": deleteApplicantID,
+                "reason": reason, // Include the reason
               },
               success: function(response) {
-
                 Swal.fire({
-                  title: "Successfully Undo!",
+                  title: "Successfully Deleted!",
+                  icon: "success",
+                }).then((result) => {
+                  location.reload();
+                });
+              },
+              error: function(xhr, status, error) {
+                console.log("AJAX Error: " + error);
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+
+  // For Undo Blacklisted Applicants
+  $(document).ready(function() {
+    $('.undoblacklistbtn').click(function(e) {
+      e.preventDefault();
+
+      var undoblacklistID = $(this).closest("tr").find('.undoblacklistID').val();
+      Swal.fire({
+        title: "Are you sure you want to undo this blacklisted applicant?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, undo this!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "undo_button_click": 1,
+              "undoblacklist_id": undoblacklistID,
+            },
+            success: function(response) {
+
+              Swal.fire({
+                title: "Successfully Undo!",
+                icon: "success"
+              }).then((result) => {
+                location.reload();
+              });
+
+            }
+          });
+        }
+      });
+    });
+  });
+
+  // For Undo Canceled Applicants
+  $(document).ready(function() {
+    $('.undocanceledbtn').click(function(e) {
+      e.preventDefault();
+
+      var undocanceledID = $(this).closest("tr").find('.undocanceledID').val();
+      Swal.fire({
+        title: "Are you sure you want to undo this canceled applicant?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, undo this!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "undo_canceled_button_click": 1,
+              "undocanceled_id": undocanceledID,
+            },
+            success: function(response) {
+
+              Swal.fire({
+                title: "Successfully Undo!",
+                icon: "success"
+              }).then((result) => {
+                location.reload();
+              });
+
+            }
+          });
+        }
+      });
+    });
+  });
+
+  // For Adding Applicants to shortlist
+  $(document).ready(function() {
+    $('.add_shortlist_btn').click(function(e) {
+      e.preventDefault();
+
+      var appno_ids = $(this).closest("tr").find('.appno_id').val();
+      Swal.fire({
+        title: "Are you sure you want to add this?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, add it!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "add_shortlist_click": 1,
+              "appno_id_click": appno_ids,
+            },
+            success: function(response) {
+              // Parse the response as JSON
+              var jsonResponse = JSON.parse(response);
+              if (jsonResponse.message === "Successfully added to the shortlist") {
+                Swal.fire({
+                  title: "Successfully Added!",
                   icon: "success"
                 }).then((result) => {
                   location.reload();
                 });
-
-              }
-            });
-          }
-        });
-      });
-    });
-
-    // For Undo Canceled Applicants
-    $(document).ready(function() {
-      $('.undocanceledbtn').click(function(e) {
-        e.preventDefault();
-
-        var undocanceledID = $(this).closest("tr").find('.undocanceledID').val();
-        Swal.fire({
-          title: "Are you sure you want to undo this canceled applicant?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, undo this!",
-          cancelButtonText: "No, cancel",
-        }).then((willDelete) => {
-          if (willDelete.isConfirmed) {
-            $.ajax({
-              type: "POST",
-              url: "action.php",
-              data: {
-                "undo_canceled_button_click": 1,
-                "undocanceled_id": undocanceledID,
-              },
-              success: function(response) {
-
-                Swal.fire({
-                  title: "Successfully Undo!",
-                  icon: "success"
-                }).then((result) => {
-                  location.reload();
-                });
-
-              }
-            });
-          }
-        });
-      });
-    });
-
-    // For Adding Applicants to shortlist
-    $(document).ready(function() {
-      $('.add_shortlist_btn').click(function(e) {
-        e.preventDefault();
-
-        var appno_ids = $(this).closest("tr").find('.appno_id').val();
-        Swal.fire({
-          title: "Are you sure you want to add this?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, add it!",
-          cancelButtonText: "No, cancel",
-        }).then((willDelete) => {
-          if (willDelete.isConfirmed) {
-            $.ajax({
-              type: "POST",
-              url: "action.php",
-              data: {
-                "add_shortlist_click": 1,
-                "appno_id_click": appno_ids,
-              },
-              success: function(response) {
-                // Parse the response as JSON
-                var jsonResponse = JSON.parse(response);
-                if (jsonResponse.message === "Successfully added to the shortlist") {
-                  Swal.fire({
-                    title: "Successfully Added!",
-                    icon: "success"
-                  }).then((result) => {
-                    location.reload();
-                  });
-                } else {
-                  Swal.fire({
-                    title: "Error due to duplication",
-                    icon: "error"
-                  });
-                }
-              },
-              error: function() {
+              } else {
                 Swal.fire({
                   title: "Error due to duplication",
                   icon: "error"
                 });
               }
-            });
-          }
-        });
-      });
-    });
-
-
-    // For Undo termination of Applicants
-    $(document).ready(function() {
-      $('.unterminate_me').click(function(e) {
-        e.preventDefault();
-
-        var unterminateID = $(this).closest("tr").find('.emp_number').val();
-
-        Swal.fire({
-          title: "Are you sure you want to unterminate this person?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, unterminate it!",
-          cancelButtonText: "No, cancel",
-          showCloseButton: true, // Add a close button
-
-          // Customize the content of the modal
-          html: '<input type="text" id="unterminateReason" placeholder="Enter reason for untermination" class="swal2-input">',
-
-          preConfirm: () => {
-            // Retrieve the entered reason from the input field
-            var reason = document.getElementById("unterminateReason").value;
-
-            if (!reason) {
-              Swal.showValidationMessage("Reason is required");
-            }
-            // Send the reason along with the AJAX request
-            return {
-              reason: reason
-            };
-          }
-        }).then((result) => {
-          if (result.isConfirmed) {
-            var reason = result.value.reason; // Get the reason entered by the user
-            if (reason) {
-              // Send the reason along with the AJAX request
-              $.ajax({
-                type: "POST",
-                url: "action.php",
-                data: {
-                  "unterminate_applicant_button": 1,
-                  "unterminate_applicant_ID": unterminateID,
-                  "reason": reason, // Include the reason
-                },
-                success: function(response) {
-                  Swal.fire({
-                    title: "Successfully Unterminated!",
-                    icon: "success",
-                  }).then((result) => {
-                    location.reload();
-                  });
-                },
-                error: function(xhr, status, error) {
-                  console.log("AJAX Error: " + error);
-                }
+            },
+            error: function() {
+              Swal.fire({
+                title: "Error due to duplication",
+                icon: "error"
               });
             }
-          }
-        });
+          });
+        }
       });
     });
+  });
 
-    // For Viewing details
-    $(document).ready(function() {
-      $('tbody').on('click', '.displaymo', function() {
-        var Id = $(this).prev('.shadowd1').val();
-        $('#viewdetails').modal('show');
 
-        // load the corresponding question(s) for the clicked row
-        $.ajax({
-          url: 'view_details.php',
-          type: 'post',
-          data: {
-            view_button: 1,
-            id: Id
-          },
-          success: function(response) {
-            $('#viewdetails .modal-body').html(response);
-          },
-          error: function() {
-            alert('Error.');
+  // For Undo termination of Applicants
+  $(document).ready(function() {
+    $('.unterminate_me').click(function(e) {
+      e.preventDefault();
+
+      var unterminateID = $(this).closest("tr").find('.emp_number').val();
+
+      Swal.fire({
+        title: "Are you sure you want to unterminate this person?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, unterminate it!",
+        cancelButtonText: "No, cancel",
+        showCloseButton: true, // Add a close button
+
+        // Customize the content of the modal
+        html: '<input type="text" id="unterminateReason" placeholder="Enter reason for untermination" class="swal2-input">',
+
+        preConfirm: () => {
+          // Retrieve the entered reason from the input field
+          var reason = document.getElementById("unterminateReason").value;
+
+          if (!reason) {
+            Swal.showValidationMessage("Reason is required");
           }
-        });
-      });
-    });
-
-
-    // For removing the applicants from the shortlist table
-    $(document).ready(function() {
-      $('.remove').click(function(e) {
-        e.preventDefault();
-
-        var app_num = $(this).closest("tr").find('.shadowE1').val();
-        var shad = $(this).closest("tr").find('.shad').val();
-
-        Swal.fire({
-          title: "Are you sure you want to remove this from the shortlist?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, remove it!",
-          cancelButtonText: "No, cancel",
-        }).then((willDelete) => {
-          if (willDelete.isConfirmed) {
+          // Send the reason along with the AJAX request
+          return {
+            reason: reason
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var reason = result.value.reason; // Get the reason entered by the user
+          if (reason) {
+            // Send the reason along with the AJAX request
             $.ajax({
               type: "POST",
               url: "action.php",
               data: {
-                "remove_button_click": 1,
-                "app_num": app_num,
-                "shad": shad,
+                "unterminate_applicant_button": 1,
+                "unterminate_applicant_ID": unterminateID,
+                "reason": reason, // Include the reason
               },
               success: function(response) {
-                // Parse the response as JSON
-                var jsonResponse = JSON.parse(response);
-                if (jsonResponse.message === "Successfully removed from the shortlist") {
-                  Swal.fire({
-                    title: "Successfully Removed!",
-                    icon: "success"
-                  }).then((result) => {
-                    location.reload();
-                  });
-                } else {
-                  Swal.fire({
-                    title: jsonResponse.message, // Display the error message from the server
-                    icon: "error"
-                  });
-                }
+                Swal.fire({
+                  title: "Successfully Unterminated!",
+                  icon: "success",
+                }).then((result) => {
+                  location.reload();
+                });
               },
               error: function(xhr, status, error) {
-                Swal.fire({
-                  title: "Error: " + error, // Display a generic error message
-                  icon: "error"
-                });
+                console.log("AJAX Error: " + error);
               }
             });
           }
-        });
+        }
       });
     });
+  });
 
-    // For deployment of applicants (Not Verify)
-    $(document).ready(function() {
-      $('.addtoewb').click(function(e) {
-        e.preventDefault();
+  // For Viewing details
+  $(document).ready(function() {
+    $('tbody').on('click', '.displaymo', function() {
+      var Id = $(this).prev('.shadowd1').val();
+      $('#viewdetails').modal('show');
 
-        var appnum_ID = $(this).closest("tr").find('.appno_deploy').val();
-        Swal.fire({
-          title: "Are you sure you want to deploy this applicant?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, deploy this!",
-          cancelButtonText: "No, cancel",
-        }).then((willDelete) => {
-          if (willDelete.isConfirmed) {
-            $.ajax({
-              type: "POST",
-              url: "action.php",
-              data: {
-                "deploy_button_click": 1,
-                "deploy_id": appnum_ID,
-              },
-              success: function(response) {
+      // load the corresponding question(s) for the clicked row
+      $.ajax({
+        url: 'view_details.php',
+        type: 'post',
+        data: {
+          view_button: 1,
+          id: Id
+        },
+        success: function(response) {
+          $('#viewdetails .modal-body').html(response);
+        },
+        error: function() {
+          alert('Error.');
+        }
+      });
+    });
+  });
 
+
+  // For removing the applicants from the shortlist table
+  $(document).ready(function() {
+    $('.remove').click(function(e) {
+      e.preventDefault();
+
+      var app_num = $(this).closest("tr").find('.shadowE1').val();
+      var shad = $(this).closest("tr").find('.shad').val();
+
+      Swal.fire({
+        title: "Are you sure you want to remove this from the shortlist?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, remove it!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "remove_button_click": 1,
+              "app_num": app_num,
+              "shad": shad,
+            },
+            success: function(response) {
+              // Parse the response as JSON
+              var jsonResponse = JSON.parse(response);
+              if (jsonResponse.message === "Successfully removed from the shortlist") {
                 Swal.fire({
-                  title: "Successfully Deployed!",
+                  title: "Successfully Removed!",
                   icon: "success"
                 }).then((result) => {
                   location.reload();
                 });
+              } else {
+                Swal.fire({
+                  title: jsonResponse.message, // Display the error message from the server
+                  icon: "error"
+                });
+              }
+            },
+            error: function(xhr, status, error) {
+              Swal.fire({
+                title: "Error: " + error, // Display a generic error message
+                icon: "error"
+              });
+            }
+          });
+        }
+      });
+    });
+  });
 
+  // For deployment of applicants (Not Verify)
+  $(document).ready(function() {
+    $('.addtoewb').click(function(e) {
+      e.preventDefault();
+
+      var appnum_ID = $(this).closest("tr").find('.appno_deploy').val();
+      Swal.fire({
+        title: "Are you sure you want to deploy this applicant?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, deploy this!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "deploy_button_click": 1,
+              "deploy_id": appnum_ID,
+            },
+            success: function(response) {
+
+              Swal.fire({
+                title: "Successfully Deployed!",
+                icon: "success"
+              }).then((result) => {
+                location.reload();
+              });
+
+            }
+          });
+        }
+      });
+    });
+  });
+
+  // For reverification of applicant that is declined by EWB
+  $(document).ready(function() {
+    $('.for_reverification_btn').click(function(e) {
+      e.preventDefault();
+
+      var for_reverification_id = $(this).closest("tr").find('.for_reverification_id').val();
+
+      Swal.fire({
+        title: "Input Remarks",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Send",
+        cancelButtonText: "Cancel",
+        showCloseButton: true, // Add a close button
+
+        // Customize the content of the modal
+        html: '<input type="text" id="reverificationReason" placeholder="Enter remarks" class="swal2-input">',
+
+        preConfirm: () => {
+          // Retrieve the entered reason from the input field
+          var reason = document.getElementById("reverificationReason").value;
+
+          if (!reason) {
+            Swal.showValidationMessage("Reason is required");
+          }
+
+          // Log the reason to the console for debugging
+          console.log("Reason for blacklisting: " + reason);
+
+          // Send the reason along with the AJAX request
+          return {
+            reason: reason
+          };
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var reason = result.value.reason; // Get the reason entered by the user
+          if (reason) {
+            // Send the reason along with the AJAX request
+            $.ajax({
+              type: "POST",
+              url: "action.php",
+              data: {
+                "reverification_button": 1,
+                "reverificationID": for_reverification_id,
+                "reason": reason, // Include the reason
+              },
+              success: function(response) {
+                Swal.fire({
+                  title: "Successful!",
+                  icon: "success",
+                }).then((result) => {
+                  location.reload();
+                });
+              },
+              error: function(xhr, status, error) {
+                console.log("AJAX Error: " + error);
               }
             });
           }
-        });
+        }
       });
     });
+  });
 
-    // Enabling Tooltips
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-  </script>
-  <script>
-    $(document).ready(function() {
-      $('#example').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-      });
+
+  // Enabling Tooltips
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
+
+
+
+
+
+
+
+  // For checkboxes of selecting applicants for shortlist
+  const selectAll = document.getElementById('select-all');
+  const userCheckboxes = document.querySelectorAll('input[name="user[]"]');
+
+  // Add an event listener to the "Select All" checkbox
+  selectAll.addEventListener('change', function() {
+    userCheckboxes.forEach((checkbox) => {
+      checkbox.checked = selectAll.checked;
     });
-  </script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+  });
+
+  // Add event listeners to user checkboxes to track selections
+  userCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', function() {
+      // Check if all user checkboxes are selected and update "Select All" accordingly
+      selectAll.checked = [...userCheckboxes].every((cb) => cb.checked);
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+        'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+    });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
 </body>
 
 </html>

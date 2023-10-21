@@ -2857,9 +2857,10 @@ if (isset($kekelpogi1)) {
                 <option>Select Employee Name:</option>
                 <?php
 
-                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-                while ($rowpro = mysqli_fetch_array($resultpro)) {
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
+                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted != '1'");
+                while ($rowpro = mysqli_fetch_assoc($resultpro)) {
+                  $appno = $rowpro["appno"];
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$appno'");
                   while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
 
 

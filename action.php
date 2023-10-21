@@ -50,7 +50,9 @@ if (isset($_POST['next'])) {
     $nbid1 = date_format($datenbi, "m/d/Y");
     $psa1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['psa']))));
     $remarks1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks']))));
-    $fullname = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
+    $lastname = $_SESSION['lastname'];
+    $firstname = $_SESSION['firstname'];
+    $fullname = $firstname . ' ' . $lastname;
     $resultempl = mysqli_query($link, "SELECT * FROM employees WHERE lastnameko = '$lastnameko1' AND firstnameko = '$firstnameko1' AND mnko='$mnko1' AND birthday = '$birthday1'");
     $row = $resultempl->fetch_assoc();
 
@@ -65,6 +67,7 @@ if (isset($_POST['next'])) {
         if ($InsertApplicantResult) {
             $_SESSION['successMessage'] = "Successful!";
             header("Location: recruitment.php");
+            unset($_SESSION["photoko"]);
         } else {
             $_SESSION['errorMessage'] = "Error in inserting applicant";
             header("Location: recruitment.php");
@@ -542,4 +545,201 @@ if (isset($_POST['declined_button'])) {
             header("Location: recruitment.php");
         }
     }
+}
+
+// For selected applicants in shortlisting
+if (isset($_POST['add_to_shortlist'])) {
+    $data = $_SESSION["data"];
+    $selected_applicants = $_POST['user'];
+
+    // Initialize the $response array outside of the loop
+    $response = array();
+
+    if (!empty($selected_applicants)) {
+        foreach ($selected_applicants as $id1) {
+            $querytac = "SELECT * FROM employees WHERE appno = '$id1'";
+            $resultac = mysqli_query($link, $querytac);
+
+            while ($rowac = mysqli_fetch_assoc($resultac)) {
+                if ($rowac['actionpoint'] === "ACTIVE") {
+                    $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
+                    $results1 = mysqli_query($link, $query1);
+
+                    if ($results1) {
+                        $dtnow = date("m/d/Y");
+
+                        $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1' ";
+                        $resultchk = mysqli_query($link, $querychk);
+
+                        if (mysqli_num_rows($resultchk) === 0) {
+                            $query2 = "INSERT INTO shortlist_master(shortlistnameto, appnumto, dateto) VALUES('$data', '$id1', '$dtnow')";
+                            $results2 = mysqli_query($link, $query2);
+
+                            if ($results2) {
+                                $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                                header("Location: recruitment.php");
+                            } else {
+                                $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                                header("Location: recruitment.php");
+                            }
+                        } else {
+                            $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                            header("Location: recruitment.php");
+                        }
+                    } else {
+                        $_SESSION['errorMessage'] = "Not Added due to duplication!";
+                        error_log("Query 1 failed: " . mysqli_error($link));
+                        // You can also include more detailed error information in your JSON response.
+                        $response[] = array('message' => 'Error: Query 1 failed');
+                    }
+                } else {
+                    $dtnow = date("m/d/Y");
+                    $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
+                    $resultchk = mysqli_query($link, $querychk);
+
+                    if (mysqli_num_rows($resultchk) == 0) {
+                        $query3 = "INSERT INTO shortlist_master(shortlistnameto,appnumto,dateto) VALUES('$data','$id1','$dtnow')";
+                        $results3 = mysqli_query($link, $query3);
+
+                        if ($results3) {
+                            $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                            header("Location: recruitment.php");
+                        } else {
+                            $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                            header("Location: recruitment.php");
+                        }
+                    } else {
+                        $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                        header("Location: recruitment.php");
+                    }
+                }
+            }
+        }
+    } else {
+        $_SESSION["errorMessage"] = "No selected Applicants";
+        header("location:recruitment.php");
+    }
+
+    // Send JSON response
+    echo json_encode($response);
+
+    // Redirect to recruitment.php
+    header("Location: recruitment.php");
+    exit;
+}
+
+// For reverification of applicant that is declined by EWB
+if (isset($_POST['reverification_button'])) {
+    $id = $_POST['reverificationID'];
+    $reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+
+    if (!empty($reason)) {
+        $reverification_query = "UPDATE employees SET actionpoint = 'EWB', ewb_status = 'NOT VERIFY' WHERE id = '$id'";
+        $reverification_result = $link->query($reverification_query);
+
+        if ($reverification_result) {
+            $update_queries = "UPDATE employees SET recruitment_reason = '$reason' WHERE id = '$id'";
+            $update_results = $link->query($update_queries);
+
+            if ($update_results) {
+                $select_query = "SELECT * FROM employees WHERE id = '$id'";
+                $select_result = $link->query($select_query);
+                $row = $select_result->fetch_assoc();
+
+                $firstname = $row['firstnameko'];
+                $lastname = $row['lastnameko'];
+                $middlename = $row['mnko'];
+
+                $extension_name = $row['extnname'];
+                if (!empty($extension_name)) {
+                    $fullname = $lastname . " " . $extension_name . ", " . $firstname . " " . $middlename;
+                } else {
+                    $fullname = $lastname . ", " . $firstname . " " . $middlename;
+                }
+                $approved_by = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
+                $app_num = $row['appno'];
+                $sssnum = $row['sssnum'];
+                $phnum = $row['phnum'];
+                $pagibignum = $row['pagibignum'];
+                $tinnum = $row['tinnum'];
+                $birthday = $row['birthday'];
+                $address = $row['peraddress'];
+
+                $insert = "INSERT INTO recruitment_approve_history(name, app_num, sss, philhealth, pagibig, tin, birthday, address, remarks, approved_by) 
+                VALUES ('$fullname', '$app_num', '$sssnum', '$phnum', '$pagibignum', '$tinnum', '$birthday', '$address', '$reason', '$approved_by')";
+                $results = $link->query($insert);
+
+                if ($results) {
+                    $_SESSION['successMessage'] = "Successful";
+                    exit();
+                } else {
+                    $_SESSION["errorMessage"] = "Error!!!";
+                }
+            } else {
+                $_SESSION['errorMessage'] = "Error in inserting reason";
+            }
+        } else {
+            $_SESSION['errorMessage'] = "Error in Insert";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Please enter reason";
+    }
+
+    // Redirect only once after all the logic
+    header("Location: recruitment.php");
+}
+
+// For Verification of Applicants
+if (isset($_POST['verify_button_click'])) {
+    $dtnow = date("m/d/Y");
+    $ewbid1 = $_POST['verify_id'];
+
+    $verify_query = "UPDATE employees SET ewbdeploy = 'FOR DEPLOYMENT', ewbdate = '$dtnow', ewb_status = 'VERIFIED' WHERE appno = '$ewbid1'";
+    $verify_result = mysqli_query($link, $verify_query);
+
+    if ($verify_result) {
+
+        $select_emp_query = "SELECT * FROM employees WHERE appno = '$ewbid1'";
+        $select_emp_result = $link->query($select_emp_query);
+
+        if ($select_emp_result) {
+            while ($row = $select_emp_result->fetch_assoc()) {
+                $firstname = $row['firstnameko'];
+                $lastname = $row['lastnameko'];
+                $middlename = $row['mnko'];
+                $extension_name = $row['extnname'];
+
+                if (!empty($extension_name)) {
+                    $fullname = $lastname . " " . $extension_name . ", " . $firstname . " " . $middlename;
+                } else {
+                    $fullname = $lastname . ", " . $firstname . " " . $middlename;
+                }
+                $app_num = $row['appno'];
+                $sssnum = $row['sssnum'];
+                $phnum = $row['phnum'];
+                $pagibignum = $row['pagibignum'];
+                $tinnum = $row['tinnum'];
+                $birthday = $row['birthday'];
+                $address = $row['peraddress'];
+                $remarks = $row['ewb_status'];
+                $verified_by = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
+
+                $insert_emp = "INSERT INTO ewb_verification_history(name, app_num, sss, philhealth, pagibig, tin, birthday, address, remarks, verified_by) 
+                VALUES ('$fullname', '$app_num', '$sssnum', '$phnum', '$pagibignum', '$tinnum', '$birthday', '$address', '$remarks', '$verified_by')";
+                $results_emp = $link->query($insert_emp);
+
+                if ($results_emp) {
+                    $_SESSION['successMessage'] = "Verification Successful!";
+                } else {
+                    $_SESSION["errorMessage"] = "Error!!!";
+                }
+            }
+        } else {
+            $_SESSION['errorMessage'] = "Error in verifying applicants!";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error in verifying applicants!";
+    }
+    header("Location: recruitment.php");
+    exit();
 }

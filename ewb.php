@@ -41,7 +41,7 @@ if (isset($_POST['to_index'])) {
 
   <!-- Sweet Alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
   <style type="text/css">
     #results {
       padding: 10px;
@@ -141,7 +141,7 @@ if (isset($_POST['to_index'])) {
 </head>
 
 <body>
-<?php
+  <?php
   if (isset($_SESSION['successMessage'])) { ?>
     <script>
       Swal.fire({
@@ -389,7 +389,7 @@ if (isset($_POST['to_index'])) {
 
       <div class="how12">
         <div class="many"><br>
-          $shadowewb1 = $_POST['shadowewb']; ?>
+          <?php $shadowewb1 = $_POST['shadowewb']; ?>
           <form action="" method="POST"><br>
             <input type="hidden" name="ewbid" value="' . $shadowewb1 . '">
 
@@ -490,7 +490,7 @@ if (isset($_POST['to_index'])) {
                              </form>
                             
                 <center>
-                                    <h2 class="fs-2">EWB LISTING</h2>
+                                    <h2 class="fs-2">EWB FOR VERIFICATION LISTING</h2>
                  </center>        
 
 
@@ -515,7 +515,7 @@ if (isset($_POST['to_index'])) {
                             </thead>
                             <tbody>';
 
-    $resultx = mysqli_query($link, "SELECT * FROM employees where actionpoint='EWB' and ewbdeploy='0'");
+    $resultx = mysqli_query($link, "SELECT * FROM employees where actionpoint = 'EWB' AND ewb_status = 'NOT VERIFY'");
     while ($rowx = mysqli_fetch_assoc($resultx)) {
       $police = $rowx['policed'];
       $barangay = $rowx['brgyd'];
@@ -552,16 +552,15 @@ if (isset($_POST['to_index'])) {
 
       echo '<td> <form action = "" method = "POST">
 
-<input type = "hidden" name = "shadowewb" id = "shadowewb" value = "' . $rowx['appno'] . '">
-
-  <button type="button" name = "verify1s" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal-' . $rowx['appno'] . '">
-                                      <span class="glyphicon glyphicon-edit" >Verify</span>
-                                    </button>
-
-<input type = "hidden" name = "decline_ewbID" class="decline_ewbID" id = "decline_ewbID" value = "' . $rowx['appno'] . '">
-  <button type="submit" name = "decline_ewb" class="btn btn-info decline_ewb" id="decline_ewb">
-    <span class="glyphicon glyphicon-edit" >Decline</span>
+  <input type = "hidden" name = "verified_id" class="verified_id" id = "verified_id" value = "' . $rowx['appno'] . '">
+  <button type="button" name = "verify1s" class="btn btn-info verify1s">
+    <span class="glyphicon glyphicon-edit" >Verify</span>
   </button>
+
+  <input type = "hidden" name = "decline_ewbID" class="decline_ewbID" id = "decline_ewbID" value = "' . $rowx['appno'] . '">
+    <button type="submit" name = "decline_ewb" class="btn btn-info decline_ewb" id="decline_ewb">
+      <span class="glyphicon glyphicon-edit" >Decline</span>
+    </button>
 
 
 
@@ -653,49 +652,49 @@ if (isset($_POST['to_index'])) {
 
 
 
-  if(isset($_POST['databaselist'])){
+  if (isset($_POST['databaselist'])) {
 
   ?>
-  
-  
-  <div class="containers" id="databaselist">
-        <div class="cd-content-wrappers">
-          <div class="text-component text-center">
-            <h2 class="fs-2">Applicant Database</h2>
-            <table id="example" class="table p-3 table-bordered align-middle mb-0 border border-dark border-start-0 border-end-0 rounded-end" style="border: 1px solid whitesmoke !important; width: 100%; font-size: 13px !important;">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Applicant No </th>
-                  <th>Applicant Name </th>
-                  <th>Email </th>
-                  <th>Contact No.</th>
-                  <th>Birthday </th>
-                  <th>Address </th>
-                  <th>Status </th>
-                  <th>Action </th>
-  
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                $resultx = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'SHORTLISTED' AND actionpoint <> 'CANCELED'");
-                while ($rowx = mysqli_fetch_assoc($resultx)) {
-  
-                  echo ' <tr> ';
-                  echo '  <td>  ' . $rowx['id'] . '   </td> ';
-                  echo '  <td>  ' . $rowx['appno'] . '   </td> ';
-                  echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
-                  echo '  <td> ' . $rowx['emailadd'] . '   </td> ';
-                  echo '  <td> ' . $rowx['cpnum'] . '   </td> ';
-                  echo '  <td> ' . $rowx['birthday'] . '   </td> ';
-                  echo '  <td> ' . $rowx['peraddress'] . '   </td> ';
-                  if ($rowx['actionpoint'] === "ACTIVE") { ?>
-                    <td><?php echo $rowx['actionpoint']; ?></td>
-                  <?php } else { ?>
-                    <td><?php echo $rowx['actionpoint']; ?></td>
-                <?php }
-                  echo '<td> 
+
+
+    <div class="containers" id="databaselist">
+      <div class="cd-content-wrappers">
+        <div class="text-component text-center">
+          <h2 class="fs-2">Applicant Database</h2>
+          <table id="example" class="table p-3 table-bordered align-middle mb-0 border border-dark border-start-0 border-end-0 rounded-end" style="border: 1px solid whitesmoke !important; width: 100%; font-size: 13px !important;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Applicant No </th>
+                <th>Applicant Name </th>
+                <th>Email </th>
+                <th>Contact No.</th>
+                <th>Birthday </th>
+                <th>Address </th>
+                <th>Status </th>
+                <th>Action </th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $resultx = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'SHORTLISTED' AND actionpoint <> 'CANCELED'");
+              while ($rowx = mysqli_fetch_assoc($resultx)) {
+
+                echo ' <tr> ';
+                echo '  <td>  ' . $rowx['id'] . '   </td> ';
+                echo '  <td>  ' . $rowx['appno'] . '   </td> ';
+                echo '  <td>  ' . $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . '   </td> ';
+                echo '  <td> ' . $rowx['emailadd'] . '   </td> ';
+                echo '  <td> ' . $rowx['cpnum'] . '   </td> ';
+                echo '  <td> ' . $rowx['birthday'] . '   </td> ';
+                echo '  <td> ' . $rowx['peraddress'] . '   </td> ';
+                if ($rowx['actionpoint'] === "ACTIVE") { ?>
+                  <td><?php echo $rowx['actionpoint']; ?></td>
+                <?php } else { ?>
+                  <td><?php echo $rowx['actionpoint']; ?></td>
+              <?php }
+                echo '<td> 
                         <form action = "" method = "POST" class="contain">
                           <div class="columns">
                             <input type = "hidden" name = "shadowE" value = "' . $rowx['id'] . '">
@@ -704,32 +703,32 @@ if (isset($_POST['to_index'])) {
                               </button>
                           </div>
                               ';
-                  echo  '</form>
+                echo  '</form>
                             
                                       </td>';
-                  echo ' </tr> ';
-                }
-                ?>
-              </tbody>
-            </table>
-          </div>
+                echo ' </tr> ';
+              }
+              ?>
+            </tbody>
+          </table>
         </div>
       </div>
-
-      
-
-
-     <?php 
-     
-              }
+    </div>
 
 
 
-              if (isset($_POST['Editbtn'])) {
-                $idshadow = $_POST['shadowE'];
-                $resulted = mysqli_query($link, "SELECT * FROM employees WHERE id = '$idshadow'");
-                while ($rowed = mysqli_fetch_assoc($resulted)) {
-                  echo '   
+
+  <?php
+
+  }
+
+
+
+  if (isset($_POST['Editbtn'])) {
+    $idshadow = $_POST['shadowE'];
+    $resulted = mysqli_query($link, "SELECT * FROM employees WHERE id = '$idshadow'");
+    while ($rowed = mysqli_fetch_assoc($resulted)) {
+      echo '   
                                   <div class="container" style="padding-left: 20rem; padding-right: 20rem; padding-top: 5rem; ">
                                     <div class="row ">
                               <!--- laman -->
@@ -744,12 +743,12 @@ if (isset($_POST['to_index'])) {
                                               </div>
                                               <div class="col-md-10">
                                                 <select class="form-select" name="source" disabled value= "' . $rowed["source"] . '" data-placeholder="Select Source"; ';
-                  echo '<option>' . $rowed["source"] . '</option>';
-                  $results = mysqli_query($link, "SELECT * FROM sources");
-                  while ($rows = mysqli_fetch_assoc($results)) {
-                    echo '<option value="' . $rows["description"] . '">' . $rows["description"] . '</option>';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["source"] . '</option>';
+      $results = mysqli_query($link, "SELECT * FROM sources");
+      while ($rows = mysqli_fetch_assoc($results)) {
+        echo '<option value="' . $rows["description"] . '">' . $rows["description"] . '</option>';
+      }
+      echo '          
                                                 </select>
                                               </div>                                 
                                             </div>
@@ -804,12 +803,12 @@ if (isset($_POST['to_index'])) {
                                                 </div>
                                                 <div class="col-md-10">
                                                   <select class="form-select cbo" name="regionn" id="regionn"  data-placeholder="Select User type"  disabled > ;';
-                  echo '<option>'. $rowed["regionn"] .'</option> ';
-                  $resultrg = mysqli_query($link, "SELECT * FROM region");
-                  while ($rowrg = mysqli_fetch_assoc($resultrg)) {
-                    echo '<option  value="' . $rowrg["regCode "] . '">' . $rowrg["regDesc"] . '</option>';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["regionn"] . '</option> ';
+      $resultrg = mysqli_query($link, "SELECT * FROM region");
+      while ($rowrg = mysqli_fetch_assoc($resultrg)) {
+        echo '<option  value="' . $rowrg["regCode "] . '">' . $rowrg["regDesc"] . '</option>';
+      }
+      echo '          
                                                   </select>
                                                 </div>      
                                               </div>
@@ -820,7 +819,7 @@ if (isset($_POST['to_index'])) {
                                                 </div>  
                                                 <div class="col-md-10">
                                                   <select class="form-select"  disabled name="cityn" id="cityn"  data-placeholder="Select City"  disabled> ;
-                                                    <option value="">'. $rowed["cityn"] .'</option>
+                                                    <option value="">' . $rowed["cityn"] . '</option>
                                                   </select>
                                                 </div>                    
                                               </div>
@@ -858,12 +857,12 @@ if (isset($_POST['to_index'])) {
                                                 </div>
                                                 <div class="col-md-10">
                                                   <select class="form-select cbo" name="gendern"  value= "' . $rowed["gendern"] . '" data-placeholder="Select Gendert " disabled > ;';
-                  echo '<option>' . $rowed["gendern"] . '</option> ';
-                  $resultg = mysqli_query($link, "SELECT * FROM gender");
-                  while ($rowg = mysqli_fetch_assoc($resultg)) {
-                    echo '<option  value="' . $rowg["gender"] . '">' . $rowg["gender"] . ' </option> ';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["gendern"] . '</option> ';
+      $resultg = mysqli_query($link, "SELECT * FROM gender");
+      while ($rowg = mysqli_fetch_assoc($resultg)) {
+        echo '<option  value="' . $rowg["gender"] . '">' . $rowg["gender"] . ' </option> ';
+      }
+      echo '          
                                                   </select>
                                                 </div>         
                                               </div>
@@ -874,12 +873,12 @@ if (isset($_POST['to_index'])) {
                                                 </div>
                                                 <div class="col-md-10">
                                                   <select class="form-select cbo" name="civiln" value= "' . $rowed["civiln"] . '" data-placeholder=""  disabled> ;';
-                  echo '<option>' . $rowed["civiln"] . '</option> ';
-                  $resultt = mysqli_query($link, "SELECT * FROM tax_status");
-                  while ($rowtt = mysqli_fetch_assoc($resultt)) {
-                    echo '<option  value="' . $rowtt["description"] . '">' . $rowtt["description"] . ' </option> ';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["civiln"] . '</option> ';
+      $resultt = mysqli_query($link, "SELECT * FROM tax_status");
+      while ($rowtt = mysqli_fetch_assoc($resultt)) {
+        echo '<option  value="' . $rowtt["description"] . '">' . $rowtt["description"] . ' </option> ';
+      }
+      echo '          
                                                   </select>
                                                 </div>           
                                               </div>
@@ -918,12 +917,12 @@ if (isset($_POST['to_index'])) {
                                                                         
                                                 <div class="col-md-10">
                                                   <select class="form-select cbo" name="despo"  value= "' . $rowed["despo"] . '" data-placeholder=""  disabled> ;';
-                  echo '<option>' . $rowed["despo"] . '</option> ';
-                  $resultjt = mysqli_query($link, "SELECT * FROM job_title ");
-                  while ($rowjt = mysqli_fetch_assoc($resultjt)) {
-                    echo '<option  value="' . $rowjt["description"] . '">' . $rowjt["description"] . ' </option> ';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["despo"] . '</option> ';
+      $resultjt = mysqli_query($link, "SELECT * FROM job_title ");
+      while ($rowjt = mysqli_fetch_assoc($resultjt)) {
+        echo '<option  value="' . $rowjt["description"] . '">' . $rowjt["description"] . ' </option> ';
+      }
+      echo '          
                                                   </select>
                                                  </div>                   
                                               </div>
@@ -935,12 +934,12 @@ if (isset($_POST['to_index'])) {
                                                                         
                                                <div class="col-md-10">
                                                <select class="form-select cbo" name="classn"  value= "' . $rowed["classn"] . '" data-placeholder=""  disabled> ;';
-                  echo '<option>' . $rowed["classn"] . '</option> ';
-                  $resultca = mysqli_query($link, "SELECT * FROM classifications");
-                  while ($rowca = mysqli_fetch_assoc($resultca)) {
-                    echo '<option  value="' . $rowca["description"] . '">' . $rowca["description"] . ' </option> ';
-                  }
-                  echo '          
+      echo '<option>' . $rowed["classn"] . '</option> ';
+      $resultca = mysqli_query($link, "SELECT * FROM classifications");
+      while ($rowca = mysqli_fetch_assoc($resultca)) {
+        echo '<option  value="' . $rowca["description"] . '">' . $rowca["description"] . ' </option> ';
+      }
+      echo '          
                                                 </select> 
                                                </div>
                                             </div>
@@ -952,12 +951,12 @@ if (isset($_POST['to_index'])) {
                                                                         
                                               <div class="col-md-10">
                                               <select class="form-select cbo" name="idenn"  value= "' . $rowed["idenn"] . '" data-placeholder="" disabled > ;';
-                  echo '<option>' . $rowed["idenn"] . '</option> ';
-                  $resultide = mysqli_query($link, "SELECT * FROM distinguishing_qualification_marks");
-                  while ($rowider = mysqli_fetch_assoc($resultide)) {
-                    echo '<option  value="' . $rowider["description"] . '">' . $rowider["description"] . ' </option> ';
-                  }
-                  echo  '          
+      echo '<option>' . $rowed["idenn"] . '</option> ';
+      $resultide = mysqli_query($link, "SELECT * FROM distinguishing_qualification_marks");
+      while ($rowider = mysqli_fetch_assoc($resultide)) {
+        echo '<option  value="' . $rowider["description"] . '">' . $rowider["description"] . ' </option> ';
+      }
+      echo  '          
                                                </select>
                                               </div> 
                                             </div>
@@ -1093,8 +1092,8 @@ if (isset($_POST['to_index'])) {
                                                   
                                     </div>
                                   </div> <!-- .content-wrapper -->';
-                }
-              }
+    }
+  }
 
 
 
@@ -1461,6 +1460,43 @@ if (isset($_POST['to_index'])) {
     });
 
 
+    // For Verification 
+    $(document).ready(function() {
+      $('.verify1s').click(function(e) {
+        e.preventDefault();
+
+        var verified_id = $(this).closest("tr").find('.verified_id').val();
+        Swal.fire({
+          title: "Are you sure you want to verify this?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes!",
+          cancelButtonText: "No, cancel",
+        }).then((willDelete) => {
+          if (willDelete.isConfirmed) {
+            $.ajax({
+              type: "POST",
+              url: "action.php",
+              data: {
+                "verify_button_click": 1,
+                "verify_id": verified_id,
+              },
+              success: function(response) {
+
+                Swal.fire({
+                  title: "Successfully Verified!",
+                  icon: "success"
+                }).then((result) => {
+                  location.reload();
+                });
+
+              }
+            });
+          }
+        });
+      });
+    });
+
     // Enabling Tooltips
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -1470,39 +1506,3 @@ if (isset($_POST['to_index'])) {
 </body>
 
 </html>
-
-
-
-
-<?php
-if (isset($kekelpogi)) {
-  echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi . '<br>
-    <form action = "" method = "POST"><br>
-                <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
-    </form>
-    
-  </div></div>';
-}
-
-
-if (isset($kekelpogi_index)) {
-  echo '<div class = "how2"><div class = "many"><br> 
-    <font color="Black" size="12">' . $kekelpogi_index . '</font><br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "to_index" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
-    </form>
-    
-  </div></div>';
-}
-
-if (isset($kekelpogi1)) {
-  echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi1 . '<br>
-    <br>
-    <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px" >
-    
-    
-  </div></div>';
-}
-?>
