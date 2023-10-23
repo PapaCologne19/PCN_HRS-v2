@@ -1820,7 +1820,8 @@ if (isset($_POST['filter_shortlist'])) {
                         <input type = "hidden" class="btn" name = "shaclient"  value = "' . $rowz[3] . '">
 
                         <button type="button" name = "okna1"  class="button btn btn-success" style = "font-size:12;width:100px;height:60px">
-                          <span class="glyphicon glyphicon-edit" >Deployed to ' . $rowx[34];'</span>
+                          <span class="glyphicon glyphicon-edit" >Deployed to ' . $rowx[34];
+          '</span>
                         </button>
 
 
@@ -1964,34 +1965,24 @@ if (isset($_POST['filter_shortlist'])) {
 
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Julius+Sans+One&family=Poppins&family=Quicksand&family=Roboto&family=Thasadith&display=swap" rel="stylesheet">
 
-
   <link rel="stylesheet" href="assets/css/style.css">
-
-  <!--<script src="strap/jquery.min.js"></script>-->
-
- 
 
   <!--for data table-->
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
 
-
-
-
-
-
-
   <style type="text/css">
-    *{
+    * {
       font-family: 'Inter', sans-serif;
     }
+
     #results {
       padding: 10px;
       border: 1px solid;
@@ -2002,17 +1993,10 @@ if (isset($_POST['filter_shortlist'])) {
       margin: 20px;
     }
 
-    body {
-      font-family: Arial;
-      font-size: 20;
-      background-image: url(bg.png); 
-      background-size:100% 100%; 
-      background-repeat: no-repeat;
-    }
-
     img {
       border-radius: 8px;
     }
+
     .body50 {
       position: absolute;
       top: 0;
@@ -2056,7 +2040,6 @@ if (isset($_POST['filter_shortlist'])) {
       border: 1px solid green;
       height: 30%;
       width: 50%;
-
     }
 
     .body5025p1 {
@@ -2066,10 +2049,7 @@ if (isset($_POST['filter_shortlist'])) {
       border: 1px solid green;
       height: 30%;
       width: 80%;
-
     }
-
-
 
     .body60 {
       position: absolute;
@@ -2088,28 +2068,13 @@ if (isset($_POST['filter_shortlist'])) {
       height: 90%;
       width: 60%;
     }
-
   </style>
-
-
-
-
-
-
   <title>HRS DEPLOYMENT</title>
 </head>
 
 <body>
-
-
-
-  <?php
-
-
-  if ($_SESSION["darkk"] == "deployment") {
+  <?php if ($_SESSION["darkk"] == "deployment") {
     echo '
-
-
                                           <header class="cd-main-header js-cd-main-header">
                                                             <div class="cd-logo-wrapper">
                                                               <a href="#0" class="cd-logo"><img src="assets/img/pcnlogo1.png" alt="Logo"></a>
@@ -2223,32 +2188,6 @@ if (isset($_POST['filter_shortlist'])) {
 
                                                       </li>
 
-
-
-
-
-                                                              <li class="cd-side__item cd-side__item--has-children cd-side__item--images js-cd-item--has-children">
-                                                                <!--<a href="#0">Images</a>-->
-                                                                
-                                                                <ul class="cd-side__sub-list">
-                                                                  <!--<li class="cd-side__sub-item"><a href="#0">All Images</a></li>
-                                                                  <li class="cd-side__sub-item"><a href="#0">Edit Image</a></li>
-
-                                                                --> 
-                                                                </ul>
-                                                              </li>
-                                                        
-                                                            <li class="cd-side__item cd-side__item--has-children cd-side__item--users js-cd-item--has-children">
-                                                            <!--  <a href="#0">Users</a>-->
-                                                              
-                                                              <ul class="cd-side__sub-list">
-                                                                <!--
-                                                                <li class="cd-side__sub-item"><a href="#0">All Users</a></li>
-                                                                <li class="cd-side__sub-item"><a><BUTTON class="btn" name = "next1">Edit User</button></a></li>
-                                                                <li class="cd-side__sub-item"><a><BUTTON class="btn" name = "next">Add User</button></a></li>
-                                                                -->
-                                                              </ul>
-                                                            </li>
                                                   
                                               </ul>
                                                       
@@ -2256,13 +2195,6 @@ if (isset($_POST['filter_shortlist'])) {
                                                     
                                                           <form action = "" method = "POST">
                                                           <li class="cd-side__label"><span>DEPLOYMENT ACTION</span></li>
-                                                          <!--<li class="cd-side__btn"><a><BUTTON class="btn" name = "applicant">+ Take Applicant Photo</button></li>
-                                                          <li class="cd-side__btn"><a><BUTTON class="btn" name = "shortlist">+ Database Entry</button></a></li>
-                                                          <li class="cd-side__btn"><a><BUTTON class="btn" name = "databaselist">+ Edit Database Entry</button></a></li>        
-                                                           -->
-
-
-
 
                                              <ul class="cd-side__list js-cd-side__list">
                                                       <!--<li class="cd-side__label" style="font-size:26"><span>SHORTLISTING MENU</span></li>-->
@@ -2305,19 +2237,6 @@ if (isset($_POST['filter_shortlist'])) {
                                                   
                                               </ul>
 
-
-
-
-
-
-
-
-                                                            <!--<li class="cd-side__label"><span>Shortlisting Action</span></li>-->
-                                                                 <form action = "" method = "POST">
-                                                          <!--<li class="cd-side__btn"><a><BUTTON class="btn" name = "shortlisttitle">+ Create Shortlist Title</button></a></li>        -->
-                                                         <!--<li class="cd-side__btn"><a><BUTTON class="btn" name = "printemp">+ Print Emp Record</button></a></li>        -->
-
-
                                                          </form>
                                         <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalapp_print" ><i class="bi bi-printer" style="margin-right: .5rem !important"></i> Print an Entry</button></li>
                                         <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal_id" ><i class="bi bi-file-plus" style="margin-right: .5rem !important"></i> Create ID</button></li>
@@ -2330,13 +2249,9 @@ if (isset($_POST['filter_shortlist'])) {
                                         <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModal_float" ><i class="bi bi-person-up" style="margin-right: .5rem !important"></i> Float</button></li>
 
                                                          <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalewb" ><i class="bi bi-layer-forward" style="margin-right: .5rem !important"></i> Forward to EWB</button></li>
-                                        <!--<li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModaldeploy" >+ Deploy</button></li>-->
-                                        <!--<li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModaldelshort" >+ Remove from shortlist</button></li>-->
-                                        <!--<li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalewb" >+ Forward to EWB</button></li>-->
-                                                           <!--<div  id="my_camera"></div>-->
-                                                          
-                                                          
-                                                     
+                                                        <form action="" method="POST">
+                                                          <li class="cd-side__btn"><button type="submit" name="deploymentbutton" class="btn" ><i class="bi bi-person" style="margin-right: 1rem;"></i> Deployment </button></li>
+                                                        </form>
                                                         </ul>
                                                    
                                           
@@ -2360,7 +2275,7 @@ if (isset($_POST['filter_shortlist'])) {
 
 
 
-  <div class="body5010p2">
+  <!--  <div class="body5010p2">
 
     <center>
       <form action="" method="POST" class="ro">
@@ -2401,10 +2316,6 @@ if (isset($_POST['filter_shortlist'])) {
             </select>
           </div>
 
-          <!-- <div class="col-md-2 mt-2">
-            <input type="submit" name="filter_project " value="Filter" class="button btn btn-success" style="font-size:15;width:80px;height: 50px; float: right;">
-          </div> -->
-
           <div class="col-md-2 mt-3">
             <input type="submit" name="filter_shortlist" value="Filter" class="button btn btn-success" style="font-size:15;width:80px;height: 50px; float: left;">
           </div>
@@ -2412,777 +2323,1231 @@ if (isset($_POST['filter_shortlist'])) {
         </div>
       </form>
     </center>
+  </div> -->
+
+  <?php
+  if (isset($_POST['deploymentbutton'])) {
+  ?>
+    <div class="cd-content-wrapper">
+      <div class="text-component text-center">
+        <div class="container">
+          <h2 class="fs-2">Shortlisted Applicants</h2>
+          <br><br>
+          <table id="example" class="table table-striped table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Project Name</th>
+                <th>Shortlist Title</th>
+                <th>Quantity</th>
+                <th>Date Start</th>
+                <th>Date End</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+
+
+              $query = "SELECT project.*, shortlist.* 
+                FROM projects project, shortlist_details shortlist 
+                WHERE shortlist.project_id = project.id 
+                AND status = '1' AND is_deleted = '0'";
+              $result = $link->query($query);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $project_name = $row['project_title'];
+                $start_date = $row['start_date'];
+                $end_date = $row['end_date'];
+                $timestamp_start_date = strtotime($start_date);
+                $timestamp_end_date = strtotime($end_date);
+                $formattedDate_start_date = date("F d, Y", $timestamp_start_date);
+                $formattedDate_end_date = date("F d, Y", $timestamp_end_date);
+              ?>
+                <tr>
+                  <td><?php echo $row['id'] ?></td>
+                  <td><?php echo $row['project_title'] ?></td>
+                  <td><?php echo $row['shortlistname']; ?></td>
+                  <td><?php echo $row['ewb_count'] ?></td>
+                  <td>
+                    <?php
+                    if ($row['start_date'] !== NULL) {
+                      echo $formattedDate_start_date;
+                    } else {
+                      echo "";
+                    }
+                    ?>
+                  </td>
+                  <td><?php
+                      if ($row['end_date'] !== NULL) {
+                        echo $formattedDate_end_date;
+                      } else {
+                        echo "";
+                      }
+                      ?></td>
+                  <td>
+                    <form action="" method="POST">
+                      <input type="hidden" name="shortlist_id" value="<?php echo $row['shortlistname'] ?>">
+                      <button type="submit" name="view-shortlists" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Details"><i class="bi bi-search"></i></button>
+                    </form>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  <?php
+  }
+  ?>
+
+  <?php
+  if (isset($_POST['view-shortlists'])) {
+    $shortlist_id = htmlspecialchars($_POST['shortlist_id']);
+    $queries = "SELECT shortlist.*, employee.* 
+              FROM shortlist_master shortlist, employees employee
+              WHERE shortlist.employee_id = employee.id 
+              AND shortlistnameto = '$shortlist_id'";
+    $results = $link->query($queries);
+  ?>
+    <div class="cd-content-wrapper">
+      <div class="text-component text-center">
+        <h2 class="fs-2">Deploy (<?php echo $shortlist_id ?>)</h2>
+        <div class="container">
+          <br><br>
+          <table class="table table-striped table-sm align-middle mb-0 bg-white bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;" id="example">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Applicant Number</th>
+                <th>Name</th>
+                <th>SSS</th>
+                <th>Pag-IBIG</th>
+                <th>PhilHealth</th>
+                <th>TIN</th>
+                <th>Police Expiry</th>
+                <th>Barangay Expiry</th>
+                <th>NBI Expiry</th>
+                <th>Start of Contract</th>
+                <th>End of Contract</th>
+                <th>Employment status</th>
+                <th>Status</th>
+                <th>Contact Number</th>
+                <th>Birthday</th>
+                <th>Remarks</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+
+              while ($rows = $results->fetch_assoc()) {
+                $birthday = $rows['birthday'];
+                $timestamp_birthday = strtotime($birthday);
+                $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
+              ?>
+                <tr>
+                  <td><?php echo $rows['id'] ?></td>
+                  <td><?php echo $rows['appno'] ?></td>
+                  <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
+                  <td><?php echo $rows['sssnum'] ?></td>
+                  <td><?php echo $rows['pagibignum'] ?></td>
+                  <td><?php echo $rows['phnum'] ?></td>
+                  <td><?php echo $rows['tinnum'] ?></td>
+                  <td><?php echo $rows['policed'] ?></td>
+                  <td><?php echo $rows['brgyd'] ?></td>
+                  <td><?php echo $rows['nbid'] ?></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><?php echo $rows['ewbdeploy'] ?></td>
+                  <td><?php echo $rows['cpnum'] ?></td>
+                  <td><?php echo $formattedDate_birthday ?></td>
+                  <td><?php echo $rows['remarks'] ?></td>
+                  <td>
+                    <?php if (!empty($rows['ewb_status'])) { ?>
+                      <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>">Not empty</button>
+                    <?php } else {
+                    } ?>
+                  </td>
+
+
+                  <!-- Modal for Deployment form -->
+                  <div class="modal fade" id="deployModal-<?php echo $rows['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container">
+                            <form action="action.php" method="POST">
+                              <?php
+                              $id =  $rows['id'];
+                              $query_show = "SELECT * FROM employees WHERE id = '$id'";
+                              $query_result = $link->query($query_show);
+                              while ($query_row = $query_result->fetch_assoc()) {
+                              ?>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Status:</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="status" id="status" class="form-control" value="DEPLOYED" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">LOA Start Date</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="date" name="start_loa" id="start_loa" class="form-control" required>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">LOA End Date</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="date" name="end_loa" id="end_loa" class="form-control" required>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Division</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="date" name="end_loa" id="end_loa" class="form-control" required>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Category</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="category" id="category" class="form-select">
+                                      <option value="Select Me">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Locator</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="locator" id="locator" class="form-control" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Place Assigned</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="place_assigned" id="place_assigned" class="form-control" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Address Assigned</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="address_assigned" id="address_assigned" class="form-control" disabled>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Channel</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="channel" id="channel" class="form-select">
+                                      <option value="">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Department</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="department" id="department" class="form-select">
+                                      <option value="">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Employment Status</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="employment_status" id="employment_status" class="form-select">
+                                      <option value="">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Job Title</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="job_title" id="job_title" class="form-select">
+                                      <option value="">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">LOA Template</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <select name="loa_template" id="loa_template" class="form-select">
+                                      <option value="">Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Basic Salary</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="basic_salary" id="basic_salary" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Ecola</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="ecola" id="ecola" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Communication Allowance</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="communication_allowance" id="communication_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Transportation</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="transportation_allowance" id="transportation_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Internet Allowance</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="internet_allowance" id="internet_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Meal Allowance</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="meal_allowance" id="meal_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Outbase Meal</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="outbase_meal" id="outbase_meal" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Deployment Remarks</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="deployment_remarks" id="deplyment_remarks" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">No. of Days work</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="no_of_days" id="no_of_day" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Outlet</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="outlet" id="outlet" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Supervisor</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="supervisor" id="supervisor" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Field Supervisor</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="field_supervisor" id="field_supervisor" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Designation</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="field_supervisor_designation" id="field_supervisor_designation" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Deployment Personnel</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="deployment_personnel" id="deployment_personnel" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Designation</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="deployment_personnel_designation" id="deployment_personnel_designation" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Project Supervisor</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="project_supervisor" id="project_supervisor" class="form-control">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Designation</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="project_supervisor_designation" id="project_supervisor_designation" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Head</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="head" id="head" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">Designation</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="head_designation" id="head_designation" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-2">
+                                    <label for="" class="form-label">ID#</label>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <input type="text" name="id" id="id" class="form-control">
+                                  </div>
+                                </div>
+
+                              <?php } ?>
+                            
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
 
 
 
-  </div>
+  <?php  }
+  ?>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
-
-
-
-
-<?php
-if (isset($kekelpogi)) {
-  echo '<div class = "how1"><div class = "many"><br> 
+  <?php
+  if (isset($kekelpogi)) {
+    echo '<div class = "how1"><div class = "many"><br> 
     ' . $kekelpogi . '<br>
     <form action = "" method = "POST"><br>
     <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
     </form>
     
   </div></div>';
-}
+  }
 
-if (isset($kekelpogi_index)) {
-  echo '<div class = "how2"><div class = "many"><br> 
+  if (isset($kekelpogi_index)) {
+    echo '<div class = "how2"><div class = "many"><br> 
     <font color="Black" size="12">' . $kekelpogi_index . '</font><br>
     <form action = "" method = "POST"><br>
     <input type = "submit" name = "to_index" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px" autofocus>
     </form>
     
   </div></div>';
-}
+  }
 
 
 
-if (isset($kekelpogi1)) {
-  echo '<div class = "how1"><div class = "many"><br> 
+  if (isset($kekelpogi1)) {
+    echo '<div class = "how1"><div class = "many"><br> 
     ' . $kekelpogi1 . '<br>
     <br>
     <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
     
     
   </div></div>';
-}
-?>
+  }
+  ?>
 
 
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModalewb" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
 
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Shortlist Title:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
 
+        <div class="modal-body">
 
 
-</main> <!-- .cd-main-content -->
+          <form action="" method="POST"><br>
 
 
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalewb" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Shortlist Title:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="shortlisttitle1del" data-placeholder=""> ;
-                <option>Select shortlist Name:</option>
-                <?php
-
-                $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-                while ($rowpro = mysqli_fetch_array($resultpro)) {
-
-                  echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> 
-                                                   
-                                                                       ';
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="addappdel1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModaldephistory" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Employee name:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="empno" data-placeholder=""> ;
-                <option>Select Employee Name:</option>
-                <?php
-
-                $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by appno_d order by appno_d ASC ");
-                while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-                  $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
-                  while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[5] . '">' . $rowpro2[6] . ", " . $rowpro2[7] . " " . $rowpro2[8] . ' </option> 
-                                                   
-                                                                       ';
-                  }
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="viewhistory" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalprojecthistory" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Project name:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="project_name" data-placeholder=""> ;
-                <option>Select Project Name:</option>
-                <?php
-
-                $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by project_d order by project_d ASC ");
-                while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-                  $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
-                  while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[3] . '">' . $rowpro1[3] . ' </option> 
-                                                   
-                                                                       ';
-                  }
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="viewhistoryproject" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalapp_print" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="applicant_no">
-                <option>Select Employee Name:</option>
-                <?php
-
-                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-                while ($rowpro = mysqli_fetch_array($resultpro)) {
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
-                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                       ';
-                  }
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="printemp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal_id" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="applicant_no" data-placeholder=""> ;
-                <option>Select Employee Name:</option>
-                <?php
-
-                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-                while ($rowpro = mysqli_fetch_array($resultpro)) {
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
-                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                       ';
-                  }
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="id1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal_LOA" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <div class="form-group">
-            <!--<label> Project  Title : </label>-->
-            <center>
-              <select class="form-select" name="applicant_no" data-placeholder=""> ;
-                <option>Select Employee Name:</option>
-                <?php
-
-                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted != '1'");
-                while ($rowpro = mysqli_fetch_assoc($resultpro)) {
-                  $appno = $rowpro["appno"];
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$appno'");
-                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                       ';
-                  }
-                }
-                ?>
-
-
-              </select>
-            </center>
-          </div>
-
-
-
-
-
-
-          <div class="modal-footer">
-
-            <input type="submit" name="xletter" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal_xletter" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-          <center>
             <div class="form-group">
               <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="shortlisttitle1del" data-placeholder=""> ;
+                  <option>Select shortlist Name:</option>
+                  <?php
 
-              <select class="form-select" name="applicant_no" data-placeholder=""> ;
-                <option>Select Employee Name:</option>
-                <?php
+                  $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+                  while ($rowpro = mysqli_fetch_array($resultpro)) {
 
-                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-                while ($rowpro = mysqli_fetch_array($resultpro)) {
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
-                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
+                    echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> 
                                                    
                                                                        ';
                   }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="addappdel1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModaldephistory" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Employee name:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+            <div class="form-group">
+              <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="empno" data-placeholder=""> ;
+                  <option>Select Employee Name:</option>
+                  <?php
+
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by appno_d order by appno_d ASC ");
+                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+                    $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
+                    while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
+
+
+
+                      echo '<option  value="' . $rowpro1[5] . '">' . $rowpro2[6] . ", " . $rowpro2[7] . " " . $rowpro2[8] . ' </option> 
+                                                   
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="viewhistory" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalprojecthistory" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Project name:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+            <div class="form-group">
+              <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="project_name" data-placeholder=""> ;
+                  <option>Select Project Name:</option>
+                  <?php
+
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by project_d order by project_d ASC ");
+                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+                    $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
+                    while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
+
+
+
+                      echo '<option  value="' . $rowpro1[3] . '">' . $rowpro1[3] . ' </option> 
+                                                   
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="viewhistoryproject" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalapp_print" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+            <div class="form-group">
+              <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="applicant_no">
+                  <option>Select Employee Name:</option>
+                  <?php
+
+                  $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                  while ($rowpro = mysqli_fetch_array($resultpro)) {
+                    $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
+                    while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+
+
+                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
+                                                   
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="printemp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal_id" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+            <div class="form-group">
+              <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="applicant_no" data-placeholder=""> ;
+                  <option>Select Employee Name:</option>
+                  <?php
+
+                  $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                  while ($rowpro = mysqli_fetch_array($resultpro)) {
+                    $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
+                    while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+
+
+                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
+                                                   
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="id1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal_LOA" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+            <div class="form-group">
+              <!--<label> Project  Title : </label>-->
+              <center>
+                <select class="form-select" name="applicant_no" data-placeholder=""> ;
+                  <option>Select Employee Name:</option>
+                  <?php
+
+                  $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted != '1'");
+                  while ($rowpro = mysqli_fetch_assoc($resultpro)) {
+                    $appno = $rowpro["appno"];
+                    $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$appno'");
+                    while ($rowpro1 = mysqli_fetch_assoc($resultpro1)) {
+
+                      echo '<option  value="' . $rowpro1['appno'] . '">' . $rowpro1['lastnameko'] . ", " . $rowpro1['firstnameko'] . " " . $rowpro1['mnko'] . ') </option> 
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+              </center>
+            </div>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="xletter" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal_xletter" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Select Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+            <center>
+              <div class="form-group">
+                <!--<label> Project  Title : </label>-->
+
+                <select class="form-select" name="applicant_no" data-placeholder=""> ;
+                  <option>Select Employee Name:</option>
+                  <?php
+
+                  $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                  while ($rowpro = mysqli_fetch_array($resultpro)) {
+                    $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
+                    while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+
+
+                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
+                                                   
+                                                                       ';
+                    }
+                  }
+                  ?>
+
+
+                </select>
+                <br>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="float: left;">Reason of excuse:</label>
+                <input type="text" name="reason_x" class="form-control" placeholder="">
+              </div>
+
+
+            </center>
+
+
+
+
+
+
+            <div class="modal-footer">
+
+              <input type="submit" name="xletter1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalgender" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Database Gender Breakdown:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          <br>
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST"><br>
+
+
+
+            <table id="example" class="table" style="width:100%">
+              <thead>
+                <tr>
+                  <th> Gender </th>
+
+                  <th> Manpower Count </th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+
+
+                <?php
+
+
+
+                $resultdis = mysqli_query($link, "SELECT count(distinct deployment_history.appno_d, employees.gendern) FROM deployment_history INNER JOIN employees ON deployment_history.appno_d = employees.appno  where gendern='MALE'");
+                while ($rowdis = mysqli_fetch_array($resultdis)) {
+
+
+                  echo ' <tr> ';
+
+                  echo ' <td> MALE </td>';
+                  echo '  <td>  ' . $rowdis[0] . '   </td> ';
                 }
+                echo ' </tr> ';
+
+
+
+
+                $resultdis = mysqli_query($link, "SELECT count(distinct deployment_history.appno_d, employees.gendern) FROM deployment_history INNER JOIN employees ON deployment_history.appno_d = employees.appno  where gendern='FEMALE'");
+                while ($rowdis = mysqli_fetch_array($resultdis)) {
+
+
+                  echo ' <tr> ';
+
+                  echo ' <td> FEMALE </td>';
+                  echo '  <td>  ' . $rowdis[0] . '   </td> ';
+                }
+                echo ' </tr> ';
+
+
+
+
                 ?>
 
 
-              </select>
-              <br>
-            </div>
+
+              </tbody>
+            </table>
+
+
+
+
+
+
+        </div>
+        ';
+
+
+
+        <div class="modal-footer">
+
+          <!--<input type = "submit" name = "printemp" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">-->
+          <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalter" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Terminate Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+        </div>
+
+        <div class="modal-body">
+
+
+          <form action="" method="POST">
+
             <div class="form-group">
-              <label class="form-label" style="float: left;">Reason of excuse:</label>
-              <input type="text" name="reason_x" class="form-control" placeholder="">
+              <label class="form-label">Select Employees</label>
+              <select class="form-select" name="X" id="X" data-placeholder=""> ';
+                <?php
+                echo '<option>Select Employee</option> ';
+                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                while ($rowpro = mysqli_fetch_array($resultpro)) {
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'  and ter_date='' and res_date='' ");
+                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option>';
+                  }
+                }
+                ?>
+              </select>
+            </div>
+
+            <div class="form-group mt-3">
+              <label class="form-label">Reason of Termination:</font></label>
+              <input type="text" name="ter_reason" value="" class="form-control" placeholder="">
             </div>
 
 
-          </center>
+            <div class="form-group mt-3">
+              <label class="form-label">Effectivity Date:</font></label>
+              <input type="date" name="ter_date" value="" class="form-control" placeholder="">
+            </div>
+            <br>
 
 
 
+            <label class="form-label mt-4">=====================</font></label><br>
+            <label class="form-label">Employee Info:</font></label><br>
+            <label class="form-label">=====================</font></label>
+
+            <div class="form-group mt-3">
+              <label class="form-label"> Employment Coverage : </label>
+              <select class="form-control" name="Y1" id="Y1" data-placeholder="" disabled> ;
+
+              </select>
+
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label"> Project Deployed : </label>
+              <select class="form-control" name="Y2" id="Y2" data-placeholder="" disabled> ;
+
+              </select>
+            </div>
 
 
 
-          <div class="modal-footer">
+            <div class="modal-footer">
 
-            <input type="submit" name="xletter1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
 
-      </div>
+              <input type="submit" name="teremp" value="Terminate" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
 
-    </div><!--div for body-->
+        </div>
 
+      </div><!--div for body-->
+
+    </div>
   </div>
-</div>
-</div>
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalgender" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Database Gender Breakdown:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-
-          <table id="example" class="table" style="width:100%">
-            <thead>
-              <tr>
-                <th> Gender </th>
-
-                <th> Manpower Count </th>
-
-              </tr>
-            </thead>
-
-            <tbody>
-
-
-              <?php
-
-
-
-              $resultdis = mysqli_query($link, "SELECT count(distinct deployment_history.appno_d, employees.gendern) FROM deployment_history INNER JOIN employees ON deployment_history.appno_d = employees.appno  where gendern='MALE'");
-              while ($rowdis = mysqli_fetch_array($resultdis)) {
-
-
-                echo ' <tr> ';
-
-                echo ' <td> MALE </td>';
-                echo '  <td>  ' . $rowdis[0] . '   </td> ';
-              }
-              echo ' </tr> ';
-
-
-
-
-              $resultdis = mysqli_query($link, "SELECT count(distinct deployment_history.appno_d, employees.gendern) FROM deployment_history INNER JOIN employees ON deployment_history.appno_d = employees.appno  where gendern='FEMALE'");
-              while ($rowdis = mysqli_fetch_array($resultdis)) {
-
-
-                echo ' <tr> ';
-
-                echo ' <td> FEMALE </td>';
-                echo '  <td>  ' . $rowdis[0] . '   </td> ';
-              }
-              echo ' </tr> ';
-
-
-
-
-              ?>
-
-
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-      </div>
-      ';
-
-
-
-      <div class="modal-footer">
-
-        <!--<input type = "submit" name = "printemp" value = "Okay" class="btn btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">-->
-        <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
   </div>
-</div>
-</div>
 
 
+  <!-- Modal -->
+  <div class="modal fade" id="myModalres" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
 
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Resign Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
+        </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModalter" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Terminate Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST">
-
-          <div class="form-group">
-            <label class="form-label">Select Employees</label>
-            <select class="form-select" name="X" id="X" data-placeholder=""> ';
-              <?php
-              echo '<option>Select Employee</option> ';
-              $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-                $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'  and ter_date='' and res_date='' ");
-                while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-                  echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option>';
-                }
-              }
-              ?>
-            </select>
-          </div>
-
-          <div class="form-group mt-3">
-            <label class="form-label">Reason of Termination:</font></label>
-            <input type="text" name="ter_reason" value="" class="form-control" placeholder="">
-          </div>
-
-
-          <div class="form-group mt-3">
-            <label class="form-label">Effectivity Date:</font></label>
-            <input type="date" name="ter_date" value="" class="form-control" placeholder="">
-          </div>
-          <br>
-
-
-
-          <label class="form-label mt-4">=====================</font></label><br>
-          <label class="form-label">Employee Info:</font></label><br>
-          <label class="form-label">=====================</font></label>
-
-          <div class="form-group mt-3">
-            <label class="form-label"> Employment Coverage : </label>
-            <select class="form-control" name="Y1" id="Y1" data-placeholder="" disabled> ;
-
-            </select>
-
-          </div>
-          <div class="form-group mt-3">
-            <label class="form-label"> Project Deployed : </label>
-            <select class="form-control" name="Y2" id="Y2" data-placeholder="" disabled> ;
-
-            </select>
-          </div>
-
-
-
-          <div class="modal-footer">
-
-
-            <input type="submit" name="teremp" value="Terminate" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalres" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Resign Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-
-      </div>
-
-      <div class="modal-body">
-        <form action="" method="POST">
-          <div class="form-group mt-3">
-            <label class="form-label">Select Employee:</label>
-            <select class="form-select" name="Xres" id="Xres" data-placeholder=""> ';
-              <?php
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="form-group mt-3">
+              <label class="form-label">Select Employee:</label>
+              <select class="form-select" name="Xres" id="Xres" data-placeholder=""> ';
+                <?php
                 echo '<option>Select Employee:</option> ';
                 $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
                 while ($rowpro = mysqli_fetch_array($resultpro)) {
@@ -3191,647 +3556,629 @@ if (isset($kekelpogi1)) {
                     echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option>';
                   }
                 }
-              ?>
-            </select>
-          </div>
+                ?>
+              </select>
+            </div>
 
-          <div class="form-group mt-3">
-            <label class="form-label">Reason for Resigning:</font></label>
-            <input type="text" name="res_reason" value="" class="form-control" placeholder="" >
-          </div>
+            <div class="form-group mt-3">
+              <label class="form-label">Reason for Resigning:</font></label>
+              <input type="text" name="res_reason" value="" class="form-control" placeholder="">
+            </div>
 
-          <div class="form-group mt-3">
-            <label class="form-label">Effectivity Date:</font></label>
-            <input type="date" name="res_date" value="" class="form-control" placeholder="">
-          </div>
-          <br>
+            <div class="form-group mt-3">
+              <label class="form-label">Effectivity Date:</font></label>
+              <input type="date" name="res_date" value="" class="form-control" placeholder="">
+            </div>
+            <br>
 
-          <label class="form-label mt-4">=====================</font></label><br>
-          <label class="form-label">Employee Info:</font></label><br>
-          <label class="form-label">=====================</font></label>
+            <label class="form-label mt-4">=====================</font></label><br>
+            <label class="form-label">Employee Info:</font></label><br>
+            <label class="form-label">=====================</font></label>
 
-          <div class="form-group mt-3">
-            <label class="form-label"> Employment Coverage : </label>
-            <select class="form-control" name="Y1res" id="Y1res" data-placeholder="" disabled> ;
-            </select>
-          </div>
-          <div class="form-group mt-3">
-            <label class="form-label"> Project Deployed : </label>
-            <select class="form-control" name="Y2res" id="Y2res" data-placeholder="" disabled> ;
+            <div class="form-group mt-3">
+              <label class="form-label"> Employment Coverage : </label>
+              <select class="form-control" name="Y1res" id="Y1res" data-placeholder="" disabled> ;
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label"> Project Deployed : </label>
+              <select class="form-control" name="Y2res" id="Y2res" data-placeholder="" disabled> ;
 
-            </select>
-          </div>
-
-
-
-          <div class="modal-footer">
+              </select>
+            </div>
 
 
-            <input type="submit" name="res_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
 
-      </div>
+            <div class="modal-footer">
 
-    </div><!--div for body-->
 
+              <input type="submit" name="res_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+
+    </div>
   </div>
-</div>
-</div>
+  </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal_retrench" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal_retrench" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
 
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Retrench Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Retrench Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
-      </div>
+        </div>
 
-      <div class="modal-body">
-
-
-        <form action="" method="POST">
-
-          <div class="form-group">
-            <label class="form-label">Select Employee:</label>
-
-            <select class="form-control" name="Xretrench" id="Xretrench" data-placeholder=""> ';
-              <?php
-              echo '<option>Select Employee:</option> ';
-
-              $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-                $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]' and ter_date='' and res_date='' and retrench_date='' ");
-                while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+        <div class="modal-body">
 
 
+          <form action="" method="POST">
 
-                  echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
+            <div class="form-group">
+              <label class="form-label">Select Employee:</label>
+
+              <select class="form-control" name="Xretrench" id="Xretrench" data-placeholder=""> ';
+                <?php
+                echo '<option>Select Employee:</option> ';
+
+                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                while ($rowpro = mysqli_fetch_array($resultpro)) {
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]' and ter_date='' and res_date='' and retrench_date='' ");
+                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+
+
+
+                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
                                                    
                                                                       ';
+                  }
                 }
-              }
-              ?>
+                ?>
 
 
-            </select>
-          </div>
-
-
-
-
-          <div class="form-group">
-            <label class="form-label">Reason for Retrenchment:</font></label>
-            <input type="text" name="retrench_reason" value="" class="form-control" placeholder="">
-          </div>
-
-
-          <div class="form-group">
-            <label class="form-label">Effectivity Date:</font></label>
-            <input type="date" name="retrench_date" value="" class="form-control" placeholder="">
-          </div>
-          <br>
+              </select>
+            </div>
 
 
 
-          <label class="form-label">=====================</font></label><br>
-          <label class="form-label" >Employee Info:</font></label><br>
-          <label class="form-label">=====================</font></label>
-          <div class="form-group">
-            <label class="form-label"> Employment Coverage : </label>
-            <select class="form-control" name="Y1retrench" id="Y1retrench" data-placeholder="" disabled> ;
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label"> Project Deployed : </label>
-            <select class="form-control" name="Y2retrench" id="Y2retrench" data-placeholder="" disabled> ;
 
-            </select>
-          </div>
+            <div class="form-group">
+              <label class="form-label">Reason for Retrenchment:</font></label>
+              <input type="text" name="retrench_reason" value="" class="form-control" placeholder="">
+            </div>
+
+
+            <div class="form-group">
+              <label class="form-label">Effectivity Date:</font></label>
+              <input type="date" name="retrench_date" value="" class="form-control" placeholder="">
+            </div>
+            <br>
 
 
 
-          <div class="modal-footer">
+            <label class="form-label">=====================</font></label><br>
+            <label class="form-label">Employee Info:</font></label><br>
+            <label class="form-label">=====================</font></label>
+            <div class="form-group">
+              <label class="form-label"> Employment Coverage : </label>
+              <select class="form-control" name="Y1retrench" id="Y1retrench" data-placeholder="" disabled> ;
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label"> Project Deployed : </label>
+              <select class="form-control" name="Y2retrench" id="Y2retrench" data-placeholder="" disabled> ;
+
+              </select>
+            </div>
 
 
-            <input type="submit" name="retrench_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
 
-      </div>
+            <div class="modal-footer">
 
-    </div><!--div for body-->
 
+              <input type="submit" name="retrench_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+
+        </div>
+
+      </div><!--div for body-->
+    </div>
   </div>
-</div>
-</div>
+  </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal_float" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal_float" role="dialog">
+    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+      <div class="modal-content">
 
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Float an Active Employee:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <div class="modal-header">
+          <label for="text">
+            <font color="Black">
+              <font color="red">*</font>Float an Active Employee:
+            </font>
+          </label>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST">
-
-          <div class="form-group">
-            <label class="form-label">Select Employee:</label>
-
-            <select class="form-control" name="Xfloat" id="Xfloat" data-placeholder="">
-              <?php
-              echo '<option>Select Employee:</option> ';
-
-              $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-                $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]' and ter_date='' and res_date='' and retrench_date='' and float_date='' ");
-                while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                  echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                      ';
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label class="form-label">Select Employee:</label>
+              <select class="form-control" name="Xfloat" id="Xfloat" data-placeholder="">
+                <?php
+                echo '<option>Select Employee:</option> ';
+                $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
+                while ($rowpro = mysqli_fetch_array($resultpro)) {
+                  $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]' and ter_date='' and res_date='' and retrench_date='' and float_date='' ");
+                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+                    echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option>';
+                  }
                 }
-              }
-              ?>
+                ?>
+              </select>
+            </div>
 
+            <div class="form-group">
+              <label class="form-label">Reason for Floating:</font></label>
+              <input type="text" name="float_reason" value="" class="form-control" placeholder="">
+            </div>
 
-            </select>
-          </div>
+            <div class="form-group">
+              <label class="form-label">Effectivity Date:</font></label>
+              <input type="date" name="float_date" value="" class="form-control" placeholder="">
+            </div>
+            <br>
 
+            <label class="form-label">=====================</font></label><br>
+            <label class="form-label">Employee Info:</font></label><br>
+            <label class="form-label">=====================</font></label>
 
+            <div class="form-group">
+              <label class="form-label"> Employment Coverage : </label>
+              <select class="form-control" name="Y1float" id="Y1float" data-placeholder="" disabled> ;
+              </select>
+            </div>
 
+            <div class="form-group">
+              <label class="form-label"> Project Deployed : </label>
+              <select class="form-control" name="Y2float" id="Y2float" data-placeholder="" disabled> ;</select>
+            </div>
 
-          <div class="form-group">
-            <label class="form-label">Reason for Floating:</font></label>
-            <input type="text" name="float_reason" value="" class="form-control" placeholder="">
-          </div>
-
-
-          <div class="form-group">
-            <label class="form-label">Effectivity Date:</font></label>
-            <input type="date" name="float_date" value="" class="form-control" placeholder="">
-          </div>
-          <br>
-
-
-
-          <label class="form-label">=====================</font></label><br>
-          <label class="form-label">Employee Info:</font></label><br>
-          <label class="form-label">=====================</font></label>
-          <div class="form-group">
-            <label class="form-label"> Employment Coverage : </label>
-            <select class="form-control" name="Y1float" id="Y1float" data-placeholder="" disabled> ;
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label"> Project Deployed : </label>
-            <select class="form-control" name="Y2float" id="Y2float" data-placeholder="" disabled> ;
-
-            </select>
-          </div>
-
-
-
-          <div class="modal-footer">
-
-
-            <input type="submit" name="float_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-            <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
+            <div class="modal-footer">
+              <input type="submit" name="float_emp" value="Submit" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+              <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+          </form>
+        </div>
       </div>
-
-    </div><!--div for body-->
-
+    </div>
   </div>
-</div>
-</div>
+  </div>
 
 
 
-<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
-<script src="assets/js/menu-aim.js"></script>
-<script src="assets/js/main.js"></script>
+  <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="assets/js/menu-aim.js"></script>
+  <script src="assets/js/main.js"></script>
 
 
-<!-- Configure a few settings and attach camera -->
-<script language="JavaScript">
-  $(document).ready(function() {
-    $('#example').DataTable();
-  });
-
-
-
+  <!-- Configure a few settings and attach camera -->
+  <script language="JavaScript">
+    $(document).ready(function() {
+      $('#example').DataTable();
+    });
 
 
 
-  $("#X").on("change", function() {
 
-    var x_values = $("#X").find(":selected").val();
 
-    $.ajax({
-      url: 'ajaxter.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
 
-        result = JSON.parse(result);
+    $("#X").on("change", function() {
 
-        //Empty option on change
-        var select = document.getElementById("Y1");
+      var x_values = $("#X").find(":selected").val();
 
-        var length = select.options.length;
+      $.ajax({
+        url: 'ajaxter.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
+          result = JSON.parse(result);
 
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name'];
-          option.value = item['city_name'];
+          //Empty option on change
           var select = document.getElementById("Y1");
 
-          select.appendChild(option);
+          var length = select.options.length;
+
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name'];
+            option.value = item['city_name'];
+            var select = document.getElementById("Y1");
+
+            select.appendChild(option);
 
 
 
 
 
 
-        });
-      },
+          });
+        },
 
-      error: function(result) {
-        console.log(result)
-      }
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
 
+    $("#X").on("change", function() {
 
-  $("#X").on("change", function() {
+      var x_values = $("#X").find(":selected").val();
 
-    var x_values = $("#X").find(":selected").val();
+      $.ajax({
+        url: 'ajaxter1.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajaxter1.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y2");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name1'];
-          option.value = item['city_name1'];
+          //Empty option on change
           var select = document.getElementById("Y2");
+          var length = select.options.length;
 
-          select.appendChild(option);
-        });
-      },
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
 
-      error: function(result) {
-        console.log(result)
-      }
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name1'];
+            option.value = item['city_name1'];
+            var select = document.getElementById("Y2");
+
+            select.appendChild(option);
+          });
+        },
+
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
 
 
 
 
 
+    $("#Xres").on("change", function() {
 
-  $("#Xres").on("change", function() {
+      var x_values = $("#Xres").find(":selected").val();
 
-    var x_values = $("#Xres").find(":selected").val();
+      $.ajax({
+        url: 'ajaxter.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajaxter.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y1res");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name'];
-          option.value = item['city_name'];
+          //Empty option on change
           var select = document.getElementById("Y1res");
-          select.appendChild(option);
+          var length = select.options.length;
+
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name'];
+            option.value = item['city_name'];
+            var select = document.getElementById("Y1res");
+            select.appendChild(option);
 
 
 
 
 
 
-        });
-      },
+          });
+        },
 
-      error: function(result) {
-        console.log(result)
-      }
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
 
+    $("#Xres").on("change", function() {
 
-  $("#Xres").on("change", function() {
+      var x_values = $("#Xres").find(":selected").val();
 
-    var x_values = $("#Xres").find(":selected").val();
+      $.ajax({
+        url: 'ajaxter1.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajaxter1.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y2res");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name1'];
-          option.value = item['city_name1'];
+          //Empty option on change
           var select = document.getElementById("Y2res");
-          select.appendChild(option);
-        });
-      },
+          var length = select.options.length;
 
-      error: function(result) {
-        console.log(result)
-      }
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name1'];
+            option.value = item['city_name1'];
+            var select = document.getElementById("Y2res");
+            select.appendChild(option);
+          });
+        },
+
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
+    //retrenchment
 
-  //retrenchment
+    $("#Xretrench").on("change", function() {
 
-  $("#Xretrench").on("change", function() {
+      var x_values = $("#Xretrench").find(":selected").val();
 
-    var x_values = $("#Xretrench").find(":selected").val();
+      $.ajax({
+        url: 'ajax_retrench.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajax_retrench.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y1retrench");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name'];
-          option.value = item['city_name'];
+          //Empty option on change
           var select = document.getElementById("Y1retrench");
-          select.appendChild(option);
+          var length = select.options.length;
+
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name'];
+            option.value = item['city_name'];
+            var select = document.getElementById("Y1retrench");
+            select.appendChild(option);
 
 
 
 
 
 
-        });
-      },
+          });
+        },
 
-      error: function(result) {
-        console.log(result)
-      }
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
 
+    $("#Xretrench").on("change", function() {
 
-  $("#Xretrench").on("change", function() {
+      var x_values = $("#Xretrench").find(":selected").val();
 
-    var x_values = $("#Xretrench").find(":selected").val();
+      $.ajax({
+        url: 'ajax_retrench1.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajax_retrench1.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y2retrench");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name1'];
-          option.value = item['city_name1'];
+          //Empty option on change
           var select = document.getElementById("Y2retrench");
-          select.appendChild(option);
-        });
-      },
+          var length = select.options.length;
 
-      error: function(result) {
-        console.log(result)
-      }
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name1'];
+            option.value = item['city_name1'];
+            var select = document.getElementById("Y2retrench");
+            select.appendChild(option);
+          });
+        },
+
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
     });
 
-  });
 
 
 
 
+    //float
 
-  //float
+    $("#Xfloat").on("change", function() {
 
-  $("#Xfloat").on("change", function() {
+      var x_values = $("#Xfloat").find(":selected").val();
 
-    var x_values = $("#Xfloat").find(":selected").val();
+      $.ajax({
+        url: 'ajax_float.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
 
-    $.ajax({
-      url: 'ajax_float.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
+          result = JSON.parse(result);
 
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y1float");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
-        }
-        //end
-
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name'];
-          option.value = item['city_name'];
+          //Empty option on change
           var select = document.getElementById("Y1float");
-          select.appendChild(option);
+          var length = select.options.length;
+
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name'];
+            option.value = item['city_name'];
+            var select = document.getElementById("Y1float");
+            select.appendChild(option);
 
 
 
 
 
 
-        });
-      },
+          });
+        },
 
-      error: function(result) {
-        console.log(result)
-      }
-    });
-
-  });
-
-
-  $("#Xfloat").on("change", function() {
-
-    var x_values = $("#Xfloat").find(":selected").val();
-
-    $.ajax({
-      url: 'ajax_float1.php',
-      type: 'POST',
-      //dataType:'JSON',
-      data: {
-        city_code: x_values
-      },
-      success: function(result) {
-
-        result = JSON.parse(result);
-
-        //Empty option on change
-        var select = document.getElementById("Y2float");
-        var length = select.options.length;
-
-        for (i = length - 1; i >= 0; i--) {
-          select.options[i] = null;
+        error: function(result) {
+          console.log(result)
         }
-        //end
+      });
 
-        result.forEach(function(item, index) {
-
-          //console.log(item[2]);
-
-          var option = document.createElement("option");
-          option.text = item['city_name1'];
-          option.value = item['city_name1'];
-          var select = document.getElementById("Y2float");
-          select.appendChild(option);
-        });
-      },
-
-      error: function(result) {
-        console.log(result)
-      }
     });
 
-  });
-</script>
+
+    $("#Xfloat").on("change", function() {
+
+      var x_values = $("#Xfloat").find(":selected").val();
+
+      $.ajax({
+        url: 'ajax_float1.php',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {
+          city_code: x_values
+        },
+        success: function(result) {
+
+          result = JSON.parse(result);
+
+          //Empty option on change
+          var select = document.getElementById("Y2float");
+          var length = select.options.length;
+
+          for (i = length - 1; i >= 0; i--) {
+            select.options[i] = null;
+          }
+          //end
+
+          result.forEach(function(item, index) {
+
+            //console.log(item[2]);
+
+            var option = document.createElement("option");
+            option.text = item['city_name1'];
+            option.value = item['city_name1'];
+            var select = document.getElementById("Y2float");
+            select.appendChild(option);
+          });
+        },
+
+        error: function(result) {
+          console.log(result)
+        }
+      });
+
+    });
+
+    // Enabling Tooltips
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>
+
+  </main>
+</body>
+
+</html>

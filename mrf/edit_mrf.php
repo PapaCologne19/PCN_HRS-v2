@@ -141,7 +141,7 @@ $datenow = date("m/d/Y h:i:s A");
                     <div class="col-md-4 mt-3">
                         <label for="" class="form-label">MRF Category</label>
                         <select name="mrf_category" id="mrf_category" onchange="showCategory()" class="form-select cbo" required>
-                            <option value="" selected disabled></option>
+                            <option value="<?php echo $rows['mrf_category']?>" selected disabled><?php echo $rows['mrf_category']?></option>
                             <option value="NEW">NEW</option>
                             <option value="REPLACEMENT">REPLACEMENT</option>
                             <option value="RELIEVER">RELIEVER</option>
@@ -154,7 +154,7 @@ $datenow = date("m/d/Y h:i:s A");
                     <div class="col-md-4 mt-3">
                         <label for="" class="form-label">MRF Type</label>
                         <select name="mrf_type" id="mrf_type" onchange="validate_type()" class="form-select cbo" required>
-                            <option value="" selected disabled></option>
+                            <option value="<?php echo $rows['type']?>" selected disabled><?php echo $rows['type']?></option>
                             <option value="INHOUSE">INHOUSE</option>
                             <option value="FIELD FORCE">FIELD FORCE</option>
                         </select>
@@ -163,7 +163,7 @@ $datenow = date("m/d/Y h:i:s A");
                         <label for="" class="form-label">Client</label>
                         <hr>
                         <select name="client" id="client" class="form-select" required>
-                            <option value="" selected disabled></option>
+                            <option value="<?php echo $rows['client']?>" selected disabled><?php echo $rows['client']?></option>
                             <?php
                             $query = "SELECT * FROM client_company WHERE is_deleted = '0' ORDER BY company_name ASC";
                             $result = $link->query($query);
@@ -177,7 +177,7 @@ $datenow = date("m/d/Y h:i:s A");
                     <div class="col-md-4 mt-3">
                         <label for="" class="form-label">Location</label>
                         <select name="location" id="location" class="form-select" required>
-                            <option value="" selected disabled></option>
+                            <option value="<?php echo $rows['location']?>" selected disabled><?php echo $rows['location']?></option>
                             <option value="NCR">NCR</option>
                             <option value="PROVINCIAL">PROVINCIAL</option>
                         </select>
@@ -189,7 +189,7 @@ $datenow = date("m/d/Y h:i:s A");
                     <div class="col-md-4 mt-3">
                         <label for="" class="form-label">Division</label>
                         <select name="division" id="division" class="form-select" required>
-                            <option value="" disabled selected></option>
+                            <option value="<?php echo $rows['division']?>" disabled selected><?php echo $rows['division']?></option>
                             <option value="HR">HR</option>
                             <option value="BSG">BSG</option>
                             <option value="BD1">BD1</option>
@@ -477,7 +477,7 @@ $datenow = date("m/d/Y h:i:s A");
                             <label for="" class="form-label mt-3 fs-6">Employment Status</label>
 
                             <select name="employment_status" id="employment_status" class="form-select">
-                                <option value="" selected disabled></option>
+                                <option value="<?php echo $rows['employment_stat']?>" selected disabled><?php echo $rows['employment_stat']?></option>
                                 <option value="Project Based">Project Based</option>
                                 <option value="Probationary">Probationary (180 Days)</option>
                                 <option value="Regular">Regular</option>
@@ -498,14 +498,14 @@ $datenow = date("m/d/Y h:i:s A");
                                 <input type="text" class="form-control salary_package" name="salary_schedule" value="<?php echo $rows['salary_sched'] ?>"  id="salary_schedule" required>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 mt-3">
                                 <label for="" class="form-label">Work Duration: </label>
                             </div>
                             <div class="col-md-4">
                                 <input type="text" class="form-control salary_package" name="work_duration" value="<?php echo $rows['work_duration'] ?>"  id="work_duration" required>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-2 mt-3">
                                 <label for="" class="form-label">Work Days: </label>
                             </div>
                             <div class="col-md-4">
@@ -546,7 +546,7 @@ $datenow = date("m/d/Y h:i:s A");
                     </center>
                     <div class="col-md-6 mt-3">
                         <label for="" class="form-label">Date Requested</label>
-                        <input type="text" name="date_requested" value="<?php echo $datenow ?>" id="date_requested" class="form-control" readonly>
+                        <input type="text" name="date_requested" value="<?php echo $rows['dt_now'] ?>" id="date_requested" class="form-control" readonly>
                     </div>
                     <div class="col-md-6 mt-3">
                         <label for="" class="form-label">Date Needed</label>
@@ -555,14 +555,14 @@ $datenow = date("m/d/Y h:i:s A");
                     <div class="col-md-6">
                         <label for="" class="form-label">Directly Reporting To</label>
                         <select name="direct_report" id="direct_report" class="form-select" required>
-                            <option value="" selected disabled></option>
+                            <option value="<?php echo $rows['drt']?>" selected disabled><?php echo $rows['drt']?></option>
                         </select>
                     </div>
 
                     <div class="col-md-6">
                         <label for="" class="form-label">Requestee Position</label>
                         <select name="job_position" id="job_position" class="form-select">
-                            <option value="" selected disabled>Please select</option>
+                            <option value="<?php echo $rows['rp']?>" selected disabled><?php echo $rows['rp']?></option>
                         </select>
                     </div>
                     <div class="col-md-6 mt-5">

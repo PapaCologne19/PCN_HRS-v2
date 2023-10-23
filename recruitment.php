@@ -61,19 +61,6 @@ $resultap = mysqli_query($link, "SELECT * FROM track where id ='1'");
 while ($rowap = mysqli_fetch_array($resultap)) {
   $appno = $rowap[1];
 }
-
-if (isset($_POST['r_mrf'])) {
-  $mrf_val1 = $_POST['mrf_val'];
-
-  mysqli_query($link, "UPDATE mrf
-          SET
-    
-        hr_personnel='YES'
-          
-          WHERE
-          id = '$mrf_val1'
-          ");
-}
 echo '
 ';
 ?>
@@ -450,7 +437,7 @@ echo '
                                                   <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalewb" ><i class="bi bi-layer-forward" style="margin-right: 1rem;"></i> Deploy</button></li>
                                                   <li class="cd-side__btn"> <a><BUTTON class="btn" name = "for_requirements"><i class="bi bi-person-rolodex" style="margin-right: 1rem;"></i>  For Requirements</button></a></li>
                                                  
-                                                  <li class="cd-side__btn"><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalmrf" ><i class="bi bi-person" style="margin-right: 1rem;"></i> MRF </button></li>
+                                                  <li class="cd-side__btn"><button name="mrfbutton" class="btn" ><i class="bi bi-person" style="margin-right: 1rem;"></i> MRF </button></li>
                                                 </form> 
                                               </ul>
                                            
@@ -479,7 +466,7 @@ echo '
   if (isset($_POST['summary'])) {
     echo '
 <div class="containers">
-<table id="example" class="table table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
+<table id="example" class="table table-striped table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
             <thead>
             <tr>
             <th> Shortlist Name </th>
@@ -615,14 +602,7 @@ echo '
              
 ';
   }
-
-
-
-
-  if (isset($_POST['addtoshortlistbtn1'])) {
-
-    $kekelpogi1 = "Shortlist Title and Employee Added";
-  } ?>
+  ?>
 
 
 
@@ -2083,7 +2063,8 @@ echo '
                                                   ';
       } else {
         echo '<td> <form action="" method = "POST">
-        <input type = "hidden" name = "appno_id" class="appno_id" id="appno_id" value = "' . $rowx['appno'] . '">
+        <input type = "hidden" name = "app_number" class="app_number" id="app_number" value = "' . $rowx['appno'] . '">
+        <input type = "hidden" name = "appno_id" class="appno_id" id="appno_id" value = "' . $rowx['id'] . '">
         ';
         $appno = $rowx['appno'];
         $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno'";
@@ -2128,12 +2109,6 @@ echo '
   </div>
 
 
-
-
-
-
-
-
   <?php
   if (isset($_POST['addappdel'])) {
     $short1 = $_POST['shortlisttitle1del'];
@@ -2141,8 +2116,6 @@ echo '
     $data = $_SESSION["data"];
     $view = "Applicants Shortlisted on : (" . $data . ")";
     $_SESSION["dataexport1"] = $data;
-
-
 
     echo '
   <div class="cd-content-wrapper">
@@ -2238,8 +2211,6 @@ echo '
 
     $_SESSION["dataexport1"] = $data;
     echo '
-
-
     <div class="modal fade" id="addtoshortlist"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -2255,8 +2226,8 @@ echo '
               <div class="col-md-6 form-check">
                 <input type="checkbox" name="select-all" id="select-all" class="form-check-input"> Select All
               </div>
-              <table class="table table-striped table-sm align-middle mb-0 p-3 border border-info border-start-0 border-end-0 rounded-end" id="myTable" style="width:100%; font-size: 14px !important;">
-                <thead>
+              <table class="table table-striped table-sm align-middle mb-0 p-3 border border-secondary border-start-0 border-end-0 rounded-end" id="myTable" style="width:100%; font-size: 14px !important;">
+                <thead class="p-3">
                   <tr>
                     <th>Select</th>
                     <th>ID</th>
@@ -2268,36 +2239,31 @@ echo '
     <tbody>
       <tr>
         <?php
-
         $queryxx1 = "SELECT DISTINCT appnumto
         FROM shortlist_master
         WHERE shortlistnameto != '$data'
         AND appnumto NOT IN (
             SELECT appnumto
             FROM shortlist_master
-            WHERE shortlistnameto = '$data'
-        );";
+            WHERE shortlistnameto = '$data');";
         $resultxx1 = mysqli_query($link, $queryxx1);
 
         while ($rowxx1 = mysqli_fetch_assoc($resultxx1)) {
-
           $app_num = $rowxx1['appnumto'];
-
-          $uniqueUsers[$app_num] = true;
           $query = "SELECT * FROM employees WHERE appno = '$app_num'";
           $result = $link->query($query);
 
           while ($row = $result->fetch_assoc()) {
             $id = $row["appno"];
+            $user_id = $row["id"];
             $birth_date = $row['birthday'];
             $timestamp_birthdate = strtotime($birth_date);
             $formattedDate_birthdate = date("F d, Y", $timestamp_birthdate);
-            // if(mysqli_num_rows($result) === 0){
-
         ?>
             <td>
               <div class="col-md-6 form-check">
                 <input type="checkbox" name="user[]" class="form-check-input" value="<?php echo $id ?>">
+                <input type="hidden" name="userid[]" class="form-check-input" value="<?php echo $user_id ?>">
               </div>
             </td>
             <td><?php echo $row['id'] ?></td>
@@ -2348,12 +2314,12 @@ echo '
                                     <th> Brgy </th>
                                     <th> NBI </th>
                                     <th> PSA </th>
+                                    <th> STATUS </th>
                                     <th> Action </th>
                                    </tr>   
                                   </thead>
     
-                                  <tbody> 
-                      ';
+                                  <tbody>';
 
         $queryx1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data'";
         $resultx1 = mysqli_query($link, $queryx1);
@@ -2386,22 +2352,20 @@ echo '
               echo '  <td> ' . $formattedDate_barangay . '   </td> ';
               echo '  <td> ' . $formattedDate_nbi . '   </td> ';
               echo '  <td> ' . $rowx["psa"] . '   </td> ';
+              echo '  <td> ' . $rowx["ewb_status"] . '   </td> ';
               echo '<td> 
-                               <form action = "" method = "POST">
-           
-                            <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
-                            <input type = "hidden" name = "shadowE1" value = "' . $rowx["appno"] . '">
-    
-    
-                      ';
+                               
+              <form action = "" method = "POST">
+                <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
+                <input type = "hidden" name = "shadowE1" value = "' . $rowx["appno"] . '">';
               $appno = $rowx["appno"];
               $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
               $corow = mysqli_num_rows($resultcem);
 
               echo '
-                      <input type = "hidden" name = "shad" value = "' . $corow . '">
+                    <input type = "hidden" name = "shad" value = "' . $corow . '">
            
-                      <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                    <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
                       <i class="bi bi-layer-forward"></i>
                     </button>
                       </form>
@@ -2419,65 +2383,337 @@ echo '
               echo '  <td> ' . $formattedDate_barangay . '   </td> ';
               echo '  <td> ' . $formattedDate_nbi . '   </td> ';
               echo '  <td> ' . $rowx["psa"] . '   </td> ';
+              echo '  <td> ' . $rowx["ewb_status"] . '   </td> ';
               echo '<td> 
-                               <form action = "" method = "POST">
-           
-                            <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
-                            <input type = "hidden" name = "appno_deploy" class="appno_deploy" id="appno_deploy" value = "' . $rowx["appno"] . '">
-    
-    
-                      ';
+                               
+              <form action = "" method = "POST">
+                <input type = "hidden" name = "shadowE1x" value = "' . $rowx["appno"] . '">
+                <input type = "hidden" name = "appno_deploy" class="appno_deploy" id="appno_deploy" value = "' . $rowx["appno"] . '">';
               $appno = $rowx["appno"];
               $resultcem = mysqli_query($link, "SELECT * FROM shortlist_master where appnumto = '$appno'");
               $corow = mysqli_num_rows($resultcem);
 
               echo '
-                      <input type = "hidden" name = "shad" value = "' . $corow . '">
+                <input type = "hidden" name = "shad" value = "' . $corow . '">
            
-                          <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
-                            <i class="bi bi-layer-forward"></i>
-                          </button>
-                      </form>
-                      </td>
-                  </tr> ';
+                <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                  <i class="bi bi-layer-forward"></i>
+                </button>
+              </form>
+            </td>
+          </tr> ';
             }
           }
         }
         '
-    
-                           </tbody>
-                              </table> 
+        </tbody>
+        </table> 
     
     
     </div>
     </div>
-    </div>
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-                ';
+    </div>';
       }
 ?>
+
+<?php
+
+if (isset($_POST['mrfbutton'])) {
+?>
+  <center class="containers">
+    <h3 class="fs-2">Summary Report</h3>
+    <hr>
+    <table id="e99" class="table table-sm align-middle mb-0 border border-info border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px !important;">
+      <thead>
+        <tr>
+          <th> FILLED BY </th>
+          <th> LOCATION </th>
+          <th> POSITION </th>
+          <th> NEEDED </thh>
+          <th> PROVIDED </th>
+          <th> RECEIVED BY: </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <?php
+
+        $result = mysqli_query($link, "SELECT * FROM mrf");
+        while ($row = mysqli_fetch_assoc($result)) {
+          $uid1 = $row['uid'];
+          $totalneed = $row['np_male'] + $row['np_female'];
+          $totalprovided = $row['s_male'] + $row['s_female'];
+          $fullname = $row['prepared_by'];
+
+          if ($row['hr_personnel'] == "YES") {
+            echo ' <tr> ';
+            echo '  <td>  ' . $row['prepared_by'] . '   </td> ';
+            echo '  <td>  ' . $row['location'] . '   </td> ';
+            if (!empty($row['position'])) {
+              echo '  <td>  ' . $row['position_detail'] . '   </td> ';
+            } else {
+              echo '  <td>  ' . $row['position'] . '   </td> ';
+            }
+            echo '  <td style=" text-align: center;">  ' . $totalneed . '   </td> ';
+            echo '  <td style=" text-align: center;">  ' . $totalprovided . '   </td> ';
+
+            echo ' <td> 
+            <form action = "" method = "POST">
+              <input type = "hidden" name = "mrf_id" value = "' . $row['id'] . '">
+                <button type="button" name = "r_mrf" class="btn btn-default r_mrf"><span class="glyphicon glyphicon-edit" ></span> Provide Shortlist</button>
+            </form>
+          </td>
+        </tr> ';
+          } 
+          else {
+            echo ' <tr> ';
+            echo '  <td>  ' . $fullname . '   </td> ';
+            echo '  <td>  ' . $row['location'] . '   </td> ';
+            if (!empty($row['position'])) {
+              echo '  <td>  ' . $row['position_detail'] . '   </td> ';
+            } else {
+              echo '  <td>  ' . $row['position'] . '   </td> ';
+            }
+            echo '  <td style=" text-align: center;">  ' . $totalneed . '   </td> ';
+            echo '  <td style=" text-align: center;">  ' . $totalprovided . '   </td> ';
+            echo '
+              <td> 
+                <form action = "" method = "POST">
+                  <input type = "hidden" name = "mrf_ids" value = "' . $row['id'] . '">
+                      <button type="button" name = "r_mrfs" class="btn btn-default r_mrfs"><span class="glyphicon glyphicon-edit" ></span> Accept MRF</button>
+                </form>
+              </td>
+            </tr> ';
+          }
+        }
+        //} 
+        ?>
+      </tbody>
+    </table>
+  </center>
+<?php } ?>
+
+
+
+
 </main> <!-- .cd-main-content -->
 
+<!-- Modal -->
+<div class="modal fade" id="myModaladdshort" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label for="text">
+          <font color="Black">
+            <font color="red">*</font>Select Shortlist Title
+          </font>
+        </label>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <br>
+      </div>
+
+      <div class="modal-body">
+        <form action="" method="POST"><br>
+          <label class="form-label"> Project Title </label>
+          <center>
+            <select class="form-select" name="shortlisttitle" required>
+              <option value="">Select shortlist Name:</option>
+              <?php
+              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+              while ($rowpro = mysqli_fetch_array($resultpro)) {
+                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option>';
+              }
+              ?>
+            </select>
+          </center>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" name="addapp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModaladdshortview" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label for="text">
+          <font color="Black">
+            <font color="red">*</font> Select Shortlist Title:
+          </font>
+        </label>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <br>
+      </div>
+
+      <div class="modal-body">
+        <form action="" method="POST"><br>
+          <label class="form-label"> Project Title : </label>
+          <center>
+            <select class="form-select" name="shortlisttitle1"> ;
+              <option>Select shortlist Name:</option>
+              <?php
+              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+              while ($rowpro = mysqli_fetch_array($resultpro)) {
+                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> ';
+              }
+              ?>
+            </select>
+          </center>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" name="addappview" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModaldelshort" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label for="text">
+          <font color="Black">
+            <font color="red">*</font>Select Shortlist Title:
+          </font>
+        </label>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <br>
+      </div>
+
+      <div class="modal-body">
+        <form action="" method="POST"><br>
+          <label class="form-label"> Project Title </label>
+          <center>
+            <select class="form-select" name="shortlisttitle1del" data-placeholder="" style="height:45px;width:60%"> ;
+              <option>Select shortlist Name:</option>
+              <?php
+              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+              while ($rowpro = mysqli_fetch_array($resultpro)) {
+                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> ';
+              }
+              ?>
+            </select>
+          </center>
+      </div>
+      <div class="modal-footer">
+
+        <input type="submit" name="addappdel" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 
-<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+<!-- Modal -->
+<div class="modal fade" id="myModalewb" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label for="text">
+          <font color="Black">
+            <font color="red">*</font>Select Shortlist Title:
+          </font>
+        </label>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <br>
+      </div>
+
+      <div class="modal-body">
+        <form action="" method="POST"><br>
+          <label class="form-label"> Project Title </label>
+          <center>
+            <select class="form-select" name="shortlisttitle1del" data-placeholder="" style="height:45px;width:60%" required> ;
+              <option value="">Select shortlist Name:</option>
+              <?php
+              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity = 'ACTIVE' order by shortlistname ASC ");
+              while ($rowpro = mysqli_fetch_assoc($resultpro)) {
+                echo '<option  value="' . $rowpro["shortlistname"] . '">' . $rowpro['shortlistname'] . '(' . $rowpro['project'] . ') </option>';
+              }
+              ?>
+            </select>
+          </center>
+      </div>
+
+      <div class="modal-footer">
+        <input type="submit" name="addappdel1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalapp_print" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label for="text">
+          <font color="Black">
+            <font color="red">*</font>Select Applicant
+          </font>
+        </label>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        <br>
+      </div>
+
+      <div class="modal-body">
+        <form action="" method="POST"><br>
+          <label class="form-label"> Project Title </label>
+          <center>
+            <select class="form-select" name="applicant_no"> ;
+              <option>Select shortlist Name:</option>
+              <?php
+              $resultpro = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint !='BLACKLISTED' OR actionpoint !='DEPLOYED' order by lastnameko ASC ");
+              while ($rowpro = mysqli_fetch_array($resultpro)) {
+                echo '<option  value="' . $rowpro[4] . '">' . $rowpro[6] . ", " . $rowpro[7] . " " . $rowpro[8] . ' </option>';
+              }
+              ?>
+            </select>
+          </center>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" name="printapp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+<!-- JAVASCRIPT SECTION -->
+<script src="assets/js/util.js"></script>
 <script src="assets/js/menu-aim.js"></script>
 <script src="assets/js/main.js"></script>
-<!-- Configure a few settings and attach camera -->
 <script language="JavaScript">
+  // Configure a few settings and attach camera
   function take_snapshot() {
     Webcam.snap(function(data_uri) {
       $(".image-tag").val(data_uri);
@@ -2524,8 +2760,7 @@ echo '
     }
   }
 
-
-
+  // For camera
   function myFunctioncam() {
     Webcam.set({
       width: 250,
@@ -2808,6 +3043,7 @@ echo '
       e.preventDefault();
 
       var appno_ids = $(this).closest("tr").find('.appno_id').val();
+      var app_number = $(this).closest("tr").find('.app_number').val();
       Swal.fire({
         title: "Are you sure you want to add this?",
         icon: "warning",
@@ -2822,6 +3058,7 @@ echo '
             data: {
               "add_shortlist_click": 1,
               "appno_id_click": appno_ids,
+              "appno_number_click": app_number,
             },
             success: function(response) {
               // Parse the response as JSON
@@ -3094,17 +3331,84 @@ echo '
     });
   });
 
+  // For MRF providing shortlist
+  $(document).ready(function() {
+    $('.r_mrf').click(function(e) {
+      e.preventDefault();
+
+      var provideID = $(this).closest("tr").find('.mrf_id').val();
+      Swal.fire({
+        title: "Are you sure you want to provide to this MRF?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "provideMRF_button_click": 1,
+              "provideID": provideID,
+            },
+            success: function(response) {
+
+              Swal.fire({
+                title: "Successfully Provided!",
+                icon: "success"
+              }).then((result) => {
+                location.reload();
+              });
+
+            }
+          });
+        }
+      });
+    });
+  });
+
+  // For accepting MRF
+  $(document).ready(function() {
+    $('.r_mrfs').click(function(e) {
+      e.preventDefault();
+
+      var acceptID = $(this).closest("tr").find('.mrf_ids').val();
+      Swal.fire({
+        title: "Are you sure you want to accept this MRF?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, accept it!",
+        cancelButtonText: "No, cancel",
+      }).then((willDelete) => {
+        if (willDelete.isConfirmed) {
+          $.ajax({
+            type: "POST",
+            url: "action.php",
+            data: {
+              "acceptMRF_button_click": 1,
+              "acceptID": acceptID,
+            },
+            success: function(response) {
+
+              Swal.fire({
+                title: "Successfully Accepted!",
+                icon: "success"
+              }).then((result) => {
+                location.reload();
+              });
+
+            }
+          });
+        }
+      });
+    });
+  });
+
 
   // Enabling Tooltips
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-
-
-
-
-
-
 
 
   // For checkboxes of selecting applicants for shortlist
@@ -3147,308 +3451,3 @@ echo '
 </body>
 
 </html>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModaladdshort" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Shortlist Title:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <label class="form-label"> Project Title </label>
-          <center>
-            <select class="form-select" name="shortlisttitle" required>
-              <option value="">Select shortlist Name:</option>
-              <?php
-
-              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-
-                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> 
-                                                                                                         ';
-              }
-              ?>
-
-
-            </select>
-          </center>
-      </div>
-
-
-
-
-
-
-      <div class="modal-footer">
-
-        <input type="submit" name="addapp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModaladdshortview" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font> Select Shortlist Title:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-
-          <label class="form-label"> Project Title : </label>
-          <center>
-            <select class="form-select" name="shortlisttitle1"> ;
-              <option>Select shortlist Name:</option>
-              <?php
-              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> ';
-              }
-              ?>
-            </select>
-          </center>
-      </div>
-      <div class="modal-footer">
-
-        <input type="submit" name="addappview" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModaldelshort" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Shortlist Title:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-          <label class="form-label"> Project Title </label>
-          <center>
-            <select class="form-select" name="shortlisttitle1del" data-placeholder="" style="height:45px;width:60%"> ;
-              <option>Select shortlist Name:</option>
-              <?php
-
-              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-
-                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> 
-                                                   
-                                                                       ';
-              }
-              ?>
-
-
-            </select>
-          </center>
-      </div>
-
-
-
-
-
-
-      <div class="modal-footer">
-
-        <input type="submit" name="addappdel" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalewb" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Shortlist Title:
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-        <form action="" method="POST"><br>
-          <label class="form-label"> Project Title </label>
-          <center>
-            <select class="form-select" name="shortlisttitle1del" data-placeholder="" style="height:45px;width:60%" required> ;
-              <option value="">Select shortlist Name:</option>
-              <?php
-              $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity = 'ACTIVE' order by shortlistname ASC ");
-              while ($rowpro = mysqli_fetch_assoc($resultpro)) {
-                echo '<option  value="' . $rowpro["shortlistname"] . '">' . $rowpro['shortlistname'] . '(' . $rowpro['project'] . ') </option>';
-              }
-              ?>
-            </select>
-          </center>
-      </div>
-
-      <div class="modal-footer">
-        <input type="submit" name="addappdel1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-      </div>
-    </div><!--div for body-->
-  </div>
-</div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModalapp_print" role="dialog">
-  <div class="modal-dialog"> <!--//sm,med, lg , xl-->
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <label for="text">
-          <font color="Black">
-            <font color="red">*</font>Select Applicant
-          </font>
-        </label>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        <br>
-      </div>
-
-      <div class="modal-body">
-
-
-        <form action="" method="POST"><br>
-
-          <label class="form-label"> Project Title </label>
-          <center>
-            <select class="form-select" name="applicant_no"> ;
-              <option>Select shortlist Name:</option>
-              <?php
-
-              $resultpro = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint !='BLACKLISTED' OR actionpoint !='DEPLOYED' order by lastnameko ASC ");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-
-                echo '<option  value="' . $rowpro[4] . '">' . $rowpro[6] . ", " . $rowpro[7] . " " . $rowpro[8] . ' </option> 
-                                                   
-                                                                       ';
-              }
-              ?>
-
-
-            </select>
-          </center>
-      </div>
-
-
-
-
-
-
-      <div class="modal-footer">
-
-        <input type="submit" name="printapp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        <input type="submit" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
-        </form>
-
-      </div>
-
-    </div><!--div for body-->
-
-  </div>
-</div>
-</div>

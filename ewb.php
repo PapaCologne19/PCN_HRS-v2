@@ -1176,7 +1176,7 @@ if (isset($_POST['to_index'])) {
               <div class="col-md-4 col-sm-12 mb-2" >
               <label class="form-label"> Select One </label><br>
                                                      
-    <select class="form-select"  disabled name="ewbchoiceto1" autofocus required> ';
+    <select class="form-select" name="ewbchoiceto1" autofocus required> ';
     echo '<option value="">Select</option> ';
 
 
@@ -1496,6 +1496,8 @@ if (isset($_POST['to_index'])) {
         });
       });
     });
+
+    
 
     // Enabling Tooltips
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')

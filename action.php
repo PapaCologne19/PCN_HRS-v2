@@ -272,7 +272,7 @@ if (isset($_POST['createshortlist'])) {
         if (mysqli_num_rows($resultns) == 0) {
             // kapag wala pang user name na kaparehas
 
-            $query = "INSERT INTO shortlist_details(shortlistname,project,client,datecreated,activity) VALUES('$newshortlist1','$project_t','$client_t','$dtnow','ACTIVE')";
+            $query = "INSERT INTO shortlist_details(project_id, shortlistname,project,client,datecreated,activity) VALUES('$projecttitle1','$newshortlist1','$project_t','$client_t','$dtnow','ACTIVE')";
             $result = mysqli_query($link, $query);
 
             if ($result) {
@@ -294,7 +294,8 @@ if (isset($_POST['createshortlist'])) {
 
 // For adding applicants to shortlist
 if (isset($_POST['add_shortlist_click'])) {
-    $id1 = $_POST['appno_id_click'];
+    $id1 = $_POST['appno_number_click'];
+    $app_id = $_POST['appno_id_click'];
     $data = $_SESSION["data"];
 
     $querytac = "SELECT * FROM employees WHERE appno = '$id1'";
@@ -312,7 +313,7 @@ if (isset($_POST['add_shortlist_click'])) {
                 $resultchk = mysqli_query($link, $querychk);
                 if (mysqli_num_rows($resultchk) === 0) {
                     // kapag wala pang user name na kaparehas
-                    $query2 = "INSERT INTO shortlist_master(shortlistnameto, appnumto, dateto) VALUES('$data', '$id1', '$dtnow')";
+                    $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id','$data', '$id1', '$dtnow')";
                     $results2 = mysqli_query($link, $query2);
                     if ($results2) {
                         $response = array('message' => 'Successfully added to the shortlist');
@@ -342,7 +343,7 @@ if (isset($_POST['add_shortlist_click'])) {
             $resultchk = mysqli_query($link, $querychk);
             if (mysqli_num_rows($resultchk) == 0) {
                 // kapag wala pang user name na kaparehas
-                $query3 = "INSERT INTO shortlist_master(shortlistnameto,appnumto,dateto) VALUES('$data','$id1','$dtnow')";
+                $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$app_id','$data','$id1','$dtnow')";
                 $results3 = mysqli_query($link, $query3);
 
                 if ($results3) {
@@ -492,48 +493,49 @@ if (isset($_POST['declined_button'])) {
         $resultem = mysqli_query($link, $queryem);
         $rowem = mysqli_fetch_assoc($resultem);
 
-        $tracking = $row['tracking'];
-        $photopath = $row['photopath'];
-        $dapplied = $row['dapplied'];
-        $appno = $row['appno'];
-        $source = $row['source'];
-        $lastnameko = $row['lastnameko'];
-        $firstnameko = $row['firstnameko'];
-        $mnko = $row['mnko'];
-        $extname = $row['extnname'];
-        $paddress = $row['paddress'];
-        $cityn = $row['cityn'];
-        $regionn = $row['regionn'];
-        $peraddress = $row['peraddress'];
-        $birthday = $row['birthday'];
-        $age = $row['age'];
-        $gendern = $row['gendern'];
-        $civiln = $row['civiln'];
-        $cpnum = $row['cpnum'];
-        $landline = $row['landline'];
-        $emailadd = $row['emailadd'];
-        $despo = $row['despo'];
-        $classn = $row['classn'];
-        $idenn = $row['idenn'];
-        $sssnum = $row['sssnum'];
-        $pagibignum = $row['pagibignum'];
-        $phnum = $row['phnum'];
-        $tinnum = $row['tinnum'];
-        $policed = $row['policed'];
-        $brgyd = $row['brgyd'];
-        $nbid = $row['nbid'];
-        $psa = $row['psa'];
-        $remarks = $row['remarks'];
+        $tracking = $rowem['tracking'];
+        $photopath = $rowem['photopath'];
+        $dapplied = $rowem['dapplied'];
+        $appno = $rowem['appno'];
+        $source = $rowem['source'];
+        $lastnameko = $rowem['lastnameko'];
+        $firstnameko = $rowem['firstnameko'];
+        $mnko = $rowem['mnko'];
+        $extname = $rowem['extnname'];
+        $paddress = $rowem['paddress'];
+        $cityn = $rowem['cityn'];
+        $regionn = $rowem['regionn'];
+        $peraddress = $rowem['peraddress'];
+        $birthday = $rowem['birthday'];
+        $age = $rowem['age'];
+        $gendern = $rowem['gendern'];
+        $civiln = $rowem['civiln'];
+        $cpnum = $rowem['cpnum'];
+        $landline = $rowem['landline'];
+        $emailadd = $rowem['emailadd'];
+        $despo = $rowem['despo'];
+        $classn = $rowem['classn'];
+        $idenn = $rowem['idenn'];
+        $sssnum = $rowem['sssnum'];
+        $pagibignum = $rowem['pagibignum'];
+        $phnum = $rowem['phnum'];
+        $tinnum = $rowem['tinnum'];
+        $policed = $rowem['policed'];
+        $brgyd = $rowem['brgyd'];
+        $nbid = $rowem['nbid'];
+        $psa = $rowem['psa'];
+        $remarks = $rowem['remarks'];
+        $declined_by = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
 
 
         $declined_history_query = "INSERT INTO ewb_declined_history(tracking ,photopath, dapplied, appno, source,
             lastnameko, firstnameko, mnko, extnname, paddress, cityn, regionn, peraddress, birthday, age, gendern, civiln,
             cpnum, landline, emailadd, despo, classn, idenn, sssnum, pagibignum, phnum, tinnum, policed, brgyd, nbid, psa, remarks,
-            ewb_reason, ewb_date_declined)
+            ewb_reason, ewb_declined_by, ewb_date_declined)
                 VALUES ('$tracking','$photopath','$dapplied','$appno','$source','$lastnameko','$firstnameko','$mnko','$extname',
                 '$paddress','$cityn','$regionn','$peraddress','$birthday','$age','$gendern','$civiln','$cpnum','$landline','$emailadd',
                 '$despo','$classn','$idenn','$sssnum','$pagibignum','$phnum','$tinnum','$policed','$brgyd','$nbid','$psa','$remarks',
-                '$ewb_reason','$datenow')";
+                '$ewb_reason', '$declined_by', '$datenow')";
 
         $declined_history_result = mysqli_query($link, $declined_history_query);
 
@@ -551,12 +553,13 @@ if (isset($_POST['declined_button'])) {
 if (isset($_POST['add_to_shortlist'])) {
     $data = $_SESSION["data"];
     $selected_applicants = $_POST['user'];
+    $selected_applicants_id = $_POST['userid'];
 
     // Initialize the $response array outside of the loop
     $response = array();
 
     if (!empty($selected_applicants)) {
-        foreach ($selected_applicants as $id1) {
+        foreach (array_combine($selected_applicants, $selected_applicants_id) as $id1 => $id) {
             $querytac = "SELECT * FROM employees WHERE appno = '$id1'";
             $resultac = mysqli_query($link, $querytac);
 
@@ -572,7 +575,7 @@ if (isset($_POST['add_to_shortlist'])) {
                         $resultchk = mysqli_query($link, $querychk);
 
                         if (mysqli_num_rows($resultchk) === 0) {
-                            $query2 = "INSERT INTO shortlist_master(shortlistnameto, appnumto, dateto) VALUES('$data', '$id1', '$dtnow')";
+                            $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$id','$data', '$id1', '$dtnow')";
                             $results2 = mysqli_query($link, $query2);
 
                             if ($results2) {
@@ -598,7 +601,7 @@ if (isset($_POST['add_to_shortlist'])) {
                     $resultchk = mysqli_query($link, $querychk);
 
                     if (mysqli_num_rows($resultchk) == 0) {
-                        $query3 = "INSERT INTO shortlist_master(shortlistnameto,appnumto,dateto) VALUES('$data','$id1','$dtnow')";
+                        $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$id','$data','$id1','$dtnow')";
                         $results3 = mysqli_query($link, $query3);
 
                         if ($results3) {
@@ -693,8 +696,9 @@ if (isset($_POST['reverification_button'])) {
 if (isset($_POST['verify_button_click'])) {
     $dtnow = date("m/d/Y");
     $ewbid1 = $_POST['verify_id'];
+    $ewb_verified_by = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
 
-    $verify_query = "UPDATE employees SET ewbdeploy = 'FOR DEPLOYMENT', ewbdate = '$dtnow', ewb_status = 'VERIFIED' WHERE appno = '$ewbid1'";
+    $verify_query = "UPDATE employees SET ewbdeploy = 'FOR DEPLOYMENT', ewbdate = '$dtnow', ewb_status = 'VERIFIED', ewb_verified_by = '$ewb_verified_by' WHERE appno = '$ewbid1'";
     $verify_result = mysqli_query($link, $verify_query);
 
     if ($verify_result) {
@@ -742,4 +746,37 @@ if (isset($_POST['verify_button_click'])) {
     }
     header("Location: recruitment.php");
     exit();
+}
+
+// For Providing Shortlist in Recruitment>MRF
+if (isset($_POST['provideMRF_button_click'])) {
+    $mrf_val1 = $_POST['provideID'];
+
+    $query = "UPDATE mrf SET hr_personnel = 'YES' WHERE id = '$mrf_val1'";
+    $result = mysqli_query($link, $query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Provided";
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: recruitment.php");
+    exit(0);
+}
+
+// For accepting MRF
+if (isset($_POST['acceptMRF_button_click'])) {
+    $mrf_val1 = $_POST['acceptID'];
+
+    $query = "UPDATE mrf SET hr_personnel = 'YES' WHERE id = '$mrf_val1'";
+    $result = mysqli_query($link, $query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Accepted";
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+
+    header("Location: recruitment.php");
+    exit(0);
 }
