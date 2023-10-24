@@ -38,7 +38,8 @@ if (isset($_POST['process'])) {
     $other_salary_package = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['other_salary_package']))));
     $employment_status = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['employment_status']))));
     $salary_schedule = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['salary_schedule']))));
-    $work_duration = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['work_duration']))));
+    $work_duration_start = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['work_duration_start']))));
+    $work_duration_end = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['work_duration_end']))));
     $work_days = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['work_days']))));
     $time_schedule = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['time_schedule']))));
     $day_off = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['day_off']))));
@@ -56,12 +57,12 @@ if (isset($_POST['process'])) {
     $query = "INSERT INTO mrf(tracking, mrf_category, mrf_category_name, type, client, location, project_title, division, ce_number, position, position_detail, np_male, 
         np_female, height_r, height_female, edu, pleasing_personality, moral, work_experience, comm_skills, physically, 
         articulate, others, basic_salary, transpo, meal, comm, other_allow, employment_stat, 
-        salary_sched, work_duration, work_days, time_sched, day_off, outlet, dt_now, date_needed, drt, rp, special_requirements_others, uid, prepared_by)
+        salary_sched, work_duration_start, work_duration_end, work_days, time_sched, day_off, outlet, dt_now, date_needed, drt, rp, special_requirements_others, uid, prepared_by)
         
                 VALUES('$tracking_number', '$category', '$category_name', '$mrf_type', '$client', '$location', '$project_title', '$division', '$ce_number', '$selected_position', '$selected_other_position', '$no_of_people_male', 
         '$no_of_people_female', '$height_male', '$height_female', '$educational_background', '$pleasing_personality', '$good_moral', '$work_experience', '$good_communication', '$physically_fit', 
         '$articulate', '$other_personality', '$basic_salary', '$transportation_allowance', '$meal_allowance', '$communication_allowance', '$other_salary_package', '$employment_status',
-        '$salary_schedule', '$work_duration', '$work_days', '$time_schedule', '$day_off', '$outlet', '$date_requested', '$date_needed', '$direct_report', '$job_position', '$special_requirements', '$id' , '$prepared_by')";
+        '$salary_schedule', '$work_duration_start', '$work_duration_end', '$work_days', '$time_schedule', '$day_off', '$outlet', '$date_requested', '$date_needed', '$direct_report', '$job_position', '$special_requirements', '$id' , '$prepared_by')";
 
     $result = $link->query($query);
     $id = mysqli_insert_id($link);

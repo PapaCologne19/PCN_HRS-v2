@@ -2,7 +2,7 @@
     include '../connect.php';
 
     if (isset($_POST['division'])) {
-        $selectedDivision = $_POST['division'];
+        $selectedDivisionForClient = $_POST['division'];
     
         // Prepare a SQL query to retrieve employee data for the selected division
         $query = "SELECT fullname, position FROM pcn_emp WHERE division = ? AND employment_status = 'REGULAR'";
@@ -12,7 +12,7 @@
     
         if ($stmt) {
             // Bind the parameter
-            $stmt->bind_param("s", $selectedDivision);
+            $stmt->bind_param("s", $selectedDivisionForClient);
     
             // Execute the statement
             $stmt->execute();

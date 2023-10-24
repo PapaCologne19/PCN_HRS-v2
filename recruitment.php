@@ -63,6 +63,8 @@ while ($rowap = mysqli_fetch_array($resultap)) {
 }
 echo '
 ';
+
+if (isset($_SESSION['username'], $_SESSION['password'])) {
 ?>
 
 <html lang="en">
@@ -71,6 +73,7 @@ echo '
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Include WebcamJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 
   <!-- Bootstrap 5 -->
@@ -80,22 +83,24 @@ echo '
   <!-- Bootstrap Icon -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+  <!-- SelectPicker Plugin -->
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <link href="vendor/select2/select2/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="vendor/select2/select2/dist/js/select2.full.min.js"></script>
+
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Julius+Sans+One&family=Poppins&family=Quicksand&family=Roboto&family=Thasadith&display=swap" rel="stylesheet">
 
+  <!-- Style CSS -->
   <link rel="stylesheet" type="text/css" href="deo1.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Datatables -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 
   <!-- Sweet Alert -->
@@ -116,16 +121,9 @@ echo '
       margin: 20px;
     }
 
-    body {
-      font-family: Arial;
-      font-size: 20
-    }
-
     img {
       border-radius: 8px;
     }
-
-
 
     .body50 {
       position: absolute;
@@ -267,7 +265,8 @@ echo '
       })
     </script>
   <?php unset($_SESSION['successMessage']);
-  } ?>
+  } 
+  ?>
 
   <?php
   if (isset($_SESSION['errorMessage'])) { ?>
@@ -299,7 +298,7 @@ echo '
   <?php
 
 
-  if ($_SESSION["darkk"] == "recruitment") {
+
     echo '
                                   <header class="cd-main-header js-cd-main-header">
                                                     <div class="cd-logo-wrapper">
@@ -442,27 +441,11 @@ echo '
                                               </ul>
                                            
                                   
-                                    </nav>
-';
-  } else {
-    // kapag wala pang user name na kaparehas
-    $kekelpogi_index = "Page direct Un Authorized";
-
-    // remove all session variables
-
-    session_unset();
-
-    // destroy the session 
-    session_destroy();
-  }
+                                    </nav>';
+                              
   ?>
-
-
+  
   <?php
-
-
-
-
   if (isset($_POST['summary'])) {
     echo '
 <div class="containers">
@@ -622,7 +605,10 @@ echo '
                 <select class="form-select" name="projecttitle" required>
                   <option selected disabled>Select Project:</option>
                   <?php
-                  $querypro = "SELECT *, DATE_FORMAT(end_date, '%M %d %Y') AS date_end FROM projects WHERE end_date >= '$datenow1' ORDER BY project_title ASC ";
+                  $querypro = "SELECT *, DATE_FORMAT(end_date, '%M %d %Y') AS date_end 
+                    FROM projects 
+                    WHERE end_date >= '$datenow1' 
+                    ORDER BY project_title ASC ";
                   $resultpro = mysqli_query($link, $querypro);
                   while ($rowpro = mysqli_fetch_assoc($resultpro)) {
                     echo '<option value="' . $rowpro['id'] . '">' . $rowpro['project_title'] . '(' . $rowpro['client_company_id'] . ') - ' . $rowpro['date_end'] . ' </option>';
@@ -864,8 +850,8 @@ echo '
                                       <label class="form-label">Region :</font></label>
                                     </div>
                                     <div class="col-md-10">
-                                      <select class="form-select cbo" name="regionn" id="regionn"  data-placeholder="Select User type"  > ;';
-      echo '<option>Select Region:</option> ';
+                                      <select class="form-select cbo" name="regionn" id="regionn"  data-placeholder="Select User type" required> ;';
+      echo '<option value="">Select Region:</option> ';
       $resultrg = mysqli_query($link, "SELECT * FROM region");
       while ($rowrg = mysqli_fetch_array($resultrg)) {
         echo '<option  value="' . $rowrg[3] . '">' . $rowrg[2] . '</option>';
@@ -2051,7 +2037,7 @@ echo '
           <input type = "hidden" name = "emp_number" class="emp_number" id="emp_number" value = "' . $rowx['appno'] . '">
             <input type = "hidden" name = "appname88" class="appname88" id="appname88" value = "' . $rowx['lastnameko'] . ', ' . $rowx['firstnameko'] . ' ' . $rowx['mnko'] . '">';
         $appno = $rowx['appno'];
-        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno'";
+        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data'";
         $resultcem = mysqli_query($link, $querycem);
         $corow = mysqli_num_rows($resultcem);
 
@@ -2067,7 +2053,7 @@ echo '
         <input type = "hidden" name = "appno_id" class="appno_id" id="appno_id" value = "' . $rowx['id'] . '">
         ';
         $appno = $rowx['appno'];
-        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno'";
+        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data'";
         $resultcem = mysqli_query($link, $querycem);
         $corow = mysqli_num_rows($resultcem);
         echo '
@@ -2239,31 +2225,25 @@ echo '
     <tbody>
       <tr>
         <?php
-        $queryxx1 = "SELECT DISTINCT appnumto
-        FROM shortlist_master
-        WHERE shortlistnameto != '$data'
-        AND appnumto NOT IN (
-            SELECT appnumto
-            FROM shortlist_master
-            WHERE shortlistnameto = '$data');";
-        $resultxx1 = mysqli_query($link, $queryxx1);
 
-        while ($rowxx1 = mysqli_fetch_assoc($resultxx1)) {
-          $app_num = $rowxx1['appnumto'];
-          $query = "SELECT * FROM employees WHERE appno = '$app_num'";
-          $result = $link->query($query);
-
-          while ($row = $result->fetch_assoc()) {
-            $id = $row["appno"];
-            $user_id = $row["id"];
-            $birth_date = $row['birthday'];
-            $timestamp_birthdate = strtotime($birth_date);
-            $formattedDate_birthdate = date("F d, Y", $timestamp_birthdate);
+        $query_employee = "SELECT * FROM employees";
+        $result_employee = $link->query($query_employee);
+        while ($row = mysqli_fetch_assoc($result_employee)){
+          $appno = $row['appno'];
+          $user_id = $row["id"];
+          $birth_date = $row['birthday'];
+          $timestamp_birthdate = strtotime($birth_date);
+          $formattedDate_birthdate = date("F d, Y", $timestamp_birthdate);
+          
+          $query_shortlist_master = "SELECT * FROM shortlist_master WHERE appnumto = '$appno' AND shortlistnameto = '$data'";
+          $result_shortlist_master = $link->query($query_shortlist_master);
+          
+            if(mysqli_num_rows($result_shortlist_master) === 0){
+             
         ?>
             <td>
               <div class="col-md-6 form-check">
-                <input type="checkbox" name="user[]" class="form-check-input" value="<?php echo $id ?>">
-                <input type="hidden" name="userid[]" class="form-check-input" value="<?php echo $user_id ?>">
+                <input type="checkbox" name="user[]" class="form-check-input" value="<?php echo $appno ?>">
               </div>
             </td>
             <td><?php echo $row['id'] ?></td>
@@ -2310,9 +2290,6 @@ echo '
                                     <th>  Pag-ibig </th>
                                     <th > Philhealth </th>
                                     <th> TIN </th>
-                                    <th > Police </th>
-                                    <th> Brgy </th>
-                                    <th> NBI </th>
                                     <th> PSA </th>
                                     <th> STATUS </th>
                                     <th> Action </th>
@@ -2348,9 +2325,6 @@ echo '
               echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
               echo '  <td> ' . $rowx["phnum"] . '   </td> ';
               echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
-              echo '  <td> ' . $formattedDate_police . '   </td> ';
-              echo '  <td> ' . $formattedDate_barangay . '   </td> ';
-              echo '  <td> ' . $formattedDate_nbi . '   </td> ';
               echo '  <td> ' . $rowx["psa"] . '   </td> ';
               echo '  <td> ' . $rowx["ewb_status"] . '   </td> ';
               echo '<td> 
@@ -2379,9 +2353,6 @@ echo '
               echo '  <td> ' . $rowx["pagibignum"] . '   </td> ';
               echo '  <td> ' . $rowx["phnum"] . '   </td> ';
               echo '  <td> ' . $rowx["tinnum"] . '   </td> ';
-              echo '  <td> ' . $formattedDate_police . '   </td> ';
-              echo '  <td> ' . $formattedDate_barangay . '   </td> ';
-              echo '  <td> ' . $formattedDate_nbi . '   </td> ';
               echo '  <td> ' . $rowx["psa"] . '   </td> ';
               echo '  <td> ' . $rowx["ewb_status"] . '   </td> ';
               echo '<td> 
@@ -2394,11 +2365,18 @@ echo '
               $corow = mysqli_num_rows($resultcem);
 
               echo '
-                <input type = "hidden" name = "shad" value = "' . $corow . '">
-           
-                <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                <input type = "hidden" name = "shad" value = "' . $corow . '">';
+           if($rowx['ewb_status'] === 'VERIFIED'){ ?>
+
+                <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy" style="visibility: hidden !important;">
                   <i class="bi bi-layer-forward"></i>
                 </button>
+        <?php     } else{ ?>
+              
+              <button type="submit" name = "addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                  <i class="bi bi-layer-forward"></i>
+                </button>
+           <?php } '
               </form>
             </td>
           </tr> ';
@@ -2428,6 +2406,7 @@ if (isset($_POST['mrfbutton'])) {
         <tr>
           <th> FILLED BY </th>
           <th> LOCATION </th>
+          <th> PROJECT TITLE </th>
           <th> POSITION </th>
           <th> NEEDED </thh>
           <th> PROVIDED </th>
@@ -2437,8 +2416,8 @@ if (isset($_POST['mrfbutton'])) {
       <tbody>
 
         <?php
-
-        $result = mysqli_query($link, "SELECT * FROM mrf");
+        $query = "SELECT * FROM mrf WHERE is_deleted = '0'";
+        $result = mysqli_query($link, $query);
         while ($row = mysqli_fetch_assoc($result)) {
           $uid1 = $row['uid'];
           $totalneed = $row['np_male'] + $row['np_female'];
@@ -2449,6 +2428,7 @@ if (isset($_POST['mrfbutton'])) {
             echo ' <tr> ';
             echo '  <td>  ' . $row['prepared_by'] . '   </td> ';
             echo '  <td>  ' . $row['location'] . '   </td> ';
+            echo '  <td>  ' . $row['project_title'] . '   </td> ';
             if (!empty($row['position'])) {
               echo '  <td>  ' . $row['position_detail'] . '   </td> ';
             } else {
@@ -2464,11 +2444,11 @@ if (isset($_POST['mrfbutton'])) {
             </form>
           </td>
         </tr> ';
-          } 
-          else {
+          } else {
             echo ' <tr> ';
             echo '  <td>  ' . $fullname . '   </td> ';
             echo '  <td>  ' . $row['location'] . '   </td> ';
+            echo '  <td>  ' . $row['project_title'] . '   </td> ';
             if (!empty($row['position'])) {
               echo '  <td>  ' . $row['position_detail'] . '   </td> ';
             } else {
@@ -2479,7 +2459,7 @@ if (isset($_POST['mrfbutton'])) {
             echo '
               <td> 
                 <form action = "" method = "POST">
-                  <input type = "hidden" name = "mrf_ids" value = "' . $row['id'] . '">
+                  <input type = "hidden" name = "mrf_ids" class="mrf_ids" value = "' . $row['id'] . '">
                       <button type="button" name = "r_mrfs" class="btn btn-default r_mrfs"><span class="glyphicon glyphicon-edit" ></span> Accept MRF</button>
                 </form>
               </td>
@@ -2681,7 +2661,7 @@ if (isset($_POST['mrfbutton'])) {
         <form action="" method="POST"><br>
           <label class="form-label"> Project Title </label>
           <center>
-            <select class="form-select" name="applicant_no"> ;
+            <select class="form-select" id="mySelect" name="applicant_no"> ;
               <option>Select shortlist Name:</option>
               <?php
               $resultpro = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint !='BLACKLISTED' OR actionpoint !='DEPLOYED' order by lastnameko ASC ");
@@ -2706,7 +2686,9 @@ if (isset($_POST['mrfbutton'])) {
 
 
 
-
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <!-- JAVASCRIPT SECTION -->
 <script src="assets/js/util.js"></script>
@@ -3405,30 +3387,34 @@ if (isset($_POST['mrfbutton'])) {
     });
   });
 
-
   // Enabling Tooltips
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
 
   // For checkboxes of selecting applicants for shortlist
   const selectAll = document.getElementById('select-all');
   const userCheckboxes = document.querySelectorAll('input[name="user[]"]');
 
-  // Add an event listener to the "Select All" checkbox
-  selectAll.addEventListener('change', function() {
-    userCheckboxes.forEach((checkbox) => {
-      checkbox.checked = selectAll.checked;
+  // Check if 'selectAll' exists before adding an event listener
+  if (selectAll) {
+    selectAll.addEventListener('change', function() {
+      userCheckboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+      });
     });
-  });
+  }
 
   // Add event listeners to user checkboxes to track selections
   userCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener('change', function() {
       // Check if all user checkboxes are selected and update "Select All" accordingly
-      selectAll.checked = [...userCheckboxes].every((cb) => cb.checked);
+      if (selectAll) {
+        selectAll.checked = [...userCheckboxes].every((cb) => cb.checked);
+      }
     });
   });
+
+  
 </script>
 <script>
   $(document).ready(function() {
@@ -3451,3 +3437,17 @@ if (isset($_POST['mrfbutton'])) {
 </body>
 
 </html>
+
+<?php 
+} else {
+  // kapag wala pang user name na kaparehas
+  $_SESSION['errorMessage'] = "Page direct Un Authorized";
+  header("Location: logout.php");
+  // remove all session variables
+
+  session_unset();
+
+  // destroy the session 
+  session_destroy();
+}
+?>

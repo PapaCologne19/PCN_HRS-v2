@@ -271,34 +271,11 @@ while ($rowap = mysqli_fetch_array($resultap)) {
                                                                                             ");
 
         mysqli_query($link, "UPDATE deployment_history
-
-                                                                                               SET
-
-                                                                                            is_deleted='1',
-                                                                                            active='INACTIVE'
-                                                                                            
-
-                                                                                                          
-                                                                                           WHERE
-                                                                                                    appno_d = '$rowr1[4]'  
-                                                                                            ");
+                                                                                     ");
         echo '</div>';
-
-
-
-        // SHORTLIST SYNCH
-        //mysqli_query($link, "DELETE from shortlist_master
-        // WHERE
-        //appnumto = '$rowr1[4]'
-        //");
-
-
       }
     }
-
-
-
-    $kekelpogi = "Database Synch Complete";
+    $_SESSION['successMessage'] = "Database Synch Complete";
   } else {
     //echo "synch na do nothing";
 
@@ -1974,13 +1951,22 @@ if (isset($_POST['filter_shortlist'])) {
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!--for data table-->
-  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+
+  <!-- Sweet Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <style type="text/css">
     * {
       font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100% !important;
     }
 
     #results {
@@ -2068,11 +2054,66 @@ if (isset($_POST['filter_shortlist'])) {
       height: 90%;
       width: 60%;
     }
+
+    th {
+      text-align: center;
+    }
+
+    table {
+      border: 1px solid black !important;
+      font-size: 12px;
+    }
+
+    .table td,
+    .table th {
+      padding: 0 .3rem;
+    }
+
+    table tr td {
+      padding-top: .1rem !important;
+      padding-bottom: 0rem !important;
+
+    }
+
+    table thead tr th {
+      background: whitesmoke !important;
+    }
   </style>
   <title>HRS DEPLOYMENT</title>
 </head>
 
 <body>
+  <?php
+  if (isset($_SESSION['successMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'success',
+        title: "<?php echo $_SESSION['successMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['successMessage']);
+  } ?>
+
+  <?php
+  if (isset($_SESSION['errorMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'error',
+        title: "<?php echo $_SESSION['errorMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['errorMessage']);
+  } ?>
+  <?php
+  if (isset($_SESSION['warningMessage'])) { ?>
+    <script>
+      Swal.fire({
+        icon: 'warning',
+        title: "<?php echo $_SESSION['warningMessage']; ?>",
+      })
+    </script>
+  <?php unset($_SESSION['warningMessage']);
+  } ?>
   <?php if ($_SESSION["darkk"] == "deployment") {
     echo '
                                           <header class="cd-main-header js-cd-main-header">
@@ -2330,10 +2371,10 @@ if (isset($_POST['filter_shortlist'])) {
   ?>
     <div class="cd-content-wrapper">
       <div class="text-component text-center">
-        <div class="container">
+        <div class="container-fluid">
           <h2 class="fs-2">Shortlisted Applicants</h2>
           <br><br>
-          <table id="example" class="table table-striped table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
+          <table id="example" class="table table-striped table-sm align-middle mb-2 bg-white p-4 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
             <thead>
               <tr>
                 <th>ID</th>
@@ -2404,19 +2445,15 @@ if (isset($_POST['filter_shortlist'])) {
 
   <?php
   if (isset($_POST['view-shortlists'])) {
-    $shortlist_id = htmlspecialchars($_POST['shortlist_id']);
-    $queries = "SELECT shortlist.*, employee.* 
-              FROM shortlist_master shortlist, employees employee
-              WHERE shortlist.employee_id = employee.id 
-              AND shortlistnameto = '$shortlist_id'";
-    $results = $link->query($queries);
+    $shortlist_id = $_POST['shortlist_id'];
+   
   ?>
     <div class="cd-content-wrapper">
       <div class="text-component text-center">
         <h2 class="fs-2">Deploy (<?php echo $shortlist_id ?>)</h2>
-        <div class="container">
+        <div class="container-fluid">
           <br><br>
-          <table class="table table-striped table-sm align-middle mb-0 bg-white bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;" id="example">
+          <table class="table table-striped table-sm align-middle mb-0 bg-white bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px !important;" id="example">
             <thead>
               <tr>
                 <th>ID</th>
@@ -2426,22 +2463,25 @@ if (isset($_POST['filter_shortlist'])) {
                 <th>Pag-IBIG</th>
                 <th>PhilHealth</th>
                 <th>TIN</th>
-                <th>Police Expiry</th>
-                <th>Barangay Expiry</th>
-                <th>NBI Expiry</th>
+                <th>Birthday</th>
+                <th>Contact Number</th>
                 <th>Start of Contract</th>
                 <th>End of Contract</th>
                 <th>Employment status</th>
                 <th>Status</th>
-                <th>Contact Number</th>
-                <th>Birthday</th>
+                
                 <th>Remarks</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <?php
-
+              $queries = "SELECT shortlist.*, employee.* 
+              FROM shortlist_master shortlist, employees employee
+              WHERE shortlist.employee_id = employee.id 
+              AND shortlistnameto = '$shortlist_id'";
+              $results = $link->query($queries);
+              
               while ($rows = $results->fetch_assoc()) {
                 $birthday = $rows['birthday'];
                 $timestamp_birthday = strtotime($birthday);
@@ -2455,15 +2495,12 @@ if (isset($_POST['filter_shortlist'])) {
                   <td><?php echo $rows['pagibignum'] ?></td>
                   <td><?php echo $rows['phnum'] ?></td>
                   <td><?php echo $rows['tinnum'] ?></td>
-                  <td><?php echo $rows['policed'] ?></td>
-                  <td><?php echo $rows['brgyd'] ?></td>
-                  <td><?php echo $rows['nbid'] ?></td>
+                  <td><?php echo $formattedDate_birthday ?></td>
+                  <td><?php echo $rows['cpnum'] ?></td>
                   <td></td>
                   <td></td>
                   <td></td>
                   <td><?php echo $rows['ewbdeploy'] ?></td>
-                  <td><?php echo $rows['cpnum'] ?></td>
-                  <td><?php echo $formattedDate_birthday ?></td>
                   <td><?php echo $rows['remarks'] ?></td>
                   <td>
                     <?php if (!empty($rows['ewb_status'])) { ?>
@@ -2478,12 +2515,12 @@ if (isset($_POST['filter_shortlist'])) {
                     <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <h1 class="modal-title fs-2 justify-content-center align-content-center mx-auto" id="exampleModalLabel">LOA</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <div class="container">
-                            <form action="action.php" method="POST">
+                            <form action="action.php" method="POST" class="needs-validation" novalidate>
                               <?php
                               $id =  $rows['id'];
                               $query_show = "SELECT * FROM employees WHERE id = '$id'";
@@ -2499,12 +2536,15 @@ if (isset($_POST['filter_shortlist'])) {
                                   </div>
                                 </div>
 
-                                <div class="row mt-3">
+                                <div class="row mt-3 form-group">
                                   <div class="col-md-2">
                                     <label for="" class="form-label">LOA Start Date</label>
                                   </div>
                                   <div class="col-md-7">
                                     <input type="date" name="start_loa" id="start_loa" class="form-control" required>
+                                  </div>
+                                  <div class="invalid-feedback">
+                                    Please choose a start date.
                                   </div>
                                 </div>
 
@@ -2791,12 +2831,12 @@ if (isset($_POST['filter_shortlist'])) {
                                 </div>
 
                               <?php } ?>
-                            
+
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                         </form>
                       </div>

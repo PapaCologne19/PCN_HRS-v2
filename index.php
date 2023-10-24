@@ -1,7 +1,6 @@
 <?php
-include("connect.php");
 session_start();
-
+include("connect.php");
 
 date_default_timezone_set('Asia/Hong_Kong');
 $date = date('D : F d, Y');
@@ -71,14 +70,12 @@ if (isset($_POST['SubButton'])) {
         else{
           $_SESSION["errorMessage"] = "Error Login";
         }
-      } else	if ($rowd["typenya"] == "RECRUITMENT") {
+      } else	if ($rowd["typenya"] === "RECRUITMENT") {
 
-        $_SESSION["dmark"] = $rowd["uname"];
         $_SESSION["firstname"] = $rowd["firstname"];
         $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
-        $_SESSION["darkk"] = "recruitment";
-        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["username"] = $rowd["uname"];
+        $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
 
         $dtnow = date("m/d/Y");
@@ -88,7 +85,8 @@ if (isset($_POST['SubButton'])) {
 
         if ($result5) {
           $_SESSION['successMessage'] = "Successfully Login";
-          header("Location: recruitment.php?success");
+          $message = $_SESSION['successMessage'];
+          header("Location: recruitment.php?$message");
         } else {
           $_SESSION['errorMessage'] = "Error Login";
         }
@@ -266,7 +264,10 @@ if (isset($_POST['SavenewUser1'])) {
 
   <style type="text/css">
     * {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
+    }
+    .username::placeholder, .password::placeholder{
+      color: white !important;
     }
   </style>
 
@@ -316,22 +317,23 @@ if (isset($_POST['SavenewUser1'])) {
 
     <br>
     <h2>
-      <font color="white">Log In</font>
+      <font color="white">LOG IN</font>
     </h2>
-    <form action="" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
 
-      <div class="form-group">
-        <label>
-          <font color="white">Username:</font>
+      <div class="form-group mt-3">
+        <label class="form-label">
+          <font color="white">Username</font>
         </label>
-        <input type="username" name="Username" class="form-control" placeholder="Username" style="height:45px;width:250px;" autofocus>
+        <input type="username" name="Username" class="form-control username" placeholder="Please enter username" style="height:45px;width:250px;background: #445793 !important; color: white !important; " autofocus>
       </div>
+      
 
-      <div class="form-group">
-        <label>
-          <font color="white">Password:</font>
+      <div class="form-group mt-4 mb-4">
+        <label class="form-label">
+          <font color="white">Password</font>
         </label>
-        <input type="password" name="Password" class="form-control" placeholder="Password" style="height:45px;width:250px;">
+        <input type="password" name="Password" class="form-control password" placeholder="Please enter password" style="height:45px;width:250px;background: #445793 !important; color: white !important; ">
       </div>
       <input type="submit" name="SubButton" value=" " class="loginButton">;
     </form>

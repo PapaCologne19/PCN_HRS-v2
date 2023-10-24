@@ -552,84 +552,111 @@ if (isset($_POST['declined_button'])) {
 // For selected applicants in shortlisting
 if (isset($_POST['add_to_shortlist'])) {
     $data = $_SESSION["data"];
-    $selected_applicants = $_POST['user'];
-    $selected_applicants_id = $_POST['userid'];
+    $selected_applicants = (array)$_POST['user'];
+    $selected_applicants_id = (array)$_POST['userid'];
 
-    // Initialize the $response array outside of the loop
+    // Initialize the $response array
     $response = array();
 
     if (!empty($selected_applicants)) {
-        foreach (array_combine($selected_applicants, $selected_applicants_id) as $id1 => $id) {
+        // Loop through selected applicants
+        foreach ($selected_applicants as $index => $id1) {
+
+            // Execute a query to get information about the selected applicant
             $querytac = "SELECT * FROM employees WHERE appno = '$id1'";
             $resultac = mysqli_query($link, $querytac);
 
-            while ($rowac = mysqli_fetch_assoc($resultac)) {
+            if ($resultac) {
+                // Fetch the result row
+                $rowac = mysqli_fetch_assoc($resultac);
+                $emp_id = $rowac['id'];
+
                 if ($rowac['actionpoint'] === "ACTIVE") {
+                    // Update the action point for this user
                     $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
                     $results1 = mysqli_query($link, $query1);
 
                     if ($results1) {
                         $dtnow = date("m/d/Y");
 
-                        $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1' ";
+                        // Check if this user is not already in the shortlist
+                        $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
                         $resultchk = mysqli_query($link, $querychk);
 
                         if (mysqli_num_rows($resultchk) === 0) {
-                            $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$id','$data', '$id1', '$dtnow')";
-                            $results2 = mysqli_query($link, $query2);
+                            // Insert this user into the shortlist
+                                $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$emp_id', '$data', '$id1', '$dtnow')";
+                                $results2 = mysqli_query($link, $query2);
 
-                            if ($results2) {
-                                $_SESSION['successMessage'] = 'Successfully added to the shortlist';
-                                header("Location: recruitment.php");
-                            } else {
-                                $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                                header("Location: recruitment.php");
-                            }
+                                if ($results2) {
+                                    // User successfully added to the shortlist
+                                    $response[] = array('message' => 'Successfully added to the shortlist');
+                                    $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                                } else {
+                                    // Insertion failed
+                                    $response[] = array('message' => 'Not Added due to Duplication!');
+                                    $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                                }
+
                         } else {
+                            // User already exists in the shortlist
+                            $response[] = array('message' => 'Not Added due to Duplication!');
                             $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                            header("Location: recruitment.php");
                         }
                     } else {
-                        $_SESSION['errorMessage'] = "Not Added due to duplication!";
-                        error_log("Query 1 failed: " . mysqli_error($link));
-                        // You can also include more detailed error information in your JSON response.
-                        $response[] = array('message' => 'Error: Query 1 failed');
+                        // Error updating the action point
+                        $response[] = array('message' => 'Error: Query failed during update');
+                        $_SESSION['errorMessage'] = 'Error: Query failed during update';
                     }
                 } else {
+                    // User action point is not ACTIVE
                     $dtnow = date("m/d/Y");
                     $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
                     $resultchk = mysqli_query($link, $querychk);
 
                     if (mysqli_num_rows($resultchk) == 0) {
-                        $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$id','$data','$id1','$dtnow')";
+                        $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$emp_id','$data','$id1','$dtnow')";
                         $results3 = mysqli_query($link, $query3);
 
                         if ($results3) {
+                            // User successfully added to the shortlist
+                            $response[] = array('message' => 'Successfully added to the shortlist');
                             $_SESSION['successMessage'] = 'Successfully added to the shortlist';
-                            header("Location: recruitment.php");
                         } else {
+                            // Insertion failed
+                            $response[] = array('message' => 'Not Added due to Duplication!');
                             $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                            header("Location: recruitment.php");
                         }
                     } else {
+                        // User already exists in the shortlist
+                        $response[] = array('message' => 'Not Added due to Duplication!');
                         $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                        header("Location: recruitment.php");
                     }
                 }
+            } else {
+                // Error in the query to fetch employee data
+                $response[] = array('message' => 'Error: Query to fetch employee data failed');
+                $_SESSION['errorMessage'] = 'Error: Query to fetch employee data failed';
             }
         }
     } else {
-        $_SESSION["errorMessage"] = "No selected Applicants";
-        header("location:recruitment.php");
+        // No selected applicants
+        $response[] = array('message' => 'No selected Applicants');
+        $_SESSION['errorMessage'] = 'No selected Applicants';
     }
 
     // Send JSON response
     echo json_encode($response);
 
-    // Redirect to recruitment.php
+    // Close the database connection
+    mysqli_close($link);
+
+    // Redirect back to the recruitment page
     header("Location: recruitment.php");
     exit;
 }
+
+
 
 // For reverification of applicant that is declined by EWB
 if (isset($_POST['reverification_button'])) {
@@ -768,11 +795,30 @@ if (isset($_POST['provideMRF_button_click'])) {
 if (isset($_POST['acceptMRF_button_click'])) {
     $mrf_val1 = $_POST['acceptID'];
 
-    $query = "UPDATE mrf SET hr_personnel = 'YES' WHERE id = '$mrf_val1'";
+    $query = "UPDATE mrf SET hr_personnel = 'YES', is_approve = '1' WHERE id = '$mrf_val1'";
     $result = mysqli_query($link, $query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Accepted";
+        $query_select = "SELECT * FROM mrf WHERE id = '$mrf_val1'";
+        $query_result = $link->query($query_select);
+        while($query_row = $query_result->fetch_assoc()){
+            $project_title = $query_row['project_title'];
+            $client = $query_row['client'];
+            $total = $query_row['np_male'] + $query_row['np_female'];
+            $work_duration_start = $query_row['work_duration_start'];
+            $work_duration_end = $query_row['work_duration_end'];
+                $status = "1";
+
+            $insert_db = "INSERT INTO projects (project_title, client_company_id, ewb_count, start_date, end_date, status) 
+            VALUES ('$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
+            $result_insert = $link->query($insert_db);
+            if($result_insert){
+                $_SESSION['successMessage'] = "Successfully Accepted";
+            }
+            else{
+                $_SESSION['errorMessage'] = "Error";
+            }
+        }
     } else {
         $_SESSION['errorMessage'] = "Error";
     }

@@ -3835,8 +3835,7 @@ a {
 }
 
 .cd-content-wrapper {
-    padding: 3.25em 1.25em;
-    padding: var(--space-xl) var(--space-md)
+    padding: 3.25em 3.3em !important;
 }
 
 @media (min-width: 64rem) {

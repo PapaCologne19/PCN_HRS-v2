@@ -149,17 +149,18 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         <option value="FIELD FORCE">FIELD FORCE</option>
                                     </select>
                                 </div>
+                               
+
                                 <div class="col-md-4 mt-3">
-                                    <label for="" class="form-label">Client</label>
-                                    <hr>
-                                    <select name="client" id="client" class="form-select" required>
-                                        <option value="" selected disabled></option>
+                                    <label for="" class="form-label">Division</label>
+                                    <select name="division" id="division" class="form-select" required>
+                                        <option value="" disabled selected></option>
                                         <?php
-                                        $query = "SELECT * FROM client_company WHERE is_deleted = '0' ORDER BY company_name ASC";
-                                        $result = $link->query($query);
-                                        while ($row = mysqli_fetch_assoc($result)) {
+                                        $query_select_division = "SELECT * FROM divisions WHERE is_deleted = '0'";
+                                        $result_select_division = $link->query($query_select_division);
+                                        while ($row_select = $result_select_division->fetch_assoc()) {
                                         ?>
-                                            <option value="<?php echo $row['company_name'] ?>"><?php echo $row['company_name'] ?></option>
+                                            <option value="<?php echo $row_select['description'] ?>"><?php echo $row_select['description'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -176,24 +177,15 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <label for="" class="form-label">Project Title</label>
                                     <input type="text" name="projectTitle" id="projectTitle" class="form-control" required>
                                 </div>
-                                <div class="col-md-4 mt-3">
-                                    <label for="" class="form-label">Division</label>
-                                    <select name="division" id="division" class="form-select" required>
-                                        <option value="" disabled selected></option>
-                                        <option value="HR">HR</option>
-                                        <option value="BSG">BSG</option>
-                                        <option value="BD1">BD1</option>
-                                        <option value="BD2">BD2</option>
-                                        <option value="BD3">BD3</option>
-                                        <option value="FINANCE">FINANCE</option>
-                                        <option value="HR">HR</option>
-                                        <option value="PPI">PPI</option>
-                                        <option value="STRAT">STRAT</option>
-                                        <option value="EXECOM">EXECOM</option>
-                                        <option value="MANCOM">MANCOM</option>
 
+                                <div class="col-md-4 mt-3">
+                                    <label for="" class="form-label">Client</label>
+                                    <hr>
+                                    <select name="client" id="client" class="form-select" required>
+                                        <option value="" selected disabled></option>
                                     </select>
                                 </div>
+
                                 <div class="col-md-4 mt-3">
                                     <label for="" class="form-label">CE Number</label>
                                     <input type="text" name="ce_number" id="ce_number" class="form-control" required>
@@ -440,19 +432,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </center>
                                     <div class="row mt-3">
                                         <div class="col-md-2">
-                                            <label for="" class="form-label">* Salary Schedule: </label>
+                                            <label for="" class="form-label">Salary Schedule: </label>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" class="form-control salary_package" name="salary_schedule" id="salary_schedule" required>
                                         </div>
-
-                                        <div class="col-md-2">
-                                            <label for="" class="form-label">Work Duration: </label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control salary_package" name="work_duration" id="work_duration" required>
-                                        </div>
-
                                         <div class="col-md-2">
                                             <label for="" class="form-label">Work Days: </label>
                                         </div>
@@ -479,7 +463,27 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </div>
 
                                     </div>
-
+                                    <div class="row mt-3">
+                                        <div class="col-md-2">
+                                            <label for="" class="form-label">Work Duration: </label>
+                                        </div>
+                                        <div class="row col-md-4">
+                                            <div class="col-md-2">
+                                                <label for="" class="form-label">From:</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="date" class="form-control salary_package" name="work_duration_start" id="work_duration_start" required>
+                                            </div>
+                                        </div>
+                                        <div class="row col-md-4">
+                                            <div class="col-md-1">
+                                                <label for="" class="form-label">To:</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="date" class="form-control salary_package" name="work_duration_end" id="work_duration_end" required>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <center>
@@ -555,65 +559,101 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 var employeeData = [];
+                var clientData = [];
 
                 $(document).ready(function() {
-                    // Add an event listener to the "Division" dropdown
-                    $('#division').change(function() {
-                        var selectedDivision = $(this).val();
-                        if (selectedDivision) {
-                            // Make an AJAX request to fetch employee data for the selected division
-                            $.ajax({
-                                url: 'get_employee_data.php', // Replace with your server-side script
-                                method: 'POST',
-                                data: {
-                                    division: selectedDivision
-                                },
-                                dataType: 'json',
-                                success: function(data) {
-                                    // Update the employeeData array with the fetched data
-                                    employeeData = data;
-                                    var directReportDropdown = $('#direct_report');
-                                    directReportDropdown.empty();
-                                    directReportDropdown.append('<option value="" selected disabled></option>');
-                                    $.each(data, function(key, value) {
-                                        directReportDropdown.append('<option value="' + value.fullname + '">' + value.fullname + '</option>');
+                            // Add an event listener to the "Division" dropdown
+                            $('#division').change(function() {
+                                var selectedDivision = $(this).val();
+                                if (selectedDivision) {
+                                    // Make an AJAX request to fetch employee data for the selected division
+                                    $.ajax({
+                                        url: 'get_employee_data.php', // Replace with your server-side script
+                                        method: 'POST',
+                                        data: {
+                                            division: selectedDivision
+                                        },
+                                        dataType: 'json',
+                                        success: function(data) {
+                                            // Update the employeeData array with the fetched data
+                                            employeeData = data;
+                                            var directReportDropdown = $('#direct_report');
+                                            directReportDropdown.empty();
+                                            directReportDropdown.append('<option value="" selected disabled></option>');
+                                            $.each(data, function(key, value) {
+                                                directReportDropdown.append('<option value="' + value.fullname + '">' + value.fullname + '</option>');
+                                            });
+                                        }
                                     });
                                 }
                             });
-                        }
-                    });
 
-                    $('#direct_report').change(function() {
-                        var selectedEmployee = $(this).val();
-                        var positionDropdown = $('#job_position');
 
-                        // Check if a valid employee is selected
-                        if (selectedEmployee) {
-                            // Retrieve the employee's position from the updated employeeData array
-                            var position = getPositionForEmployee(selectedEmployee);
+                            // Client Company
+                                $(document).ready(function() {
+                                    // Add an event listener to the "Division" dropdown
+                                    $('#division').change(function() {
+                                        var selectedDivisionClient = $(this).val();
+                                        if (selectedDivisionClient) {
+                                            // Make an AJAX request to fetch employee data for the selected division
+                                            $.ajax({
+                                                url: 'get_client_company.php', // Replace with your server-side script
+                                                method: 'POST',
+                                                data: {
+                                                    division: selectedDivisionClient
+                                                },
+                                                dataType: 'json',
+                                                success: function(data) {
+                                                    // Update the employeeData array with the fetched data
+                                                    clientData = data;
+                                                    var directReportDropdown = $('#client');
+                                                    directReportDropdown.empty();
+                                                    directReportDropdown.append('<option value="" selected disabled></option>');
+                                                    $.each(data, function(key, value) {
+                                                        directReportDropdown.append('<option value="' + value.company_name + '">' + value.company_name + '</option>');
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
 
-                            // Update the "Requestee Position" dropdown
-                            positionDropdown.empty();
-                            positionDropdown.append('<option value="' + position + '">' + position + '</option>');
-                        } else {
-                            // Clear the "Requestee Position" dropdown if no employee is selected
-                            positionDropdown.empty();
-                            positionDropdown.append('<option value="" selected disabled>Please select</option>');
-                        }
-                    });
 
-                    // Function to retrieve the position for the selected employee
-                    function getPositionForEmployee(employeeName) {
-                        var employee = employeeData.find(function(employee) {
-                            return employee.fullname === employeeName;
-                        });
-                        if (employee) {
-                            return employee.position;
-                        } else {
-                            return "Position not found";
-                        }
-                    }
-                });
+
+
+
+
+                                $('#direct_report').change(function() {
+                                    var selectedEmployee = $(this).val();
+                                    var positionDropdown = $('#job_position');
+
+                                    // Check if a valid employee is selected
+                                    if (selectedEmployee) {
+                                        // Retrieve the employee's position from the updated employeeData array
+                                        var position = getPositionForEmployee(selectedEmployee);
+
+                                        // Update the "Requestee Position" dropdown
+                                        positionDropdown.empty();
+                                        positionDropdown.append('<option value="' + position + '">' + position + '</option>');
+                                    } else {
+                                        // Clear the "Requestee Position" dropdown if no employee is selected
+                                        positionDropdown.empty();
+                                        positionDropdown.append('<option value="" selected disabled>Please select</option>');
+                                    }
+                                });
+
+                                // Function to retrieve the position for the selected employee
+                                function getPositionForEmployee(employeeName) {
+                                    var employee = employeeData.find(function(employee) {
+                                        return employee.fullname === employeeName;
+                                    });
+                                    if (employee) {
+                                        return employee.position;
+                                    } else {
+                                        return "Position not found";
+                                    }
+                                }
+                            });
             </script>
             <script type="text/javascript">
                 document.getElementById('other_position').style.visibility = 'hidden';

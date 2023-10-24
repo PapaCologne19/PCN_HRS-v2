@@ -26,3 +26,15 @@
     </div>
     <!-- </div> -->
   </div>
+
+
+  <!-- For select -->
+<?php 
+"SELECT DISTINCT appnumto
+FROM shortlist_master
+WHERE shortlistnameto != '$data'
+AND appnumto NOT IN (
+    SELECT appnumto
+    FROM shortlist_master
+    WHERE shortlistnameto = '$data');"
+?>

@@ -89,6 +89,16 @@ $formatted_date = date("F j, Y", $timestamp);
             $query = "SELECT * FROM mrf WHERE id = '$id'";
             $result = $link->query($query);
             $row = $result->fetch_assoc();
+
+            $work_duration_start = $row['work_duration_start'];
+            $work_duration_end = $row['work_duration_end'];
+            $date_needed = $row['date_needed'];
+            $timestamp_work_duration_start = strtotime($work_duration_start);
+            $timestamp_work_duration_end = strtotime($work_duration_end);
+            $timestamp_date_needed = strtotime($date_needed);
+            $formattedDate_work_duration_start = date("F d, Y", $timestamp_work_duration_start);
+            $formattedDate_work_duration_end = date("F d, Y", $timestamp_work_duration_end);
+            $formattedDate_date_needed = date("F d, Y", $timestamp_date_needed);
             ?>
             <div class="header">
                 <img src="../assets/img/pcnlogo1.png" alt="" class="img-responsive justify-content-start logo">
@@ -581,7 +591,7 @@ $formatted_date = date("F j, Y", $timestamp);
                         </tr>
                         <tr>
                             <td style="border-bottom: 1px solid white;">Transpo Allowance: <i style="float: right; margin-right: 1.5rem; margin-right: 1.5rem;"><?php echo $row['transpo'] ?></i></td>
-                            <td style="border-bottom: 1px solid white;">Work Duration: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['work_duration'] ?></i></td>
+                            <td style="border-bottom: 1px solid white;">Work Duration: <i style="float: right; margin-right: 1.5rem;"><?php echo $formattedDate_work_duration_start ?> to <?php echo $formattedDate_work_duration_end ?></i></td>
                         </tr>
                         <tr>
                             <td style="border-bottom: 1px solid white;">Meal Allowance: <i style="float: right; margin-right: 1.5rem; "><?php echo $row['meal'] ?></i></td>
@@ -632,7 +642,7 @@ $formatted_date = date("F j, Y", $timestamp);
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="3">Date Needed: <i style="float: right;text-decoration: none !important;"><?php echo $row['date_needed'] ?></i></td>
+                            <td colspan="3">Date Needed: <i style="float: right;text-decoration: none !important;"><?php echo $formattedDate_date_needed ?></i></td>
                             <td style="border-top: 1px solid white;"></td>
                             <td style="border-top: 1px solid white;"></td>
                         </tr>
