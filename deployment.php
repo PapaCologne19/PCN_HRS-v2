@@ -1955,6 +1955,10 @@ if (isset($_POST['filter_shortlist'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Include Flatpickr JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
   <!-- Sweet Alert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -2374,7 +2378,7 @@ if (isset($_POST['filter_shortlist'])) {
         <div class="container-fluid">
           <h2 class="fs-2">Shortlisted Applicants</h2>
           <br><br>
-          <table id="example" class="table table-striped table-sm align-middle mb-2 bg-white p-4 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
+          <table id="example1" class="table table-striped table-sm align-middle mb-2 bg-white p-4 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px;">
             <thead>
               <tr>
                 <th>ID</th>
@@ -2446,14 +2450,14 @@ if (isset($_POST['filter_shortlist'])) {
   <?php
   if (isset($_POST['view-shortlists'])) {
     $shortlist_id = $_POST['shortlist_id'];
-   
+    $_SESSION['shortlist_title'] = $_POST['shortlist_id'];
   ?>
     <div class="cd-content-wrapper">
       <div class="text-component text-center">
         <h2 class="fs-2">Deploy (<?php echo $shortlist_id ?>)</h2>
         <div class="container-fluid">
           <br><br>
-          <table class="table table-striped table-sm align-middle mb-0 bg-white bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 14px !important;" id="example">
+          <table class="table table-striped table-sm align-middle mb-0 bg-white bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 13px !important;" id="example1">
             <thead>
               <tr>
                 <th>ID</th>
@@ -2469,7 +2473,6 @@ if (isset($_POST['filter_shortlist'])) {
                 <th>End of Contract</th>
                 <th>Employment status</th>
                 <th>Status</th>
-                
                 <th>Remarks</th>
                 <th>Action</th>
               </tr>
@@ -2481,7 +2484,7 @@ if (isset($_POST['filter_shortlist'])) {
               WHERE shortlist.employee_id = employee.id 
               AND shortlistnameto = '$shortlist_id'";
               $results = $link->query($queries);
-              
+
               while ($rows = $results->fetch_assoc()) {
                 $birthday = $rows['birthday'];
                 $timestamp_birthday = strtotime($birthday);
@@ -2505,153 +2508,236 @@ if (isset($_POST['filter_shortlist'])) {
                   <td>
                     <?php if (!empty($rows['ewb_status'])) { ?>
                       <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>">Not empty</button>
-                    <?php } else {
-                    } ?>
+                    <?php } else { ?>
+                      <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;">Not empty</button>
+                    <?php } ?>
                   </td>
 
 
                   <!-- Modal for Deployment form -->
                   <div class="modal fade" id="deployModal-<?php echo $rows['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h1 class="modal-title fs-2 justify-content-center align-content-center mx-auto" id="exampleModalLabel">LOA</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                          <div class="container">
-                            <form action="action.php" method="POST" class="needs-validation" novalidate>
+                          <div class="container-fluid">
+                            <form action="action.php" method="POST">
                               <?php
                               $id =  $rows['id'];
-                              $query_show = "SELECT * FROM employees WHERE id = '$id'";
+                              $data = $_SESSION['shortlist_title'];
+
+                              $query_show = "SELECT shortlist.*, employee.* 
+                              FROM shortlist_master shortlist, employees employee
+                              WHERE shortlist.employee_id = employee.id 
+                              AND shortlistnameto = '$data' AND employee.id = '$id'";
                               $query_result = $link->query($query_show);
                               while ($query_row = $query_result->fetch_assoc()) {
                               ?>
+
+                              <input type="hidden" name="id" value="<?php echo $query_row["id"]?>"/>
+                              <input type="hidden" name="shortlist_title" value="<?php echo $data?>"/>
+                             
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
-                                    <label for="" class="form-label">Status:</label>
+                                  <div class="col-md-3">
+                                    <label for="" class="form-label">Status</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="status" id="status" class="form-control" value="DEPLOYED" disabled>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3 form-group">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">LOA Start Date</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="date" name="start_loa" id="start_loa" class="form-control" required>
-                                  </div>
-                                  <div class="invalid-feedback">
-                                    Please choose a start date.
+                                  <div class="col-md-9">
+                                    <input type="date" name="start_loa" id="myDate" placeholder="Select a date" class="form-control" required>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">LOA End Date</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="date" name="end_loa" id="end_loa" class="form-control" required>
+                                  <div class="col-md-9">
+                                    <input type="date" name="end_loa" id="myDate" placeholder="Select a date" class="form-control" required>
                                   </div>
                                 </div>
-
+                                <?php 
+                                  $shortlist_title = $query_row['shortlistnameto'];
+                                  $queries = "SELECT * FROM shortlist_details WHERE shortlistname = '$shortlist_title'";
+                                  $result_queries = $link->query($queries);
+                                  while($fetch_row = $result_queries->fetch_assoc()){
+                                    $project_title = $fetch_row['project'];
+                                    $mrf_tracking = $fetch_row['mrf_tracking'];
+                                ?>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Division</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="date" name="end_loa" id="end_loa" class="form-control" required>
+                                  <div class="col-md-9">
+                                      <?php 
+                                        $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                        $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                      ?>
+                                      <input type="text" name="division" id="division" class="form-control" value="<?php echo $mrf_row['division']?>" disabled>
+                                      <?php }?>
+                                    </select>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Category</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <select name="category" id="category" class="form-select">
-                                      <option value="Select Me">Select</option>
+                                  <div class="col-md-9">
+                                    <select name="category" id="category" class="form-select" required>
+                                      <option value="">Select</option>
+                                      <?php
+                                        $querys = "SELECT * FROM categories";
+                                        $results = $link->query($querys);
+                                        while($rowsss = $results->fetch_assoc()){ 
+                                      ?>
+                                      <option value="<?php echo $rowsss['description']?>"><?php echo $rowsss['description']?></option>
+                                      <?php }?>
                                     </select>
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Locator</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="locator" id="locator" class="form-control" disabled>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Place Assigned</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="place_assigned" id="place_assigned" class="form-control" disabled>
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="place_assigned" id="place_assigned" value="<?php echo $mrf_row['project_title']?>" class="form-control" disabled>
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Address Assigned</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="address_assigned" id="address_assigned" class="form-control" disabled>
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="address_assigned" id="address_assigned" value="<?php echo $mrf_row['client_address']?>" class="form-control" disabled>
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Channel</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <select name="channel" id="channel" class="form-select">
+                                  <div class="col-md-9">
+                                    <select name="channel" id="channel" class="form-select" required>
                                       <option value="">Select</option>
+                                      <?php 
+                                        $channel_query = "SELECT * FROM channels";
+                                        $channel_result = $link->query($channel_query);
+                                        while($channel_rows = $channel_result->fetch_assoc()) {
+                                      ?>
+                                      <option value="<?php echo $channel_rows['description']?>"><?php echo $channel_rows['description']?></option>
+                                      <?php } ?>
                                     </select>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Department</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <select name="department" id="department" class="form-select">
+                                  <div class="col-md-9">
+                                    <select name="department" id="department" class="form-select" required>
                                       <option value="">Select</option>
+                                      <?php 
+                                        $mrf_query = "SELECT * FROM department";
+                                        $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                      ?>
+                                      <option value="<?php echo $mrf_row['description']?>"><?php echo $mrf_row['description']?></option>
+                                      <?php }?>
                                     </select>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Employment Status</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <select name="employment_status" id="employment_status" class="form-select">
-                                      <option value="">Select</option>
+                                  <div class="col-md-9">
+                                    <select name="employment_status" id="employment_status" class="form-select" required>
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                          $status = ucwords(strtolower($mrf_row['employment_stat']));
+                                    ?>
+                                      <option value="<?php echo ucfirst($mrf_row['employment_stat']); ?>"><?php echo $status; ?></option>
+                                    <?php }?>
+                                    <?php 
+                                      $emp_query = "SELECT * FROM employment_status";
+                                      $emp_result = $link->query($emp_query);
+                                        while($emp_row = $emp_result->fetch_assoc()){
+                                    ?>
+                                      <option value="<?php echo $emp_row['name']?>"><?php echo $emp_row['name']?></option>
+                                      <?php }?>
                                     </select>
+                                    
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Job Title</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <select name="job_title" id="job_title" class="form-select">
-                                      <option value="">Select</option>
+                                  <div class="col-md-9">
+                                    <select name="job_title" id="job_title" class="form-select" required>
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                      <option value="<?php echo $mrf_row['position']?>"><?php echo $mrf_row['position']?></option>
+                                    <?php }?>
+                                    <?php 
+                                      $job_title_query = "SELECT * FROM job_title";
+                                      $job_title_result = $link->query($job_title_query);
+                                        while($job_title_row = $job_title_result->fetch_assoc()){
+                                    ?>
+                                      <option value="<?php echo $job_title_row['description']?>"><?php echo $job_title_row['description']?></option>
+                                    <?php }?>
                                     </select>
+                                 
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">LOA Template</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <select name="loa_template" id="loa_template" class="form-select">
                                       <option value="">Select</option>
                                     </select>
@@ -2659,184 +2745,238 @@ if (isset($_POST['filter_shortlist'])) {
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Basic Salary</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="basic_salary" id="basic_salary" class="form-control">
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="basic_salary" id="basic_salary" class="form-control" value="<?php echo $mrf_row['basic_salary']?>" required>
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Ecola</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="ecola" id="ecola" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Communication Allowance</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="communication_allowance" id="communication_allowance" class="form-control">
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="communication_allowance" id="communication_allowance" class="form-control" value="<?php echo $mrf_row['comm']?>">
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Transportation</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="transportation_allowance" id="transportation_allowance" class="form-control">
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="transportation_allowance" id="transportation_allowance" class="form-control" value="<?php echo $mrf_row['transpo']?>">
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Internet Allowance</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="internet_allowance" id="internet_allowance" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Meal Allowance</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="meal_allowance" id="meal_allowance" class="form-control">
+                                  <div class="col-md-9">
+                                  <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="meal_allowance" id="meal_allowance" class="form-control" value="<?php echo $mrf_row['meal']?>">
+                                    <?php }?>
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Outbase Meal</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="outbase_meal" id="outbase_meal" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
+                                    <label for="" class="form-label">Special Allowance</label>
+                                  </div>
+                                  <div class="col-md-9">
+                                    <input type="text" name="special_allowance" id="special_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-3">
+                                    <label for="" class="form-label">Position Allowance</label>
+                                  </div>
+                                  <div class="col-md-9">
+                                    <input type="text" name="position_allowance" id="position_allowance" class="form-control">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Deployment Remarks</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="deployment_remarks" id="deplyment_remarks" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">No. of Days work</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="no_of_days" id="no_of_day" class="form-control">
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="no_of_days" id="no_of_days" class="form-control" value="<?php echo $mrf_row['work_days']?>">
+                                    <?php }?>
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Outlet</label>
                                   </div>
-                                  <div class="col-md-7">
-                                    <input type="text" name="outlet" id="outlet" class="form-control">
+                                  <div class="col-md-9">
+                                    <?php 
+                                      $mrf_query = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
+                                      $mrf_result = $link->query($mrf_query);
+                                        while($mrf_row = $mrf_result->fetch_assoc()){
+                                    ?>
+                                    <input type="text" name="outlet" id="outlet" class="form-control" value="<?php echo $mrf_row['outlet']?>">
+                                    <?php }?>
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Supervisor</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="supervisor" id="supervisor" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Field Supervisor</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="field_supervisor" id="field_supervisor" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Designation</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="field_supervisor_designation" id="field_supervisor_designation" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Deployment Personnel</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="deployment_personnel" id="deployment_personnel" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Designation</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="deployment_personnel_designation" id="deployment_personnel_designation" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Project Supervisor</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="project_supervisor" id="project_supervisor" class="form-control">
                                   </div>
                                 </div>
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Designation</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="project_supervisor_designation" id="project_supervisor_designation" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Head</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="head" id="head" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">Designation</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="head_designation" id="head_designation" class="form-control">
                                   </div>
                                 </div>
 
                                 <div class="row mt-3">
-                                  <div class="col-md-2">
+                                  <div class="col-md-3">
                                     <label for="" class="form-label">ID#</label>
                                   </div>
-                                  <div class="col-md-7">
+                                  <div class="col-md-9">
                                     <input type="text" name="id" id="id" class="form-control">
                                   </div>
                                 </div>
 
-                              <?php } ?>
+                              <?php } }?>
 
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Save changes</button>
+                          <button type="submit" class="btn btn-primary" name="create_loa">Save changes</button>
                         </div>
                         </form>
                       </div>
@@ -2850,57 +2990,13 @@ if (isset($_POST['filter_shortlist'])) {
         </div>
       </div>
     </div>
-
-
-
-
   <?php  }
   ?>
-
-
-
-  <?php
-  if (isset($kekelpogi)) {
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi . '<br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
-    </form>
-    
-  </div></div>';
-  }
-
-  if (isset($kekelpogi_index)) {
-    echo '<div class = "how2"><div class = "many"><br> 
-    <font color="Black" size="12">' . $kekelpogi_index . '</font><br>
-    <form action = "" method = "POST"><br>
-    <input type = "submit" name = "to_index" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px" autofocus>
-    </form>
-    
-  </div></div>';
-  }
-
-
-
-  if (isset($kekelpogi1)) {
-    echo '<div class = "how1"><div class = "many"><br> 
-    ' . $kekelpogi1 . '<br>
-    <br>
-    <input type = "submit" name = "" value = "Okay" class="btn-info btn-lg" style = "font-size:15;width: 100px;height: 50px">
-    
-    
-  </div></div>';
-  }
-  ?>
-
-
-
 
   <!-- Modal -->
   <div class="modal fade" id="myModalewb" role="dialog">
     <div class="modal-dialog"> <!--//sm,med, lg , xl-->
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -2910,61 +3006,36 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
-              <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="shortlisttitle1del" data-placeholder=""> ;
                   <option>Select shortlist Name:</option>
                   <?php
-
-                  $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-                  while ($rowpro = mysqli_fetch_array($resultpro)) {
-
-                    echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option> 
-                                                   
-                                                                       ';
-                  }
+                    $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+                    while ($rowpro = mysqli_fetch_array($resultpro)) {
+                      echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option>';
+                    }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
-
               <input type="submit" name="addappdel1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
               <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
           </form>
-
         </div>
-
       </div><!--div for body-->
-
     </div>
   </div>
   </div>
-
-
 
 
   <!-- Modal -->
   <div class="modal fade" id="myModaldephistory" role="dialog">
     <div class="modal-dialog"> <!--//sm,med, lg , xl-->
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -2974,67 +3045,39 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
               <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="empno" data-placeholder=""> ;
                   <option>Select Employee Name:</option>
                   <?php
-
-                  $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by appno_d order by appno_d ASC ");
-                  while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-                    $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
-                    while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
-
-
-
-                      echo '<option  value="' . $rowpro1[5] . '">' . $rowpro2[6] . ", " . $rowpro2[7] . " " . $rowpro2[8] . ' </option> 
-                                                   
-                                                                       ';
+                    $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by appno_d order by appno_d ASC ");
+                    while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
+                      $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
+                      while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
+                        echo '<option  value="' . $rowpro1[5] . '">' . $rowpro2[6] . ", " . $rowpro2[7] . " " . $rowpro2[8] . ' </option>';
+                      }
                     }
-                  }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
-
               <input type="submit" name="viewhistory" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
               <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
           </form>
-
         </div>
-
       </div><!--div for body-->
-
     </div>
   </div>
   </div>
-
-
-
 
   <!-- Modal -->
   <div class="modal fade" id="myModalprojecthistory" role="dialog">
     <div class="modal-dialog"> <!--//sm,med, lg , xl-->
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -3044,69 +3087,39 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
-              <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="project_name" data-placeholder=""> ;
                   <option>Select Project Name:</option>
                   <?php
-
                   $resultpro1 = mysqli_query($link, "SELECT * FROM deployment_history group by project_d order by project_d ASC ");
                   while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
                     $resultpro2 = mysqli_query($link, "SELECT * FROM employees where appno='$rowpro1[5]' ");
                     while ($rowpro2 = mysqli_fetch_array($resultpro2)) {
-
-
-
-                      echo '<option  value="' . $rowpro1[3] . '">' . $rowpro1[3] . ' </option> 
-                                                   
-                                                                       ';
+                      echo '<option  value="' . $rowpro1[3] . '">' . $rowpro1[3] . ' </option>';
                     }
                   }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
-
               <input type="submit" name="viewhistoryproject" value="Search" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
               <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
           </form>
-
         </div>
-
-      </div><!--div for body-->
-
+      </div>
     </div>
   </div>
   </div>
-
-
-
-
 
 
   <!-- Modal -->
   <div class="modal fade" id="myModalapp_print" role="dialog">
     <div class="modal-dialog"> <!--//sm,med, lg , xl-->
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -3116,65 +3129,38 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
-              <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="applicant_no">
                   <option>Select Employee Name:</option>
                   <?php
-
                   $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
                   while ($rowpro = mysqli_fetch_array($resultpro)) {
                     $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
                     while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                       ';
+                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> ';
                     }
                   }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
-
               <input type="submit" name="printemp" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
               <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
           </form>
-
         </div>
-
-      </div><!--div for body-->
-
+      </div>
     </div>
   </div>
   </div>
 
-
-
   <!-- Modal -->
   <div class="modal fade" id="myModal_id" role="dialog">
-    <div class="modal-dialog"> <!--//sm,med, lg , xl-->
+    <div class="modal-dialog"> 
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -3184,54 +3170,30 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
-              <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="applicant_no" data-placeholder=""> ;
                   <option>Select Employee Name:</option>
                   <?php
-
                   $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted !='1'");
                   while ($rowpro = mysqli_fetch_array($resultpro)) {
                     $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$rowpro[5]'");
                     while ($rowpro1 = mysqli_fetch_array($resultpro1)) {
-
-
-
-                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option> 
-                                                   
-                                                                       ';
+                      echo '<option  value="' . $rowpro1[4] . '">' . $rowpro1[6] . ", " . $rowpro1[7] . " " . $rowpro1[8] . ') </option>';
                     }
                   }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
-
               <input type="submit" name="id1" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
               <input type="button" name="Cancelko" value="Close" data-bs-dismiss="modal" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
           </form>
-
         </div>
-
-      </div><!--div for body-->
-
+      </div>
     </div>
   </div>
   </div>
@@ -3241,7 +3203,6 @@ if (isset($_POST['filter_shortlist'])) {
   <div class="modal fade" id="myModal_LOA" role="dialog">
     <div class="modal-dialog"> <!--//sm,med, lg , xl-->
       <div class="modal-content">
-
         <div class="modal-header">
           <label for="text">
             <font color="Black">
@@ -3251,42 +3212,27 @@ if (isset($_POST['filter_shortlist'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           <br>
         </div>
-
         <div class="modal-body">
-
-
           <form action="" method="POST"><br>
-
-
             <div class="form-group">
-              <!--<label> Project  Title : </label>-->
               <center>
                 <select class="form-select" name="applicant_no" data-placeholder=""> ;
                   <option>Select Employee Name:</option>
                   <?php
+                    $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted != '1'");
+                    while ($rowpro = mysqli_fetch_assoc($resultpro)) {
+                      $appno = $rowpro["appno"];
+                      $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$appno'");
+                      while ($rowpro1 = mysqli_fetch_assoc($resultpro1)) {
 
-                  $resultpro = mysqli_query($link, "SELECT * FROM deployment WHERE is_deleted != '1'");
-                  while ($rowpro = mysqli_fetch_assoc($resultpro)) {
-                    $appno = $rowpro["appno"];
-                    $resultpro1 = mysqli_query($link, "SELECT * FROM employees WHERE appno ='$appno'");
-                    while ($rowpro1 = mysqli_fetch_assoc($resultpro1)) {
-
-                      echo '<option  value="' . $rowpro1['appno'] . '">' . $rowpro1['lastnameko'] . ", " . $rowpro1['firstnameko'] . " " . $rowpro1['mnko'] . ') </option> 
-                                                                       ';
+                        echo '<option  value="' . $rowpro1['appno'] . '">' . $rowpro1['lastnameko'] . ", " . $rowpro1['firstnameko'] . " " . $rowpro1['mnko'] . ') </option> 
+                                                                        ';
+                      }
                     }
-                  }
                   ?>
-
-
                 </select>
               </center>
             </div>
-
-
-
-
-
-
             <div class="modal-footer">
 
               <input type="submit" name="xletter" value="Okay" class="btn btn-info btn-lg" style="font-size:15;width: 100px;height: 50px">
@@ -3813,6 +3759,8 @@ if (isset($_POST['filter_shortlist'])) {
   <script src="assets/js/menu-aim.js"></script>
   <script src="assets/js/main.js"></script>
 
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <!-- Configure a few settings and attach camera -->
   <script language="JavaScript">
@@ -3820,7 +3768,35 @@ if (isset($_POST['filter_shortlist'])) {
       $('#example').DataTable();
     });
 
+    // Date Format
+    flatpickr("#myDate", {
+      dateFormat: "m-d-Y", // Set the desired date format (MM-DD-YYYY)
+      altInput: true, // Enable the alternate input field
+      altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
+      placeholder: "Select a date", // Set the text for the placeholder
+    });
 
+
+    // For Start Date and End Date
+    // document.addEventListener("DOMContentLoaded", function() {
+    //   const startDateInput = document.getElementById("myDate");
+    //   const endDateInput = document.getElementById("myDate");
+
+    //   startDateInput.addEventListener("change", function() {
+    //     // Get the selected Start Date
+    //     const selectedStartDate = new Date(startDateInput.value);
+
+    //     // Calculate the minimum allowed End Date (next day after Start Date)
+    //     const minEndDate = new Date(selectedStartDate);
+    //     minEndDate.setDate(minEndDate.getDate() + 1);
+
+    //     // Set the minimum date for End Date
+    //     endDateInput.min = minEndDate.toISOString().slice(0, 10);
+    //   });
+
+    //   // Trigger the change event to set the minimum date for End Date initially (optional)
+    //   startDateInput.dispatchEvent(new Event('change'));
+    // });
 
 
 
@@ -3860,12 +3836,6 @@ if (isset($_POST['filter_shortlist'])) {
             var select = document.getElementById("Y1");
 
             select.appendChild(option);
-
-
-
-
-
-
           });
         },
 
@@ -3913,17 +3883,11 @@ if (isset($_POST['filter_shortlist'])) {
             select.appendChild(option);
           });
         },
-
         error: function(result) {
           console.log(result)
         }
       });
-
     });
-
-
-
-
 
 
     $("#Xres").on("change", function() {
@@ -3959,11 +3923,6 @@ if (isset($_POST['filter_shortlist'])) {
             option.value = item['city_name'];
             var select = document.getElementById("Y1res");
             select.appendChild(option);
-
-
-
-
-
 
           });
         },
@@ -4217,6 +4176,25 @@ if (isset($_POST['filter_shortlist'])) {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
   </script>
+  <!-- For DataTables -->
+  <script>
+    $(document).ready(function() {
+      $('#example1').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+      });
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
 
   </main>
 </body>

@@ -507,7 +507,7 @@ $row = $result->fetch_assoc();
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid white;">Transpo Allowance: <i style="float: right; margin-right: 1.5rem; margin-right: 1.5rem;"><?php echo $row['transpo'] ?></i></td>
-                        <td style="border-bottom: 1px solid white;">Work Duration: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['work_duration'] ?></i></td>
+                        <td style="border-bottom: 1px solid white;">Work Duration: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['work_duration_start'] . " to " . $row['work_duration_end'] ?></i></td>
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid white;">Meal Allowance: <i style="float: right; margin-right: 1.5rem; "><?php echo $row['meal'] ?></i></td>

@@ -264,6 +264,7 @@ if (isset($_POST['createshortlist'])) {
         while ($rowmo = mysqli_fetch_assoc($resultmo)) {
             $project_t = $rowmo['project_title'];
             $client_t = $rowmo['client_company_id'];
+            $mrf_tracking = $rowmo['mrf_tracking'];
         }
 
         $queryns = "select * from shortlist_details WHERE shortlistname = '$newshortlist1'";
@@ -272,7 +273,7 @@ if (isset($_POST['createshortlist'])) {
         if (mysqli_num_rows($resultns) == 0) {
             // kapag wala pang user name na kaparehas
 
-            $query = "INSERT INTO shortlist_details(project_id, shortlistname,project,client,datecreated,activity) VALUES('$projecttitle1','$newshortlist1','$project_t','$client_t','$dtnow','ACTIVE')";
+            $query = "INSERT INTO shortlist_details(project_id, shortlistname,project, mrf_tracking, client,datecreated,activity) VALUES('$projecttitle1','$newshortlist1','$project_t', '$mrf_tracking', '$client_t','$dtnow','ACTIVE')";
             $result = mysqli_query($link, $query);
 
             if ($result) {
@@ -802,6 +803,7 @@ if (isset($_POST['acceptMRF_button_click'])) {
         $query_select = "SELECT * FROM mrf WHERE id = '$mrf_val1'";
         $query_result = $link->query($query_select);
         while($query_row = $query_result->fetch_assoc()){
+            $tracking_no = $query_row['tracking'];
             $project_title = $query_row['project_title'];
             $client = $query_row['client'];
             $total = $query_row['np_male'] + $query_row['np_female'];
@@ -809,8 +811,8 @@ if (isset($_POST['acceptMRF_button_click'])) {
             $work_duration_end = $query_row['work_duration_end'];
                 $status = "1";
 
-            $insert_db = "INSERT INTO projects (project_title, client_company_id, ewb_count, start_date, end_date, status) 
-            VALUES ('$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
+            $insert_db = "INSERT INTO projects (mrf_tracking, project_title, client_company_id, ewb_count, start_date, end_date, status) 
+            VALUES ('$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
             $result_insert = $link->query($insert_db);
             if($result_insert){
                 $_SESSION['successMessage'] = "Successfully Accepted";

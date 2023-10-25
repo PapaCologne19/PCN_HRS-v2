@@ -90,6 +90,26 @@ if (isset($_POST['SubButton'])) {
         } else {
           $_SESSION['errorMessage'] = "Error Login";
         }
+      } elseif ($rowd["typenya"] === "ADMIN") {
+
+        $_SESSION["firstname"] = $rowd["firstname"];
+        $_SESSION["lastname"] = $rowd['lastname'];
+        $_SESSION["username"] = $rowd["uname"];
+        $_SESSION["password"] =  $rowd["pname"];
+        $_SESSION["data"] = $rowd["id"];
+
+        $dtnow = date("m/d/Y");
+
+        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'ADMIN login Accepted')";
+        $result5 = mysqli_query($link, $query5);
+
+        if ($result5) {
+          $_SESSION['successMessage'] = "Successfully Login";
+          $message = $_SESSION['successMessage'];
+          header("Location: admin/?$message");
+        } else {
+          $_SESSION['errorMessage'] = "Error Login";
+        }
       } else if ($rowd["typenya"] == "MRF") {
 
         $_SESSION["username"] = $rowd["uname"];

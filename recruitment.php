@@ -84,10 +84,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
   <!-- SelectPicker Plugin -->
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <link href="vendor/select2/select2/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="vendor/select2/select2/dist/js/select2.full.min.js"></script>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1961,13 +1960,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     echo '
   <div class="cd-content-wrapper">
   <div class="text-component text-center">
-<div class = "container">
+<div class = "container-fluid">
 <br><br>
 
-            <h2 class="fs-2"><font color="black"> ' . $view . ' </font> </h2>
+<form action="export_shortlist.php" method="post">
+    <input type="hidden" name="title" id="" class="form-control" value="' .$data. '">
+    <button type="submit" class="btn btn-primary btnsall" name="export_excel" style="float: right;"><i class="bi bi-cloud-download"></i>&nbsp; Export to Excel</button>
+</form>
+    <h2 class="fs-2"><font color="black"> ' . $view . ' </font> </h2>
       <br><br>
 
-                  <table id="example" class="table table-sm align-middle mb-0 bg-white p-3 bg-opacity-10 border border-secondary border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 13px !important;" style="width:100%;">
+                  <table id="example" class="table align-middle mb-0 bg-white p-3 bg-opacity-10 border-start-0 border-end-0 rounded-end" style="width:100%; font-size: 13px !important;" style="width:100%;">
                               <thead>
                               <tr>
                               
@@ -2501,10 +2504,10 @@ if (isset($_POST['mrfbutton'])) {
               <option value="">Select shortlist Name:</option>
               <?php
               $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
-              while ($rowpro = mysqli_fetch_array($resultpro)) {
-                echo '<option  value="' . $rowpro[1] . '">' . $rowpro[1] . '(' . $rowpro[2] . ') </option>';
-              }
-              ?>
+              while ($rowpro = mysqli_fetch_assoc($resultpro)) {
+                echo '<option  value="' . $rowpro['shortlistname'] . '">' . $rowpro['shortlistname'] . '(' . $rowpro['project'] . ') </option>';
+              ?>       
+              <?php }?>
             </select>
           </center>
       </div>
@@ -2619,7 +2622,7 @@ if (isset($_POST['mrfbutton'])) {
         <form action="" method="POST"><br>
           <label class="form-label"> Project Title </label>
           <center>
-            <select class="form-select" name="shortlisttitle1del" data-placeholder="" style="height:45px;width:60%" required> ;
+            <select class="form-select"  name="shortlisttitle1del"  required> ;
               <option value="">Select shortlist Name:</option>
               <?php
               $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity = 'ACTIVE' order by shortlistname ASC ");
@@ -2661,7 +2664,7 @@ if (isset($_POST['mrfbutton'])) {
         <form action="" method="POST"><br>
           <label class="form-label"> Project Title </label>
           <center>
-            <select class="form-select" id="mySelect" name="applicant_no"> ;
+              <select class="form-select" name="applicant_no"> 
               <option>Select shortlist Name:</option>
               <?php
               $resultpro = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint !='BLACKLISTED' OR actionpoint !='DEPLOYED' order by lastnameko ASC ");
@@ -2685,10 +2688,12 @@ if (isset($_POST['mrfbutton'])) {
 
 
 
+<script>
+  // Enabling Tooltips
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 
-<!-- Include Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <!-- JAVASCRIPT SECTION -->
 <script src="assets/js/util.js"></script>
@@ -2702,7 +2707,6 @@ if (isset($_POST['mrfbutton'])) {
       document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
     });
   }
-
 
   // For birthday and age 
   function calculateAge() {
@@ -3036,7 +3040,7 @@ if (isset($_POST['mrfbutton'])) {
         if (willDelete.isConfirmed) {
           $.ajax({
             type: "POST",
-            url: "action.php",
+            url: "action.php", 
             data: {
               "add_shortlist_click": 1,
               "appno_id_click": appno_ids,
@@ -3387,9 +3391,7 @@ if (isset($_POST['mrfbutton'])) {
     });
   });
 
-  // Enabling Tooltips
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  
 
   // For checkboxes of selecting applicants for shortlist
   const selectAll = document.getElementById('select-all');
@@ -3414,7 +3416,7 @@ if (isset($_POST['mrfbutton'])) {
     });
   });
 
-  
+
 </script>
 <script>
   $(document).ready(function() {

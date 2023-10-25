@@ -5,7 +5,8 @@
         $selectedDivisionClient = $_POST['division'];
     
         // Prepare a SQL query to retrieve employee data for the selected division
-        $query = "SELECT company_name FROM client_company WHERE division = ? AND is_deleted = '0'";
+        $query = "SELECT company_name, address
+                    FROM client_company WHERE division = ? AND is_deleted = '0'";
     
         // Create a prepared statement
         $stmt = $link->prepare($query);

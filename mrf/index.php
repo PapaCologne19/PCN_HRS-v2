@@ -149,14 +149,14 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         <option value="FIELD FORCE">FIELD FORCE</option>
                                     </select>
                                 </div>
-                               
+
 
                                 <div class="col-md-4 mt-3">
                                     <label for="" class="form-label">Division</label>
                                     <select name="division" id="division" class="form-select" required>
                                         <option value="" disabled selected></option>
                                         <?php
-                                        $query_select_division = "SELECT * FROM divisions WHERE is_deleted = '0'";
+                                        $query_select_division = "SELECT * FROM department WHERE is_deleted = '0'";
                                         $result_select_division = $link->query($query_select_division);
                                         while ($row_select = $result_select_division->fetch_assoc()) {
                                         ?>
@@ -182,6 +182,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <label for="" class="form-label">Client</label>
                                     <hr>
                                     <select name="client" id="client" class="form-select" required>
+                                        <option value="" selected disabled></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 mt-3">
+                                    <label for="" class="form-label">Client Address</label>
+                                    <select name="client_address" id="client_address" class="form-select">
                                         <option value="" selected disabled></option>
                                     </select>
                                 </div>
@@ -562,98 +569,127 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 var clientData = [];
 
                 $(document).ready(function() {
-                            // Add an event listener to the "Division" dropdown
-                            $('#division').change(function() {
-                                var selectedDivision = $(this).val();
-                                if (selectedDivision) {
-                                    // Make an AJAX request to fetch employee data for the selected division
-                                    $.ajax({
-                                        url: 'get_employee_data.php', // Replace with your server-side script
-                                        method: 'POST',
-                                        data: {
-                                            division: selectedDivision
-                                        },
-                                        dataType: 'json',
-                                        success: function(data) {
-                                            // Update the employeeData array with the fetched data
-                                            employeeData = data;
-                                            var directReportDropdown = $('#direct_report');
-                                            directReportDropdown.empty();
-                                            directReportDropdown.append('<option value="" selected disabled></option>');
-                                            $.each(data, function(key, value) {
-                                                directReportDropdown.append('<option value="' + value.fullname + '">' + value.fullname + '</option>');
-                                            });
-                                        }
+                    // Add an event listener to the "Division" dropdown
+                    $('#division').change(function() {
+                        var selectedDivision = $(this).val();
+                        if (selectedDivision) {
+                            // Make an AJAX request to fetch employee data for the selected division
+                            $.ajax({
+                                url: 'get_employee_data.php', // Replace with your server-side script
+                                method: 'POST',
+                                data: {
+                                    division: selectedDivision
+                                },
+                                dataType: 'json',
+                                success: function(data) {
+                                    // Update the employeeData array with the fetched data
+                                    employeeData = data;
+                                    var directReportDropdown = $('#direct_report');
+                                    directReportDropdown.empty();
+                                    directReportDropdown.append('<option value="" selected disabled></option>');
+                                    $.each(data, function(key, value) {
+                                        directReportDropdown.append('<option value="' + value.fullname + '">' + value.fullname + '</option>');
                                     });
                                 }
                             });
+                        }
+                    });
 
 
-                            // Client Company
-                                $(document).ready(function() {
-                                    // Add an event listener to the "Division" dropdown
-                                    $('#division').change(function() {
-                                        var selectedDivisionClient = $(this).val();
-                                        if (selectedDivisionClient) {
-                                            // Make an AJAX request to fetch employee data for the selected division
-                                            $.ajax({
-                                                url: 'get_client_company.php', // Replace with your server-side script
-                                                method: 'POST',
-                                                data: {
-                                                    division: selectedDivisionClient
-                                                },
-                                                dataType: 'json',
-                                                success: function(data) {
-                                                    // Update the employeeData array with the fetched data
-                                                    clientData = data;
-                                                    var directReportDropdown = $('#client');
-                                                    directReportDropdown.empty();
-                                                    directReportDropdown.append('<option value="" selected disabled></option>');
-                                                    $.each(data, function(key, value) {
-                                                        directReportDropdown.append('<option value="' + value.company_name + '">' + value.company_name + '</option>');
-                                                    });
-                                                }
-                                            });
-                                        }
+                    $('#direct_report').change(function() {
+                        var selectedEmployee = $(this).val();
+                        var positionDropdown = $('#job_position');
+
+                        // Check if a valid employee is selected
+                        if (selectedEmployee) {
+                            // Retrieve the employee's position from the updated employeeData array
+                            var position = getPositionForEmployee(selectedEmployee);
+
+                            // Update the "Requestee Position" dropdown
+                            positionDropdown.empty();
+                            positionDropdown.append('<option value="' + position + '">' + position + '</option>');
+                        } else {
+                            // Clear the "Requestee Position" dropdown if no employee is selected
+                            positionDropdown.empty();
+                            positionDropdown.append('<option value="" selected disabled>Please select</option>');
+                        }
+                    });
+
+                    // Function to retrieve the position for the selected employee
+                    function getPositionForEmployee(employeeName) {
+                        var employee = employeeData.find(function(employee) {
+                            return employee.fullname === employeeName;
+                        });
+                        if (employee) {
+                            return employee.position;
+                        } else {
+                            return "Position not found";
+                        }
+                    }
+                });
+
+
+
+                // Client Company
+                $(document).ready(function() {
+                    // Add an event listener to the "Division" dropdown
+                    $('#division').change(function() {
+                        var selectedDivisionClient = $(this).val();
+                        if (selectedDivisionClient) {
+                            // Make an AJAX request to fetch employee data for the selected division
+                            $.ajax({
+                                url: 'get_client_company.php', // Replace with your server-side script
+                                method: 'POST',
+                                data: {
+                                    division: selectedDivisionClient
+                                },
+                                dataType: 'json',
+                                success: function(data) {
+                                    // Update the employeeData array with the fetched data
+                                    clientData = data;
+                                    var directReportDropdown = $('#client');
+                                    directReportDropdown.empty();
+                                    directReportDropdown.append('<option value="" selected disabled></option>');
+                                    $.each(data, function(key, value) {
+                                        directReportDropdown.append('<option value="' + value.company_name + '">' + value.company_name + '</option>');
                                     });
-                                });
-
-
-
-
-
-
-                                $('#direct_report').change(function() {
-                                    var selectedEmployee = $(this).val();
-                                    var positionDropdown = $('#job_position');
-
-                                    // Check if a valid employee is selected
-                                    if (selectedEmployee) {
-                                        // Retrieve the employee's position from the updated employeeData array
-                                        var position = getPositionForEmployee(selectedEmployee);
-
-                                        // Update the "Requestee Position" dropdown
-                                        positionDropdown.empty();
-                                        positionDropdown.append('<option value="' + position + '">' + position + '</option>');
-                                    } else {
-                                        // Clear the "Requestee Position" dropdown if no employee is selected
-                                        positionDropdown.empty();
-                                        positionDropdown.append('<option value="" selected disabled>Please select</option>');
-                                    }
-                                });
-
-                                // Function to retrieve the position for the selected employee
-                                function getPositionForEmployee(employeeName) {
-                                    var employee = employeeData.find(function(employee) {
-                                        return employee.fullname === employeeName;
-                                    });
-                                    if (employee) {
-                                        return employee.position;
-                                    } else {
-                                        return "Position not found";
-                                    }
                                 }
                             });
+                        }
+                    });
+                });
+
+                $('#client').change(function() {
+                        var selectedClient = $(this).val();
+                        var clientAddressDropdown = $('#client_address');
+
+                        // Check if a valid employee is selected
+                        if (selectedClient) {
+                            // Retrieve the employee's position from the updated employeeData array
+                            var address = getClientAddress(selectedClient);
+
+                            // Update the "Requestee Position" dropdown
+                            clientAddressDropdown.empty();
+                            clientAddressDropdown.append('<option value="' + address + '">' + address + '</option>');
+                        } else {
+                            // Clear the "Requestee Position" dropdown if no employee is selected
+                            clientAddressDropdown.empty();
+                            clientAddressDropdown.append('<option value="" selected disabled>Please select</option>');
+                        }
+                    });
+
+                    // Function to retrieve the position for the selected employee
+                    function getClientAddress(clientName) {
+                        var client = clientData.find(function(client) {
+                            return client.company_name === clientName;
+                        });
+                        if (client) {
+                            return client.address;
+                        } else {
+                            return "Address not found";
+                        }
+                    }
+                
             </script>
             <script type="text/javascript">
                 document.getElementById('other_position').style.visibility = 'hidden';

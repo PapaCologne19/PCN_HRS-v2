@@ -9,6 +9,7 @@ if (isset($_POST['process'])) {
     $category_name = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['category_name']))));
     $mrf_type = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['mrf_type']))));
     $client = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['client']))));
+    $client_address = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['client_address']))));
     $location = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['location']))));
     $project_title = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['projectTitle']))));
     $division = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['division']))));
@@ -54,12 +55,12 @@ if (isset($_POST['process'])) {
 
 
     // Insert Query
-    $query = "INSERT INTO mrf(tracking, mrf_category, mrf_category_name, type, client, location, project_title, division, ce_number, position, position_detail, np_male, 
+    $query = "INSERT INTO mrf(tracking, mrf_category, mrf_category_name, type, client, client_address, location, project_title, division, ce_number, position, position_detail, np_male, 
         np_female, height_r, height_female, edu, pleasing_personality, moral, work_experience, comm_skills, physically, 
         articulate, others, basic_salary, transpo, meal, comm, other_allow, employment_stat, 
         salary_sched, work_duration_start, work_duration_end, work_days, time_sched, day_off, outlet, dt_now, date_needed, drt, rp, special_requirements_others, uid, prepared_by)
         
-                VALUES('$tracking_number', '$category', '$category_name', '$mrf_type', '$client', '$location', '$project_title', '$division', '$ce_number', '$selected_position', '$selected_other_position', '$no_of_people_male', 
+                VALUES('$tracking_number', '$category', '$category_name', '$mrf_type','$client', '$client_address', '$location', '$project_title', '$division', '$ce_number', '$selected_position', '$selected_other_position', '$no_of_people_male', 
         '$no_of_people_female', '$height_male', '$height_female', '$educational_background', '$pleasing_personality', '$good_moral', '$work_experience', '$good_communication', '$physically_fit', 
         '$articulate', '$other_personality', '$basic_salary', '$transportation_allowance', '$meal_allowance', '$communication_allowance', '$other_salary_package', '$employment_status',
         '$salary_schedule', '$work_duration_start', '$work_duration_end', '$work_days', '$time_schedule', '$day_off', '$outlet', '$date_requested', '$date_needed', '$direct_report', '$job_position', '$special_requirements', '$id' , '$prepared_by')";
@@ -82,6 +83,7 @@ if (isset($_POST['updatemrf'])) {
     $category_name = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['category_name']))));
     $mrf_type = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['mrf_type']))));
     $client = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['client']))));
+    $client_address = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['client_address']))));
     $location = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['location']))));
     $project_title = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['projectTitle']))));
     $division = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['division']))));
@@ -127,6 +129,7 @@ if (isset($_POST['updatemrf'])) {
         mrf_category_name = '$category_name', 
         type = '$mrf_type', 
         client = '$client', 
+        client_address = '$client_address', 
         location = '$location', 
         project_title = '$project_title', 
         division = '$division', 
@@ -174,20 +177,18 @@ if (isset($_POST['updatemrf'])) {
     }
 }
 
-    if(isset($_POST['delete_button_click'])){
-        $delete_id = $_POST['deleteIDs'];
-        $delete_status = "1";
+if (isset($_POST['delete_button_click'])) {
+    $delete_id = $_POST['deleteIDs'];
+    $delete_status = "1";
 
-        $delete_query = "UPDATE mrf SET is_deleted = '$delete_status' WHERE id = '$delete_id'";
-        $delete_result = $link->query($delete_query);
+    $delete_query = "UPDATE mrf SET is_deleted = '$delete_status' WHERE id = '$delete_id'";
+    $delete_result = $link->query($delete_query);
 
-        if($delete_result){
-            $_SESSION['successMessage'] = "Successfully Deleted";
-            header("Location: mrf_list.php");
-        }
-        else{
-            $_SESSION['errorMessage'] = "Delete Error";
-            header("Location: mrf_list.php");
-        }
-
+    if ($delete_result) {
+        $_SESSION['successMessage'] = "Successfully Deleted";
+        header("Location: mrf_list.php");
+    } else {
+        $_SESSION['errorMessage'] = "Delete Error";
+        header("Location: mrf_list.php");
     }
+}
