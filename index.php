@@ -53,9 +53,8 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["dmark"] = $rowd["uname"];
         $_SESSION["firstname"] = $rowd["firstname"];
         $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
-        $_SESSION["darkk"] = "deployment";
-        $_SESSION["dept"] = $rowd["fms"];
+        $_SESSION["username"] = $rowd["uname"];
+        $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
 
         $dtnow = date("m/d/Y");
@@ -65,7 +64,7 @@ if (isset($_POST['SubButton'])) {
 
         if($result4){
           $_SESSION[] = "Successfully Login";
-          header("location:deployment.php");
+          header("location:deployment/index.php");
         }
         else{
           $_SESSION["errorMessage"] = "Error Login";

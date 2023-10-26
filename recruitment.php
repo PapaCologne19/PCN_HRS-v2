@@ -1991,9 +1991,12 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                               <tbody> 
                   ';
+ 
 
-    $resultx = mysqli_query($link, "SELECT * FROM employees WHERE  actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'DEPLOYED' AND actionpoint <> 'CANCELED'");
+    $queryx = "SELECT * FROM employees WHERE  actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'DEPLOYED' AND actionpoint <> 'CANCELED'";
+    $resultx = mysqli_query($link, $queryx);
     while ($rowx = mysqli_fetch_assoc($resultx)) {
+      $appno = $rowx['appno'];
       $police = $rowx['policed'];
       $barangay = $rowx['brgyd'];
       $nbi = $rowx['nbid'];
@@ -2006,6 +2009,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
       $formattedDate_barangay = date("F d, Y", $timestamp_barangay);
       $formattedDate_nbi = date("F d, Y", $timestamp_nbi);
       $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
+
+      $select = "SELECT * FROM shortlist_master WHERE appnumto = '$appno' AND shortlistnameto = '$data' AND is_deleted = '0'";
+      $select_result = $link->query($select);
+      while ($select_row = mysqli_fetch_assoc($select_result)) {
 
       echo ' <tr> ';
 
@@ -2040,7 +2047,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
           <input type = "hidden" name = "emp_number" class="emp_number" id="emp_number" value = "' . $rowx['appno'] . '">
             <input type = "hidden" name = "appname88" class="appname88" id="appname88" value = "' . $rowx['lastnameko'] . ', ' . $rowx['firstnameko'] . ' ' . $rowx['mnko'] . '">';
         $appno = $rowx['appno'];
-        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data'";
+        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data' AND is_deleted = '0'";
         $resultcem = mysqli_query($link, $querycem);
         $corow = mysqli_num_rows($resultcem);
 
@@ -2056,7 +2063,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
         <input type = "hidden" name = "appno_id" class="appno_id" id="appno_id" value = "' . $rowx['id'] . '">
         ';
         $appno = $rowx['appno'];
-        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data'";
+        $querycem = "SELECT * FROM shortlist_master where appnumto = '$appno' AND shortlistnameto = '$data' AND is_deleted = '0'";
         $resultcem = mysqli_query($link, $querycem);
         $corow = mysqli_num_rows($resultcem);
         echo '
@@ -2071,6 +2078,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                
                                           </tr> ';
     }
+  }
     '
 
                        </tbody>
@@ -2301,7 +2309,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     
                                   <tbody>';
 
-        $queryx1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data'";
+        $queryx1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND is_deleted = '0'";
         $resultx1 = mysqli_query($link, $queryx1);
 
         while ($rowx1 = mysqli_fetch_assoc($resultx1)) {

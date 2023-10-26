@@ -1,87 +1,100 @@
 <?php
-    session_start();
-    include '../../connect.php';
+session_start();
+include '../../connect.php';
 
-if(isset($_SESSION['username'], $_SESSION['password'])){
+if (isset($_SESSION['username'], $_SESSION['password'])) {
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta name="description" content="" />
+    <head>
+        <?php include '../components/header.php';?>
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+        <title>LOA</title>
+    </head>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
+    <body>
+        <div class="layout-wrapper layout-content-navbar">
+            <div class="layout-container">
+                <?php include '../components/sidebar.php'; ?>
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+                <!-- Main page -->
+                <div class="layout-page">
+                    <?php include '../components/navbar.php'; ?>
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/css/demo.css" />
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
-    <script src="../assets/vendor/js/helpers.js"></script>
-    <script src="../assets/js/config.js"></script>
-    <title>LOA</title>
-</head>
+                    <!-- Content -->
+                    <div class="content-wrapper">
+                        <div class="container">
+                            <div class="card">
+                                <div class="col-md-3 mt-3 mx-3 mb-4">
+                                    <a href="create_loa.php" class="btn btn-info">Create LOA</a>
+                                </div>
+                                <table class="table table-hover" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Date Created</th>
+                                            <th>LOA Title</th>
+                                            <th>Division</th>
+                                            <th>Filename</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = "SELECT loa_main.*, loa_files.*, DATE_FORMAT(date_modified, '%M %d %Y') AS date_modified
+                                                FROM loa_maintenance_word loa_main, loa_files loa_files
+                                                WHERE loa_files.loa_main_id = loa_main.id";
+                                        $result = $link->query($query);
+                                        while ($row = $result->fetch_assoc()) {
+                                        ?>
+                                            <tr>
 
-<body>
-    <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
-            <?php include '../components/sidebar.php'; ?>
-
-            <!-- Main page -->
-            <div class="layout-page">
-                <?php include '../components/navbar.php'; ?>
-
-                <!-- Content -->
-                <div class="content-wrapper">
-                    <div class="container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Contact Number</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                                <td><?php echo $row['id'] ?></td>
+                                                <td><?php echo $row['date_modified'] ?></td>
+                                                <td><?php echo $row['loa_name'] ?></td>
+                                                <td><?php echo $row['division'] ?></td>
+                                                <td><?php echo $row['file_name'] ?></td>
+                                                <td><?php
+                                                    if ($row['status'] === '0') {
+                                                        echo '<p class="badge round-pill bg-danger">Not Active</p>';
+                                                    } else {
+                                                        echo '<p class="badge round-pill bg-success text-white">Active</p>';
+                                                    }
+                                                    ?></td>
+                                                <td>
+                                                    <?php
+                                                    if ($row['status'] === '0') { ?>
+                                                        <input type="hidden" name="template_id" class="template_id" value="<?php echo $row["id"] ?>">
+                                                        <button type="button" class="btn btn-primary make_default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as default"><i class="bi bi-pin"></i></button>
+                                                    <?php } else { ?>
+                                                        <input type="hidden" name="template_inactive_id" class="template_inactive_id" value="<?php echo $row["id"] ?>">
+                                                        <button type="button" class="btn btn-danger make_inactive" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Inactive"><i class="bi bi-pin"></i></button>
+                                                    <?php  } ?>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
-
-
+                <!-- End of Main page -->
             </div>
-            <!-- End of Main page -->
         </div>
-    </div>
 
-<?php include '../components/footer.php'; ?>
-</body>
+        <?php include '../components/footer.php'; ?>
+    </body>
 
-</html>
-<?php 
-}
-else{
+    </html>
+<?php
+} else {
     header("Location: ../../index.php");
     exit(0);
 }

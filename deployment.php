@@ -2515,11 +2515,11 @@ if (isset($_POST['filter_shortlist'])) {
 
 
                   <!-- Modal for Deployment form -->
-                  <div class="modal fade" id="deployModal-<?php echo $rows['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="deployModal-<?php echo $rows['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-2 justify-content-center align-content-center mx-auto" id="exampleModalLabel">LOA</h1>
+                          <h1 class="modal-title fs-2" id="exampleModalLabel">LOA</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -2738,8 +2738,17 @@ if (isset($_POST['filter_shortlist'])) {
                                     <label for="" class="form-label">LOA Template</label>
                                   </div>
                                   <div class="col-md-9">
-                                    <select name="loa_template" id="loa_template" class="form-select">
+                                    <select name="loa_template" id="loa_template" class="form-select" required>
                                       <option value="">Select</option>
+                                      <?php 
+                                        $select_loa = "SELECT loa_main.*, loa_files.*
+                                        FROM loa_maintenance_word loa_main, loa_files loa_files
+                                        WHERE loa_files.loa_main_id = loa_main.id AND status = '1'";
+                                        $seleted_loa_result = $link->query($select_loa);
+                                        while($selected_loa_row = $seleted_loa_result->fetch_assoc()){
+                                      ?>
+                                      <option value="<?php echo $selected_loa_row['file_name']?>"><?php echo $selected_loa_row['loa_name']?></option>
+                                      <?php }?>
                                     </select>
                                   </div>
                                 </div>
@@ -3775,30 +3784,6 @@ if (isset($_POST['filter_shortlist'])) {
       altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
       placeholder: "Select a date", // Set the text for the placeholder
     });
-
-
-    // For Start Date and End Date
-    // document.addEventListener("DOMContentLoaded", function() {
-    //   const startDateInput = document.getElementById("myDate");
-    //   const endDateInput = document.getElementById("myDate");
-
-    //   startDateInput.addEventListener("change", function() {
-    //     // Get the selected Start Date
-    //     const selectedStartDate = new Date(startDateInput.value);
-
-    //     // Calculate the minimum allowed End Date (next day after Start Date)
-    //     const minEndDate = new Date(selectedStartDate);
-    //     minEndDate.setDate(minEndDate.getDate() + 1);
-
-    //     // Set the minimum date for End Date
-    //     endDateInput.min = minEndDate.toISOString().slice(0, 10);
-    //   });
-
-    //   // Trigger the change event to set the minimum date for End Date initially (optional)
-    //   startDateInput.dispatchEvent(new Event('change'));
-    // });
-
-
 
 
     $("#X").on("change", function() {
