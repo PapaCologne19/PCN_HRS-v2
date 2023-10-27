@@ -23,6 +23,8 @@ if (isset($_POST['create_loa'])) {
     $internet_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['internet_allowance'])));
     $meal_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['meal_allowance'])));
     $outbase_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['outbase_allowance'])));
+    $special_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['special_allowance'])));
+    $position_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['position_allowance'])));
     $outlet = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['outlet'])));
     $no_of_work_days = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['no_of_work_days'])));
     $issued_day = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['issued_day'])));
@@ -30,6 +32,8 @@ if (isset($_POST['create_loa'])) {
     $issued_year = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['issued_year'])));
     $deployment_personnel = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['deployment_personnel'])));
     $deployment_personnel_designation = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['deployment_personnel_designation'])));
+    $deployment_supervisor = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['deployment_supervisor'])));
+    $deployment_supervisor_designation = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['deployment_supervisor_designation'])));
     $project_supervisor_endorsed = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['project_supervisor_endorsed'])));
     $project_supervisor_endorsed_designation = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['project_supervisor_endorsed_designation'])));
     $head = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['head'])));
@@ -58,20 +62,20 @@ if (isset($_POST['create_loa'])) {
                 `client_name`, `place_assigned`, `address_assigned`, `job_title`, 
                 `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, 
                 `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, 
-                `pb_dpdesignation`, `eb_project_supervisor`, `eb_psdesignation`,`ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, 
+                `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`,`ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, 
                 `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, 
                 `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, 
-                `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`,
+                `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`,
                 `total_sum`, `shortlist_id`,`loa_tracker`) 
                 VALUES ('$loa_title', '$division', '$applicant_name', '$applicant_address', 
                 '$client_name', '$place_assigned', '$address_assigned', '$job_title', 
                 '$employment_status', '$start_date', '$end_date', '$rate', '$outlet', 
                 '$no_of_work_days', '$issued_day', '$issued_month', '$issued_year', '$deployment_personnel', 
-                '$deployment_personnel_designation', '$project_supervisor_endorsed', '$project_supervisor_endorsed_designation', 
+                '$deployment_personnel_designation', '$deployment_supervisor', '$deployment_supervisor_designation', '$project_supervisor_endorsed', '$project_supervisor_endorsed_designation', 
                 '$head', '$head_designation', '$project_supervisor_approved', '$project_supervisor_approved_designation', 
                 '$sss', '$philhealth', '$pagibig', '$tin', '$applicant_id', 
                 '$applicant_contact', '$communication_allowance', '$transportation_allowance', 
-                '$ecola', '$internet_allowance', '$meal_allowance', '$outbase_allowance', 
+                '$ecola', '$internet_allowance', '$meal_allowance', '$outbase_allowance', '$special_allowance', '$position_allowance',
                 '$total_sum', '$id', '$loa_tracker')";
 
             $result = $link->query($query);

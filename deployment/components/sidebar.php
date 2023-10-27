@@ -1,8 +1,8 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="index.html" class="app-brand-link">
-      <span class="app-brand-logo demo">
-        <img src="../../assets/img/pcnlogo1.png" alt="" style="background-color: #6c757d !important;">
+      <span class="app-brand-logo demo mb-3">
+        <img src="../assets/img/icons/brands/pcnlogo1.png" alt="PCN logo" style="background-color: #6c757d !important;">
       </span>
       <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">PCN</span> -->
     </a>
@@ -88,55 +88,55 @@
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+      <i class="bi bi-printer" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Print an Entry</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+      <i class="bi bi-file-plus" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Create ID</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-person-lines-fill" style="margin-right: .5rem !important"></i> 
         <div data-i18n="Tables">LOA</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-envelope" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Excuse Letter</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-terminal-x" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Terminate</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-person-x" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Resign</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-person-dash" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Retrench</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-person-up" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Float</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="tables-basic.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-table"></i>
+        <i class="bi bi-layer-forward" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Forward to EWB</div>
       </a>
     </li>

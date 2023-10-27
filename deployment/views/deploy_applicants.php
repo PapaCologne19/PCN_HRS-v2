@@ -21,8 +21,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     <?php include '../components/navbar.php'; ?>
 
                     <!-- Content -->
-                    <div class="content-wrapper">
-                        <div class="container">
+                    <div class="content-wrapper mt-5">
+                        <div class="containers">
                             <div class="card">
                                 <?php
                                 if (isset($_POST['view-shortlists'])) {
@@ -39,17 +39,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Applicant Number</th>
+                                                <th>App No.</th>
                                                 <th>Name</th>
                                                 <th>SSS</th>
                                                 <th>Pag-IBIG</th>
                                                 <th>PhilHealth</th>
                                                 <th>TIN</th>
                                                 <th>Birthday</th>
-                                                <th>Contact Number</th>
-                                                <th>Start of Contract</th>
-                                                <th>End of Contract</th>
-                                                <th>Employment status</th>
+                                                <th>Contact No.</th>
+                                                <th>Date Start</th>
+                                                <th>Date End</th>
+                                                <th>Emp. status</th>
                                                 <th>Status</th>
                                                 <th>Remarks</th>
                                                 <th>Action</th>
@@ -100,8 +100,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <td><?php echo $rows['remarks'] ?></td>
                                                         <td>
                                                             <?php if (!empty($rows['ewb_status'])) { ?>
-                                                                <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>">Edit</button>
-                                                                <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>">Download LOA</button>
+                                                                <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>"><i class="bi bi-gear"></i></button> &nbsp;
+                                                                <a href="download_loa.php?id=<?php echo $rows['id']?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                                
                                                             <?php } else { ?>
                                                                 <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
                                                             <?php } ?>
@@ -772,18 +773,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                                                         <div class="row mt-3">
                                                                                             <div class="col-md-3">
-                                                                                                <label for="" class="form-label">Employment Status</label>
                                                                                             </div>
                                                                                             <div class="col-md-9">
                                                                                                 <?php
                                                                                                 $querys_emp_stat = "SELECT * FROM mrf WHERE tracking = '$mrf_tracking'";
                                                                                                 $result_emp_stat = $link->query($querys_emp_stat);
                                                                                                 while ($row_emp_stat = $result_emp_stat->fetch_assoc()) {
-                                                                                                    $employment_status = $row_emp_stat['employment_stat'];
+                                                                                                    $employment_status = $row_emp_stat['client'];
                                                                                                 }
 
                                                                                                 ?>
-                                                                                                <input type="text" name="employment_status" id="employment_status" class="form-control" value="<?php echo $locator; ?>" readonly>
+                                                                                                <input type="hidden" name="client_name" id="client_name" class="form-control" value="<?php echo $employment_status; ?>" readonly>
                                                                                             </div>
                                                                                         </div>
 
@@ -918,7 +918,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                                     $seleted_loa_result = $link->query($select_loa);
                                                                                                     while ($selected_loa_row = $seleted_loa_result->fetch_assoc()) {
                                                                                                     ?>
-                                                                                                        <option value="<?php echo $selected_loa_row['file_name'] ?>"><?php echo $selected_loa_row['loa_name'] ?></option>
+                                                                                                        <option value="<?php echo $selected_loa_row['id'] ?>"><?php echo $selected_loa_row['loa_name'] ?></option>
                                                                                                     <?php } ?>
                                                                                                 </select>
                                                                                             </div>

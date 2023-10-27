@@ -15,6 +15,7 @@ if (isset($_POST['create_loa'])) {
     $division = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['division'])));
     $category = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['category'])));
     $locator = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['locator'])));
+    $client_name = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['client_name'])));
     $place_assigned = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['place_assigned'])));
     $address_assigned = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['address_assigned'])));
     $channel = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['channel'])));
@@ -58,7 +59,7 @@ if (isset($_POST['create_loa'])) {
     $query = "INSERT INTO `deployment`(`shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, 
         `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
         `contact_number`, `loa_status`, `type`, `loa_start_date`, 
-        `loa_end_date`, `division`, `category`, `locator`, 
+        `loa_end_date`, `division`, `category`, `locator`, `client_name`,
         `place_assigned`, `address_assigned`, `channel`, `department`, 
         `employment_status`, `job_title`, `loa_template`, 
         `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, 
@@ -68,9 +69,9 @@ if (isset($_POST['create_loa'])) {
         `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, 
         `head`, `head_designation`, `emp_id`) 
         VALUES ('$shortlist_title', '$appno', '$date_shortlisted', '$id', 
-        '$sss', '$philhealth', '$pagibig', '$tin','$address ', 
+        '$sss', '$philhealth', '$pagibig', '$tin','$address', 
         '$contact_number','$status', '$type', '$start_loa', 
-        '$end_loa', '$division', '$category', '$locator', 
+        '$end_loa', '$division', '$category', '$locator', '$client_name',
         '$place_assigned', '$address_assigned', '$channel', '$department', 
         '$employment_status', '$job_title', '$loa_template', 
         '$basic_salary', '$ecola', '$communication_allowance', '$transportation_allowance', 
@@ -83,12 +84,49 @@ if (isset($_POST['create_loa'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $update_shortlist_query = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
-        $update_shortlist_result = $link->query($update_shortlist_query);
-        if ($update_shortlist_result) {
-            $_SESSION['successMessage'] = "Create LOA Success";
+        $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, 
+        `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
+        `contact_number`, `loa_status`, `type`, `loa_start_date`, 
+        `loa_end_date`, `division`, `category`, `locator`, `client_name`,
+        `place_assigned`, `address_assigned`, `channel`, `department`, 
+        `employment_status`, `job_title`, `loa_template`, 
+        `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, 
+        `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, 
+        `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, 
+        `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, 
+        `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, 
+        `head`, `head_designation`, `emp_id`) 
+        VALUES ('$shortlist_title', '$appno', '$date_shortlisted', '$id', 
+        '$sss', '$philhealth', '$pagibig', '$tin','$address', 
+        '$contact_number','$status', '$type', '$start_loa', 
+        '$end_loa', '$division', '$category', '$locator', '$client_name',
+        '$place_assigned', '$address_assigned', '$channel', '$department', 
+        '$employment_status', '$job_title', '$loa_template', 
+        '$basic_salary', '$ecola', '$communication_allowance', '$transportation_allowance', 
+        '$internet_allowance', '$meal_allowance', '$outbase_meal', '$special_allowance', 
+        '$position_allowance', '$deployment_remarks', '$no_of_days', '$outlet', 
+        '$supervisor', '$field_supervisor', '$field_supervisor_designation', '$deployment_personnel', 
+        '$deployment_personnel_designation', '$project_supervisor', '$project_supervisor_designation', 
+        '$head', '$head_designation', '$loa_id')";
+
+        $result_history = $link->query($query_history);
+
+        if ($result_history) {
+            $update_shortlist_query = "UPDATE shortlist_master SET deployment_status = 'DEPLOYED' WHERE employee_id = '$id' AND shortlistnameto = '$shortlist_title'";
+            $update_shortlist_result = $link->query($update_shortlist_query);
+            if ($update_shortlist_result) {
+                $update = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
+                $update_result = $link->query($update);
+                if ($update_result) {
+                    $_SESSION['successMessage'] = "Create LOA Success";
+                } else {
+                    $_SESSION['errorMessage'] = "SQL Errorsss: " . $link->error;
+                }
+            } else {
+                $_SESSION['errorMessage'] = "SQL Errorss: " . $link->error;
+            }
         } else {
-            $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
+            $_SESSION['errorMessage'] = "SQL Errors: " . $link->error;
         }
     } else {
         $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
