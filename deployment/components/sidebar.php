@@ -53,8 +53,8 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="layouts-container.html" class="menu-link">
-            <div data-i18n="Container">Container</div>
+          <a href="loa_database.php" class="menu-link">
+            <div data-i18n="Container">LOA Database</div>
           </a>
         </li>
       </ul>
@@ -93,7 +93,7 @@
       </a>
     </li>
     <li class="menu-item">
-      <a href="tables-basic.html" class="menu-link">
+      <a href="create_id.php" class="menu-link">
       <i class="bi bi-file-plus" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Create ID</div>
       </a>

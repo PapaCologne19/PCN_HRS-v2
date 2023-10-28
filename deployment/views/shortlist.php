@@ -8,7 +8,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
 
 <head>
     <?php include '../components/header.php'; ?>
-    <title>Document</title>
+    <title>Shortlisting</title>
 </head>
 
 <body>

@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2023 at 02:40 AM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: Oct 28, 2023 at 10:18 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `pcnhrs`
@@ -26,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `applicant`
 --
 
-CREATE TABLE IF NOT EXISTS `applicant` (
+CREATE TABLE `applicant` (
   `id` int(11) NOT NULL,
   `tracking` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `photopath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -82,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `applicant` (
   `float_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `float_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `float_personel` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `applicant` (
 -- Table structure for table `attrition`
 --
 
-CREATE TABLE IF NOT EXISTS `attrition` (
+CREATE TABLE `attrition` (
   `id` int(11) NOT NULL,
   `emp_no` varchar(255) NOT NULL,
   `start_date` varchar(255) NOT NULL,
@@ -108,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `attrition` (
 -- Table structure for table `blacklist_history`
 --
 
-CREATE TABLE IF NOT EXISTS `blacklist_history` (
+CREATE TABLE `blacklist_history` (
   `id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `photopath` varchar(255) NOT NULL,
@@ -147,14 +149,20 @@ CREATE TABLE IF NOT EXISTS `blacklist_history` (
   `dateofaction` varchar(255) NOT NULL,
   `ewbdeploy` varchar(255) NOT NULL,
   `ewbdate` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `blacklist_history`
 --
 
 INSERT INTO `blacklist_history` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `source`, `lastnameko`, `firstnameko`, `mnko`, `extnname`, `paddress`, `cityn`, `regionn`, `peraddress`, `birthday`, `age`, `gendern`, `civiln`, `cpnum`, `landline`, `emailadd`, `despo`, `classn`, `idenn`, `sssnum`, `pagibignum`, `phnum`, `tinnum`, `policed`, `brgyd`, `nbid`, `psa`, `remarks`, `actionpoint`, `reasonofaction`, `dateofaction`, `ewbdeploy`, `ewbdate`) VALUES
-(1, '205', 'upload/5f37716fcb2c6.png', '08/15/2020 01:49:03 PM', '205', 'Select Source', '205', 'M', 'DERR', '', '', 'Select City', '', '', '', '0', 'Select Gender', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', 'BLACKLISTED', 'matakaw', '08/30/2020 10:31:47 AM', '', '');
+(6, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', 'REMARKS', '', '', '10/19/2023', '', ''),
+(7, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', '', '', '10/19/2023', '', ''),
+(8, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', '', '', '10/19/2023', '', ''),
+(9, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', '', '', '10/19/2023', '', ''),
+(10, '583', 'upload/652f945964b99.png', '10/18/2023 04:16:30 PM', '583', 'Walk-in', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'Select Region:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-27', '2023-10-27', '2023-10-27', 'WITH', '', '', '10/19/2023', '', ''),
+(11, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', '', '', '10/19/2023', '', ''),
+(12, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', '', '', '10/20/2023', '', '');
 
 -- --------------------------------------------------------
 
@@ -162,11 +170,11 @@ INSERT INTO `blacklist_history` (`id`, `tracking`, `photopath`, `dapplied`, `app
 -- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
+CREATE TABLE `categories` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -183,11 +191,11 @@ INSERT INTO `categories` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `channels`
 --
 
-CREATE TABLE IF NOT EXISTS `channels` (
+CREATE TABLE `channels` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channels`
@@ -210,14 +218,14 @@ INSERT INTO `channels` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `city`
 --
 
-CREATE TABLE IF NOT EXISTS `city` (
+CREATE TABLE `city` (
   `id` int(255) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
   `citymunDesc` text,
   `regDesc` varchar(255) DEFAULT NULL,
   `provCode` varchar(255) DEFAULT NULL,
   `citymunCode` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=1653 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `city`
@@ -748,7 +756,7 @@ INSERT INTO `city` (`id`, `psgcCode`, `citymunDesc`, `regDesc`, `provCode`, `cit
 (525, '175303000', 'ARACELI', '17a', '1753', '175303'),
 (526, '175304000', 'BALABAC', '17a', '1753', '175304'),
 (527, '175305000', 'BATARAZA', '17a', '1753', '175305'),
-(528, '175306000', 'BROOKE''S POINT', '17a', '1753', '175306'),
+(528, '175306000', 'BROOKE\'S POINT', '17a', '1753', '175306'),
 (529, '175307000', 'BUSUANGA', '17a', '1753', '175307'),
 (530, '175308000', 'CAGAYANCILLO', '17a', '1753', '175308'),
 (531, '175309000', 'CORON', '17a', '1753', '175309'),
@@ -1525,7 +1533,7 @@ INSERT INTO `city` (`id`, `psgcCode`, `citymunDesc`, `regDesc`, `provCode`, `cit
 (1306, '124707000', 'MAKILALA', '12', '1247', '124707'),
 (1307, '124708000', 'MATALAM', '12', '1247', '124708'),
 (1308, '124709000', 'MIDSAYAP', '12', '1247', '124709'),
-(1309, '124710000', 'M''LANG', '12', '1247', '124710'),
+(1309, '124710000', 'M\'LANG', '12', '1247', '124710'),
 (1310, '124711000', 'PIGKAWAYAN', '12', '1247', '124711'),
 (1311, '124712000', 'PIKIT', '12', '1247', '124712'),
 (1312, '124713000', 'PRESIDENT ROXAS', '12', '1247', '124713'),
@@ -1542,7 +1550,7 @@ INSERT INTO `city` (`id`, `psgcCode`, `citymunDesc`, `regDesc`, `provCode`, `cit
 (1323, '126313000', 'SURALLAH', '12', '1263', '126313'),
 (1324, '126314000', 'TAMPAKAN', '12', '1263', '126314'),
 (1325, '126315000', 'TANTANGAN', '12', '1263', '126315'),
-(1326, '126316000', 'T''BOLI', '12', '1263', '126316'),
+(1326, '126316000', 'T\'BOLI', '12', '1263', '126316'),
 (1327, '126317000', 'TUPI', '12', '1263', '126317'),
 (1328, '126318000', 'SANTO NIÃ‘O', '12', '1263', '126318'),
 (1329, '126319000', 'LAKE SEBU', '12', '1263', '126319'),
@@ -1873,11 +1881,11 @@ INSERT INTO `city` (`id`, `psgcCode`, `citymunDesc`, `regDesc`, `provCode`, `cit
 -- Table structure for table `classifications`
 --
 
-CREATE TABLE IF NOT EXISTS `classifications` (
+CREATE TABLE `classifications` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classifications`
@@ -1895,82 +1903,40 @@ INSERT INTO `classifications` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `client_company`
 --
 
-CREATE TABLE IF NOT EXISTS `client_company` (
+CREATE TABLE `client_company` (
   `id` bigint(20) NOT NULL,
+  `division` varchar(255) NOT NULL,
   `company_name` varchar(255) DEFAULT NULL,
   `area` varchar(255) DEFAULT NULL,
   `region` varchar(255) DEFAULT NULL,
   `branch` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
+  `address` varchar(1000) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_company`
 --
 
-INSERT INTO `client_company` (`id`, `company_name`, `area`, `region`, `branch`, `address`, `is_deleted`) VALUES
-(1, 'Unilever Philippines Inc.', 'Metro Manila', 'National Capital Region', 'All SM Branch', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
-(2, 'PURE IT', 'PURE IT', 'PURE IT', 'PURE IT', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
-(3, 'Unilever RFM Selecta Ice Cream Inc.', 'Nationwide', 'Nationwide', 'NCR', 'Manggahan Light Industrial Park, Pasig City', 0),
-(4, 'Baby Flo', 'NCR', 'NCR', 'NCR', '16 Corner Shaw Boulevard, Pasig, 1603 Metro Manila', 0),
-(5, 'Fonterra', 'NCR', 'NCR', 'NCR', '24 F Ore Central Bldg. 9th Avenue cor 32nd St., BGC Taguig City', 0),
-(6, 'GlaxoSmithkline', 'NCR', 'NCR', 'NCR', '2266 Chino Roces Avenue, Makati City', 0),
-(7, 'Philusa Corporation', 'Nationwide', 'Nationwide', 'NCR', '16 Corner Shaw Boulevard, Pasig, 1603 Metro Manila', 0),
-(8, 'VALIANT PAPER ASIA PACIFIC', 'NCR', 'NCR', 'NCR', '143 St., Dominic St., Bagbaguin, Valenzuela City', 0),
-(9, 'Concentrix CVG Philippines Inc.', 'NCR', 'NCR', 'NCR', '4th floor Glorietta 5 Bldg. East St., Btgy. San Lorenzo corner Ayala Avenue, Makati City', 0),
-(10, 'Pernod Ricard', 'NCR', 'NCR', 'NCR', 'Units 509-P And 510-P Five E-com Center Bldg. Pacific Drive Extension, Block 18, Mall Of Asia Complex, Pasay City', 0),
-(11, 'MINDANAO FOODS', 'NCR', 'NCR', 'NCR', NULL, 0),
-(12, 'ROCHAR', 'NCR', 'NCR', 'NCR', NULL, 0),
-(13, 'PLDT', 'NCR', 'NCR', 'NCR', 'Ramons Cojuangco Bldg. Dela Rosa St. Legaspi Village, Makati City', 0),
-(14, 'BRANDY PHARMA', 'NCR', 'NCR', 'NCR', NULL, 0),
-(15, 'OLX', 'NCR', 'NCR', 'NCR', NULL, 0),
-(16, 'Good Day Coffee', 'NCR', 'NCR', 'NCR', 'PT Santos Jaya Abadi JirayaGilang No. 159 Gilang Taman Sidoajo Jawa Timur and Indonesia Yesua Tondas', 0),
-(17, 'PURE IT UPDATED DATA BASE 2018 cacai', 'n/a', 'n/a', 'n/a', NULL, 1),
-(18, 'ULP Core', 'N/A', 'N/A', 'N/A', NULL, 1),
-(19, 'BABY FLO', 'N/A', 'N/A', 'N/A', NULL, 1),
-(20, 'GSK', 'N/A', 'N/A', 'N/A', '2266 Chino Roces Avenue, Makati City / 31st floor One World Place 32nd St., Bonifacio Global City', 0),
-(21, 'HISAMITSU', 'N/A', 'N/A', 'N/A', '11th Floor Marco Polo Bldg. Ortigas, Pasig', 0),
-(22, 'Mindanao Food Corp.', 'N/A', 'N/A', 'N/A', '69 Susano Road Brgy. San Agustin, Novaliches, Quezon City', 0),
-(23, 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0),
-(24, 'San Miguel Food Corp', 'N/A', 'N/A', 'N/A', 'Legaspi St. corner Eagle Avenue, Ugong, Pasig City', 0),
-(25, 'SANOFI', 'N/A', 'N/A', 'N/A', '31st floor One World Place 32nd St., Bonifacio Global City, Taguig', 0),
-(26, 'Smart', 'N/A', 'N/A', 'N/A', NULL, 0),
-(27, 'ULP', 'N/A', 'N/A', 'N/A', NULL, 1),
-(28, 'URIC', 'NCR', 'NCR', 'NCR', 'Manggahan Light Industrial Park, Pasig City', 0),
-(29, 'Brady Pharma Inc.', 'N/A', 'N/A', 'N/A', NULL, 0),
-(30, 'ASFI', 'NCR', 'NCR', 'NCR', 'Tektite East Tower Room 1203, Pasig City', 0),
-(31, 'WOW', 'NCR', 'NCR', 'NCR', '#1081 Edsa Balintawak, Quezon City', 0),
-(32, 'Steel Tech', 'NCR', 'National Capital Region', 'NCR', '12th Flr. BPI Bldg. 560 Quintin Paredes Rd., Binondo Manila', 0),
-(33, 'Gruppo', 'NCR', 'NCR', 'NCR', '123 J. M. Basa St. Calumpang, Marikina City', 0),
-(34, 'JT INTERNATIONAL INC. (Phils.)', 'NCR', 'National Capital Region', 'NCR', 'PentHouse W Office Bldg., 28th St. Cor. 11th Ave., Bonifacio Global City, Taguig City', 0),
-(35, 'Mang Inasal', 'NCR', 'NCR', 'NCR', 'Pioneer Highlands North Condominium Pioneer Ave., Bonifacio Global City, Taguig', 0),
-(36, 'Test', 'NCR', 'NCR', 'NCR', NULL, 1),
-(37, 'Big Glory Alliance', 'NCR', 'NCR', 'NCR', 'Tektite East Tower Room 1203, Pasig City', 0),
-(38, 'PLDT Channel Sales', 'NCR', 'NCR', 'NCR', 'Ramons Cojuangco Bldg. Dela Rosa St. Legaspi Village, Makati City', 0),
-(39, 'Fonterra', 'Nationwide', 'Nationwide', 'NCR', NULL, 1),
-(40, 'Fonterra/Sanofi', 'Nationwide', 'Nationwide', 'NCR', '24 F Ore Central Bldg. 9th Avenue cor 32nd St., BGC Taguig City / 31st floor One World Place32nd St., Bonifacio Global City, Taguig', 0),
-(41, 'Gruppo Potenza Corp.', 'Nationwide', 'Nationwide', 'NCR', '123 J. M. Basa St. Calumpang, Marikina City', 0),
-(42, 'URIC', 'NCR', 'NCR', 'NCR', NULL, 1),
-(43, 'Unilever Food Solutions', 'NCR', 'NCR', 'NCR', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
-(44, 'Pepsi Co.', 'NCR', 'NCR', 'NCR', '24th floor Zuellig Building, Makati Avenue cor Paseo De Roxas Philippines, 1226', 0),
-(45, 'AB Heineken Philippines Inc.', 'NCR', 'NCR', 'NCR', '10th floor PNB Building 3754 Ayala Avenue, Makati City', 0),
-(46, 'Falcon Resources Inc.', 'NCR', 'NCR', 'NCR', 'Unit 2601 West Tower PSEC Exchange Road Ortigas Center Pasig City Metro Manila', 0),
-(47, 'Unilever International', 'International', 'Worldwide', 'Manila', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
-(48, 'La Filipina', 'NCR', 'NCR', 'NCR', '29 Floor High Street South Corporate Plaza, Tower 1, 26 Street Corner 9 TH Ave. BGC Taguig.', 0),
-(49, 'Shell', 'Nationwide', 'Nationwide', 'NCR', '41st floor The Finance Center BGC, Taguig', 0),
-(50, 'Cebuana Lhullier', 'Nationwide', 'Nationwide', 'NCR', 'Unit 1201 12th floor Pacific Star Bldg., Gil Puyat Makati Avenue', 0),
-(51, 'POSC', 'NCR', 'NCR', 'NCR', 'Tektite Tower, Ortigas', 0),
-(52, 'Mars Wrigley Confectionery', 'Nationwide', 'Nationwide', 'NCR', '24th floor SM Aura Office Towers BGC, Taguig', 0),
-(53, 'Philippine Leading Infinite Logistics Inc.', 'NCR', 'NCR', 'NCR', '29th Floor High Street South Corporate Plaza, Tower 1, 26th St. Corner 9th Ave. BGC, Taguig', 0),
-(54, 'Fonterra/PLILI', 'NCR', 'NCR', 'NCR', '24 F Ore Central Bldg. 9th Avenue Cor 32nd St., BGC Taguig City / 29th Floor High Street South Corporate Plaza, Tower 1, 26th St. Corner 9th Avenue BGC Taguig.', 0),
-(55, 'PLILI/Sanofi/Fonterra', 'NCR', 'NCR', 'NCR', '29th Floor High Street South Corporate Plaza, Tower 1, 26th St. Corner 9th Avenue BGC Taguig / 31st Floor One World Place 32nd St., Bonifacio Global City, Taguig / 24 F Ore Central Bldg. 9th Avenue Cor 32nd St., BGC Taguig City', 0),
-(56, 'Scan Asia', 'NCR', 'NCR', 'NCR', '9th Floor, Tower 1, Double Dragon Plaza, DD Meridian Park Corner Macapagal Avenue And EDSA Extension, Bay Area, Pasay City', 0),
-(57, 'PLILI/Sanofi', 'Nationwide', 'Nationwide', 'Nationwide', '29th Floor High Street South Corporate Plaza, Tower 1, 26th St. Corner 9th Ave. BGC, Taguig / 31st Floor One World Place 32nd St., Bonifacio Global City, Taguig', 0),
-(58, 'All Inclusives Sales', 'Nationwide', 'Nationwide', 'NCR', 'Lot 3 Good Harvest Compound, Pasig City', 0),
-(59, 'Gruppo Innovare Corporation', 'Ncr', 'Ncr', 'Ncr', '123 J. M. Basa St. Calumpang, Marikina City', 0),
-(60, 'Jardine Distribution Inc.', 'NCR', 'NCR', 'NCR', 'G/F Jardine Building 2901 JM Compound Faraday Street Corner OsmeÃ±a Highway, Makati, Philippines', 0),
-(61, 'Infinus Corporation', 'NCR', 'NCR', 'NCR', '143 St., Dominic St., Bagbaguin, Valenzuela City', 0);
+INSERT INTO `client_company` (`id`, `division`, `company_name`, `area`, `region`, `branch`, `address`, `is_deleted`) VALUES
+(1, 'BD1', 'Unilever Philippines Inc.', 'Metro Manila', 'National Capital Region', 'All SM Branch', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
+(2, 'BD1', 'Unilever RFM Selecta Ice Cream Inc.', 'Nationwide', 'Nationwide', 'NCR', 'Manggahan Light Industrial Park, Pasig City', 0),
+(3, 'BD2', 'Concentrix CVG Philippines Inc.', 'NCR', 'NCR', 'NCR', '4th floor Glorietta 5 Bldg. East St., Btgy. San Lorenzo corner Ayala Avenue, Makati City', 0),
+(4, 'BD2', 'GlaxoSmithkline', 'NCR', 'NCR', 'NCR', '2266 Chino Roces Avenue, Makati City / 31st floor One World Place 32nd St., Bonifacio Global City', 0),
+(5, 'BD2', 'Huawei', 'Nationwide', 'Nationwide', 'Nationwide', '53rd Floor PBCom Tower, Ayala Avenue Corner VA Rufino St. Makati City, Philippines', 0),
+(6, 'BD2', 'Pernod Ricard', 'NCR', 'NCR', 'NCR', 'Units 509-P And 510-P Five E-com Center Bldg. Pacific Drive Extension, Block 18, Mall Of Asia Complex, Pasay City', 0),
+(7, 'BD2', 'Philusa Corporation', 'Nationwide', 'Nationwide', 'NCR', '16 Corner Shaw Boulevard, Pasig, 1603 Metro Manila', 0),
+(8, 'BD2', 'Shell', 'Nationwide', 'Nationwide', 'NCR', '41st floor The Finance Center BGC, Taguig', 0),
+(9, 'BD2', 'Unilever Food Solutions', 'NCR', 'NCR', 'NCR', '7th Floor Bonifacio Stopover Corporate Center 31st Street Corner 2nd Avenue, Bonifacio Global City Fort Bonifacio, Taguig City', 0),
+(10, 'BD3', 'Circular Paradigm Fashion Inc', 'Nationwide', 'Nationwide', 'Nationwide', '168 Bldg. 6 San Vicente Road Brgy. San Vicente, San Pedro City, Laguna', 0),
+(11, 'BD3', 'Gruppo Innovare Corporation', 'Ncr', 'Ncr', 'Ncr', '123 J. M. Basa St. Calumpang, Marikina City', 0),
+(12, 'BD3', 'Gruppo Potenza Corp.', 'Nationwide', 'Nationwide', 'NCR', '123 J. M. Basa St. Calumpang, Marikina City', 0),
+(13, 'BD3', 'JT INTERNATIONAL INC. (Phils.)', 'NCR', 'National Capital Region', 'NCR', 'PentHouse W Office Bldg., 28th St. Cor. 11th Ave., Bonifacio Global City, Taguig City', 0),
+(14, 'HR', 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0),
+(15, 'FINANCE', 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0),
+(16, 'STRAT', 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0),
+(17, 'BSG', 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0),
+(18, 'PPI', 'PCN Promopro Inc.', 'N/A', 'N/A', 'N/A', '27 Cresta St. Brgy. Malamig, Mandaluyong City', 0);
 
 -- --------------------------------------------------------
 
@@ -1978,7 +1944,7 @@ INSERT INTO `client_company` (`id`, `company_name`, `area`, `region`, `branch`, 
 -- Table structure for table `data`
 --
 
-CREATE TABLE IF NOT EXISTS `data` (
+CREATE TABLE `data` (
   `id` int(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
@@ -1991,7 +1957,7 @@ CREATE TABLE IF NOT EXISTS `data` (
   `typenya` varchar(255) NOT NULL,
   `approve` varchar(255) NOT NULL,
   `idnum` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data`
@@ -2000,14 +1966,16 @@ CREATE TABLE IF NOT EXISTS `data` (
 INSERT INTO `data` (`id`, `lastname`, `firstname`, `mi`, `contactno`, `emailadd`, `fms`, `uname`, `pname`, `typenya`, `approve`, `idnum`) VALUES
 (9, 'VILL', 'DEO', 'DE', '090', 'email', 'BSG', 'recruitment', 'r', 'RECRUITMENT', '1', '40'),
 (12, 'CASHIER', 'CASHIER', 'CASHIER', '09478093814', 'email', 'FINANCE', 'deployment', 'd', 'DEPLOYMENT', '1', '9999'),
-(13, 'VILL', 'DEO', 'DE', '090', 'email', 'BSG', 'ewb', 'e', 'EWB', '1', '40'),
+(13, 'FUENTES', 'PATTY', 'DE', '090', 'email', 'BSG', 'ewb', 'e', 'EWB', '1', '40'),
 (14, 'VILL', 'DEO', 'DE', '090', 'email', 'PPI', 'rodeovill', 'ppi', 'DISER', '1', '40'),
 (15, 'VILL', 'DEO', 'DE', '090', 'email', 'BD1-BU3_BEST_CENTER', 'rodeovill', 'bd1', 'DISER', '1', '40'),
 (16, 'VILL', 'DEO', 'DE', '090', 'email', 'FINANCE', 'rodeovill', 'fin', 'DISER', '1', '40'),
 (17, 'VILL', 'DEO', 'DE', '090', 'email', 'HR', 'rodeovill', 'hr', 'DISER', '1', '40'),
 (18, 'VILL', 'DEO', 'DE', '090', 'email', 'BD2_BU1', 'rodeovill', 'bd2', 'DISER', '1', '40'),
 (19, 'VILL', 'DEO', 'DE', '090', 'email', 'BD3', 'rodeovill', 'bd3', 'DISER', '1', '40'),
-(20, 'VILL', 'DEO', 'DE', '090', 'email', 'BSG', 'proc', 'proc', 'PROC', '1', '40');
+(20, 'VILL', 'DEO', 'DE', '090', 'email', 'BSG', 'proc', 'proc', 'PROC', '1', '40'),
+(21, 'Gomera', 'James Philip', 'A', '09101465183', 'jphigomera0619@gmail.com', 'fms', 'mrf', 'm', 'MRF', '1', '41'),
+(22, 'admin', 'admin', 'admin', '09123456789', 'admin@gmail.com', 'ADMIN', 'admin', 'admin', 'ADMIN', '1', '41');
 
 -- --------------------------------------------------------
 
@@ -2015,11 +1983,11 @@ INSERT INTO `data` (`id`, `lastname`, `firstname`, `mi`, `contactno`, `emailadd`
 -- Table structure for table `department`
 --
 
-CREATE TABLE IF NOT EXISTS `department` (
+CREATE TABLE `department` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `division` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `department`
@@ -2034,7 +2002,7 @@ INSERT INTO `department` (`id`, `description`, `division`) VALUES
 (12, 'BU2', 'BD2'),
 (13, 'BU3', 'BD2'),
 (14, 'BD3', 'BD3'),
-(15, 'MIS', 'BSG'),
+(15, 'MIS', 'STRAT'),
 (16, 'WAREHOUSE', 'BSG'),
 (17, 'PROCUREMENT', 'BSG'),
 (18, 'FOG', 'BSG'),
@@ -2048,53 +2016,69 @@ INSERT INTO `department` (`id`, `description`, `division`) VALUES
 -- Table structure for table `deployment`
 --
 
-CREATE TABLE IF NOT EXISTS `deployment` (
-  `id` int(255) NOT NULL,
-  `client_d` varchar(255) NOT NULL,
-  `clientadd_d` varchar(255) NOT NULL,
-  `project_d` varchar(255) NOT NULL,
-  `shortlist_d` varchar(255) NOT NULL,
-  `appno_d` varchar(255) NOT NULL,
-  `empno_d` varchar(255) NOT NULL,
-  `status_d` varchar(255) NOT NULL,
-  `emp_startdate_d` varchar(255) NOT NULL,
-  `emp_end_date` varchar(255) NOT NULL,
-  `division_d` varchar(255) NOT NULL,
-  `department_d` varchar(255) NOT NULL,
-  `category_d` varchar(255) NOT NULL,
-  `locator_d` varchar(255) NOT NULL,
-  `channel_d` varchar(255) NOT NULL,
-  `employment_status_d` varchar(255) NOT NULL,
-  `job_title_d` varchar(255) NOT NULL,
-  `loa_template_d` varchar(255) NOT NULL,
-  `basic_salary_d` varchar(255) NOT NULL,
-  `ecola_d` varchar(255) NOT NULL,
-  `internet_allowance_d` varchar(255) NOT NULL,
-  `meal_allowance_d` varchar(255) NOT NULL,
-  `outbase_meal_d` varchar(255) NOT NULL,
-  `comm_allowance` varchar(255) NOT NULL,
-  `transpo_allowance` varchar(255) NOT NULL,
+CREATE TABLE `deployment` (
+  `id` int(11) NOT NULL,
+  `shortlist_title` varchar(255) NOT NULL,
+  `appno` int(11) NOT NULL,
+  `date_shortlisted` varchar(255) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `sss` int(11) NOT NULL,
+  `philhealth` int(11) NOT NULL,
+  `pagibig` int(11) NOT NULL,
+  `tin` int(11) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `contact_number` int(15) NOT NULL,
+  `loa_status` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `loa_start_date` varchar(255) NOT NULL,
+  `loa_end_date` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `locator` varchar(255) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
+  `place_assigned` varchar(255) NOT NULL,
+  `address_assigned` varchar(255) NOT NULL,
+  `channel` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `employment_status` varchar(255) NOT NULL,
+  `job_title` varchar(255) NOT NULL,
+  `loa_template` varchar(255) NOT NULL,
+  `201_remarks` varchar(255) NOT NULL DEFAULT 'NOT RETURN',
+  `basic_salary` varchar(255) NOT NULL,
+  `ecola` varchar(255) NOT NULL,
+  `communication_allowance` varchar(255) NOT NULL,
+  `transportation_allowance` varchar(255) NOT NULL,
+  `internet_allowance` varchar(255) NOT NULL,
+  `meal_allowance` varchar(255) NOT NULL,
+  `outbase_meal` varchar(255) NOT NULL,
+  `special_allowance` varchar(255) NOT NULL,
+  `position_allowance` varchar(255) NOT NULL,
   `deployment_remarks` varchar(255) NOT NULL,
-  `no_of_days_work_d` varchar(255) NOT NULL,
-  `outlet_d` varchar(255) NOT NULL,
-  `hr_manager_d` varchar(255) NOT NULL,
-  `hr_designation` varchar(255) NOT NULL,
-  `supervisor_d` varchar(255) NOT NULL,
-  `deploying_personnel_d` varchar(255) NOT NULL,
-  `deploying_designation_d` varchar(255) NOT NULL,
-  `project_supervisor_d` varchar(255) NOT NULL,
-  `ps_designation_d` varchar(255) NOT NULL,
-  `head_d` varchar(255) NOT NULL,
-  `head_designation_d` varchar(255) NOT NULL,
-  `idnum` varchar(255) NOT NULL,
-  `mandatory_status` varchar(255) NOT NULL,
-  `date_created` varchar(255) NOT NULL,
-  `disqualified_date_d` varchar(255) NOT NULL,
-  `disqualified_remarks_d` varchar(255) NOT NULL,
-  `is_deleted` varchar(255) NOT NULL,
-  `loa_number` varchar(255) NOT NULL,
-  `active` varchar(255) NOT NULL
+  `no_of_days` varchar(255) NOT NULL,
+  `outlet` varchar(255) NOT NULL,
+  `supervisor` varchar(255) NOT NULL,
+  `field_supervisor` varchar(255) NOT NULL,
+  `field_designation` varchar(255) NOT NULL,
+  `deployment_personnel` varchar(255) NOT NULL,
+  `deployment_designation` varchar(255) NOT NULL,
+  `project_supervisor` varchar(255) NOT NULL,
+  `projectSupervisor_deployment` varchar(255) NOT NULL,
+  `head` varchar(255) NOT NULL,
+  `head_designation` varchar(255) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `id_remarks` varchar(255) NOT NULL,
+  `clearance` varchar(255) NOT NULL,
+  `signed_loa` varchar(255) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_return` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `deployment`
+--
+
+INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_return`) VALUES
+(7, 'Merchandiser', 610, '10/25/2023', 3, 123123, 123123, 123123, 123123, 'DASDASDASDA', 2147483647, 'DEPLOYED', 'NEW', '10-31-2023', '01-31-2024', 'BD3', 'MERCHANDISING', '2023_BD3_610', 'GRUPPO INNOVARE CORPORATION', 'MRF PROJECT', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'Department Store', 'Core', 'PROJECT BASED', 'PROMO GIRL', '4', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'OUYTLET', 'Deo Villavicencio', 'NA', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, '', '', '', '2023-10-27 03:42:01', '');
 
 -- --------------------------------------------------------
 
@@ -2102,60 +2086,72 @@ CREATE TABLE IF NOT EXISTS `deployment` (
 -- Table structure for table `deployment_history`
 --
 
-CREATE TABLE IF NOT EXISTS `deployment_history` (
-  `id` int(255) NOT NULL,
-  `client_d` varchar(255) NOT NULL,
-  `clientadd_d` varchar(255) NOT NULL,
-  `project_d` varchar(255) NOT NULL,
-  `shortlist_d` varchar(255) NOT NULL,
-  `appno_d` varchar(255) NOT NULL,
-  `empno_d` varchar(255) NOT NULL,
-  `status_d` varchar(255) NOT NULL,
-  `emp_startdate_d` varchar(255) NOT NULL,
-  `emp_end_date` varchar(255) NOT NULL,
-  `division_d` varchar(255) NOT NULL,
-  `department_d` varchar(255) NOT NULL,
-  `category_d` varchar(255) NOT NULL,
-  `locator_d` varchar(255) NOT NULL,
-  `channel_d` varchar(255) NOT NULL,
-  `employment_status_d` varchar(255) NOT NULL,
-  `job_title_d` varchar(255) NOT NULL,
-  `loa_template_d` varchar(255) NOT NULL,
-  `basic_salary_d` varchar(255) NOT NULL,
-  `ecola_d` varchar(255) NOT NULL,
-  `internet_allowance_d` varchar(255) NOT NULL,
-  `meal_allowance_d` varchar(255) NOT NULL,
-  `outbase_meal_d` varchar(255) NOT NULL,
-  `comm_allowance` varchar(255) NOT NULL,
-  `transpo_allowance` varchar(255) NOT NULL,
-  `deployment_remarks` varchar(255) NOT NULL,
-  `no_of_days_work_d` varchar(255) NOT NULL,
-  `outlet_d` varchar(255) NOT NULL,
-  `hr_manager_d` varchar(255) NOT NULL,
-  `hr_designation` varchar(255) NOT NULL,
-  `supervisor_d` varchar(255) NOT NULL,
-  `deploying_personnel_d` varchar(255) NOT NULL,
-  `deploying_designation_d` varchar(255) NOT NULL,
-  `project_supervisor_d` varchar(255) NOT NULL,
-  `ps_designation_d` varchar(255) NOT NULL,
-  `head_d` varchar(255) NOT NULL,
-  `head_designation_d` varchar(255) NOT NULL,
-  `idnum` varchar(255) NOT NULL,
-  `mandatory_status` varchar(255) NOT NULL,
-  `date_created` varchar(255) NOT NULL,
-  `disqualified_date_d` varchar(255) NOT NULL,
-  `disqualified_remarks_d` varchar(255) NOT NULL,
-  `is_deleted` varchar(255) NOT NULL,
-  `loa_number` varchar(255) NOT NULL,
-  `active` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=259 DEFAULT CHARSET=latin1;
+CREATE TABLE `deployment_history` (
+  `id` int(11) NOT NULL,
+  `shortlist_title` varchar(255) DEFAULT NULL,
+  `appno` int(11) DEFAULT NULL,
+  `date_shortlisted` varchar(255) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `sss` varchar(255) DEFAULT NULL,
+  `philhealth` varchar(255) DEFAULT NULL,
+  `pagibig` varchar(255) DEFAULT NULL,
+  `tin` varchar(255) DEFAULT NULL,
+  `address` text,
+  `contact_number` int(15) DEFAULT NULL,
+  `loa_status` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `loa_start_date` varchar(255) DEFAULT NULL,
+  `loa_end_date` varchar(255) DEFAULT NULL,
+  `division` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `locator` varchar(255) DEFAULT NULL,
+  `client_name` varchar(255) DEFAULT NULL,
+  `place_assigned` varchar(255) DEFAULT NULL,
+  `address_assigned` text,
+  `channel` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `employment_status` varchar(255) DEFAULT NULL,
+  `job_title` varchar(255) DEFAULT NULL,
+  `loa_template` varchar(255) DEFAULT NULL,
+  `201_remarks` text,
+  `basic_salary` decimal(10,2) DEFAULT NULL,
+  `ecola` decimal(10,2) DEFAULT NULL,
+  `communication_allowance` decimal(10,2) DEFAULT '0.00',
+  `transportation_allowance` decimal(10,2) DEFAULT '0.00',
+  `internet_allowance` decimal(10,2) DEFAULT '0.00',
+  `meal_allowance` decimal(10,2) DEFAULT '0.00',
+  `outbase_meal` decimal(10,2) DEFAULT '0.00',
+  `special_allowance` decimal(10,2) DEFAULT '0.00',
+  `position_allowance` decimal(10,2) DEFAULT '0.00',
+  `deployment_remarks` text,
+  `no_of_days` int(11) DEFAULT NULL,
+  `outlet` varchar(255) DEFAULT NULL,
+  `supervisor` varchar(255) DEFAULT NULL,
+  `field_supervisor` varchar(255) DEFAULT NULL,
+  `field_designation` varchar(255) DEFAULT NULL,
+  `deployment_personnel` varchar(255) DEFAULT NULL,
+  `deployment_designation` varchar(255) DEFAULT NULL,
+  `project_supervisor` varchar(255) DEFAULT NULL,
+  `projectSupervisor_deployment` varchar(255) DEFAULT NULL,
+  `head` varchar(255) DEFAULT NULL,
+  `head_designation` varchar(255) DEFAULT NULL,
+  `emp_id` int(11) DEFAULT NULL,
+  `id_remarks` text,
+  `clearance` varchar(255) DEFAULT NULL,
+  `signed_loa` varchar(255) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_return` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deployment_history`
 --
 
-INSERT INTO `deployment_history` (`id`, `client_d`, `clientadd_d`, `project_d`, `shortlist_d`, `appno_d`, `empno_d`, `status_d`, `emp_startdate_d`, `emp_end_date`, `division_d`, `department_d`, `category_d`, `locator_d`, `channel_d`, `employment_status_d`, `job_title_d`, `loa_template_d`, `basic_salary_d`, `ecola_d`, `internet_allowance_d`, `meal_allowance_d`, `outbase_meal_d`, `comm_allowance`, `transpo_allowance`, `deployment_remarks`, `no_of_days_work_d`, `outlet_d`, `hr_manager_d`, `hr_designation`, `supervisor_d`, `deploying_personnel_d`, `deploying_designation_d`, `project_supervisor_d`, `ps_designation_d`, `head_d`, `head_designation_d`, `idnum`, `mandatory_status`, `date_created`, `disqualified_date_d`, `disqualified_remarks_d`, `is_deleted`, `loa_number`, `active`) VALUES
-(258, 'Infinus Corporation', '143 St., Dominic St., Bagbaguin, Valenzuela City', 'Infinus Corp.', 'deo', '341', 'R341', 'Deployed', '2023-08-09', '2023-08-31', 'BD1', 'Core', 'ACTIVATION', '341', 'Appliance Center', 'Regular', '  Data Encoder', '41.docx', '1000', '50', '0', '0', '0', '0', '0', '0', '26', 'sm molino', 'aiza', 'manager', 'field supervisor', 'aiza', 'maganer', 'p sup', 'project supercisor', 'head', 'desig', '100', '', '08/09/2023 10:01:02 AM', '', '', '1', '15', 'INACTIVE');
+INSERT INTO `deployment_history` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_return`) VALUES
+(4, 'Merchandiser', 610, '10/25/2023', 3, '123123', '123123', '123123', '123123', 'DASDASDASDA', 2147483647, 'DEPLOYED', 'NEW', '10-31-2023', '01-31-2024', 'BD3', 'MERCHANDISING', '2023_BD3_610', 'GRUPPO INNOVARE CORPORATION', 'MRF PROJECT', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'Department Store', 'Core', 'PROJECT BASED', 'PROMO GIRL', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'OUYTLET', 'Deo Villavicencio', 'NA', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, NULL, NULL, NULL, '2023-10-27 03:42:01', NULL),
+(5, 'Merchandiser', 610, '10/25/2023', 3, '123123', '123123', '123123', '123123', 'DASDASDASDA', 2147483647, 'DEPLOYED', 'NEW', '10-31-2023', '01-31-2024', 'BD3', 'MERCHANDISING', '2023_BD3_610', 'GRUPPO INNOVARE CORPORATION', 'MRF PROJECT', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'Department Store', 'Core', 'PROJECT BASED', 'PROMO GIRL', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0', 6, 'OUYTLET', 'Deo Villavicencio', 'NA', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, NULL, NULL, NULL, '2023-10-27 03:44:39', NULL),
+(6, 'Merchandiser', 610, '10/25/2023', 3, '123123', '123123', '123123', '123123', 'DASDASDASDA', 2147483647, 'DEPLOYED', 'NEW', '10-31-2023', '01-31-2024', 'BD3', 'MERCHANDISING', '2023_BD3_610', 'GRUPPO INNOVARE CORPORATION', 'MRF PROJECT', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'Department Store', 'Core', 'PROJECT BASED', 'PROMO GIRL', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'OUYTLET', 'Deo Villavicencio', 'NA', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, NULL, NULL, NULL, '2023-10-27 03:45:58', NULL),
+(7, 'Merchandiser', 610, '10/25/2023', 3, '123123', '123123', '123123', '123123', 'DASDASDASDA', 2147483647, 'DEPLOYED', 'NEW', '10-31-2023', '01-31-2024', 'BD3', 'MERCHANDISING', '2023_BD3_610', 'GRUPPO INNOVARE CORPORATION', 'MRF PROJECT', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'Department Store', 'Core', 'PROJECT BASED', 'PROMO GIRL', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'OUYTLET', 'Deo Villavicencio', 'NA', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, NULL, NULL, NULL, '2023-10-27 03:48:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -2163,7 +2159,7 @@ INSERT INTO `deployment_history` (`id`, `client_d`, `clientadd_d`, `project_d`, 
 -- Table structure for table `deploy_status`
 --
 
-CREATE TABLE IF NOT EXISTS `deploy_status` (
+CREATE TABLE `deploy_status` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
@@ -2183,11 +2179,11 @@ INSERT INTO `deploy_status` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `distinguishing_qualification_marks`
 --
 
-CREATE TABLE IF NOT EXISTS `distinguishing_qualification_marks` (
+CREATE TABLE `distinguishing_qualification_marks` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `distinguishing_qualification_marks`
@@ -2221,22 +2217,22 @@ INSERT INTO `distinguishing_qualification_marks` (`id`, `description`, `is_delet
 -- Table structure for table `divisions`
 --
 
-CREATE TABLE IF NOT EXISTS `divisions` (
+CREATE TABLE `divisions` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `divisions`
 --
 
 INSERT INTO `divisions` (`id`, `description`, `is_deleted`) VALUES
-(1, 'BD1', 1),
-(2, 'BD2', 1),
-(3, 'BD3', 1),
+(1, 'BD1', 0),
+(2, 'BD2', 0),
+(3, 'BD3', 0),
 (4, 'BSG', 0),
-(5, 'HRD', 0),
+(5, 'HR', 0),
 (6, 'FINANCE', 0),
 (7, 'PPI', 0),
 (8, 'STRAT', 0);
@@ -2247,11 +2243,11 @@ INSERT INTO `divisions` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `empcounter`
 --
 
-CREATE TABLE IF NOT EXISTS `empcounter` (
+CREATE TABLE `empcounter` (
   `id` int(11) NOT NULL,
   `appno` varchar(255) NOT NULL,
   `counter` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `empcounter`
@@ -2266,7 +2262,7 @@ INSERT INTO `empcounter` (`id`, `appno`, `counter`) VALUES
 -- Table structure for table `employees`
 --
 
-CREATE TABLE IF NOT EXISTS `employees` (
+CREATE TABLE `employees` (
   `id` int(11) NOT NULL,
   `tracking` varchar(255) NOT NULL,
   `photopath` varchar(255) NOT NULL,
@@ -2277,6 +2273,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `firstnameko` varchar(255) NOT NULL,
   `mnko` varchar(255) NOT NULL,
   `extnname` varchar(255) NOT NULL,
+  `maiden_name` varchar(255) NOT NULL,
   `paddress` varchar(255) NOT NULL,
   `cityn` varchar(255) NOT NULL,
   `regionn` varchar(255) NOT NULL,
@@ -2300,11 +2297,15 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `nbid` varchar(255) NOT NULL,
   `psa` varchar(255) NOT NULL,
   `remarks` varchar(255) NOT NULL,
-  `actionpoint` varchar(255) NOT NULL,
+  `actionpoint` varchar(255) NOT NULL DEFAULT 'ACTIVE',
   `reasonofaction` varchar(255) NOT NULL,
   `dateofaction` varchar(255) NOT NULL,
   `ewbdeploy` varchar(255) NOT NULL,
   `ewbdate` varchar(255) NOT NULL,
+  `ewb_status` varchar(255) NOT NULL,
+  `ewb_reason` varchar(3000) NOT NULL,
+  `recruitment_reason` varchar(3000) NOT NULL,
+  `ewb_date_declined` varchar(255) NOT NULL,
   `e_person` varchar(255) NOT NULL,
   `e_address` varchar(255) NOT NULL,
   `e_number` varchar(255) NOT NULL,
@@ -2318,35 +2319,21 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `res_reason` varchar(255) NOT NULL,
   `retrench_date` varchar(255) NOT NULL,
   `retrench_reason` varchar(255) NOT NULL,
-  `retrench_personel` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `retrench_personel` varchar(255) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `ewb_verified_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `source`, `lastnameko`, `firstnameko`, `mnko`, `extnname`, `paddress`, `cityn`, `regionn`, `peraddress`, `birthday`, `age`, `gendern`, `civiln`, `cpnum`, `landline`, `emailadd`, `despo`, `classn`, `idenn`, `sssnum`, `pagibignum`, `phnum`, `tinnum`, `policed`, `brgyd`, `nbid`, `psa`, `remarks`, `actionpoint`, `reasonofaction`, `dateofaction`, `ewbdeploy`, `ewbdate`, `e_person`, `e_address`, `e_number`, `ter_date`, `ter_person`, `res_date`, `res_person`, `end_con`, `ter_reason`, `unter_reason`, `res_reason`, `retrench_date`, `retrench_reason`, `retrench_personel`) VALUES
-(1, '158', 'upload/5f3656e4c8675.png', '08/14/2020 05:22:27 PM', '158', 'Walk-in', '158', 'A', 'DE GUZMAN', 'NA', '723 BUMATAY ST. BRGY. PLAINVIEW', '14', 'CORDILLERA ADMINISTRATIVE REGION (CAR)', 'TAAL, BATANGAS', '1979-05-11', '41', 'MALE', '14', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'IT', 'Class 1', 'Tall', 'entry point remarks', 'pagibig', 'phealth', 'tin', '2020-08-14', '2020-08-14', '2020-08-14', 'With', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(2, '165', 'upload/5f365b523adac.png', '08/14/2020 05:51:31 PM', '165', 'Facebook', '165', 'B', 'DE GUZMAN', 'NA', '723 BUMATAY ST. BRGY. PLAINVIEW', 'BINONDO', '13', 'TAAL, BATANGAS', '1979-05-11', '41', 'MALE', 'Married with three dependents', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'IT', 'Class 1', 'Chubby', 'sss', 'pagibig', 'phealth', 'tin', '2020-09-08', '2020-09-08', '2020-09-08', 'With', 'reamarks', 'EWB', '', '09/11/2020 11:30:48 AM', 'FOR DEPLOYMENT', '08/18/2023', '', 'taal bats.', '', '', '', '', '', '', '', '', '', '', '', ''),
-(3, '166', 'upload/5f366722566c9.png', '08/14/2020 06:27:47 PM', '166', 'Transferred from other agency', '166', 'C', 'DE GUZMAN', 'NA', '723 BUMATAY ST. BRGY. PLAINVIEW', 'MANDALUYONG', 'NATIONAL CAPITAL REGION (NCR)', 'TAAL, BATANGAS', '1979-05-11', '41', 'MALE', 'Married with three dependents', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'MT', 'Class 1', 'With Regional Accent', 'sss', 'pagibig', 'phealth', 'tin', '2020-08-14', '2020-08-14', '2020-08-14', 'With', 'remarks', 'RESIGNED', '', '10/07/2020 07:44:47 AM', 'FOR DEPLOYMENT', '09/14/2020', '', '', '', '', 'HR PERSONNEL', '2020-10-06', 'HR PERSONNEL', '2020-10-09', '', '', 'gresign na', '', '', ''),
-(4, '189', 'upload/5f3755709e1a6.png', '08/15/2020 12:03:40 PM', '189', 'Jobstreet', '189', 'D', 'DE GUZMAN', 'NA', '723 BUMATAY ST. BRGY. PLAINVIEW', 'MANDALUYONG', 'NATIONAL CAPITAL REGION (NCR)', 'TAAL, BATANGAS', '2020-08-15', '0', 'MALE', 'Married with two dependents', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'Server Admin', 'Class 1', 'Abnormal tooth growth/sungki', '2222', 'pagibig', 'phealth', 'tin', '2020-08-06', '2020-08-06', '2020-08-06', 'Without', 'reamarks', 'EWB', '', '09/21/2020 09:47:11 AM', 'FOR DEPLOYMENT', '08/18/2023', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(5, '190', 'upload/5f3755709e1a6.png', '08/15/2020 01:15:24 PM', '190', 'Walk-in', '190', 'E', 'middle first', '', '', 'PACO', 'NATIONAL CAPITAL REGION (NCR)', '', '1979-05-11', '41', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', 'EWB', '', '09/10/2020 10:06:22 AM', 'FOR DEPLOYMENT', '09/14/2020', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(6, '192', 'upload/5f37716fcb2c6.png', '08/15/2020 01:25:39 PM', '192', 'Facebook', '192', 'F', 'DE GUZMAN', '', '', 'LIPA CITY', 'REGION IV-A (CALABARZON)', '', '1979-05-11', '41', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(7, '194', 'upload/5f37716fcb2c6.png', '08/15/2020 01:36:52 PM', '194', 'Select Source', '194', 'G', 'DE GUZMAN', '', '', 'Select City', '', '', '', '0', 'FEMALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', 'EWB', '', '10/06/2020 08:22:44 AM', 'FOR DEPLOYMENT', '09/14/2020', '', '', '', '', '', '', '', '2020-10-06', '', '', '', '', '', ''),
-(8, '196', 'upload/5f37716fcb2c6.png', '08/15/2020 01:40:06 PM', '196', 'Select Source', '196', 'H', 'DE GU', '', '723 BUMATAY ST. BRGY. PLAINVIEW', 'MANDALUYONG', 'NATIONAL CAPITAL REGION (NCR)', '', '1979-09-14', '41', 'MALE', 'Single with one dependent', '09478093814', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', 'sss', 'pagibig', 'phealth', 'tin', '2020-09-30', '2020-09-30', '2020-09-30', 'With', 'remarks', 'EWB', '', '09/11/2020 05:57:45 PM', 'FOR DEPLOYMENT', '09/11/2020', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(9, '197', 'upload/5f37716fcb2c6.png', '08/15/2020 01:40:20 PM', '197', 'Select Source', '197', 'ROD', 'DE', '', '', 'Select City', '', '', '', '0', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', 'EWB', '', '09/15/2020 07:40:34 AM', 'FOR DEPLOYMENT', '09/14/2020', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(10, '198', 'upload/5f37716fcb2c6.png', '08/15/2020 01:41:48 PM', '198', 'Select Source', '198', 'I', 'DI', '', '723 BUMATAY ST. BRGY. PLAINVIEW', 'BINONDO', '13', 'TAAL, BATANGAS', '1985-09-16', '35', 'MALE', 'Single', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'Human Resource Officer', 'Class 1', 'N/A', '11111111111', 'pagibig', 'phealth', 'tin', '2020-09-30', '2020-09-30', '2020-09-30', 'With', 'lkjlkjlkjlkjkjkjkljlkjlk', 'EWB', '', '09/15/2020 09:21:57 AM', 'FOR DEPLOYMENT', '09/15/2020', 'jo vill', 'taal bats.', '09449999999', '', '', '', '', '', '', '', '', '', '', ''),
-(11, '199', 'upload/5f37716fcb2c6.png', '08/15/2020 01:45:05 PM', '199', 'Select Source', '199', 'J', 'DEG', '', '', 'Select City', '', '', '', '0', 'FEMALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', 'EWB', '', '09/10/2020 01:08:50 PM', 'FOR DEPLOYMENT', '08/28/2020', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(12, '200', 'upload/5f37716fcb2c6.png', '08/15/2020 01:45:25 PM', '200', 'Select Source', '200', 'K', 'DHJ', '', '', 'Select City', '', '', '', '0', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(13, '204', 'upload/5f37716fcb2c6.png', '08/15/2020 01:47:26 PM', '204', 'Select Source', '204', 'L', 'DE GUZMAN1', '', '', 'BAUAN', 'REGION IV-A (CALABARZON)', '', '1985-05-11', '35', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', 'matapang', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(14, '205', 'upload/5f37716fcb2c6.png', '08/15/2020 01:49:03 PM', '205', 'Select Source', '205', 'M', 'DERR', '', '', 'Select City', '', '', '', '0', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', '', 'matakaw', '08/30/2020 10:31:47 AM', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(15, '262', 'upload/5f4ed0dd0586c.png', '09/02/2020 06:53:18 AM', '262', 'Select Source', 'X', 'X', 'X', '', '', 'Select City', '', '', '', '0', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(16, '264', 'upload/5f4ed17d8858b.png', '09/02/2020 06:55:59 AM', '264', 'Select Source', 'R', 'R', 'R', '', '', 'Select City', '', '', '', '0', 'MALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '', '', '', 'Select One:', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(17, '277', 'upload/5f56e0212778e.png', '09/08/2020 09:36:34 AM', '277', 'Select Source', 'VILLLAST', '1STMI', 'MI', '', '', 'Select City', '', '', '', '0', 'FEMALE', 'Select Civil Status:', '', '', '', 'Select job title:', 'Select Classification:', 'Select Identification Marks:', '', '', '', '', '2020-09-08', '2020-09-08', '2020-09-08', 'With', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(18, '309', 'upload/5f60862d6ccb0.png', '09/15/2020 05:25:40 PM', '309', 'Walk-in', '309', 'SDF', 'DEG', 'II', '723 BUMATAY ST. BRGY. PLAINVIEW', 'CITY OF SAN JUAN', '13', 'TAAL, BATANGAS', '1978-05-11', '42', 'FEMALE', 'Single', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'Customer Service Officer', 'Model Class A', 'N/A', 'sss', 'pagibig', 'phealth', 'tin', '2020-09-30', '2020-09-30', '2020-09-30', 'With', 'reamarks', 'TERMINATED', '', '10/07/2020 08:01:08 AM', 'FOR DEPLOYMENT', '10/07/2020', 'jo vill', 'taal bats.', '09449999999', '2020-10-07', 'HR PERSONNEL', '', '', '2020-10-08', 'REASON OF TERMINATION', '', '', '', '', ''),
-(19, '310', 'upload/5f60862d6ccb0.png', '09/15/2020 05:39:21 PM', '310', 'Select Source', 'DLASNAME', 'RODEO', 'GS', 'NA', '723 BUMATAY ST. BRGY. PLAINVIEW', 'MANILA CITY', 'NATIONAL CAPITAL REGION (NCR)', 'TAAL, BATANGAS', '1978-09-08', '42', 'FEMALE', 'Married with four dependents', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'Customer Service Officer', 'Class 1', 'Moreno/Morena', 'sss', 'pagibig', 'phealth', 'tin', '2020-09-30', '2020-09-30', '2020-09-30', 'With', 'lkjlkjlkjlkjkjkjkljlkjlk', '', '', '', '', '', 'jo vill', 'taal bats.', '09449999999', '', '', '', '', '', '', '', '', '', '', ''),
-(20, '339', 'upload/5f615bf003c06.png', '09/16/2020 09:59:37 AM', '339', 'Walk-in', 'LAASTNAME', 'RODEO', 'DEG', '', '723 BUMATAY ST. BRGY. PLAINVIEW', 'CITY OF MANDALUYONG', '13', 'TAAL, BATANGAS', '1979-09-16', '41', 'MALE', 'Single', '09478093814', '0287181364', 'rodeovill@yahoo.com', 'Plant Manager', 'Class 1', 'N/A', 'sss', 'pagibig', 'phealth', 'tin', '2020-09-30', '2020-09-30', '2020-09-30', 'With', 'remarks', '', '', '', '', '', 'jo vill', 'taal bats.', '09449999999', '', '', '', '', '', '', '', '', '', '', ''),
-(21, '341', 'upload/64d492dfbed3c.png', '08/09/2023 09:10:13 AM', '341', 'Walk-in', 'VILLAVICENCIO', 'RODEO', 'DE GUZMAN', '', 'PRESENT ADD', 'N/A', '18', 'PRESENT ADD', '1979-05-11', '44', 'MALE', 'Married', '09478093814', 'na', 'rodeovill@yahoo.com', 'Managing Director', 'N/A', 'N/A', 'sss', 'paf', 'phil', 'tin', '2023-08-30', '2023-08-31', '2023-08-31', 'With', 'remarks4', 'TERMINATED', 'Infinus Corp.', '08/09/2023 10:01:59 AM', 'FOR DEPLOYMENT', '08/09/2023', 'rodeo de Guzman Villavicencio', 'present add', 'e contak', '2023-08-21', 'HR PERSONNEL', '', '', '2023-08-31', 'TERMINATION REASON', '', '', '', '', '');
+INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `source`, `lastnameko`, `firstnameko`, `mnko`, `extnname`, `maiden_name`, `paddress`, `cityn`, `regionn`, `peraddress`, `birthday`, `age`, `gendern`, `civiln`, `cpnum`, `landline`, `emailadd`, `despo`, `classn`, `idenn`, `sssnum`, `pagibignum`, `phnum`, `tinnum`, `policed`, `brgyd`, `nbid`, `psa`, `remarks`, `actionpoint`, `reasonofaction`, `dateofaction`, `ewbdeploy`, `ewbdate`, `ewb_status`, `ewb_reason`, `recruitment_reason`, `ewb_date_declined`, `e_person`, `e_address`, `e_number`, `ter_date`, `ter_person`, `res_date`, `res_person`, `end_con`, `ter_reason`, `unter_reason`, `res_reason`, `retrench_date`, `retrench_reason`, `retrench_personel`, `created_by`, `ewb_verified_by`) VALUES
+(1, '583', 'upload/652f945964b99.png', '10/18/2023 04:16:30 PM', '583', 'Walk-in', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'Select Region:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-27', '2023-10-27', '2023-10-27', 'WITH', 'REMARKS', 'FOR DEPLOYMENT', '', '', 'FOR DEPLOYMENT', '10/21/2023', 'VERIFIED', 'KULANG MGA REQUIREMENTS ESPECIALLY ANG MGA MANDATORIES', 'COMPLETED REQUIREMENTS', '10/21/2023', 'MAMA', 'BANSALANGIN ST. PAYATAS B', '09101465183', '', '', '', '', '', '', 'BIGLA KASING BUMAIT HEHEHEHEHEHEHHEHE G', '', '', '', '', '', ''),
+(2, '586', 'upload/652f957369a30.png', '10/18/2023 04:21:24 PM', '586', 'WALK-IN', 'GOMERA', 'JAMESPHILIP', 'AMANTE', '', '', 'BANSALANGIN ST. PAYATAS B', '', 'SELECT REGION:', 'BANSALANGIN ST. PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'IT', 'CLASS 1', 'TALL', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-21', '2023-10-21', 'WITH', 'REMARKS', 'EWB', '', '', 'FOR DEPLOYMENT', '10/23/2023', 'VERIFIED', 'INCOMPLETE REQUIREMENTS', '', '10/23/2023', 'MAMA', 'BANSALANGIN ST. PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(3, '610', 'upload/65309554ec44c.png', '10/19/2023 10:35:06 AM', '610', 'SELECT SOURCE', 'ADASDA', 'SDASDASD', 'ASDASDASD', 'ASDAS', '', 'DASDASDASDA', 'BINONDO', '13', 'ASDASDASDASD', '2023-10-28', '0', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'ASSISTANT SOFTWARE ENGINEER', 'CLASS 1', 'WITH FACIAL HAIR', '123123', '123123', '123123', '123123', '2023-10-21', '2023-10-13', '2023-10-20', 'WITH', 'REMARKS', 'EWB', '', '', '0', '10/25/2023', 'NOT VERIFY', 'INCOMPLETE REQUIREMENTS', '', '10/23/2023', 'MAMA', 'BANSALANGIN ST. PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(7, '674', 'upload/6533279251723.png', '10/21/2023 09:21:24 AM', '674', 'FACEBOOK', 'DOE', 'JOHN', 'SMITH', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JOHNDOE@GMAIL.COM', 'SOFTWARE ENGINEER', 'CLASS 1', 'WITH FACIAL HAIR', '12312313123', '12312312312', '12312312312', '12312312312', '2023-10-28', '2023-10-20', '2023-10-28', 'WITH', 'REMARKS', 'EWB', '', '', 'FOR DEPLOYMENT', '10/23/2023', 'VERIFIED', 'INCOMPLETE REQUIREMENTS', '', '10/23/2023', 'MARY SMITH DOE', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', ''),
+(8, '677', 'upload/6537742c7abbe.png', '10/24/2023 03:37:25 PM', '677', 'REFERRAL', 'TEST', 'TEST', 'TEST', 'TEST', '', 'TEST ADDRESS', 'CITY OF MARIKINA', '13', 'BANSALANGIN ST. PAYATAS B', '1999-07-09', '24', 'FEMALE', 'SINGLE', '09101465183', '', 'JPGOMERA0619@GMAIL.COM', 'QA ENGINEER', 'N/A', 'N/A', '123123', '123123', '123123', '123123', '2023-10-25', '2023-10-26', '2023-10-27', 'WITH', 'REMARKS', 'EWB', '', '', 'FOR DEPLOYMENT', '10/25/2023', 'VERIFIED', '', '', '', 'MAMA', 'BANSALANGIN ST. PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', 'FUENTES, PATTY');
 
 -- --------------------------------------------------------
 
@@ -2354,8 +2341,8 @@ INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `so
 -- Table structure for table `employment_status`
 --
 
-CREATE TABLE IF NOT EXISTS `employment_status` (
-  `id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `employment_status` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
@@ -2369,7 +2356,7 @@ CREATE TABLE IF NOT EXISTS `employment_status` (
 INSERT INTO `employment_status` (`id`, `name`, `description`, `is_deleted`, `is_status`) VALUES
 (1, 'Regular', 'R', 0, 0),
 (2, 'Probationary', 'P', 0, 0),
-(3, 'Project_Based', 'A', 0, 0);
+(3, 'Project Based', 'A', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2377,11 +2364,11 @@ INSERT INTO `employment_status` (`id`, `name`, `description`, `is_deleted`, `is_
 -- Table structure for table `ewb_choices`
 --
 
-CREATE TABLE IF NOT EXISTS `ewb_choices` (
+CREATE TABLE `ewb_choices` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ewb_choices`
@@ -2394,13 +2381,97 @@ INSERT INTO `ewb_choices` (`id`, `description`, `is_deleted`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ewb_declined_history`
+--
+
+CREATE TABLE `ewb_declined_history` (
+  `id` int(11) NOT NULL,
+  `tracking` varchar(255) NOT NULL,
+  `photopath` varchar(255) NOT NULL,
+  `dapplied` varchar(255) NOT NULL,
+  `appno` int(10) NOT NULL,
+  `source` varchar(255) NOT NULL,
+  `lastnameko` varchar(255) NOT NULL,
+  `firstnameko` varchar(255) NOT NULL,
+  `mnko` varchar(255) NOT NULL,
+  `extnname` varchar(255) NOT NULL,
+  `paddress` varchar(255) NOT NULL,
+  `cityn` varchar(255) NOT NULL,
+  `regionn` varchar(255) NOT NULL,
+  `peraddress` varchar(255) NOT NULL,
+  `birthday` date NOT NULL,
+  `age` int(5) NOT NULL,
+  `gendern` varchar(255) NOT NULL,
+  `civiln` varchar(255) NOT NULL,
+  `cpnum` int(20) NOT NULL,
+  `landline` int(20) NOT NULL,
+  `emailadd` varchar(255) NOT NULL,
+  `despo` varchar(255) NOT NULL,
+  `classn` varchar(255) NOT NULL,
+  `idenn` varchar(255) NOT NULL,
+  `sssnum` int(20) NOT NULL,
+  `pagibignum` int(20) NOT NULL,
+  `phnum` int(20) NOT NULL,
+  `tinnum` int(20) NOT NULL,
+  `policed` varchar(255) NOT NULL,
+  `brgyd` varchar(255) NOT NULL,
+  `nbid` varchar(255) NOT NULL,
+  `psa` int(20) NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `ewb_reason` varchar(3000) NOT NULL,
+  `ewb_declined_by` varchar(255) NOT NULL,
+  `ewb_date_declined` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ewb_declined_history`
+--
+
+INSERT INTO `ewb_declined_history` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `source`, `lastnameko`, `firstnameko`, `mnko`, `extnname`, `paddress`, `cityn`, `regionn`, `peraddress`, `birthday`, `age`, `gendern`, `civiln`, `cpnum`, `landline`, `emailadd`, `despo`, `classn`, `idenn`, `sssnum`, `pagibignum`, `phnum`, `tinnum`, `policed`, `brgyd`, `nbid`, `psa`, `remarks`, `ewb_reason`, `ewb_declined_by`, `ewb_date_declined`) VALUES
+(8, '610', 'upload/65309554ec44c.png', '10/19/2023 10:35:06 AM', 610, 'SELECT SOURCE', 'ADASDA', 'SDASDASD', 'ASDASDASD', 'ASDAS', 'DASDASDASDA', 'BINONDO', '13', 'ASDASDASDASD', '2023-10-28', 0, 'MALE', 'SINGLE', 2147483647, 0, 'JPGOMERA0619@GMAIL.COM', 'ASSISTANT SOFTWARE ENGINEER', 'CLASS 1', 'WITH FACIAL HAIR', 123123, 123123, 123123, 123123, '2023-10-21', '2023-10-13', '2023-10-20', 0, 'REMARKS', 'INCOMPLETE REQUIREMENTS', 'FUENTES, PATTY', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ewb_verification_history`
+--
+
+CREATE TABLE `ewb_verification_history` (
+  `id` int(11) NOT NULL,
+  `date_verified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(255) NOT NULL,
+  `app_num` int(11) NOT NULL,
+  `sss` int(11) NOT NULL,
+  `philhealth` int(11) NOT NULL,
+  `pagibig` int(11) NOT NULL,
+  `tin` int(11) NOT NULL,
+  `birthday` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `verified_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ewb_verification_history`
+--
+
+INSERT INTO `ewb_verification_history` (`id`, `date_verified`, `name`, `app_num`, `sss`, `philhealth`, `pagibig`, `tin`, `birthday`, `address`, `remarks`, `verified_by`) VALUES
+(1, '2023-10-21 07:28:02', 'GOMERA, JAMESPHILIP AMANTE', 586, 123123, 123123, 123123, 123123, '2001-06-19', 'BANSALANGIN ST. PAYATAS B', 'VERIFIED', 'FUENTES, PATTY'),
+(2, '2023-10-21 07:29:34', 'GOMERA, JAMES PHILIP AMANTE', 583, 123123, 123123, 123123, 123123, '2001-06-19', 'BANSALANGIN ST. PAYATAS B', 'VERIFIED', ', '),
+(3, '2023-10-23 03:51:35', 'GOMERA, JAMESPHILIP AMANTE', 586, 123123, 123123, 123123, 123123, '2001-06-19', 'BANSALANGIN ST. PAYATAS B', 'VERIFIED', 'FUENTES, PATTY'),
+(4, '2023-10-23 03:51:38', 'DOE, JOHN SMITH', 674, 2147483647, 2147483647, 2147483647, 2147483647, '2001-06-19', '#27 BANSALANGIN ST PAYATAS B', 'VERIFIED', ', '),
+(5, '2023-10-25 04:25:52', 'TEST TEST, TEST TEST', 677, 123123, 123123, 123123, 123123, '1999-07-09', 'BANSALANGIN ST. PAYATAS B', 'VERIFIED', 'FUENTES, PATTY');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `gender`
 --
 
-CREATE TABLE IF NOT EXISTS `gender` (
+CREATE TABLE `gender` (
   `id` int(11) NOT NULL,
   `gender` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gender`
@@ -2420,8 +2491,8 @@ INSERT INTO `gender` (`id`, `gender`) VALUES
 -- Table structure for table `job_title`
 --
 
-CREATE TABLE IF NOT EXISTS `job_title` (
-  `id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `job_title` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `code` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0'
@@ -2876,12 +2947,12 @@ INSERT INTO `job_title` (`id`, `code`, `description`, `is_deleted`) VALUES
 -- Table structure for table `loa`
 --
 
-CREATE TABLE IF NOT EXISTS `loa` (
+CREATE TABLE `loa` (
   `id` int(11) NOT NULL,
   `applicantname` varchar(255) NOT NULL,
   `appaddress` varchar(255) NOT NULL,
   `project_title` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa`
@@ -2896,495 +2967,24 @@ INSERT INTO `loa` (`id`, `applicantname`, `appaddress`, `project_title`) VALUES
 -- Table structure for table `loa_files`
 --
 
-CREATE TABLE IF NOT EXISTS `loa_files` (
-  `id` bigint(20) unsigned NOT NULL,
-  `loa_main_id` bigint(20) NOT NULL,
+CREATE TABLE `loa_files` (
+  `id` int(11) NOT NULL,
+  `loa_main_id` int(11) NOT NULL,
   `file_name` varchar(255) NOT NULL,
   `file_location` varchar(255) NOT NULL DEFAULT '',
-  `date_modified` date NOT NULL,
-  `is_deleted` tinyint(1) NOT NULL DEFAULT '0'
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa_files`
 --
 
-INSERT INTO `loa_files` (`id`, `loa_main_id`, `file_name`, `file_location`, `date_modified`, `is_deleted`) VALUES
-(1, 1, 'sample (2).docx', '1.docx', '2018-04-15', 1),
-(2, 28, 'BD3 Helper.docx', '28.docx', '2018-05-17', 0),
-(3, 2, 'BD2 Akaroa.docx', '2.docx', '2018-04-23', 0),
-(4, 3, 'BD2 Brand Ambassador.docx', '3.docx', '2018-04-23', 0),
-(5, 4, 'BD2 Brand Repacker.docx', '4.docx', '2018-04-23', 0),
-(6, 5, 'BD2 Bundler.docx', '5.docx', '2018-04-23', 0),
-(7, 6, 'BD2 Business Dev Coor.docx', '6.docx', '2018-04-23', 0),
-(8, 7, 'BD2 Driver.docx', '7.docx', '2018-04-23', 0),
-(9, 8, 'BD2 FMS.docx', '8.docx', '2018-04-23', 0),
-(10, 9, 'BD2 Game Master.docx', '9.docx', '2018-04-23', 0),
-(11, 10, 'BD2 Head Hunter.docx', '10.docx', '2018-04-23', 0),
-(12, 11, 'BD2 KAR.docx', '11.docx', '2018-04-23', 0),
-(13, 12, 'BD2 Merchandiser GSF.docx', '12.docx', '2018-04-23', 0),
-(14, 13, 'BD2 Merchandiser Philusa.docx', '13.docx', '2018-04-23', 0),
-(15, 14, 'BD2 Merchandiser Valiant.docx', '14.docx', '2018-04-23', 0),
-(16, 15, 'BD2 Pharmacy Specialist.docx', '15.docx', '2018-04-23', 0),
-(17, 16, 'BD2 Push Girl.docx', '16.docx', '2018-04-23', 0),
-(18, 17, 'BD2 TDR Head.docx', '17.docx', '2018-04-23', 0),
-(19, 18, 'BD2 TDR.docx', '18.docx', '2018-04-23', 0),
-(20, 19, 'BD2 Team Leader Convergys.docx', '19.docx', '2018-04-23', 0),
-(21, 20, 'BD2 Team Leader Valiant.docx', '20.docx', '2018-04-23', 0),
-(22, 21, 'BD2 Team Leader.docx', '21.docx', '2018-04-23', 0),
-(23, 22, 'BD3 Agent.docx', '22.docx', '2018-04-23', 0),
-(24, 23, 'BD3 Allocator.docx', '23.docx', '2018-04-23', 0),
-(25, 24, 'BD3 Area Coordinator.docx', '24.docx', '2018-04-23', 0),
-(26, 25, 'BD3 Carpenter.docx', '25.docx', '2018-04-23', 0),
-(27, 26, 'BD3 Encoder.docx', '26.docx', '2018-04-23', 0),
-(28, 27, 'BD3 Helper for raffle draw.docx', '27.docx', '2018-04-23', 0),
-(29, 28, 'BD3 Helper.docx', '28.docx', '2018-05-17', 0),
-(30, 29, 'BD3 Installer.docx', '29.docx', '2018-04-23', 0),
-(31, 30, 'BD3 Merchandiser PLDT Seasonal.docx', '30.docx', '2018-04-23', 0),
-(32, 31, 'BD3 Merchandiser PLDT.docx', '31.docx', '2018-04-23', 0),
-(33, 32, 'BD3 Merchandiser.docx', '32.docx', '2018-04-23', 0),
-(34, 33, 'BD3 Sales Specialist.docx', '33.docx', '2018-04-23', 0),
-(35, 34, 'BD3 Sampler.docx', '34.docx', '2018-04-23', 0),
-(36, 35, 'BD3 Seller.docx', '35.docx', '2018-04-23', 0),
-(37, 36, 'BD3 Sorter.docx', '36.docx', '2018-04-23', 0),
-(38, 37, 'BD3 Stockman.docx', '37.docx', '2018-04-23', 0),
-(39, 38, 'BD3 Team Leader.docx', '38.docx', '2018-04-24', 0),
-(40, 39, 'BD3 Trade Service Staff.docx', '39.docx', '2018-04-24', 0),
-(41, 40, 'BD3 Validator.docx', '40.docx', '2018-04-24', 0),
-(42, 41, 'BA Encoder.docx', '41.docx', '2018-04-24', 0),
-(43, 42, 'BA Supervisor.docx', '42.docx', '2018-04-24', 0),
-(44, 43, 'BA Trainer.docx', '43.docx', '2018-04-24', 0),
-(45, 44, 'BAs.docx', '44.docx', '2018-04-24', 0),
-(46, 45, 'BSE Encoder.docx', '45.docx', '2018-04-24', 0),
-(47, 46, 'BSE FMS.docx', '46.docx', '2018-04-24', 0),
-(48, 47, 'BSE Trainer.docx', '47.docx', '2018-04-24', 0),
-(49, 48, 'BSE.docx', '48.docx', '2018-04-24', 0),
-(50, 49, 'Pure it Activation Coordinator.docx', '49.docx', '2018-04-24', 0),
-(51, 50, 'Pure it Admin Logistics.docx', '50.docx', '2018-04-24', 0),
-(52, 51, 'Pure it Analystics Manager.docx', '51.docx', '2018-04-24', 0),
-(53, 52, 'Pure it Customer Service Admin.docx', '52.docx', '2018-04-24', 0),
-(54, 53, 'Pure it Data Analyst Retail.docx', '53.docx', '2018-04-24', 0),
-(55, 54, 'Pure it Data Push Analyst.docx', '54.docx', '2018-04-24', 0),
-(56, 55, 'Pure it Lead Data Analyst.docx', '55.docx', '2018-04-24', 0),
-(57, 56, 'Pure it Partnership New Onboard.docx', '56.docx', '2018-04-24', 0),
-(58, 57, 'Pure it Partnership PWEST.docx', '57.docx', '2018-04-24', 0),
-(59, 58, 'Pure it Retail New Onboard.docx', '58.docx', '2018-04-25', 0),
-(60, 59, 'Pure it Retail PWEST.docx', '59.docx', '2018-04-25', 0),
-(61, 60, 'Pure it Service Specialist.docx', '60.docx', '2018-04-25', 0),
-(62, 61, 'Pure it Service Technician.docx', '61.docx', '2018-04-25', 0),
-(63, 62, 'BD1 Activation and Project Manager.docx', '62.docx', '2018-07-03', 0),
-(64, 63, 'BD1 Activation Coordinator.docx', '63.docx', '2018-04-25', 0),
-(65, 64, 'BD1 Area Coordinator Selecta.docx', '64.docx', '2018-04-25', 0),
-(66, 65, 'BD1 Area Coordinator Unilever.docx', '65.docx', '2018-04-25', 0),
-(67, 66, 'BD1 Area Lead.docx', '66.docx', '2018-04-25', 0),
-(68, 67, 'BD1 Beauty Advisor Unilever.docx', '67.docx', '2018-04-25', 0),
-(69, 68, 'BD1 Bundler.docx', '68.docx', '2018-04-25', 0),
-(70, 69, 'BD1 CSS Digital Lead.docx', '69.docx', '2018-04-25', 0),
-(71, 70, 'BD1 Encoder Selecta.docx', '70.docx', '2018-04-25', 0),
-(72, 71, 'BD1 Encoder Unilever.docx', '71.docx', '2018-04-25', 0),
-(73, 72, 'BD1 Field Coordinator.docx', '72.docx', '2018-04-25', 0),
-(74, 73, 'BD1 Field Merchandising Supervisor Selecta.docx', '73.docx', '2018-04-25', 0),
-(75, 74, 'BD1 Field Merchandising Supervisor Unilever.docx', '74.docx', '2018-04-25', 0),
-(76, 75, 'BD1 Helper and Cashier.docx', '75.docx', '2018-04-26', 0),
-(77, 76, 'BD1 Helper.docx', '76.docx', '2018-04-26', 0),
-(78, 77, 'BD1 LE MAG Assistant.docx', '77.docx', '2018-04-26', 0),
-(79, 78, 'BD1 Merchandiser Selecta.docx', '78.docx', '2018-04-26', 0),
-(80, 79, 'BD1 Merchandiser ULP.docx', '79.docx', '2018-04-26', 0),
-(81, 80, 'BD1 Project Supervisor.docx', '80.docx', '2018-04-26', 0),
-(82, 81, 'BD1 Push Girl Selecta.docx', '81.docx', '2018-04-26', 0),
-(83, 82, 'BD1 Push Girl Unilever.docx', '82.docx', '2018-04-26', 0),
-(84, 83, 'BD1 Regional Lead.docx', '83.docx', '2018-04-26', 0),
-(85, 84, 'BD1 Sampler.docx', '84.docx', '2018-04-26', 0),
-(86, 85, 'BD1 Surveyor.docx', '85.docx', '2018-04-26', 0),
-(87, 86, 'BD1 Team Leader.docx', '86.docx', '2018-04-26', 0),
-(109, 0, 'BD1 Activation Coordinator.docx', '0.docx', '2018-07-03', 0),
-(110, 0, 'BD1 Activation and Project Manager (1).docx', '0.docx', '2018-07-03', 0),
-(111, 0, 'BD1 Activation Coordinator.docx', '0.docx', '2018-07-03', 0),
-(112, 87, 'test.docx', '87.docx', '2018-07-03', 1),
-(113, 88, 'BD1 Super Store Activation Lead Proby.docx', '88.docx', '2019-08-03', 0),
-(114, 89, 'BD1 Activation and Project Manager (1).docx', '89.docx', '2018-07-03', 0),
-(115, 90, 'BD1 Activation Coordinator.docx', '90.docx', '2018-07-03', 0),
-(116, 91, 'Selecta - Project Manager (Proj Based).docx', '91.docx', '2019-08-03', 0),
-(117, 92, 'BD1 Selecta - Area Coor Seasonal.docx', '92.docx', '2019-08-03', 0),
-(118, 93, 'BD1 Area Coordinator.docx', '93.docx', '2020-02-06', 0),
-(119, 94, 'BD1 Super Store Area Lead Proby.docx', '94.docx', '2019-08-03', 0),
-(120, 95, 'BD1 Beauty Advisor Unilever.docx', '95.docx', '2020-02-03', 0),
-(121, 96, 'BD1 ULP - Bundler Seasonal.docx', '96.docx', '2019-08-03', 0),
-(122, 97, 'BD1 ULP - CSS Digital Lead Regular.docx', '97.docx', '2019-08-03', 0),
-(123, 98, 'BD1 Encoder Selecta.docx', '98.docx', '2018-09-10', 0),
-(124, 99, 'BD1 ULP - Encoder.docx', '99.docx', '2020-02-06', 0),
-(125, 100, 'BD1 Super Store Field Coor Proby.docx', '100.docx', '2019-08-03', 0),
-(126, 101, 'BD1 Scan Asia - FMS Proby.docx', '101.docx', '2020-06-17', 0),
-(127, 102, 'BD1 ULP - FMS Proby.docx', '102.docx', '2019-08-03', 0),
-(128, 103, 'BD1 ULP - Helper Cashier Proby.docx', '103.docx', '2019-08-03', 0),
-(129, 104, 'BD1 ULP - Helper Seasonal.docx', '104.docx', '2019-08-03', 0),
-(130, 105, 'BD1 LE MAG Assistant.docx', '105.docx', '2018-09-10', 0),
-(131, 106, 'BD1 Selecta - Merchandiser Proby.docx', '106.docx', '2020-06-17', 0),
-(132, 107, 'BD1 ULP - Merchandiser Proby.docx', '107.docx', '2019-08-05', 0),
-(133, 108, 'BD1 Project Supervisor.docx', '108.docx', '2018-09-10', 0),
-(134, 109, 'BD1 Selecta - Push Girl Seasonal.docx', '109.docx', '2019-08-05', 0),
-(135, 110, 'BD1 ULP - Push Girl Seasonal.docx', '110.docx', '2019-08-03', 0),
-(136, 111, 'BD1 Super Store Regional Lead Proby.docx', '111.docx', '2019-08-03', 0),
-(137, 112, 'BD1 ULP - Sampler.docx', '112.docx', '2019-08-29', 0),
-(138, 113, 'BD1 Surveyor.docx', '113.docx', '2018-09-10', 0),
-(139, 114, 'BD1 Team Leader.docx', '114.docx', '2018-09-10', 0),
-(140, 115, 'BD1 Activation and Project Manager (1) (1).docx', '115.docx', '2018-07-03', 0),
-(141, 116, 'test.docx', '116.docx', '2018-07-03', 1),
-(142, 117, 'BD1 Selecta - FMS Regular.docx', '117.docx', '2020-06-17', 0),
-(143, 118, 'BD1 ULP - FMS Regular.docx', '118.docx', '2019-08-03', 0),
-(144, 119, 'BD1 Selecta - Merchandiser Regular.docx', '119.docx', '2019-08-05', 0),
-(145, 120, 'BD1 ULP - Merchandiser Regular.docx', '120.docx', '2019-08-05', 0),
-(146, 121, 'Breeze BSE Encoder Proby.docx', '121.docx', '2019-08-03', 0),
-(147, 122, 'Breeze BSE FMS Proby.docx', '122.docx', '2019-08-03', 0),
-(148, 123, 'Breeze BSE Trainer Proby.docx', '123.docx', '2019-08-03', 0),
-(149, 124, 'Breeze Stain Expert Proby.docx', '124.docx', '2019-08-03', 0),
-(150, 125, 'Breeze BSE Encoder Regular.docx', '125.docx', '2019-08-03', 0),
-(151, 126, 'Breeze BSE FMS Regular.docx', '126.docx', '2019-08-03', 0),
-(152, 127, 'Breeze BSE Trainer Regular.docx', '127.docx', '2019-08-03', 0),
-(153, 128, 'Breeze Stain Expert Regular.docx', '128.docx', '2019-08-03', 0),
-(154, 129, 'BC BA Encoder Proby.docx', '129.docx', '2019-08-03', 0),
-(155, 130, 'BC BA Supervisor Proby.docx', '130.docx', '2019-08-03', 0),
-(156, 131, 'BC BA Trainer Proby.docx', '131.docx', '2019-08-03', 0),
-(157, 132, 'BC BA Encoder Regular.docx', '132.docx', '2019-08-03', 0),
-(158, 133, 'BC BA Supervisor Regular.docx', '133.docx', '2019-08-03', 0),
-(159, 134, 'BC BA Trainer Regular.docx', '134.docx', '2019-08-03', 0),
-(160, 135, 'BC Beauty Advisor Proby.docx', '135.docx', '2019-08-03', 0),
-(161, 136, 'BC Beauty Advisor Regular.docx', '136.docx', '2019-08-03', 0),
-(162, 137, 'Pure it Proby Activation Coordinator.docx', '137.docx', '2018-09-10', 0),
-(163, 138, 'Pure it - LSP Admin Logistics Proby.docx', '138.docx', '2018-10-24', 0),
-(164, 139, 'Pure it Proby Analystics Manager.docx', '139.docx', '2018-09-10', 0),
-(165, 140, 'Pure it - Customer Service Assistant Proby.docx', '140.docx', '2018-10-24', 0),
-(166, 141, 'Pure it - Data Analyst Proby.docx', '141.docx', '2018-10-24', 0),
-(167, 142, 'Pure it Proby Data Push Analyst.docx', '142.docx', '2018-09-10', 0),
-(168, 143, 'Pure it Proby Lead Data Analyst.docx', '143.docx', '2018-09-10', 0),
-(169, 144, 'Pure it Proby Partnership New Onboard.docx', '144.docx', '2018-09-10', 0),
-(170, 145, 'Pure it - PWEST Partnership Proby.docx', '145.docx', '2018-10-24', 0),
-(171, 146, 'Pure it Proby Retail New Onboard.docx', '146.docx', '2018-09-10', 0),
-(172, 147, 'Pure it - PWEST Retail Proby.docx', '147.docx', '2018-10-24', 0),
-(173, 148, 'Pure it Regular Activation Coordinator.docx', '148.docx', '2018-09-10', 0),
-(174, 149, 'Pure it - LSP Admin Logistics Regular.docx', '149.docx', '2018-10-24', 0),
-(175, 150, 'Pure it - Data Analytics Manager Regular.docx', '150.docx', '2018-10-24', 0),
-(176, 151, 'Pure it - Customer Service Assistant Regular.docx', '151.docx', '2018-10-24', 0),
-(177, 152, 'Pure it - Data Analyst Regular.docx', '152.docx', '2018-10-24', 0),
-(178, 153, 'Pure it Regular Lead Data Analyst.docx', '153.docx', '2018-09-10', 0),
-(179, 154, 'Pure it Regular Partnership New Onboard.docx', '154.docx', '2018-09-10', 0),
-(180, 155, 'Pure it - PWEST Partnership Regular.docx', '155.docx', '2018-10-24', 0),
-(181, 156, 'Pure it Regular Retail New Onboard.docx', '156.docx', '2018-09-10', 0),
-(182, 157, 'Pure it - PWEST Retail Regular.docx', '157.docx', '2018-10-24', 0),
-(183, 158, 'Pure it - Service Specialist Regular.docx', '158.docx', '2018-10-24', 0),
-(184, 159, 'Pure it - Service Technician Regular.docx', '159.docx', '2018-10-24', 0),
-(185, 160, 'BD3 PLDT (Bilis Upgrade)EC- Agent.docx', '160.docx', '2019-08-06', 0),
-(186, 161, 'BD3 Allocator.docx', '161.docx', '2018-09-11', 0),
-(187, 162, 'BD3 JTI (WYF) EC- Area Coordinator.docx', '162.docx', '2019-08-06', 0),
-(188, 163, 'BD3 PLDT (Lamp-Post Bannering) EC- Carpenter.docx', '163.docx', '2019-08-06', 0),
-(189, 164, 'BD3 JTI EC- Encoder.docx', '164.docx', '2019-08-06', 0),
-(190, 165, 'BD3 GRUPPO POTENZA EC- Sales Associate.docx', '165.docx', '2020-02-18', 0),
-(191, 166, 'BD3 Helper for Raffle Draw.docx', '166.docx', '2018-09-11', 0),
-(192, 167, 'BD3 JTI EC- Helper.docx', '167.docx', '2019-08-06', 0),
-(193, 168, 'BD3 PLDT (Channel Sales) EC- Installer.docx', '168.docx', '2019-08-06', 0),
-(194, 169, 'BD3 Merchandiser PLDT Seasonal.docx', '169.docx', '2018-09-11', 0),
-(195, 170, 'BD3 Merchandiser PLDT.docx', '170.docx', '2018-09-11', 0),
-(196, 171, 'BD3 JTI EC- Merchandiser.docx', '171.docx', '2019-08-06', 0),
-(197, 172, 'BD3 WOW EC- Sales Specialist.docx', '172.docx', '2019-08-06', 0),
-(198, 173, 'BD3 KAMBAL PANDESAL (SMFC) EC-Sampler.docx', '173.docx', '2019-08-06', 0),
-(199, 174, 'BD3 GOOD DAY COFFEE EC- Seller.docx', '174.docx', '2019-08-06', 0),
-(200, 175, 'BD3 JTI EC- Sorter.docx', '175.docx', '2019-08-06', 0),
-(201, 176, 'BD3 GRUPPO EC- Stockman.docx', '176.docx', '2019-08-06', 0),
-(202, 177, 'BD3 JTI EC- Team Leader.docx', '177.docx', '2019-08-06', 0),
-(203, 178, 'BD3 WOW EC- Trade Service Staff.docx', '178.docx', '2019-08-06', 0),
-(204, 179, 'BD3 JTI EC- Validator Updated.docx', '179.docx', '2019-08-06', 0),
-(205, 180, 'BD2 AKAROA Proby.docx', '180.docx', '2019-08-05', 0),
-(206, 181, 'BD2 Brand Ambassador.docx', '181.docx', '2018-09-11', 0),
-(207, 182, 'BD2 Bus. Dev Coor.docx', '182.docx', '2018-09-11', 0),
-(208, 183, 'BD2 Driver.docx', '183.docx', '2018-09-11', 0),
-(209, 184, 'BD2 Regular FMS.docx', '184.docx', '2018-09-13', 0),
-(210, 185, 'BD2 GSK TDR.docx', '185.docx', '2018-09-11', 0),
-(211, 186, 'BD2 Hisamitsu Helper.docx', '186.docx', '2018-09-11', 0),
-(212, 187, 'BD2 Hisamitsu Push Girl.docx', '187.docx', '2018-09-11', 0),
-(213, 188, 'BD2 Hisamitsu Sampler.docx', '188.docx', '2018-09-11', 0),
-(214, 189, 'BD2 Hisamitsu Team Leader 1 day.docx', '189.docx', '2018-09-11', 0),
-(215, 190, 'BD2 Hisamitsu Team Leader.docx', '190.docx', '2018-09-11', 0),
-(216, 191, 'BD2 Proby Convergys Head Hunter.docx', '191.docx', '2018-09-11', 0),
-(217, 192, 'BD2 Proby Convergys Phone Screener.docx', '192.docx', '2018-09-11', 0),
-(218, 193, 'BD2 Proby Convergys TL.docx', '193.docx', '2018-09-11', 0),
-(219, 194, 'BD2 Fonterra Encoder Proby.docx', '194.docx', '2019-08-05', 0),
-(220, 195, 'BD2 Fonterra Merchandiser Proby.docx', '195.docx', '2019-08-05', 0),
-(221, 196, 'BD2 Fonterra-Sanofi Proby.docx', '196.docx', '2019-08-05', 0),
-(222, 197, 'BD2 Philusa Merchandiser Proby.docx', '197.docx', '2019-08-05', 0),
-(223, 198, 'BD2 Sanofi Merchandiser Proby.docx', '198.docx', '2019-08-05', 0),
-(224, 199, 'BD2 Proby Valiant Merchandiser.docx', '199.docx', '2018-09-11', 0),
-(225, 200, 'BD2 Regular Convergys Head Hunter.docx', '200.docx', '2018-09-11', 0),
-(226, 201, 'BD2 Regular Convergys Phone Screener.docx', '201.docx', '2018-09-11', 0),
-(227, 202, 'BD2 Regular Convergys TL.docx', '202.docx', '2018-09-11', 0),
-(228, 203, 'BD2 Fonterra Encoder Regular.docx', '203.docx', '2019-08-05', 0),
-(229, 204, 'BD2 Fonterra Merchandiser Regular.docx', '204.docx', '2019-08-05', 0),
-(230, 205, 'BD2 Fonterra-Sanofi Regular.docx', '205.docx', '2019-08-05', 0),
-(231, 206, 'BD2 Regular Pernod Ricard Brand Repacker.docx', '206.docx', '2018-09-11', 0),
-(232, 207, 'BD2 Regular Pernod Ricard New Merchandiser.docx', '207.docx', '2018-09-11', 0),
-(233, 208, 'BD2 Regular Pernod Ricard Stock Keeper.docx', '208.docx', '2018-09-11', 0),
-(234, 209, 'BD2 Sanofi Merchandiser Regular.docx', '209.docx', '2019-08-05', 0),
-(235, 210, 'BD2 Team Leader.docx', '210.docx', '2018-09-11', 0),
-(236, 211, 'BD2 Philusa Area Coordinator Proby.docx', '211.docx', '2019-08-05', 0),
-(237, 212, 'BD3 GOOD DAY COFFEE EC- Sales Man.docx', '212.docx', '2019-08-06', 0),
-(238, 213, 'BD3 GOOD DAY COFFEE EC- Brand Ambassador.docx', '213.docx', '2019-08-06', 0),
-(239, 214, 'BD2 Proby FMS.docx', '214.docx', '2018-09-13', 0),
-(240, 215, 'BD3 Merchandiser PLDT Project Hire.docx', '215.docx', '2018-10-01', 0),
-(241, 216, 'BD1 Super Store Area Lead Regular.docx', '216.docx', '2019-08-03', 0),
-(242, 217, 'PCN Billing Assistant.docx', '217.docx', '2018-10-02', 0),
-(243, 218, 'BD2 Hisamitsu Sampler 1 Day Payafter.docx', '218.docx', '2019-09-03', 0),
-(244, 219, 'BD2 Hisamitsu Sampler 1 Day.docx', '219.docx', '2018-10-03', 0),
-(245, 220, 'BD2 Fonterra-Helper Daily.docx', '220.docx', '2019-08-05', 0),
-(246, 221, 'BD2 AKAROA Regular.docx', '221.docx', '2019-08-05', 0),
-(247, 222, 'BD2 Philusa Merchandiser Regular.docx', '222.docx', '2019-08-05', 0),
-(248, 223, 'BD2 Philusa Area Coordinator Regular.docx', '223.docx', '2019-08-05', 0),
-(249, 224, 'BD2 Alliance Salmon Proby.docx', '224.docx', '2019-08-05', 0),
-(250, 225, 'BD2 Alliance Salmon Regular.docx', '225.docx', '2019-08-05', 0),
-(251, 226, 'BD2 BUNDLER.docx', '226.docx', '2019-08-05', 0),
-(252, 227, 'BD2 Business Development Coordinator Regular.docx', '227.docx', '2019-08-05', 0),
-(253, 228, 'BD2 Convergys Head Hunter Proby.docx', '228.docx', '2019-10-03', 0),
-(254, 229, 'BD2 Convergys Head Hunter Regular.docx', '229.docx', '2019-10-03', 0),
-(255, 230, 'BD2 Convergys Phone Screener Proby.docx', '230.docx', '2019-09-03', 0),
-(256, 231, 'BD2 Convergys Phone Screener Regular.docx', '231.docx', '2019-09-03', 0),
-(257, 232, 'BD2 Convergys Talent Acquisition Proby.docx', '232.docx', '2019-08-05', 0),
-(258, 233, 'BD2 Convergys Talent Acquisition Regular.docx', '233.docx', '2019-08-05', 0),
-(259, 234, 'BD2 Convergys TL Proby.docx', '234.docx', '2019-08-05', 0),
-(260, 235, 'BD2 Convergys TL Regular.docx', '235.docx', '2019-08-05', 0),
-(261, 236, 'BD2 FMS Fonterra Proby.docx', '236.docx', '2019-08-05', 0),
-(262, 237, 'BD2 FMS Fonterra Regular.docx', '237.docx', '2019-08-05', 0),
-(263, 238, 'BD2 FMS Sanofi Proby.docx', '238.docx', '2019-08-05', 0),
-(264, 239, 'BD2 FMS Sanofi Regular.docx', '239.docx', '2019-08-05', 0),
-(265, 240, 'BD2 Fonterra KAR Proby.docx', '240.docx', '2019-08-05', 0),
-(266, 241, 'BD2 Fonterra KAR Regular.docx', '241.docx', '2019-08-05', 0),
-(267, 242, 'BD2 Fonterra Tactical Proby.docx', '242.docx', '2019-08-05', 0),
-(268, 243, 'BD2 Fonterra Tactical Regular.docx', '243.docx', '2019-08-05', 0),
-(269, 244, 'BD2 Fonterra Team Leader Proby.docx', '244.docx', '2019-08-05', 0),
-(270, 245, 'BD2 Fonterra Team Leader Regular.docx', '245.docx', '2019-08-05', 0),
-(271, 246, 'BD2 Fonterra-Helper 1 Day.docx', '246.docx', '2019-08-05', 0),
-(272, 247, 'BD2 GSK Pharmacy Specialist Proby.docx', '247.docx', '2019-08-05', 0),
-(273, 248, 'BD2 GSK Pharmacy Specialist Regular.docx', '248.docx', '2019-08-05', 0),
-(274, 249, 'BD2 Heineken 1 Day.docx', '249.docx', '2019-08-05', 0),
-(275, 250, 'BD2 Hisamitsu Helper 1 Day Payafter.docx', '250.docx', '2019-09-03', 0),
-(276, 251, 'BD2 Hisamitsu Push Girl Payafter 1 Day.docx', '251.docx', '2019-09-03', 0),
-(277, 252, 'BD2 Hisamitsu -TL 1 Day Payafter.docx', '252.docx', '2019-09-03', 0),
-(278, 253, 'BD2 Pernod Driver Proby.docx', '253.docx', '2019-08-05', 0),
-(279, 254, 'BD2 Pernod Driver Regular.docx', '254.docx', '2019-08-05', 0),
-(280, 255, 'BD2 Pernod Ricard Brand Repacker Proby.docx', '255.docx', '2019-08-05', 0),
-(281, 256, 'BD2 Pernod Ricard Stock Keeper Regular.docx', '256.docx', '2019-08-05', 0),
-(282, 257, 'BD2 Philusa FMS Proby.docx', '257.docx', '2019-08-05', 0),
-(283, 258, 'BD2 Philusa FMS Regular.docx', '258.docx', '2019-08-05', 0),
-(284, 259, 'BD2 Sanofi FMS Proby.docx', '259.docx', '2019-08-05', 0),
-(285, 260, 'BD2 Sanofi FMS Regular.docx', '260.docx', '2019-08-05', 0),
-(286, 261, 'BD2 Sanofi Helper Project Based.docx', '261.docx', '2019-08-05', 0),
-(287, 262, 'BD2 Talent Sourcing Supervisor Proby.docx', '262.docx', '2019-08-05', 0),
-(288, 263, 'BD2 Talent Sourcing Supervisor Regular.docx', '263.docx', '2019-08-05', 0),
-(289, 264, 'BD2 TDR Head Regular.docx', '264.docx', '2019-08-05', 0),
-(290, 265, 'BD2 Trade Sales Coor Regular.docx', '265.docx', '2019-08-05', 0),
-(291, 266, 'BD2 UFS Sampler 1 day.docx', '266.docx', '2019-08-05', 0),
-(292, 267, 'BD2 UFS Team Leader.docx', '267.docx', '2019-08-05', 0),
-(293, 268, 'BD2 UFS Helper payafter.docx', '268.docx', '2019-08-05', 0),
-(294, 269, 'BD2 Valiant Proby.docx', '269.docx', '2019-08-05', 0),
-(295, 270, 'BD2 Valiant Regular.docx', '270.docx', '2019-08-05', 0),
-(296, 271, 'PCN Billing Assistant BD1.docx', '271.docx', '2019-08-05', 0),
-(297, 272, 'PCN Billing Assistant BD2.docx', '272.docx', '2019-08-05', 0),
-(298, 273, 'PCN CCF Finance Coordinator.docx', '273.docx', '2019-08-05', 0),
-(299, 274, 'PCN EWB Assistant.docx', '274.docx', '2019-08-05', 0),
-(300, 275, 'PCN HR Assistant.docx', '275.docx', '2019-08-05', 0),
-(301, 276, 'PCN HR Asst Deployment.docx', '276.docx', '2019-08-05', 0),
-(302, 277, 'BD2 FMS Fonterra-Sanofi Regular.docx', '277.docx', '2019-08-05', 0),
-(303, 278, 'BD2 FMS Fonterra-Sanofi with outbase Regular.docx', '278.docx', '2019-08-05', 0),
-(304, 279, 'BD1 Superstore Assistant 1 Proby.docx', '279.docx', '2019-08-03', 0),
-(305, 280, 'BD1 Superstore Assistant 2 Proby.docx', '280.docx', '2019-08-03', 0),
-(306, 281, 'BD3 URIC EC- Encoder.docx', '281.docx', '2019-08-06', 0),
-(307, 282, 'BD3 WOW EC- Merchandiser.docx', '282.docx', '2019-08-06', 0),
-(308, 283, 'BD3 URIC EC- Stockman.docx', '283.docx', '2019-08-06', 0),
-(309, 284, 'BD3 URIC EC- Team Leader.docx', '284.docx', '2019-08-06', 0),
-(310, 285, 'BD3 GOOD DAY COFFEE EC - Helper.docx', '285.docx', '2019-08-06', 0),
-(311, 286, 'BD3 GOOD DAY COFFEE EC- Area Coordinator.docx', '286.docx', '2019-08-06', 0),
-(312, 287, 'BD3 GRUPPO EC- Area Coordinator.docx', '287.docx', '2019-08-06', 0),
-(313, 288, 'BD3 GRUPPO EC- Bagger.docx', '288.docx', '2019-08-06', 0),
-(314, 289, 'BD3 GRUPPO EC- Cashier.docx', '289.docx', '2019-08-06', 0),
-(315, 290, 'BD3 GRUPPO EC- Helper.docx', '290.docx', '2019-08-06', 0),
-(316, 291, 'BD3 GRUPPO POTENZA EC- Sales Associate.docx', '291.docx', '2019-08-06', 0),
-(317, 292, 'BD3 JTI (CAMEL) EC- Helper.docx', '292.docx', '2019-08-06', 0),
-(318, 293, 'BD3 JTI (EC) - HELPER 1 Day.docx', '293.docx', '2019-08-06', 0),
-(319, 294, 'BD3 JTI (WYF) EC- Collector.docx', '294.docx', '2019-08-06', 0),
-(320, 295, 'BD3 WOW EC- Merchandiser.docx', '295.docx', '2019-08-06', 0),
-(321, 296, 'BD3 KAMBAL PANDESAL (SMFC) EC-Sampler 1 day.docx', '296.docx', '2019-08-06', 0),
-(322, 297, 'BD3 KAMBAL PANDESAL (SMFC) EC-Team Leader.docx', '297.docx', '2019-08-06', 0),
-(323, 298, 'BD3 KAMBAL PANDESAL EC- Sampler cum Seller.docx', '298.docx', '2019-08-06', 0),
-(324, 299, 'BD3 KAMBAL PANDESAL EC-Helper.docx', '299.docx', '2019-08-06', 0),
-(325, 300, 'BD3 KAMBAL PANDESAL (SMFC) EC- Area Coordinator.docx', '300.docx', '2019-08-06', 0),
-(326, 301, 'BD3 KAMBAL PANDESAL (SMFC) EC- Seller 1 day.docx', '301.docx', '2019-08-06', 0),
-(327, 302, 'BD3 KAMBAL PANDESAL (SMFC) EC- Seller.docx', '302.docx', '2019-08-06', 0),
-(328, 303, 'BD3 MANG INASAL EC- Area Coordinator.docx', '303.docx', '2019-08-06', 0),
-(329, 304, 'BD3 MANG INASAL EC- Brand Ambassador.docx', '304.docx', '2019-08-06', 0),
-(330, 305, 'BD3 MANG INASAL EC- Helper.docx', '305.docx', '2019-08-06', 0),
-(331, 306, 'BD3 MANG INASAL EC- Leaflet Distributor.docx', '306.docx', '2019-08-06', 0),
-(332, 307, 'BD3 MANG INASAL EC- Team Leader.docx', '307.docx', '2019-08-06', 0),
-(333, 308, 'BD3 PLDT EC- Area Coordinator.docx', '308.docx', '2018-10-29', 0),
-(334, 309, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Team Leader 1 Day.docx', '309.docx', '2019-08-06', 0),
-(335, 310, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Merchandiser 1 Day.docx', '310.docx', '2019-08-06', 0),
-(336, 311, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Area Coordinator.docx', '311.docx', '2019-08-06', 0),
-(337, 312, 'BD3 PLDT (WIFI ACTIVATION) EC- Marikina.docx', '312.docx', '2019-08-06', 0),
-(338, 313, 'BD3 PLDT (Tactical Banner) EC- Merchandiser.docx', '313.docx', '2019-08-06', 0),
-(339, 314, 'BD3 PLDT (Tactical Banner) EC- Area Coordinator.docx', '314.docx', '2019-08-06', 0),
-(340, 315, 'BD3 PLDT (Project Hire) EC- MERCHANDISER2.docx', '315.docx', '2019-08-06', 0),
-(341, 316, 'BD3 PLDT (Project HIRE) EC- Area Coordinator.docx', '316.docx', '2019-08-06', 0),
-(342, 317, 'BD3 PLDT (Prepaid WIFI TM)EC- Helper.docx', '317.docx', '2019-08-06', 0),
-(343, 318, 'BD3 PLDT (PREPAID WIFI ACTIVATION)- Helper.docx', '318.docx', '2019-08-06', 0),
-(344, 319, 'BD3 PLDT (Prepaid Wifi Activatio)- Area Coor.docx', '319.docx', '2018-10-29', 0),
-(345, 320, 'BD3 PLDT (MALL SET UP) EC- Merchandiser.docx', '320.docx', '2019-08-06', 0),
-(346, 321, 'BD3 PLDT (Lamp Post Bannering) EC- Merchandiser.docx', '321.docx', '2019-08-06', 0),
-(347, 322, 'BD3 PLDT (Lamp Post Bannering) EC- Area Coordinator.docx', '322.docx', '2019-08-06', 0),
-(348, 323, 'BD3 PLDT (CHANNEL SALES) EC-Merchandiser.docx', '323.docx', '2019-08-06', 0),
-(349, 324, 'BD3 PLDT (Channel Sales) EC- Helper.docx', '324.docx', '2019-08-06', 0),
-(350, 325, 'BD3 PLDT (CHANNEL SALES) EC- Area Coordinator.docx', '325.docx', '2019-08-06', 0),
-(351, 326, 'BD3 PLDT (Bilis Upgrade) EC- Encoder.docx', '326.docx', '2019-08-06', 0),
-(352, 327, 'BD3 PLDT (Auto Bilis Kabit)- EC Helper.docx', '327.docx', '2019-08-06', 0),
-(353, 328, 'BD1 Unilever NAO Area Lead.docx', '328.docx', '2019-08-03', 0),
-(354, 329, 'BD1 Unilever NAO Tagger.docx', '329.docx', '2019-08-03', 0),
-(355, 330, 'BD1 Unilever NAO Team Leader.docx', '330.docx', '2019-08-03', 0),
-(356, 331, 'BD1 Super Store Field Coor Regular.docx', '331.docx', '2019-08-03', 0),
-(357, 332, 'BD1 Super Store Regional Lead Regular.docx', '332.docx', '2019-08-03', 0),
-(358, 333, 'BD1 Super Store Activation Lead Regular.docx', '333.docx', '2019-08-03', 0),
-(359, 334, 'BD2 UFS Push Girl.docx', '334.docx', '2019-08-05', 0),
-(360, 335, 'BD1 ULP - FMS Reliever.docx', '335.docx', '2019-08-03', 0),
-(361, 336, 'BD1 ULP - Automation Sup Regular.docx', '336.docx', '2019-08-03', 0),
-(362, 337, 'BD1 ULP - Beauty Exec Coor Regular.docx', '337.docx', '2019-08-03', 0),
-(363, 338, 'BD1 ULP - Database Specialist Regular.docx', '338.docx', '2019-08-03', 0),
-(364, 339, 'BD1 ULP - Device Mgt Sup Regular.docx', '339.docx', '2019-08-03', 0),
-(365, 340, 'ULP - KAR Regular.docx', '340.docx', '2019-08-03', 0),
-(366, 341, 'BD1 ULP - Helper Cashier Regular.docx', '341.docx', '2019-08-03', 0),
-(367, 342, 'BD1 ULP - Perfect Store Sup Regular.docx', '342.docx', '2019-08-03', 0),
-(368, 343, 'BD1 ULP - Helper Regular.docx', '343.docx', '2019-08-03', 0),
-(369, 344, 'BD1 ULP - Helper Cashier P.B. Herby.docx', '344.docx', '2019-08-03', 0),
-(370, 345, 'BD1 ULP - Helper P.B. Herby.docx', '345.docx', '2019-08-03', 0),
-(371, 346, 'Pure it - Service Supervisor Trainor Regular.docx', '346.docx', '2018-10-24', 0),
-(372, 347, 'Pure it - PWE MFI Proby.docx', '347.docx', '2018-10-24', 0),
-(373, 348, 'Pure it - PWE MFI Regular.docx', '348.docx', '2018-10-24', 0),
-(374, 349, 'Pure it - PWE Retail Proby.docx', '349.docx', '2018-10-24', 0),
-(375, 350, 'Pure it - PWE Retail Regular.docx', '350.docx', '2018-10-24', 0),
-(376, 351, 'BD3 URIC EC - Area Coordinator.docx', '351.docx', '2019-08-06', 0),
-(377, 352, 'BD3 GRUPPO POTENZA EC- Area Coordinator.docx', '352.docx', '2019-08-06', 0),
-(378, 353, 'BD1 Selecta - Telemarketer Seasonal.docx', '353.docx', '2019-08-03', 0),
-(379, 354, 'BD2 Pernod Business Development Coordinator Regular.docx', '354.docx', '2019-08-05', 0),
-(380, 355, 'BD2 Pernod Tactical Coordinator.docx', '355.docx', '2019-08-05', 0),
-(381, 356, 'BD3 GRUPPO POTENZA EC- Sales Associate Regular.docx', '356.docx', '2019-08-06', 0),
-(382, 357, 'BD3 GRUPPO POTENZA EC- Area Coordinator Regular.docx', '357.docx', '2019-08-06', 0),
-(383, 358, 'BD3 GRUPPO EC- Stockman Regular.docx', '358.docx', '2018-11-11', 0),
-(384, 359, 'BD3 GRUPPO POTENZA EC- Sales Associate Regular.docx', '359.docx', '2020-02-18', 0),
-(385, 360, 'BD3 GRUPPO EC- Helper Regular.docx', '360.docx', '2019-08-06', 0),
-(386, 361, 'BD3 GRUPPO EC- Cashier Regular.docx', '361.docx', '2019-08-06', 0),
-(387, 362, 'BD3 GRUPPO EC- Bagger Regular.docx', '362.docx', '2019-08-06', 0),
-(388, 363, 'BD3 GRUPPO EC- Area Coordinator Regular.docx', '363.docx', '2019-08-06', 0),
-(389, 364, 'PCN Billing Assistant BD3.docx', '364.docx', '2019-08-05', 0),
-(390, 365, 'PCN Admin Assisitant.docx', '365.docx', '2019-08-05', 0),
-(391, 366, 'BD2 Pepsico Proby.docx', '366.docx', '2019-08-05', 0),
-(392, 367, 'BD1 Unilever Go Leveredge Unilever International.docx', '367.docx', '2019-08-03', 0),
-(393, 368, 'GT NAO - SELECTA.docx', '368.docx', '2018-12-09', 0),
-(394, 369, 'BD2 GSK TDR.docx', '369.docx', '2019-08-05', 0),
-(395, 370, 'BD2 Convergys Recruitment Asst Encoder Proby.docx', '370.docx', '2019-08-05', 0),
-(396, 371, 'BD2 Babyflo Regular.docx', '371.docx', '2019-08-05', 0),
-(397, 372, 'BD3 PLDT Project Hire Regular.docx', '372.docx', '2019-01-02', 0),
-(398, 373, 'BD3 GRUPPO INNOVARE - Encoder.docx', '373.docx', '2019-08-06', 0),
-(399, 374, 'BD3 GOOD DAY COFFEE EC - Negotiator.docx', '374.docx', '2019-08-06', 0),
-(400, 375, 'BD2 Heineken.docx', '375.docx', '2019-08-05', 0),
-(401, 376, 'BD1 Scan Asia - Merchandiser Proby.docx', '376.docx', '2019-08-05', 0),
-(402, 377, 'BD2 Babyflo Proby.docx', '377.docx', '2019-08-05', 0),
-(403, 378, 'PCN HR Assistant ER.docx', '378.docx', '2019-08-05', 0),
-(404, 379, 'BSG2 Vita Green C Sampler.docx', '379.docx', '2019-08-03', 0),
-(405, 380, 'PCN EWB Assistant New.docx', '380.docx', '2019-08-05', 0),
-(406, 381, 'PCN EWB Assistant Reliever.docx', '381.docx', '2019-08-05', 0),
-(407, 382, 'BD3 KAMBAL PANDESAL EC-MASCOT.docx', '382.docx', '2019-08-06', 0),
-(408, 383, 'BD2 Pernod Helper.docx', '383.docx', '2019-08-05', 0),
-(409, 384, 'BSG2 Falcon Seller.docx', '384.docx', '2019-08-03', 0),
-(410, 385, 'BD1 ULP - Beauty Refiller.docx', '385.docx', '2019-08-03', 0),
-(411, 386, 'PCN IT Support.docx', '386.docx', '2019-08-05', 0),
-(412, 387, 'Growth-Coaches.docx', '387.docx', '2019-09-04', 0),
-(413, 388, 'Team Leader Area coordinator.docx', '388.docx', '2019-08-03', 0),
-(414, 389, 'BD2 Philusa Cashier Proby.docx', '389.docx', '2019-08-05', 0),
-(415, 390, 'BD3 Cebuana Area Coordinator.docx', '390.docx', '2019-08-06', 0),
-(416, 391, 'BD3 Cebuana Promoter.docx', '391.docx', '2019-08-06', 0),
-(417, 392, 'BD1 Telemarketer.docx', '392.docx', '2019-08-03', 0),
-(418, 393, 'BD1 Accelerator Executive.docx', '393.docx', '2019-08-03', 0),
-(419, 394, 'BD1 Project Coordinator.docx', '394.docx', '2019-08-03', 0),
-(420, 395, 'BD1 ULP - Brand Ambassador.docx', '395.docx', '2020-06-13', 0),
-(421, 396, 'ULP - REDEMPTION GIRL.docx', '396.docx', '2019-05-31', 0),
-(422, 397, 'ULP DATA ENCODER,ONLINE SURVEYOR.docx', '397.docx', '2019-05-31', 0),
-(423, 398, 'ulp helper 1 day pay after.docx', '398.docx', '2019-05-31', 0),
-(424, 399, 'Copywriter.docx', '399.docx', '2019-08-03', 0),
-(425, 400, 'BD1 Selecta - Key Account Executive KCE.docx', '400.docx', '2019-08-03', 0),
-(426, 401, 'BD1 ULP - Helper 1 Day.docx', '401.docx', '2019-08-03', 0),
-(427, 402, 'BD1 ULP - Laundry Pods Surveyor.docx', '402.docx', '2019-08-03', 0),
-(428, 403, 'BD3 MARS WRIGLEY EC- Seller.docx', '403.docx', '2019-08-06', 0),
-(429, 404, 'BD3 MARS WRIGLEY EC- Team Leader cum Seller.docx', '404.docx', '2019-08-06', 0),
-(430, 405, 'BC Operations & Activations Lead Proby.docx', '405.docx', '2019-08-03', 0),
-(431, 406, 'ULP Activation Senior Project Manager Proby.docx', '406.docx', '2019-08-03', 0),
-(432, 407, 'BD1 ULP - Project Supervisor Weekly.docx', '407.docx', '2019-08-03', 0),
-(433, 408, 'BD1 ULP - Activation Supervisor.docx', '408.docx', '2019-08-03', 0),
-(434, 409, 'BD2 3-way.docx', '409.docx', '2019-08-05', 0),
-(435, 410, 'BD2 Fonterra-PLILI Proby.docx', '410.docx', '2019-08-05', 0),
-(436, 411, 'BD1 Scan Asia - FMS Proby.docx', '411.docx', '2019-08-03', 0),
-(437, 412, 'BD1 Scan Asia - FMS Regular.docx', '412.docx', '2019-08-03', 0),
-(438, 413, 'BD1 Scan Asia - Merchandiser Regular.docx', '413.docx', '2019-08-05', 0),
-(439, 414, 'BD2 Fonterra-PLILI Regular.docx', '414.docx', '2019-08-05', 0),
-(440, 415, 'BD2 FMS PLILI Proby.docx', '415.docx', '2019-08-05', 0),
-(441, 416, 'BD2 FMS PLILI Regular.docx', '416.docx', '2019-08-05', 0),
-(442, 417, 'BD1 AR Assistant.docx', '417.docx', '2019-08-14', 0),
-(443, 418, 'BD2 La Filipina Helper 1 Day.docx', '418.docx', '2019-08-30', 0),
-(444, 419, 'BD2 La Filipina Helper Payafter (2 Days or More).docx', '419.docx', '2019-08-30', 0),
-(445, 420, 'BD2 La Filipina Push Girl 1 Day.docx', '420.docx', '2019-08-30', 0),
-(446, 421, 'BD2 La Filipina Push Girl Payafter (2 Days or More).docx', '421.docx', '2019-08-30', 0),
-(447, 422, 'BD2 La Filipina Sampler 1 Day.docx', '422.docx', '2019-08-30', 0),
-(448, 423, 'BD2 La Filipina Sampler cum Push Girl 1 Day.docx', '423.docx', '2019-08-30', 0),
-(449, 424, 'BD2 La Filipina Sampler cum Push Girl Payafter (2 Days or More).docx', '424.docx', '2019-08-30', 0),
-(450, 425, 'BD2 La Filipina Sampler Payafter (2 Days or More).docx', '425.docx', '2019-08-30', 0),
-(451, 426, 'BD2 La Filipina TL 1 Day.docx', '426.docx', '2019-08-30', 0),
-(452, 427, 'BD2 La Filipina TL Payafter (2 Days or More).docx', '427.docx', '2019-08-30', 0),
-(453, 428, 'BD2 Hisamitsu Game Master 1 Day.docx', '428.docx', '2019-09-03', 0),
-(454, 429, 'BD2 Hisamitsu Game Master Payafter (2days or more).docx', '429.docx', '2019-09-03', 0),
-(455, 430, 'BD2 Hisamitsu Game Master Weekly (2days or more).docx', '430.docx', '2019-09-03', 0),
-(456, 431, 'BD2 Hisamitsu Helper Payafter (2days or more).docx', '431.docx', '2019-09-03', 0),
-(457, 432, 'BD2 Hisamitsu Helper Weekly (2days or more).docx', '432.docx', '2019-09-03', 0),
-(458, 433, 'BD2 Hisamitsu Push Girl Payafter (2days or more).docx', '433.docx', '2019-09-03', 0),
-(459, 434, 'BD2 Hisamitsu Push Girl Weekly (2days or more).docx', '434.docx', '2019-09-03', 0),
-(460, 435, 'BD2 Hisamitsu Sampler Payafter (2days or more.docx', '435.docx', '2019-09-03', 0),
-(461, 436, 'BD2 Hisamitsu Sampler Weekly (2days or more).docx', '436.docx', '2019-09-03', 0),
-(462, 437, 'BD2 Hisamitsu -TL Payafter (2 days or more).docx', '437.docx', '2019-09-03', 0),
-(463, 438, 'BD2 Hisamitsu -TL Weekly (2 days or more).docx', '438.docx', '2019-09-03', 0),
-(464, 439, 'BD2 Philusa Push Girl.docx', '439.docx', '2019-09-05', 0),
-(465, 440, 'BD2 Convergys Background Investigation Specialist.docx', '440.docx', '2019-10-03', 0),
-(466, 441, 'BD2 Convergys Background Investigation Specialist.docx', '441.docx', '2019-10-03', 0),
-(467, 442, 'BD3 JTI EC- Team Leader Mighty Caravan Laguna.docx', '442.docx', '2019-10-08', 0),
-(468, 443, 'BD3 JTI EC- Roving Brand Ambassador.docx', '443.docx', '2019-10-08', 0),
-(469, 444, 'BD3 JTI EC- Barker Advance Party.docx', '444.docx', '2019-10-08', 0),
-(470, 445, 'BD3 JTI EC- Stockman Mighty Caravan.docx', '445.docx', '2019-10-08', 0),
-(471, 446, 'BD3 JTI EC- Stationed Promoter.docx', '446.docx', '2019-10-08', 0),
-(472, 447, 'BD3 JTI EC- Stationed Helper.docx', '447.docx', '2019-10-08', 0),
-(473, 448, 'BD2 UFS Sorter Pay After.docx', '448.docx', '2019-10-11', 0),
-(474, 449, 'BD2 UFS Sorter Weekly.docx', '449.docx', '2019-10-11', 0),
-(475, 450, '100.docx', '450.docx', '2019-10-16', 1),
-(476, 451, 'BD3 JTI Mighty Caravan Davao EC- Rider.docx', '451.docx', '2019-10-25', 0),
-(477, 452, 'BD1 Auditor.docx', '452.docx', '2019-11-26', 0),
-(478, 453, 'BD3 JTI EC- 10-25 Merchandiser.docx', '453.docx', '2020-04-13', 0),
-(479, 454, 'BD3 JTI EC- FMS.docx', '454.docx', '2019-12-20', 0),
-(480, 455, 'BD3 JTI EC - Data Analyst.docx', '455.docx', '2020-01-23', 0),
-(481, 456, 'BD3 JTI EC- Data Supervisor.docx', '456.docx', '2020-02-04', 0),
-(482, 457, 'BD1 Selecta - Online Coordinator.docx', '457.docx', '2020-02-05', 0),
-(483, 458, 'BD2 UFS Merchandiser Proby.docx', '458.docx', '2020-02-17', 0),
-(484, 459, 'BD2 UFS Merchandiser Proby.docx', '459.docx', '2020-02-17', 0),
-(485, 460, 'BD1 Selecta - Food Delivery Assisant.docx', '460.docx', '2020-02-17', 0),
-(486, 461, 'BD3 JARDINE DISTRIBUTION EC-Negotiator.docx', '461.docx', '2020-03-03', 0),
-(487, 462, 'BD3 JARDINE DISTRIBUTION EC-Team Leader.docx', '462.docx', '2020-03-03', 0),
-(488, 463, 'BD3 JARDINE DISTRIBUTION EC-Merchandiser.docx', '463.docx', '2020-03-03', 0),
-(489, 464, 'BD1 Selecta - Hapi Dealer Trainer.docx', '464.docx', '2020-03-05', 0),
-(490, 465, 'BD1 ULP - Picker Packer.docx', '465.docx', '2020-05-20', 0),
-(491, 466, 'BD2 Philusa - MDC Refillers.docx', '466.docx', '2020-07-07', 0),
-(492, 467, 'BD2 Philusa MDC Run Area Coordinator.docx', '467.docx', '2020-07-14', 0),
-(493, 468, 'BD1 ULP - Telemarketer.docx', '468.docx', '2020-07-30', 0),
-(494, 469, 'BD1 ULP - Online Community Promoter.docx', '469.docx', '2020-07-30', 0),
-(495, 470, 'BD3 JTI EC- Helper cum Validator.docx', '470.docx', '2020-08-04', 0),
-(496, 471, 'BD1 Unilever International - Beauty Refiller.docx', '471.docx', '2020-08-05', 0);
+INSERT INTO `loa_files` (`id`, `loa_main_id`, `file_name`, `file_location`, `date_modified`, `status`) VALUES
+(1, 11, 'BD1 Selecta - Merchandiser Proby NEW (3) (1) (1).docx', '../loa_template_directory/', '2023-10-27 03:01:59', 1),
+(2, 12, 'pcn_template.docx', '../loa_template_directory/', '2023-10-27 05:49:27', 1),
+(3, 13, 'Value1.docx', '../loa_template_directory/', '2023-10-27 05:55:58', 1),
+(4, 14, 'BD1 ULP - Bundler weekly for ULP Q3  PCN OG SMKT - A1113 - SURF FABCON 69ML  6+1 Q3 Only.docx', '../loa_template_directory/', '2023-10-27 06:50:43', 1);
 
 -- --------------------------------------------------------
 
@@ -3392,12 +2992,12 @@ INSERT INTO `loa_files` (`id`, `loa_main_id`, `file_name`, `file_location`, `dat
 -- Table structure for table `loa_maintenance_word`
 --
 
-CREATE TABLE IF NOT EXISTS `loa_maintenance_word` (
+CREATE TABLE `loa_maintenance_word` (
   `id` int(11) NOT NULL,
   `loa_name` varchar(255) DEFAULT NULL,
-  `division_id` bigint(20) DEFAULT NULL,
-  `date_created` date DEFAULT NULL,
-  `date_updated` date DEFAULT NULL,
+  `division` varchar(255) NOT NULL,
+  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `is_default` tinyint(2) DEFAULT '0',
   `is_deleted` tinyint(2) DEFAULT '0',
   `applicant_name` varchar(255) DEFAULT NULL,
@@ -3437,491 +3037,115 @@ CREATE TABLE IF NOT EXISTS `loa_maintenance_word` (
   `internet_allowance` varchar(255) DEFAULT NULL,
   `meal_allowance` varchar(255) DEFAULT NULL,
   `outbase_meal` varchar(255) DEFAULT NULL,
+  `special_allowance` varchar(255) NOT NULL,
+  `position_allowance` varchar(255) NOT NULL,
   `trans` varchar(255) DEFAULT NULL,
   `total_sum` varchar(255) DEFAULT NULL,
-  `shortlist_id` varchar(255) DEFAULT NULL
+  `shortlist_id` varchar(255) DEFAULT NULL,
+  `loa_tracker` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa_maintenance_word`
 --
 
-INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `trans`, `total_sum`, `shortlist_id`) VALUES
-(1, 'ULP CORE', 39, '2018-04-03', '2018-04-15', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(2, 'Akaroa', 40, '2018-04-23', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(3, 'Brand Ambassador', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(4, 'Brand Repacker', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(5, 'Bundler', 40, '2018-04-23', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(6, 'Business Dev Coor', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(7, 'Driver', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(8, 'FMS', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(9, 'Game Master', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(10, 'Head Hunter', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(11, 'KAR', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(12, 'Merchandiser GSF', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(13, 'Merchandiser Philusa', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(14, 'Merchandiser Valiant', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(15, 'Pharmacy Specialist', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(16, 'Push Girl', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(17, 'TDR Head', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(18, 'TDR', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(19, 'Team Leader Convergys', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(20, 'Team Leader Valiant', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(21, 'Team Leader', 40, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(22, 'Agent', 41, '2018-04-23', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(23, 'Allocator', 41, '2018-04-23', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(24, 'Area Coordinator', 41, '2018-04-23', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(25, 'Carpenter', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(26, 'Encoder', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(27, 'Helper for Raffle Draw', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(28, 'Helper', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(29, 'Installer', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(30, 'Merchandiser PLDT Seasonal', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(31, 'Merchandiser PLDT', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(32, 'Merchandiser', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(33, 'Sales Specialist', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(34, 'Sampler', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(35, 'Seller', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(36, 'Sorter', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(37, 'Stockman', 41, '2018-04-23', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(38, 'Team Leader', 41, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(39, 'Trade Service Staff', 41, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(40, 'Validator', 41, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(41, 'BA Encoder', 39, '2018-04-24', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(42, 'BA Supervisor', 39, '2018-04-24', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(43, 'BA Trainer', 39, '2018-04-24', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(44, 'BAs', 39, '2018-04-24', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(45, 'BSE Encoder', 39, '2018-04-24', '2018-07-04', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(46, 'BSE FMS', 39, '2018-04-24', '2018-07-04', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(47, 'BSE Trainer', 39, '2018-04-24', '2018-07-04', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(48, 'BSE', 39, '2018-04-24', '2018-07-04', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(49, 'Pure it Activation Coordinator', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(50, 'Pure it Admin Logistics', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(51, 'Pure it Analystics Manager', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(52, 'Pure it Customer Service Admin', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(53, 'Pure it Data Analyst Retail', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(54, 'Pure it Data Push Analyst', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(55, 'Pure it Lead Data Analyst', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(56, 'Pure it Partnership New Onboard', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(57, 'Pure it Partnership PWEST', 39, '2018-04-24', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(58, 'Pure it Retail New Onboard', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(59, 'Pure it Retail PWEST', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(60, 'Pure it Service Specialist', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(61, 'Pure it Service Technician', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(62, 'BD1 Activation and Project Manager', 39, '2018-04-25', '2018-07-04', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', NULL, NULL, NULL),
-(63, 'Activation Coordinator', 39, '2018-04-25', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(64, 'Area Coordinator Selecta', 39, '2018-04-25', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(65, 'Area Coordinator Unilever', 39, '2018-04-25', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(66, 'Area Lead', 39, '2018-04-25', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(67, 'Beauty Advisor Unilever', 39, '2018-04-25', '2018-07-03', 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(68, 'Bundler', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(69, 'CSS Digital Lead', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(70, 'Encoder Selecta', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(71, 'Encoder Unilever', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(72, 'Field Coordinator', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(73, 'Field Merchandising Supervisor Selecta', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(74, 'Field Merchandising Supervisor Unilever', 39, '2018-04-25', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(75, 'Helper and Cashier', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(76, 'Helper', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(77, 'LE MAG Assistant', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(78, 'Merchandiser Selecta', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(79, 'Merchandiser ULP', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(80, 'Project Supervisor', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(81, 'Push Girl Selecta', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(82, 'Push Girl Unilever', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(83, 'Regional Lead', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(84, 'Sampler', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(85, 'Surveyor', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(86, 'Team Leader', 39, '2018-04-26', '2018-04-26', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value32', NULL, NULL, '0', '0', '0', '0', '', NULL, NULL),
-(87, '123', 39, '2018-07-03', NULL, 0, 1, '1', '2', '3', '3', '3', '2', '2', '1', '1', '1', '4', '5', '5', '4', '3', '2', '1', '1', '2', '3', '4', '5', '5', '4', '3', '2', '1', '1', '2', '3', '3', NULL, NULL, '0', '0', '0', '0', NULL, NULL, NULL),
-(88, 'BD1 Super Store Activation Lead Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(89, 'we', 4, '2018-07-03', '2018-07-03', 1, 1, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '11', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', 'Value33', NULL, NULL),
-(90, 'BD1 Activation Coordinator', 39, '2018-07-03', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(91, 'BD1 Selecta - Project Manager (Proj Based)', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(92, 'BD1 Selecta - Area Coor Seasonal', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(93, 'BD1 Area Coordinator Unilever', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(94, 'BD1 Super Store Area Lead Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(95, 'BD1 Beauty Advisor Unilever', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(96, 'BD1 ULP - Bundler Seasonal', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(97, 'BD1 ULP - CSS Digital Lead Regular', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(98, 'BD1 Encoder Selecta', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(99, 'BD1 Encoder Unilever', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(100, 'BD1 Super Store Field Coor Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(101, 'BD1 Selecta - FMS Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(102, 'BD1 ULP - FMS Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(103, 'BD1 ULP - Helper Cashier Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(104, 'BD1 ULP - Helper Seasonal', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(105, 'BD1 LE MAG Assistant', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(106, 'BD1 Selecta - Merchandiser Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(107, 'BD1 ULP - Merchandiser Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(108, 'BD1 Project Supervisor', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(109, 'BD1 Selecta - Push Girl Seasonal', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(110, 'BD1 ULP - Push Girl Seasonal', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33');
-INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `trans`, `total_sum`, `shortlist_id`) VALUES
-(111, 'BD1 Super Store Regional Lead Proby', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(112, 'BD1 ULP - Sampler', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(113, 'BD1 Surveyor', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(114, 'BD1 Team Leader', 39, '2018-07-03', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(115, 'we1', 4, '2018-07-03', NULL, 0, 1, '1', '1', '2', '2', '2', '2', '2', '2', '2', '2', '1', '2', '2', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', 'Value1', '2', '2', '0', '0', '0', '0', 'Value33', NULL, NULL),
-(116, '1', 4, '2018-07-03', NULL, 0, 1, '2', '3', '4', '5', '1', '2', '3', '4', '5', '1', '4', '5', '1', '2', '3', '4', '5', '1', '2', '3', '4', '5', '1', '2', '3', '4', '5', '1', '2', '3', '4', '2', '3', '0', '0', '0', '0', '5', NULL, NULL),
-(117, 'BD1 Selecta - FMS Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(118, 'BD1 ULP - FMS Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(119, 'BD1 Selecta - Merchandiser Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(120, 'BD1 ULP - Merchandiser Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(121, 'Premium Laundry Expert Encoder Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(122, 'Premium Laundry Expert FMS Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(123, 'Premium Laundry Expert Trainer Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(124, 'Premium Laundry Expert Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(125, 'Premium Laundry Expert Encoder Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(126, 'Premium Laundry Expert FMS Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(127, 'Premium Laundry Expert Trainer Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(128, 'Premium Laundry Expert Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(129, 'BC BA Encoder Proby', 39, '2018-07-04', '2019-10-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(130, 'BC BA Supervisor Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(131, 'BC BA Trainer Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(132, 'BC BA Encoder Regular', 39, '2018-07-04', '2019-07-10', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(133, 'BC BA Supervisor Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(134, 'BC BA Trainer Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(135, 'BC Beauty Advisor Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(136, 'BC Beauty Advisor Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(137, 'Pure it Proby Activation Coordinator', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(138, 'Pure it - LSP Admin Logistics Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(139, 'Pure it Proby Analystics Manager', 39, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(140, 'Pure it - Customer Service Assistant Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(141, 'Pure it - Data Analyst Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(142, 'Pure it Proby Data Push Analyst', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(143, 'Pure it Proby Lead Data Analyst', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(144, 'Pure it Proby Partnership New Onboard', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(145, 'Pure it - PWEST Partnership Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(146, 'Pure it Proby Retail New Onboard', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(147, 'Pure it - PWEST Retail Proby', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(148, 'Pure it Regular Activation Coordinator', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(149, 'Pure it - LSP Admin Logistics Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(150, 'Pure it - Data Analytics Manager Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(151, 'Pure it - Customer Service Assistant Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(152, 'Pure it - Data Analyst Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(153, 'Pure it Regular Lead Data Analyst', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(154, 'Pure it Regular Partnership New Onboard', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(155, 'Pure it - PWEST Partnership Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(156, 'Pure it Regular Retail New Onboard', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(157, 'Pure it - PWEST Retail Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(158, 'Pure it - Service Specialist Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(159, 'Pure it - Service Technician Regular', 39, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(160, 'BD3 PLDT (Bilis Upgrade)EC- Agent', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(161, 'BD3 Allocator', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(162, 'BD3 JTI (WYF) EC- Area Coordinator', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(163, 'BD3 PLDT (Lamp-Post Bannering) EC- Carpenter', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(164, 'BD3 JTI EC- Encoder', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(165, 'BD3 GRUPPO EC -Sales Associate', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(166, 'BD3 Helper for Raffle Draw', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(167, 'BD3 JTI EC- Helper', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(168, 'BD3 PLDT (Channel Sales) EC- Installer', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(169, 'BD3 Merchandiser PLDT Seasonal', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(170, 'BD3 Merchandiser PLDT', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(171, 'BD3 JTI EC- Merchandiser', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(172, 'BD3 WOW EC- Sales Specialist', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(173, 'BD3 KAMBAL PANDESAL (SMFC) EC-Sampler', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(174, 'BD3 GOOD DAY COFFEE EC- Seller', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(175, 'BD3 JTI EC- Sorter', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(176, 'BD3 GRUPPO EC- Stockman', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(177, 'BD3 JTI EC- Team Leader', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(178, 'BD3 WOW EC- Trade Service Staff', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(179, 'BD3 JTI EC- Validator', 41, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(180, 'BD2 Akaroa Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(181, 'BD2 Brand Ambassador', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(182, 'BD2 Bus. Dev Coor', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(183, 'BD2 Driver', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(184, 'BD2 Regular FMS', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'Value31', NULL, NULL),
-(185, 'BD2 GSK TDR', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(186, 'BD2 Hisamitsu Helper', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(187, 'BD2 Hisamitsu Push Girl', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(188, 'BD2 Hisamitsu Sampler', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(189, 'BD2 Hisamitsu Team Leader 1 day', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(190, 'BD2 Hisamitsu Team Leader', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(191, 'BD2 Proby Convergys Head Hunter', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(192, 'BD2 Proby Convergys Phone Screener', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(193, 'BD2 Proby Convergys TL', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(194, 'BD2 Fonterra Encoder Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(195, 'BD2 Fonterra Merchandiser Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(196, 'BD2 Fonterra-Sanofi Merchandiser Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(197, 'BD2 Philusa Merchandiser Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(198, 'BD2 Sanofi Merchandiser Proby', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(199, 'BD2 Proby Valiant Merchandiser', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(200, 'BD2 Regular Convergys Head Hunter', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(201, 'BD2 Regular Convergys Phone Screener', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(202, 'BD2 Regular Convergys TL', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(203, 'BD2 Fonterra Encoder Regular', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(204, 'BD2 Fonterra Merchandiser Regular', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(205, 'BD2 Fonterra-Sanofi Merchandiser Regular', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(206, 'BD2 Regular Pernod Ricard Brand Repacker', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(207, 'BD2 Regular Pernod Ricard New Merchandiser', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(208, 'BD2 Regular Pernod Ricard Stock Keeper', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(209, 'BD2 Sanofi Merchandiser Regular', 40, '2018-07-04', '2018-07-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(210, 'BD2 Team Leader', 40, '2018-07-04', '2018-07-05', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(211, 'BD2 Philusa Area Coordinator Proby', 40, '2018-07-11', '2018-07-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(212, 'BD3 GOOD DAY COFFEE EC- Sales Man', 41, '2018-09-03', '2018-09-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(213, 'BD3 GOOD DAY COFFEE EC- Brand Ambassador', 41, '2018-09-03', '2018-09-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(214, 'BD2 Proby FMS', 40, '2018-09-13', '2018-09-13', 1, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'Value31', NULL, NULL);
-INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `trans`, `total_sum`, `shortlist_id`) VALUES
-(215, 'BD3 Merchandiser PLDT Project Hire', 41, '2018-10-01', '2018-10-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(216, 'BD1 Super Store Area Lead Regular', 39, '2018-10-01', '2018-10-01', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(217, 'PCN Billing Coordinator', 8, '2018-10-02', '2018-10-02', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(218, 'BD2 Hisamitsu Sampler 1 Day Payafter', 40, '2018-10-03', '2018-10-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(219, 'BD2 Hisamitsu Sampler 1 Day', 40, '2018-10-03', NULL, 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(220, 'BD2 Fonterra Helper Daily', 40, '2018-10-03', '2018-10-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(221, 'BD2 Akaroa Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(222, 'BD2 Philusa Merchandiser Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(223, 'BD2 Philusa Area Coordinator Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(224, 'BD2 Alliance Salmon Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(225, 'BD2 Alliance Salmon Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(226, 'BD2 Bundler', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(227, 'BD2 Business Development Coordinator Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(228, 'BD2 Convergys Head Hunter Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(229, 'BD2 Convergys Head Hunter Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(230, 'BD2 Convergys Phone Screener Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(231, 'BD2 Convergys Phone Screener Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(232, 'BD2 Convergys Talent Acquisition Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(233, 'BD2 Convergys Talent Acquisition Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(234, 'BD2 Convergys TL Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(235, 'BD2 Convergys TL Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(236, 'BD2 FMS Fonterra Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(237, 'BD2 FMS Fonterra Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(238, 'BD2 FMS Sanofi Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(239, 'BD2 FMS Sanofi Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(240, 'BD2 Fonterra KAR Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(241, 'BD2 Fonterra KAR Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(242, 'BD2 Fonterra Tactical Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(243, 'BD2 Fonterra Tactical Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(244, 'BD2 Fonterra Team Leader Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(245, 'BD2 Fonterra Team Leader Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(246, 'BD2 Fonterra-Helper 1 Day', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(247, 'BD2 GSK Pharmacy Specialist Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(248, 'BD2 GSK Pharmacy Specialist Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(249, 'BD2 Heineken 1 Day', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(250, 'BD2 Hisamitsu Helper 1 Day Payafter', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(251, 'BD2 Hisamitsu Push Girl Payafter 1 Day', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(252, 'BD2 Hisamitsu -TL 1 Day Payafter', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(253, 'BD2 Pernod Driver Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(254, 'BD2 Pernod Driver Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(255, 'BD2 Pernod Ricard Brand Repacker Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(256, 'BD2 Pernod Ricard Stock Keeper Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(257, 'BD2 Philusa FMS Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(258, 'BD2 Philusa FMS Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(259, 'BD2 Sanofi FMS Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(260, 'BD2 Sanofi FMS Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(261, 'BD2 Sanofi Helper Project Based', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(262, 'BD2 Talent Sourcing Supervisor Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(263, 'BD2 Talent Sourcing Supervisor Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(264, 'BD2 TDR Head Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(265, 'BD2 Trade Sales Coor Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(266, 'BD2 UFS Sampler 1 day', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(267, 'BD2 UFS Team Leader', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(268, 'BD2 UFS Helper payafter', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(269, 'BD2 Valiant Proby', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(270, 'BD2 Valiant Regular', 40, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(271, 'PCN Billing Assistant BD1', 8, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(272, 'PCN Billing Assistant BD2', 8, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(273, 'PCN CCF Finance Coordinator', 8, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(274, 'PCN EWB Assistant', 6, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(275, 'PCN HR Assistant', 8, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(276, 'PCN HR Asst Deployment', 8, '2018-10-09', '2018-10-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(277, 'BD2 FMS Fonterra-Sanofi Regular', 40, '2018-10-10', '2018-10-10', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(278, 'BD2 FMS Fonterra-Sanofi with outbase Regular', 40, '2018-10-10', '2018-10-10', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(279, 'BD1 Superstore Assistant 1 Proby', 39, '2018-10-10', '2018-10-10', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(280, 'BD1 Superstore Assistant 2 Proby', 39, '2018-10-10', '2018-10-10', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(281, 'BD3 URIC EC- Encoder', 41, '2018-10-15', '2018-10-15', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(282, 'BD3 URIC EC- Merchandiser', 41, '2018-10-15', '2018-10-15', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(283, 'BD3 URIC EC- Stockman', 41, '2018-10-15', '2018-10-15', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(284, 'BD3 URIC EC- Team Leader', 41, '2018-10-15', '2018-10-15', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(285, 'BD3 GOOD DAY COFFEE EC - Helper', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(286, 'BD3 GOOD DAY COFFEE EC- Area Coordinator', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(287, 'BD3 GRUPPO EC- Area Coordinator', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(288, 'BD3 GRUPPO EC- Bagger', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(289, 'BD3 GRUPPO EC- Cashier', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(290, 'BD3 GRUPPO EC- Helper', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(291, 'BD3 GRUPPO POTENZA EC- Sales Associate', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(292, 'BD3 JTI (CAMEL) EC- Helper', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(293, 'BD3 JTI (EC) - HELPER 1 Day', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(294, 'BD3 JTI (WYF) EC- Collector', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(295, 'BD3 WOW EC- Merchandiser', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(296, 'BD3 KAMBAL PANDESAL (SMFC) EC-Sampler 1 day', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(297, 'BD3 KAMBAL PANDESAL (SMFC) EC-Team Leader', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(298, 'BD3 KAMBAL PANDESAL EC- Sampler cum Seller', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(299, 'BD3 KAMBAL PANDESAL EC-Helper', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(300, 'BD3 KAMBAL PANDESAL (SMFC) EC- Area Coordinator', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(301, 'BD3 KAMBAL PANDESAL (SMFC) EC- Seller 1 day', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(302, 'BD3 KAMBAL PANDESAL (SMFC) EC- Seller', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(303, 'BD3 MANG INASAL EC- Area Coordinator', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(304, 'BD3 MANG INASAL EC- Brand Ambassador', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(305, 'BD3 MANG INASAL EC- Helper', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(306, 'BD3 MANG INASAL EC- Leaflet Distributor', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(307, 'BD3 MANG INASAL EC- Team Leader', 41, '2018-10-16', '2018-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(308, 'BD3 PLDT EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(309, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Team Leader 1 Day', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(310, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Merchandiser 1 Day', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33');
-INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `trans`, `total_sum`, `shortlist_id`) VALUES
-(311, 'BD3 PLDT (Wifi Tactical Merchandising) EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(312, 'BD3 PLDT (WIFI ACTIVATION) EC- Marikina', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(313, 'BD3 PLDT (Tactical Banner) EC- Merchandiser', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(314, 'BD3 PLDT (Tactical Banner) EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(315, 'BD3 PLDT (Project Hire) EC- MERCHANDISER2', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(316, 'BD3 PLDT (Project HIRE) EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(317, 'BD3 PLDT (Prepaid WIFI TM)EC- Helper', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(318, 'BD3 PLDT (PREPAID WIFI ACTIVATION)- Helper', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(319, 'BD3 PLDT (Prepaid Wifi Activation)- Area Coor', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(320, 'BD3 PLDT (MALL SET UP) EC- Merchandiser', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(321, 'BD3 PLDT (Lamp Post Bannering) EC- Merchandiser', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(322, 'BD3 PLDT (Lamp Post Bannering) EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(323, 'BD3 PLDT (CHANNEL SALES) EC-Merchandiser', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(324, 'BD3 PLDT (Channel Sales) EC- Helper', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(325, 'BD3 PLDT (CHANNEL SALES) EC- Area Coordinator', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(326, 'BD3 PLDT (Bilis Upgrade) EC- Encoder', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(327, 'BD3 PLDT (Auto Bilis Kabit)- EC Helper', 41, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(328, 'BD1 Unilever NAO Area Lead', 39, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(329, 'BD1 Unilever NAO Tagger', 39, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(330, 'BD1 Unilever NAO Team Leader', 39, '2018-10-21', '2018-10-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(331, 'BD1 Super Store Field Coor Regular', 39, '2018-10-22', '2018-10-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(332, 'BD1 Super Store Regional Lead Regular', 39, '2018-10-22', '2018-10-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(333, 'BD1 Super Store Activation Lead Regular', 39, '2018-10-22', '2018-10-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(334, 'BD2 UFS Push Girl ', 40, '2018-10-22', '2018-10-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(335, 'BD1 ULP - FMS Reliever', 39, '2018-10-22', '2018-10-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(336, 'BD1 ULP - Automation Sup Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(337, 'BD1 ULP - Beauty Exec Coor Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(338, 'BD1 ULP - Database Specialist Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(339, 'BD1 ULP - Device Mgt Sup Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(340, 'ULP - KAR Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value31', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(341, 'BD1 ULP - Helper Cashier Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(342, 'BD1 ULP - Perfect Store Sup Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(343, 'BD1 ULP - Helper Regular', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(344, 'BD1 ULP - Helper Cashier P.B. Herby', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(345, 'BD1 ULP - Helper P.B. Herby', 39, '2018-10-23', '2018-10-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(346, 'Pure it - Service Supervisor Trainor Regular', 39, '2018-10-24', '2018-10-24', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(347, 'Pure it - PWE MFI Proby', 39, '2018-10-24', '2018-10-24', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(348, 'Pure it - PWE MFI Regular', 39, '2018-10-24', '2018-10-24', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(349, 'Pure it - PWE Retail Proby', 39, '2018-10-24', '2018-10-24', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(350, 'Pure it - PWE Retail Regular', 39, '2018-10-24', '2018-10-24', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(351, 'BD3 URIC EC - Area Coordinator', 41, '2018-10-28', '2018-10-28', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(352, 'BD3 GRUPPO POTENZA EC- Area Coordinator', 41, '2018-10-30', '2018-10-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(353, 'BD1 Selecta - Telemarketer Seasonal', 39, '2018-11-07', '2018-11-07', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(354, 'BD2 Pernod Business Development Coordinator Regular', 40, '2018-11-08', '2018-11-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(355, 'BD2 Pernod Tactical Coordinator', 40, '2018-11-08', '2018-11-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(356, 'BD3 GRUPPO POTENZA EC- Sales Associate Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(357, 'BD3 GRUPPO POTENZA EC- Area Coordinator Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(358, 'BD3 GRUPPO EC- Stockman Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(359, 'BD3 GRUPPO EC -Sales Associate Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(360, 'BD3 GRUPPO EC- Helper Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(361, 'BD3 GRUPPO EC- Cashier Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(362, 'BD3 GRUPPO EC- Bagger Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(363, 'BD3 GRUPPO EC- Area Coordinator Regular', 41, '2018-11-11', '2018-11-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(364, 'PCN Billing Assistant BD3', 8, '2018-11-12', '2018-11-12', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(365, 'PCN Admin Assistant', 8, '2018-11-12', '2018-11-12', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(366, 'BD2 PepsiCo Proby', 40, '2018-11-16', '2018-11-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(367, 'BD1 Go Leveredge Unilever International', 39, '2018-12-03', '2018-12-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(368, 'BD1 Selecta GT NAO', 39, '2018-12-09', '2018-12-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'Value30', NULL, NULL),
-(369, 'BD2 GSK TDR Proby', 40, '2018-12-13', '2018-12-13', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(370, 'BD2 Convergys Recruitment Asst Encoder Proby', 40, '2018-12-13', '2018-12-13', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(371, 'BD2 Babyflo Regular', 40, '2018-12-18', '2018-12-18', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(372, 'BD3 PLDT Project Hire Regular', 41, '2019-01-02', '2019-01-02', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(373, 'BD3 Gruppo Innovare - Encoder', 41, '2019-01-03', '2019-01-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(374, 'BD3 GOOD DAY COFFEE EC - Negotiator', 41, '2019-01-06', '2019-01-06', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(375, 'BD2 Heineken', 40, '2019-01-06', '2019-01-06', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(376, 'BD1 Scan Asia - Merchandiser Proby', 39, '2019-01-20', '2019-01-20', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(377, 'BD2 Babyflo Proby', 40, '2019-01-22', '2019-01-22', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(378, 'PCN HR Assistant ER', 8, '2019-02-12', '2019-02-12', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(379, 'BSG2 Vitagreen C Sampler', 5, '2019-02-13', '2019-02-13', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(380, 'PCN EWB Assistant New', 8, '2019-02-21', '2019-02-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(381, 'PCN EWB Assistant Reliever', 8, '2019-02-21', '2019-02-21', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(382, 'BD3 Kambal Pandesal EC - Mascot', 41, '2019-03-08', '2019-03-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(383, 'BD2 Pernod Helper 1 Day', 40, '2019-03-11', '2019-03-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(384, 'BSG2 Falcon Seller', 5, '2019-03-15', '2019-03-15', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(385, 'BD1 ULP - Beauty Refiller', 39, '2019-03-20', '2019-03-20', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(386, 'PCN IT Support', 4, '2019-04-08', '2019-04-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(387, 'BSG2 Growth Coaches', 5, '2019-04-16', '2019-04-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(388, 'BSG2 Team Lead Area Coordinator', 5, '2019-04-16', '2019-04-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(389, 'BD2 Philusa Cashier Proby', 40, '2019-05-06', '2019-05-06', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(390, 'BD3 Cebuana Area Coordinator', 41, '2019-05-06', '2019-05-06', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(391, 'BD3 Cebuana Promoter', 41, '2019-05-06', '2019-05-06', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(392, 'BD1 Telemarketer', 39, '2019-05-09', '2019-05-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(393, 'BD1 Accelerator Executive', 39, '2019-05-09', '2019-05-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(394, 'BD1 Project Coordinator', 39, '2019-05-09', '2019-05-09', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(395, 'BD1 ULP - Brand Ambassador', 39, '2019-05-31', '2019-05-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(396, 'BD1 ULP - Redemption Girl ', 39, '2019-05-31', '2019-05-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(397, 'BD1 ULP - Data Encoder/Online Surveyor', 39, '2019-05-31', '2019-05-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(398, 'BD1 ULP - Helper 1 Day Pay After', 39, '2019-05-31', '2019-05-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', '0', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'n/a', '0', '0', '0', '0', '0', '0', 'n/a', NULL, NULL),
-(399, 'PCN Copywriter', 5, '2019-06-04', '2019-06-04', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(400, 'BD1 Selecta - Key Account Executive KCE', 39, '2019-06-13', '2019-06-13', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(401, 'BD1 ULP - Helper 1 Day', 39, '2019-06-14', '2019-06-14', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(402, 'BD1 ULP - Laundry Pods Surveyor', 39, '2019-06-14', '2019-06-14', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(403, 'BD3 Mars Wrigley EC - Seller', 41, '2019-06-28', '2019-06-28', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(404, 'BD3 MARS WRIGLEY EC- Team Leader cum Seller', 41, '2019-06-28', '2019-06-28', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(405, 'BC Operations&Activations Lead', 39, '2019-07-01', '2019-07-01', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(406, 'ULP Activation Senior Project Manager Proby', 39, '2019-07-01', '2019-07-01', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(407, 'BD1 ULP - Project Supervisor Weekly', 39, '2019-07-02', '2019-07-02', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33');
-INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `trans`, `total_sum`, `shortlist_id`) VALUES
-(408, 'BD1 ULP - Activation Supervisor', 39, '2019-07-02', '2019-07-02', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(409, 'BD2 - 3 Way', 40, '2019-07-08', '2019-07-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(410, 'BD2 Fonterra - PLILI Proby', 40, '2019-07-08', '2019-07-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(411, 'BD1 Scan Asia - FMS Proby', 39, '2019-07-31', '2019-07-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(412, 'BD1 Scan Asia - FMS Regular', 39, '2019-07-31', '2019-07-31', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(413, 'BD1 Scan Asia - Merchandiser Regular', 39, '2019-08-02', '2019-08-02', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(414, 'BD2 Fonterra - PLILI Regular', 40, '2019-08-05', '2019-08-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(415, 'BD2 FMS PLILI Proby', 40, '2019-08-05', '2019-08-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'Value10b', 'Value33'),
-(416, 'BD2 FMS PLILI Regular', 40, '2019-08-05', '2019-08-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(417, 'BD1 Selecta - AR Assistant', 39, '2019-08-14', '2019-08-14', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(418, 'BD2 La Filipina Helper 1 Day', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(419, 'BD2 La Filipina Helper Payafter (2 Days or More)', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(420, 'BD2 La Filipina Push Girl 1 Day', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(421, 'BD2 La Filipina Push Girl Payafter (2 Days or More)', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(422, 'BD2 La Filipina Sampler 1 Day', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(423, 'BD2 La Filipina Sampler cum Push Girl 1 Day', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(424, 'BD2 La Filipina Sampler cum Push Girl Payafter (2 Days or More)', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(425, 'BD2 La Filipina Sampler Payafter (2 Days or More)', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(426, 'BD2 La Filipina TL 1 Day', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(427, 'BD2 La Filipina TL Payafter (2 Days or More)', 40, '2019-08-30', '2019-08-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(428, 'BD2 Hisamitsu Game Master 1 Day', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(429, 'BD2 Hisamitsu Game Master Payafter (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(430, 'BD2 Hisamitsu Game Master Weekly (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(431, 'BD2 Hisamitsu Helper Payafter (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(432, 'BD2 Hisamitsu Helper Weekly (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(433, 'BD2 Hisamitsu Push Girl Payafter (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(434, 'BD2 Hisamitsu Push Girl Weekly (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(435, 'BD2 Hisamitsu Sampler Payafter (2days or more', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(436, 'BD2 Hisamitsu Sampler Weekly (2days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(437, 'BD2 Hisamitsu -TL Payafter (2 days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(438, 'BD2 Hisamitsu -TL Weekly (2 days or more)', 40, '2019-09-03', '2019-09-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(439, 'BD2 Philusa Push Girl', 40, '2019-09-05', '2019-09-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(440, 'BD2 Convergys Model Promoter', 40, '2019-10-03', '2019-10-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(441, 'BD2 Background Investigation Specialist', 40, '2019-10-03', '2019-10-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(442, 'BD3 JTI EC- Team Leader Mighty Caravan Laguna', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(443, 'BD3 JTI EC- Roving Brand Ambassador', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(444, 'BD3 JTI EC- Barker Advance Party', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(445, 'BD3 JTI EC- Stockman Mighty Caravan', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(446, 'BD3 JTI EC- Stationed Promoter', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(447, 'BD3 JTI EC- Stationed Helper', 41, '2019-10-08', '2019-10-08', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(448, 'BD2 UFS Sorter Pay After', 6, '2019-10-11', '2019-10-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(449, 'BD2 UFS Sorter Weekly', 40, '2019-10-11', '2019-10-11', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(450, 'deo', 4, '2019-10-16', '2019-10-16', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(451, 'BD3 JTI Mighty Caravan Davao EC- Rider', 41, '2019-10-25', '2019-10-25', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(452, 'BD1 Auditor', 39, '2019-11-26', '2019-11-26', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(453, 'BD3 JTI EC- 10-25 Merchandiser', 41, '2019-12-20', '2019-12-20', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(454, 'BD3 JTI EC- FMS', 41, '2019-12-20', '2019-12-20', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(455, 'BD3 JTI EC - Data Analyst', 41, '2020-01-23', '2020-01-23', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(456, 'BD3 JTI EC- Data Supervisor', 41, '2020-02-04', '2020-02-04', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(457, 'BD1 Selecta - Online Coordinator', 39, '2020-02-05', '2020-02-17', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(458, 'BD2 UFS Merchandiser Proby', 40, '2020-02-17', NULL, 0, 1, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(459, 'BD2 UFS Merchandiser Proby', 40, '2020-02-17', '2020-02-17', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(460, 'BD1 Selecta - Food Delivery Assistant', 39, '2020-02-17', '2020-02-17', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(461, 'BD3 JARDINE DISTRIBUTION EC-Negotiator', 41, '2020-03-03', '2020-03-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(462, 'BD3 JARDINE DISTRIBUTION EC-Team Leader', 41, '2020-03-03', '2020-03-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(463, 'BD3 JARDINE DISTRIBUTION EC-Merchandiser', 41, '2020-03-03', '2020-03-03', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(464, 'BD1 Selecta - Hapi Dealer Trainer', 39, '2020-03-05', '2020-03-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(465, 'BD1 ULP - Picker Packer', 39, '2020-05-20', '2020-05-20', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(466, 'BD2 Philusa - MDC Refillers', 40, '2020-07-07', '2020-07-07', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(467, 'BD2 Philusa MDC Area Coordinator', 40, '2020-07-14', '2020-07-14', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(468, 'BD1 ULP - Telemarketer', 39, '2020-07-30', '2020-07-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(469, 'BD1 ULP - Online Community Promoter', 39, '2020-07-30', '2020-07-30', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(470, 'BD3 JTI EC- Helper cum Validator', 41, '2020-08-04', '2020-08-04', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33'),
-(471, 'BD1 Unilever International - Beauty Refiller', 39, '2020-08-05', '2020-08-05', 1, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'n/a', 'Value32', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value31', 'TotalValue', 'Value33');
+INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `trans`, `total_sum`, `shortlist_id`, `loa_tracker`) VALUES
+(11, 'BD1 Selecta - Merchandiser Proby NEW', 'BD1', '2023-10-27 03:01:59', '2023-10-27 03:01:59', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33'),
+(12, '1', 'FINANCE', '2023-10-27 05:49:27', '2023-10-27 05:49:27', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33'),
+(13, 'Value1', 'BSG', '2023-10-27 05:55:58', '2023-10-27 05:55:58', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33'),
+(14, 'BD1 ULP - Bundler weekly for ULP Q3 PCN OG SMKT - A1113 - SURF FABCON 69ML 6+1 Q3 Only', 'BD1', '2023-10-27 06:50:42', '2023-10-27 06:50:42', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log`
+--
+
+CREATE TABLE `log` (
+  `id` int(11) NOT NULL,
+  `Username` varchar(255) NOT NULL,
+  `Datelog` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `activitynya` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `log`
+--
+
+INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
+(1, 'recruitment', '10/20/2023', '2023-10-20 16:09:45', 'RECRUITMENT login Accepted'),
+(2, 'recruitment', '10/20/2023', '2023-10-20 16:11:30', 'RECRUITMENT login Accepted'),
+(3, 'recruitment', '10/20/2023', '2023-10-20 16:17:04', 'RECRUITMENT login Accepted'),
+(4, 'mrf', '10/20/2023', '2023-10-20 16:17:16', 'MRF login Accepted'),
+(5, 'recruitment', '10/20/2023', '2023-10-20 16:39:00', 'RECRUITMENT login Accepted'),
+(6, 'recruitment', '10/21/2023', '2023-10-21 08:38:50', 'RECRUITMENT login Accepted'),
+(7, 'recruitment', '10/21/2023', '2023-10-21 08:46:48', 'RECRUITMENT login Accepted'),
+(8, 'recruitment', '10/21/2023', '2023-10-21 10:59:27', 'RECRUITMENT login Accepted'),
+(9, 'ewb', '10/21/2023', '2023-10-21 13:43:09', 'EWB login Accepted'),
+(10, 'ewb', '10/21/2023', '2023-10-21 15:10:11', 'EWB login Accepted'),
+(11, 'deployment', '10/21/2023', '2023-10-21 15:29:49', 'DEPLOYMENT login Accepted'),
+(12, 'recruitment', '10/21/2023', '2023-10-21 15:30:47', 'RECRUITMENT login Accepted'),
+(13, 'ewb', '10/23/2023', '2023-10-23 08:19:42', 'EWB login Accepted'),
+(14, 'ewb', '10/23/2023', '2023-10-23 09:38:12', 'EWB login Accepted'),
+(15, 'deployment', '10/23/2023', '2023-10-23 10:16:46', 'DEPLOYMENT login Accepted'),
+(16, 'ewb', '10/23/2023', '2023-10-23 11:51:13', 'EWB login Accepted'),
+(17, 'ewb', '10/23/2023', '2023-10-23 13:00:31', 'EWB login Accepted'),
+(18, 'deployment', '10/23/2023', '2023-10-23 13:19:39', 'DEPLOYMENT login Accepted'),
+(19, 'recruitment', '10/23/2023', '2023-10-23 14:00:43', 'RECRUITMENT login Accepted'),
+(20, 'deployment', '10/23/2023', '2023-10-23 14:27:06', 'DEPLOYMENT login Accepted'),
+(21, 'recruitment', '10/23/2023', '2023-10-23 15:13:59', 'RECRUITMENT login Accepted'),
+(22, 'mrf', '10/23/2023', '2023-10-23 15:16:43', 'MRF login Accepted'),
+(23, 'deployment', '10/23/2023', '2023-10-23 17:20:51', 'DEPLOYMENT login Accepted'),
+(24, 'recruitment', '10/24/2023', '2023-10-24 08:45:15', 'RECRUITMENT login Accepted'),
+(25, 'deployment', '10/24/2023', '2023-10-24 09:40:19', 'DEPLOYMENT login Accepted'),
+(26, 'deployment', '10/24/2023', '2023-10-24 11:07:03', 'DEPLOYMENT login Accepted'),
+(27, 'recruitment', '10/24/2023', '2023-10-24 11:07:13', 'RECRUITMENT login Accepted'),
+(28, 'mrf', '10/24/2023', '2023-10-24 11:13:46', 'MRF login Accepted'),
+(29, 'deployment', '10/24/2023', '2023-10-24 12:53:19', 'DEPLOYMENT login Accepted'),
+(30, 'mrf', '10/24/2023', '2023-10-24 12:53:27', 'MRF login Accepted'),
+(31, 'recruitment', '10/24/2023', '2023-10-24 13:43:54', 'RECRUITMENT login Accepted'),
+(32, 'recruitment', '10/24/2023', '2023-10-24 13:45:32', 'RECRUITMENT login Accepted'),
+(33, 'recruitment', '10/24/2023', '2023-10-24 13:46:15', 'RECRUITMENT login Accepted'),
+(34, 'recruitment', '10/24/2023', '2023-10-24 13:47:39', 'RECRUITMENT login Accepted'),
+(35, 'recruitment', '10/24/2023', '2023-10-24 13:51:27', 'RECRUITMENT login Accepted'),
+(36, 'recruitment', '10/24/2023', '2023-10-24 13:55:22', 'RECRUITMENT login Accepted'),
+(37, 'mrf', '10/24/2023', '2023-10-24 14:09:35', 'MRF login Accepted'),
+(38, 'recruitment', '10/24/2023', '2023-10-24 14:32:13', 'RECRUITMENT login Accepted'),
+(39, 'recruitment', '10/24/2023', '2023-10-24 14:44:32', 'RECRUITMENT login Accepted'),
+(40, 'deployment', '10/24/2023', '2023-10-24 15:12:44', 'DEPLOYMENT login Accepted'),
+(41, 'recruitment', '10/24/2023', '2023-10-24 16:45:07', 'RECRUITMENT login Accepted'),
+(42, 'deployment', '10/24/2023', '2023-10-24 16:54:35', 'DEPLOYMENT login Accepted'),
+(43, 'recruitment', '10/25/2023', '2023-10-25 08:22:33', 'RECRUITMENT login Accepted'),
+(44, 'mrf', '10/25/2023', '2023-10-25 11:25:55', 'MRF login Accepted'),
+(45, 'ewb', '10/25/2023', '2023-10-25 12:24:28', 'EWB login Accepted'),
+(46, 'deployment', '10/25/2023', '2023-10-25 14:04:19', 'DEPLOYMENT login Accepted'),
+(47, 'deployment', '10/25/2023', '2023-10-25 15:16:56', 'DEPLOYMENT login Accepted'),
+(48, 'mrf', '10/25/2023', '2023-10-25 15:32:49', 'MRF login Accepted'),
+(49, 'admin', '10/25/2023', '2023-10-25 16:31:57', 'ADMIN login Accepted'),
+(50, 'admin', '10/25/2023', '2023-10-25 16:32:48', 'ADMIN login Accepted'),
+(51, 'admin', '10/25/2023', '2023-10-25 17:28:33', 'ADMIN login Accepted'),
+(52, 'admin', '10/25/2023', '2023-10-25 17:29:13', 'ADMIN login Accepted'),
+(53, 'admin', '10/25/2023', '2023-10-25 17:29:21', 'ADMIN login Accepted'),
+(54, 'admin', '10/25/2023', '2023-10-25 17:30:09', 'ADMIN login Accepted'),
+(55, 'admin', '10/25/2023', '2023-10-25 17:30:57', 'ADMIN login Accepted'),
+(56, 'admin', '10/26/2023', '2023-10-26 08:22:12', 'ADMIN login Accepted'),
+(57, 'deployment', '10/26/2023', '2023-10-26 11:08:18', 'DEPLOYMENT login Accepted'),
+(58, 'deployment', '10/26/2023', '2023-10-26 12:29:05', 'DEPLOYMENT login Accepted'),
+(59, 'admin', '10/26/2023', '2023-10-26 13:14:28', 'ADMIN login Accepted'),
+(60, 'recruitment', '10/26/2023', '2023-10-26 14:57:47', 'RECRUITMENT login Accepted'),
+(61, 'deployment', '10/26/2023', '2023-10-26 15:33:13', 'DEPLOYMENT login Accepted'),
+(62, 'deployment', '10/26/2023', '2023-10-26 15:38:52', 'DEPLOYMENT login Accepted'),
+(63, 'deployment', '10/26/2023', '2023-10-26 15:39:36', 'DEPLOYMENT login Accepted'),
+(64, 'deployment', '10/26/2023', '2023-10-26 15:39:51', 'DEPLOYMENT login Accepted'),
+(65, 'admin', '10/26/2023', '2023-10-26 15:40:44', 'ADMIN login Accepted'),
+(66, 'deployment', '10/26/2023', '2023-10-26 16:26:19', 'DEPLOYMENT login Accepted'),
+(67, 'mrf', '10/27/2023', '2023-10-27 08:06:38', 'MRF login Accepted'),
+(68, 'deployment', '10/27/2023', '2023-10-27 08:07:35', 'DEPLOYMENT login Accepted'),
+(69, 'admin', '10/27/2023', '2023-10-27 10:11:16', 'ADMIN login Accepted'),
+(70, 'deployment', '10/27/2023', '2023-10-27 10:54:34', 'DEPLOYMENT login Accepted'),
+(71, 'admin', '10/27/2023', '2023-10-27 16:28:42', 'ADMIN login Accepted'),
+(72, 'deployment', '10/28/2023', '2023-10-28 08:34:52', 'DEPLOYMENT login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3929,87 +3153,291 @@ INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division_id`, `date_creat
 -- Table structure for table `mrf`
 --
 
-CREATE TABLE IF NOT EXISTS `mrf` (
+CREATE TABLE `mrf` (
   `id` int(11) NOT NULL,
-  `tracking` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `location` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `location_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `division` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `client` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `project_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ce_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `position` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `position_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `np_male` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `np_female` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `height_r` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `edu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `others_edu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `pleasing_personality` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `moral` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `work_experience` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comm_skills` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `physically` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `articulate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `others` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `basic_salary` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `transpo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `meal` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comm` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `other_allow` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `other_allow_detail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `employment_stat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `emplo_other_details` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `salary_sched` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `work_duration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `work_days` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `time_sched` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `day_off` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `outlet` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `date_needed` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `drt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `rp` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dt_now` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `tracking` varchar(255) NOT NULL,
+  `mrf_category` varchar(255) NOT NULL,
+  `mrf_category_name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `location_detail` varchar(255) NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `class_detail` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
+  `client` varchar(255) NOT NULL,
+  `client_address` varchar(255) NOT NULL,
+  `project_title` varchar(255) NOT NULL,
+  `ce_number` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `position_detail` varchar(255) NOT NULL,
+  `np_male` varchar(20) NOT NULL,
+  `np_female` varchar(20) NOT NULL,
+  `height_r` varchar(255) NOT NULL,
+  `height_female` varchar(255) NOT NULL,
+  `edu` varchar(255) NOT NULL,
+  `others_edu` varchar(255) NOT NULL,
+  `pleasing_personality` varchar(255) NOT NULL,
+  `moral` varchar(255) NOT NULL,
+  `work_experience` varchar(255) NOT NULL,
+  `comm_skills` varchar(255) NOT NULL,
+  `physically` varchar(255) NOT NULL,
+  `articulate` varchar(255) NOT NULL,
+  `others` varchar(255) NOT NULL,
+  `basic_salary` varchar(255) NOT NULL,
+  `transpo` varchar(255) NOT NULL,
+  `meal` varchar(255) NOT NULL,
+  `comm` varchar(255) NOT NULL,
+  `other_allow` varchar(255) NOT NULL,
+  `other_allow_detail` varchar(255) NOT NULL,
+  `employment_stat` varchar(255) NOT NULL,
+  `emplo_other_details` varchar(255) NOT NULL,
+  `salary_sched` varchar(255) NOT NULL,
+  `work_duration_start` varchar(255) NOT NULL,
+  `work_duration_end` varchar(255) NOT NULL,
+  `work_days` varchar(255) NOT NULL,
+  `time_sched` varchar(255) NOT NULL,
+  `day_off` varchar(255) NOT NULL,
+  `outlet` varchar(255) NOT NULL,
+  `date_needed` varchar(255) NOT NULL,
+  `drt` varchar(255) NOT NULL,
+  `rp` varchar(255) NOT NULL,
+  `dt_now` varchar(255) NOT NULL,
+  `hatian` varchar(255) NOT NULL,
+  `s_male` varchar(255) NOT NULL,
+  `s_female` varchar(255) NOT NULL,
+  `pooling` varchar(255) NOT NULL,
+  `hr_personnel` varchar(255) NOT NULL,
+  `uid` varchar(11) NOT NULL,
+  `prepared_by` varchar(255) NOT NULL,
+  `short_list_id` varchar(255) NOT NULL,
+  `special_requirements_others` varchar(3000) NOT NULL,
+  `is_deleted` int(11) NOT NULL DEFAULT '0' COMMENT '0 = true, 1 = false meaning deleted',
+  `is_approve` int(11) NOT NULL DEFAULT '0',
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mrf`
 --
 
-INSERT INTO `mrf` (`id`, `tracking`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `project_title`, `ce_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`) VALUES
-(48, '535', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(49, '536', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(50, '537', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(51, '538', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(52, '539', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(53, '540', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(46, '533', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(47, '534', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(44, '531', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(45, '532', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(40, '527', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(41, '528', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(42, '529', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(43, '530', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(39, '526', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(35, '522', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(36, '523', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(37, '524', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(38, '525', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(34, '521', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(33, '520', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(29, '516', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(30, '517', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(31, '518', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(32, '519', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(28, '515', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(27, '514', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(24, '511', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(25, '512', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(26, '513', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(23, '510', 'NCR', '', 'NEW', '', 'BSG', 'PURE IT', 'project title', '3', 'DEMO GIRL', '', '2', '1', '57', 'College Level', '', '', 'With Good Moral Character', '', '', '', '', '', 'basic', 'transpo', 'meal', 'comm', '', 'other allo', 'Probationary (180 Days)', '', 'sal sched', 'w duration', 'w days', 'time sched', 'day off', 'outlet', '2021-05-17', 'Mike Burce', 'MIS Supervisor', '2021/05/14');
+INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `client_address`, `project_title`, `ce_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
+(948, '85', 'REPLACEMENT', 'Johnny Bravo', 'INHOUSE', 'PROVINCIAL', '', '', '', 'BD2', 'Good Day Coffee', '', 'COFFEE PROJECT', '12312313', 'OTHER', 'TAGATIMPLA NG KAPE', '3', '4', '180cm', '152cm', 'College Level', '', 'Pleasing Personality', 'Good Moral', 'With Work Experience', 'Good communication skills', 'Physically fit / good built', 'Articulate', 'kape', '15000', '0', '0', '0', 'None', '0', 'Probationary', '', 'WEEKLY', '1 MONTH', '', 'monday to saturday', '8-5', 'SUN', 'Ouytlet', '2022-03-31', 'MOTEL, PALOMA LARIZA SALAZAR', 'BUSINESS UNIT MANAGER', '2022/02/03', 'IN_HOUSE', '', '', '', 'YES', '21', 'Gomera, James Philip', '829', 'waldajwhndsnainwdsawdsawdsa', 0, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:25'),
+(949, '86', '', '', '', 'PCN Promopro Inc. Office', '', '', '', 'HRD', 'PCN Promopro Inc.', '', 'HR Specialist', '', 'OTHER PLEASE SPECIFY', 'HR ASST', '0', '2', '56', '', 'High School Graduate', '', '', '', '', 'Good communication skills', '', '', '', '1500', '0', '0', '0', '', '0', 'Project Base', '', 'WEEKLY', '1 MONTH', '', 'M-S', '8-5', 'SUN', '', '2022-02-28', 'VILLAVICENCIO, RODEO', '', '2022/02/03', 'IN_HOUSE', '', '', '', 'YES', '21', 'Gomera, James Philip', '830', '', 1, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:27'),
+(950, '87', 'RELIEVER', 'john doe', 'FIELD FORCE', 'NCR', '', '', '', 'BD3', 'Unilever Food Solutions', '', 'sales', '12312313', 'Merchandiser', 'Sumasalo ng bala', '6', '8', '5\'8 and above', '5\'3 and above', 'College Level', '', 'Pleasing Personality', 'Good Moral', 'With Work Experience', 'Good communication skills', 'Physically fit / good built', '', 'Kumakain ng bala', '1500', '0', '0', '0', 'None', '0', 'Project Based', '', 'WEEKLY', '1 MONTH', '', 'M-S', '8-5', 'SUN', 'Ouytlet', '2022-02-28', 'DELA ROSA, CHRISTIAN MALUTO', 'ACTIVATION SUPERVISOR', '2022/02/03', 'IN_HOUSE', '', '', '', 'YES', '21', 'Gomera, James Philip', '831', 'sdffffffffffffffffffffff', 1, 0, '2023-10-18 03:12:50', '2023-10-18 05:19:37'),
+(984, '951', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN Promopro Inc.', '', 'Room Reservation System', '19012464', 'OTHER', 'IT Support', '4', '2', '180cm', '152cm', 'College Graduate', '', 'Pleasing Personality', 'Good Moral', 'With Work Experience', 'Good communication skills', 'Physically fit / good built', 'Articulate', 'Marunong mag-mysql', '16000', '0', '0', '0', 'None', '', 'Project Based', '', '10-25', 'Monday to Saturday', '', '6 days', '8am to 5pm', 'Sunday', 'Ouytlet', '2023-10-31', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '10/17/2023 12:20:59 PM', '', '', '', '', '', '21', 'Gomera, James Philip', '', 'Wala', 0, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:31'),
+(985, '985', 'REPLACEMENT', 'James Philip Gomera', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN Promopro Inc.', '', 'Room Reservation System', '19012464', 'OTHER', 'IT Support', '4', '2', '180cm', '152cm', 'College Graduate', '', 'Pleasing Personality', 'Good Moral', 'With Work Experience', 'Good communication skills', 'Physically fit / good built', 'Articulate', 'Marunong mag-mysql', '16000', '0', '0', '0', 'None', '', 'Project Based', '', '10-25', 'Monday to Saturday', '', '6 days', '8am to 5pm', 'Sunday', 'Ouytlet', '2023-10-31', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '10/17/2023 12:58:51 PM', '', '', '', '', '', '21', 'Gomera, James Philip', '', '', 0, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:33'),
+(986, '986', 'NEW', '', 'FIELD FORCE', 'NCR', '', '', '', 'FINANCE', 'Baby Flo', '', 'Project Title', '19012464', 'Encoder', 'Sumasalo ng bala', '4', '2', '180cm', '152cm', 'College Graduate', '', 'Pleasing Personality', 'Good Moral', 'With Work Experience', '', '', '', 'Marunong mag-mysql', '16000', '0', '0', '0', 'None', '', 'Project Based', '', '10-25', 'Monday to Saturday', '', '6 days', '8am to 5pm', 'Sunday', 'Ouytlet', '2023-10-31', 'GUADIZ, APRIL QUILANG', 'ACCOUNTING CLERK', '10/17/2023 01:38:59 PM', '', '', '', '', 'YES', '21', 'Gomera, James Philip', '', '', 0, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:36'),
+(987, '987', 'REPLACEMENT', 'James Philip Gomera', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'Brady Pharma Inc.', '', 'Project Title', '19012464', 'OTHER', 'IT Support', '4', '2', '180cm', '152cm', 'College Graduate', '', 'Pleasing Personality', 'Good Moral', '', '', 'Physically fit / good built', 'Articulate', 'Marunong mag-mysql', '16000', '0', '0', '0', 'None', '', 'Probationary', '', '15-30', 'Monday to Saturday', '', '6 days', '8am to 5pm', 'Sunday', 'Ouytlet', '2023-10-19', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '10/17/2023 03:13:18 PM', '', '', '', '', '', '21', 'Gomera, James Philip', '', 'asdawdasda', 0, 0, '2023-10-18 03:12:50', '2023-10-18 05:09:38'),
+(988, '988', 'REPLACEMENT', 'Johnny Bravo', 'FIELD FORCE', 'PROVINCIAL', '', '', '', 'BSG', 'ASFI', '', 'qweqwe', '12312313', 'Sampler', 'qweqwe', '4', '2', '180cm', '152cm', 'College Graduate', '', 'Pleasing Personality', '', 'With Work Experience', '', 'Physically fit / good built', '', 'qweqwe', '123123', '12312', '12313', '123123', '12312312', '', 'Regular', '', '12312', '12313', '', '123123', '123123', '12312', '123123', '2023-10-20', 'LAGROSA, JOAN BALILI', 'UTILITY MAINTENANCE 2', '10/18/2023', '', '', '', '', '', '21', 'James Philip, Gomera', '', '1231231231231', 0, 0, '2023-10-18 05:31:49', '2023-10-18 05:31:49'),
+(991, '989', 'REPLACEMENT', 'JAMES PHILIP GOMERA', 'INHOUSE', 'NCR', '', '', '', 'BSG', 'BABY FLO', '', 'ROOM RESERVATION SYSTEM', '19012464', 'ACCOUNT MANAGER', '', '4', '2', '180CM', '152CM', 'COLLEGE LEVEL', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', 'PHYSICALLY FIT / GOOD BUILT', '', 'KUMAKAIN NG BALA', '16000', '12312', '0', '0', 'NONE', '', 'PROJECT BASED', '', '15-30', 'MONDAY TO SATURDAY', '', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-10-27', 'LAGROSA, JOAN BALILI', 'UTILITY MAINTENANCE 2', '10/18/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'SMALL LETTER HEHEHEHE', 0, 0, '2023-10-18 06:02:55', '2023-10-19 04:27:00'),
+(992, '992', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'CONCENTRIX CVG PHILIPPINES INC.', '', 'PROJECT TITLE', '12312313', 'ACCOUNT MANAGER', '', '4', '2', '180CM', '152CM', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', 'PHYSICALLY FIT / GOOD BUILT', '', 'KUMAKAIN NG BALA', '16000', '0', '0', '0', 'NONE', '', 'PROJECT BASED', '', '10-25', '2023-10-27', '2023-11-27', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-10-26', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '10/24/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'SPECIAL REQUIREMENTS', 0, 1, '2023-10-24 06:38:42', '2023-10-24 07:05:06'),
+(994, '993', 'NEW', '', 'FIELD FORCE', 'NCR', '', '', '', 'BD1', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'PROJECT XYZ', '12312313', 'MERCHANDISER', 'SUMASALO NG MASASAKIT NA SALITA', '4', '2', '180CM', '152CM', 'COLLEGE LEVEL', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', '', 'MARUNONG MAG-SALESTALK HINDI MANTRASHTALK HA', '16000', '0', '0', '0', 'NONE', '', 'PROJECT BASED', '', '15-30', '2023-10-31', '2023-11-30', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-10-30', 'SALTA, JULIE ANN MANTALA', 'ACTIVATION COORDINATOR', '10/25/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'AS OF NOW, WALA NAMAN', 0, 1, '2023-10-25 04:15:28', '2023-10-25 04:22:36'),
+(995, '995', 'NEW', '', 'FIELD FORCE', 'NCR', '', '', '', 'BD3', 'GRUPPO INNOVARE CORPORATION', '123 J. M. BASA ST. CALUMPANG, MARIKINA CITY', 'MRF PROJECT', '12312313', 'PROMO GIRL', 'SUMASALO NG BALA', '4', '2', '180CM', '152CM', 'COLLEGE LEVEL', '', 'PLEASING PERSONALITY', 'GOOD MORAL', '', '', '', '', 'KUMAKAIN NG BALA', '16000', '0', '0', '0', 'NONE', '', 'PROJECT BASED', '', '15-30', '2023-10-26', '2023-10-31', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-10-27', 'VILLASOR, CEFERINA CAAGBAY', 'PROVINCIAL AREA COORDINATOR - CDO', '10/25/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'DSADASDSAD', 0, 1, '2023-10-25 07:34:05', '2023-10-25 07:34:38');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrf_access`
+--
+
+CREATE TABLE `mrf_access` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `access_code` varchar(255) NOT NULL,
+  `dateto` varchar(255) NOT NULL,
+  `emp_no` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mrf_access`
+--
+
+INSERT INTO `mrf_access` (`id`, `name`, `access_code`, `dateto`, `emp_no`) VALUES
+(1, 'ABELLO, JULIETO', 'MRF-1', '2022-02-04', ''),
+(2, '3566', 'MRF-1', '2022-02-04', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pcn_emp`
+--
+
+CREATE TABLE `pcn_emp` (
+  `id` int(11) NOT NULL,
+  `user_id_number` varchar(15) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `division` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `department_unit` varchar(255) NOT NULL,
+  `area` varchar(255) NOT NULL,
+  `employment_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pcn_emp`
+--
+
+INSERT INTO `pcn_emp` (`id`, `user_id_number`, `fullname`, `division`, `position`, `department_unit`, `area`, `employment_status`) VALUES
+(1, 'PCN150', 'ABELLO, JULIETO TORRES', 'BSG', 'BUILDING TECHNICIAN', 'ADMIN', 'MANILA', 'REGULAR'),
+(2, 'PCN240', 'ABUAN, DONN RHOEDERICK CASTILLO', 'BD2', 'MERCHANDISING MANAGER', 'BU3', 'MANILA', 'REGULAR'),
+(3, 'PCN373', 'ADANO, GERALD RAMOS', 'FINANCE', 'BILLING COORDINATOR', 'SUPPORT', 'MANILA', 'REGULAR'),
+(4, 'PCN303', 'ADIAO, CHRISTOPHER OFEMIA', 'BD3', 'ACTIVATION SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(5, 'PCN402', 'ADIAO, PAULA LYN OFEMIA', 'BD1', 'HR ADMIN - SUPPORT', 'BU1', 'MANILA', 'PROBATIONARY'),
+(6, 'PCN379', 'ASEBIAS, LIZA GATON', 'BD1', 'ACTIVATION COORDINATOR', 'BU1', 'MANILA', 'REGULAR'),
+(7, 'PCN318', 'AGUILAR, DITAS LUZ', 'HR', 'HR OPERATIONS SUPERVISOR', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(8, 'PCN185', 'ALMANZOR, JOSEPH MUÃ‘EZ JR.', 'BD3', 'ACTIVATION SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(9, 'PCN195', 'ALVAREZ, DAISY LAPORE', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(10, 'PCN86', 'AMORES, ALMA SABERON', 'BD3', 'PROVINCIAL AREA COORDINATOR - CEBU', 'BD3', 'PROVINCIAL', 'REGULAR'),
+(11, 'PCN181', 'ANTIPALA, DIXIE GUERRERO', 'BD2', 'ACCOUNT MANAGER', 'BU3', 'MANILA', 'REGULAR'),
+(12, 'PCN387', 'AQUINO, RACHELLE AGBUNAG', 'FINANCE', 'BILLING ASSISTANT', 'SUPPORT', 'MANILA', 'REGULAR'),
+(13, 'PCN291', 'ARELLANO, AIZA AVILA', 'HR', 'HR OPERATIONS MANAGER', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(14, 'PCN268', 'AVILA, HERBILYN CJUAN', 'BD1', 'ACCOUNT SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(15, 'PCN285', 'ASAGRA, CLARIZA GERNATE', 'FINANCE', 'BILLING COORDINATOR', '', 'MANILA', 'REGULAR'),
+(16, 'PCN274', 'BALARAO, RUBILYN ROMANO', 'BD1', 'DEVELOPMENT EXECUTIVE', 'BU1', 'MANILA', 'REGULAR'),
+(17, 'PCN366', 'BARRIOS, ROBERT ESPINA', 'BD1', 'MERCHADISING MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(18, 'PCN149', 'CABACIS, CHRISTOPHER DESTURA', 'BD1', 'SR. MERCHANDISING MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(19, 'PCN16', 'BAESA, HERMONIDES CUSTODIO', 'PPI', 'OPERATIONS MANAGER - PPI', 'PPI', 'MANILA', 'REGULAR'),
+(20, 'PCN63', 'BALADJAY, MA. LEONORA CALISIN', 'BSG', 'UTILITY MAINTENANCE 1', 'ADMIN', 'MANILA', 'REGULAR'),
+(21, 'PCN358', 'CABRERA, JEFFREY SEJAS', 'BD1', 'ACTIVATION SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(22, 'PCN220', 'BARDE, ELIZABETH GONZAGA', 'BSG', 'UTILITY MAINTENANCE 1', 'ADMIN', 'MANILA', 'REGULAR'),
+(23, 'PCN7', 'BARRAMEDA, JONATHAN MANSANADEZ', 'BSG', 'ADMIN MANAGER', 'ADMIN', 'MANILA', 'REGULAR'),
+(24, 'PCN137', 'BARRAZONA, RUBY ROSE STREBEL', 'BD3', 'ACCOUNT EXECUTIVE', 'BD3', 'MANILA', 'REGULAR'),
+(25, 'PCN395', 'CARALDE, MARIAH JANNELLE PALATINO', 'BD1', 'ADMIN COORDINATOR', 'BU1', 'MANILA', 'REGULAR'),
+(26, 'PCN376', 'BARTOLOME, CLOVEN VERGARA JR.', 'FINANCE', 'DATA ANALYST', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(27, 'PCN374', 'BATACLAN, EARL DENNIS ARANETA', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(28, 'PCN401', 'BEDIS, MATT HARRIS', 'STRAT', '', '', 'MANILA', 'PROBATIONARY'),
+(29, 'PCN107', 'BELDAD, MA. CHRISTINA MILLANTE', 'FINANCE', 'BILLING STAFF', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(30, 'PCN236', 'BELTRAN, JAY-AR ARAMBULO', 'FINANCE', 'BILLING SUPERVISOR', '', 'MANILA', 'REGULAR'),
+(31, 'PCN205', 'BERNAS, JHON REY BALANDANG', 'FINANCE', 'PAYROLL COORDINATOR', '', 'MANILA', 'REGULAR'),
+(32, 'PCN1', 'BINUYA, REY FERDINAND SINGSON', 'EXECOM', 'PRESIDENT', 'EXECOM', 'MANILA', 'REGULAR'),
+(33, 'PCN64', 'BONGAY, JESSICA CABACUNGAN', 'FINANCE', 'ACCOUNTING & PAYROLL MANAGER', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(34, 'PCN315', 'BONIFACIO, CONRADO MACABASAG JR.', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU3', 'MANILA', 'REGULAR'),
+(35, 'PCN100', 'BUISER, SIMONET CASTILLO', 'FINANCE', 'FINANCE MANAGER', 'FO', 'MANILA', 'REGULAR'),
+(36, 'PCN45', 'BURCE, MICHAEL MOLAS', 'STRAT', 'SR. MIS-IT MANAGER', 'MIS', 'MANILA', 'REGULAR'),
+(37, 'PCN273', 'CARLOS, JELLIE ANNE MEDINA', 'BD1', 'ACTIVATION PROJECT SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(38, 'PCN398', 'CABANGIS, RICHARD NOMBRA', 'HR', 'HR GENERALIST', 'HR - OPERATIONS', 'MANILA', 'PROBATIONARY'),
+(39, 'PCN43', 'COÃ‘ADO, MIE MARTINEZ', 'BD1', 'OPERATIONS/BUSINESS UNIT MANAGER(CORE)', 'BU1', 'MANILA', 'REGULAR'),
+(40, 'PCN254', 'CAINGAT, JOANLYN CALIMLIM', 'BD2', 'IT SUPERVISOR - DATA ANALYST', 'BU3', 'MANILA', 'REGULAR'),
+(41, 'PCN403', 'CAMET, SHIELA MARIE JURILLA', 'BD2', 'OPERATIONS SUPERVISOR- SOUTH LUZON', 'BU2', 'PROVINCIAL', 'PROBATIONARY'),
+(42, 'PCN127', 'DELA PASION, MARY GRACE INTAL', 'BD1', 'ACCOUNT MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(43, 'PCN70', 'CARIÃ‘O, EDUARDO VILLACORTE JR.', 'BSG', 'LIAISON COORDINATOR', 'ADMIN', 'MANILA', 'REGULAR'),
+(44, 'PCN266', 'FORCADILLA, RUBY GACIS', 'BD1', 'ACCOUNT SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(45, 'PCN23', 'CARITATIVO, RODERICK MANUEL', 'BD2', 'BUSINESS UNIT MANAGER', 'BU4', 'MANILA', 'REGULAR'),
+(46, 'PCN194', 'GALANG, DENISE ARIANNE ABULENCIA', 'BD1', 'ACCOUNT MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(47, 'PCN284', 'CASTILLO, BRYAN GARCIA', 'STRAT', 'OPERATIONS SUPERVISOR - ONBOARDING', 'TRAINING', 'MANILA', 'REGULAR'),
+(48, 'PCN384', 'CASTILLO, LUMIN TORIO', 'BD2', 'OPERATIONS SUPERVISOR-NCL', 'BU3', 'PROVINCIAL', 'REGULAR'),
+(49, 'PCN66', 'CATUNGAL, REYMOND PALMA', 'BSG', 'ADMIN OFFICER', '', 'MANILA', 'REGULAR'),
+(50, 'PCN290', 'CEDULA, EDWIN QUIZON', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(51, 'PCN198', 'CENDAÃ‘A, RICHVON DE GUZMAN', 'BD2', 'ADMIN SUPERVISOR', 'BU3', 'MANILA', 'REGULAR'),
+(52, 'PCN406', 'CENTENO, YESO CHRISTIE JOY', 'BD2', 'OPERATIONS SUPERVISOR - MINDANAO', 'BU2', 'PROVINCIAL', 'PROBATIONARY'),
+(53, 'PCN309', 'CHAVEZ, RUBENA KRISNA TUSI', 'FINANCE', 'CASH MANAGEMENT COORDINATOR', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(54, 'PCN312', 'CO, ARIEL BAYOT', 'MANCOM', 'AVP-HR', 'HR', 'MANILA', 'REGULAR'),
+(55, 'PCN407', 'GERILLA, KHRISNA DINGDING', 'BD1', 'MERCHANDISING SUPERVISOR', 'BU1', 'MANILA', 'PROBATIONARY'),
+(56, 'PCN296', 'COROZA, HERENZO MENDOZA', 'STRAT', 'JUNIOR GRAPHIC ARTIST', 'CREATIVE', 'MANILA', 'REGULAR'),
+(57, 'PCN292', 'CORREA, MARK ANTHONY HERNANDO', 'FINANCE', 'ACCOUNTING CLERK', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(58, 'PCN46', 'CORTEZ, MICHAEL LABINE', 'BD2', 'BUSINESS UNIT MANAGER', 'BU2', 'MANILA', 'REGULAR'),
+(59, 'PCN72', 'DAYO, JOEL ANDRES', 'BSG', 'COMPANY DRIVER', 'LOGISTICS', 'MANILA', 'REGULAR'),
+(60, 'PCN393', 'DAYRIT, CHRISTINE JANE FRANCISCO', 'HR', 'HR GENERALIST', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(61, 'PCN4', 'DE CASTRO, VERONICA PALMERO', 'MANCOM', 'VICE PRESIDENT', 'BSG', 'MANILA', 'REGULAR'),
+(62, 'PCN389', 'DE GUIA, JOAN OLBES', 'FINANCE', 'PAYROLL/BILLING ASSISTANT', '', 'MANILA', 'REGULAR'),
+(63, 'PCN73', 'DE LEON, EDWARD PEDRGOZA', 'BSG', 'COMPANY DRIVER', 'LOGISTICS', 'MANILA', 'REGULAR'),
+(64, 'PCN14', 'DEL MUNDO, RODANTE REVILLA', 'BSG', 'WAREHOUSE MANAGER', 'WAREHOUSE', 'MANILA', 'REGULAR'),
+(65, 'PCN368', 'INCOY, ALEXANDER ORAYE', 'BD1', 'MERCHANDISING MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(66, 'PCN74', 'DEL ROSARIO, RODOLFO CANLAS', 'BSG', 'COMPANY DRIVER', 'LOGISTICS', 'MANILA', 'REGULAR'),
+(67, 'PCN307', 'DELA CRUZ, DARWIN CAPPAROS', 'FINANCE', 'BILLING STAFF', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(68, 'PCN177', 'DELA CRUZ, ROSALYN SARMIENTO', 'BD3', 'ACTIVATION SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(69, 'PCN257', 'MARALIT, DIANNE MARICRIS GARCIA', 'BD1', 'ACCOUNT SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(70, 'PCN261', 'DELA ROSA, CHRISTIAN MALUTO', 'BD3', 'ACTIVATION SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(71, 'PCN265', 'DELUSO, RICAREDO BENID JR.', 'FINANCE', 'PAYROLL BILLING COORDINATOR', 'SUPPORT', 'MANILA', 'REGULAR'),
+(72, 'PCN281', 'ORMACIDO, ANGELICA INGCO', 'BD1', 'MERCHANDISING MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(73, 'PCN388', 'DORADO, ROMMEL GREGORY', 'FINANCE', 'PAYROLL/BILLING ASSISTANT', '', 'MANILA', 'REGULAR'),
+(74, 'PCN168', 'DORADO, RONALD GREGORY', 'BSG', 'WAREHOUSE SUPERVISOR', 'WAREHOUSE', 'MANILA', 'REGULAR'),
+(75, 'PCN206', 'DUMALUAN, MARIE', 'FINANCE', 'FINANCE SUPERVISOR', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(76, 'PCN259', 'DUNGARAN, MARIVIC ABAD', 'BSG', 'PROCUREMENT SPECIALIST', 'PROCUREMENT', 'MANILA', 'REGULAR'),
+(77, 'PCN131', 'ESGUERRA, ALICIA ALVENDIA', 'BD3', 'PROVINCIAL COORDINATOR - PANGASINAN', 'BD3', 'PROVINCIAL', 'REGULAR'),
+(78, 'PCN361', 'ESMALDE, ROCHE LARA', 'HR', 'EWB ASSOCIATE', 'HR - EWB', 'MANILA', 'REGULAR'),
+(79, 'PCN164', 'ESTROBO, RAYMOND NECESITO', 'BSG', 'WAREHOUSE COORDINATOR', 'WAREHOUSE', 'MANILA', 'REGULAR'),
+(80, 'PCN101', 'FERRER, ROMEL BELANDRES', 'BSG', 'PROCUREMENT OFFICER', 'PROCUREMENT', 'MANILA', 'REGULAR'),
+(81, 'PCN97', 'FONTANILLA, ALBERTO GUBA', 'PPI', 'FOREMAN/PRINTING SUPR - PPI', 'PPI', 'MANILA', 'REGULAR'),
+(82, 'PCN400', 'PASCUA, PAMELA LYN DIAZ', 'BD1', 'ACCOUNT SUPERVISOR', 'BU1', 'MANILA', 'PROBATIONARY'),
+(83, 'PCN334', 'FORMARAN, JOSHUA CRUZ', 'HR', 'EWB SPECIALIST', 'HR - EWB', 'MANILA', 'REGULAR'),
+(84, 'PCN179', 'FUENTES, PATRICIA MAE VILLAMENTE', 'HR', 'EWB SUPERVISOR', 'HR - EWB', 'MANILA', 'REGULAR'),
+(85, 'PCN207', 'FUGABAN, JEILA MARIE GUZMAN', 'FINANCE', 'FINANCE SUPERVISOR', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(86, 'PCN370', 'SALTA, JULIE ANN MANTALA', 'BD1', 'ACTIVATION COORDINATOR', 'BU1', 'MANILA', 'REGULAR'),
+(87, 'PCN208', 'GARCIA, CHERRY ANN BARCOMA', 'FINANCE', 'CASH MANAGEMENT SUPERVISOR', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(88, 'PCN297', 'GARCIA, REYCHELYN BALARAO', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU4', 'MANILA', 'REGULAR'),
+(89, 'PCN998', 'GENOVA, SHELAH MEL DE VERA', 'PPI', 'HR, ADMIN AND TA - PPI', 'PPI', 'MANILA', 'REGULAR'),
+(90, 'PCN193', 'VARGAS, KAREN SERA', 'BD1', 'ACTIVATION SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(91, 'PCN112', 'GOMEZ, WILLIAM PATRICK GEROSANO', 'BSG', 'PROCUREMENT OFFICER', 'PROCUREMENT', 'MANILA', 'REGULAR'),
+(92, 'PCN362', 'GONZALES, LESLIE ANN OLBES', 'HR', 'HR GENERALIST', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(93, 'PCN382', 'GUADIZ, APRIL QUILANG', 'FINANCE', 'ACCOUNTING CLERK', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(94, 'PCN75', 'ILAGAN, JOSEPHINE SARAZA', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU1', 'MANILA', 'REGULAR'),
+(95, 'PCN354', 'AGABIN, ZHA-ZHA ZARATE', 'BD1', 'ACCOUNT SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(96, 'PCN138', 'ARELLANO, JENNY AVILA', 'BD1', 'SR. ACCOUNT MANAGER OIC', 'BU2', 'MANILA', 'REGULAR'),
+(97, 'PCN306', 'JIMENA, MARY ROSE BORBE', 'HR', 'COMPENSATION AND BENEFIT SUPERVISOR', 'HR - COMBEN', 'MANILA', 'REGULAR'),
+(98, 'PCN111', 'JOMOCAN, MARY MANALIT ABQUILAN', 'BD3', 'ACTIVATION AND FINANCE SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(99, 'PCN365', 'JOVES, SHARMAINE ACEJO', 'HR', 'HR OPERATIONS SPECIALIST', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(100, 'PCN304', 'LABASAN, NOEL OCHOA', 'HR', 'HRIS SPECIALIST', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(101, 'PCN77', 'LAGROSA, JOAN BALILI', 'BSG', 'UTILITY MAINTENANCE 2', 'ADMIN', 'MANILA', 'REGULAR'),
+(102, 'PCN2', 'LICSI, MANUEL GUEVARA', 'EXECOM', 'EXECUTIVE VICE PRESIDENT', 'EXECOM', 'MANILA', 'REGULAR'),
+(103, 'PCN211', 'LIPAT, FLORDELIZA DUMA', 'FINANCE', 'FINANCE SUPERVISOR', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(104, 'PCN24', 'LOPEZ, IRMINA SANTOS', 'BD2', 'OPERATIONS SUPERVISOR - ONBOARDING', 'BU3', 'MANILA', 'REGULAR'),
+(105, 'PCN180', 'LOPEZ, PAUL RINGO MIRANDA', 'HR', 'HR OPERATIONS SPECIALIST', 'HR - OPERATIONS', 'MANILA', 'REGULAR'),
+(106, 'PCN390', 'LUCENA, LEA ANNE REODAVA', 'FINANCE', 'BILLING STAFF', 'PAYROLL AND BILLING', 'MANILA', 'REGULAR'),
+(107, 'PCN396', 'LUCENA, RACIELLE ANNE REODAVA', 'BD2', '', 'BU2', 'MANILA', 'REGULAR'),
+(108, 'PCN386', 'LUCENA, REINA ROSE', 'HR', 'EWB ASSOCIATE', 'HR - EWB', 'MANIlA', 'REGULAR'),
+(109, 'PCN356', 'AYOP, MANELYN MACARAYAN', 'BD1', 'HR, ADMIN AND SAFETY COORDINATOR', 'BU2', 'MANILA', 'REGULAR'),
+(110, 'PCN93', 'MAGNO, RICHARD REYES', 'BD2', 'MERCHANDISING SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(111, 'PCN258', 'DIMAILIG, RHODORA FLORES', 'BD1', 'ACCOUNT MANAGER', 'BU2', 'MANILA', 'REGULAR'),
+(112, 'PCN3', 'MARCA, NANCY FONTANILLA', 'MANCOM', 'VICE PRESIDENT', 'BD3', 'MANILA', 'REGULAR'),
+(113, 'PCN244', 'MASCARINA, VERA ELLEN FLORES', 'HR', 'DISCIPLINE SPECIALIST', '', 'MANILA', 'REGULAR'),
+(114, 'PCN202', 'MENDOZA, JERICK JUAREZ', 'BD2', 'OPERATIONS SUPERVISOR - PAYABLES', 'BU3', 'MANILA', 'REGULAR'),
+(115, 'PCN264', 'MENDOZA, MOLLY ABUTOG', 'BD2', 'OPERATIONS SUPERVISOR - ONBOARDING', 'BU3', 'MANILA', 'REGULAR'),
+(116, 'PCN187', 'MIRANDA, JHOANNA PAEZ', 'BSG', 'PROCUREMENT MANAGER', 'PROCUREMENT', 'MANILA', 'REGULAR'),
+(117, 'PCN118', 'MONTERO, ANNA SHIELA PUREZA', 'FINANCE', 'CASHIER SUPERVISOR', 'FINANCE - CORE', 'MANILA', 'REGULAR'),
+(118, 'PCN85', 'MOTEL, PALOMA LARIZA SALAZAR', 'BD2', 'BUSINESS UNIT MANAGER', 'BU3', 'MANILA', 'REGULAR'),
+(119, 'PCN277', 'ODTUHAN, JEFFREY MORALITA', 'BSG', 'UTILITY MAINTENANCE 1', 'ADMIN', 'MANILA', 'REGULAR'),
+(120, 'PCN55', 'OLIVA, AILEEN DE LEON', 'STRAT', 'ASSISTANT ACCOUNT MANAGER', 'STRAT', 'MANILA', 'REGULAR'),
+(121, 'PCN283', 'INOCENCIO, CHARMAINE REBENITO', 'BD1', 'ACCOUNT SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(122, 'PCN173', 'PAMILARAN, ZENAIDA MELLEVO', 'HR', 'HR OPERATIONS SUPERVISOR', 'SUPPORT', 'MANILA', 'REGULAR'),
+(123, 'PCN1007', 'PANG, ALEXANDER', 'STRAT', '', 'STRAT', '', 'CONSULTANT'),
+(124, 'PCN405', 'MADRIAGA, JAYSON PALMA', 'BD1', 'MERCHANDISING MANAGER', 'BU2', 'MANILA', 'REGULAR'),
+(125, 'PCN12', 'PASIA, RONNEL DELA PAZ', 'MANCOM', 'VICE PRESIDENT', 'FINANCE', 'MANILA', 'REGULAR'),
+(126, 'PCN13', 'PASIA, SHERYL PAYNOR', 'MANCOM', 'VICE PRESIDENT', 'BD1', 'MANILA', 'REGULAR'),
+(127, 'PCN350', 'PAULINO, MARIA PAULA LUZ MASANGQUE', 'BD3', 'ASSISTANT ACCOUNT MANAGER', 'BD3', 'MANILA', 'REGULAR'),
+(128, 'PCN17', 'PEREDA, MARLUDETH VILLEGAS', 'FINANCE', 'FINANCE MANAGER', '', 'MANILA', 'REGULAR'),
+(129, 'PCN27', 'PESIGAN, AILEEN DIMAILIG', 'BD1', 'BUSINESS UNIT MANAGER(URIC & SPACT)', 'BU2', 'MANILA', 'REGULAR'),
+(130, 'PCN408', 'POLICARPIO, ABIGAEL MANANSALA', 'HR', 'SAFETY/TRADE RELATION OFFICER', 'HR - COMBEN', 'MANILA', 'PROBATIONARY'),
+(131, 'PCN349', 'QUIMNO, CHRISTIAN CEASAR MANOBA', 'BSG', 'LOGISTICS SUPERVISOR', 'LOGISTICS', 'MANILA', 'REGULAR'),
+(132, 'PCN176', 'RAMOS, FERNANDO SANTOS', 'STRAT', 'CREATIVE DIRECTOR', 'CREATIVE', 'MANILA', 'REGULAR'),
+(133, 'PCN42', 'RAMOS, FREDERICK CANDAZA', 'MANCOM', 'VICE PRESIDENT', 'BD2', 'MANILA', 'REGULAR'),
+(134, 'PCN167', 'SALAZAR, ANDREW OLAYVAR', 'BD3', 'ACTIVATION SUPERVISOR', 'BD3', 'MANILA', 'REGULAR'),
+(135, 'PCN282', 'SOLIMAN, MA. CRISTINA', 'BD1', 'ACTIVATION SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(136, 'PCN353', 'SIBAY, ROXAN SINADJAN', 'BD2', 'OPERATIONS HEAD/MANAGER', 'BU3', 'PROVINCIAL', 'REGULAR'),
+(137, 'PCN174', 'TORRE, JOYCE MARICK RAMOS', 'BD1', 'ACCOUNT SUPERVISOR', 'BU2', 'MANILA', 'REGULAR'),
+(138, 'PCN35', 'SORIANO, RONALD PAYUMO', 'BD2', 'MERCHANDISING MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(139, 'PCN385', 'TABUENA, JERALDINE DEQUITO', 'BD3', 'ACTIVATION COORDINATOR', 'BD3', 'MANILA', 'REGULAR'),
+(140, 'PCN122', 'TEVAR, FERISH COSTALES', 'BD2', 'BUSINESS UNIT MANAGER', 'BU1', 'MANILA', 'REGULAR'),
+(141, 'PCN409', 'TOMENIO, MA. REYNA DOMASIG', 'HR', 'HR GENERALIST', '', 'MANILA', 'PROBATIONARY'),
+(142, 'PCN184', 'CARIÃ‘O, GEORGE MICHAEL REVILLA', 'BD1', 'WAREHOUSE / TRAFFIC COORDINATOR', 'SSG', 'MANILA', 'REGULAR'),
+(143, 'PCN286', 'DEL ROSARIO, JOAN BALADJAY', 'BD1', 'BILLING SUPERVISOR', 'SSG', 'MANILA', 'REGULAR'),
+(144, 'PCN82', 'VELASCO, ADRIAN EVANGELISTA', 'BSG', 'WAREHOUSE COORDINATOR', 'WAREHOUSE', 'MANILA', 'REGULAR'),
+(145, 'PCN11', 'VELASCO, EDUARDO EVANGELISTA', 'BSG', 'LIAISON OFFICER', 'ADMIN', 'MANILA', 'REGULAR'),
+(146, 'PCN216', 'VERDE, MA. FE DELIZO', 'HR', 'FINANCE SPECIALIST', 'HR - COMBEN', 'MANILA', 'REGULAR'),
+(147, 'PCN83', 'VILLANUEVA, FERNANDO ISLA', 'BSG', 'MOTORPOOL TECHNICIAN', 'LOGISTICS', 'MANILA', 'REGULAR'),
+(148, 'PCN160', 'VILLASOR, CEFERINA CAAGBAY', 'BD3', 'PROVINCIAL AREA COORDINATOR - CDO', 'BD3', 'PROVINCIAL', 'REGULAR'),
+(149, 'PCN121', 'VILLAVICENCIO, JUNALIE MIRARAN', 'FINANCE', 'FINANCE MANAGER', 'SUPPORT', 'MANILA', 'REGULAR'),
+(150, 'PCN40', 'VILLAVICENCIO, RODEO DE GUZMAN', 'STRAT', 'MIS SUPERVISOR', 'MIS', 'MANILA', 'REGULAR'),
+(151, 'PCN134', 'VILLOSA, BENJAMIN CARANDANG', 'BD3', 'PROVINCIAL AREA COORDINATOR - LAGUNA', 'BD3', 'PROVINCIAL', 'REGULAR'),
+(152, 'PCN29', 'ZAFRA, FERDINAND ROSAL', 'BD3', 'ACTIVATION MANAGER', 'BD3', 'MANILA', 'REGULAR'),
+(153, 'PCN1008', 'BAGABAY, CESAR', 'BSG', '', 'LOGISTICS', 'MANILA', 'HYBRID'),
+(154, 'PCN1010', 'PELAYO, ANAMIE', 'STRAT', 'TECHNICAL ASSISTANT', 'STRAT', 'MANILA', 'PROBATIONARY'),
+(155, 'PCN191881', 'GOMERA, JAMES PHILIP AMANTE', 'STRAT', 'IT SUPPORT', 'MIS-IT', 'MANILA', 'PROJECT BASE'),
+(156, 'PCN191886', 'JONES, SHANAIAH ISABELLE ALDE', 'STRAT', '', '', 'MANILA', 'REGULAR'),
+(157, 'PCNTEMP01', 'TOMENIO, MARIA REYNA', 'BD1', 'HR GENERALIST', '', 'MANILA', 'PROJECT BASE'),
+(158, 'PCNTEMP02', 'EVANGELISTA, EVA', 'BD1', '', '', '', 'PROJECT BASE'),
+(159, 'PCN45208-0', 'DOMINGO, ALLONDRA', 'STRAT', 'DATA ANALYST', '', '', 'PROJECT BASE');
 
 -- --------------------------------------------------------
 
@@ -4017,721 +3445,753 @@ INSERT INTO `mrf` (`id`, `tracking`, `location`, `location_detail`, `class`, `cl
 -- Table structure for table `projects`
 --
 
-CREATE TABLE IF NOT EXISTS `projects` (
-  `id` bigint(20) NOT NULL,
+CREATE TABLE `projects` (
+  `id` int(11) NOT NULL,
+  `mrf_tracking` int(11) NOT NULL,
   `project_title` varchar(255) DEFAULT NULL,
   `client_company_id` varchar(255) DEFAULT NULL,
   `ewb_count` varchar(255) DEFAULT NULL,
   `start_date` varchar(255) DEFAULT NULL,
   `end_date` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL COMMENT '1=active; 0=inactive',
-  `is_deleted` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=705 DEFAULT CHARSET=latin1;
+  `is_deleted` varchar(255) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`) VALUES
-(2, 'Selecta Refillers', 'Unilever RFM Selecta Ice Cream Inc.', '500', NULL, NULL, '1', '0'),
-(4, 'SELECTA', 'Unilever Philippines Inc.', '200', NULL, NULL, '0', '0'),
-(5, 'PURE IT GMA', 'Unilever Philippines Inc.', '60', NULL, NULL, '1', '0'),
-(6, 'PURE IT STAG', 'Unilever Philippines Inc.', '14', NULL, NULL, '1', '0'),
-(7, 'MERCHANDISER / REFILLER', 'Unilever Philippines Inc.', '700', NULL, NULL, '1', '0'),
-(8, 'ENCODER', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
-(9, 'OFFICE BASED', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(10, 'Best Center Beauty Advisors', 'Unilever Philippines Inc.', '151', '1970-01-01', '1970-01-01', '1', '0'),
-(11, 'FMS', 'Unilever Philippines Inc.', '65', NULL, NULL, '1', '0'),
-(12, 'SELECTA OFFICE BASED', 'Unilever RFM Selecta Ice Cream Inc.', '63', NULL, NULL, '1', '0'),
-(13, 'Unilever Superstore', 'Unilever Philippines Inc.', '61', NULL, NULL, '1', '0'),
-(14, 'BABY FLO', 'Baby Flo', '60', NULL, NULL, '1', '0'),
-(15, 'Convergys', 'Concentrix CVG Philippines Inc.', '90', NULL, '2020-09-17', '1', '0'),
-(16, 'FONTERRA/GSK/SANOFI', 'GlaxoSmithkline', '478', NULL, NULL, '1', '0'),
-(17, 'FONTERRA CHILLED', 'Fonterra', '40', NULL, NULL, '1', '0'),
-(18, 'GSK', 'GlaxoSmithkline', '47', NULL, NULL, '1', '0'),
-(19, 'GSK/SANOFI', 'GlaxoSmithkline', '78', NULL, NULL, '1', '0'),
-(20, 'PHILUSA BICOL', 'Philusa Corporation', '16', NULL, NULL, '1', '0'),
-(21, 'PHILUSA STAG', 'Philusa Corporation', '38', NULL, NULL, '1', '0'),
-(23, 'FONTERRA/SANOFI', 'Fonterra', '10', NULL, NULL, '1', '0'),
-(24, 'FONTERRA/GSK', 'Fonterra', '19', NULL, NULL, '1', '0'),
-(25, 'GSK EXCLUSIVE', 'GlaxoSmithkline', '1', NULL, NULL, '1', '0'),
-(26, 'Pernod Ricard', 'Pernod Ricard', '16', NULL, NULL, '1', '0'),
-(27, 'MINDANAO FOODS', 'Pernod Ricard', '100', NULL, NULL, '1', '0'),
-(28, 'ROCHAR', 'ROCHAR', '100', NULL, NULL, '1', '0'),
-(29, 'BRANDY PHARMA', 'BRANDY PHARMA', '10', NULL, NULL, '1', '0'),
-(30, 'OLX', 'OLX', '100', NULL, NULL, '1', '0'),
-(31, 'GOOD DAY COFFEE', 'Good Day Coffee', '100', NULL, NULL, '1', '0'),
-(32, 'ULP MASTER DATABASE', 'Unilever Philippines Inc.', '1000', NULL, NULL, '1', '0'),
-(33, 'PURE IT UPDATED DATA BASE 2018 cacai', 'PURE IT UPDATED DATA BASE 2018 cacai', '100', NULL, NULL, '1', '0'),
-(34, 'Core', 'Unilever Philippines Inc.', '1000', NULL, NULL, '1', '0'),
-(35, 'FONTERRA', 'Fonterra', '120', NULL, NULL, '1', '0'),
-(36, 'FONTERRA / GLAXOSMITHKLINE / SANOFI', 'GlaxoSmithkline', '300', NULL, NULL, '1', '0'),
-(37, 'HISAMITSU SALONPAS', 'HISAMITSUDay Coffee', '100', NULL, NULL, '0', '0'),
-(38, 'Mindanao Food Corp.', 'Mindanao Food Corp.', '100', NULL, NULL, '1', '0'),
-(39, 'PCN Promopro Inc. / OFFICE BASED', 'PCN Promopro Inc.', '100', NULL, NULL, '1', '0'),
-(40, 'Philusa Corporation', 'Philusa Corporation', '657', NULL, NULL, '1', '0'),
-(41, 'PLDT', 'PLDT', '100', NULL, NULL, '1', '0'),
-(42, 'San Miguel Food Corp (Kambal Pandesal)', 'San Miguel Food Corp', '100', NULL, NULL, '1', '0'),
-(43, 'SANOFI', 'SANOFI', '500', NULL, NULL, '1', '0'),
-(44, 'Smart Trade Merchandising', 'SMART', '500', NULL, NULL, '1', '0'),
-(45, 'URIC', 'URIC', '100', NULL, NULL, '1', '0'),
-(46, 'VALIANT PAPER ASIA PACIFIC', 'VALIANT PAPER ASIA PACIFIC', '30', '1970-01-01', '1970-01-01', '1', '0'),
-(47, 'Brady Pharma Inc.', 'Brady Pharma Inc.', '100', NULL, NULL, '1', '0'),
-(48, 'OLX', 'OLX', '100', NULL, NULL, '1', '1'),
-(49, 'Breeze', 'Unilever Philippines Inc.', '70', '1970-01-01', '1970-01-01', '1', '0'),
-(50, 'ASFI', 'ASFI', '9', '1970-01-01', '1970-01-01', '0', '0'),
-(51, 'WOW', 'WOW', '5', '1970-01-01', '1970-01-01', '1', '0'),
-(52, 'Pure it Retail', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
-(54, 'Pure It Partnership', 'Unilever Philippines Inc.', '34', NULL, NULL, '1', '0'),
-(55, 'Pure It LSP', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
-(56, 'Pure It Support', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
-(57, 'Steel Tech', 'Steel Tech', '13', NULL, NULL, '1', '0'),
-(58, 'Gruppo Playground', 'Gruppo', '14', NULL, NULL, '1', '0'),
-(59, 'Best Center BA Supervisor', 'Unilever Philippines Inc.', '13', NULL, NULL, '1', '0'),
-(60, 'Best Center BA Trainors', 'Unilever Philippines Inc.', '8', NULL, NULL, '1', '0'),
-(61, 'Unilever Additonal FMS', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
-(62, 'Unilever HPC-BEC-KAS', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(63, 'Unilever HPC-FMS', 'Unilever Philippines Inc.', '42', NULL, NULL, '1', '0'),
-(64, 'Selecta FMS', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '1', '0'),
-(65, 'Unilever Foods FMS', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(66, 'Unilever Perfect Store HO Encoders', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(67, 'Unilever Shop Sorter Commando', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
-(68, 'Unilever Automation HUB', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(69, 'Unilever AFPCESS', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
-(70, 'Unilever ALLDAY', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
-(71, 'Unilever EVER', 'Unilever Philippines Inc.', '85', NULL, NULL, '1', '0'),
-(72, 'Unilever Isetann', 'Unilever Philippines Inc.', '17', NULL, NULL, '1', '0'),
-(73, 'Unilever Landmark-Landers', 'Unilever Philippines Inc.', '39', NULL, NULL, '1', '0'),
-(74, 'Unilever MDC', 'Unilever Philippines Inc.', '108', NULL, NULL, '1', '0'),
-(75, 'Unilever Metro Gaisano', 'Unilever Philippines Inc.', '35', NULL, NULL, '1', '0'),
-(76, 'Unilever Robinsons', 'Unilever Philippines Inc.', '195', NULL, NULL, '1', '0'),
-(77, 'Unilever DFI', 'Unilever Philippines Inc.', '44', NULL, NULL, '1', '0'),
-(78, 'Unilever South Supermarket', 'Unilever Philippines Inc.', '26', NULL, NULL, '1', '0'),
-(79, 'Unilever Waltermart', 'Unilever Philippines Inc.', '87', NULL, NULL, '1', '0'),
-(80, 'Unilever Encoders', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(81, 'JT International', 'JT INTERNATIONAL INC. (Phils.)', '100', NULL, NULL, '1', '0'),
-(82, 'Mang Inasal', 'Mang Inasal', '50', NULL, NULL, '1', '0'),
-(83, 'Selecta NAO', 'Unilever RFM Selecta Ice Cream Inc.', '33', NULL, NULL, '1', '0'),
-(84, 'Unilever C-Stores', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
-(85, 'Unilever C-Stores South', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(86, 'Unilever Provincial North', 'Unilever Philippines Inc.', '98', NULL, NULL, '1', '0'),
-(87, 'Unilever Provincial South', 'Unilever Philippines Inc.', '152', NULL, NULL, '1', '0'),
-(88, 'Selecta Refillers', 'Unilever RFM Selecta Ice Cream Inc.', '439', NULL, NULL, '1', '0'),
-(89, 'Fonterra-Sanofi North Luzon', 'Fonterra/Sanofi', '46', NULL, NULL, '1', '0'),
-(90, 'Fonterra-Sanofi Central Luzon', 'Fonterra/Sanofi', '103', NULL, NULL, '1', '0'),
-(91, 'Fonterra-Sanofi South Luzon', 'Fonterra/Sanofi', '133', NULL, NULL, '1', '0'),
-(92, 'Fonterra-Sanofi North Mindanao', 'Fonterra/Sanofi', '48', NULL, NULL, '1', '0'),
-(93, 'Fonterra-Sanofi Visayas', 'Fonterra/Sanofi', '142', NULL, NULL, '1', '0'),
-(94, 'Fonterra-Sanofi South Mindanao', 'Fonterra/Sanofi', '57', NULL, NULL, '1', '0'),
-(95, 'GSK RX', 'GSK', '12', NULL, NULL, '1', '0'),
-(96, 'GSK TDR', 'GlaxoSmithkline', '52', NULL, NULL, '1', '0'),
-(97, 'GSK Encoders', 'GSK', '9', NULL, NULL, '1', '0'),
-(98, 'GSK GMA Setup', 'GSK', '4', NULL, NULL, '1', '0'),
-(99, 'Fonterra NCR', 'Fonterra', '320', NULL, NULL, '1', '0'),
-(100, 'GSK FMS (Nationwide)', 'GSK', '58', NULL, NULL, '1', '0'),
-(101, 'Test Project', 'Test', '30', NULL, NULL, '1', '0'),
-(102, 'Big Glory Day Demo Sampler', 'Big Glory Alliance', '4', NULL, NULL, '1', '0'),
-(103, 'Good Day Puregold Exhibit', 'Good Day Coffee', '10', NULL, NULL, '1', '0'),
-(104, 'PLDT Prepaid Wifi Nook', 'PLDT', '20', NULL, NULL, '1', '0'),
-(105, 'Gruppo 5-Day Event SME at Riverbanks', 'Gruppo', '60', NULL, NULL, '1', '0'),
-(106, 'PLDT Channel Sales', 'PLDT Channel Sales', '50', NULL, NULL, '1', '0'),
-(108, 'Fonterra NCR', 'Fonterra', '320', NULL, NULL, '1', '0'),
-(109, 'Fonterra South Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
-(110, 'Fonterra North Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
-(111, 'Fonterra Central Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
-(112, 'Fonterra Visayas', 'Fonterra', '300', NULL, NULL, '1', '0'),
-(113, 'Good Day Coffee Selling Activity', 'Good Day Coffee', '6', NULL, NULL, '1', '0'),
-(114, 'Seasonal Helper Unilever', 'Unilever Philippines Inc.', '80', NULL, NULL, '1', '0'),
-(115, 'PLDT Project Hire', 'PLDT', '50', NULL, NULL, '1', '0'),
-(116, 'Gruppo Innovare Corp.', 'Gruppo Innovare Corporation', '100', '2018-01-01', '2020-12-31', '1', '0'),
-(117, 'Ultramega Convention', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
-(118, 'BD1 Billing Assistant', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(119, 'Sanofi Helpers', 'SANOFI', '3', NULL, NULL, '1', '0'),
-(120, 'Good Day Rider Ahente', 'Good Day Coffee', '5', NULL, NULL, '1', '0'),
-(121, 'Fonterra-Sanofi NCR', 'Fonterra/Sanofi', '200', NULL, NULL, '1', '0'),
-(122, 'Fonterra Data Encoder', 'Fonterra', '4', NULL, NULL, '1', '0'),
-(123, 'Hisamitsu OBL Pasig City', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(124, 'Isetann U-Chef 2018', 'Unilever Philippines Inc.', '12', NULL, NULL, '0', '0'),
-(125, 'Pernod Ricard Sales Rep.', 'Pernod Ricard', '2', NULL, NULL, '1', '0'),
-(126, 'Unilever Bundlers', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
-(127, 'Unilever Skintalk Animation', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(128, 'Hisamitsu Hermosa Festival', 'HISAMITSUDay Coffee', '8', NULL, NULL, '1', '0'),
-(129, 'Hisamitsu Egg Fun Run', 'HISAMITSUDay Coffee', '7', NULL, NULL, '0', '0'),
-(130, 'Unilever Go Leveredge', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(131, 'Knorr Lutong Nanay', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(132, 'Fonterra North Mindanao', 'Fonterra', '80', NULL, NULL, '1', '0'),
-(133, 'LDS October Beauty Fair', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(134, 'Selecta Blitz', 'URIC', '85', NULL, NULL, '0', '0'),
-(135, 'Hisamitsu Perpetual Hospital Sampling 2018', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(136, 'Unilever Gifting Animation', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
-(137, 'Selecta Push Girls', 'Unilever RFM Selecta Ice Cream Inc.', '20', NULL, NULL, '1', '0'),
-(138, 'Selecta Tactical', 'Unilever RFM Selecta Ice Cream Inc.', '50', NULL, NULL, '0', '0'),
-(139, 'Unilever NAO Surveyor', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
-(140, 'Unilever Holiday Fair', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
-(141, 'Divimart Convention', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
-(142, 'UFS SM Street Food Festival', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(143, 'Superstore 10th Year Anniversary', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
-(144, 'JTI Data Encoders', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
-(145, 'South Supermarket Mushroom Carbonara Sampling', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(146, 'Hisamitsu St. Theresa Quezon City Family Day 2018', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(147, 'Kambal Pandesal Cavite Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
-(148, 'Kambal Pandesal Manila Memorial Park Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
-(149, 'Kambal Pandesal Muntinlupa Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
-(150, 'Unilever Food Solutions Food Festival', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(151, 'Hisamitsu PBA Sampling Araneta Cubao', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(152, 'Shell Undas Activation', 'Unilever RFM Selecta Ice Cream Inc.', '9', NULL, NULL, '0', '0'),
-(153, 'Undas Selling Oct. 31 - Nov. 1', 'URIC', '9', NULL, NULL, '0', '0'),
-(154, 'Gma x Bantay Byahe', 'URIC', '2', NULL, NULL, '0', '0'),
-(155, 'Robinsons Holiday Fair Nov. 10-11', 'URIC', '3', NULL, NULL, '0', '0'),
-(156, 'Selecta Telemarketer', 'URIC', '6', NULL, NULL, '1', '0'),
-(157, 'Hisamitsu Nova Market Sampling 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(158, 'PCN Office Based', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(159, 'Unilever Landers Animation', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
-(160, 'Unilever Shop and Shop', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
-(161, 'Hisamitsu Oplan Bigay Lunas 2018', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
-(162, 'Unilever Superstore Anniversary', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
-(163, 'BD1 Office Based Admin Asst.', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(164, 'BD1 Office Based Admin Asst.', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(165, 'Hisamitsu OYM Leg 4 2018', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
-(166, 'PCN Office Based', 'PCN Promopro Inc.', '2', NULL, NULL, '1', '0'),
-(167, 'Selecta EVER Commonwealth Re-Launch Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(168, 'Selecta Family Day Event', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
-(169, 'Selecta Kiwi Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
-(170, 'BD3 Billing Assistant Office Based', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(171, 'Anibersaya Fair Waltermart', 'Unilever Philippines Inc.', '6', NULL, '2020-12-15', '0', '0'),
-(172, 'Lawson IBM Plaza Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(173, 'Hisamitsu Eagle Broadcasting Family Run 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(174, 'Hisamitsu Kalikasan Earth Run 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(175, 'Hisamitsu GMA Network Kamuning 2018 Sampling', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
-(176, 'Selecta Kiwi Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
-(177, 'Quaker Oats Push Selling Robinsons', 'Pepsi Co.', '15', NULL, NULL, '0', '0'),
-(178, 'Selecta URIC Prince Angat', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(179, 'MDC We Care', 'Unilever Philippines Inc.', '7', NULL, NULL, '0', '0'),
-(180, 'Hisamitsu Embassy Sampling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(181, 'Hisamitsu 7/11 Wellness Program', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(182, 'Hisamitsu 7/11 Wellness Program', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(183, 'Gruppo Innovare Playground Event', 'Gruppo', '12', NULL, NULL, '1', '0'),
-(184, 'HRI NAO', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
-(185, 'Hisamitsu Run for Depression 2018', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
-(186, 'Gruppo Riverbanks B1T1 Sale Event', 'Gruppo', '60', NULL, NULL, '1', '0'),
-(187, 'Selecta Project Assistant', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(188, 'Hisamitsu Push Selling for various accounts', 'HISAMITSUDay Coffee', '10', NULL, NULL, '0', '0'),
-(189, 'Hisamitsu Lufthansa 2018', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
-(190, 'Unilever Gifting Animation', 'Unilever Philippines Inc.', '12', NULL, NULL, '0', '0'),
-(191, 'Unilever All Things Hair', 'Unilever Philippines Inc.', '3', NULL, NULL, '0', '0'),
-(192, 'Gruppo Innovare Encoder', 'Gruppo', '1', NULL, NULL, '1', '0'),
-(193, 'Good Day Negotiator', 'Good Day Coffee', '2', NULL, NULL, '1', '0'),
-(194, 'Unilever B2B Booth for Salescon 2019', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
-(195, 'Sell-Out Program FDA', 'AB Heineken Philippines Inc.', '2', NULL, NULL, '0', '0'),
-(196, 'Wet Sampling Sem 2', 'Unilever RFM Selecta Ice Cream Inc.', '5', NULL, NULL, '1', '0'),
-(197, 'Unilever Store Employees Under PCN', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(198, 'Unilever MDC Sorter', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(199, 'Unilever South Supermarket Knorr Sampling', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
-(200, 'Unilever CVS Opex', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(201, 'PCN Warehouse Helper', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(202, 'Selecta Ice Cream Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(203, 'Selecta Ice Cream Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(204, 'PSE Run', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(205, 'Hisamitsu Transcom Sampling', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
-(206, 'PCN Promopro HR Assistant', 'PCN Promopro Inc.', '3', NULL, NULL, '1', '0'),
-(207, 'Hisamitsu Takbo 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(208, 'WM Kick Off Support', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
-(209, 'Hisamitsu SSD Dispenser Deployment 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(210, 'Hisamitsu HGST Sampling 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(211, 'Hisamitsu Generika Franchisers Meeting 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '1', '0'),
-(212, 'Selecta School Fair Event', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(213, 'JTI Filing and Stamping', 'JT INTERNATIONAL INC. (Phils.)', '35', NULL, NULL, '1', '0'),
-(214, 'Hisamitsu 7/11 Fun Run', 'HISAMITSUDay Coffee', '14', NULL, NULL, '0', '0'),
-(215, 'FDA Permit Application', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(216, 'Delivery of Tacbins to Landmark', 'Fonterra', '2', NULL, NULL, '1', '0'),
-(217, 'Shipment of Shelfstrip', 'SANOFI', '1', NULL, NULL, '1', '0'),
-(218, '7/11 Fun Run 2019', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
-(219, 'BGC Retail Lab Set-up', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(220, 'Hisamitsu CNY Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(221, 'Hisamitsu Transcom Pasig', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
-(222, 'PCN EWB Finance', 'PCN Promopro Inc.', '2', NULL, NULL, '1', '0'),
-(223, 'Hisamitsu Activity Center Sampling 2019', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
-(224, 'Unilever Beauty Fair 2019', 'Unilever Philippines Inc.', '7', NULL, NULL, '0', '0'),
-(225, 'SSS Head Office Sampling', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
-(226, 'Vita Green C Sampling', 'Falcon Resources Inc.', '5', NULL, NULL, '0', '0'),
-(227, 'JTI Mighty Entries Destruction', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
-(228, 'Admin Assistant Superstore', 'Unilever Philippines Inc.', '1', NULL, '2020-9-18', '1', '0'),
-(229, 'Wet Sampling Sem 1 2019', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '0', '0'),
-(230, 'Fun Trail 2019', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(231, 'Hisamitsu Eperformax Sampling/Selling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(232, 'KP Grand Opening Green Valley', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
-(233, 'JBP Puregold 2019', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
-(234, 'Puregold JBP 2019', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
-(235, 'Pldt Project Hire GMMW', 'PLDT', '1', NULL, NULL, '1', '0'),
-(236, 'PLDT Pre-paid Wifi', 'PLDT', '15', NULL, NULL, '1', '0'),
-(237, 'Hisamitsu Clark Half Marathon 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(238, 'Hisamitsu Magalang Fun Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(239, 'PLDT Prepaid Batangas', 'PLDT', '3', NULL, NULL, '1', '0'),
-(240, 'Code Red Bundlers', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(241, 'Hisamitsu TGP Summit 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(242, 'Hisamitsu MDC Oplan Bigay Lunas 2019', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
-(243, 'Hisamitsu MDC Oplan Bigay Lunas 2019 - Provincial', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
-(244, 'Selecta Super8 Tanay', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
-(245, 'PLDT Events', 'PLDT', '10', NULL, NULL, '1', '0'),
-(246, 'Unilever OBL 2019', 'Unilever Philippines Inc.', '6', NULL, NULL, '0', '0'),
-(247, 'JTI Validators/Provincial', 'JT INTERNATIONAL INC. (Phils.)', '150', NULL, NULL, '1', '0'),
-(248, 'OBL Hairstylist 2019', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
-(249, 'Mighty Marvel Empty Pack Validators', 'JT INTERNATIONAL INC. (Phils.)', '30', NULL, NULL, '1', '0'),
-(250, 'Beauty Refiller', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
-(251, 'SSM Mall Roadshow Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(252, 'PLDT Project Hire GMMS', 'PLDT', '10', NULL, NULL, '1', '0'),
-(253, 'Fonterra Shipment of Shelf Ears and Shelf Strip', 'Fonterra', '2', NULL, NULL, '1', '0'),
-(254, 'Seleta Push Girl Wave 1', 'Unilever RFM Selecta Ice Cream Inc.', '120', NULL, NULL, '0', '0'),
-(255, 'Unilever Go Leveredge Hellsman Sampling', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
-(256, 'Super8 Convention 2019', 'Unilever Philippines Inc.', '11', NULL, NULL, '0', '0'),
-(257, 'Yes 2019 Exhibitor', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(258, 'Robinsons Arnaiz Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(259, 'KP Grand Opening', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
-(260, 'Aguila Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(261, 'PBA Sampling 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
-(262, 'Trinoma Mall Activity Center Sampling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(263, 'SM Department Store Selling (North Edsa)', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(264, 'PRPI Training', 'Pernod Ricard', '1', NULL, NULL, '1', '0'),
-(265, 'Mailer for and Payday Offers', 'Unilever Philippines Inc.', '9', NULL, NULL, '1', '0'),
-(266, 'Share the Sun Animation', 'Unilever Philippines Inc.', '3', NULL, NULL, '0', '0'),
-(267, 'Unilever International Grand Dragon', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(268, 'PLDT TVolution Giveaways', 'PLDT', '3', NULL, NULL, '1', '0'),
-(269, 'Selecta Rustans Gateway Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
-(270, 'Selecta Shopwise Summer Indulgence', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
-(271, 'Jayniths Bangketa Sale Calamba', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(272, 'Hisamitsu Transcom Wellness', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(273, 'Hisamitsu Booth Shipment', 'HISAMITSUDay Coffee', '4', NULL, NULL, '1', '0'),
-(274, 'Onsite Selling for the Month of March 2019', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
-(275, 'San Roque Imus Caravan', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
-(276, 'Puregold Aling Puring Convention 2019', 'Unilever Philippines Inc.', '90', NULL, NULL, '0', '0'),
-(277, 'Suysing Convention 2019', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
-(278, 'Super 8 Funfest 2019', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
-(279, 'Selecta Merchandising', 'Unilever RFM Selecta Ice Cream Inc.', '20', NULL, NULL, '1', '0'),
-(280, 'MT D-Day Activation', 'Unilever RFM Selecta Ice Cream Inc.', '5', NULL, NULL, '0', '0'),
-(281, 'Robinsons Townville Selling', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
-(282, 'SVI Maax Opening', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
-(283, 'Road to 80k Roxas', 'PLDT', '8', NULL, NULL, '1', '0'),
-(284, 'Selecta Merchandising CSR', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
-(285, 'Unilever International B.A.', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
-(286, 'RSC Store Manager Assembly', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
-(287, 'Citimart Wholesaler Convention 2019', 'Philusa Corporation', '5', NULL, NULL, '1', '0'),
-(288, 'Road to 80k Palawan', 'PLDT', '5', NULL, NULL, '1', '0'),
-(289, 'STAGSL Kabisig Summit', 'Unilever Philippines Inc.', '26', NULL, NULL, '1', '0'),
-(290, 'Road to 80k Iloilo', 'PLDT', '7', NULL, NULL, '1', '0'),
-(291, 'Selecta Merchandising Blitz', 'URIC', '100', NULL, NULL, '0', '0'),
-(292, 'JTI Mystery Shopper', 'JT INTERNATIONAL INC. (Phils.)', '14', NULL, NULL, '1', '0'),
-(293, 'Maynilad Media Run', 'HISAMITSUDay Coffee', '3', NULL, NULL, '1', '0'),
-(294, 'Sun Life 2019', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
-(295, 'Crazy Fit Asian', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(296, 'Negosyo Pack Bundling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(297, 'La Filipina Can Sampling', 'La Filipina', '3', NULL, NULL, '1', '0'),
-(298, 'Laundromat Online Surveyor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(299, 'Mighty Redemption Center', 'JT INTERNATIONAL INC. (Phils.)', '35', NULL, NULL, '1', '0'),
-(300, 'Redemption Girl', 'Unilever Philippines Inc.', '6', NULL, NULL, '1', '0'),
-(301, 'Accelerator Executive', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '1', '0'),
-(302, 'Jayniths Bangketa Sale', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
-(303, 'Easymart Easy Sale Redemption Girl', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(304, 'IT Support', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
-(305, 'Brand Ambassador 2019', 'Unilever Philippines Inc.', '25', NULL, NULL, '1', '0'),
-(306, 'Mighty Redemption Cavite', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
-(307, 'Jayniths Bangketa Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
-(308, 'Easymart Easy Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
-(309, 'Hisamitsu Run Rio Leg 1', 'Unilever Philippines Inc.', '6', NULL, NULL, '0', '0'),
-(310, 'Hisamitsu Handyman Antipolo Sampling', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
-(311, 'Tindahan Club', 'Unilever Philippines Inc.', '30', NULL, NULL, '1', '0'),
-(312, 'PLDT Road to 80K Bacolod', 'PLDT', '9', NULL, NULL, '1', '0'),
-(313, 'PLDT Road to 80k Roxas', 'PLDT', '7', NULL, NULL, '1', '0'),
-(314, 'PLDT Road to 80K Dumaguete', 'PLDT', '7', NULL, NULL, '1', '0'),
-(315, 'Selecta Accelerator Executive', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
-(316, 'Bangko Sentral ng Pilipinas Malate Manila Sampling', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(317, 'PLDT Road to 80k Dumaguete', 'HISAMITSUDay Coffee', '7', NULL, NULL, '1', '0'),
-(318, 'PLDT Road to 80k Bacolod', 'HISAMITSUDay Coffee', '9', NULL, NULL, '1', '0'),
-(319, 'Selecta Helper', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
-(320, 'Selecta Project Manager', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(321, 'JTI Mystery Shopper Bacolod', 'JT INTERNATIONAL INC. (Phils.)', '14', NULL, NULL, '1', '0'),
-(322, 'JTI Mystery Shopper Bohol', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
-(323, 'JTI Mystery Shopper Butuan', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
-(324, 'JTI Mystery Shopper Cebu', 'JT INTERNATIONAL INC. (Phils.)', '18', NULL, NULL, '1', '0'),
-(325, 'JTI Mystery Shopper Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '7', NULL, NULL, '1', '0'),
-(326, 'JTI Mystery Shopper Zamboanga', 'JT INTERNATIONAL INC. (Phils.)', '4', NULL, NULL, '1', '0'),
-(327, 'Management of Growth Coaches', 'Shell', '10', NULL, NULL, '1', '0'),
-(328, 'Management of Growth Coaches FOG', 'Shell', '20', NULL, NULL, '1', '0'),
-(329, 'Kambal Pandesal Ifugao', 'San Miguel Food Corp', '4', NULL, NULL, '1', '0'),
-(330, 'Deployment of Dancer to Summit', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
-(331, 'Unilever Merrymart', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(332, 'Hisamitsu Holy Week Sampling CDO', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(333, 'Hisamitsu Holy Week Sampling Davao', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(334, 'Shell Holy Week Activation', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '0', '0'),
-(335, 'Mang Inasal Halo Halo Sampling Iloilo', 'Mang Inasal', '7', NULL, NULL, '1', '0'),
-(336, 'Mang Inasal Halo Halo Sampling Ormoc', 'Mang Inasal', '7', NULL, NULL, '1', '0'),
-(337, 'Hisamitsu Bangus Festival 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(338, 'PLDT Easter Sunday Event', 'PLDT', '10', NULL, NULL, '1', '0'),
-(339, 'Cebuana Lhuiller Micro Savings', 'Cebuana Lhullier', '100', NULL, NULL, '1', '0'),
-(340, 'Citimart Calapan', 'Philusa Corporation', '4', NULL, NULL, '1', '0'),
-(341, 'Bags of Hope Deployment', 'Unilever Philippines Inc.', '25', NULL, NULL, '1', '0'),
-(342, 'Ministop Clover + Lipton Milktea', 'Unilever Philippines Inc.', '11', NULL, NULL, '1', '0'),
-(343, 'Hisamitsu Suy Sing Suki Day 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(344, 'Hisamitsu Fire Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(345, 'JTI Merchandising Blitz', 'JT INTERNATIONAL INC. (Phils.)', '13', NULL, NULL, '1', '0'),
-(346, 'SM Launchpad', 'Unilever RFM Selecta Ice Cream Inc.', '8', NULL, NULL, '0', '0'),
-(347, '1W13-WM Acro', 'Unilever Philippines Inc.', '18', '2012-12-12', '2012-12-12', '1', '0'),
-(348, 'UFS Puregold KSL Sampling', 'Unilever Philippines Inc.', '9', NULL, NULL, '1', '0'),
-(349, 'UFS TNAP Convention 2019', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
-(350, 'Waltermart Subic Store Opening', 'Unilever Philippines Inc.', '4', NULL, NULL, '0', '0'),
-(351, 'Hisamitsu Farmacia ni Dok Summit', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
-(352, 'Selecta HRI NAO', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(353, 'Selecta Project Coordinator', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
-(354, 'Yes Puregold KSL Sampling', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
-(355, 'PLDT Vertex Anniversary Event Laoag Ilocos Norte', 'PLDT', '3', NULL, NULL, '1', '0'),
-(356, 'Premium Laundry Experts Total Project', 'Unilever Philippines Inc.', '7', NULL, NULL, '1', '0'),
-(357, 'Concentrix Pro Seasonal Activities', 'Concentrix CVG Philippines Inc.', '10', NULL, NULL, '1', '0'),
-(358, 'Best Center Special Activation', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(359, 'Hisamitsu OYM Wet and Wild 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
-(360, 'Watsons Natural Month Animation', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
-(361, 'Hisamitsu Royal Duty Free Push Selling', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
-(362, 'Unilever Omnibus Event', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
-(363, 'Mang Inasal Halo Halo Sampling Legaspi', 'Mang Inasal', '5', NULL, NULL, '1', '0'),
-(364, 'Pldt Road to 80k Isabela', 'PLDT', '7', NULL, NULL, '1', '0'),
-(365, 'JTI Mighty Raffle Draw', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
-(366, 'Hisamitsu Magalang Fun Run Pampanga', 'HISAMITSUDay Coffee', '4', NULL, NULL, '1', '0'),
-(367, 'Hisamitsu Lourdes Pharmacy Push Selling', 'HISAMITSUDay Coffee', '7', NULL, NULL, '1', '0'),
-(368, 'La Filipina Canned Meat Sampling Island City Mall Bohol', 'La Filipina', '4', NULL, NULL, '1', '0'),
-(369, 'POSC Survey 2019', 'POSC', '10', NULL, NULL, '1', '0'),
-(370, 'Key Account Executive/KCE', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(371, 'Laundry Surveyor', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
-(372, 'Salonpas Fun Run MOA', 'HISAMITSUDay Coffee', '6', NULL, NULL, '1', '0'),
-(373, 'JTI Merchandising Blitz', 'JT INTERNATIONAL INC. (Phils.)', '10', NULL, NULL, '1', '0'),
-(374, 'Mang Inasal Halo Halo Sampling Isabela', 'Mang Inasal', '5', NULL, NULL, '1', '0'),
-(376, 'Mars Wrigley STS Selling Blitz', 'Mars Wrigley Confectionery', '16', NULL, NULL, '1', '0'),
-(377, 'Wrigley STS', 'Mars Wrigley Confectionery', '20', NULL, NULL, '1', '0'),
-(378, 'UFS KSL Sampling', 'Unilever Philippines Inc.', '30', NULL, NULL, '1', '0'),
-(379, 'Cebu Animation Ponds Beauty Section Hair Category', 'Unilever Philippines Inc.', '6', NULL, NULL, '1', '0'),
-(380, 'Selecta Sales Con', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(381, 'Shell Special Project Executive', 'Shell', '1', NULL, NULL, '1', '0'),
-(382, 'Easymart Bangketa Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(383, 'J-niths Pasig', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
-(384, 'Cost for Sachet Collection', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
-(385, 'Ponds Best center', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(386, 'Unilever Activation Senior Project Manager', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(387, 'UFS SM Fairview Chef Deployment', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
-(388, 'Unilever Project Supervisor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(389, 'Activation Supervisor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
-(390, 'Robinsons Fit N Fun Body Run 2019', 'HISAMITSUDay Coffee', '7', '2019-07-07', '2019-07-07', '1', '0'),
-(391, 'UFS KSL Flyering Activation', 'Unilever Philippines Inc.', '10', '2019-07-06', '2019-07-21', '1', '0'),
-(392, 'GMA Laundromat Survey', 'Unilever Philippines Inc.', '16', '2019-07-08', '2019-08-06', '1', '0'),
-(393, 'PLILI', 'Philippine Leading Infinite Logistics Inc.', '200', '2019-07-01', '2020-12-31', '1', '0'),
-(394, 'Fonterra/PLILI', 'Fonterra/PLILI', '200', '2019-07-01', '2020-12-31', '1', '0'),
-(395, 'PLILI/Sanofi/Fonterra', 'PLILI/Sanofi/Fonterra', '200', '2019-07-01', '2020-12-31', '1', '0'),
-(396, 'Hair GMA Sampling', 'Unilever Philippines Inc.', '2', '2019-07-12', '2019-08-05', '1', '0'),
-(397, 'J.C. Plaza Convention', 'Unilever Philippines Inc.', '2', '2019-07-12', '2019-07-14', '1', '0'),
-(398, 'Mang Inasal Sampling-MPC', 'Mang Inasal', '4', '2019-07-20', '2019-07-31', '1', '0'),
-(399, 'Automation Supervisor', 'Unilever Philippines Inc.', '1', '2019-07-13', '2020-01-13', '1', '0'),
-(400, 'Bangketa Sale Calamba', 'Unilever Philippines Inc.', '1', '2019-07-19', '2019-07-19', '1', '0'),
-(401, 'UFS Chef Deployment', 'Unilever Philippines Inc.', '2', '2019-07-20', '2019-09-19', '1', '0'),
-(402, 'UFS Landmark KSL Sampling', 'Unilever Philippines Inc.', '3', '2019-08-02', '2019-08-29', '1', '0'),
-(403, 'Cost For Super8 August Promo-Mobile Couponing Run', 'Unilever Philippines Inc.', '9', '2019-08-01', '2019-08-31', '1', '0'),
-(404, 'Concentrix Merch', 'Concentrix CVG Philippines Inc.', '21', '2019-07-22', '2019-08-02', '1', '0'),
-(405, 'UFS-Chef Deployment 2019', 'Unilever Philippines Inc.', '2', '2019-07-20', '2019-09-14', '1', '0'),
-(406, 'UFS Landmark KSL Sampling', 'Unilever Philippines Inc.', '3', '2019-08-02', '2019-08-24', '1', '0'),
-(407, 'Kambal Pandesal Sampling (Magallanes Buendia Exit)', 'San Miguel Food Corp', '1', '2019-07-22', '2019-07-22', '1', '0'),
-(408, 'JTI Mighty Draw', 'JT INTERNATIONAL INC. (Phils.)', '5', '2019-07-20', '2019-07-26', '1', '0'),
-(409, 'Robinsons Fiestararan', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-07-27', '2019-07-27', '1', '0'),
-(410, 'La Filipina Puregold Sampling And Push Selling', 'La Filipina', '10', '2019-07-27', '2019-07-31', '1', '0'),
-(411, 'The Playground Riverbanks 5-day Sale Event', 'Gruppo', '60', '2019-07-31', '2019-08-04', '1', '0'),
-(412, 'Puregold BF Aguirre Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-07-23', '2019-07-23', '1', '0'),
-(413, 'Hisamitsu NCC BH1 Green Revo (Wellness Event)', 'HISAMITSUDay Coffee', '5', '2019-07-28', '2019-07-28', '1', '0'),
-(414, 'Unilever Redemption Girl Landmark Nuvali', 'Unilever Philippines Inc.', '2', '2019-07-31', '2019-08-07', '1', '0'),
-(415, 'Kambal Pandesal Mascot Cavite', 'San Miguel Food Corp', '2', '2019-07-27', '2019-07-27', '1', '0'),
-(416, 'Kambal Pandesal Event Selling-Cavite', 'San Miguel Food Corp', '2', '2019-07-30', '2019-07-31', '1', '0'),
-(417, 'Haba Hair 2019', 'Unilever Philippines Inc.', '3', '2019-07-26', '2019-07-31', '1', '0'),
-(418, 'Unilever Home Care Super Sale 2019', 'Unilever Philippines Inc.', '21', '2019-08-01', '2019-08-30', '1', '0'),
-(419, 'SSD RPH Summit Activation-Revised', 'Unilever Philippines Inc.', '1', '2019-08-25', '2019-08-26', '1', '0'),
-(420, 'Hisamitsu Milo Marathon Subic 2019', 'HISAMITSUDay Coffee', '7', '2019-08-04', '2019-08-04', '1', '0'),
-(421, 'RTC 3 Sports & Fitness 2019 Magalang Pampanga', 'HISAMITSUDay Coffee', '6', '2019-08-04', '2019-08-04', '1', '0'),
-(422, 'Scan Asia', 'Scan Asia', '21', '2019-07-01', '2022-12-31', '1', '0'),
-(423, 'Scan Asia Merchandising', 'Scan Asia', '140', '2019-07-01', '2022-12-31', '1', '0'),
-(424, 'Hisamitsu Milo Marathon Lingayen 2019', 'HISAMITSUDay Coffee', '7', '2019-08-18', '2019-08-18', '1', '0'),
-(425, 'La Filipina Push Selling Cabanatuan', 'La Filipina', '2', '2019-08-02', '2019-08-02', '1', '0'),
-(426, 'Easymart Marilao Easysale', 'Unilever Philippines Inc.', '1', '2019-08-02', '2019-08-02', '1', '0'),
-(427, 'UFS SM Street Food', 'Unilever Philippines Inc.', '7', '2019-08-09', '2019-08-11', '1', '0'),
-(428, 'Unilever Home Care Fair', 'Unilever Philippines Inc.', '23', '2019-08-05', '2019-09-05', '1', '0'),
-(429, 'PLILI FMS', 'Philippine Leading Infinite Logistics Inc.', '5', '2019-08-05', '2022-12-31', '1', '0'),
-(430, 'Unilever International Hellmans Sampling', 'Unilever Philippines Inc.', '12', '2019-08-19', '2019-11-30', '1', '0'),
-(431, 'Monin Wofex 2019', 'Unilever Philippines Inc.', '2', '2019-08-07', '2019-08-10', '1', '0'),
-(432, 'Mighty May Tibay', 'JT INTERNATIONAL INC. (Phils.)', '19', '2019-08-09', '2019-08-09', '1', '0'),
-(433, 'Davao Hisamitsu Amexco Drug Payday', 'HISAMITSUDay Coffee', '5', '2019-08-17', '2019-09-30', '1', '0'),
-(434, 'Hisamitsu HBI - Davao Pharmacy Festival 2019', 'HISAMITSUDay Coffee', '10', '2019-08-17', '2019-09-30', '1', '0'),
-(435, 'Kadayawan Davao Festival 2019', 'HISAMITSUDay Coffee', '4', '2019-08-17', '2019-08-18', '1', '0'),
-(436, 'Hisamitsu Higalaan Festival 2019', 'HISAMITSUDay Coffee', '4', '2019-08-24', '2019-08-25', '1', '0'),
-(437, 'SSM Streetfood Festival 2019', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-08-09', '2019-10-06', '1', '0'),
-(438, 'Creamsilk Animation', 'Unilever Philippines Inc.', '3', '2019-08-14', '2019-08-16', '1', '0'),
-(439, 'Hisamitsu AMESCO Fest. Davao', 'HISAMITSUDay Coffee', '5', '2019-08-15', '2019-08-17', '1', '0'),
-(440, 'MT Merchandising BCP Controller', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-08-16', '2019-09-13', '1', '0'),
-(441, 'S&R Bundling', 'Unilever Philippines Inc.', '5', '2019-08-01', '2019-12-31', '1', '0'),
-(442, 'Go Leveredge Manpower', 'Unilever Philippines Inc.', '4', '2019-08-01', '2019-12-31', '1', '0'),
-(443, 'DSAP Convention 2019', 'Unilever Philippines Inc.', '13', '2019-09-01', '2019-09-06', '1', '0'),
-(444, 'Ultramega Convention', 'Unilever Philippines Inc.', '14', '2019-10-01', '2019-10-06', '1', '0'),
-(445, 'Knorr Sampling', 'Unilever Philippines Inc.', '1', '2019-08-01', '2019-10-31', '1', '0'),
-(446, 'JTI Camel Let''s Win The Moment Raffle', 'JT INTERNATIONAL INC. (Phils.)', '24', '2019-08-17', '2019-12-07', '1', '0'),
-(447, 'Hisamitsu Kadayawan Festival 2019', 'HISAMITSUDay Coffee', '5', '2019-08-17', '2019-08-24', '1', '0'),
-(448, 'Home Care Super Sale', 'Unilever Philippines Inc.', '24', '2019-08-15', '2019-10-15', '1', '0'),
-(449, 'JTI Camel Letâ€™s Win The Moment Raffle Bacolod', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
-(450, 'JTI Camel Letâ€™s Win The Moment Raffle Dumaguete', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
-(451, 'JTI Camel Letâ€™s Win The Moment Raffle Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
-(452, 'JTI Camel Letâ€™s Win The Moment Raffle Roxas', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
-(453, 'Dove Animation', 'Unilever Philippines Inc.', '3', '2019-08-16', '2019-08-25', '1', '0'),
-(454, 'S&R Bundling And Deployment Davao', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
-(455, 'S&R Bundling And Deployment Cebu', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
-(456, 'S&R Bundling And Deployment Iloilo', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
-(457, 'S&R Bundling And Deployment CDO', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
-(458, 'Hisamitsu Sesame Street Run 2019', 'HISAMITSUDay Coffee', '6', '2019-08-17', '2019-08-17', '1', '0'),
-(459, 'Hisamitsu Run With Me 2019', 'HISAMITSUDay Coffee', '5', '2019-08-25', '2019-08-25', '1', '0'),
-(460, 'Hisamitsu Health Fair 2019', 'HISAMITSUDay Coffee', '4', '2019-08-21', '2019-08-24', '1', '0'),
-(461, 'Hisamitsu Newport Mall Booth Activation', 'HISAMITSUDay Coffee', '3', '2019-08-20', '2019-08-24', '1', '0'),
-(462, 'Philusa Encoder', 'Philusa Corporation', '1', '2019-08-19', '2020-01-19', '1', '0'),
-(463, 'Tactical Coordinator Unilever', 'Unilever Philippines Inc.', '15', '2019-08-19', '2020-02-18', '1', '0'),
-(464, 'Hisamitsu South Star Drug Pharmacist Summit 2019', 'HISAMITSUDay Coffee', '3', '2019-08-25', '2019-08-26', '1', '0'),
-(465, 'Dove Push Girl', 'Unilever Philippines Inc.', '1', '2019-08-31', '2019-09-08', '1', '0'),
-(466, 'La Filipina Community Outreach', 'La Filipina', '6', '2019-08-31', '2019-09-04', '1', '0'),
-(467, 'Mang Inasal Sampling 2nd Sem 2019', 'Mang Inasal', '15', '2019-09-01', '2019-10-30', '1', '0'),
-(468, 'Mang Inasal Halo Halo Sampling Nega Penafrancia Bichara Mall', 'Mang Inasal', '7', '2019-09-14', '2019-09-14', '1', '0'),
-(469, 'Mang Inasal Halo Halo Sampling Gensan G Mall', 'Mang Inasal', '7', '2019-09-15', '2019-09-15', '1', '0'),
-(470, 'Mang Inasal Halo Halo Sampling CDO Gaisano Mall', 'Mang Inasal', '7', '2019-09-20', '2019-09-20', '1', '0'),
-(471, 'Mang Inasal Halo Halo Sampling Robinsons Ilocos Norte', 'Mang Inasal', '7', '2019-09-22', '2019-09-22', '1', '0'),
-(472, 'Mang Inasal Halo Halo Sampling SM Cebu', 'Mang Inasal', '7', '2019-09-28', '2019-09-28', '1', '0'),
-(473, 'Mighty May Timbang', 'JT INTERNATIONAL INC. (Phils.)', '30', '2019-08-30', '2019-09-30', '1', '0'),
-(474, 'Hisamitsu Fun Run Cebu', 'HISAMITSUDay Coffee', '4', '2019-09-01', '2019-09-01', '1', '0'),
-(475, 'Manpower For Store Study', 'Unilever RFM Selecta Ice Cream Inc.', '6', '2019-09-02', '2019-09-08', '1', '0'),
-(476, 'Trend Bar Animation Of RDS Galleria', 'Unilever Philippines Inc.', '12', '2019-09-02', '2019-11-30', '1', '0'),
-(477, 'Deployment Of Tresemme Pro Call Topshelf', 'Unilever Philippines Inc.', '3', '2019-09-02', '2019-11-30', '1', '0'),
-(478, 'Sofitel Pasay Hisamitsu DSAP 2019', 'HISAMITSUDay Coffee', '6', '2019-09-04', '2019-09-06', '1', '0'),
-(479, 'Metro Market Market Breakfast Activation', 'Unilever Philippines Inc.', '3', '2019-09-07', '2019-09-07', '1', '0'),
-(480, 'Accelerator Executive Batangas', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-09-06', '2019-12-31', '1', '0'),
-(481, 'Addendum Skin Play Animation RSSI South Galleria', 'Unilever Philippines Inc.', '1', '2019-09-03', '2019-10-31', '1', '0'),
-(482, 'St. Ives Event At SM Sta. Mesa', 'Unilever Philippines Inc.', '2', '2019-09-01', '2019-09-08', '1', '0'),
-(483, 'Hisamitsu TGP Medical Mission Gensan', 'HISAMITSUDay Coffee', '3', '2019-09-07', '2019-09-07', '1', '0'),
-(484, 'Hisamitsu New Family Drug Payday Surigao', 'HISAMITSUDay Coffee', '7', '2019-09-07', '2019-09-09', '1', '0'),
-(485, 'Hisamitsu Bonok Bonok Festival Surigao', 'HISAMITSUDay Coffee', '4', '2019-09-10', '2019-09-10', '1', '0'),
-(486, 'Hisamitsu Oro Wonder Drug Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-09-16', '2019-09-17', '1', '0'),
-(487, 'Hisamitsu Joan''s Pharmacy Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-09-16', '2019-09-17', '1', '0'),
-(488, 'Hisamitsu Hermosa Festival Zamboanga', 'HISAMITSUDay Coffee', '4', '2019-10-11', '2019-10-12', '1', '0'),
-(489, 'Hisamitsu Wing On Anniversary Butuan', 'HISAMITSUDay Coffee', '3', '2019-09-26', '2019-09-28', '1', '0'),
-(490, 'Hisamitsu Grandparent''s Day', 'HISAMITSUDay Coffee', '2', '2019-09-07', '2019-09-08', '1', '0'),
-(491, 'Manpower For Store Study Wave 2', 'Unilever RFM Selecta Ice Cream Inc.', '21', '2019-09-09', '2019-09-15', '1', '0'),
-(492, 'Hisamitsu Milo Marathon Subic', 'HISAMITSUDay Coffee', '8', '2019-09-08', '2019-09-08', '1', '0'),
-(493, 'KP Mascot In Bulacan', 'San Miguel Food Corp', '2', '0201-09-10', '2019-09-10', '1', '0'),
-(494, 'La Filipina Chase Dist. Inc. Tanauan', 'Philippine Leading Infinite Logistics Inc.', '1', '2019-09-07', '2019-09-08', '1', '0'),
-(495, 'La Filipina Chase Dist. Inc. Daraga Albay', 'Philippine Leading Infinite Logistics Inc.', '1', '2019-09-07', '2019-09-08', '1', '0'),
-(496, 'La Filipina Chase Dist. Inc. Capaz Public Market Tarlac', 'Philippine Leading Infinite Logistics Inc.', '2', '2019-09-06', '2019-09-06', '1', '0'),
-(497, 'Hisamitsu New Family Drug Payday Push Selling', 'HISAMITSUDay Coffee', '6', '2019-09-07', '2019-09-09', '1', '0'),
-(498, 'ISB IWB Surf 6+1', 'Unilever Philippines Inc.', '22', '2019-08-29', '2019-09-30', '1', '0'),
-(499, 'Hisamitsu Maynilad Health And Wellness Day 2019', 'HISAMITSUDay Coffee', '5', '2019-09-11', '2019-09-11', '1', '0'),
-(500, 'Hisamitsu Watsonâ€™s World Of Wellness Davao', 'HISAMITSUDay Coffee', '3', '2019-09-14', '2019-09-14', '1', '0'),
-(501, 'Hisamitsu HBI Kanegosyo Congress Davao', 'HISAMITSUDay Coffee', '3', '2019-09-20', '2019-09-22', '1', '0'),
-(502, 'Southstar Run Naga', 'HISAMITSUDay Coffee', '4', '2019-09-15', '2019-09-15', '1', '0'),
-(503, 'JTI Mighty Caravan Laguna', 'JT INTERNATIONAL INC. (Phils.)', '52', '2019-10-05', '2019-12-21', '1', '0'),
-(504, 'JTI Mighty Caravan Davao Tagum', 'JT INTERNATIONAL INC. (Phils.)', '52', '2019-10-05', '2019-12-21', '1', '0'),
-(505, 'KSAT Kabisig Cagayan Valley Field Coordinator', 'Unilever Philippines Inc.', '1', '2019-09-01', '2019-12-01', '1', '0'),
-(506, 'UFS Kaindustriya Roadshow Las Pinas', 'Unilever Philippines Inc.', '7', '2019-09-16', '2019-09-16', '1', '0'),
-(507, 'UFS Sm Street Food Festival Muntinlupa', 'Unilever Philippines Inc.', '6', '2019-09-20', '2019-09-21', '1', '0'),
-(508, 'PCN Comfort Sampling', 'Unilever Philippines Inc.', '2', '2019-09-11', '2019-10-11', '1', '0'),
-(509, 'Best Center July 2019 Addendum', 'Unilever Philippines Inc.', '1', '2019-09-11', '2019-10-11', '1', '0'),
-(510, 'La Filipina PLILI Canned Meat Sampling Grand Mactan Cebu', 'La Filipina', '2', '2019-09-14', '2019-09-15', '1', '0'),
-(511, 'La Filipina PLILI Canned Meat Sampling LCC Felix Plazo Naga Push Selling', 'La Filipina', '2', '2019-09-14', '2019-09-14', '1', '0'),
-(512, 'La Filipina PLILI Canned Meat Sampling LCC Igualdal Naga Push Selling', 'La Filipina', '2', '2019-09-13', '2019-09-13', '1', '0'),
-(513, 'La Filipina PLILI Canned Meat Sampling Cavite Push Selling', 'La Filipina', '11', '2019-09-14', '2019-09-16', '1', '0'),
-(514, 'Kambal Pandesal Cavite', 'San Miguel Food Corp', '2', '2019-09-14', '2019-09-24', '1', '0'),
-(515, 'Hisamitsu TGP Medical Mission Penafrancia', 'HISAMITSUDay Coffee', '3', '2019-09-15', '2019-09-15', '1', '0'),
-(516, 'La Filipina Buneta Push Selling Nueva Ecija', 'La Filipina', '2', '2019-09-13', '2019-09-13', '1', '0'),
-(517, 'Hisamitsu OYM Party Run 2019', 'HISAMITSUDay Coffee', '6', '2019-09-15', '2019-09-15', '1', '0'),
-(518, 'La Filipina SE GMA Push Selling', 'La Filipina', '5', '2019-09-14', '2019-09-15', '1', '0'),
-(519, 'Suysing Convention Iloilo And CDO', 'Unilever Philippines Inc.', '5', '2019-10-01', '2019-10-15', '1', '0'),
-(520, 'Kambal Pandesal Grand Opening Candon', 'San Miguel Food Corp', '5', '2019-09-17', '2019-09-19', '1', '0'),
-(521, 'ISB Laundry At War Wave 5', 'Unilever Philippines Inc.', '22', '2019-09-23', '2019-10-23', '1', '0'),
-(522, 'Hisamitsu Run Rio Leg 3', 'HISAMITSUDay Coffee', '7', '2019-09-22', '2019-09-22', '1', '0'),
-(523, 'La Filipina Iloilo Supermarket CFC', 'La Filipina', '3', '2019-09-21', '2019-09-22', '1', '0'),
-(524, 'La Filipina Push Selling And Sampling Quezon', 'La Filipina', '4', '2019-09-20', '2019-09-28', '1', '0'),
-(525, 'PLILI/Sanofi Merchandisers', 'PLILI/Sanofi', '200', '2019-09-01', '2021-12-31', '1', '0'),
-(526, 'UFS Sm Street Food Festival Molino Cavite', 'Unilever Philippines Inc.', '6', '2019-09-27', '2019-09-28', '1', '0'),
-(527, 'La Filipina Anchorwat Mart', 'La Filipina', '2', '2019-09-23', '2019-09-23', '1', '0'),
-(528, 'Hisamitsu Wing On Anniversary Push Selling Butuan', 'HISAMITSUDay Coffee', '3', '2019-09-26', '2019-09-28', '1', '0'),
-(529, 'Hisamitsu Takbo Para Sa Mga Guro Pangasinan', 'HISAMITSUDay Coffee', '5', '2019-09-28', '2019-09-28', '1', '0'),
-(530, 'Hisamitsu Milo Marathon Cebu', 'HISAMITSUDay Coffee', '6', '2019-09-29', '2019-09-29', '1', '0'),
-(531, 'Hisamitsu Milo Marathon Iloilo', 'HISAMITSUDay Coffee', '6', '2019-10-06', '2019-10-06', '1', '0'),
-(532, 'Baby And Kids Fair', 'Unilever Philippines Inc.', '1', '2019-09-07', '2019-10-27', '1', '0'),
-(533, 'Good Day Selling Activity', 'Good Day Coffee', '4', '2019-10-04', '2019-10-30', '1', '0'),
-(534, 'Selecta MT Blitz', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-01', '2019-10-02', '1', '0'),
-(535, 'JTI Camel Merchandising Blitz Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '28', '2019-10-01', '2019-10-31', '1', '0'),
-(536, 'JTI Camel Merchandising Blitz Roxas', 'JT INTERNATIONAL INC. (Phils.)', '22', '2019-10-01', '2019-10-31', '1', '0'),
-(537, 'Fonterra Shipment Of Anchor Tactbins', 'Fonterra', '6', '2019-09-26', '2019-09-26', '1', '0'),
-(538, 'Baby Dove Sampling', 'Unilever Philippines Inc.', '2', '2019-09-25', '2019-10-03', '1', '0'),
-(539, 'NCR Kabisig Summit', 'Unilever Philippines Inc.', '6', '2019-10-01', '2019-12-31', '1', '0'),
-(540, 'Waltermart IWB Acro / Mailer', 'Unilever Philippines Inc.', '22', '2019-10-01', '2019-12-31', '1', '0'),
-(541, 'Unilever October Exclusives', 'Unilever Philippines Inc.', '24', '2019-10-01', '2019-12-31', '1', '0'),
-(542, 'Hisamitsu Joanâ€™s Pharmacy Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-10-12', '2019-10-13', '1', '0'),
-(543, 'Hisamitsu Oro Wonder Drug Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-10-12', '2019-10-13', '1', '0'),
-(544, 'Hisamitsu New Family Drug Payday', 'HISAMITSUDay Coffee', '7', '2019-10-15', '2019-10-16', '1', '0'),
-(545, 'Hisamitsu Seafarer Convention', 'HISAMITSUDay Coffee', '3', '2019-10-04', '2019-10-05', '1', '0'),
-(546, 'Ever Supermarket Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-01', '2019-11-30', '1', '0');
-INSERT INTO `projects` (`id`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`) VALUES
-(547, 'LDS Nuvali Tactical Push Girl', 'Unilever Philippines Inc.', '1', '2019-10-25', '2019-12-31', '1', '0'),
-(548, 'La Filipina Ever Plus Supermart Inc. Bangkulasi', 'La Filipina', '5', '2019-10-05', '2019-10-05', '1', '0'),
-(549, 'Knorr Sampling Unilever 2019', 'Unilever Philippines Inc.', '1', '2019-10-11', '2019-12-31', '1', '0'),
-(550, 'Ever Yuseco Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-05', '2019-10-06', '1', '0'),
-(551, 'Hisamitsu Milo Marathon CDO', 'HISAMITSUDay Coffee', '7', '2019-11-17', '2019-11-17', '1', '0'),
-(552, 'Hisamitsu Milo Marathon Davao', 'HISAMITSUDay Coffee', '7', '2019-10-20', '2019-10-20', '1', '0'),
-(553, 'Hisamitsu Milo Marathon Gensan', 'HISAMITSUDay Coffee', '7', '2019-10-13', '2019-10-13', '1', '0'),
-(554, 'Waltermart Balanga Store Set-up', 'Unilever Philippines Inc.', '2', '2019-10-12', '2019-10-12', '1', '0'),
-(555, 'UFS Sorting Of Lipton Iced Tea Cavite', 'Unilever Philippines Inc.', '22', '2019-10-11', '2019-10-16', '1', '0'),
-(556, 'Bendix Car Accessories Activation', 'All Inclusives Sales', '7', '2019-10-17', '2019-10-18', '1', '0'),
-(557, 'GMA Laundromat Phase 2', 'Unilever Philippines Inc.', '10', '2019-10-21', '2019-11-29', '1', '0'),
-(558, 'Unilever Haba Fair', 'Unilever Philippines Inc.', '2', '2019-10-19', '2019-10-20', '1', '0'),
-(559, 'Creamsilk Animation', 'Unilever Philippines Inc.', '3', '2019-10-20', '2019-10-20', '1', '0'),
-(560, 'Gruppo Innovare Corporation', 'Gruppo Innovare Corporation', '100', '2019-10-15', '2020-12-31', '1', '1'),
-(561, 'Programmer', 'PCN Promopro Inc.', '1', '2019-10-01', '2019-11-30', '1', '0'),
-(562, 'Super 8 Amina Plaza', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-18', '2019-10-19', '1', '0'),
-(563, 'Shell Undas Activation 2019', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-01', '2019-11-30', '1', '0'),
-(564, 'Hisamitsu CSi Convention Pangasinan', 'HISAMITSUDay Coffee', '7', '2019-10-18', '2019-10-21', '1', '0'),
-(565, 'JTI Camel Maskara Festival', 'JT INTERNATIONAL INC. (Phils.)', '5', '2019-10-25', '2019-10-27', '1', '0'),
-(566, 'RFM Selecta Snowcap Installer', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-18', '2019-10-31', '1', '0'),
-(567, 'La Filipina Assumption Specialty Hospital And Medical Center', 'La Filipina', '1', '2019-10-21', '2019-10-25', '1', '0'),
-(568, 'Selecta Tactical IMS', 'Unilever RFM Selecta Ice Cream Inc.', '4', '2019-10-21', '2019-12-31', '1', '0'),
-(569, 'Unilever AKAP', 'Unilever Philippines Inc.', '1', '2019-10-21', '2019-12-31', '1', '0'),
-(570, 'Cost For Sachet Collection In SRS', 'Unilever Philippines Inc.', '2', '2019-10-29', '2019-11-30', '1', '0'),
-(571, 'Unilever Robinsons', 'Unilever Philippines Inc.', '16', '2019-11-01', '2019-12-31', '1', '0'),
-(572, 'Waltermart Dairy Eggs Festival', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-10-23', '2019-10-27', '1', '0'),
-(573, 'Nesabel Activation', 'Unilever Philippines Inc.', '1', '2019-10-26', '2019-10-28', '1', '0'),
-(574, 'Laundromat Survey Cebu', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
-(575, 'Laundromat Survey Davao', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
-(576, 'Laundromat Survey Laguna', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
-(577, 'Laundromat Survey Cavite', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
-(578, 'Beauty Fair 2019', 'Unilever Philippines Inc.', '4', '2019-11-08', '2019-12-01', '1', '0'),
-(579, 'RRHI Paid Scooping And Paid Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '30', '2019-11-16', '2019-12-15', '1', '0'),
-(580, 'Hisamitsu SJD Kidstacular Pangasinan', 'HISAMITSUDay Coffee', '4', '2019-11-12', '2019-11-16', '1', '0'),
-(581, 'ULP TGP ENCODER', 'Unilever Philippines Inc.', '1', '2019-11-13', '2020-01-30', '1', '0'),
-(582, 'Hisamitsu World Trade', 'HISAMITSUDay Coffee', '2', '2019-11-14', '2019-11-17', '1', '0'),
-(583, 'JTI Winston Stronghold for the Win Promo', 'JT INTERNATIONAL INC. (Phils.)', '44', '2019-11-15', '2020-02-15', '1', '0'),
-(584, 'La Filipina Laguna Push Selling', 'La Filipina', '1', '2019-11-14', '2019-11-15', '1', '0'),
-(585, 'ULP Activation Coordinator In-store Derma Activation', 'Unilever Philippines Inc.', '1', '2019-11-14', '2019-12-31', '1', '0'),
-(586, 'Hisamitsu Tiongson Sari Sari Store Bonanza Baguio', 'HISAMITSUDay Coffee', '5', '2019-11-15', '2019-11-17', '1', '0'),
-(587, 'Hisamitsu CSI mall Zumba Pangasinan', 'HISAMITSUDay Coffee', '3', '2019-11-20', '2019-12-18', '1', '0'),
-(588, 'Ulp Puregold Sachet  Collection', 'Unilever Philippines Inc.', '1', '2019-11-15', '2019-12-31', '1', '0'),
-(589, 'La Filipina Mutya ng Pilipinas 2019', 'La Filipina', '4', '2019-11-17', '2019-11-17', '1', '0'),
-(590, 'JTI Mighty Validators', 'JT INTERNATIONAL INC. (Phils.)', '50', '2019-11-19', '2020-01-04', '1', '0'),
-(591, 'Hisamitsu Meriam College Family Day 2019', 'HISAMITSUDay Coffee', '3', '2019-11-24', '2019-11-24', '1', '0'),
-(592, 'Hisamitsu Kalikasan Earth Run 2019', 'HISAMITSUDay Coffee', '5', '2019-11-24', '2019-11-24', '1', '0'),
-(593, 'Sanofi Data Encoders', 'SANOFI', '50', '2019-11-16', '2019-12-31', '1', '0'),
-(594, 'Dove Animation 2019', 'Unilever Philippines Inc.', '3', '2019-11-20', '2019-12-31', '1', '0'),
-(595, 'Hisamitsu New Family Drug Payday', 'HISAMITSUDay Coffee', '7', '2019-11-29', '2019-11-30', '1', '0'),
-(596, 'Unilever Auditor', 'Unilever Philippines Inc.', '8', '2019-11-25', '2019-12-31', '1', '0'),
-(597, 'UFS Stock Delivery', 'Unilever Philippines Inc.', '4', '2019-11-25', '2019-11-26', '1', '0'),
-(598, 'Good Day Fun Run Marikina', 'Good Day Coffee', '3', '2019-11-30', '2019-11-30', '1', '0'),
-(599, 'MDC We Care', 'Unilever Philippines Inc.', '15', '2019-12-07', '2019-12-29', '1', '0'),
-(600, 'MDC Fun Walk', 'Unilever Philippines Inc.', '3', '2019-11-30', '2019-11-30', '1', '0'),
-(601, 'Hisamitsu McDonalds Stripes Run 2019', 'HISAMITSUDay Coffee', '5', '2019-12-01', '2019-12-01', '1', '0'),
-(602, 'Hisamitsu Run For NCD 2019', 'HISAMITSUDay Coffee', '4', '2019-11-30', '2019-11-30', '1', '0'),
-(603, 'Hisamitsu BGC Run 2019', 'HISAMITSUDay Coffee', '3', '2019-11-30', '2019-11-30', '1', '0'),
-(604, 'Unilever Dove Gifting December', 'Unilever Philippines Inc.', '12', '2019-12-02', '2019-12-31', '1', '0'),
-(605, 'Hisamitsu TGP Biyaheng Padala Isabela', 'HISAMITSUDay Coffee', '4', '2019-12-08', '2019-12-08', '1', '0'),
-(606, 'GSK Employee Sale', 'GlaxoSmithkline', '4', '2019-12-10', '2019-12-12', '1', '0'),
-(607, 'La Filipina Weekend Push Selling', 'La Filipina', '7', '2019-12-13', '2019-12-29', '1', '0'),
-(608, 'Gruppo The Playground Riverbanks 3 Day Sale', 'Gruppo', '30', '2019-12-16', '2019-12-19', '1', '0'),
-(609, 'Hisamitsu US Embassy 2019', 'HISAMITSUDay Coffee', '4', '2019-12-13', '2019-12-13', '1', '0'),
-(610, 'Hisamitsu MDC Activation 2019', 'HISAMITSUDay Coffee', '4', '2019-12-13', '2019-12-13', '1', '0'),
-(611, 'JTI Merchandisers 2019', 'JT INTERNATIONAL INC. (Phils.)', '41', '2020-01-02', '2020-12-31', '1', '0'),
-(612, 'La Filipina Gaisano Capital Sampling Iloilo', 'La Filipina', '3', '2019-12-14', '2019-12-15', '1', '0'),
-(613, 'La Filipina Amigo Sigurado Push Selling Cavite', 'La Filipina', '1', '2019-12-14', '2019-12-22', '1', '0'),
-(614, 'La Filipina Amigo Sigurado Push Selling NCR', 'La Filipina', '4', '2019-12-14', '2019-12-22', '1', '0'),
-(615, 'FMS JTI', 'JT INTERNATIONAL INC. (Phils.)', '13', '2020-01-02', '2020-12-31', '1', '0'),
-(616, 'Hisamitsu Three Sixty Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '2', '2020-01-17', '2020-01-18', '1', '0'),
-(617, 'Hisamitsu Metro Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '4', '2020-01-18', '2020-01-19', '1', '0'),
-(618, 'Hisamitsu La Nueva Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '3', '2020-01-10', '2020-01-17', '1', '0'),
-(619, 'Hisamitsu Colonade Supermarket Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '3', '2020-01-10', '2020-01-17', '1', '0'),
-(620, 'World Vision Deployment', 'Unilever Philippines Inc.', '23', '2020-01-02', '2020-06-02', '1', '0'),
-(621, 'ULP Store Employee Under PCN', 'Unilever Philippines Inc.', '4', '2020-02-02', '2020-03-31', '1', '0'),
-(622, 'Dove Gifting Animation Brand Ambassador', 'Unilever Philippines Inc.', '6', '2020-01-02', '2020-06-30', '1', '0'),
-(623, 'SNR Bundling And Deployment', 'Unilever Philippines Inc.', '13', '2020-01-02', '2020-03-31', '1', '0'),
-(624, 'South Alabang Knorr Sampling', 'Unilever Philippines Inc.', '3', '2020-01-10', '2020-06-30', '1', '0'),
-(625, 'Dove Gifting Animation Helper', 'Unilever Philippines Inc.', '6', '2020-01-02', '2020-06-30', '1', '0'),
-(626, 'Project Akap', 'Unilever Philippines Inc.', '11', '2020-01-02', '2020-03-02', '1', '0'),
-(627, 'ULP Bundlers For Acro', 'Unilever Philippines Inc.', '19', '2020-01-02', '2020-06-30', '1', '0'),
-(628, 'JTI Mighty Caravan COCO Fest. Laguna', 'JT INTERNATIONAL INC. (Phils.)', '19', '2020-01-09', '2020-01-10', '1', '0'),
-(629, 'RSC January Exclusive Deployment 2020', 'Unilever Philippines Inc.', '15', '2020-01-01', '2020-03-31', '1', '0'),
-(630, 'Alfamart IWB', 'Unilever Philippines Inc.', '2', '2020-01-07', '2020-02-07', '1', '0'),
-(631, 'ULP Seasonal Helper 2020', 'Unilever Philippines Inc.', '4', '2020-01-06', '2020-03-30', '1', '0'),
-(632, 'PepsiCo Lipton Sorting Activity Cavite', 'Pepsi Co.', '22', '2020-01-13', '2020-01-18', '1', '0'),
-(633, 'GMA Laundromat Gallons', 'Unilever Philippines Inc.', '1', '2020-01-14', '2020-03-31', '1', '0'),
-(634, 'Mayo Biokips Bundling', 'Unilever Philippines Inc.', '1', '2020-01-14', '2020-03-14', '1', '0'),
-(635, 'Project Akap January BA', 'Unilever Philippines Inc.', '8', '2020-01-15', '2020-01-17', '1', '0'),
-(636, 'UFS BF Coleslaw Dressing Stickering 2020', 'Unilever Philippines Inc.', '10', '2020-01-15', '2020-01-16', '1', '0'),
-(637, 'Hisamitsu Saga Japan Festival 2020', 'HISAMITSUDay Coffee', '7', '2020-01-18', '2020-01-18', '1', '0'),
-(638, 'Hisamitsu Milo Fun Run Tarlac', 'HISAMITSUDay Coffee', '7', '2020-01-19', '2020-01-19', '1', '0'),
-(639, 'IWB Chinese New Year', 'Unilever Philippines Inc.', '3', '2020-01-17', '2020-03-30', '1', '0'),
-(640, 'Unilever Waltermart Kick Off', 'Unilever Philippines Inc.', '1', '2020-02-21', '2020-12-31', '1', '0'),
-(641, 'Robinsons OND Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-24', '2020-01-31', '1', '0'),
-(642, 'Jadine Inc.', 'Jardine Distribution Inc.', '15', '2020-01-28', '2020-01-29', '1', '0'),
-(643, 'Hisamitsu PMMA FUn Run Grandstand 2020', 'HISAMITSUDay Coffee', '5', '2020-01-25', '2020-01-26', '1', '0'),
-(644, 'Cost For Easy Day Digital Redemption', 'Unilever Philippines Inc.', '3', '2020-01-30', '2020-02-01', '1', '0'),
-(645, 'RSSI Gen Trias Pushgirl', 'Unilever Philippines Inc.', '1', '2020-01-31', '2020-04-05', '1', '0'),
-(646, 'Hisamitsu Watsons People Fair 2020', 'HISAMITSUDay Coffee', '3', '2020-02-03', '2020-02-03', '1', '0'),
-(647, 'Hisamitsu BA Deployment Megamall', 'HISAMITSUDay Coffee', '3', '2020-01-30', '2020-02-02', '1', '0'),
-(648, 'Hellmannâ€™s Sampling', 'Unilever Philippines Inc.', '4', '2020-01-31', '2020-02-02', '1', '0'),
-(649, 'Infinus Corp.', 'Infinus Corporation', '100', '2020-01-01', '2025-12-31', '1', '0'),
-(650, 'Cost For Selecta Salescon 2020', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-02-03', '2020-03-30', '1', '0'),
-(651, 'Hisamitsu Coco Unity Run 2020', 'HISAMITSUDay Coffee', '4', '2020-02-01', '2020-02-01', '1', '0'),
-(652, 'Selecta Online Coordinator', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-01', '2020-12-31', '1', '0'),
-(653, 'Push Girl RSSI Gen Trias Cavite', 'Unilever Philippines Inc.', '1', '2020-01-31', '2020-04-05', '1', '0'),
-(654, 'Hisamitsu Live And Love Grand Launching Cebu', 'HISAMITSUDay Coffee', '2', '2020-02-13', '2020-02-13', '1', '0'),
-(655, 'Hisamitsu OYM Extra Cebu', 'HISAMITSUDay Coffee', '3', '2020-02-09', '2020-02-09', '1', '0'),
-(656, 'Cost For Sachet Collection For February Run', 'Unilever Philippines Inc.', '24', '2020-02-15', '2020-02-15', '1', '0'),
-(657, 'ULP Bundler For Acro 3', 'Unilever Philippines Inc.', '2', '2020-02-10', '2020-06-30', '1', '0'),
-(658, 'Hisamitsu Barasoain Church Sampling', 'HISAMITSUDay Coffee', '4', '2020-02-16', '2020-02-16', '1', '0'),
-(659, 'Hisanitsu Barasoain Church Sampling 2020', 'HISAMITSUDay Coffee', '5', '2020-02-16', '2020-02-17', '1', '0'),
-(660, 'La Filipina Push Selling 2020', 'La Filipina', '10', '2020-02-15', '2020-02-29', '1', '0'),
-(661, 'UFS Merchandisers', 'Unilever Philippines Inc.', '150', '2020-02-01', '2030-12-31', '1', '0'),
-(662, 'Selecta E-com Sell-In Services', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-02-17', '2020-07-03', '1', '0'),
-(663, 'PCN Uniform 2020', 'Unilever Philippines Inc.', '2', '2020-02-20', '2020-03-20', '1', '0'),
-(664, 'Super 8 Convention 2020', 'Unilever Philippines Inc.', '20', '2020-04-16', '2020-04-19', '1', '0'),
-(665, 'Hisamitsu Clark Half Marathon 2020', 'HISAMITSUDay Coffee', '4', '2020-02-23', '2020-02-24', '1', '0'),
-(666, 'HR Specialist', 'PCN Promopro Inc.', '1', '2020-03-01', '2020-08-31', '1', '0'),
-(667, 'Waltermart Beauty Fair', 'Unilever Philippines Inc.', '1', '2020-04-30', '2020-04-30', '1', '0'),
-(668, 'Kabisig Walastik', 'Unilever Philippines Inc.', '1', '2020-03-01', '2020-07-31', '1', '0'),
-(669, 'Puregold Sachet Collection 2020', 'Unilever Philippines Inc.', '34', '2020-03-21', '2020-03-21', '1', '0'),
-(670, 'Hisamitsu Sampling The Lion King Musical', 'HISAMITSUDay Coffee', '3', '2020-03-04', '2020-03-04', '1', '0'),
-(671, 'Negosure Cebu', 'Jardine Distribution Inc.', '6', '2020-03-04', '2020-03-05', '1', '0'),
-(672, 'Negosure Bohol', 'Jardine Distribution Inc.', '6', '2020-03-09', '2020-03-10', '1', '0'),
-(673, 'Negosure Zamboanga', 'Jardine Distribution Inc.', '6', '2020-03-05', '2020-03-06', '1', '0'),
-(674, 'SNR Demo', 'Unilever Philippines Inc.', '2', '2020-02-24', '2020-03-01', '1', '0'),
-(675, 'Selecta Hapi Dealer System Trainer And Analyst', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-13', '2020-06-13', '1', '0'),
-(676, 'La Filipina Wet Sampling Legaspi', 'La Filipina', '2', '2020-03-06', '2020-03-06', '1', '0'),
-(677, 'Hisamitsu Run Rio Trilogy Run Asia', 'HISAMITSUDay Coffee', '5', '2020-03-08', '2020-03-08', '1', '0'),
-(678, 'MDC Q1 Oppex/MDC Store Opening', 'Unilever Philippines Inc.', '2', '2020-03-06', '2020-03-09', '1', '0'),
-(679, 'BA For SSC Antipolo', 'Unilever Philippines Inc.', '5', '2020-03-15', '2020-03-20', '1', '0'),
-(680, 'Sun And Fun Fair Activation', 'Unilever Philippines Inc.', '4', '2020-03-13', '2020-03-15', '1', '0'),
-(681, 'Unilever Kabisig Walastik', 'Unilever Philippines Inc.', '40', '2020-03-09', '2020-07-09', '1', '0'),
-(682, 'Jardine Sure Seal Caravan Candon Ilocos', 'Jardine Distribution Inc.', '6', '2020-03-11', '2020-03-12', '1', '0'),
-(683, 'Jardine Sure Seal Baguio', 'Jardine Distribution Inc.', '6', '2020-03-17', '2020-03-18', '1', '0'),
-(684, 'Jardine Sure Seal Caravan Leyte', 'Jardine Distribution Inc.', '6', '2020-03-18', '2020-03-19', '1', '0'),
-(685, 'Mang Inasal Roving Ads North Luzon', 'Mang Inasal', '1', '2020-03-12', '2020-03-15', '1', '0'),
-(686, 'SM Click And Collect Manpower', 'Unilever Philippines Inc.', '16', '2020-05-21', '2020-06-30', '1', '0'),
-(687, 'Philusa MDC Run', 'Philusa Corporation', '50', '2020-07-10', '2020-12-31', '1', '0'),
-(688, 'Unilever CRM Activation Pushgirl', 'Unilever Philippines Inc.', '2', '2020-07-20', '2020-10-20', '1', '0'),
-(689, 'Unilever Bundlers July Exclusive Deployment', 'Unilever Philippines Inc.', '20', '2020-07-01', '2020-09-30', '1', '0'),
-(690, 'Unilever Knorr And Surf RE Barcode', 'Unilever Philippines Inc.', '15', '2020-07-01', '2020-09-30', '1', '0'),
-(691, 'Unilever Shop And Shop Push Girl Mall Of Asia', 'Unilever Philippines Inc.', '2', '2020-07-22', '2020-09-30', '1', '0'),
-(692, 'Unilever Ponds Rundown', 'Unilever Philippines Inc.', '2', '2020-07-22', '2020-09-30', '1', '0'),
-(693, 'Unilever Deployment Of Ponds Serum Sideben KV Inserts', 'Unilever Philippines Inc.', '3', '2020-08-04', '2020-09-30', '1', '0'),
-(694, 'Unilever St Ives Sidebin Deployment', 'Unilever Philippines Inc.', '7', '2020-07-22', '2020-09-30', '1', '0'),
-(695, 'Hisamitsu Cabanatuan - Pick Up And Bundling', 'HISAMITSUDay Coffee', '5', '2020-07-23', '2020-07-24', '1', '0'),
-(696, 'Hisamitsu Cebu Shipment', 'HISAMITSUDay Coffee', '3', '2020-07-23', '2020-07-23', '1', '0'),
-(697, 'Project Hisamitsu Cebu shipment', 'HISAMITSUDay Coffee', '2', '2020-07-24', '2020-07-25', '1', '0'),
-(698, 'Project Hisamitsu cabanatuan pick up and bundling', 'HISAMITSUDay Coffee', '4', '2020-07-23', '2020-07-25', '1', '0'),
-(699, 'JTI Mighty Packs Redemption', 'JT INTERNATIONAL INC. (Phils.)', '40', '2020-08-01', '2020-09-01', '1', '0'),
-(700, 'JTI Winston Empty Packs Redemption Provincial', 'JT INTERNATIONAL INC. (Phils.)', '109', '2020-08-01', '2020-09-01', '1', '0'),
-(701, 'JTI Marvel Empty Packs Redemption Provincial', 'JT INTERNATIONAL INC. (Phils.)', '42', '2020-08-01', '2020-09-01', '1', '0'),
-(702, 'Unilever Telemarketer', 'Unilever Philippines Inc.', '8', '2020-08-01', '2020-09-30', '1', '0'),
-(703, 'Unilever Best Center Community Promoter', 'Unilever Philippines Inc.', '5', '2020-07-27', '2020-12-31', '1', '0'),
-(704, 'Unilever International Beauty Refillers', 'Unilever Philippines Inc.', '27', '2020-08-06', '2020-11-06', '1', '0');
+INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`) VALUES
+(1, 0, 'Selecta Refillers', 'Unilever RFM Selecta Ice Cream Inc.', '500', NULL, NULL, '1', '0'),
+(2, 0, 'SELECTA', 'Unilever Philippines Inc.', '200', NULL, NULL, '0', '0'),
+(3, 0, 'PURE IT GMA', 'Unilever Philippines Inc.', '60', NULL, NULL, '1', '0'),
+(4, 0, 'PURE IT STAG', 'Unilever Philippines Inc.', '14', NULL, NULL, '1', '0'),
+(5, 0, 'MERCHANDISER / REFILLER', 'Unilever Philippines Inc.', '700', NULL, NULL, '1', '0'),
+(6, 0, 'ENCODER', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
+(7, 0, 'OFFICE BASED', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(8, 0, 'Best Center Beauty Advisors', 'Unilever Philippines Inc.', '151', '1970-01-01', '1970-01-01', '1', '0'),
+(9, 0, 'FMS', 'Unilever Philippines Inc.', '65', NULL, NULL, '1', '0'),
+(10, 0, 'SELECTA OFFICE BASED', 'Unilever RFM Selecta Ice Cream Inc.', '63', NULL, NULL, '1', '0'),
+(11, 0, 'Unilever Superstore', 'Unilever Philippines Inc.', '61', NULL, NULL, '1', '0'),
+(12, 0, 'BABY FLO', 'Baby Flo', '60', NULL, NULL, '1', '0'),
+(13, 0, 'Convergys', 'Concentrix CVG Philippines Inc.', '90', NULL, '2020-09-17', '1', '0'),
+(14, 0, 'FONTERRA/GSK/SANOFI', 'GlaxoSmithkline', '478', NULL, NULL, '1', '0'),
+(15, 0, 'FONTERRA CHILLED', 'Fonterra', '40', NULL, NULL, '1', '0'),
+(16, 0, 'GSK', 'GlaxoSmithkline', '47', NULL, NULL, '1', '0'),
+(17, 0, 'GSK/SANOFI', 'GlaxoSmithkline', '78', NULL, NULL, '1', '0'),
+(18, 0, 'PHILUSA BICOL', 'Philusa Corporation', '16', NULL, NULL, '1', '0'),
+(19, 0, 'PHILUSA STAG', 'Philusa Corporation', '38', NULL, NULL, '1', '0'),
+(20, 0, 'FONTERRA/SANOFI', 'Fonterra', '10', NULL, NULL, '1', '0'),
+(21, 0, 'FONTERRA/GSK', 'Fonterra', '19', NULL, NULL, '1', '0'),
+(22, 0, 'GSK EXCLUSIVE', 'GlaxoSmithkline', '1', NULL, NULL, '1', '0'),
+(23, 0, 'Pernod Ricard', 'Pernod Ricard', '16', NULL, NULL, '1', '0'),
+(24, 0, 'MINDANAO FOODS', 'Pernod Ricard', '100', NULL, NULL, '1', '0'),
+(25, 0, 'ROCHAR', 'ROCHAR', '100', NULL, NULL, '1', '0'),
+(26, 0, 'BRANDY PHARMA', 'BRANDY PHARMA', '10', NULL, NULL, '1', '0'),
+(27, 0, 'OLX', 'OLX', '100', NULL, NULL, '1', '0'),
+(28, 0, 'GOOD DAY COFFEE', 'Good Day Coffee', '100', NULL, NULL, '1', '0'),
+(29, 0, 'ULP MASTER DATABASE', 'Unilever Philippines Inc.', '1000', NULL, NULL, '1', '0'),
+(30, 0, 'PURE IT UPDATED DATA BASE 2018 cacai', 'PURE IT UPDATED DATA BASE 2018 cacai', '100', NULL, NULL, '1', '0'),
+(31, 0, 'Core', 'Unilever Philippines Inc.', '1000', NULL, NULL, '1', '0'),
+(32, 0, 'FONTERRA', 'Fonterra', '120', NULL, NULL, '1', '0'),
+(33, 0, 'FONTERRA / GLAXOSMITHKLINE / SANOFI', 'GlaxoSmithkline', '300', NULL, NULL, '1', '0'),
+(34, 0, 'HISAMITSU SALONPAS', 'HISAMITSUDay Coffee', '100', NULL, NULL, '0', '0'),
+(35, 0, 'Mindanao Food Corp.', 'Mindanao Food Corp.', '100', NULL, NULL, '1', '0'),
+(36, 0, 'PCN Promopro Inc. / OFFICE BASED', 'PCN Promopro Inc.', '100', NULL, NULL, '1', '0'),
+(37, 0, 'Philusa Corporation', 'Philusa Corporation', '657', NULL, NULL, '1', '0'),
+(38, 0, 'PLDT', 'PLDT', '100', NULL, NULL, '1', '0'),
+(39, 0, 'San Miguel Food Corp (Kambal Pandesal)', 'San Miguel Food Corp', '100', NULL, NULL, '1', '0'),
+(40, 0, 'SANOFI', 'SANOFI', '500', NULL, NULL, '1', '0'),
+(41, 0, 'Smart Trade Merchandising', 'SMART', '500', NULL, NULL, '1', '0'),
+(42, 0, 'URIC', 'URIC', '100', NULL, NULL, '1', '0'),
+(43, 0, 'VALIANT PAPER ASIA PACIFIC', 'VALIANT PAPER ASIA PACIFIC', '30', '1970-01-01', '1970-01-01', '1', '0'),
+(44, 0, 'Brady Pharma Inc.', 'Brady Pharma Inc.', '100', NULL, NULL, '1', '0'),
+(45, 0, 'OLX', 'OLX', '100', NULL, NULL, '1', '1'),
+(46, 0, 'Breeze', 'Unilever Philippines Inc.', '70', '1970-01-01', '1970-01-01', '1', '0'),
+(47, 0, 'ASFI', 'ASFI', '9', '1970-01-01', '1970-01-01', '0', '0'),
+(48, 0, 'WOW', 'WOW', '5', '1970-01-01', '1970-01-01', '1', '0'),
+(49, 0, 'Pure it Retail', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
+(50, 0, 'Pure It Partnership', 'Unilever Philippines Inc.', '34', NULL, NULL, '1', '0'),
+(51, 0, 'Pure It LSP', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
+(52, 0, 'Pure It Support', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
+(53, 0, 'Steel Tech', 'Steel Tech', '13', NULL, NULL, '1', '0'),
+(54, 0, 'Gruppo Playground', 'Gruppo', '14', NULL, NULL, '1', '0'),
+(55, 0, 'Best Center BA Supervisor', 'Unilever Philippines Inc.', '13', NULL, NULL, '1', '0'),
+(56, 0, 'Best Center BA Trainors', 'Unilever Philippines Inc.', '8', NULL, NULL, '1', '0'),
+(57, 0, 'Unilever Additonal FMS', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
+(58, 0, 'Unilever HPC-BEC-KAS', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(59, 0, 'Unilever HPC-FMS', 'Unilever Philippines Inc.', '42', NULL, NULL, '1', '0'),
+(60, 0, 'Selecta FMS', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '1', '0'),
+(61, 0, 'Unilever Foods FMS', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(62, 0, 'Unilever Perfect Store HO Encoders', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(63, 0, 'Unilever Shop Sorter Commando', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
+(64, 0, 'Unilever Automation HUB', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(65, 0, 'Unilever AFPCESS', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
+(66, 0, 'Unilever ALLDAY', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
+(67, 0, 'Unilever EVER', 'Unilever Philippines Inc.', '85', NULL, NULL, '1', '0'),
+(68, 0, 'Unilever Isetann', 'Unilever Philippines Inc.', '17', NULL, NULL, '1', '0'),
+(69, 0, 'Unilever Landmark-Landers', 'Unilever Philippines Inc.', '39', NULL, NULL, '1', '0'),
+(70, 0, 'Unilever MDC', 'Unilever Philippines Inc.', '108', NULL, NULL, '1', '0'),
+(71, 0, 'Unilever Metro Gaisano', 'Unilever Philippines Inc.', '35', NULL, NULL, '1', '0'),
+(72, 0, 'Unilever Robinsons', 'Unilever Philippines Inc.', '195', NULL, NULL, '1', '0'),
+(73, 0, 'Unilever DFI', 'Unilever Philippines Inc.', '44', NULL, NULL, '1', '0'),
+(74, 0, 'Unilever South Supermarket', 'Unilever Philippines Inc.', '26', NULL, NULL, '1', '0'),
+(75, 0, 'Unilever Waltermart', 'Unilever Philippines Inc.', '87', NULL, NULL, '1', '0'),
+(76, 0, 'Unilever Encoders', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(77, 0, 'JT International', 'JT INTERNATIONAL INC. (Phils.)', '100', NULL, NULL, '1', '0'),
+(78, 0, 'Mang Inasal', 'Mang Inasal', '50', NULL, NULL, '1', '0'),
+(79, 0, 'Selecta NAO', 'Unilever RFM Selecta Ice Cream Inc.', '33', NULL, NULL, '1', '0'),
+(80, 0, 'Unilever C-Stores', 'Unilever Philippines Inc.', '22', NULL, NULL, '1', '0'),
+(81, 0, 'Unilever C-Stores South', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(82, 0, 'Unilever Provincial North', 'Unilever Philippines Inc.', '98', NULL, NULL, '1', '0'),
+(83, 0, 'Unilever Provincial South', 'Unilever Philippines Inc.', '152', NULL, NULL, '1', '0'),
+(84, 0, 'Selecta Refillers', 'Unilever RFM Selecta Ice Cream Inc.', '439', NULL, NULL, '1', '0'),
+(85, 0, 'Fonterra-Sanofi North Luzon', 'Fonterra/Sanofi', '46', NULL, NULL, '1', '0'),
+(86, 0, 'Fonterra-Sanofi Central Luzon', 'Fonterra/Sanofi', '103', NULL, NULL, '1', '0'),
+(87, 0, 'Fonterra-Sanofi South Luzon', 'Fonterra/Sanofi', '133', NULL, NULL, '1', '0'),
+(88, 0, 'Fonterra-Sanofi North Mindanao', 'Fonterra/Sanofi', '48', NULL, NULL, '1', '0'),
+(89, 0, 'Fonterra-Sanofi Visayas', 'Fonterra/Sanofi', '142', NULL, NULL, '1', '0'),
+(90, 0, 'Fonterra-Sanofi South Mindanao', 'Fonterra/Sanofi', '57', NULL, NULL, '1', '0'),
+(91, 0, 'GSK RX', 'GSK', '12', NULL, NULL, '1', '0'),
+(92, 0, 'GSK TDR', 'GlaxoSmithkline', '52', NULL, NULL, '1', '0'),
+(93, 0, 'GSK Encoders', 'GSK', '9', NULL, NULL, '1', '0'),
+(94, 0, 'GSK GMA Setup', 'GSK', '4', NULL, NULL, '1', '0'),
+(95, 0, 'Fonterra NCR', 'Fonterra', '320', NULL, NULL, '1', '0'),
+(96, 0, 'GSK FMS (Nationwide)', 'GSK', '58', NULL, NULL, '1', '0'),
+(97, 0, 'Test Project', 'Test', '30', NULL, NULL, '1', '0'),
+(98, 0, 'Big Glory Day Demo Sampler', 'Big Glory Alliance', '4', NULL, NULL, '1', '0'),
+(99, 0, 'Good Day Puregold Exhibit', 'Good Day Coffee', '10', NULL, NULL, '1', '0'),
+(100, 0, 'PLDT Prepaid Wifi Nook', 'PLDT', '20', NULL, NULL, '1', '0'),
+(101, 0, 'Gruppo 5-Day Event SME at Riverbanks', 'Gruppo', '60', NULL, NULL, '1', '0'),
+(102, 0, 'PLDT Channel Sales', 'PLDT Channel Sales', '50', NULL, NULL, '1', '0'),
+(103, 0, 'Fonterra NCR', 'Fonterra', '320', NULL, NULL, '1', '0'),
+(104, 0, 'Fonterra South Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
+(105, 0, 'Fonterra North Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
+(106, 0, 'Fonterra Central Luzon', 'Fonterra', '150', NULL, NULL, '1', '0'),
+(107, 0, 'Fonterra Visayas', 'Fonterra', '300', NULL, NULL, '1', '0'),
+(108, 0, 'Good Day Coffee Selling Activity', 'Good Day Coffee', '6', NULL, NULL, '1', '0'),
+(109, 0, 'Seasonal Helper Unilever', 'Unilever Philippines Inc.', '80', NULL, NULL, '1', '0'),
+(110, 0, 'PLDT Project Hire', 'PLDT', '50', NULL, NULL, '1', '0'),
+(111, 0, 'Gruppo Innovare Corp.', 'Gruppo Innovare Corporation', '100', '2018-01-01', '2020-12-31', '1', '0'),
+(112, 0, 'Ultramega Convention', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
+(113, 0, 'BD1 Billing Assistant', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(114, 0, 'Sanofi Helpers', 'SANOFI', '3', NULL, NULL, '1', '0'),
+(115, 0, 'Good Day Rider Ahente', 'Good Day Coffee', '5', NULL, NULL, '1', '0'),
+(116, 0, 'Fonterra-Sanofi NCR', 'Fonterra/Sanofi', '200', NULL, NULL, '1', '0'),
+(117, 0, 'Fonterra Data Encoder', 'Fonterra', '4', NULL, NULL, '1', '0'),
+(118, 0, 'Hisamitsu OBL Pasig City', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(119, 0, 'Isetann U-Chef 2018', 'Unilever Philippines Inc.', '12', NULL, NULL, '0', '0'),
+(120, 0, 'Pernod Ricard Sales Rep.', 'Pernod Ricard', '2', NULL, NULL, '1', '0'),
+(121, 0, 'Unilever Bundlers', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
+(122, 0, 'Unilever Skintalk Animation', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(123, 0, 'Hisamitsu Hermosa Festival', 'HISAMITSUDay Coffee', '8', NULL, NULL, '1', '0'),
+(124, 0, 'Hisamitsu Egg Fun Run', 'HISAMITSUDay Coffee', '7', NULL, NULL, '0', '0'),
+(125, 0, 'Unilever Go Leveredge', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(126, 0, 'Knorr Lutong Nanay', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(127, 0, 'Fonterra North Mindanao', 'Fonterra', '80', NULL, NULL, '1', '0'),
+(128, 0, 'LDS October Beauty Fair', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(129, 0, 'Selecta Blitz', 'URIC', '85', NULL, NULL, '0', '0'),
+(130, 0, 'Hisamitsu Perpetual Hospital Sampling 2018', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(131, 0, 'Unilever Gifting Animation', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
+(132, 0, 'Selecta Push Girls', 'Unilever RFM Selecta Ice Cream Inc.', '20', NULL, NULL, '1', '0'),
+(133, 0, 'Selecta Tactical', 'Unilever RFM Selecta Ice Cream Inc.', '50', NULL, NULL, '0', '0'),
+(134, 0, 'Unilever NAO Surveyor', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
+(135, 0, 'Unilever Holiday Fair', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
+(136, 0, 'Divimart Convention', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
+(137, 0, 'UFS SM Street Food Festival', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(138, 0, 'Superstore 10th Year Anniversary', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
+(139, 0, 'JTI Data Encoders', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
+(140, 0, 'South Supermarket Mushroom Carbonara Sampling', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(141, 0, 'Hisamitsu St. Theresa Quezon City Family Day 2018', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(142, 0, 'Kambal Pandesal Cavite Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
+(143, 0, 'Kambal Pandesal Manila Memorial Park Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
+(144, 0, 'Kambal Pandesal Muntinlupa Selling', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
+(145, 0, 'Unilever Food Solutions Food Festival', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(146, 0, 'Hisamitsu PBA Sampling Araneta Cubao', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(147, 0, 'Shell Undas Activation', 'Unilever RFM Selecta Ice Cream Inc.', '9', NULL, NULL, '0', '0'),
+(148, 0, 'Undas Selling Oct. 31 - Nov. 1', 'URIC', '9', NULL, NULL, '0', '0'),
+(149, 0, 'Gma x Bantay Byahe', 'URIC', '2', NULL, NULL, '0', '0'),
+(150, 0, 'Robinsons Holiday Fair Nov. 10-11', 'URIC', '3', NULL, NULL, '0', '0'),
+(151, 0, 'Selecta Telemarketer', 'URIC', '6', NULL, NULL, '1', '0'),
+(152, 0, 'Hisamitsu Nova Market Sampling 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(153, 0, 'PCN Office Based', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(154, 0, 'Unilever Landers Animation', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
+(155, 0, 'Unilever Shop and Shop', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
+(156, 0, 'Hisamitsu Oplan Bigay Lunas 2018', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
+(157, 0, 'Unilever Superstore Anniversary', 'Unilever Philippines Inc.', '20', NULL, NULL, '1', '0'),
+(158, 0, 'BD1 Office Based Admin Asst.', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(159, 0, 'BD1 Office Based Admin Asst.', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(160, 0, 'Hisamitsu OYM Leg 4 2018', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
+(161, 0, 'PCN Office Based', 'PCN Promopro Inc.', '2', NULL, NULL, '1', '0'),
+(162, 0, 'Selecta EVER Commonwealth Re-Launch Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(163, 0, 'Selecta Family Day Event', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
+(164, 0, 'Selecta Kiwi Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
+(165, 0, 'BD3 Billing Assistant Office Based', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(166, 0, 'Anibersaya Fair Waltermart', 'Unilever Philippines Inc.', '6', NULL, '2020-12-15', '0', '0'),
+(167, 0, 'Lawson IBM Plaza Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(168, 0, 'Hisamitsu Eagle Broadcasting Family Run 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(169, 0, 'Hisamitsu Kalikasan Earth Run 2018', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(170, 0, 'Hisamitsu GMA Network Kamuning 2018 Sampling', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
+(171, 0, 'Selecta Kiwi Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '10', NULL, NULL, '0', '0'),
+(172, 0, 'Quaker Oats Push Selling Robinsons', 'Pepsi Co.', '15', NULL, NULL, '0', '0'),
+(173, 0, 'Selecta URIC Prince Angat', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(174, 0, 'MDC We Care', 'Unilever Philippines Inc.', '7', NULL, NULL, '0', '0'),
+(175, 0, 'Hisamitsu Embassy Sampling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(176, 0, 'Hisamitsu 7/11 Wellness Program', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(177, 0, 'Hisamitsu 7/11 Wellness Program', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(178, 0, 'Gruppo Innovare Playground Event', 'Gruppo', '12', NULL, NULL, '1', '0'),
+(179, 0, 'HRI NAO', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
+(180, 0, 'Hisamitsu Run for Depression 2018', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
+(181, 0, 'Gruppo Riverbanks B1T1 Sale Event', 'Gruppo', '60', NULL, NULL, '1', '0'),
+(182, 0, 'Selecta Project Assistant', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(183, 0, 'Hisamitsu Push Selling for various accounts', 'HISAMITSUDay Coffee', '10', NULL, NULL, '0', '0'),
+(184, 0, 'Hisamitsu Lufthansa 2018', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
+(185, 0, 'Unilever Gifting Animation', 'Unilever Philippines Inc.', '12', NULL, NULL, '0', '0'),
+(186, 0, 'Unilever All Things Hair', 'Unilever Philippines Inc.', '3', NULL, NULL, '0', '0'),
+(187, 0, 'Gruppo Innovare Encoder', 'Gruppo', '1', NULL, NULL, '1', '0'),
+(188, 0, 'Good Day Negotiator', 'Good Day Coffee', '2', NULL, NULL, '1', '0'),
+(189, 0, 'Unilever B2B Booth for Salescon 2019', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
+(190, 0, 'Sell-Out Program FDA', 'AB Heineken Philippines Inc.', '2', NULL, NULL, '0', '0'),
+(191, 0, 'Wet Sampling Sem 2', 'Unilever RFM Selecta Ice Cream Inc.', '5', NULL, NULL, '1', '0'),
+(192, 0, 'Unilever Store Employees Under PCN', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(193, 0, 'Unilever MDC Sorter', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(194, 0, 'Unilever South Supermarket Knorr Sampling', 'Unilever Philippines Inc.', '4', NULL, NULL, '1', '0'),
+(195, 0, 'Unilever CVS Opex', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(196, 0, 'PCN Warehouse Helper', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(197, 0, 'Selecta Ice Cream Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(198, 0, 'Selecta Ice Cream Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(199, 0, 'PSE Run', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(200, 0, 'Hisamitsu Transcom Sampling', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
+(201, 0, 'PCN Promopro HR Assistant', 'PCN Promopro Inc.', '3', NULL, NULL, '1', '0'),
+(202, 0, 'Hisamitsu Takbo 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(203, 0, 'WM Kick Off Support', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
+(204, 0, 'Hisamitsu SSD Dispenser Deployment 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(205, 0, 'Hisamitsu HGST Sampling 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(206, 0, 'Hisamitsu Generika Franchisers Meeting 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '1', '0'),
+(207, 0, 'Selecta School Fair Event', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(208, 0, 'JTI Filing and Stamping', 'JT INTERNATIONAL INC. (Phils.)', '35', NULL, NULL, '1', '0'),
+(209, 0, 'Hisamitsu 7/11 Fun Run', 'HISAMITSUDay Coffee', '14', NULL, NULL, '0', '0'),
+(210, 0, 'FDA Permit Application', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(211, 0, 'Delivery of Tacbins to Landmark', 'Fonterra', '2', NULL, NULL, '1', '0'),
+(212, 0, 'Shipment of Shelfstrip', 'SANOFI', '1', NULL, NULL, '1', '0'),
+(213, 0, '7/11 Fun Run 2019', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
+(214, 0, 'BGC Retail Lab Set-up', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(215, 0, 'Hisamitsu CNY Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(216, 0, 'Hisamitsu Transcom Pasig', 'HISAMITSUDay Coffee', '1', NULL, NULL, '0', '0'),
+(217, 0, 'PCN EWB Finance', 'PCN Promopro Inc.', '2', NULL, NULL, '1', '0'),
+(218, 0, 'Hisamitsu Activity Center Sampling 2019', 'HISAMITSUDay Coffee', '6', NULL, NULL, '0', '0'),
+(219, 0, 'Unilever Beauty Fair 2019', 'Unilever Philippines Inc.', '7', NULL, NULL, '0', '0'),
+(220, 0, 'SSS Head Office Sampling', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
+(221, 0, 'Vita Green C Sampling', 'Falcon Resources Inc.', '5', NULL, NULL, '0', '0'),
+(222, 0, 'JTI Mighty Entries Destruction', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
+(223, 0, 'Admin Assistant Superstore', 'Unilever Philippines Inc.', '1', NULL, '2020-9-18', '1', '0'),
+(224, 0, 'Wet Sampling Sem 1 2019', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '0', '0'),
+(225, 0, 'Fun Trail 2019', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(226, 0, 'Hisamitsu Eperformax Sampling/Selling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(227, 0, 'KP Grand Opening Green Valley', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
+(228, 0, 'JBP Puregold 2019', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
+(229, 0, 'Puregold JBP 2019', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
+(230, 0, 'Pldt Project Hire GMMW', 'PLDT', '1', NULL, NULL, '1', '0'),
+(231, 0, 'PLDT Pre-paid Wifi', 'PLDT', '15', NULL, NULL, '1', '0'),
+(232, 0, 'Hisamitsu Clark Half Marathon 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(233, 0, 'Hisamitsu Magalang Fun Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(234, 0, 'PLDT Prepaid Batangas', 'PLDT', '3', NULL, NULL, '1', '0'),
+(235, 0, 'Code Red Bundlers', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(236, 0, 'Hisamitsu TGP Summit 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(237, 0, 'Hisamitsu MDC Oplan Bigay Lunas 2019', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
+(238, 0, 'Hisamitsu MDC Oplan Bigay Lunas 2019 - Provincial', 'HISAMITSUDay Coffee', '12', NULL, NULL, '0', '0'),
+(239, 0, 'Selecta Super8 Tanay', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
+(240, 0, 'PLDT Events', 'PLDT', '10', NULL, NULL, '1', '0'),
+(241, 0, 'Unilever OBL 2019', 'Unilever Philippines Inc.', '6', NULL, NULL, '0', '0'),
+(242, 0, 'JTI Validators/Provincial', 'JT INTERNATIONAL INC. (Phils.)', '150', NULL, NULL, '1', '0'),
+(243, 0, 'OBL Hairstylist 2019', 'Unilever Philippines Inc.', '10', NULL, NULL, '0', '0'),
+(244, 0, 'Mighty Marvel Empty Pack Validators', 'JT INTERNATIONAL INC. (Phils.)', '30', NULL, NULL, '1', '0'),
+(245, 0, 'Beauty Refiller', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
+(246, 0, 'SSM Mall Roadshow Selling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(247, 0, 'PLDT Project Hire GMMS', 'PLDT', '10', NULL, NULL, '1', '0'),
+(248, 0, 'Fonterra Shipment of Shelf Ears and Shelf Strip', 'Fonterra', '2', NULL, NULL, '1', '0'),
+(249, 0, 'Seleta Push Girl Wave 1', 'Unilever RFM Selecta Ice Cream Inc.', '120', NULL, NULL, '0', '0'),
+(250, 0, 'Unilever Go Leveredge Hellsman Sampling', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
+(251, 0, 'Super8 Convention 2019', 'Unilever Philippines Inc.', '11', NULL, NULL, '0', '0'),
+(252, 0, 'Yes 2019 Exhibitor', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(253, 0, 'Robinsons Arnaiz Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(254, 0, 'KP Grand Opening', 'San Miguel Food Corp', '5', NULL, NULL, '1', '0'),
+(255, 0, 'Aguila Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(256, 0, 'PBA Sampling 2019', 'HISAMITSUDay Coffee', '5', NULL, NULL, '0', '0'),
+(257, 0, 'Trinoma Mall Activity Center Sampling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(258, 0, 'SM Department Store Selling (North Edsa)', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(259, 0, 'PRPI Training', 'Pernod Ricard', '1', NULL, NULL, '1', '0'),
+(260, 0, 'Mailer for and Payday Offers', 'Unilever Philippines Inc.', '9', NULL, NULL, '1', '0'),
+(261, 0, 'Share the Sun Animation', 'Unilever Philippines Inc.', '3', NULL, NULL, '0', '0'),
+(262, 0, 'Unilever International Grand Dragon', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(263, 0, 'PLDT TVolution Giveaways', 'PLDT', '3', NULL, NULL, '1', '0'),
+(264, 0, 'Selecta Rustans Gateway Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '0', '0'),
+(265, 0, 'Selecta Shopwise Summer Indulgence', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '0', '0'),
+(266, 0, 'Jayniths Bangketa Sale Calamba', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(267, 0, 'Hisamitsu Transcom Wellness', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(268, 0, 'Hisamitsu Booth Shipment', 'HISAMITSUDay Coffee', '4', NULL, NULL, '1', '0'),
+(269, 0, 'Onsite Selling for the Month of March 2019', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
+(270, 0, 'San Roque Imus Caravan', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
+(271, 0, 'Puregold Aling Puring Convention 2019', 'Unilever Philippines Inc.', '90', NULL, NULL, '0', '0'),
+(272, 0, 'Suysing Convention 2019', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
+(273, 0, 'Super 8 Funfest 2019', 'Unilever Philippines Inc.', '31', NULL, NULL, '0', '0'),
+(274, 0, 'Selecta Merchandising', 'Unilever RFM Selecta Ice Cream Inc.', '20', NULL, NULL, '1', '0'),
+(275, 0, 'MT D-Day Activation', 'Unilever RFM Selecta Ice Cream Inc.', '5', NULL, NULL, '0', '0'),
+(276, 0, 'Robinsons Townville Selling', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
+(277, 0, 'SVI Maax Opening', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
+(278, 0, 'Road to 80k Roxas', 'PLDT', '8', NULL, NULL, '1', '0'),
+(279, 0, 'Selecta Merchandising CSR', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
+(280, 0, 'Unilever International B.A.', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
+(281, 0, 'RSC Store Manager Assembly', 'Unilever Philippines Inc.', '10', NULL, NULL, '1', '0'),
+(282, 0, 'Citimart Wholesaler Convention 2019', 'Philusa Corporation', '5', NULL, NULL, '1', '0'),
+(283, 0, 'Road to 80k Palawan', 'PLDT', '5', NULL, NULL, '1', '0'),
+(284, 0, 'STAGSL Kabisig Summit', 'Unilever Philippines Inc.', '26', NULL, NULL, '1', '0'),
+(285, 0, 'Road to 80k Iloilo', 'PLDT', '7', NULL, NULL, '1', '0'),
+(286, 0, 'Selecta Merchandising Blitz', 'URIC', '100', NULL, NULL, '0', '0'),
+(287, 0, 'JTI Mystery Shopper', 'JT INTERNATIONAL INC. (Phils.)', '14', NULL, NULL, '1', '0'),
+(288, 0, 'Maynilad Media Run', 'HISAMITSUDay Coffee', '3', NULL, NULL, '1', '0'),
+(289, 0, 'Sun Life 2019', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
+(290, 0, 'Crazy Fit Asian', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(291, 0, 'Negosyo Pack Bundling', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(292, 0, 'La Filipina Can Sampling', 'La Filipina', '3', NULL, NULL, '1', '0'),
+(293, 0, 'Laundromat Online Surveyor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(294, 0, 'Mighty Redemption Center', 'JT INTERNATIONAL INC. (Phils.)', '35', NULL, NULL, '1', '0'),
+(295, 0, 'Redemption Girl', 'Unilever Philippines Inc.', '6', NULL, NULL, '1', '0'),
+(296, 0, 'Accelerator Executive', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '1', '0'),
+(297, 0, 'Jayniths Bangketa Sale', 'Unilever Philippines Inc.', '2', NULL, NULL, '0', '0'),
+(298, 0, 'Easymart Easy Sale Redemption Girl', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(299, 0, 'IT Support', 'PCN Promopro Inc.', '1', NULL, NULL, '1', '0'),
+(300, 0, 'Brand Ambassador 2019', 'Unilever Philippines Inc.', '25', NULL, NULL, '1', '0'),
+(301, 0, 'Mighty Redemption Cavite', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
+(302, 0, 'Jayniths Bangketa Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
+(303, 0, 'Easymart Easy Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '0', '0'),
+(304, 0, 'Hisamitsu Run Rio Leg 1', 'Unilever Philippines Inc.', '6', NULL, NULL, '0', '0'),
+(305, 0, 'Hisamitsu Handyman Antipolo Sampling', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
+(306, 0, 'Tindahan Club', 'Unilever Philippines Inc.', '30', NULL, NULL, '1', '0'),
+(307, 0, 'PLDT Road to 80K Bacolod', 'PLDT', '9', NULL, NULL, '1', '0'),
+(308, 0, 'PLDT Road to 80k Roxas', 'PLDT', '7', NULL, NULL, '1', '0'),
+(309, 0, 'PLDT Road to 80K Dumaguete', 'PLDT', '7', NULL, NULL, '1', '0'),
+(310, 0, 'Selecta Accelerator Executive', 'Unilever RFM Selecta Ice Cream Inc.', '3', NULL, NULL, '0', '0'),
+(311, 0, 'Bangko Sentral ng Pilipinas Malate Manila Sampling', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(312, 0, 'PLDT Road to 80k Dumaguete', 'HISAMITSUDay Coffee', '7', NULL, NULL, '1', '0'),
+(313, 0, 'PLDT Road to 80k Bacolod', 'HISAMITSUDay Coffee', '9', NULL, NULL, '1', '0'),
+(314, 0, 'Selecta Helper', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
+(315, 0, 'Selecta Project Manager', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(316, 0, 'JTI Mystery Shopper Bacolod', 'JT INTERNATIONAL INC. (Phils.)', '14', NULL, NULL, '1', '0'),
+(317, 0, 'JTI Mystery Shopper Bohol', 'JT INTERNATIONAL INC. (Phils.)', '8', NULL, NULL, '1', '0'),
+(318, 0, 'JTI Mystery Shopper Butuan', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
+(319, 0, 'JTI Mystery Shopper Cebu', 'JT INTERNATIONAL INC. (Phils.)', '18', NULL, NULL, '1', '0'),
+(320, 0, 'JTI Mystery Shopper Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '7', NULL, NULL, '1', '0'),
+(321, 0, 'JTI Mystery Shopper Zamboanga', 'JT INTERNATIONAL INC. (Phils.)', '4', NULL, NULL, '1', '0'),
+(322, 0, 'Management of Growth Coaches', 'Shell', '10', NULL, NULL, '1', '0'),
+(323, 0, 'Management of Growth Coaches FOG', 'Shell', '20', NULL, NULL, '1', '0'),
+(324, 0, 'Kambal Pandesal Ifugao', 'San Miguel Food Corp', '4', NULL, NULL, '1', '0'),
+(325, 0, 'Deployment of Dancer to Summit', 'Unilever Philippines Inc.', '5', NULL, NULL, '0', '0'),
+(326, 0, 'Unilever Merrymart', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(327, 0, 'Hisamitsu Holy Week Sampling CDO', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(328, 0, 'Hisamitsu Holy Week Sampling Davao', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(329, 0, 'Shell Holy Week Activation', 'Unilever RFM Selecta Ice Cream Inc.', '4', NULL, NULL, '0', '0'),
+(330, 0, 'Mang Inasal Halo Halo Sampling Iloilo', 'Mang Inasal', '7', NULL, NULL, '1', '0'),
+(331, 0, 'Mang Inasal Halo Halo Sampling Ormoc', 'Mang Inasal', '7', NULL, NULL, '1', '0'),
+(332, 0, 'Hisamitsu Bangus Festival 2019', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(333, 0, 'PLDT Easter Sunday Event', 'PLDT', '10', NULL, NULL, '1', '0'),
+(334, 0, 'Cebuana Lhuiller Micro Savings', 'Cebuana Lhullier', '100', NULL, NULL, '1', '0'),
+(335, 0, 'Citimart Calapan', 'Philusa Corporation', '4', NULL, NULL, '1', '0'),
+(336, 0, 'Bags of Hope Deployment', 'Unilever Philippines Inc.', '25', NULL, NULL, '1', '0'),
+(337, 0, 'Ministop Clover + Lipton Milktea', 'Unilever Philippines Inc.', '11', NULL, NULL, '1', '0'),
+(338, 0, 'Hisamitsu Suy Sing Suki Day 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(339, 0, 'Hisamitsu Fire Run 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(340, 0, 'JTI Merchandising Blitz', 'JT INTERNATIONAL INC. (Phils.)', '13', NULL, NULL, '1', '0'),
+(341, 0, 'SM Launchpad', 'Unilever RFM Selecta Ice Cream Inc.', '8', NULL, NULL, '0', '0'),
+(342, 0, '1W13-WM Acro', 'Unilever Philippines Inc.', '18', '2012-12-12', '2012-12-12', '1', '0'),
+(343, 0, 'UFS Puregold KSL Sampling', 'Unilever Philippines Inc.', '9', NULL, NULL, '1', '0'),
+(344, 0, 'UFS TNAP Convention 2019', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
+(345, 0, 'Waltermart Subic Store Opening', 'Unilever Philippines Inc.', '4', NULL, NULL, '0', '0'),
+(346, 0, 'Hisamitsu Farmacia ni Dok Summit', 'HISAMITSUDay Coffee', '2', NULL, NULL, '0', '0'),
+(347, 0, 'Selecta HRI NAO', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(348, 0, 'Selecta Project Coordinator', 'Unilever RFM Selecta Ice Cream Inc.', '2', NULL, NULL, '1', '0'),
+(349, 0, 'Yes Puregold KSL Sampling', 'Unilever Philippines Inc.', '15', NULL, NULL, '1', '0'),
+(350, 0, 'PLDT Vertex Anniversary Event Laoag Ilocos Norte', 'PLDT', '3', NULL, NULL, '1', '0'),
+(351, 0, 'Premium Laundry Experts Total Project', 'Unilever Philippines Inc.', '7', NULL, NULL, '1', '0'),
+(352, 0, 'Concentrix Pro Seasonal Activities', 'Concentrix CVG Philippines Inc.', '10', NULL, NULL, '1', '0'),
+(353, 0, 'Best Center Special Activation', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(354, 0, 'Hisamitsu OYM Wet and Wild 2019', 'HISAMITSUDay Coffee', '4', NULL, NULL, '0', '0'),
+(355, 0, 'Watsons Natural Month Animation', 'Unilever Philippines Inc.', '12', NULL, NULL, '1', '0'),
+(356, 0, 'Hisamitsu Royal Duty Free Push Selling', 'HISAMITSUDay Coffee', '3', NULL, NULL, '0', '0'),
+(357, 0, 'Unilever Omnibus Event', 'Unilever Philippines Inc.', '2', NULL, NULL, '1', '0'),
+(358, 0, 'Mang Inasal Halo Halo Sampling Legaspi', 'Mang Inasal', '5', NULL, NULL, '1', '0'),
+(359, 0, 'Pldt Road to 80k Isabela', 'PLDT', '7', NULL, NULL, '1', '0'),
+(360, 0, 'JTI Mighty Raffle Draw', 'JT INTERNATIONAL INC. (Phils.)', '15', NULL, NULL, '1', '0'),
+(361, 0, 'Hisamitsu Magalang Fun Run Pampanga', 'HISAMITSUDay Coffee', '4', NULL, NULL, '1', '0'),
+(362, 0, 'Hisamitsu Lourdes Pharmacy Push Selling', 'HISAMITSUDay Coffee', '7', NULL, NULL, '1', '0'),
+(363, 0, 'La Filipina Canned Meat Sampling Island City Mall Bohol', 'La Filipina', '4', NULL, NULL, '1', '0'),
+(364, 0, 'POSC Survey 2019', 'POSC', '10', NULL, NULL, '1', '0'),
+(365, 0, 'Key Account Executive/KCE', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(366, 0, 'Laundry Surveyor', 'Unilever Philippines Inc.', '5', NULL, NULL, '1', '0'),
+(367, 0, 'Salonpas Fun Run MOA', 'HISAMITSUDay Coffee', '6', NULL, NULL, '1', '0'),
+(368, 0, 'JTI Merchandising Blitz', 'JT INTERNATIONAL INC. (Phils.)', '10', NULL, NULL, '1', '0'),
+(369, 0, 'Mang Inasal Halo Halo Sampling Isabela', 'Mang Inasal', '5', NULL, NULL, '1', '0'),
+(370, 0, 'Mars Wrigley STS Selling Blitz', 'Mars Wrigley Confectionery', '16', NULL, NULL, '1', '0'),
+(371, 0, 'Wrigley STS', 'Mars Wrigley Confectionery', '20', NULL, NULL, '1', '0'),
+(372, 0, 'UFS KSL Sampling', 'Unilever Philippines Inc.', '30', NULL, NULL, '1', '0'),
+(373, 0, 'Cebu Animation Ponds Beauty Section Hair Category', 'Unilever Philippines Inc.', '6', NULL, NULL, '1', '0'),
+(374, 0, 'Selecta Sales Con', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(375, 0, 'Shell Special Project Executive', 'Shell', '1', NULL, NULL, '1', '0'),
+(376, 0, 'Easymart Bangketa Sale', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(377, 0, 'J-niths Pasig', 'Unilever RFM Selecta Ice Cream Inc.', '1', NULL, NULL, '1', '0'),
+(378, 0, 'Cost for Sachet Collection', 'Unilever Philippines Inc.', '16', NULL, NULL, '1', '0'),
+(379, 0, 'Ponds Best center', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(380, 0, 'Unilever Activation Senior Project Manager', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(381, 0, 'UFS SM Fairview Chef Deployment', 'Unilever Philippines Inc.', '3', NULL, NULL, '1', '0'),
+(382, 0, 'Unilever Project Supervisor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(383, 0, 'Activation Supervisor', 'Unilever Philippines Inc.', '1', NULL, NULL, '1', '0'),
+(384, 0, 'Robinsons Fit N Fun Body Run 2019', 'HISAMITSUDay Coffee', '7', '2019-07-07', '2019-07-07', '1', '0'),
+(385, 0, 'UFS KSL Flyering Activation', 'Unilever Philippines Inc.', '10', '2019-07-06', '2019-07-21', '1', '0'),
+(386, 0, 'GMA Laundromat Survey', 'Unilever Philippines Inc.', '16', '2019-07-08', '2019-08-06', '1', '0'),
+(387, 0, 'PLILI', 'Philippine Leading Infinite Logistics Inc.', '200', '2019-07-01', '2020-12-31', '1', '0'),
+(388, 0, 'Fonterra/PLILI', 'Fonterra/PLILI', '200', '2019-07-01', '2020-12-31', '1', '0'),
+(389, 0, 'PLILI/Sanofi/Fonterra', 'PLILI/Sanofi/Fonterra', '200', '2019-07-01', '2020-12-31', '1', '0'),
+(390, 0, 'Hair GMA Sampling', 'Unilever Philippines Inc.', '2', '2019-07-12', '2019-08-05', '1', '0'),
+(391, 0, 'J.C. Plaza Convention', 'Unilever Philippines Inc.', '2', '2019-07-12', '2019-07-14', '1', '0'),
+(392, 0, 'Mang Inasal Sampling-MPC', 'Mang Inasal', '4', '2019-07-20', '2019-07-31', '1', '0'),
+(393, 0, 'Automation Supervisor', 'Unilever Philippines Inc.', '1', '2019-07-13', '2020-01-13', '1', '0'),
+(394, 0, 'Bangketa Sale Calamba', 'Unilever Philippines Inc.', '1', '2019-07-19', '2019-07-19', '1', '0'),
+(395, 0, 'UFS Chef Deployment', 'Unilever Philippines Inc.', '2', '2019-07-20', '2019-09-19', '1', '0'),
+(396, 0, 'UFS Landmark KSL Sampling', 'Unilever Philippines Inc.', '3', '2019-08-02', '2019-08-29', '1', '0'),
+(397, 0, 'Cost For Super8 August Promo-Mobile Couponing Run', 'Unilever Philippines Inc.', '9', '2019-08-01', '2019-08-31', '1', '0'),
+(398, 0, 'Concentrix Merch', 'Concentrix CVG Philippines Inc.', '21', '2019-07-22', '2019-08-02', '1', '0'),
+(399, 0, 'UFS-Chef Deployment 2019', 'Unilever Philippines Inc.', '2', '2019-07-20', '2019-09-14', '1', '0'),
+(400, 0, 'UFS Landmark KSL Sampling', 'Unilever Philippines Inc.', '3', '2019-08-02', '2019-08-24', '1', '0'),
+(401, 0, 'Kambal Pandesal Sampling (Magallanes Buendia Exit)', 'San Miguel Food Corp', '1', '2019-07-22', '2019-07-22', '1', '0'),
+(402, 0, 'JTI Mighty Draw', 'JT INTERNATIONAL INC. (Phils.)', '5', '2019-07-20', '2019-07-26', '1', '0'),
+(403, 0, 'Robinsons Fiestararan', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-07-27', '2019-07-27', '1', '0'),
+(404, 0, 'La Filipina Puregold Sampling And Push Selling', 'La Filipina', '10', '2019-07-27', '2019-07-31', '1', '0'),
+(405, 0, 'The Playground Riverbanks 5-day Sale Event', 'Gruppo', '60', '2019-07-31', '2019-08-04', '1', '0'),
+(406, 0, 'Puregold BF Aguirre Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-07-23', '2019-07-23', '1', '0'),
+(407, 0, 'Hisamitsu NCC BH1 Green Revo (Wellness Event)', 'HISAMITSUDay Coffee', '5', '2019-07-28', '2019-07-28', '1', '0'),
+(408, 0, 'Unilever Redemption Girl Landmark Nuvali', 'Unilever Philippines Inc.', '2', '2019-07-31', '2019-08-07', '1', '0'),
+(409, 0, 'Kambal Pandesal Mascot Cavite', 'San Miguel Food Corp', '2', '2019-07-27', '2019-07-27', '1', '0'),
+(410, 0, 'Kambal Pandesal Event Selling-Cavite', 'San Miguel Food Corp', '2', '2019-07-30', '2019-07-31', '1', '0'),
+(411, 0, 'Haba Hair 2019', 'Unilever Philippines Inc.', '3', '2019-07-26', '2019-07-31', '1', '0'),
+(412, 0, 'Unilever Home Care Super Sale 2019', 'Unilever Philippines Inc.', '21', '2019-08-01', '2019-08-30', '1', '0'),
+(413, 0, 'SSD RPH Summit Activation-Revised', 'Unilever Philippines Inc.', '1', '2019-08-25', '2019-08-26', '1', '0'),
+(414, 0, 'Hisamitsu Milo Marathon Subic 2019', 'HISAMITSUDay Coffee', '7', '2019-08-04', '2019-08-04', '1', '0'),
+(415, 0, 'RTC 3 Sports & Fitness 2019 Magalang Pampanga', 'HISAMITSUDay Coffee', '6', '2019-08-04', '2019-08-04', '1', '0'),
+(416, 0, 'Scan Asia', 'Scan Asia', '21', '2019-07-01', '2022-12-31', '1', '0'),
+(417, 0, 'Scan Asia Merchandising', 'Scan Asia', '140', '2019-07-01', '2022-12-31', '1', '0'),
+(418, 0, 'Hisamitsu Milo Marathon Lingayen 2019', 'HISAMITSUDay Coffee', '7', '2019-08-18', '2019-08-18', '1', '0'),
+(419, 0, 'La Filipina Push Selling Cabanatuan', 'La Filipina', '2', '2019-08-02', '2019-08-02', '1', '0'),
+(420, 0, 'Easymart Marilao Easysale', 'Unilever Philippines Inc.', '1', '2019-08-02', '2019-08-02', '1', '0'),
+(421, 0, 'UFS SM Street Food', 'Unilever Philippines Inc.', '7', '2019-08-09', '2019-08-11', '1', '0'),
+(422, 0, 'Unilever Home Care Fair', 'Unilever Philippines Inc.', '23', '2019-08-05', '2019-09-05', '1', '0'),
+(423, 0, 'PLILI FMS', 'Philippine Leading Infinite Logistics Inc.', '5', '2019-08-05', '2022-12-31', '1', '0'),
+(424, 0, 'Unilever International Hellmans Sampling', 'Unilever Philippines Inc.', '12', '2019-08-19', '2019-11-30', '1', '0'),
+(425, 0, 'Monin Wofex 2019', 'Unilever Philippines Inc.', '2', '2019-08-07', '2019-08-10', '1', '0'),
+(426, 0, 'Mighty May Tibay', 'JT INTERNATIONAL INC. (Phils.)', '19', '2019-08-09', '2019-08-09', '1', '0'),
+(427, 0, 'Davao Hisamitsu Amexco Drug Payday', 'HISAMITSUDay Coffee', '5', '2019-08-17', '2019-09-30', '1', '0'),
+(428, 0, 'Hisamitsu HBI - Davao Pharmacy Festival 2019', 'HISAMITSUDay Coffee', '10', '2019-08-17', '2019-09-30', '1', '0'),
+(429, 0, 'Kadayawan Davao Festival 2019', 'HISAMITSUDay Coffee', '4', '2019-08-17', '2019-08-18', '1', '0'),
+(430, 0, 'Hisamitsu Higalaan Festival 2019', 'HISAMITSUDay Coffee', '4', '2019-08-24', '2019-08-25', '1', '0'),
+(431, 0, 'SSM Streetfood Festival 2019', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-08-09', '2019-10-06', '1', '0'),
+(432, 0, 'Creamsilk Animation', 'Unilever Philippines Inc.', '3', '2019-08-14', '2019-08-16', '1', '0'),
+(433, 0, 'Hisamitsu AMESCO Fest. Davao', 'HISAMITSUDay Coffee', '5', '2019-08-15', '2019-08-17', '1', '0'),
+(434, 0, 'MT Merchandising BCP Controller', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-08-16', '2019-09-13', '1', '0'),
+(435, 0, 'S&R Bundling', 'Unilever Philippines Inc.', '5', '2019-08-01', '2019-12-31', '1', '0'),
+(436, 0, 'Go Leveredge Manpower', 'Unilever Philippines Inc.', '4', '2019-08-01', '2019-12-31', '1', '0'),
+(437, 0, 'DSAP Convention 2019', 'Unilever Philippines Inc.', '13', '2019-09-01', '2019-09-06', '1', '0'),
+(438, 0, 'Ultramega Convention', 'Unilever Philippines Inc.', '14', '2019-10-01', '2019-10-06', '1', '0'),
+(439, 0, 'Knorr Sampling', 'Unilever Philippines Inc.', '1', '2019-08-01', '2019-10-31', '1', '0'),
+(440, 0, 'JTI Camel Let\'s Win The Moment Raffle', 'JT INTERNATIONAL INC. (Phils.)', '24', '2019-08-17', '2019-12-07', '1', '0'),
+(441, 0, 'Hisamitsu Kadayawan Festival 2019', 'HISAMITSUDay Coffee', '5', '2019-08-17', '2019-08-24', '1', '0'),
+(442, 0, 'Home Care Super Sale', 'Unilever Philippines Inc.', '24', '2019-08-15', '2019-10-15', '1', '0'),
+(443, 0, 'JTI Camel Letâ€™s Win The Moment Raffle Bacolod', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
+(444, 0, 'JTI Camel Letâ€™s Win The Moment Raffle Dumaguete', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
+(445, 0, 'JTI Camel Letâ€™s Win The Moment Raffle Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
+(446, 0, 'JTI Camel Letâ€™s Win The Moment Raffle Roxas', 'JT INTERNATIONAL INC. (Phils.)', '6', '2019-08-16', '2019-12-07', '1', '0'),
+(447, 0, 'Dove Animation', 'Unilever Philippines Inc.', '3', '2019-08-16', '2019-08-25', '1', '0'),
+(448, 0, 'S&R Bundling And Deployment Davao', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
+(449, 0, 'S&R Bundling And Deployment Cebu', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
+(450, 0, 'S&R Bundling And Deployment Iloilo', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
+(451, 0, 'S&R Bundling And Deployment CDO', 'Unilever Philippines Inc.', '2', '2019-08-19', '2019-10-19', '1', '0'),
+(452, 0, 'Hisamitsu Sesame Street Run 2019', 'HISAMITSUDay Coffee', '6', '2019-08-17', '2019-08-17', '1', '0'),
+(453, 0, 'Hisamitsu Run With Me 2019', 'HISAMITSUDay Coffee', '5', '2019-08-25', '2019-08-25', '1', '0'),
+(454, 0, 'Hisamitsu Health Fair 2019', 'HISAMITSUDay Coffee', '4', '2019-08-21', '2019-08-24', '1', '0'),
+(455, 0, 'Hisamitsu Newport Mall Booth Activation', 'HISAMITSUDay Coffee', '3', '2019-08-20', '2019-08-24', '1', '0'),
+(456, 0, 'Philusa Encoder', 'Philusa Corporation', '1', '2019-08-19', '2020-01-19', '1', '0'),
+(457, 0, 'Tactical Coordinator Unilever', 'Unilever Philippines Inc.', '15', '2019-08-19', '2020-02-18', '1', '0'),
+(458, 0, 'Hisamitsu South Star Drug Pharmacist Summit 2019', 'HISAMITSUDay Coffee', '3', '2019-08-25', '2019-08-26', '1', '0'),
+(459, 0, 'Dove Push Girl', 'Unilever Philippines Inc.', '1', '2019-08-31', '2019-09-08', '1', '0'),
+(460, 0, 'La Filipina Community Outreach', 'La Filipina', '6', '2019-08-31', '2019-09-04', '1', '0'),
+(461, 0, 'Mang Inasal Sampling 2nd Sem 2019', 'Mang Inasal', '15', '2019-09-01', '2019-10-30', '1', '0'),
+(462, 0, 'Mang Inasal Halo Halo Sampling Nega Penafrancia Bichara Mall', 'Mang Inasal', '7', '2019-09-14', '2019-09-14', '1', '0'),
+(463, 0, 'Mang Inasal Halo Halo Sampling Gensan G Mall', 'Mang Inasal', '7', '2019-09-15', '2019-09-15', '1', '0'),
+(464, 0, 'Mang Inasal Halo Halo Sampling CDO Gaisano Mall', 'Mang Inasal', '7', '2019-09-20', '2019-09-20', '1', '0'),
+(465, 0, 'Mang Inasal Halo Halo Sampling Robinsons Ilocos Norte', 'Mang Inasal', '7', '2019-09-22', '2019-09-22', '1', '0'),
+(466, 0, 'Mang Inasal Halo Halo Sampling SM Cebu', 'Mang Inasal', '7', '2019-09-28', '2019-09-28', '1', '0'),
+(467, 0, 'Mighty May Timbang', 'JT INTERNATIONAL INC. (Phils.)', '30', '2019-08-30', '2019-09-30', '1', '0'),
+(468, 0, 'Hisamitsu Fun Run Cebu', 'HISAMITSUDay Coffee', '4', '2019-09-01', '2019-09-01', '1', '0'),
+(469, 0, 'Manpower For Store Study', 'Unilever RFM Selecta Ice Cream Inc.', '6', '2019-09-02', '2019-09-08', '1', '0'),
+(470, 0, 'Trend Bar Animation Of RDS Galleria', 'Unilever Philippines Inc.', '12', '2019-09-02', '2019-11-30', '1', '0'),
+(471, 0, 'Deployment Of Tresemme Pro Call Topshelf', 'Unilever Philippines Inc.', '3', '2019-09-02', '2019-11-30', '1', '0'),
+(472, 0, 'Sofitel Pasay Hisamitsu DSAP 2019', 'HISAMITSUDay Coffee', '6', '2019-09-04', '2019-09-06', '1', '0'),
+(473, 0, 'Metro Market Market Breakfast Activation', 'Unilever Philippines Inc.', '3', '2019-09-07', '2019-09-07', '1', '0'),
+(474, 0, 'Accelerator Executive Batangas', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-09-06', '2019-12-31', '1', '0'),
+(475, 0, 'Addendum Skin Play Animation RSSI South Galleria', 'Unilever Philippines Inc.', '1', '2019-09-03', '2019-10-31', '1', '0'),
+(476, 0, 'St. Ives Event At SM Sta. Mesa', 'Unilever Philippines Inc.', '2', '2019-09-01', '2019-09-08', '1', '0'),
+(477, 0, 'Hisamitsu TGP Medical Mission Gensan', 'HISAMITSUDay Coffee', '3', '2019-09-07', '2019-09-07', '1', '0'),
+(478, 0, 'Hisamitsu New Family Drug Payday Surigao', 'HISAMITSUDay Coffee', '7', '2019-09-07', '2019-09-09', '1', '0'),
+(479, 0, 'Hisamitsu Bonok Bonok Festival Surigao', 'HISAMITSUDay Coffee', '4', '2019-09-10', '2019-09-10', '1', '0'),
+(480, 0, 'Hisamitsu Oro Wonder Drug Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-09-16', '2019-09-17', '1', '0'),
+(481, 0, 'Hisamitsu Joan\'s Pharmacy Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-09-16', '2019-09-17', '1', '0'),
+(482, 0, 'Hisamitsu Hermosa Festival Zamboanga', 'HISAMITSUDay Coffee', '4', '2019-10-11', '2019-10-12', '1', '0'),
+(483, 0, 'Hisamitsu Wing On Anniversary Butuan', 'HISAMITSUDay Coffee', '3', '2019-09-26', '2019-09-28', '1', '0'),
+(484, 0, 'Hisamitsu Grandparent\'s Day', 'HISAMITSUDay Coffee', '2', '2019-09-07', '2019-09-08', '1', '0'),
+(485, 0, 'Manpower For Store Study Wave 2', 'Unilever RFM Selecta Ice Cream Inc.', '21', '2019-09-09', '2019-09-15', '1', '0'),
+(486, 0, 'Hisamitsu Milo Marathon Subic', 'HISAMITSUDay Coffee', '8', '2019-09-08', '2019-09-08', '1', '0'),
+(487, 0, 'KP Mascot In Bulacan', 'San Miguel Food Corp', '2', '0201-09-10', '2019-09-10', '1', '0'),
+(488, 0, 'La Filipina Chase Dist. Inc. Tanauan', 'Philippine Leading Infinite Logistics Inc.', '1', '2019-09-07', '2019-09-08', '1', '0'),
+(489, 0, 'La Filipina Chase Dist. Inc. Daraga Albay', 'Philippine Leading Infinite Logistics Inc.', '1', '2019-09-07', '2019-09-08', '1', '0'),
+(490, 0, 'La Filipina Chase Dist. Inc. Capaz Public Market Tarlac', 'Philippine Leading Infinite Logistics Inc.', '2', '2019-09-06', '2019-09-06', '1', '0'),
+(491, 0, 'Hisamitsu New Family Drug Payday Push Selling', 'HISAMITSUDay Coffee', '6', '2019-09-07', '2019-09-09', '1', '0'),
+(492, 0, 'ISB IWB Surf 6+1', 'Unilever Philippines Inc.', '22', '2019-08-29', '2019-09-30', '1', '0'),
+(493, 0, 'Hisamitsu Maynilad Health And Wellness Day 2019', 'HISAMITSUDay Coffee', '5', '2019-09-11', '2019-09-11', '1', '0'),
+(494, 0, 'Hisamitsu Watsonâ€™s World Of Wellness Davao', 'HISAMITSUDay Coffee', '3', '2019-09-14', '2019-09-14', '1', '0'),
+(495, 0, 'Hisamitsu HBI Kanegosyo Congress Davao', 'HISAMITSUDay Coffee', '3', '2019-09-20', '2019-09-22', '1', '0'),
+(496, 0, 'Southstar Run Naga', 'HISAMITSUDay Coffee', '4', '2019-09-15', '2019-09-15', '1', '0'),
+(497, 0, 'JTI Mighty Caravan Laguna', 'JT INTERNATIONAL INC. (Phils.)', '52', '2019-10-05', '2019-12-21', '1', '0'),
+(498, 0, 'JTI Mighty Caravan Davao Tagum', 'JT INTERNATIONAL INC. (Phils.)', '52', '2019-10-05', '2019-12-21', '1', '0'),
+(499, 0, 'KSAT Kabisig Cagayan Valley Field Coordinator', 'Unilever Philippines Inc.', '1', '2019-09-01', '2019-12-01', '1', '0'),
+(500, 0, 'UFS Kaindustriya Roadshow Las Pinas', 'Unilever Philippines Inc.', '7', '2019-09-16', '2019-09-16', '1', '0'),
+(501, 0, 'UFS Sm Street Food Festival Muntinlupa', 'Unilever Philippines Inc.', '6', '2019-09-20', '2019-09-21', '1', '0'),
+(502, 0, 'PCN Comfort Sampling', 'Unilever Philippines Inc.', '2', '2019-09-11', '2019-10-11', '1', '0'),
+(503, 0, 'Best Center July 2019 Addendum', 'Unilever Philippines Inc.', '1', '2019-09-11', '2019-10-11', '1', '0'),
+(504, 0, 'La Filipina PLILI Canned Meat Sampling Grand Mactan Cebu', 'La Filipina', '2', '2019-09-14', '2019-09-15', '1', '0'),
+(505, 0, 'La Filipina PLILI Canned Meat Sampling LCC Felix Plazo Naga Push Selling', 'La Filipina', '2', '2019-09-14', '2019-09-14', '1', '0'),
+(506, 0, 'La Filipina PLILI Canned Meat Sampling LCC Igualdal Naga Push Selling', 'La Filipina', '2', '2019-09-13', '2019-09-13', '1', '0'),
+(507, 0, 'La Filipina PLILI Canned Meat Sampling Cavite Push Selling', 'La Filipina', '11', '2019-09-14', '2019-09-16', '1', '0'),
+(508, 0, 'Kambal Pandesal Cavite', 'San Miguel Food Corp', '2', '2019-09-14', '2019-09-24', '1', '0'),
+(509, 0, 'Hisamitsu TGP Medical Mission Penafrancia', 'HISAMITSUDay Coffee', '3', '2019-09-15', '2019-09-15', '1', '0'),
+(510, 0, 'La Filipina Buneta Push Selling Nueva Ecija', 'La Filipina', '2', '2019-09-13', '2019-09-13', '1', '0'),
+(511, 0, 'Hisamitsu OYM Party Run 2019', 'HISAMITSUDay Coffee', '6', '2019-09-15', '2019-09-15', '1', '0'),
+(512, 0, 'La Filipina SE GMA Push Selling', 'La Filipina', '5', '2019-09-14', '2019-09-15', '1', '0'),
+(513, 0, 'Suysing Convention Iloilo And CDO', 'Unilever Philippines Inc.', '5', '2019-10-01', '2019-10-15', '1', '0'),
+(514, 0, 'Kambal Pandesal Grand Opening Candon', 'San Miguel Food Corp', '5', '2019-09-17', '2019-09-19', '1', '0'),
+(515, 0, 'ISB Laundry At War Wave 5', 'Unilever Philippines Inc.', '22', '2019-09-23', '2019-10-23', '1', '0'),
+(516, 0, 'Hisamitsu Run Rio Leg 3', 'HISAMITSUDay Coffee', '7', '2019-09-22', '2019-09-22', '1', '0'),
+(517, 0, 'La Filipina Iloilo Supermarket CFC', 'La Filipina', '3', '2019-09-21', '2019-09-22', '1', '0'),
+(518, 0, 'La Filipina Push Selling And Sampling Quezon', 'La Filipina', '4', '2019-09-20', '2019-09-28', '1', '0'),
+(519, 0, 'PLILI/Sanofi Merchandisers', 'PLILI/Sanofi', '200', '2019-09-01', '2021-12-31', '1', '0'),
+(520, 0, 'UFS Sm Street Food Festival Molino Cavite', 'Unilever Philippines Inc.', '6', '2019-09-27', '2019-09-28', '1', '0'),
+(521, 0, 'La Filipina Anchorwat Mart', 'La Filipina', '2', '2019-09-23', '2019-09-23', '1', '0'),
+(522, 0, 'Hisamitsu Wing On Anniversary Push Selling Butuan', 'HISAMITSUDay Coffee', '3', '2019-09-26', '2019-09-28', '1', '0'),
+(523, 0, 'Hisamitsu Takbo Para Sa Mga Guro Pangasinan', 'HISAMITSUDay Coffee', '5', '2019-09-28', '2019-09-28', '1', '0'),
+(524, 0, 'Hisamitsu Milo Marathon Cebu', 'HISAMITSUDay Coffee', '6', '2019-09-29', '2019-09-29', '1', '0'),
+(525, 0, 'Hisamitsu Milo Marathon Iloilo', 'HISAMITSUDay Coffee', '6', '2019-10-06', '2019-10-06', '1', '0'),
+(526, 0, 'Baby And Kids Fair', 'Unilever Philippines Inc.', '1', '2019-09-07', '2019-10-27', '1', '0');
+INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`) VALUES
+(527, 0, 'Good Day Selling Activity', 'Good Day Coffee', '4', '2019-10-04', '2019-10-30', '1', '0'),
+(528, 0, 'Selecta MT Blitz', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-01', '2019-10-02', '1', '0'),
+(529, 0, 'JTI Camel Merchandising Blitz Iloilo', 'JT INTERNATIONAL INC. (Phils.)', '28', '2019-10-01', '2019-10-31', '1', '0'),
+(530, 0, 'JTI Camel Merchandising Blitz Roxas', 'JT INTERNATIONAL INC. (Phils.)', '22', '2019-10-01', '2019-10-31', '1', '0'),
+(531, 0, 'Fonterra Shipment Of Anchor Tactbins', 'Fonterra', '6', '2019-09-26', '2019-09-26', '1', '0'),
+(532, 0, 'Baby Dove Sampling', 'Unilever Philippines Inc.', '2', '2019-09-25', '2019-10-03', '1', '0'),
+(533, 0, 'NCR Kabisig Summit', 'Unilever Philippines Inc.', '6', '2019-10-01', '2019-12-31', '1', '0'),
+(534, 0, 'Waltermart IWB Acro / Mailer', 'Unilever Philippines Inc.', '22', '2019-10-01', '2019-12-31', '1', '0'),
+(535, 0, 'Unilever October Exclusives', 'Unilever Philippines Inc.', '24', '2019-10-01', '2019-12-31', '1', '0'),
+(536, 0, 'Hisamitsu Joanâ€™s Pharmacy Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-10-12', '2019-10-13', '1', '0'),
+(537, 0, 'Hisamitsu Oro Wonder Drug Payday Zamboanga', 'HISAMITSUDay Coffee', '5', '2019-10-12', '2019-10-13', '1', '0'),
+(538, 0, 'Hisamitsu New Family Drug Payday', 'HISAMITSUDay Coffee', '7', '2019-10-15', '2019-10-16', '1', '0'),
+(539, 0, 'Hisamitsu Seafarer Convention', 'HISAMITSUDay Coffee', '3', '2019-10-04', '2019-10-05', '1', '0'),
+(540, 0, 'Ever Supermarket Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-01', '2019-11-30', '1', '0'),
+(541, 0, 'LDS Nuvali Tactical Push Girl', 'Unilever Philippines Inc.', '1', '2019-10-25', '2019-12-31', '1', '0'),
+(542, 0, 'La Filipina Ever Plus Supermart Inc. Bangkulasi', 'La Filipina', '5', '2019-10-05', '2019-10-05', '1', '0'),
+(543, 0, 'Knorr Sampling Unilever 2019', 'Unilever Philippines Inc.', '1', '2019-10-11', '2019-12-31', '1', '0'),
+(544, 0, 'Ever Yuseco Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-05', '2019-10-06', '1', '0'),
+(545, 0, 'Hisamitsu Milo Marathon CDO', 'HISAMITSUDay Coffee', '7', '2019-11-17', '2019-11-17', '1', '0'),
+(546, 0, 'Hisamitsu Milo Marathon Davao', 'HISAMITSUDay Coffee', '7', '2019-10-20', '2019-10-20', '1', '0'),
+(547, 0, 'Hisamitsu Milo Marathon Gensan', 'HISAMITSUDay Coffee', '7', '2019-10-13', '2019-10-13', '1', '0'),
+(548, 0, 'Waltermart Balanga Store Set-up', 'Unilever Philippines Inc.', '2', '2019-10-12', '2019-10-12', '1', '0'),
+(549, 0, 'UFS Sorting Of Lipton Iced Tea Cavite', 'Unilever Philippines Inc.', '22', '2019-10-11', '2019-10-16', '1', '0'),
+(550, 0, 'Bendix Car Accessories Activation', 'All Inclusives Sales', '7', '2019-10-17', '2019-10-18', '1', '0'),
+(551, 0, 'GMA Laundromat Phase 2', 'Unilever Philippines Inc.', '10', '2019-10-21', '2019-11-29', '1', '0'),
+(552, 0, 'Unilever Haba Fair', 'Unilever Philippines Inc.', '2', '2019-10-19', '2019-10-20', '1', '0'),
+(553, 0, 'Creamsilk Animation', 'Unilever Philippines Inc.', '3', '2019-10-20', '2019-10-20', '1', '0'),
+(554, 0, 'Gruppo Innovare Corporation', 'Gruppo Innovare Corporation', '100', '2019-10-15', '2020-12-31', '1', '1'),
+(555, 0, 'Programmer', 'PCN Promopro Inc.', '1', '2019-10-01', '2019-11-30', '1', '0'),
+(556, 0, 'Super 8 Amina Plaza', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2019-10-18', '2019-10-19', '1', '0'),
+(557, 0, 'Shell Undas Activation 2019', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-01', '2019-11-30', '1', '0'),
+(558, 0, 'Hisamitsu CSi Convention Pangasinan', 'HISAMITSUDay Coffee', '7', '2019-10-18', '2019-10-21', '1', '0'),
+(559, 0, 'JTI Camel Maskara Festival', 'JT INTERNATIONAL INC. (Phils.)', '5', '2019-10-25', '2019-10-27', '1', '0'),
+(560, 0, 'RFM Selecta Snowcap Installer', 'Unilever RFM Selecta Ice Cream Inc.', '10', '2019-10-18', '2019-10-31', '1', '0'),
+(561, 0, 'La Filipina Assumption Specialty Hospital And Medical Center', 'La Filipina', '1', '2019-10-21', '2019-10-25', '1', '0'),
+(562, 0, 'Selecta Tactical IMS', 'Unilever RFM Selecta Ice Cream Inc.', '4', '2019-10-21', '2019-12-31', '1', '0'),
+(563, 0, 'Unilever AKAP', 'Unilever Philippines Inc.', '1', '2019-10-21', '2019-12-31', '1', '0'),
+(564, 0, 'Cost For Sachet Collection In SRS', 'Unilever Philippines Inc.', '2', '2019-10-29', '2019-11-30', '1', '0'),
+(565, 0, 'Unilever Robinsons', 'Unilever Philippines Inc.', '16', '2019-11-01', '2019-12-31', '1', '0'),
+(566, 0, 'Waltermart Dairy Eggs Festival', 'Unilever RFM Selecta Ice Cream Inc.', '2', '2019-10-23', '2019-10-27', '1', '0'),
+(567, 0, 'Nesabel Activation', 'Unilever Philippines Inc.', '1', '2019-10-26', '2019-10-28', '1', '0'),
+(568, 0, 'Laundromat Survey Cebu', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
+(569, 0, 'Laundromat Survey Davao', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
+(570, 0, 'Laundromat Survey Laguna', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
+(571, 0, 'Laundromat Survey Cavite', 'Unilever Philippines Inc.', '2', '2019-11-04', '2019-12-04', '1', '0'),
+(572, 0, 'Beauty Fair 2019', 'Unilever Philippines Inc.', '4', '2019-11-08', '2019-12-01', '1', '0'),
+(573, 0, 'RRHI Paid Scooping And Paid Sampling', 'Unilever RFM Selecta Ice Cream Inc.', '30', '2019-11-16', '2019-12-15', '1', '0'),
+(574, 0, 'Hisamitsu SJD Kidstacular Pangasinan', 'HISAMITSUDay Coffee', '4', '2019-11-12', '2019-11-16', '1', '0'),
+(575, 0, 'ULP TGP ENCODER', 'Unilever Philippines Inc.', '1', '2019-11-13', '2020-01-30', '1', '0'),
+(576, 0, 'Hisamitsu World Trade', 'HISAMITSUDay Coffee', '2', '2019-11-14', '2019-11-17', '1', '0'),
+(577, 0, 'JTI Winston Stronghold for the Win Promo', 'JT INTERNATIONAL INC. (Phils.)', '44', '2019-11-15', '2020-02-15', '1', '0'),
+(578, 0, 'La Filipina Laguna Push Selling', 'La Filipina', '1', '2019-11-14', '2019-11-15', '1', '0'),
+(579, 0, 'ULP Activation Coordinator In-store Derma Activation', 'Unilever Philippines Inc.', '1', '2019-11-14', '2019-12-31', '1', '0'),
+(580, 0, 'Hisamitsu Tiongson Sari Sari Store Bonanza Baguio', 'HISAMITSUDay Coffee', '5', '2019-11-15', '2019-11-17', '1', '0'),
+(581, 0, 'Hisamitsu CSI mall Zumba Pangasinan', 'HISAMITSUDay Coffee', '3', '2019-11-20', '2019-12-18', '1', '0'),
+(582, 0, 'Ulp Puregold Sachet  Collection', 'Unilever Philippines Inc.', '1', '2019-11-15', '2019-12-31', '1', '0'),
+(583, 0, 'La Filipina Mutya ng Pilipinas 2019', 'La Filipina', '4', '2019-11-17', '2019-11-17', '1', '0'),
+(584, 0, 'JTI Mighty Validators', 'JT INTERNATIONAL INC. (Phils.)', '50', '2019-11-19', '2020-01-04', '1', '0'),
+(585, 0, 'Hisamitsu Meriam College Family Day 2019', 'HISAMITSUDay Coffee', '3', '2019-11-24', '2019-11-24', '1', '0'),
+(586, 0, 'Hisamitsu Kalikasan Earth Run 2019', 'HISAMITSUDay Coffee', '5', '2019-11-24', '2019-11-24', '1', '0'),
+(587, 0, 'Sanofi Data Encoders', 'SANOFI', '50', '2019-11-16', '2019-12-31', '1', '0'),
+(588, 0, 'Dove Animation 2019', 'Unilever Philippines Inc.', '3', '2019-11-20', '2019-12-31', '1', '0'),
+(589, 0, 'Hisamitsu New Family Drug Payday', 'HISAMITSUDay Coffee', '7', '2019-11-29', '2019-11-30', '1', '0'),
+(590, 0, 'Unilever Auditor', 'Unilever Philippines Inc.', '8', '2019-11-25', '2019-12-31', '1', '0'),
+(591, 0, 'UFS Stock Delivery', 'Unilever Philippines Inc.', '4', '2019-11-25', '2019-11-26', '1', '0'),
+(592, 0, 'Good Day Fun Run Marikina', 'Good Day Coffee', '3', '2019-11-30', '2019-11-30', '1', '0'),
+(593, 0, 'MDC We Care', 'Unilever Philippines Inc.', '15', '2019-12-07', '2019-12-29', '1', '0'),
+(594, 0, 'MDC Fun Walk', 'Unilever Philippines Inc.', '3', '2019-11-30', '2019-11-30', '1', '0'),
+(595, 0, 'Hisamitsu McDonalds Stripes Run 2019', 'HISAMITSUDay Coffee', '5', '2019-12-01', '2019-12-01', '1', '0'),
+(596, 0, 'Hisamitsu Run For NCD 2019', 'HISAMITSUDay Coffee', '4', '2019-11-30', '2019-11-30', '1', '0'),
+(597, 0, 'Hisamitsu BGC Run 2019', 'HISAMITSUDay Coffee', '3', '2019-11-30', '2019-11-30', '1', '0'),
+(598, 0, 'Unilever Dove Gifting December', 'Unilever Philippines Inc.', '12', '2019-12-02', '2019-12-31', '1', '0'),
+(599, 0, 'Hisamitsu TGP Biyaheng Padala Isabela', 'HISAMITSUDay Coffee', '4', '2019-12-08', '2019-12-08', '1', '0'),
+(600, 0, 'GSK Employee Sale', 'GlaxoSmithkline', '4', '2019-12-10', '2019-12-12', '1', '0'),
+(601, 0, 'La Filipina Weekend Push Selling', 'La Filipina', '7', '2019-12-13', '2019-12-29', '1', '0'),
+(602, 0, 'Gruppo The Playground Riverbanks 3 Day Sale', 'Gruppo', '30', '2019-12-16', '2019-12-19', '1', '0'),
+(603, 0, 'Hisamitsu US Embassy 2019', 'HISAMITSUDay Coffee', '4', '2019-12-13', '2019-12-13', '1', '0'),
+(604, 0, 'Hisamitsu MDC Activation 2019', 'HISAMITSUDay Coffee', '4', '2019-12-13', '2019-12-13', '1', '0'),
+(605, 0, 'JTI Merchandisers 2019', 'JT INTERNATIONAL INC. (Phils.)', '41', '2020-01-02', '2020-12-31', '1', '0'),
+(606, 0, 'La Filipina Gaisano Capital Sampling Iloilo', 'La Filipina', '3', '2019-12-14', '2019-12-15', '1', '0'),
+(607, 0, 'La Filipina Amigo Sigurado Push Selling Cavite', 'La Filipina', '1', '2019-12-14', '2019-12-22', '1', '0'),
+(608, 0, 'La Filipina Amigo Sigurado Push Selling NCR', 'La Filipina', '4', '2019-12-14', '2019-12-22', '1', '0'),
+(609, 0, 'FMS JTI', 'JT INTERNATIONAL INC. (Phils.)', '13', '2020-01-02', '2020-12-31', '1', '0'),
+(610, 0, 'Hisamitsu Three Sixty Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '2', '2020-01-17', '2020-01-18', '1', '0'),
+(611, 0, 'Hisamitsu Metro Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '4', '2020-01-18', '2020-01-19', '1', '0'),
+(612, 0, 'Hisamitsu La Nueva Pharmacy Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '3', '2020-01-10', '2020-01-17', '1', '0'),
+(613, 0, 'Hisamitsu Colonade Supermarket Sinulog Push Selling 2020', 'HISAMITSUDay Coffee', '3', '2020-01-10', '2020-01-17', '1', '0'),
+(614, 0, 'World Vision Deployment', 'Unilever Philippines Inc.', '23', '2020-01-02', '2020-06-02', '1', '0'),
+(615, 0, 'ULP Store Employee Under PCN', 'Unilever Philippines Inc.', '4', '2020-02-02', '2020-03-31', '1', '0'),
+(616, 0, 'Dove Gifting Animation Brand Ambassador', 'Unilever Philippines Inc.', '6', '2020-01-02', '2020-06-30', '1', '0'),
+(617, 0, 'SNR Bundling And Deployment', 'Unilever Philippines Inc.', '13', '2020-01-02', '2020-03-31', '1', '0'),
+(618, 0, 'South Alabang Knorr Sampling', 'Unilever Philippines Inc.', '3', '2020-01-10', '2020-06-30', '1', '0'),
+(619, 0, 'Dove Gifting Animation Helper', 'Unilever Philippines Inc.', '6', '2020-01-02', '2020-06-30', '1', '0'),
+(620, 0, 'Project Akap', 'Unilever Philippines Inc.', '11', '2020-01-02', '2020-03-02', '1', '0'),
+(621, 0, 'ULP Bundlers For Acro', 'Unilever Philippines Inc.', '19', '2020-01-02', '2020-06-30', '1', '0'),
+(622, 0, 'JTI Mighty Caravan COCO Fest. Laguna', 'JT INTERNATIONAL INC. (Phils.)', '19', '2020-01-09', '2020-01-10', '1', '0'),
+(623, 0, 'RSC January Exclusive Deployment 2020', 'Unilever Philippines Inc.', '15', '2020-01-01', '2020-03-31', '1', '0'),
+(624, 0, 'Alfamart IWB', 'Unilever Philippines Inc.', '2', '2020-01-07', '2020-02-07', '1', '0'),
+(625, 0, 'ULP Seasonal Helper 2020', 'Unilever Philippines Inc.', '4', '2020-01-06', '2020-03-30', '1', '0'),
+(626, 0, 'PepsiCo Lipton Sorting Activity Cavite', 'Pepsi Co.', '22', '2020-01-13', '2020-01-18', '1', '0'),
+(627, 0, 'GMA Laundromat Gallons', 'Unilever Philippines Inc.', '1', '2020-01-14', '2020-03-31', '1', '0'),
+(628, 0, 'Mayo Biokips Bundling', 'Unilever Philippines Inc.', '1', '2020-01-14', '2020-03-14', '1', '0'),
+(629, 0, 'Project Akap January BA', 'Unilever Philippines Inc.', '8', '2020-01-15', '2020-01-17', '1', '0'),
+(630, 0, 'UFS BF Coleslaw Dressing Stickering 2020', 'Unilever Philippines Inc.', '10', '2020-01-15', '2020-01-16', '1', '0'),
+(631, 0, 'Hisamitsu Saga Japan Festival 2020', 'HISAMITSUDay Coffee', '7', '2020-01-18', '2020-01-18', '1', '0'),
+(632, 0, 'Hisamitsu Milo Fun Run Tarlac', 'HISAMITSUDay Coffee', '7', '2020-01-19', '2020-01-19', '1', '0'),
+(633, 0, 'IWB Chinese New Year', 'Unilever Philippines Inc.', '3', '2020-01-17', '2020-03-30', '1', '0'),
+(634, 0, 'Unilever Waltermart Kick Off', 'Unilever Philippines Inc.', '1', '2020-02-21', '2020-12-31', '1', '0'),
+(635, 0, 'Robinsons OND Store Opening', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-24', '2020-01-31', '1', '0'),
+(636, 0, 'Jadine Inc.', 'Jardine Distribution Inc.', '15', '2020-01-28', '2020-01-29', '1', '0'),
+(637, 0, 'Hisamitsu PMMA FUn Run Grandstand 2020', 'HISAMITSUDay Coffee', '5', '2020-01-25', '2020-01-26', '1', '0'),
+(638, 0, 'Cost For Easy Day Digital Redemption', 'Unilever Philippines Inc.', '3', '2020-01-30', '2020-02-01', '1', '0'),
+(639, 0, 'RSSI Gen Trias Pushgirl', 'Unilever Philippines Inc.', '1', '2020-01-31', '2020-04-05', '1', '0'),
+(640, 0, 'Hisamitsu Watsons People Fair 2020', 'HISAMITSUDay Coffee', '3', '2020-02-03', '2020-02-03', '1', '0'),
+(641, 0, 'Hisamitsu BA Deployment Megamall', 'HISAMITSUDay Coffee', '3', '2020-01-30', '2020-02-02', '1', '0'),
+(642, 0, 'Hellmannâ€™s Sampling', 'Unilever Philippines Inc.', '4', '2020-01-31', '2020-02-02', '1', '0'),
+(643, 0, 'Infinus Corp.', 'Infinus Corporation', '100', '2020-01-01', '2025-12-31', '1', '0'),
+(644, 0, 'Cost For Selecta Salescon 2020', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-02-03', '2020-03-30', '1', '0'),
+(645, 0, 'Hisamitsu Coco Unity Run 2020', 'HISAMITSUDay Coffee', '4', '2020-02-01', '2020-02-01', '1', '0'),
+(646, 0, 'Selecta Online Coordinator', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-01', '2020-12-31', '1', '0'),
+(647, 0, 'Push Girl RSSI Gen Trias Cavite', 'Unilever Philippines Inc.', '1', '2020-01-31', '2020-04-05', '1', '0'),
+(648, 0, 'Hisamitsu Live And Love Grand Launching Cebu', 'HISAMITSUDay Coffee', '2', '2020-02-13', '2020-02-13', '1', '0'),
+(649, 0, 'Hisamitsu OYM Extra Cebu', 'HISAMITSUDay Coffee', '3', '2020-02-09', '2020-02-09', '1', '0'),
+(650, 0, 'Cost For Sachet Collection For February Run', 'Unilever Philippines Inc.', '24', '2020-02-15', '2020-02-15', '1', '0'),
+(651, 0, 'ULP Bundler For Acro 3', 'Unilever Philippines Inc.', '2', '2020-02-10', '2020-06-30', '1', '0'),
+(652, 0, 'Hisamitsu Barasoain Church Sampling', 'HISAMITSUDay Coffee', '4', '2020-02-16', '2020-02-16', '1', '0'),
+(653, 0, 'Hisanitsu Barasoain Church Sampling 2020', 'HISAMITSUDay Coffee', '5', '2020-02-16', '2020-02-17', '1', '0'),
+(654, 0, 'La Filipina Push Selling 2020', 'La Filipina', '10', '2020-02-15', '2020-02-29', '1', '0'),
+(655, 0, 'UFS Merchandisers', 'Unilever Philippines Inc.', '150', '2020-02-01', '2030-12-31', '1', '0'),
+(656, 0, 'Selecta E-com Sell-In Services', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-02-17', '2020-07-03', '1', '0'),
+(657, 0, 'PCN Uniform 2020', 'Unilever Philippines Inc.', '2', '2020-02-20', '2020-03-20', '1', '0'),
+(658, 0, 'Super 8 Convention 2020', 'Unilever Philippines Inc.', '20', '2020-04-16', '2020-04-19', '1', '0'),
+(659, 0, 'Hisamitsu Clark Half Marathon 2020', 'HISAMITSUDay Coffee', '4', '2020-02-23', '2020-02-24', '1', '0'),
+(660, 0, 'HR Specialist', 'PCN Promopro Inc.', '1', '2020-03-01', '2020-08-31', '1', '0'),
+(661, 0, 'Waltermart Beauty Fair', 'Unilever Philippines Inc.', '1', '2020-04-30', '2020-04-30', '1', '0'),
+(662, 0, 'Kabisig Walastik', 'Unilever Philippines Inc.', '1', '2020-03-01', '2020-07-31', '1', '0'),
+(663, 0, 'Puregold Sachet Collection 2020', 'Unilever Philippines Inc.', '34', '2020-03-21', '2020-03-21', '1', '0'),
+(664, 0, 'Hisamitsu Sampling The Lion King Musical', 'HISAMITSUDay Coffee', '3', '2020-03-04', '2020-03-04', '1', '0'),
+(665, 0, 'Negosure Cebu', 'Jardine Distribution Inc.', '6', '2020-03-04', '2020-03-05', '1', '0'),
+(666, 0, 'Negosure Bohol', 'Jardine Distribution Inc.', '6', '2020-03-09', '2020-03-10', '1', '0'),
+(667, 0, 'Negosure Zamboanga', 'Jardine Distribution Inc.', '6', '2020-03-05', '2020-03-06', '1', '0'),
+(668, 0, 'SNR Demo', 'Unilever Philippines Inc.', '2', '2020-02-24', '2020-03-01', '1', '0'),
+(669, 0, 'Selecta Hapi Dealer System Trainer And Analyst', 'Unilever RFM Selecta Ice Cream Inc.', '1', '2020-01-13', '2020-06-13', '1', '0'),
+(670, 0, 'La Filipina Wet Sampling Legaspi', 'La Filipina', '2', '2020-03-06', '2020-03-06', '1', '0'),
+(671, 0, 'Hisamitsu Run Rio Trilogy Run Asia', 'HISAMITSUDay Coffee', '5', '2020-03-08', '2020-03-08', '1', '0'),
+(672, 0, 'MDC Q1 Oppex/MDC Store Opening', 'Unilever Philippines Inc.', '2', '2020-03-06', '2020-03-09', '1', '0'),
+(673, 0, 'BA For SSC Antipolo', 'Unilever Philippines Inc.', '5', '2020-03-15', '2020-03-20', '1', '0'),
+(674, 0, 'Sun And Fun Fair Activation', 'Unilever Philippines Inc.', '4', '2020-03-13', '2020-03-15', '1', '0'),
+(675, 0, 'Unilever Kabisig Walastik', 'Unilever Philippines Inc.', '40', '2020-03-09', '2020-07-09', '1', '0'),
+(676, 0, 'Jardine Sure Seal Caravan Candon Ilocos', 'Jardine Distribution Inc.', '6', '2020-03-11', '2020-03-12', '1', '0'),
+(677, 0, 'Jardine Sure Seal Baguio', 'Jardine Distribution Inc.', '6', '2020-03-17', '2020-03-18', '1', '0'),
+(678, 0, 'Jardine Sure Seal Caravan Leyte', 'Jardine Distribution Inc.', '6', '2020-03-18', '2020-03-19', '1', '0'),
+(679, 0, 'Mang Inasal Roving Ads North Luzon', 'Mang Inasal', '1', '2020-03-12', '2020-03-15', '1', '0'),
+(680, 0, 'SM Click And Collect Manpower', 'Unilever Philippines Inc.', '16', '2020-05-21', '2020-06-30', '1', '0'),
+(681, 0, 'Philusa MDC Run', 'Philusa Corporation', '50', '2020-07-10', '2020-12-31', '1', '0'),
+(682, 0, 'Unilever CRM Activation Pushgirl', 'Unilever Philippines Inc.', '2', '2020-07-20', '2020-10-20', '1', '0'),
+(683, 0, 'Unilever Bundlers July Exclusive Deployment', 'Unilever Philippines Inc.', '20', '2020-07-01', '2020-09-30', '1', '0'),
+(684, 0, 'Unilever Knorr And Surf RE Barcode', 'Unilever Philippines Inc.', '15', '2020-07-01', '2020-09-30', '1', '0'),
+(685, 0, 'Unilever Shop And Shop Push Girl Mall Of Asia', 'Unilever Philippines Inc.', '2', '2020-07-22', '2020-09-30', '1', '0'),
+(686, 0, 'Unilever Ponds Rundown', 'Unilever Philippines Inc.', '2', '2020-07-22', '2020-09-30', '1', '0'),
+(687, 0, 'Unilever Deployment Of Ponds Serum Sideben KV Inserts', 'Unilever Philippines Inc.', '3', '2020-08-04', '2020-09-30', '1', '0'),
+(688, 0, 'Unilever St Ives Sidebin Deployment', 'Unilever Philippines Inc.', '7', '2020-07-22', '2020-09-30', '1', '0'),
+(689, 0, 'Hisamitsu Cabanatuan - Pick Up And Bundling', 'HISAMITSUDay Coffee', '5', '2020-07-23', '2020-07-24', '1', '0'),
+(690, 0, 'Hisamitsu Cebu Shipment', 'HISAMITSUDay Coffee', '3', '2020-07-23', '2020-07-23', '1', '0'),
+(691, 0, 'Project Hisamitsu Cebu shipment', 'HISAMITSUDay Coffee', '2', '2020-07-24', '2020-07-25', '1', '0'),
+(692, 0, 'Project Hisamitsu cabanatuan pick up and bundling', 'HISAMITSUDay Coffee', '4', '2020-07-23', '2020-07-25', '1', '0'),
+(693, 0, 'JTI Mighty Packs Redemption', 'JT INTERNATIONAL INC. (Phils.)', '40', '2020-08-01', '2020-09-01', '1', '0'),
+(694, 0, 'JTI Winston Empty Packs Redemption Provincial', 'JT INTERNATIONAL INC. (Phils.)', '109', '2020-08-01', '2020-09-01', '1', '0'),
+(695, 0, 'JTI Marvel Empty Packs Redemption Provincial', 'JT INTERNATIONAL INC. (Phils.)', '42', '2020-08-01', '2020-09-01', '1', '0'),
+(696, 0, 'Unilever Telemarketer', 'Unilever Philippines Inc.', '8', '2020-08-01', '2020-09-30', '1', '0'),
+(697, 0, 'Unilever Best Center Community Promoter', 'Unilever Philippines Inc.', '5', '2020-07-27', '2020-12-31', '1', '0'),
+(698, 0, 'Unilever International Beauty Refillers', 'Unilever Philippines Inc.', '27', '2020-08-06', '2020-11-06', '1', '0'),
+(700, 0, 'PROJECT TITLE', 'CONCENTRIX CVG PHILIPPINES INC.', '6', '2023-10-27', '2023-11-27', '1', '0'),
+(701, 0, 'PROJECT XYZ', 'UNILEVER PHILIPPINES INC.', '6', '2023-10-31', '2023-11-30', '1', '0'),
+(702, 995, 'MRF PROJECT', 'GRUPPO INNOVARE CORPORATION', '6', '2023-10-26', '2023-10-31', '1', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recruitment_approve_history`
+--
+
+CREATE TABLE `recruitment_approve_history` (
+  `id` int(11) NOT NULL,
+  `date_approved` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(255) NOT NULL,
+  `app_num` int(11) NOT NULL,
+  `sss` int(11) NOT NULL,
+  `philhealth` int(11) NOT NULL,
+  `pagibig` int(11) NOT NULL,
+  `tin` int(11) NOT NULL,
+  `birthday` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `remarks` varchar(3000) NOT NULL,
+  `approved_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `recruitment_approve_history`
+--
+
+INSERT INTO `recruitment_approve_history` (`id`, `date_approved`, `name`, `app_num`, `sss`, `philhealth`, `pagibig`, `tin`, `birthday`, `address`, `remarks`, `approved_by`) VALUES
+(1, '2023-10-21 06:48:47', 'GOMERA, JAMES PHILIP AMANTE', 583, 123123, 123123, 123123, 123123, '2001-06-19', 'BANSALANGIN ST. PAYATAS B', 'COMPLETED REQUIREMENTS', 'VILL, DEO');
 
 -- --------------------------------------------------------
 
@@ -4739,7 +4199,7 @@ INSERT INTO `projects` (`id`, `project_title`, `client_company_id`, `ewb_count`,
 -- Table structure for table `region`
 --
 
-CREATE TABLE IF NOT EXISTS `region` (
+CREATE TABLE `region` (
   `id` int(11) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
   `regDesc` text,
@@ -4777,29 +4237,37 @@ INSERT INTO `region` (`id`, `psgcCode`, `regDesc`, `regCode`, `tr`) VALUES
 -- Table structure for table `shortlist_details`
 --
 
-CREATE TABLE IF NOT EXISTS `shortlist_details` (
+CREATE TABLE `shortlist_details` (
   `id` int(11) NOT NULL,
   `shortlistname` varchar(255) NOT NULL,
   `project` varchar(255) NOT NULL,
+  `mrf_tracking` int(11) NOT NULL,
   `client` varchar(255) NOT NULL,
   `datecreated` varchar(255) NOT NULL,
-  `activity` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `activity` varchar(255) NOT NULL,
+  `project_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shortlist_details`
 --
 
-INSERT INTO `shortlist_details` (`id`, `shortlistname`, `project`, `client`, `datecreated`, `activity`) VALUES
-(1, 'asfi 30 new shortlist', 'ASFI', 'HISAMITSU', '08/20/2020', 'INACTIVE'),
-(2, 'fms jti 34 newshort', 'FMS JTI', 'JTI', '08/20/2020', 'INACTIVE'),
-(3, 'cc', 'Admin Assistant Superstore', 'Unilever Philippines Inc.', '08/20/2020', 'INACTIVE'),
-(4, 'cc1', 'Accelerator Executive', 'Unilever RFM Selecta Ice Cream Inc.', '08/20/2020', 'INACTIVE'),
-(5, 'convergys 2020', 'Convergys', 'Convergys', '08/22/2020', 'INACTIVE'),
-(6, 'ani', 'Anibersaya Fair Waltermart', 'Unilever Philippines Inc.', '08/22/2020', 'INACTIVE'),
-(7, 'alfamart', 'Alfamart IWB', 'Unilever Philippines Inc.', '09/14/2020', 'INACTIVE'),
-(8, 'carina', 'Infinus Corp.', 'Infinus Corporation', '09/18/2020', 'ACTIVE'),
-(9, 'deo', 'Infinus Corp.', 'Infinus Corporation', '09/22/2020', 'ACTIVE');
+INSERT INTO `shortlist_details` (`id`, `shortlistname`, `project`, `mrf_tracking`, `client`, `datecreated`, `activity`, `project_id`) VALUES
+(19, 'IT Support', 'Infinus Corp.', 0, 'Infinus Corporation', '10/23/2023', 'ACTIVE', 643),
+(20, 'Dummy 1 Shortlist Title', 'UFS Merchandisers', 0, 'Unilever Philippines Inc.', '10/23/2023', 'ACTIVE', 655),
+(21, 'Dummy 2 Shortlist Title', 'Infinus Corp.', 0, 'Infinus Corporation', '10/23/2023', 'ACTIVE', 643),
+(22, 'Blah blah blah', 'Infinus Corp.', 0, 'Infinus Corporation', '10/24/2023', 'ACTIVE', 643),
+(23, 'Dummy 3 Shortlist Title', 'Infinus Corp.', 0, 'Infinus Corporation', '10/24/2023', 'ACTIVE', 643),
+(24, 'Dummy 4 Shortlist Title', 'UFS Merchandisers', 0, 'Unilever Philippines Inc.', '10/24/2023', 'ACTIVE', 655),
+(25, 'Shortlist Title', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(26, '5454', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(27, 'Dummy project 1', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(28, 'Dummy project 2', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(29, 'Dummy project 3', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(30, 'Dummy project 4', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(31, 'Dummy project 5', 'PROJECT TITLE', 0, 'CONCENTRIX CVG PHILIPPINES INC.', '10/24/2023', 'ACTIVE', 700),
+(32, 'SUMASALO NG MASASAKIT NA SALITA', 'PROJECT XYZ', 0, 'UNILEVER PHILIPPINES INC.', '10/25/2023', 'ACTIVE', 701),
+(33, 'Merchandiser', 'MRF PROJECT', 995, 'GRUPPO INNOVARE CORPORATION', '10/25/2023', 'ACTIVE', 702);
 
 -- --------------------------------------------------------
 
@@ -4807,23 +4275,78 @@ INSERT INTO `shortlist_details` (`id`, `shortlistname`, `project`, `client`, `da
 -- Table structure for table `shortlist_master`
 --
 
-CREATE TABLE IF NOT EXISTS `shortlist_master` (
+CREATE TABLE `shortlist_master` (
   `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
   `shortlistnameto` varchar(255) NOT NULL,
   `appnumto` varchar(255) NOT NULL,
+  `is_deleted` int(11) NOT NULL DEFAULT '0',
   `dateto` varchar(255) NOT NULL,
   `ewb` varchar(255) NOT NULL,
   `ewbdate` varchar(255) NOT NULL,
-  `projectnya` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=latin1;
+  `projectnya` varchar(255) NOT NULL,
+  `deployment_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shortlist_master`
 --
 
-INSERT INTO `shortlist_master` (`id`, `shortlistnameto`, `appnumto`, `dateto`, `ewb`, `ewbdate`, `projectnya`) VALUES
-(175, 'deo', '165', '08/09/2023', 'EWB', '08/09/2023', ''),
-(176, 'deo', '189', '08/09/2023', 'EWB', '08/09/2023', '');
+INSERT INTO `shortlist_master` (`id`, `employee_id`, `project_name`, `shortlistnameto`, `appnumto`, `is_deleted`, `dateto`, `ewb`, `ewbdate`, `projectnya`, `deployment_status`) VALUES
+(60, 2, '', 'Dummy 1 Shortlist Title', '586', 0, '10/23/2023', '', '', '', ''),
+(61, 7, '', 'Dummy 1 Shortlist Title', '674', 0, '10/23/2023', '', '', '', ''),
+(62, 2, '', 'Dummy 2 Shortlist Title', '586', 0, '10/23/2023', '', '', '', ''),
+(63, 7, '', 'Dummy 2 Shortlist Title', '674', 0, '10/23/2023', '', '', '', ''),
+(64, 1, '', 'Dummy 2 Shortlist Title', '583', 0, '10/24/2023', '', '', '', ''),
+(65, 1, '', 'IT Support', '583', 0, '10/24/2023', '', '', '', ''),
+(66, 2, '', 'IT Support', '586', 0, '10/24/2023', '', '', '', ''),
+(67, 3, '', 'IT Support', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(68, 7, '', 'IT Support', '674', 0, '10/24/2023', '', '', '', ''),
+(69, 3, '', 'Dummy 2 Shortlist Title', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(70, 1, '', 'Dummy 1 Shortlist Title', '583', 0, '10/24/2023', '', '', '', ''),
+(71, 3, '', 'Dummy 1 Shortlist Title', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(72, 1, '', 'Blah blah blah', '583', 0, '10/24/2023', '', '', '', ''),
+(73, 2, '', 'Blah blah blah', '586', 0, '10/24/2023', '', '', '', ''),
+(74, 3, '', 'Blah blah blah', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(75, 7, '', 'Blah blah blah', '674', 0, '10/24/2023', '', '', '', ''),
+(76, 1, '', 'Dummy 3 Shortlist Title', '610', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(77, 1, '', 'Dummy 3 Shortlist Title', '674', 0, '10/24/2023', '', '', '', ''),
+(78, 1, '', 'Dummy 3 Shortlist Title', '583', 0, '10/24/2023', '', '', '', ''),
+(79, 2, '', 'Dummy 3 Shortlist Title', '586', 0, '10/24/2023', '', '', '', ''),
+(80, 1, '', 'Shortlist Title', '583', 0, '10/24/2023', '', '', '', ''),
+(81, 1, '', '5454', '674', 0, '10/24/2023', '', '', '', ''),
+(82, 2, '', 'Shortlist Title', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(83, 7, '', 'Shortlist Title', '674', 0, '10/24/2023', '', '', '', ''),
+(84, 2, '', 'Shortlist Title', '610', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(85, 1, '', '5454', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(86, 2, '', 'Shortlist Title', '586', 0, '10/24/2023', '', '', '', ''),
+(87, 1, '', 'Dummy project 1', '583', 0, '10/24/2023', '', '', '', ''),
+(88, 2, '', 'Dummy project 1', '586', 0, '10/24/2023', '', '', '', ''),
+(89, 3, '', 'Dummy project 1', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(90, 7, '', 'Dummy project 1', '674', 0, '10/24/2023', '', '', '', ''),
+(91, 8, '', 'Dummy project 1', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(92, 1, '', 'Dummy project 2', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(93, 1, '', 'Dummy project 2', '674', 0, '10/24/2023', '', '', '', ''),
+(94, 1, '', 'Dummy project 2', '610', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(95, 1, '', 'Dummy project 2', '586', 0, '10/24/2023', '', '', '', ''),
+(96, 1, '', 'Dummy project 2', '583', 0, '10/24/2023', '', '', '', ''),
+(97, 1, '', 'Dummy project 3', '610', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(98, 1, '', 'Dummy project 3', '674', 0, '10/24/2023', '', '', '', ''),
+(99, 1, '', 'Dummy project 3', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(100, 1, '', 'Dummy project 3', '586', 0, '10/24/2023', '', '', '', ''),
+(101, 1, '', 'Dummy project 4', '674', 0, '10/24/2023', '', '', '', ''),
+(102, 1, '', 'Dummy project 4', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(103, 1, '', 'Dummy project 4', '610', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(104, 1, '', 'Dummy 4 Shortlist Title', '674', 0, '10/24/2023', '', '', '', ''),
+(105, 1, '', 'Dummy 4 Shortlist Title', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(106, 3, '', 'Dummy 4 Shortlist Title', '610', 1, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(107, 8, '', 'Dummy project 5', '677', 0, '10/24/2023', 'EWB', '10/25/2023', '', ''),
+(108, 7, '', 'Dummy project 5', '674', 0, '10/24/2023', '', '', '', ''),
+(109, 7, '', 'SUMASALO NG MASASAKIT NA SALITA', '674', 0, '10/25/2023', '', '', '', ''),
+(110, 8, '', 'SUMASALO NG MASASAKIT NA SALITA', '677', 0, '10/25/2023', 'EWB', '10/25/2023', '', ''),
+(111, 3, '', 'SUMASALO NG MASASAKIT NA SALITA', '610', 1, '10/25/2023', 'EWB', '10/25/2023', '', ''),
+(112, 3, '', 'Merchandiser', '610', 0, '10/25/2023', 'EWB', '10/25/2023', '', 'DEPLOYED');
 
 -- --------------------------------------------------------
 
@@ -4831,7 +4354,7 @@ INSERT INTO `shortlist_master` (`id`, `shortlistnameto`, `appnumto`, `dateto`, `
 -- Table structure for table `sources`
 --
 
-CREATE TABLE IF NOT EXISTS `sources` (
+CREATE TABLE `sources` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
@@ -4860,19 +4383,19 @@ INSERT INTO `sources` (`id`, `description`, `is_deleted`) VALUES
 -- Table structure for table `synch`
 --
 
-CREATE TABLE IF NOT EXISTS `synch` (
+CREATE TABLE `synch` (
   `id` int(11) NOT NULL,
   `katsing` varchar(255) NOT NULL,
   `datenow1` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `synch`
 --
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
-(1, '1', '2023-08-26'),
-(2, 'Shortlist', '2023-08-19');
+(1, '1', '2023-10-26'),
+(2, 'Shortlist', '2023-10-28');
 
 -- --------------------------------------------------------
 
@@ -4880,8 +4403,8 @@ INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
 -- Table structure for table `tax_status`
 --
 
-CREATE TABLE IF NOT EXISTS `tax_status` (
-  `id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `tax_status` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `code` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` varchar(1) NOT NULL DEFAULT '0',
@@ -4904,7 +4427,9 @@ INSERT INTO `tax_status` (`id`, `code`, `description`, `is_deleted`, `civil_stat
 (9, 'ME2', 'Married with two dependents', '0', 2),
 (10, 'ME3', 'Married with three dependents', '0', 2),
 (11, 'ME4', 'Married with four dependents', '0', 2),
-(12, 'ME5', 'Married with five dependents', '0', 2);
+(12, 'ME5', 'Married with five dependents', '0', 2),
+(13, 'SE', 'SEPARATED', '0', 3),
+(14, 'WI', 'WIDOWED', '0', 4);
 
 -- --------------------------------------------------------
 
@@ -4912,18 +4437,18 @@ INSERT INTO `tax_status` (`id`, `code`, `description`, `is_deleted`, `civil_stat
 -- Table structure for table `track`
 --
 
-CREATE TABLE IF NOT EXISTS `track` (
+CREATE TABLE `track` (
   `id` int(11) NOT NULL,
   `appno` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `track`
 --
 
 INSERT INTO `track` (`id`, `appno`) VALUES
-(1, '341'),
-(2, '15');
+(1, '679'),
+(2, '25');
 
 -- --------------------------------------------------------
 
@@ -4931,12 +4456,12 @@ INSERT INTO `track` (`id`, `appno`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `uname` varchar(255) NOT NULL,
   `pname` varchar(255) NOT NULL,
   `approve` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -5016,13 +4541,13 @@ ALTER TABLE `department`
 -- Indexes for table `deployment`
 --
 ALTER TABLE `deployment`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `deployment_history`
 --
 ALTER TABLE `deployment_history`
-  ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `deploy_status`
@@ -5067,6 +4592,18 @@ ALTER TABLE `ewb_choices`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ewb_declined_history`
+--
+ALTER TABLE `ewb_declined_history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ewb_verification_history`
+--
+ALTER TABLE `ewb_verification_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `gender`
 --
 ALTER TABLE `gender`
@@ -5088,12 +4625,19 @@ ALTER TABLE `loa`
 -- Indexes for table `loa_files`
 --
 ALTER TABLE `loa_files`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `loa_main_id` (`loa_main_id`);
 
 --
 -- Indexes for table `loa_maintenance_word`
 --
 ALTER TABLE `loa_maintenance_word`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `log`
+--
+ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -5103,10 +4647,28 @@ ALTER TABLE `mrf`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mrf_access`
+--
+ALTER TABLE `mrf_access`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pcn_emp`
+--
+ALTER TABLE `pcn_emp`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `recruitment_approve_history`
+--
+ALTER TABLE `recruitment_approve_history`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `region`
@@ -5118,19 +4680,22 @@ ALTER TABLE `region`
 -- Indexes for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_project` (`project_id`);
 
 --
 -- Indexes for table `shortlist_master`
 --
 ALTER TABLE `shortlist_master`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `employee_id` (`employee_id`);
 
 --
 -- Indexes for table `sources`
 --
 ALTER TABLE `sources`
-  ADD PRIMARY KEY (`id`), ADD FULLTEXT KEY `description` (`description`);
+  ADD PRIMARY KEY (`id`);
+ALTER TABLE `sources` ADD FULLTEXT KEY `description` (`description`);
 
 --
 -- Indexes for table `synch`
@@ -5164,132 +4729,235 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `attrition`
 --
 ALTER TABLE `attrition`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `blacklist_history`
 --
 ALTER TABLE `blacklist_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `channels`
 --
 ALTER TABLE `channels`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1653;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1653;
+
 --
 -- AUTO_INCREMENT for table `classifications`
 --
 ALTER TABLE `classifications`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `client_company`
 --
 ALTER TABLE `client_company`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `deployment`
 --
 ALTER TABLE `deployment`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `deployment_history`
 --
 ALTER TABLE `deployment_history`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=259;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `distinguishing_qualification_marks`
 --
 ALTER TABLE `distinguishing_qualification_marks`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `divisions`
 --
 ALTER TABLE `divisions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `empcounter`
 --
 ALTER TABLE `empcounter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `ewb_choices`
 --
 ALTER TABLE `ewb_choices`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `ewb_declined_history`
+--
+ALTER TABLE `ewb_declined_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `ewb_verification_history`
+--
+ALTER TABLE `ewb_verification_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `gender`
 --
 ALTER TABLE `gender`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `loa`
 --
 ALTER TABLE `loa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `loa_files`
+--
+ALTER TABLE `loa_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `loa_maintenance_word`
+--
+ALTER TABLE `loa_maintenance_word`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `log`
+--
+ALTER TABLE `log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
 --
 -- AUTO_INCREMENT for table `mrf`
 --
 ALTER TABLE `mrf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=996;
+
+--
+-- AUTO_INCREMENT for table `mrf_access`
+--
+ALTER TABLE `mrf_access`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pcn_emp`
+--
+ALTER TABLE `pcn_emp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=705;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=703;
+
+--
+-- AUTO_INCREMENT for table `recruitment_approve_history`
+--
+ALTER TABLE `recruitment_approve_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT for table `shortlist_master`
 --
 ALTER TABLE `shortlist_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=177;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
 --
 -- AUTO_INCREMENT for table `synch`
 --
 ALTER TABLE `synch`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tax_status`
+--
+ALTER TABLE `tax_status`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `track`
 --
 ALTER TABLE `track`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `loa_files`
+--
+ALTER TABLE `loa_files`
+  ADD CONSTRAINT `loa_files_ibfk_1` FOREIGN KEY (`loa_main_id`) REFERENCES `loa_maintenance_word` (`id`);
+
+--
+-- Constraints for table `shortlist_details`
+--
+ALTER TABLE `shortlist_details`
+  ADD CONSTRAINT `fk_project` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`);
+
+--
+-- Constraints for table `shortlist_master`
+--
+ALTER TABLE `shortlist_master`
+  ADD CONSTRAINT `shortlist_master_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
