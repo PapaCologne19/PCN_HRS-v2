@@ -441,37 +441,7 @@ if (isset($_POST['to_index'])) {
     $kekelpogi = "Single EWB Process Succesful !";
   }
 
-  if (isset($_POST['processmultiple'])) {
-    $dtnow = date("m/d/Y");
-
-
-    $ewbc1m = $_POST['ewbchoiceto1'];
-
-    echo '<input type = "hidden" name = ""  value = "' . $ewbc1m . '">';
-
-    if (!empty($_POST['check_list'])) {
-      // Loop to store and display values of individual checked checkbox.
-      foreach ($_POST['check_list'] as $selected) {
-        // echo $selected."</br>";
-
-
-        mysqli_query($link, "UPDATE employees
-
-                            SET
-                      
-                       ewbdeploy='$ewbc1m',
-                       ewbdate='$dtnow'
-                            
-                            WHERE
-                            appno = '$selected'
-                            ");
-
-        $kekelpogi = "Multiple Entry to Database Succesful";
-      }
-    } else {
-      $kekelpogi = "Selection Empty Nothing to Process";
-    }
-  }
+  
 
 
 
@@ -731,7 +701,6 @@ if (isset($_POST['to_index'])) {
       echo '   
                                   <div class="container" style="padding-left: 20rem; padding-right: 20rem; padding-top: 5rem; ">
                                     <div class="row ">
-                              <!--- laman -->
                 <form action = "action.php" method = "POST">
                                   <center>
                                       <img src="' . $rowed["photopath"] . '" alt="" class="img-circle" style="width:200px;height:200px;">

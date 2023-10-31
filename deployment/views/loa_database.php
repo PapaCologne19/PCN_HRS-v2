@@ -212,6 +212,28 @@ include '../../connect.php';
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['successMessage'])) { ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: "<?php echo $_SESSION['successMessage']; ?>",
+            })
+        </script>
+    <?php unset($_SESSION['successMessage']);
+    } ?>
+
+    <?php
+    if (isset($_SESSION['errorMessage'])) { ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: "<?php echo $_SESSION['errorMessage']; ?>",
+            })
+        </script>
+    <?php unset($_SESSION['errorMessage']);
+    }
+    ?>
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <?php include '../components/sidebar.php'; ?>
@@ -224,205 +246,214 @@ include '../../connect.php';
                 <div class="content-wrapper mt-2">
                     <div class="container">
                         <div class="card">
-                            <table class="table table-striped" id="example">
-                                <thead>
-                                    <tr>
-                                        <th>LOA ID</th>
-                                        <th>Type</th>
-                                        <th>Category</th>
-                                        <th>Name</th>
-                                        <th>Project</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th>Employment Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $query = "SELECT * FROM deployment";
-                                    $result = $link->query($query);
-                                    while ($row = $result->fetch_assoc()) {
-                                        $start_date = $row['loa_start_date'];
-                                        $end_date = $row['loa_end_date'];
-                                        $dateObj = date_create_from_format('m-d-Y', $start_date);
-                                        $dateObj2 = date_create_from_format('m-d-Y', $end_date);
-                                        $formattedDate_start = date_format($dateObj, 'F j, Y');
-                                        $formattedDate_end = date_format($dateObj2, 'F j, Y');
-                                        $id = $row['employee_id'];
-                                        $fetch = "SELECT * FROM employees WHERE id = '$id'";
-                                        $retrieved = $link->query($fetch);
-                                        while ($fetched = $retrieved->fetch_assoc()) {
-                                    ?>
-                                            <tr>
-                                                <td><?php echo $row['id'] ?></td>
-                                                <td><?php echo $row['type'] ?></td>
-                                                <td><?php echo $row['category'] ?></td>
-                                                <td><?php echo $fetched['lastnameko'] . ", " . $fetched['firstnameko'] . " " . $fetched['mnko'] ?></td>
-                                                <td><?php echo $row['place_assigned'] ?></td>
-                                                <td><?php echo $formattedDate_start ?></td>
-                                                <td><?php echo $formattedDate_end ?></td>
-                                                <td><?php echo $row['employment_status'] ?></td>
-                                                <td>
-                                                        <a href="download_loa.php?id=<?php echo $row['emp_id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
-                                                        <input type="hidden" name="id" id="" value="<?php echo $row['emp_id'] ?>">
-                                                        <button type="submit" name="name" id="download" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                    <?php }
-                                    } ?>
-                                </tbody>
-                            </table>
-
-
-                            <!-- Generating IDs -->
-                            <div class="image justify-content-center align-items-center mx-auto" id="image">
-                                <?php
-                                if (isset($_POST['name'])) {
-                                    $search_id = $link->real_escape_string($_POST['id']);
-                                    $html = '';
-
-                                    // Query for Regular Employees
-                                    $query = "SELECT * FROM deployment WHERE emp_id LIKE '%" . $search_id . "'";
-                                    $result = $link->query($query);
-
-                                    if ($result->num_rows > 0) {
-                                        $html .= "";
+                            <div class="container">
+                                <hr>
+                                <div class="title justify-content-center align-items-center mx-auto text-center">
+                                    <h4 class="fs-4">
+                                        DEPLOYMENT LOA DATABASE
+                                    </h4>
+                                </div>
+                                <hr>
+                                <table class="table" id="example">
+                                    <thead>
+                                        <tr>
+                                            <th>LOA ID</th>
+                                            <th>Type</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                            <th>Project</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Employment Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $query = "SELECT * FROM deployment";
+                                        $result = $link->query($query);
                                         while ($row = $result->fetch_assoc()) {
+                                            $start_date = $row['loa_start_date'];
+                                            $end_date = $row['loa_end_date'];
+                                            $dateObj = date_create_from_format('m-d-Y', $start_date);
+                                            $dateObj2 = date_create_from_format('m-d-Y', $end_date);
+                                            $formattedDate_start = date_format($dateObj, 'F j, Y');
+                                            $formattedDate_end = date_format($dateObj2, 'F j, Y');
                                             $id = $row['employee_id'];
+                                            $fetch = "SELECT * FROM employees WHERE id = '$id'";
+                                            $retrieved = $link->query($fetch);
+                                            while ($fetched = $retrieved->fetch_assoc()) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $row['id'] ?></td>
+                                                    <td><?php echo $row['type'] ?></td>
+                                                    <td><?php echo $row['category'] ?></td>
+                                                    <td><?php echo $fetched['lastnameko'] . ", " . $fetched['firstnameko'] . " " . $fetched['mnko'] ?></td>
+                                                    <td><?php echo $row['place_assigned'] ?></td>
+                                                    <td><?php echo $formattedDate_start ?></td>
+                                                    <td><?php echo $formattedDate_end ?></td>
+                                                    <td><?php echo $row['employment_status'] ?></td>
+                                                    <td>
+                                                        <a href="download_loa.php?id=<?php echo $row['emp_id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" class="form-group mt-1">
+                                                            <input type="hidden" name="id" id="" value="<?php echo $row['emp_id'] ?>">
+                                                            <button type="submit" name="name" id="download" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                        <?php }
+                                        } ?>
+                                    </tbody>
+                                </table>
 
-                                            $fetch_employee = "SELECT * FROM employees WHERE id = '$id'";
-                                            $fetch_result = $link->query($fetch_employee);
-                                            while ($fetch_row = $fetch_result->fetch_assoc()) {
-                                                if (empty($fetch_row['mnko']) || $fetch_row['mnko'] === "NA" || $fetch_row['mnko'] === "N/A") {
-                                                    $name = $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'];
-                                                } else {
-                                                    $name = $fetch_row['firstnameko'] . " " . $fetch_row['mnko'] . " " . $fetch_row['lastnameko'];
+
+                                <!-- Generating IDs -->
+                                <div class="image justify-content-center align-items-center mx-auto" id="image">
+                                    <?php
+                                    if (isset($_POST['name'])) {
+                                        $search_id = $link->real_escape_string($_POST['id']);
+                                        $html = '';
+
+                                        // Query for Regular Employees
+                                        $query = "SELECT * FROM deployment WHERE emp_id LIKE '%" . $search_id . "'";
+                                        $result = $link->query($query);
+
+                                        if ($result->num_rows > 0) {
+                                            $html .= "";
+                                            while ($row = $result->fetch_assoc()) {
+                                                $id = $row['employee_id'];
+
+                                                $fetch_employee = "SELECT * FROM employees WHERE id = '$id'";
+                                                $fetch_result = $link->query($fetch_employee);
+                                                while ($fetch_row = $fetch_result->fetch_assoc()) {
+                                                    if (empty($fetch_row['mnko']) || $fetch_row['mnko'] === "NA" || $fetch_row['mnko'] === "N/A") {
+                                                        $name = $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'];
+                                                    } else {
+                                                        $name = $fetch_row['firstnameko'] . " " . $fetch_row['mnko'] . " " . $fetch_row['lastnameko'];
+                                                    }
+                                                    $position = $row['job_title'];
+                                                    $id_no = $row['emp_id'];
+                                                    $end_date = $row['loa_end_date'];
+                                                    $formattedDate = str_replace('-', '/', $end_date);
+                                                    $contact_person = $fetch_row['e_person'];
+                                                    $address = $fetch_row['e_address'];
+                                                    $contact_number = $fetch_row['e_number'];
+                                                    $sss = $row['sss'];
+                                                    $philhealth = $row['philhealth'];
+                                                    $pagibig = $row['pagibig'];
+                                                    $tin = $row['tin'];
+                                                    $birthday = $fetch_row['birthday'];
+                                                    $timestamp_birthday = strtotime($birthday);
+                                                    $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
+
+                                                    if ($row['employment_status'] === "REGULAR") {
+
+                                    ?>
+                                                        <img src="../assets/img/elements/IDRegular2.png" alt="ID" class="img-responsive">
+                                                        <div class="card name">
+                                                            <h2><?php echo $name ?></h2>
+                                                        </div>
+                                                        <div class="card position">
+                                                            <h2><?php echo $position ?></h2>
+                                                        </div>
+                                                        <div class="card id_no_regular">
+                                                            <h2><?php echo $id_no ?></h2>
+                                                        </div>
+
+                                                        <div class="card contact_person">
+                                                            <h2><?php echo $contact_person ?></h2>
+                                                        </div>
+                                                        <div class="card contact_address">
+                                                            <h2><?php echo $address ?></h2>
+                                                        </div>
+                                                        <div class="card contact_number">
+                                                            <h2><?php echo $contact_number ?></h2>
+                                                        </div>
+                                                        <div class="card sss">
+                                                            <h2><?php echo $sss ?></h2>
+                                                        </div>
+                                                        <div class="card tin">
+                                                            <h2><?php echo $tin ?></h2>
+                                                        </div>
+                                                        <div class="card philhealth">
+                                                            <h2><?php echo $philhealth ?></h2>
+                                                        </div>
+                                                        <div class="card hdmf">
+                                                            <h2><?php echo $pagibig ?></h2>
+                                                        </div>
+                                                        <div class="card birthday">
+                                                            <h2><?php echo $formattedDate_birthday ?></h2>
+                                                        </div>
+
+                                                        <div class="card" id="photoregular">
+                                                            <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
+                                                        </div>
+                                                        <div class="caption">
+                                                            <input type="hidden" id="caption-input" value="<?php echo $name ?>-PCN ID">
+                                                        </div>
+                                                        <br><br><br><br><br><br>
+                                                    <?php
+
+                                                    } else { ?>
+
+                                                        <img src="../assets/img/elements/PCNBG2.png" alt="ID" class="img-responsive">
+                                                        <div class="card name">
+                                                            <h2><?php echo $name ?></h2>
+                                                        </div>
+                                                        <div class="card position">
+                                                            <h2><?php echo $position ?></h2>
+                                                        </div>
+                                                        <div class="card id_no">
+                                                            <h2><?php echo $id_no ?></h2>
+                                                        </div>
+                                                        <div class="card date_end">
+                                                            <h2><?php echo $formattedDate ?></h2>
+                                                        </div>
+
+                                                        <div class="card contact_person">
+                                                            <h2><?php echo $contact_person ?></h2>
+                                                        </div>
+                                                        <div class="card contact_address">
+                                                            <h2><?php echo $address ?></h2>
+                                                        </div>
+                                                        <div class="card contact_number">
+                                                            <h2><?php echo $contact_number ?></h2>
+                                                        </div>
+                                                        <div class="card sss">
+                                                            <h2><?php echo $sss ?></h2>
+                                                        </div>
+                                                        <div class="card tin">
+                                                            <h2><?php echo $tin ?></h2>
+                                                        </div>
+                                                        <div class="card philhealth">
+                                                            <h2><?php echo $philhealth ?></h2>
+                                                        </div>
+                                                        <div class="card hdmf">
+                                                            <h2><?php echo $pagibig ?></h2>
+                                                        </div>
+                                                        <div class="card birthday">
+                                                            <h2><?php echo $formattedDate_birthday ?></h2>
+                                                        </div>
+
+                                                        <div class="card" id="photo">
+                                                            <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
+                                                        </div>
+                                                        <div class="caption">
+                                                            <input type="hidden" id="caption-input" value="<?php echo $name ?>_PCN ID">
+                                                        </div>
+                                                        <br><br><br><br><br><br>
+
+                                    <?php }
                                                 }
-                                                $position = $row['job_title'];
-                                                $id_no = $row['emp_id'];
-                                                $end_date = $row['loa_end_date'];
-                                                $formattedDate = str_replace('-', '/', $end_date);
-                                                $contact_person = $fetch_row['e_person'];
-                                                $address = $fetch_row['e_address'];
-                                                $contact_number = $fetch_row['e_number'];
-                                                $sss = $row['sss'];
-                                                $philhealth = $row['philhealth'];
-                                                $pagibig = $row['pagibig'];
-                                                $tin = $row['tin'];
-                                                $birthday = $fetch_row['birthday'];
-                                                $timestamp_birthday = strtotime($birthday);
-                                                $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
-
-                                                if ($row['employment_status'] === "REGULAR") {
-
-                                ?>
-                                                    <img src="../assets/img/elements/IDRegular2.png" alt="ID" class="img-responsive">
-                                                    <div class="card name">
-                                                        <h2><?php echo $name ?></h2>
-                                                    </div>
-                                                    <div class="card position">
-                                                        <h2><?php echo $position ?></h2>
-                                                    </div>
-                                                    <div class="card id_no_regular">
-                                                        <h2><?php echo $id_no ?></h2>
-                                                    </div>
-
-                                                    <div class="card contact_person">
-                                                        <h2><?php echo $contact_person ?></h2>
-                                                    </div>
-                                                    <div class="card contact_address">
-                                                        <h2><?php echo $address ?></h2>
-                                                    </div>
-                                                    <div class="card contact_number">
-                                                        <h2><?php echo $contact_number ?></h2>
-                                                    </div>
-                                                    <div class="card sss">
-                                                        <h2><?php echo $sss ?></h2>
-                                                    </div>
-                                                    <div class="card tin">
-                                                        <h2><?php echo $tin ?></h2>
-                                                    </div>
-                                                    <div class="card philhealth">
-                                                        <h2><?php echo $philhealth ?></h2>
-                                                    </div>
-                                                    <div class="card hdmf">
-                                                        <h2><?php echo $pagibig ?></h2>
-                                                    </div>
-                                                    <div class="card birthday">
-                                                        <h2><?php echo $formattedDate_birthday ?></h2>
-                                                    </div>
-
-                                                    <div class="card" id="photoregular">
-                                                        <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
-                                                    </div>
-                                                    <div class="caption">
-                                                        <input type="hidden" id="caption-input" value="<?php echo $name ?>-PCN ID">
-                                                    </div>
-                                                    <br><br><br><br><br><br>
-                                                <?php
-
-                                                } else { ?>
-
-                                                    <img src="../assets/img/elements/PCNBG2.png" alt="ID" class="img-responsive">
-                                                    <div class="card name">
-                                                        <h2><?php echo $name ?></h2>
-                                                    </div>
-                                                    <div class="card position">
-                                                        <h2><?php echo $position ?></h2>
-                                                    </div>
-                                                    <div class="card id_no">
-                                                        <h2><?php echo $id_no ?></h2>
-                                                    </div>
-                                                    <div class="card date_end">
-                                                        <h2><?php echo $formattedDate ?></h2>
-                                                    </div>
-
-                                                    <div class="card contact_person">
-                                                        <h2><?php echo $contact_person ?></h2>
-                                                    </div>
-                                                    <div class="card contact_address">
-                                                        <h2><?php echo $address ?></h2>
-                                                    </div>
-                                                    <div class="card contact_number">
-                                                        <h2><?php echo $contact_number ?></h2>
-                                                    </div>
-                                                    <div class="card sss">
-                                                        <h2><?php echo $sss ?></h2>
-                                                    </div>
-                                                    <div class="card tin">
-                                                        <h2><?php echo $tin ?></h2>
-                                                    </div>
-                                                    <div class="card philhealth">
-                                                        <h2><?php echo $philhealth ?></h2>
-                                                    </div>
-                                                    <div class="card hdmf">
-                                                        <h2><?php echo $pagibig ?></h2>
-                                                    </div>
-                                                    <div class="card birthday">
-                                                        <h2><?php echo $formattedDate_birthday ?></h2>
-                                                    </div>
-
-                                                    <div class="card" id="photo">
-                                                        <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
-                                                    </div>
-                                                    <div class="caption">
-                                                        <input type="hidden" id="caption-input" value="<?php echo $name ?>_PCN ID">
-                                                    </div>
-                                                    <br><br><br><br><br><br>
-
-                                <?php }
                                             }
+                                        } else {
+                                            echo "No record found";
+                                            exit(0);
                                         }
-                                    } else {
-                                        echo "No record found";
-                                        exit(0);
                                     }
-                                }
-                                
-                                ?>
+
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -431,32 +462,6 @@ include '../../connect.php';
         </div>
     </div>
     <script>
-//         $(document).ready(function() {
-//     $('.table').on('click', '#download', function() {
-//         var empId = $(this).data('id');
-//         // Now, `empId` contains the ID associated with the button that was clicked
-//         // You can use it as needed in your JavaScript code
-//         console.log(empId);
-
-//         // The following code uses html2canvas to capture an element and initiate a download.
-//         var element = document.getElementById("image");
-//         var caption = $('#caption-input').val();
-
-//         html2canvas(element).then(function(canvas) {
-//             var imageData = canvas.toDataURL("image/png");
-
-//             // Create a new anchor element to trigger the download
-//             var downloadLink = document.createElement('a');
-//             downloadLink.href = imageData;
-//             downloadLink.download = caption + '.png';
-
-//             // Trigger a click event on the anchor element to start the download
-//             downloadLink.click();
-//         });
-//     });
-// });
-
-
         $(document).ready(function() {
             $("#download").on('click', function() {
                 var element = document.getElementById("image");

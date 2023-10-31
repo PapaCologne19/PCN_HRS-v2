@@ -21,7 +21,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     <?php include '../components/navbar.php'; ?>
 
                     <!-- Content -->
-                    <div class="content-wrapper mt-5">
+                    <div class="content-wrapper mt-3">
                         <div class="containers">
                             <div class="card">
                                 <?php
@@ -35,6 +35,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             Deploy (<?php echo $shortlist_id ?>)
                                         </h4>
                                     </div>
+                                    <hr>
                                     <table class="table" id="example" style="font-size: 13px !important;">
                                         <thead>
                                             <tr>
@@ -67,8 +68,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 $birthday = $rows['birthday'];
                                                 $timestamp_birthday = strtotime($birthday);
                                                 $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
-                                                $id = $rows['id']; 
-                                                
+                                                $id = $rows['id'];
+
                                                 if ($rows['deployment_status'] === 'DEPLOYED') {
                                             ?>
                                                     <tr>
@@ -81,28 +82,28 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <td><?php echo $rows['tinnum'] ?></td>
                                                         <td><?php echo $formattedDate_birthday ?></td>
                                                         <td><?php echo $rows['cpnum'] ?></td>
-                                                        <?php 
-                                                                $deployment_query = "SELECT * FROM deployment WHERE employee_id = '$id'";
-                                                                $deployment_result = $link->query($deployment_query);
-                                                                while ($deployment_row = $deployment_result->fetch_assoc()){
-                                                                    $loa_start_date = $deployment_row['loa_start_date'];
-                                                                    $loa_end_date = $deployment_row['loa_end_date'];
-                                                                    $dateObj = date_create_from_format('m-d-Y', $loa_start_date);
-                                                                    $dateObj2 = date_create_from_format('m-d-Y', $loa_end_date);
-                                                                    $formattedDate_start = date_format($dateObj, 'F j, Y');
-                                                                    $formattedDate_end = date_format($dateObj2, 'F j, Y');
-                                                            ?>
-                                                        <td><?php echo $formattedDate_start;?></td>
-                                                        <td><?php echo $formattedDate_end;?></td>
-                                                        <td><?php echo $deployment_row['employment_status'];?></td>
-                                                        <?php }?>
+                                                        <?php
+                                                        $deployment_query = "SELECT * FROM deployment WHERE employee_id = '$id'";
+                                                        $deployment_result = $link->query($deployment_query);
+                                                        while ($deployment_row = $deployment_result->fetch_assoc()) {
+                                                            $loa_start_date = $deployment_row['loa_start_date'];
+                                                            $loa_end_date = $deployment_row['loa_end_date'];
+                                                            $dateObj = date_create_from_format('m-d-Y', $loa_start_date);
+                                                            $dateObj2 = date_create_from_format('m-d-Y', $loa_end_date);
+                                                            $formattedDate_start = date_format($dateObj, 'F j, Y');
+                                                            $formattedDate_end = date_format($dateObj2, 'F j, Y');
+                                                        ?>
+                                                            <td><?php echo $formattedDate_start; ?></td>
+                                                            <td><?php echo $formattedDate_end; ?></td>
+                                                            <td><?php echo $deployment_row['employment_status']; ?></td>
+                                                        <?php } ?>
                                                         <td>DEPLOYED</td>
                                                         <td><?php echo $rows['remarks'] ?></td>
                                                         <td>
                                                             <?php if (!empty($rows['ewb_status'])) { ?>
                                                                 <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>"><i class="bi bi-gear"></i></button> &nbsp;
-                                                                <a href="download_loa.php?id=<?php echo $rows['id']?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                                
+                                                                <a href="download_loa.php?id=<?php echo $rows['id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+
                                                             <?php } else { ?>
                                                                 <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
                                                             <?php } ?>
