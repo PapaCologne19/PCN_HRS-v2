@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +14,16 @@ include '../../connect.php';
         .body5010p {
             position: absolute;
             top: 10%;
-            left: 20%;
+            left: 23%;
             border: 0px solid black;
+        }
+        @media screen  and (max-width: 1280px){
+            .body5010p{
+                left: 38% !important;
+            }
+            .buttons{
+                margin-top: 20rem !important;
+            }
         }
     </style>
 </head>
@@ -56,7 +65,7 @@ include '../../connect.php';
                 <div class="content-wrapper mt-2">
                     <div class="container">
                         <div class="card">
-                            <div class="container justify-content-center align-items-center mx-auto text-center mt-5">
+                            <div class="container justify-content-center align-items-center mx-auto text-center mt-5 buttons">
                                 <button class="btn btn-success btnsall" onclick="myFunctioncam()">Display Camera</button><br><br>
                                 <form method="POST" action="storeImage.php">
                                     <input type="button" class="btn btn-success btnsall" value="Take Photo" onclick="take_snapshot()">
@@ -86,3 +95,11 @@ include '../../connect.php';
 </body>
 
 </html>
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>

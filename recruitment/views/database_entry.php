@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -462,3 +463,12 @@ include '../../connect.php';
     </body>
 
 </html>
+
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>

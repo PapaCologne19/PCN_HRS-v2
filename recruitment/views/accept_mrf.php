@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,6 @@ include '../../connect.php';
     <?php unset($_SESSION['errorMessage']);
     }
     ?>
-    <div class="body5010p" id="my_camera" style="z-index: 1;"></div>
 
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -137,3 +137,11 @@ include '../../connect.php';
 </body>
 
 </html>
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>

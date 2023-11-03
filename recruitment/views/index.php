@@ -3,7 +3,35 @@ include '../../connect.php';
 session_start();
 
 date_default_timezone_set('Asia/Hong_Kong');
-$datenow = date("m/d/Y");
+$datenow1 = date("m/d/Y");
+
+//check synchronizatioin of projects
+$resultap = mysqli_query($link, "SELECT * FROM synch WHERE id = '2' ");
+while ($rowap = mysqli_fetch_assoc($resultap)) {
+    if ($rowap['datenow1'] != $datenow1) {
+        $day1 = date("d") - 1;
+        $month1 = date("m");
+        $year1 = date("Y");
+        $date_old = $year1 . "-" . $month1 . "-" . $day1;
+
+        //change employee status to EWB
+        $resultemp1 = mysqli_query($link, "SELECT * FROM projects WHERE end_date <= '$date_old'");
+        while ($rowem1 = mysqli_fetch_assoc($resultemp1)) {
+
+
+            $resultemp = mysqli_query($link, "UPDATE shortlist_details set activity='INACTIVE'  WHERE project = '" . $rowem1['project_title'] . "'");
+        }
+
+        $query_sync = "UPDATE synch SET datenow1 = '$datenow1', katsing = 'Shortlist' WHERE id = '2'";
+        $result_sync = mysqli_query($link, $query_sync);
+
+        $_SESSION['successMessage'] = "Shortlist Database Sync Complete";
+    } else {
+        //echo "synch na do nothing";
+
+    }
+}
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -247,6 +275,15 @@ $datenow = date("m/d/Y");
             </div>
         </div>
     </div>
+    <?php include '../components/footer.php'; ?>
 </body>
 
 </html>
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>

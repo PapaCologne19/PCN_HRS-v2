@@ -99,9 +99,49 @@
       </a>
     </li>
     <li class="menu-header small text-uppercase">
-      <span class="menu-header-text">RECRUITMENT REPORTS</span>
+      <span class="menu-header-text">REPORTS</span>
     </li>
-
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div data-i18n="Layouts">Recruitment Reports</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="list_of_blacklisted.php" class="menu-link">
+            <div data-i18n="Without navbar">List of Blacklisted</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="list_of_canceled.php" class="menu-link">
+            <div data-i18n="Container">List of Canceled</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="view_database.php" class="menu-link">
+            <div data-i18n="Container">View Database</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div data-i18n="Layouts">Shortlist Reports</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="shortlist_download.php" class="menu-link">
+            <div data-i18n="Without navbar">Shortlist Download</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="summary_report.php" class="menu-link">
+            <div data-i18n="Container">Summary Report</div>
+          </a>
+        </li>
+      </ul>
+    </li>
 
 
   </ul>

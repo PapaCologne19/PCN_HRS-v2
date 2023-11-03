@@ -210,7 +210,7 @@ include '../../connect.php';
         }
     </style>
 </head>
-
+ 
 <body>
     <?php
     if (isset($_SESSION['successMessage'])) { ?>
@@ -294,11 +294,12 @@ include '../../connect.php';
                                                     <td><?php echo $formattedDate_end ?></td>
                                                     <td><?php echo $row['employment_status'] ?></td>
                                                     <td>
-                                                        <a href="download_loa.php?id=<?php echo $row['emp_id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" class="form-group mt-1">
-                                                            <input type="hidden" name="id" id="" value="<?php echo $row['emp_id'] ?>">
-                                                            <button type="submit" name="name" id="download" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></button>
-                                                        </form>
+                                                        <div class="mb-1">
+                                                            <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                        </div>
+                                                        <div class="pt-1">
+                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="TEXT-ADDED.png" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                         <?php }

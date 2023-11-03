@@ -57,6 +57,11 @@
             <div data-i18n="Container">LOA Database</div>
           </a>
         </li>
+        <li class="menu-item">
+          <a href="loa_history.php" class="menu-link">
+            <div data-i18n="Container">LOA History</div>
+          </a>
+        </li>
       </ul>
     </li>
 

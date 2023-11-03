@@ -188,7 +188,8 @@ include '../../connect.php';
             height: 210px !important;
             background: transparent;
         }
-        #photoregular #photoko{
+
+        #photoregular #photoko {
             z-index: 1;
             position: sticky;
             margin-top: -29.1rem;
@@ -197,6 +198,7 @@ include '../../connect.php';
             height: 210px !important;
             background: transparent;
         }
+
         .id_no_regular {
             position: sticky;
             margin-top: 7.5rem !important;
@@ -207,7 +209,8 @@ include '../../connect.php';
             text-align: center;
             box-shadow: none !important;
         }
-        .id_no_regular h2{
+
+        .id_no_regular h2 {
             font-size: 24px;
             font-family: 'Arial', sans-serif !important;
             color: black !important;
@@ -237,10 +240,10 @@ include '../../connect.php';
                                         <button type="submit" name="search" class="btn btn-primary">Search</button>
                                     </div>
                                 </div>
-                                <div class="justify-content-end align-items-end" style="margin-left: 1rem;">
-                                    <button class="btn btn-dark" id="download">Print ID Card</button>
-                                </div>
                             </form>
+                            <div class="justify-content-end align-items-end mb-5 mt-3" style="margin-left: 1rem;">
+                                <button class="btn btn-dark" id="download">Print ID Card</button>
+                            </div>
                             <div class="image justify-content-center align-items-center mx-auto" id="image">
                                 <?php
                                 if (isset($_POST['search'])) {

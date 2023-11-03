@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +86,7 @@ include '../../connect.php';
                                         <select class="form-select" name="shortlisttitle" required>
                                             <option value="">Select Shortlist Title</option>
                                             <?php
-                                            $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity ='ACTIVE' order by shortlistname ASC ");
+                                            $resultpro = mysqli_query($link, "SELECT * FROM shortlist_details WHERE activity = 'ACTIVE' ORDER BY shortlistname ASC ");
                                             while ($rowpro = mysqli_fetch_assoc($resultpro)) {
                                                 echo '<option  value="' . $rowpro['shortlistname'] . '">' . $rowpro['shortlistname'] . '(' . $rowpro['project'] . ') </option>';
                                             ?>
@@ -139,7 +140,7 @@ include '../../connect.php';
 
                                         <tbody>
                                             <?php
-                                            $queryx = "SELECT * FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'DEPLOYED' AND actionpoint <> 'CANCELED'";
+                                            $queryx = "SELECT * FROM employees WHERE actionpoint != 'BLACKLISTED' OR actionpoint != 'DEPLOYED' OR actionpoint != 'CANCELED' OR actionpoint = 'ACTIVE'";
                                             $resultx = mysqli_query($link, $queryx);
                                             while ($rowx = mysqli_fetch_assoc($resultx)) {
                                                 $appno = $rowx['appno'];
@@ -243,3 +244,11 @@ include '../../connect.php';
 </body>
 
 </html>
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>

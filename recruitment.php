@@ -9,7 +9,7 @@ $datenow1 = date("Y-m-d");
 $datenow = date("m/d/Y h:i:s A");
 
 
-//check synchorizatioin of projects
+//check synchronizatioin of projects
 $resultap = mysqli_query($link, "SELECT * FROM synch where id ='2'");
 while ($rowap = mysqli_fetch_array($resultap)) {
   if ($rowap[2] != $datenow1) {

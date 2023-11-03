@@ -84,7 +84,7 @@ if (isset($_POST['SubButton'])) {
         if ($result5) {
           $_SESSION['successMessage'] = "Successfully Login";
           $message = $_SESSION['successMessage'];
-          header("Location: recruitment.php?$message");
+          header("Location: recruitment/index.php");
         } else {
           $_SESSION['errorMessage'] = "Error Login";
         }

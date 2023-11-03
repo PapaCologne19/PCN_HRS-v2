@@ -64,8 +64,7 @@
          Webcam.set({
             width: 250,
             height: 200,
-            image_format: 'jpeg',
-            jpeg_quality: 100
+            image_format: 'png',
          });
 
          Webcam.attach('#my_camera');
@@ -78,6 +77,7 @@
             x.style.visibility = "hidden";
          }
       }
+
 
       $(document).ready(function() {
          $("#myTab a").click(function(e) {

@@ -9,6 +9,7 @@ if (isset($_POST['printapp'])) {
 
     header("location: printapp.php");
 }
+if(isset($_SESSION['username'], $_SESSION['password'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,3 +89,11 @@ if (isset($_POST['printapp'])) {
 </body>
 
 </html>
+<?php 
+}
+else{
+    header("Location: ../../index.php");
+    session_destroy();
+    exit(0);
+}
+?>
