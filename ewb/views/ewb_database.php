@@ -79,7 +79,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                         DATE_FORMAT(brgyd, '%M %d %Y') AS brgyd, 
                                         DATE_FORMAT(nbid, '%M %d %Y') AS nbid, 
                                         DATE_FORMAT(birthday, '%M %d %Y') AS birthday
-                                        FROM employees WHERE actionpoint = 'EWB' AND ewbdeploy != '0'");
+                                        FROM employees WHERE ewbdeploy != '0'");
                                         while ($rowx = mysqli_fetch_assoc($resultx)) {
                                             $appno = $rowx['appno'];
                                             $resulty = mysqli_query($link, "SELECT * FROM shortlist_master WHERE appnumto = '$appno'");

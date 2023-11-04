@@ -84,7 +84,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <td> <?php echo $row['location'] ?> </td>
                                                     <td> <?php echo $row['project_title'] ?> </td>
                                                     <?php
-                                                    if (!empty($row['position'])) { ?>
+                                                    if ($row['position'] === "OTHER") { ?>
                                                         <td> <?php echo $row['position_detail'] ?> </td>
                                                     <?php  } else { ?>
                                                         <td> <?php echo $row['position'] ?> </td>
@@ -104,7 +104,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <td> <?php echo $fullname ?> </td>
                                                     <td> <?php echo $row['location'] ?> </td>
                                                     <td> <?php echo $row['project_title'] ?> </td>
-                                                    <?php if (!empty($row['position'])) { ?>
+                                                    <?php if ($row['position'] === "OTHER") { ?>
                                                         <td> <?php echo $row['position_detail'] ?> </td>
                                                     <?php } else { ?>
                                                         <td> <?php echo $row['position'] ?> </td>

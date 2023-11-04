@@ -79,6 +79,8 @@
       }
 
 
+
+
       $(document).ready(function() {
          $("#myTab a").click(function(e) {
             e.preventDefault();
@@ -372,14 +374,14 @@
                            });
                         } else {
                            Swal.fire({
-                              title: "Error due to duplication",
+                              title: "Already Shortlisted",
                               icon: "error"
                            });
                         }
                      },
                      error: function() {
                         Swal.fire({
-                           title: "Error due to duplication",
+                           title: "Already Shortlisted",
                            icon: "error"
                         });
                      }
@@ -705,6 +707,7 @@
          });
       });
 
+      
 
       // For checkboxes of selecting applicants for shortlist
       const selectAll = document.getElementById('select-all');

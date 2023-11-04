@@ -55,7 +55,7 @@ include '../../connect.php';
                                     while ($rowed = mysqli_fetch_assoc($resulted)) { ?>
                                         <form action="action.php" method="POST">
                                             <center>
-                                                <img src="../../<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
+                                                <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
                                             </center>
 
                                             <div class="row mt-5">
@@ -125,12 +125,12 @@ include '../../connect.php';
                                                 </div>
                                                 <div class="col-md-10">
                                                     <select class="form-select cbo" name="regionn" id="regionn" data-placeholder="Select User type" required>
-                                                        <option value="">Select Region:</option>
+                                                        <option value="<?php echo $rowed['regionn']?>"><?php echo $rowed['regionn']?></option>
                                                         <?php
                                                         $resultrg = mysqli_query($link, "SELECT * FROM region");
-                                                        while ($rowrg = mysqli_fetch_array($resultrg)) {
+                                                        while ($rowrg = mysqli_fetch_assoc($resultrg)) {
                                                         ?>
-                                                            <option value="<?php echo $rowrg[3] ?>"><?php echo $rowrg[2] ?></option>
+                                                            <option value="<?php echo $rowrg['regCode'] ?>"><?php echo $rowrg['regDesc'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
@@ -141,7 +141,9 @@ include '../../connect.php';
                                                     <label class="form-label">City : </label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <select class="form-select" name="cityn" id="cityn" data-placeholder="Select City"> </select>
+                                                    <select class="form-select" name="cityn" id="cityn" data-placeholder="Select City"> 
+                                                        <option value="<?php echo $rowed['cityn']?>"><?php echo $rowed['cityn']?></option>
+                                                    </select>
                                                 </div>
                                             </div>
 

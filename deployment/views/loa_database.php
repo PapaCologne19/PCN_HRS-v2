@@ -275,8 +275,8 @@ include '../../connect.php';
                                         while ($row = $result->fetch_assoc()) {
                                             $start_date = $row['loa_start_date'];
                                             $end_date = $row['loa_end_date'];
-                                            $dateObj = date_create_from_format('m-d-Y', $start_date);
-                                            $dateObj2 = date_create_from_format('m-d-Y', $end_date);
+                                            $dateObj = date_create_from_format('Y-m-d', $start_date);
+                                            $dateObj2 = date_create_from_format('Y-m-d', $end_date);
                                             $formattedDate_start = date_format($dateObj, 'F j, Y');
                                             $formattedDate_end = date_format($dateObj2, 'F j, Y');
                                             $id = $row['employee_id'];
@@ -298,7 +298,7 @@ include '../../connect.php';
                                                             <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
                                                         </div>
                                                         <div class="pt-1">
-                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="TEXT-ADDED.png" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="Employee_ID.png" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>

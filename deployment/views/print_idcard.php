@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
             $timestampbirthday = strtotime($birthday);
             $formattedDatebirthday = date("F d, Y", $timestampbirthday);
             $end_date = $row['loa_end_date'];
-            $formattedDate = str_replace('-', '/', $end_date);
+            $formattedDate = date('m/d/Y', strtotime($end_date));
 
             if ($row['employment_status'] === "REGULAR" || $row['employment_status'] === "Regular" || $row['employment_status'] === "regular") {
                 $image = imagecreatefrompng("../assets/img/elements/IDRegular2.png");
@@ -37,7 +37,8 @@ if (isset($_GET['id'])) {
                 $text11 = $formattedDatebirthday;
 
 
-                $newImage = imagecreatefrompng("../../" . $select_row['photopath']);
+                $newImage = imagecreatefrompng($select_row['photopath']);
+                // $newImage = imagecreatefrompng("../../" . $select_row['photopath']);
                 $newImageX = 135; // X-coordinate of the top-left corner of the inserted picture
                 $newImageY = 150; // Y-coordinate of the top-left corner of the inserted picture
                 $destWidth = 205; // Set the desired width of the inserted picture
@@ -228,7 +229,7 @@ if (isset($_GET['id'])) {
                 imagepng($image);
 
                 // Additional headers for download
-                header("Content-Disposition: attachment; filename=TEXT-ADDED.png");
+                header("Content-Disposition: attachment; filename=Employee_ID.png");
                 header("Content-Length: " . ob_get_length());
 
                 // Clean the output buffer and end the script
@@ -253,7 +254,7 @@ if (isset($_GET['id'])) {
                 $text12 = $formattedDate;
 
 
-                $newImage = imagecreatefrompng("../../" . $select_row['photopath']);
+                $newImage = imagecreatefrompng($select_row['photopath']);
                 $newImageX = 128; // X-coordinate of the top-left corner of the inserted picture
                 $newImageY = 153; // Y-coordinate of the top-left corner of the inserted picture
                 $destWidth = 205; // Set the desired width of the inserted picture
@@ -457,7 +458,7 @@ if (isset($_GET['id'])) {
                 imagepng($image);
 
                 // Additional headers for download
-                header("Content-Disposition: attachment; filename=TEXT-ADDED.png");
+                header("Content-Disposition: attachment; filename=Employee_ID.png");
                 header("Content-Length: " . ob_get_length());
 
                 // Clean the output buffer and end the script

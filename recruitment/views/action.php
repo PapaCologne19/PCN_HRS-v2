@@ -18,7 +18,8 @@ if (isset($_POST['next'])) {
     $peraddress1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['peraddress']))));
     $birthday1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['birthday']))));
     $dateOfBirth = $birthday1;
-    $today = date("Y-m-d");
+    date_default_timezone_set('Asia/Manila');
+    $today = date('Y-m-d H:i:s');
     $diff = date_diff(date_create($dateOfBirth), date_create($today));
     $age1 = $diff->format("%y");
     $datebirth = date_create($birthday1);
@@ -161,11 +162,11 @@ if (isset($_POST['updateit'])) {
 
     if ($updateQueryResult) {
         $_SESSION['successMessage'] = "Update Successful!";
-        header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Update Error!";
-        header("Location: recruitment.php");
     }
+    header("Location: applicant.php");
+    exit(0);
 }
 
 
@@ -301,66 +302,66 @@ if (isset($_POST['add_shortlist_click'])) {
     $resultac = mysqli_query($link, $querytac);
     while ($rowac = mysqli_fetch_assoc($resultac)) {
 
-        if ($rowac['actionpoint'] === "ACTIVE") {
-            $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
-            $results1 = mysqli_query($link, $query1);
+        // if ($rowac['actionpoint'] === "ACTIVE") {
+        //     $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
+        //     $results1 = mysqli_query($link, $query1);
 
-            if ($results1) {
-                $dtnow = date("m/d/Y");
+        //     if ($results1) {
+        //         $dtnow = date("m/d/Y");
 
-                $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1' ";
-                $resultchk = mysqli_query($link, $querychk);
-                if (mysqli_num_rows($resultchk) === 0) {
-                    // kapag wala pang user name na kaparehas
-                    $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id','$data', '$id1', '$dtnow')";
-                    $results2 = mysqli_query($link, $query2);
-                    if ($results2) {
-                        $response = array('message' => 'Successfully added to the shortlist');
-                        echo json_encode($response);
-                        exit;
-                    } else {
-                        $response = array('message' => 'Not Added due to Duplication!');
-                        echo json_encode($response);
-                        exit;
-                    }
-                } else {
-                    $response = array('message' => 'Not Added due to Duplication!');
-                    echo json_encode($response);
-                    exit;
-                }
+        //         $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1' ";
+        //         $resultchk = mysqli_query($link, $querychk);
+        //         if (mysqli_num_rows($resultchk) === 0) {
+        //             // kapag wala pang user name na kaparehas
+        //             $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id','$data', '$id1', '$dtnow')";
+        //             $results2 = mysqli_query($link, $query2);
+        //             if ($results2) {
+        //                 $response = array('message' => 'Successfully added to the shortlist');
+        //                 echo json_encode($response);
+        //                 exit;
+        //             } else {
+        //                 $response = array('message' => 'Not Added due to Duplication!');
+        //                 echo json_encode($response);
+        //                 exit;
+        //             }
+        //         } else {
+        //             $response = array('message' => 'Not Added due to Duplication!');
+        //             echo json_encode($response);
+        //             exit;
+        //         }
+        //     } else {
+        //         $_SESSION['errorMessage'] = "Not Added due to duplication!";
+        //         error_log("Query 1 failed: " . mysqli_error($link));
+        //         // You can also include more detailed error information in your JSON response.
+        //         $response = array('message' => 'Error: Query 1 failed');
+        //         echo json_encode($response);
+        //         exit;
+        //     }
+        // } else {
+        $dtnow = date("m/d/Y");
+        $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
+        $resultchk = mysqli_query($link, $querychk);
+        if (mysqli_num_rows($resultchk) == 0) {
+            // kapag wala pang user name na kaparehas
+            $query3 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id', '$data', '$id1', '$dtnow')";
+            $results3 = mysqli_query($link, $query3);
+
+            if ($results3) {
+                $response = array('message' => 'Successfully added to the shortlist');
+                echo json_encode($response);
+                exit;
             } else {
-                $_SESSION['errorMessage'] = "Not Added due to duplication!";
-                error_log("Query 1 failed: " . mysqli_error($link));
-                // You can also include more detailed error information in your JSON response.
-                $response = array('message' => 'Error: Query 1 failed');
+                $response = array('message' => 'Already Shortlisted!');
                 echo json_encode($response);
                 exit;
             }
         } else {
-            $dtnow = date("m/d/Y");
-            $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
-            $resultchk = mysqli_query($link, $querychk);
-            if (mysqli_num_rows($resultchk) == 0) {
-                // kapag wala pang user name na kaparehas
-                $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$app_id','$data','$id1','$dtnow')";
-                $results3 = mysqli_query($link, $query3);
-
-                if ($results3) {
-                    $response = array('message' => 'Successfully added to the shortlist');
-                    echo json_encode($response);
-                    exit;
-                } else {
-                    $response = array('message' => 'Not Added due to Duplication!');
-                    echo json_encode($response);
-                    exit;
-                }
-            } else {
-                $response = array('message' => 'Not Added due to Duplication!');
-                echo json_encode($response);
-                exit;
-            }
+            $response = array('message' => 'Already Shortlisted!');
+            echo json_encode($response);
+            exit;
         }
     }
+    // }
 }
 
 // For untermination of applicants
@@ -448,7 +449,7 @@ if (isset($_POST['remove_button_click'])) {
 if (isset($_POST['deploy_button_click'])) {
     $id1 = $_POST['deploy_id'];
     $dtnow = date("m/d/Y");
-    $query_deploy = "UPDATE employees SET actionpoint = 'EWB', ewbdeploy = '0', ewbdate = '$dtnow', ewb_status = 'NOT VERIFY' WHERE appno = '$id1'";
+    $query_deploy = "UPDATE employees SET ewbdeploy = '0', ewbdate = '$dtnow', ewb_status = 'NOT VERIFY' WHERE appno = '$id1'";
     $result_deploy = mysqli_query($link, $query_deploy);
     $data = $_SESSION["data"];
 
@@ -457,23 +458,21 @@ if (isset($_POST['deploy_button_click'])) {
         $querchk1 = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
         $resultchk = mysqli_query($link, $querchk1);
         if (mysqli_num_rows($resultchk) == 0) {
-            // kapag wala pang user name na kaparehas
             $_SESSION['errorMessage'] = "Cannot locate applicant!";
         } else {
             $query_update = "UPDATE shortlist_master SET ewb = 'EWB', ewbdate = '$dtnow' WHERE appnumto = '$id1'";
             $result_update = mysqli_query($link, $query_update);
             if ($result_update) {
                 $_SESSION['successMessage'] = "Applicant transferred for EWB Checking!";
-                header("Location: recruitment.php");
             } else {
                 $_SESSION['errorMessage'] = "Error";
-                header("Location: recruitment.php");
             }
         }
     } else {
         $_SESSION['errorMessage'] = "Error";
-        header("Location: recruitment.php");
     }
+    header("Location: deploy.php");
+    exit(0);
 }
 
 
@@ -513,7 +512,8 @@ if (isset($_POST['add_to_shortlist'])) {
 
                         if (mysqli_num_rows($resultchk) === 0) {
                             // Insert this user into the shortlist
-                            $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$emp_id', '$data', '$id1', '$dtnow')";
+                            $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) 
+                            VALUES('$emp_id', '$data', '$id1', '$dtnow')";
                             $results2 = mysqli_query($link, $query2);
 
                             if ($results2) {
@@ -579,7 +579,7 @@ if (isset($_POST['add_to_shortlist'])) {
     mysqli_close($link);
 
     // Redirect back to the recruitment page
-    header("Location: recruitment.php");
+    header("Location: deploy.php");
     exit;
 }
 
@@ -591,7 +591,7 @@ if (isset($_POST['reverification_button'])) {
     $reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
 
     if (!empty($reason)) {
-        $reverification_query = "UPDATE employees SET actionpoint = 'EWB', ewb_status = 'NOT VERIFY' WHERE id = '$id'";
+        $reverification_query = "UPDATE employees SET ewb_status = 'NOT VERIFY' WHERE id = '$id'";
         $reverification_result = $link->query($reverification_query);
 
         if ($reverification_result) {
@@ -660,7 +660,7 @@ if (isset($_POST['provideMRF_button_click'])) {
     } else {
         $_SESSION['errorMessage'] = "Error";
     }
-    header("Location: recruitment.php");
+    header("Location: accept_mrf.php");
     exit(0);
 }
 
@@ -696,6 +696,6 @@ if (isset($_POST['acceptMRF_button_click'])) {
         $_SESSION['errorMessage'] = "Error";
     }
 
-    header("Location: recruitment.php");
+    header("Location: accept_mrf.php");
     exit(0);
 }

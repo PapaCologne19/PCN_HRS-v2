@@ -4,7 +4,8 @@ include '../../connect.php';
 
 // For Verification of Applicants
 if (isset($_POST['verify_button_click'])) {
-    $dtnow = date("m/d/Y");
+    date_default_timezone_set('Asia/Manila');
+    $dtnow = date('Y-m-d H:i:s');
     $ewbid1 = $_POST['verify_id'];
     $ewb_verified_by = $_SESSION['lastname'] . ", " . $_SESSION['firstname'];
 
@@ -61,7 +62,8 @@ if (isset($_POST['verify_button_click'])) {
 if (isset($_POST['declined_button'])) {
     $id = $_POST['declinedID'];
     $ewb_reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
-    $datenow = date("m/d/Y");
+    date_default_timezone_set('Asia/Manila');
+    $datenow = date('Y-m-d H:i:s');
     $ewb_status = "DECLINED";
 
     $declined_query = "UPDATE employees SET ewb_status = '$ewb_status', ewb_reason = '$ewb_reason', ewb_date_declined = '$datenow' WHERE appno = '$id'";

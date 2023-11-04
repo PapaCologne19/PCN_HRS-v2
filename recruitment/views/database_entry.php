@@ -72,7 +72,8 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                         while ($rowtr = mysqli_fetch_array($resulttracking))
                                             $newtracking = $rowtr[1] + 1;
                                         mysqli_query($link, "UPDATE track SET appno = '$newtracking' WHERE id = '1'");
-                                        $datenow = date("m/d/Y h:i:s A");
+                                        date_default_timezone_set('Asia/Manila');
+                                        $datenow = date('Y-m-d H:i:s');
                                     ?>
                                         <form action="action.php" method="POST">
                                             <div class="">

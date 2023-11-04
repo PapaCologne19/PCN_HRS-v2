@@ -23,6 +23,16 @@
       </a>
     </li>
     <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">EWB CONCERN</span>
+    </li>
+    <!-- For Requirements-->
+    <li class="menu-item">
+      <a href="for_requirements.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">For Requirements</div>
+      </a>
+    </li>
+    <li class="menu-header small text-uppercase">
       <span class="menu-header-text">RECRUITMENT MENU</span>
     </li>
     <!-- Take Applicant Photo -->
@@ -84,13 +94,7 @@
         <div data-i18n="Analytics">Deploy</div>
       </a>
     </li>
-    <!-- For Requirements-->
-    <li class="menu-item">
-      <a href="for_requirements.php" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">For Requirements</div>
-      </a>
-    </li>
+    
     <!-- Accept MRF-->
     <li class="menu-item">
       <a href="accept_mrf.php" class="menu-link">
@@ -98,6 +102,7 @@
         <div data-i18n="Analytics">MRF</div>
       </a>
     </li>
+    
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">REPORTS</span>
     </li>

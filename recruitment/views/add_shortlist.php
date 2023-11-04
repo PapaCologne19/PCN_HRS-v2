@@ -140,7 +140,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
 
                                         <tbody>
                                             <?php
-                                            $queryx = "SELECT * FROM employees WHERE actionpoint != 'BLACKLISTED' OR actionpoint != 'DEPLOYED' OR actionpoint != 'CANCELED' OR actionpoint = 'ACTIVE'";
+                                            $queryx = "SELECT * FROM employees WHERE is_deleted = '0' AND actionpoint != 'BLACKLISTED'";
                                             $resultx = mysqli_query($link, $queryx);
                                             while ($rowx = mysqli_fetch_assoc($resultx)) {
                                                 $appno = $rowx['appno'];
@@ -156,10 +156,10 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                 $formattedDate_barangay = date("F d, Y", $timestamp_barangay);
                                                 $formattedDate_nbi = date("F d, Y", $timestamp_nbi);
                                                 $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
-
-                                                $select = "SELECT * FROM shortlist_master WHERE appnumto = '$appno' AND shortlistnameto = '$data' AND is_deleted = '0'";
-                                                $select_result = $link->query($select);
-                                                while ($select_row = mysqli_fetch_assoc($select_result)) {
+                                                
+                                                // $select = "SELECT * FROM shortlist_master WHERE appnumto = '$appno' AND shortlistnameto = '$data' AND is_deleted = '0'";
+                                                // $select_result = $link->query($select);
+                                                // while ($select_row = mysqli_fetch_assoc($select_result)) {
                                             ?>
 
                                                     <tr>
@@ -177,7 +177,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                             <input type="hidden" name="shadowd2" value="<?php echo $data ?>">
                                                             <input type="hidden" name="appname88" value="<?php echo $rowx['lastnameko'] . ","  . $rowx['firstnameko'] . " "  . $rowx['mnko'] ?>">
 
-                                                            <button type="button" name="displaymo" class="btn btn-success displaymo" id="displaymo" style="font-size:15;width:90px;">
+                                                            <button type="button" name="displaymo" class="btn btn-success displaymo" id="displaymo">
                                                                 <span class="glyphicon glyphicon-edit"><?php echo $rowx['actionpoint'] ?></span>
                                                             </button>
 
@@ -225,7 +225,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     </tr>
                                             <?php
                                                 }
-                                            }
+                                            // }
                                             ?>
 
                                         </tbody>

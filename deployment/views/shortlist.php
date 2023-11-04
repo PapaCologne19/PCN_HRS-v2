@@ -83,10 +83,10 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                             ?>
                                         </td>
                                         <td>
-                                        <form action="deploy_applicants.php" method="POST">
+                                        <form action="" method="GET">
                                             <input type="hidden" name="shortlist_id" value="<?php echo $row['shortlistname'] ?>">
-                                            <button type="submit" name="view-shortlists" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Details"><i class="bi bi-search"></i></button>
-                                            <!-- <a href="deploy_applicants.php?id=<?php echo $row['shortlistname']?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Details"><i class="bi bi-search"></i></a> -->
+                                            <a href="deploy_applicants.php?shortlist_title=<?php echo $row['shortlistname'] ?>" name="view-shortlists" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Details"><i class="bi bi-search"></i></a>
+
                                         </form>
                                         </td>
                                     </tr>

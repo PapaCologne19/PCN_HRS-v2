@@ -13,10 +13,6 @@
 
    <!-- Confirmations Dialog Boxes -->
    <script>
-      $(document).ready(function() {
-         $('#example').DataTable();
-      });
-
       // Date Format
       flatpickr("#myDate", {
          dateFormat: "m-d-Y", // Set the desired date format (MM-DD-YYYY)
@@ -64,7 +60,6 @@
       $("#X").on("change", function() {
 
          var x_values = $("#X").find(":selected").val();
-
          $.ajax({
             url: 'ajaxter1.php',
             type: 'POST',
@@ -82,12 +77,7 @@
                for (i = length - 1; i >= 0; i--) {
                   select.options[i] = null;
                }
-               //end
-
                result.forEach(function(item, index) {
-
-                  //console.log(item[2]);
-
                   var option = document.createElement("option");
                   option.text = item['city_name1'];
                   option.value = item['city_name1'];
@@ -160,12 +150,7 @@
                for (i = length - 1; i >= 0; i--) {
                   select.options[i] = null;
                }
-               //end
-
                result.forEach(function(item, index) {
-
-                  //console.log(item[2]);
-
                   var option = document.createElement("option");
                   option.text = item['city_name1'];
                   option.value = item['city_name1'];
@@ -182,7 +167,6 @@
       });
 
       //retrenchment
-
       $("#Xretrench").on("change", function() {
 
          var x_values = $("#Xretrench").find(":selected").val();
@@ -197,7 +181,6 @@
             success: function(result) {
 
                result = JSON.parse(result);
-
                //Empty option on change
                var select = document.getElementById("Y1retrench");
                var length = select.options.length;
@@ -206,7 +189,6 @@
                   select.options[i] = null;
                }
                //end
-
                result.forEach(function(item, index) {
 
                   //console.log(item[2]);
@@ -216,15 +198,8 @@
                   option.value = item['city_name'];
                   var select = document.getElementById("Y1retrench");
                   select.appendChild(option);
-
-
-
-
-
-
                });
             },
-
             error: function(result) {
                console.log(result)
             }
@@ -276,16 +251,9 @@
 
       });
 
-
-
-
-
       //float
-
       $("#Xfloat").on("change", function() {
-
          var x_values = $("#Xfloat").find(":selected").val();
-
          $.ajax({
             url: 'ajax_float.php',
             type: 'POST',
@@ -308,19 +276,11 @@
 
                result.forEach(function(item, index) {
 
-                  //console.log(item[2]);
-
                   var option = document.createElement("option");
                   option.text = item['city_name'];
                   option.value = item['city_name'];
                   var select = document.getElementById("Y1float");
                   select.appendChild(option);
-
-
-
-
-
-
                });
             },
 
@@ -373,6 +333,52 @@
             }
          });
 
+      });
+      
+      // For Deploying Applicants and Creating LOA
+      $(document).ready(function() {
+         $('tbody').on('click', '.open-modal', function() {
+            var Id = $(this).prev('.deployID').val();
+            $('#deployModal').modal('show');
+
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'set_loa_for_applicants.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#deployModal .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
+            });
+         });
+      });
+
+      // For Deploying Applicants and Creating LOA
+      $(document).ready(function() {
+         $('tbody').on('click', '.updateDeployOpenModal', function() {
+            var Id = $(this).prev('.deployUpdateID').val();
+            $('#updateDeployModal').modal('show');
+
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'update_loa_for_applicants.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#updateDeployModal .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
+            });
+         });
       });
    </script>
 

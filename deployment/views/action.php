@@ -1,7 +1,8 @@
 <?php
 session_start();
 include '../../connect.php';
-$date = date('Y-m-d');
+date_default_timezone_set('Asia/Manila');
+$date = date('Y-m-d H:i:s');
 
 // For creating LOA of Applicants
 if (isset($_POST['create_loa'])) {
@@ -288,6 +289,6 @@ if (isset($_POST['update_loa'])) {
     } else {
         $_SESSION['errorMessage'] = "Updating LOA error";
     }
-    header("Location: shortlist.php");
+    header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
     exit(0);
 }

@@ -64,11 +64,18 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </center>
                                         <div class="col-md-4 mt-3">
                                             <?php
-                                            $query = "SELECT id FROM mrf";
+                                            $query = "SELECT * FROM mrf";
                                             $result = $link->query($query);
-                                            while ($row = $result->fetch_assoc()) {
-                                                $track = $row['id'] + 1;
+                                            while($row = $result->fetch_assoc()){
+                                                if(empty($row['tracking'])){
+                                                    $track = 0;
+                                                    $track++;
+                                                }
+                                                else{
+                                                    $track = $row['tracking'] + 1;
+                                                }
                                             }
+                                            
                                             ?>
                                             <label for="" class="form-label">TRACKING NUMBER</label>
                                             <input type="text" name="tracking_number" id="tracking_number" class="form-control" value="<?php echo $track ?>" readonly>

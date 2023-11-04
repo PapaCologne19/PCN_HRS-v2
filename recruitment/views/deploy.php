@@ -111,7 +111,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                 <th>Birthday</th>
                                                                 <th>EWB Status</th>
                                                             </tr>
-                                                        </thead>
+                                                        </thead> 
                                                         <tbody>
                                                             <tr>
                                                                 <?php

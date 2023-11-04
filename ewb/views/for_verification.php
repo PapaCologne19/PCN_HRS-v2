@@ -73,7 +73,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $resultx = mysqli_query($link, "SELECT * FROM employees where actionpoint = 'EWB' AND ewb_status = 'NOT VERIFY'");
+                                        $resultx = mysqli_query($link, "SELECT * FROM employees WHERE ewb_status = 'NOT VERIFY' AND is_deleted = '0'");
                                         while ($rowx = mysqli_fetch_assoc($resultx)) {
                                             $police = $rowx['policed'];
                                             $barangay = $rowx['brgyd'];
@@ -107,13 +107,13 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                 <td>
                                                     <form action="" method="POST" class="row">
                                                         <div class="col-md-12">
-                                                            <input type="hidden" name="verified_id" class="verified_id" id="verified_id" value="' . $rowx['appno'] . '">
+                                                            <input type="hidden" name="verified_id" class="verified_id" id="verified_id" value="<?php echo $rowx['appno'] ?>">
                                                             <button type="button" name="verify1s" class="btn btn-info verify1s" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Verify">
                                                                 <i class="bi bi-box-arrow-right"></i>
                                                             </button>
                                                         </div>
                                                         <div class="col-md-12 mt-1">
-                                                            <input type="hidden" name="decline_ewbID" class="decline_ewbID" id="decline_ewbID" value="' . $rowx['appno'] . '">
+                                                            <input type="hidden" name="decline_ewbID" class="decline_ewbID" id="decline_ewbID" value="<?php echo $rowx['appno'] ?>">
                                                             <button type="submit" name="decline_ewb" class="btn btn-danger decline_ewb" id="decline_ewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Decline">
                                                                 <i class="bi bi-x-circle"></i>
                                                             </button>

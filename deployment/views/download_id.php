@@ -240,7 +240,7 @@ include '../../connect.php';
                     $timestamp_birthday = strtotime($birthday);
                     $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
 
-                    if ($row['employment_status'] === "REGULAR") {
+                    if ($row['employment_status'] === "Regular") {
 
     ?>
                         <img src="../assets/img/elements/IDRegular2.png" alt="ID" class="img-responsive">
