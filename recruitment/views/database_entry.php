@@ -65,8 +65,10 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                             <div class="card">
                                 <div class="container">
                                     <?php
-                                    if (isset($_SESSION["photoko"]) && (trim($_SESSION["photoko"]) == '') || empty($_SESSION["photoko"])) {
-                                        $_SESSION['warningMessage'] = "Take Photo First";
+                                    if (isset($_POST['database_entry']) && isset($_SESSION["photoko"]) || empty($_SESSION["photoko"]) ) {
+                                        $_SESSION['warningMessage'] = "Take Photo First!";
+                                        echo '<script>window.location.href = "take_photo.php";</script>';
+
                                     } else {
                                         $resulttracking = mysqli_query($link, "SELECT * FROM track WHERE id = '1'");
                                         while ($rowtr = mysqli_fetch_array($resulttracking))

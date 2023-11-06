@@ -60,8 +60,8 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                 <form action="" method="POST"><br>
                                     <label class="form-label"> Project Title </label>
                                     <center>
-                                        <select class="form-select" name="applicant_no">
-                                            <option>Select shortlist Name:</option>
+                                        <select class="form-select" name="applicant_no" required>
+                                            <option value="">Select shortlist Name</option>
                                             <?php
                                             $resultpro = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint !='BLACKLISTED' OR actionpoint !='DEPLOYED' order by lastnameko ASC ");
                                             while ($rowpro = mysqli_fetch_array($resultpro)) {
@@ -85,7 +85,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
         </div>
     </div>
     </div>
-    <?php include '../componentsfooter.php/'; ?>
+    <?php include '../components/footer.php'; ?>
 </body>
 
 </html>

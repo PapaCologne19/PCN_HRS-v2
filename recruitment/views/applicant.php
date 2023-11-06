@@ -99,12 +99,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td> <?php echo $rowx['peraddress'] ?> </td>
                                                     <td class="badge bg-success rounded-pill p-2 text-white"><?php echo $rowx['actionpoint']; ?></td>
                                                     <td>
-                                                        <form action="update_applicants.php" method="POST" class="contain">
+                                                        <div class="contain">
                                                             <div class="columns">
-                                                                <input type="hidden" name="shadowE" value="<?php echo $rowx['id'] ?>">
-                                                                <button type="submit" name="Editbtn" class="btn btn-default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Applicant">
+                                                                <a href="update_applicants.php?id=<?php echo $rowx['id'] ?>" name="Editbtn" class="btn btn-default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Applicant">
                                                                     <i class="bi bi-pencil-square"></i>
-                                                                </button>
+                                                                </a>
                                                             </div>
 
                                                             <div class="columns">
@@ -127,7 +126,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                     <i class="bi bi-download"></i>
                                                                 </a>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php }

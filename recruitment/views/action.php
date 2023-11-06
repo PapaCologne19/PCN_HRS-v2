@@ -449,7 +449,7 @@ if (isset($_POST['remove_button_click'])) {
 if (isset($_POST['deploy_button_click'])) {
     $id1 = $_POST['deploy_id'];
     $dtnow = date("m/d/Y");
-    $query_deploy = "UPDATE employees SET ewbdeploy = '0', ewbdate = '$dtnow', ewb_status = 'NOT VERIFY' WHERE appno = '$id1'";
+    $query_deploy = "UPDATE employees SET ewbdeploy = 'FOR DEPLOYMENT', ewbdate = '$dtnow', ewb_status = 'NOT VERIFY' WHERE appno = '$id1'";
     $result_deploy = mysqli_query($link, $query_deploy);
     $data = $_SESSION["data"];
 
@@ -498,44 +498,44 @@ if (isset($_POST['add_to_shortlist'])) {
                 $rowac = mysqli_fetch_assoc($resultac);
                 $emp_id = $rowac['id'];
 
-                if ($rowac['actionpoint'] === "ACTIVE") {
-                    // Update the action point for this user
-                    $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
-                    $results1 = mysqli_query($link, $query1);
+                // if ($rowac['actionpoint'] === "ACTIVE") {
+                //     // Update the action point for this user
+                //     $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
+                //     $results1 = mysqli_query($link, $query1);
 
-                    if ($results1) {
-                        $dtnow = date("m/d/Y");
+                //     if ($results1) {
+                //         $dtnow = date("m/d/Y");
 
-                        // Check if this user is not already in the shortlist
-                        $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
-                        $resultchk = mysqli_query($link, $querychk);
+                //         // Check if this user is not already in the shortlist
+                //         $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
+                //         $resultchk = mysqli_query($link, $querychk);
 
-                        if (mysqli_num_rows($resultchk) === 0) {
-                            // Insert this user into the shortlist
-                            $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) 
-                            VALUES('$emp_id', '$data', '$id1', '$dtnow')";
-                            $results2 = mysqli_query($link, $query2);
+                //         if (mysqli_num_rows($resultchk) === 0) {
+                //             // Insert this user into the shortlist
+                //             $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) 
+                //             VALUES('$emp_id', '$data', '$id1', '$dtnow')";
+                //             $results2 = mysqli_query($link, $query2);
 
-                            if ($results2) {
-                                // User successfully added to the shortlist
-                                $response[] = array('message' => 'Successfully added to the shortlist');
-                                $_SESSION['successMessage'] = 'Successfully added to the shortlist';
-                            } else {
-                                // Insertion failed
-                                $response[] = array('message' => 'Not Added due to Duplication!');
-                                $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                            }
-                        } else {
-                            // User already exists in the shortlist
-                            $response[] = array('message' => 'Not Added due to Duplication!');
-                            $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                        }
-                    } else {
-                        // Error updating the action point
-                        $response[] = array('message' => 'Error: Query failed during update');
-                        $_SESSION['errorMessage'] = 'Error: Query failed during update';
-                    }
-                } else {
+                //             if ($results2) {
+                //                 // User successfully added to the shortlist
+                //                 $response[] = array('message' => 'Successfully added to the shortlist');
+                //                 $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                //             } else {
+                //                 // Insertion failed
+                //                 $response[] = array('message' => 'Not Added due to Duplication!');
+                //                 $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                //             }
+                //         } else {
+                //             // User already exists in the shortlist
+                //             $response[] = array('message' => 'Not Added due to Duplication!');
+                //             $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                //         }
+                //     } else {
+                //         // Error updating the action point
+                //         $response[] = array('message' => 'Error: Query failed during update');
+                //         $_SESSION['errorMessage'] = 'Error: Query failed during update';
+                //     }
+                // } else {
                     // User action point is not ACTIVE
                     $dtnow = date("m/d/Y");
                     $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
@@ -559,7 +559,7 @@ if (isset($_POST['add_to_shortlist'])) {
                         $response[] = array('message' => 'Not Added due to Duplication!');
                         $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
                     }
-                }
+                // }
             } else {
                 // Error in the query to fetch employee data
                 $response[] = array('message' => 'Error: Query to fetch employee data failed');
@@ -697,5 +697,61 @@ if (isset($_POST['acceptMRF_button_click'])) {
     }
 
     header("Location: accept_mrf.php");
+    exit(0);
+}
+
+// For updating the photo of Applicants
+if (isset($_POST['updatePhotoBtn'])) {
+    $id = $link->real_escape_string($_POST['id']);
+    $file = $_FILES['photo'];
+    $fileName = $_FILES['photo']['name'];
+    $fileTempName = $_FILES["photo"]["tmp_name"];
+    $fileSize = $_FILES["photo"]["size"];
+    $fileError = $_FILES["photo"]["error"];
+    $fileType = $_FILES["photo"]["type"];
+
+    $allowed = array('jpg', 'jpeg', 'png');
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    if (in_array($fileActualExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 5000000) {
+                $fileNameNew = uniqid('', true) . ".png"; // Change the extension to PNG
+                $fileDestination = "../../upload/" . $fileNameNew; // Adjust the destination path
+
+                if ($fileActualExt === 'jpeg' || $fileActualExt === 'jpg') {
+                    // Convert JPEG/JPG to PNG
+                    $sourceImage = imagecreatefromjpeg($fileTempName);
+                    imagepng($sourceImage, $fileDestination);
+                    imagedestroy($sourceImage);
+                } else {
+                    move_uploaded_file($fileTempName, $fileDestination);
+                }
+
+                if (!empty($file)) {
+                    $updateRoomImageQuery = "UPDATE employees SET photopath = '$fileDestination' WHERE id = '$id'";
+                    $result = $link->query($updateRoomImageQuery);
+
+                    if ($result) {
+                        $_SESSION['successMessage'] = "Successfully Updated";
+                    } else {
+                        $_SESSION['errorMessage'] = "Failed to upload picture";
+                    }
+                } else {
+                    $_SESSION['errorMessage'] = "Failed to upload picture. Please insert an image first!";
+                }
+            } else {
+                $_SESSION['errorMessage'] = "The size of your image is too big!";
+            }
+        } else {
+            $_SESSION['errorMessage'] = "There was an error in uploading your picture!";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "You cannot upload this type of image. Only JPEG, JPG, or PNG are allowed.";
+    }
+
+    header("Location: update_applicants.php?id=$id");
     exit(0);
 }

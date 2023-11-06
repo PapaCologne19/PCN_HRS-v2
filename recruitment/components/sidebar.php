@@ -44,10 +44,14 @@
     </li>
     <!-- Database Entry -->
     <li class="menu-item">
-      <a href="database_entry.php" class="menu-link">
+      <!-- <a href="database_entry.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Database Entry</div>
-      </a>
+      </a> -->
+      <form action="database_entry.php" method="POST" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <button type="submit" class="btn btn-default" name="database_entry" data-i18n="Analytics" style="color: #C2C7D0 !important; outline: none !important; padding: 0;">Database Entry</button>
+      </form>
     </li>
     <!-- Applicant -->
     <li class="menu-item">

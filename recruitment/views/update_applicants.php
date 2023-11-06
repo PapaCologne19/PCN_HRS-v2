@@ -49,15 +49,23 @@ include '../../connect.php';
                         <div class="card">
                             <div class="container">
                                 <?php
-                                if (isset($_POST['Editbtn'])) {
-                                    $id = $link->real_escape_string($_POST['shadowE']);
+                                    $id = $link->real_escape_string($_GET['id']);
                                     $resulted = mysqli_query($link, "SELECT * FROM employees WHERE id = '$id'");
                                     while ($rowed = mysqli_fetch_assoc($resulted)) { ?>
+
                                         <form action="action.php" method="POST">
                                             <center>
-                                                <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3">
+                                                    <button type="button" class="btn btn-danger btntooltips" title="Update Photo" data-bs-toggle="modal" data-bs-target="#updatePhotoModal">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </button>
+                                                </div>
                                             </center>
-
                                             <div class="row mt-5">
                                                 <div class="col-md-2">
                                                     <label class="form-label">Sources :</label>
@@ -125,7 +133,7 @@ include '../../connect.php';
                                                 </div>
                                                 <div class="col-md-10">
                                                     <select class="form-select cbo" name="regionn" id="regionn" data-placeholder="Select User type" required>
-                                                        <option value="<?php echo $rowed['regionn']?>"><?php echo $rowed['regionn']?></option>
+                                                        <option value="<?php echo $rowed['regionn'] ?>"><?php echo $rowed['regionn'] ?></option>
                                                         <?php
                                                         $resultrg = mysqli_query($link, "SELECT * FROM region");
                                                         while ($rowrg = mysqli_fetch_assoc($resultrg)) {
@@ -141,8 +149,8 @@ include '../../connect.php';
                                                     <label class="form-label">City : </label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <select class="form-select" name="cityn" id="cityn" data-placeholder="Select City"> 
-                                                        <option value="<?php echo $rowed['cityn']?>"><?php echo $rowed['cityn']?></option>
+                                                    <select class="form-select" name="cityn" id="cityn" data-placeholder="Select City">
+                                                        <option value="<?php echo $rowed['cityn'] ?>"><?php echo $rowed['cityn'] ?></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -359,7 +367,7 @@ include '../../connect.php';
 
                                                 <div class="col-md-10">
                                                     <select class="form-select cbo" name="psa" value="<?php echo $rowed["psa"] ?>" data-placeholder=""> ;
-                                                        <option value="<?php echo $rowed["psa"]?>"><?php echo $rowed["psa"]?></option>
+                                                        <option value="<?php echo $rowed["psa"] ?>"><?php echo $rowed["psa"] ?></option>
                                                         <option value="With">With</option>
                                                         <option value="Without">Without</option>
                                                     </select>
@@ -412,8 +420,37 @@ include '../../connect.php';
                                         </form>
                                 <?php
                                     }
-                                }
                                 ?>
+
+
+                                <!-- Modal for Updating Photo of Applicants -->
+                                <div class="modal fade" id="updatePhotoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Photo</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="action.php" method="POST" class="form-group row" enctype="multipart/form-data" accept="image/png, image/jpeg, image/jpg">
+                                                    <div class="col-md-12">
+                                                        <label for="photo" class="form-label">Select Photo</label>
+                                                        <?php 
+                                                            $id = htmlspecialchars($_GET['id']);
+                                                            
+                                                        ?>
+                                                        <input type="hidden" name="id" id="id" class="form-control" value="<?php echo $id?>">
+                                                        <input type="file" name="photo" id="photo" class="form-control" required>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" name="updatePhotoBtn" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

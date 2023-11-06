@@ -322,7 +322,7 @@ include '../../connect.php';
                                                     </div>
 
                                                     <div class="card" id="photoregular">
-                                                        <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
+                                                        <img src="<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
                                                     </div>
                                                     <div class="caption">
                                                         <input type="hidden" id="caption-input" value="<?php echo $name ?>-PCN ID">
@@ -372,14 +372,12 @@ include '../../connect.php';
                                                     </div>
 
                                                     <div class="card" id="photo">
-                                                        <img src="../../<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
+                                                        <img src="<?php echo $fetch_row['photopath'] ?>" id="photoko" alt="">
                                                     </div>
                                                     <div class="caption">
                                                         <input type="hidden" id="caption-input" value="<?php echo $name ?>-PCN ID">
                                                     </div>
                                                     <br><br><br><br><br><br>
-
-
                                 <?php }
                                             }
                                         }
