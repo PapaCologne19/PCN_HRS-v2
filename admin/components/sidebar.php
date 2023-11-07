@@ -150,18 +150,11 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="extended-ui-text-divider.html" class="menu-link">
-            <div data-i18n="Text Divider">Text Divider</div>
+          <a href="loa_history.php" class="menu-link">
+            <div data-i18n="Perfect Scrollbar">LOA History</div>
           </a>
         </li>
       </ul>
-    </li>
-
-    <li class="menu-item">
-      <a href="icons-boxicons.html" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-crown"></i>
-        <div data-i18n="Boxicons">Boxicons</div>
-      </a>
     </li>
 
     <!-- Forms & Tables -->

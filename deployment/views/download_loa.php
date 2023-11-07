@@ -5,6 +5,7 @@
 session_start();
 require '../../connect.php';
 require 'PHPWord.php';
+ini_set('default_charset', 'utf-8');
 
 $id = $_GET['id'];
 
@@ -87,35 +88,35 @@ if ($result) {
             $document = $PHPWord->loadTemplate($template);
 
             // Fill the document with data
-            $document->setValue('Value1', $applicant_name);
-            $document->setValue('Value2', $applicant_address);
-            $document->setValue('Value3', $client_name);
-            $document->setValue('Value4', $place_assigned);
-            $document->setValue('Value5', $address_assigned);
-            $document->setValue('Value6', $job_title);
-            $document->setValue('Value7', $employment_status);
+            $document->setValue('Value1', iconv('UTF-8', 'UTF-8', $applicant_name));
+            $document->setValue('Value2', iconv('UTF-8', 'UTF-8', $applicant_address));
+            $document->setValue('Value3', iconv('UTF-8', 'UTF-8', $client_name));
+            $document->setValue('Value4', iconv('UTF-8', 'UTF-8', $place_assigned));
+            $document->setValue('Value5', iconv('UTF-8', 'UTF-8', $address_assigned));
+            $document->setValue('Value6', iconv('UTF-8', 'UTF-8', $job_title));
+            $document->setValue('Value7', iconv('UTF-8', 'UTF-8', $employment_status));
             $document->setValue('Value8', $formattedDate_start);
             $document->setValue('Deo9', $formattedDate_end);
             $document->setValue('Value10', $basic_pay);
 
 
-            $document->setValue('Value11a', $outlet);
+            $document->setValue('Value11a', iconv('UTF-8', 'UTF-8', $outlet));
             $document->setValue('Value12', $no_work_days);
             $document->setValue('Value13', $issued_day);
             $document->setValue('Value14', $issued_month);
             $document->setValue('Value15', $issued_year);
-            $document->setValue('Value16', $pb_deployment_personnel);
-            $document->setValue('Value17', $pb_designation);
+            $document->setValue('Value16', iconv('UTF-8', 'UTF-8', $pb_deployment_personnel));
+            $document->setValue('Value17', iconv('UTF-8', 'UTF-8', $pb_designation));
 
 
-            $document->setValue('Value18', $pb_supervisor);
-            $document->setValue('Value19', $pb_supervisor_designation);
-            $document->setValue('Value20', $eb_project_supervisor);
-            $document->setValue('Value21', $eb_psdesignation);
-            $document->setValue('Value22', $ab_head);
-            $document->setValue('Value23', $ab_head_designation);
-            $document->setValue('Value24', $ab_project_supervisor);
-            $document->setValue('Value25', $ab_pssupervisor_designation);
+            $document->setValue('Value18', iconv('UTF-8', 'UTF-8', $pb_supervisor));
+            $document->setValue('Value19', iconv('UTF-8', 'UTF-8', $pb_supervisor_designation));
+            $document->setValue('Value20', iconv('UTF-8', 'UTF-8', $eb_project_supervisor));
+            $document->setValue('Value21', iconv('UTF-8', 'UTF-8', $eb_psdesignation));
+            $document->setValue('Value22', iconv('UTF-8', 'UTF-8', $ab_head));
+            $document->setValue('Value23', iconv('UTF-8', 'UTF-8', $ab_head_designation));
+            $document->setValue('Value24', iconv('UTF-8', 'UTF-8', $ab_project_supervisor));
+            $document->setValue('Value25', iconv('UTF-8', 'UTF-8', $ab_pssupervisor_designation));
 
             $document->setValue('Value26', $sss_no);
             $document->setValue('Value27', $philhealth);

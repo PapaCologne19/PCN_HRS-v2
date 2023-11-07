@@ -57,8 +57,15 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                     <div class="container">
                         <div class="card">
                             <div class="container">
+                            <hr>
+                                    <div class="title justify-content-center align-items-center mx-auto text-center">
+                                        <h4 class="fs-4">
+                                            PRINT AN ENTRY
+                                        </h4>
+                                    </div>
+                                    <hr>
                                 <form action="" method="POST"><br>
-                                    <label class="form-label"> Project Title </label>
+                                    <label class="form-label"> Shortlist Name</label>
                                     <center>
                                         <select class="form-select" name="applicant_no" required>
                                             <option value="">Select shortlist Name</option>

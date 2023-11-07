@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+header('Content-Type: text/html; charset=utf-8');
 
 // For Inserting Applicant in database
 if (isset($_POST['next'])) {
@@ -161,7 +162,76 @@ if (isset($_POST['updateit'])) {
     $updateQueryResult = mysqli_query($link, $updateQuery);
 
     if ($updateQueryResult) {
-        $_SESSION['successMessage'] = "Update Successful!";
+
+
+        $get = "SELECT * FROM employees WHERE id = '$id1'";
+        $output = $link->query($get);
+        $fetched = $output->fetch_assoc();
+
+        $tracking_no = $link->real_escape_string($fetched['tracking']);
+        $photo = $link->real_escape_string($fetched['photopath']);
+        $date_applied = $link->real_escape_string($fetched['dapplied']);
+        $app_number = $link->real_escape_string($fetched['appno']);
+        $source = $link->real_escape_string($fetched['source']);
+
+        if (!empty($fetched['mnko'])) {
+            $fullname = $link->real_escape_string($fetched['lastnameko']) . ", " . $link->real_escape_string($fetched['firstnameko']) . " " . $link->real_escape_string($fetched['mnko']);
+        } else {
+            $fullname = $link->real_escape_string($fetched['lastnameko']) . ", " . $link->real_escape_string($fetched['firstnameko']);
+        }
+        $present_address = $fetched['paddress'];
+        $city = $fetched['cityn'];
+        $region = $fetched['regionn'];
+        $birthday = $fetched['birthday'];
+        $age = $fetched['age'];
+        $gender = $fetched['gendern'];
+        $civil_status = $fetched['civiln'];
+        $contact_number = $fetched['cpnum'];
+        $landline = $fetched['landline'];
+        $email = $fetched['emailadd'];
+        $desired_position = $fetched['despo'];
+        $classification = $fetched['classn'];
+        $indentification = $fetched['idenn'];
+        $sss = $fetched['sssnum'];
+        $philhealth = $fetched['phnum'];
+        $pagibig = $fetched['pagibignum'];
+        $tin = $fetched['tinnum'];
+        $police = $fetched['policed'];
+        $barangay = $fetched['brgyd'];
+        $nbi = $fetched['nbid'];
+        $psa = $fetched['psa'];
+        $e_person = $fetched['e_person'];
+        $e_address = $fetched['e_address'];
+        $e_number = $fetched['e_number'];
+        $remarks = $fetched['remarks'];
+        $created_by = $fetched['created_by'];
+        $updated_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+
+
+        $insert_history = "INSERT INTO `employee_update_history`(`tracking_no`, `photo`, `date_applied`, 
+        `app_number`, `source`, `fullname`, `present_address`,
+         `city`, `region`, `birthday`, `age`, 
+         `gender`, `civil_status`, `contact_number`, 
+         `landline`, `email`, `desired_position`, `classification`, 
+         `indentification`, `sss`, `philhealth`, `pagibig`,
+          `tin`, `police`, `barangay`, `nbi`, `psa`, 
+          `e_person`, `e_address`, `e_number`, `remarks`,
+           `created_by`, `updated_by`) 
+        VALUES ('$tracking_no', '$photo', '$date_applied', '$app_number', 
+        '$source', '$fullname', '$present_address', '$city', '$region',
+        '$birthday', '$age', '$gender', '$civil_status', '$contact_number',
+        '$landline', '$email', '$desired_position', '$classification',
+        '$indentification', '$sss', '$philhealth', '$pagibig',
+        '$tin', '$police', '$barangay', '$nbi', 
+        '$psa', '$e_person', '$e_address', '$e_number',
+        '$remarks', '$created_by', '$updated_by')";
+        $insert_result = $link->query($insert_history);
+
+        if ($insert_result) {
+            $_SESSION['successMessage'] = "Update Successful!";
+        } else {
+            $_SESSION['errorMessage'] = "Error in inserting to history!";
+        }
     } else {
         $_SESSION['errorMessage'] = "Update Error!";
     }
@@ -536,29 +606,29 @@ if (isset($_POST['add_to_shortlist'])) {
                 //         $_SESSION['errorMessage'] = 'Error: Query failed during update';
                 //     }
                 // } else {
-                    // User action point is not ACTIVE
-                    $dtnow = date("m/d/Y");
-                    $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
-                    $resultchk = mysqli_query($link, $querychk);
+                // User action point is not ACTIVE
+                $dtnow = date("m/d/Y");
+                $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
+                $resultchk = mysqli_query($link, $querychk);
 
-                    if (mysqli_num_rows($resultchk) == 0) {
-                        $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$emp_id','$data','$id1','$dtnow')";
-                        $results3 = mysqli_query($link, $query3);
+                if (mysqli_num_rows($resultchk) == 0) {
+                    $query3 = "INSERT INTO shortlist_master(employee_id,shortlistnameto,appnumto,dateto) VALUES('$emp_id','$data','$id1','$dtnow')";
+                    $results3 = mysqli_query($link, $query3);
 
-                        if ($results3) {
-                            // User successfully added to the shortlist
-                            $response[] = array('message' => 'Successfully added to the shortlist');
-                            $_SESSION['successMessage'] = 'Successfully added to the shortlist';
-                        } else {
-                            // Insertion failed
-                            $response[] = array('message' => 'Not Added due to Duplication!');
-                            $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                        }
+                    if ($results3) {
+                        // User successfully added to the shortlist
+                        $response[] = array('message' => 'Successfully added to the shortlist');
+                        $_SESSION['successMessage'] = 'Successfully added to the shortlist';
                     } else {
-                        // User already exists in the shortlist
+                        // Insertion failed
                         $response[] = array('message' => 'Not Added due to Duplication!');
                         $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
                     }
+                } else {
+                    // User already exists in the shortlist
+                    $response[] = array('message' => 'Not Added due to Duplication!');
+                    $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
+                }
                 // }
             } else {
                 // Error in the query to fetch employee data

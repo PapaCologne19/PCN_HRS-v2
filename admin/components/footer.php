@@ -750,6 +750,80 @@
             });
          });
       });
+      
+      // Deleting History
+      $(document).ready(function() {
+         $('.deletedHistoryBtn').click(function(e) {
+            e.preventDefault();
+
+            var deletedHistoryID = $(this).closest("tr").find('.deletedHistoryID').val();
+            Swal.fire({
+               title: "Are you sure you want to delete this?",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No",
+            }).then((willDelete) => {
+               if (willDelete.isConfirmed) {
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "delete_history_button": 1,
+                        "delete_history_id": deletedHistoryID,
+                     },
+                     success: function(response) {
+
+                        Swal.fire({
+                           title: "Successful Deleted",
+                           icon: "success"
+                        }).then((result) => {
+                           location.reload();
+                        });
+
+                     }
+                  });
+               }
+            });
+         });
+      });
+
+      // Undo Deleted History
+      $(document).ready(function() {
+         $('.undoDeletedHistoryBtn').click(function(e) {
+            e.preventDefault();
+
+            var undoDeletedHistoryID = $(this).closest("tr").find('.undoDeletedHistoryID').val();
+            Swal.fire({
+               title: "Are you sure you want to undo this?",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No",
+            }).then((willDelete) => {
+               if (willDelete.isConfirmed) {
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "undo_delete_history_button": 1,
+                        "undo_delete_history_id": undoDeletedHistoryID,
+                     },
+                     success: function(response) {
+
+                        Swal.fire({
+                           title: "Successful Undo",
+                           icon: "success"
+                        }).then((result) => {
+                           location.reload();
+                        });
+
+                     }
+                  });
+               }
+            });
+         });
+      });
    </script>
 
    <!-- Data Table -->

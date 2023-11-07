@@ -92,7 +92,7 @@
       </ul>
     </li>
     <li class="menu-item">
-      <a href="tables-basic.html" class="menu-link">
+      <a href="print_entry.php" class="menu-link">
       <i class="bi bi-printer" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Print an Entry</div>
       </a>
@@ -104,19 +104,13 @@
       </a>
     </li>
     <li class="menu-item">
-      <a href="tables-basic.html" class="menu-link">
-        <i class="bi bi-person-lines-fill" style="margin-right: .5rem !important"></i> 
-        <div data-i18n="Tables">LOA</div>
-      </a>
-    </li>
-    <li class="menu-item">
-      <a href="tables-basic.html" class="menu-link">
+      <a href="excuse_letter.php" class="menu-link">
         <i class="bi bi-envelope" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Excuse Letter</div>
       </a>
     </li>
     <li class="menu-item">
-      <a href="tables-basic.html" class="menu-link">
+      <a href="terminate.php" class="menu-link">
         <i class="bi bi-terminal-x" style="margin-right: .5rem !important"></i>
         <div data-i18n="Tables">Terminate</div>
       </a>

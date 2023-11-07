@@ -582,48 +582,27 @@ if (isset($_POST['xletter'])) {
 
 
 if (isset($_POST['xletter1'])) {
-  echo $_POST['applicant_no'];
   $appno = $_POST['applicant_no'];
   $reason_x1 = $_POST['reason_x'];
 
+  $resultemp = mysqli_query($link, "UPDATE deployment SET letter_remarks_d = '$reason_x1', WHERE appno_d = '$appno'");
+  $resultemp = mysqli_query($link, "UPDATE deployment_history SET letter_remarks_d = '$reason_x1', WHERE appno_d = '$appno'");
+  $resultem = mysqli_query($link, "SELECT * FROM employees WHERE appno = '$appno' ");
+    while ($rowem = mysqli_fetch_row($resultem)) {
+      $lname = $rowem[6];
+      $fname = $rowem[7];
+      $mname = $rowem[8];
+      $fullname = $lname . ", " . $fname . " " . $mname;
 
+      $paddress = $rowem[10];
 
-  // uodate deployment and deployment history of reason
-  $resultemp = mysqli_query($link, "UPDATE deployment 
-                                                                                      set
-                                                                                    letter_remarks_d='$reason_x1',
-                                                                                       
-                                                                                    WHERE
-                                                                                     appno_d = '$appno'");
+      $sss_1 = $rowem[24];
+      $Pagibig_1 = $rowem[25];
+      $ph_1 = $rowem[26];
+      $tin_1 = $rowem[27];
 
-  $resultemp = mysqli_query($link, "UPDATE deployment_history
-                                                                                      set
-                                                                                    letter_remarks_d='$reason_x1',
-                                                                                       
-                                                                                    WHERE
-                                                                                     appno_d = '$appno'");
-
-
-
-
-
-  $resultem = mysqli_query($link, "SELECT * FROM employees where appno='$appno' ");
-  while ($rowem = mysqli_fetch_row($resultem)) {
-
-    $lname = $rowem[6];
-    $fname = $rowem[7];
-    $mname = $rowem[8];
-    $fullname = $lname . ", " . $fname . " " . $mname;
-
-    $paddress = $rowem[10];
-
-    $sss_1 = $rowem[24];
-    $Pagibig_1 = $rowem[25];
-    $ph_1 = $rowem[26];
-    $tin_1 = $rowem[27];
-
-    $contk_num =  $rowem[18];
-  }
+      $contk_num =  $rowem[18];
+    }
 
   $resultloa = mysqli_query($link, "SELECT * FROM deployment where appno_d='$appno' ");
   while ($rowloa = mysqli_fetch_array($resultloa)) {
@@ -2118,8 +2097,8 @@ if (isset($_POST['filter_shortlist'])) {
     </script>
   <?php unset($_SESSION['warningMessage']);
   } ?>
-  <?php if ($_SESSION["darkk"] == "deployment") {
-    echo '
+  
+   <?php echo '
                                           <header class="cd-main-header js-cd-main-header">
                                                             <div class="cd-logo-wrapper">
                                                               <a href="#0" class="cd-logo"><img src="assets/img/pcnlogo1.png" alt="Logo"></a>
@@ -2304,19 +2283,9 @@ if (isset($_POST['filter_shortlist'])) {
 
                                             </nav>
 
-';
-  } else {
-    // kapag wala pang user name na kaparehas
-    $kekelpogi_index = "Page direct Un Authorized";
-
-    // remove all session variables
-
-    session_unset();
-
-    // destroy the session 
-    session_destroy();
-  }
-  ?>
+'; ?>
+  
+  
 
 
 

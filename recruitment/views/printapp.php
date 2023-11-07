@@ -110,12 +110,17 @@ if (isset($_POST['Back'])) {
   <div class="container">
     <?php
 
-    //echo $_SESSION["appnoto"];
     $appnoto = $_SESSION["appnoto"];
 
     $querytap = "SELECT *, DATE_FORMAT(birthday, '%M %d %Y') as birthday FROM employees where appno ='$appnoto'";
     $resultap = mysqli_query($link, $querytap);
-    while ($rowap = mysqli_fetch_assoc($resultap)) { ?>
+    while ($rowap = mysqli_fetch_assoc($resultap)) { 
+      $inputDate = $rowap['dapplied'];
+      $timestamp = strtotime($inputDate);
+      $formattedDate = date("F d, Y", $timestamp);
+      
+      
+      ?>
 
 
       <div class="many1">
@@ -130,7 +135,7 @@ if (isset($_POST['Back'])) {
         <div class="form-group name">
           <p>Tracking No. <?php echo $rowap['tracking'] ?></p>
           <center>
-            <img src="../../<?php echo $rowap['photopath'] ?>" alt="" class="img-responsive" style="float:left; width:130px; height:130px;">
+            <img src="<?php echo $rowap['photopath'] ?>" alt="" class="img-responsive" style="float:left; flex: none; width: 130px;height: 130px; object-fit: contain;">
           </center>
           <br>
 
@@ -268,7 +273,7 @@ if (isset($_POST['Back'])) {
               <label class="form-label">Joined Date</label>
             </div>
             <div class="col-md-6">
-              <input type="text" name="newshortlist" value="<?php echo $rowap["dapplied"] ?>" class="form-control" readonly>
+              <input type="text" name="newshortlist" value="<?php echo $formattedDate?>" class="form-control" readonly>
             </div>
           </div>
 

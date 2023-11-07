@@ -95,7 +95,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <td>
                                                         <form action="" method="POST">
                                                             <input type="hidden" name="mrf_id" value="<?php echo  $row['id'] ?>">
-                                                            <button type="button" name="r_mrf" class="btn btn-info r_mrf" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide Shortlist"><i class="bi bi-ui-checks"></i></button>
+                                                            <button type="button" name="r_mrf" class="btn btn-default r_mrf" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Provide Shortlist"><i class="bi bi-ui-checks"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>

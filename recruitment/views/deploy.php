@@ -256,12 +256,12 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                 <?php
                                                                 if ($rowx['ewb_status'] === 'VERIFIED') { ?>
 
-                                                                    <button type="submit" name="addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy" style="visibility: hidden !important;">
+                                                                    <button type="submit" name="addtoewb" class="btn btn-default notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy" style="visibility: hidden !important;">
                                                                         <i class="bi bi-layer-forward"></i>
                                                                     </button>
                                                                 <?php } else { ?>
 
-                                                                    <button type="submit" name="addtoewb" class="btn btn-info notification mt-1 mb-1 addtoewb" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                                                                    <button type="submit" name="addtoewb" class="btn btn-default notification mt-1 mb-1 addtoewb" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
                                                                         <i class="bi bi-layer-forward"></i>
                                                                     </button>
                                                                 <?php } ?>

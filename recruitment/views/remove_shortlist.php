@@ -172,7 +172,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                 $corow = mysqli_num_rows($resultcem); ?>
 
                                                                 <input type="hidden" name="shad" class="shad" id="shad" value="<?php echo $corow ?>">
-                                                                <button type="submit" name="remove" class="btn btn-info notification remove" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove to shortlist">
+                                                                <button type="submit" name="remove" class="btn btn-default notification remove" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove to shortlist">
                                                                     <i class="bi bi-trash"></i> <span class="badge"><?php echo  $corow ?></span>
                                                                 </button>
                                                             </form>

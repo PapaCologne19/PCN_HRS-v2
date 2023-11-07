@@ -56,8 +56,8 @@ include '../../connect.php';
                                         <form action="action.php" method="POST">
                                             <center>
                                                 <div class="row">
-                                                    <div class="col-md-12">
-                                                        <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
+                                                    <div class="col-md-12 mt-3">
+                                                        <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="flex: none; width: 230px;height: 230px; object-fit: contain;">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mt-3">

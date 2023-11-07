@@ -70,7 +70,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </h4>
                                     </div>
                                     <hr>
-                                    <table id="example" class="table" style="width: 100%; font-size: 13px !important;">
+                                    <table id="example" class="table" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -87,7 +87,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $resultx = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'SHORTLISTED' AND actionpoint <> 'CANCELED'");
+                                            $resultx = mysqli_query($link, "SELECT *, DATE_FORMAT(birthday, '%M %d %Y') AS birthday FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'SHORTLISTED' AND actionpoint <> 'CANCELED'");
                                             while ($rowx = mysqli_fetch_assoc($resultx)) { ?>
                                                 <tr>
                                                     <td> <?php echo $rowx['id'] ?> </td>

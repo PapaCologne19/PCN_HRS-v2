@@ -730,7 +730,7 @@ if (isset($_POST['updateProjectBtn'])) {
 if (isset($_POST['delete_project_button'])) {
     $id = $link->real_escape_string($_POST['delete_project_id']);
 
-    $query = "UPDATE client_project SET is_deleted = '1' WHERE id = '$id'";
+    $query = "UPDATE client_project SET is_deleted = '1', status = '2' WHERE id = '$id'";
     $result = $link->query($query);
 
     if ($result) {
@@ -746,7 +746,7 @@ if (isset($_POST['delete_project_button'])) {
 if (isset($_POST['undo_delete_project_button'])) {
     $id = $link->real_escape_string($_POST['undo_delete_project_id']);
 
-    $query = "UPDATE client_project SET is_deleted = '0' WHERE id = '$id'";
+    $query = "UPDATE client_project SET is_deleted = '0', status = '1' WHERE id = '$id'";
     $result = $link->query($query);
 
     if ($result) {
@@ -787,5 +787,37 @@ if (isset($_POST['change_project_status_inactive_button'])) {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
     header("Location: project.php");
+    exit(0);
+}
+
+// Deleting History
+if (isset($_POST['delete_history_button'])) {
+    $id = $link->real_escape_string($_POST['delete_history_id']);
+
+    $query = "UPDATE employee_update_history SET is_deleted = '1' WHERE id = '$id'";
+    $result = $link->query($query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Updated";
+    } else {
+        $_SESSION['errorMessage'] = "Error in Updating";
+    }
+    header("Location: employee_history.php?");
+    exit(0);
+}
+
+// Undo Deleted History
+if (isset($_POST['undo_delete_history_button'])) {
+    $id = $link->real_escape_string($_POST['undo_delete_history_id']);
+
+    $query = "UPDATE employee_update_history SET is_deleted = '0' WHERE id = '$id'";
+    $result = $link->query($query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Undo";
+    } else {
+        $_SESSION['errorMessage'] = "Error in Undo";
+    }
+    header("Location: employee_history.php");
     exit(0);
 }

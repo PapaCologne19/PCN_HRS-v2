@@ -59,7 +59,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['file_name'] ?></td>
                                                     <td><?php
                                                         if ($row['status'] === '0') {
-                                                            echo '<p class="badge round-pill bg-danger">Not Active</p>';
+                                                            echo '<p class="badge round-pill bg-secondary">Not Active</p>';
                                                         } else {
                                                             echo '<p class="badge round-pill bg-success text-white">Active</p>';
                                                         }
@@ -70,10 +70,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 <?php
                                                                 if ($row['status'] === '0') { ?>
                                                                     <input type="hidden" name="template_id" class="template_id" value="<?php echo $row["id"] ?>">
-                                                                    <button type="button" class="btn btn-primary make_default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as default"><i class="bi bi-pin"></i></button>
+                                                                    <button type="button" class="btn btn-secondary make_default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as default (Active)"><i class="bi bi-pin"></i></button>
                                                                 <?php } else { ?>
                                                                     <input type="hidden" name="template_inactive_id" class="template_inactive_id" value="<?php echo $row["id"] ?>">
-                                                                    <button type="button" class="btn btn-danger make_inactive" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Inactive"><i class="bi bi-pin"></i></button>
+                                                                    <button type="button" class="btn btn-secondary make_inactive" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as Inactive"><i class="bi bi-pencil"></i></i></button>
                                                                 <?php  } ?>
                                                             </div>
                                                             <div class="columns">

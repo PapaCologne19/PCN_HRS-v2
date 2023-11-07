@@ -198,7 +198,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                     $corow = mysqli_num_rows($resultcem); ?>
 
                                                                     <input type="hidden" name="shad" value="<?php echo $corow ?>">
-                                                                    <button type="submit" name="unterminate_me" class="btn btn-info notification unterminate_me" style="font-size:15;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Unterminate this Applicant"><i class="bi bi-arrow-counterclockwise"></i><span class="badge"><?php echo $corow ?></span></button>
+                                                                    <button type="submit" name="unterminate_me" class="btn btn-default notification unterminate_me" style="font-size:15; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Unterminate this Applicant"><i class="bi bi-arrow-counterclockwise"></i><span class="badge"><?php echo $corow ?></span></button>
                                                                 </form>
                                                             </td>
 
@@ -213,7 +213,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                     $resultcem = mysqli_query($link, $querycem);
                                                                     $corow = mysqli_num_rows($resultcem); ?>
 
-                                                                    <button type="submit" name="add_shortlist_btn" id="add_shortlist_btn" class="btn btn-info notification add_shortlist_btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to shortlist">
+                                                                    <button type="submit" name="add_shortlist_btn" id="add_shortlist_btn" class="btn btn-default notification add_shortlist_btn" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to shortlist">
                                                                         <i class="bi bi-plus-lg"></i> <span class="badge"><?php echo $corow ?></span>
                                                                     </button>
                                                                 </form>

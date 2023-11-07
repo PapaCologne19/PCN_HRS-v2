@@ -72,7 +72,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = "SELECT * FROM client_project";
+                                            $query = "SELECT *,
+                                            DATE_FORMAT(start_date, '%M %d %Y') AS start_date,
+                                            DATE_FORMAT(end_date, '%M %d %Y') as end_date
+                                            FROM client_project";
                                             $result = $link->query($query);
                                             while ($row = $result->fetch_assoc()) {
                                             ?>
@@ -86,8 +89,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php
                                                         if ($row['status'] === '0') {
                                                             echo '<span class="badge bg-success">Active</span>';
-                                                        } else {
-                                                            echo '<span class="badge bg-danger">Inactive</span>';
+                                                        } elseif($row['status'] === '1') {
+                                                            echo '<span class="badge bg-secondary">Inactive</span>';
+                                                        } elseif($row['status'] === '2') {
+                                                            echo '<span class="badge bg-danger">Deleted</span>';
                                                         }
 
                                                         ?>
