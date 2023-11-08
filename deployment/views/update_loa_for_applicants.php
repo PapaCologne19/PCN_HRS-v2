@@ -3,10 +3,11 @@ session_start();
 include '../../connect.php';
 
 $deploy_id = $_POST['id'];
+echo $deploy_id;
 $query = "SELECT shortlist.*, employee.* 
 FROM shortlist_master shortlist, employees employee
 WHERE shortlist.employee_id = employee.id 
-AND shortlistnameto = '" . $_SESSION['shortlist_title'] . "'";
+AND shortlistnameto = '" . $_SESSION['shortlist_title'] . "' AND employee.id = '$deploy_id'";
 $result = $link->query($query);
 
 if (!$result) {

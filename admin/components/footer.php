@@ -824,6 +824,80 @@
             });
          });
       });
+
+      // Deleting LOA History 
+      $(document).ready(function() {
+         $('.deleteLOA_Btn').click(function(e) {
+            e.preventDefault();
+
+            var deleteLOA_ID = $(this).closest("tr").find('.deleteLOA_ID').val();
+            Swal.fire({
+               title: "Are you sure you want to delete this?",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No",
+            }).then((willDelete) => {
+               if (willDelete.isConfirmed) {
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "delete_loa_history_button": 1,
+                        "delete_loa_history_id": deleteLOA_ID,
+                     },
+                     success: function(response) {
+
+                        Swal.fire({
+                           title: "Successful Deleted",
+                           icon: "success"
+                        }).then((result) => {
+                           location.reload();
+                        });
+
+                     }
+                  });
+               }
+            });
+         });
+      });
+
+      // Undo Deleted LOA History
+      $(document).ready(function() {
+         $('.undoDeleteLOA_Btn').click(function(e) {
+            e.preventDefault();
+
+            var undoDeleteLOA_ID = $(this).closest("tr").find('.undoDeleteLOA_ID').val();
+            Swal.fire({
+               title: "Are you sure you want to undo this?",
+               icon: "warning",
+               showCancelButton: true,
+               confirmButtonText: "Yes",
+               cancelButtonText: "No",
+            }).then((willDelete) => {
+               if (willDelete.isConfirmed) {
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "undo_delete_loa_history_button": 1,
+                        "undo_delete_loa_history_id": undoDeleteLOA_ID,
+                     },
+                     success: function(response) {
+
+                        Swal.fire({
+                           title: "Successful Undo",
+                           icon: "success"
+                        }).then((result) => {
+                           location.reload();
+                        });
+
+                     }
+                  });
+               }
+            });
+         });
+      });
    </script>
 
    <!-- Data Table -->

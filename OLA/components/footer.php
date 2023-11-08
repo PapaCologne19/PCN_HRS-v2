@@ -1,0 +1,39 @@
+   <!-- Core JS -->
+   <!-- build:js assets/vendor/js/core.js -->
+   <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+   <script src="../assets/vendor/libs/popper/popper.js"></script>
+   <script src="../assets/vendor/js/bootstrap.js"></script>
+   <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+   <script src="../assets/vendor/js/menu.js"></script>
+   <!-- endbuild -->
+
+   <!-- Data Table -->
+   <script>
+      new DataTable('#example');
+
+      /* When your mouse cursor enter the background, the fading won't pause and keep playing */
+      // $('.carousel').carousel({
+      //    pause: "false" /* Change to true to make it paused when your mouse cursor enter the background */
+      // });
+
+      const carousel = new bootstrap.Carousel('#myCarousel')
+   </script>
+
+   <!-- Tooltips Enabler -->
+   <script>
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+   </script>
+
+   <!-- Vendors JS -->
+   <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+   <!-- Main JS -->
+   <script src="../assets/js/main.js"></script>
+
+   <!-- Page JS -->
+   <script src="../assets/js/dashboards-analytics.js"></script>
+
+   <!-- Place this tag in your head or just before your close body tag. -->
+   <script async defer src="https://buttons.github.io/buttons.js"></script>

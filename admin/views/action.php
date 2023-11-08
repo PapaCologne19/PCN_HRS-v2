@@ -798,9 +798,9 @@ if (isset($_POST['delete_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Successfully Deleted";
     } else {
-        $_SESSION['errorMessage'] = "Error in Updating";
+        $_SESSION['errorMessage'] = "Error in Deleting";
     }
     header("Location: employee_history.php?");
     exit(0);
@@ -819,5 +819,37 @@ if (isset($_POST['undo_delete_history_button'])) {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
     header("Location: employee_history.php");
+    exit(0);
+}
+
+// Deleting LOA History
+if (isset($_POST['delete_loa_history_button'])) {
+    $id = $link->real_escape_string($_POST['delete_loa_history_id']);
+
+    $query = "UPDATE deployment_history SET is_deleted = '1' WHERE id = '$id'";
+    $result = $link->query($query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Deleted";
+    } else {
+        $_SESSION['errorMessage'] = "Error in Updating";
+    }
+    header("Location: loa_history.php?");
+    exit(0);
+}
+
+// Undo Deleted LOA History
+if (isset($_POST['undo_delete_loa_history_button'])) {
+    $id = $link->real_escape_string($_POST['undo_delete_loa_history_id']);
+
+    $query = "UPDATE deployment_history SET is_deleted = '0' WHERE id = '$id'";
+    $result = $link->query($query);
+
+    if ($result) {
+        $_SESSION['successMessage'] = "Successfully Undo";
+    } else {
+        $_SESSION['errorMessage'] = "Error in Undo";
+    }
+    header("Location: loa_history.php");
     exit(0);
 }

@@ -68,9 +68,22 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <td><?php echo $formattedDate_end?></td>
                                                 <td><?php echo $row['employment_status']?></td>
                                                 <td>
-                                                    <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                    <button type="button" class="btn btn-dark deleteBtn">Delete</button>
-                                                    <button type="button" class="btn btn-dark deleteBtn">Undo</button>
+                                                    <div class="contains">
+                                                    <?php if($row['is_deleted'] === '0'){ ?>
+                                                        <div class="columns">
+                                                            <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                        </div>
+                                                        <div class="columns">
+                                                            <input type="hidden" class="deleteLOA_ID" id="deleteLOA_ID" value="<?php echo $row['id']?>">
+                                                            <button type="button" class="btn btn-danger deleteLOA_Btn btntooltips" title="Delete"><i class="bi bi-trash"></i></button>
+                                                        </div>
+                                                    <?php }else { ?>
+                                                        <div class="columns">
+                                                            <input type="hidden" class="undoDeleteLOA_ID" id="undoDeleteLOA_ID" value="<?php echo $row['id']?>">
+                                                            <button type="button" class="btn btn-secondary undoDeleteLOA_Btn btntooltips" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                                        </div>
+                                                    <?php }?>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <?php }?>

@@ -91,6 +91,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             $formattedDate_birthday = date("F d, Y", $timestamp_birthday);
                                             $id = $rows['id'];
 
+                                            // IF DEPLOYED NA
                                             if ($rows['deployment_status'] === 'DEPLOYED') {
                                         ?>
                                                 <td><?php echo $rows['id'] ?></td>
@@ -110,7 +111,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     $loa_end_date = $deployment_row['loa_end_date'];
                                                     $dateObj = date_create_from_format('Y-m-d', $loa_start_date);
                                                     $dateObj2 = date_create_from_format('Y-m-d', $loa_end_date);
-
+ 
                                                     if ($dateObj !== false && $dateObj2 !== false) {
                                                         $formattedDate_start = date_format($dateObj, 'F j, Y');
                                                         $formattedDate_end = date_format($dateObj2, 'F j, Y');
@@ -136,10 +137,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         </div>
 
                                                     <?php } else { ?>
-                                                        <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
+                                                        <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
                                                     <?php } ?>
                                                 </td>
 
+                                                <!-- IF HINDI PA NADEDEPLOY -->
                                             <?php
                                             } elseif (trim($rows['deployment_status'] === 'FOR DEPLOYMENT')) { ?>
                                                 <tr>

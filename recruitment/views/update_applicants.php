@@ -296,7 +296,7 @@ include '../../connect.php';
                                                 </div>
 
                                                 <div class="col-md-10">
-                                                    <input type="text" name="sssnum" value="<?php echo $rowed["sssnum"] ?>" class="form-control">
+                                                    <input type="text" name="sssnum" maxlength="10" value="<?php echo $rowed["sssnum"] ?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -306,7 +306,7 @@ include '../../connect.php';
                                                 </div>
 
                                                 <div class="col-md-10">
-                                                    <input type="text" name="pagibignum" value="<?php echo $rowed["pagibignum"] ?>" class="form-control">
+                                                    <input type="text" name="pagibignum" maxlength="12" value="<?php echo $rowed["pagibignum"] ?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -316,7 +316,7 @@ include '../../connect.php';
                                                 </div>
 
                                                 <div class="col-md-10">
-                                                    <input type="text" name="phnum" value="<?php echo $rowed["phnum"] ?>" class="form-control">
+                                                    <input type="text" name="phnum" maxlength="12" value="<?php echo $rowed["phnum"] ?>" class="form-control">
                                                 </div>
                                             </div>
 
@@ -326,7 +326,7 @@ include '../../connect.php';
                                                 </div>
 
                                                 <div class="col-md-10">
-                                                    <input type="text" name="tinnum" value="<?php echo $rowed["tinnum"] ?>" class="form-control">
+                                                    <input type="text" name="tinnum" maxlength="12" value="<?php echo $rowed["tinnum"] ?>" class="form-control">
                                                 </div>
                                             </div>
 
