@@ -51,10 +51,9 @@ if (isset($_POST['create_loa'])) {
     $get_data = "SELECT * FROM employees WHERE id = '$id'";
     $get_result = $link->query($get_data);
     $get_row = $get_result->fetch_assoc();
-    if(!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A"){
+    if (!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A") {
         $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'] . " " . $get_row['mnko'];
-    }
-    else{
+    } else {
         $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'];
     }
     $sss = $get_row['sssnum'];
@@ -139,7 +138,7 @@ if (isset($_POST['create_loa'])) {
     } else {
         $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
     }
-    header("Location: shortlist.php");
+    header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
     exit(0);
 }
 
@@ -191,10 +190,9 @@ if (isset($_POST['update_loa'])) {
     $get_data = "SELECT * FROM employees WHERE id = '$emp_id'";
     $get_result = $link->query($get_data);
     $get_row = $get_result->fetch_assoc();
-    if(!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A"){
+    if (!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A") {
         $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'] . " " . $get_row['mnko'];
-    }
-    else{
+    } else {
         $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'];
     }
     $sss = $get_row['sssnum'];

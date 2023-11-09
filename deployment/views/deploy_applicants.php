@@ -94,6 +94,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             // IF DEPLOYED NA
                                             if ($rows['deployment_status'] === 'DEPLOYED') {
                                         ?>
+                                        <tr>
                                                 <td><?php echo $rows['id'] ?></td>
                                                 <td><?php echo $rows['appno'] ?></td>
                                                 <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
@@ -106,7 +107,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <?php
                                                 $deployment_query = "SELECT * FROM deployment WHERE employee_id = '$id'";
                                                 $deployment_result = $link->query($deployment_query);
-                                                while ($deployment_row = $deployment_result->fetch_assoc()) {
+                                                $deployment_row = $deployment_result->fetch_assoc();
                                                     $loa_start_date = $deployment_row['loa_start_date'];
                                                     $loa_end_date = $deployment_row['loa_end_date'];
                                                     $dateObj = date_create_from_format('Y-m-d', $loa_start_date);
@@ -123,11 +124,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $formattedDate_start; ?></td>
                                                     <td><?php echo $formattedDate_end; ?></td>
                                                     <td><?php echo $deployment_row['employment_status']; ?></td>
-                                                <?php } ?>
+                                                
                                                 <td>DEPLOYED</td>
                                                 <td><?php echo $rows['remarks'] ?></td>
                                                 <td>
-                                                    <?php if (!empty($rows['ewb_status'])) { ?>
+                                                    <?php  if (!empty($rows['ewb_status'])) { ?>
                                                         <div class="mb-1">
                                                             <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
                                                             <button type="button" name="deploy" class="btn btn-primary updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>
@@ -140,7 +141,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
                                                     <?php } ?>
                                                 </td>
-
+</tr>
                                                 <!-- IF HINDI PA NADEDEPLOY -->
                                             <?php
                                             } elseif (trim($rows['deployment_status'] === 'FOR DEPLOYMENT')) { ?>
