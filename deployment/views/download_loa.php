@@ -43,8 +43,8 @@ if ($result) {
             $employment_status = ucwords(strtolower($row['employment_status']));
             $start_date = $row['loa_start_date'];
             $end_date = $row['loa_end_date'];
-            $dateObj = date_create_from_format('m-d-Y', $start_date);
-            $dateObj2 = date_create_from_format('m-d-Y', $end_date);
+            $dateObj = date_create_from_format('Y-m-d', $start_date);
+            $dateObj2 = date_create_from_format('Y-m-d', $end_date);
             $formattedDate_start = date_format($dateObj, 'F j, Y');
             $formattedDate_end = date_format($dateObj2, 'F j, Y');
             $basic_pay = $row['basic_salary'];

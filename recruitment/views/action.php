@@ -6,18 +6,18 @@ header('Content-Type: text/html; charset=utf-8');
 // For Inserting Applicant in database
 if (isset($_POST['next'])) {
     $photoko2 = $_SESSION["photoko"];
-    $dapplied1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['dapplied']))));
-    $appno1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['appnoko']))));
-    $source1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['source']))));
-    $lastnameko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['lastnameko']))));
-    $firstnameko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['firstnameko']))));
-    $mnko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['mnko']))));
-    $extnname1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['extnname']))));
-    $paddress1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['paddress']))));
-    $cityn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['cityn']))));
-    $regionn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['regionn']))));
-    $peraddress1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['peraddress']))));
-    $birthday1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['birthday']))));
+    $dapplied1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['dapplied'])))));
+    $appno1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['appnoko'])))));
+    $source1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['source'])))));
+    $lastnameko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['lastnameko'])))));
+    $firstnameko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['firstnameko'])))));
+    $mnko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['mnko'])))));
+    $extnname1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['extnname'])))));
+    $paddress1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['paddress'])))));
+    $cityn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['cityn'])))));
+    $regionn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['regionn'])))));
+    $peraddress1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['peraddress'])))));
+    $birthday1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['birthday'])))));
     $dateOfBirth = $birthday1;
     date_default_timezone_set('Asia/Manila');
     $today = date('Y-m-d H:i:s');
@@ -25,32 +25,32 @@ if (isset($_POST['next'])) {
     $age1 = $diff->format("%y");
     $datebirth = date_create($birthday1);
     $birthday1a = date_format($datebirth, "m/d/Y");
-    $gendern = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['gendern']))));
-    $civiln1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['civiln']))));
-    $cpnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['cpnum']))));
-    $landline1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['landline']))));
-    $emailadd1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['emailadd']))));
-    $despo1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['despo']))));
-    $classn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['classn']))));
-    $idenn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['idenn']))));
-    $sssnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['sssnum']))));
-    $pagibignum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['pagibignum']))));
-    $phnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['phnum']))));
-    $tinnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['tinnum']))));
-    $e_person1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_person']))));
-    $e_address1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_address']))));
-    $e_contact1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_contact']))));
-    $policed1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['policed']))));
+    $gendern = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['gendern'])))));
+    $civiln1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['civiln'])))));
+    $cpnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['cpnum'])))));
+    $landline1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['landline'])))));
+    $emailadd1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['emailadd'])))));
+    $despo1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['despo'])))));
+    $classn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['classn'])))));
+    $idenn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['idenn'])))));
+    $sssnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['sssnum'])))));
+    $pagibignum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['pagibignum'])))));
+    $phnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['phnum'])))));
+    $tinnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['tinnum'])))));
+    $e_person1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_person'])))));
+    $e_address1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_address'])))));
+    $e_contact1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_contact'])))));
+    $policed1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['policed'])))));
     $datepol = date_create($policed1x);
     $policed1 = date_format($datepol, "m/d/Y");
-    $brgyd1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['brgyd']))));
+    $brgyd1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['brgyd'])))));
     $datebrgy = date_create($brgyd1x);
     $brgyd1 = date_format($datebrgy, "m/d/Y");
-    $nbid1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['nbid']))));
+    $nbid1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['nbid'])))));
     $datenbi = date_create($nbid1x);
     $nbid1 = date_format($datenbi, "m/d/Y");
-    $psa1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['psa']))));
-    $remarks1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks']))));
+    $psa1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['psa'])))));
+    $remarks1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks'])))));
     $lastname = $_SESSION['lastname'];
     $firstname = $_SESSION['firstname'];
     $fullname = $firstname . ' ' . $lastname;
@@ -74,56 +74,56 @@ if (isset($_POST['next'])) {
     } else {
         $_SESSION['errorMessage'] = "Applicant is already in Database! In: " . $row['actionpoint'];
     }
-    header("Location: database_entry.php");
+    header("Location: applicant.php");
     exit();
 }
 
 
 // For Updating Applicant in database
 if (isset($_POST['updateit'])) {
-    $id1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['shadowEdit']))));
-    $source1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['source']))));
-    $lastnameko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['lastnameko']))));
-    $firstnameko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['firstnameko']))));
-    $mnko1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['mnko']))));
-    $extnname1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['extnname']))));
-    $paddress1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['paddress']))));
-    $cityn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['cityn']))));
-    $regionn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['regionn']))));
-    $peraddress1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['peraddress']))));
-    $birthday1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['birthday']))));
+    $id1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['shadowEdit'])))));
+    $source1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['source'])))));
+    $lastnameko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['lastnameko'])))));
+    $firstnameko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['firstnameko'])))));
+    $mnko1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['mnko'])))));
+    $extnname1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['extnname'])))));
+    $paddress1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['paddress'])))));
+    $cityn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['cityn'])))));
+    $regionn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['regionn'])))));
+    $peraddress1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['peraddress'])))));
+    $birthday1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['birthday'])))));
     $dateOfBirth = $birthday1;
     $today = date("Y-m-d");
     $diff = date_diff(date_create($dateOfBirth), date_create($today));
     $age1 = $diff->format("%y");
     $datebirth = date_create($birthday1);
     $birthday1a = date_format($datebirth, "m/d/Y");
-    $gendern = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['gendern']))));
-    $civiln1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['civiln']))));
-    $cpnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['cpnum']))));
-    $landline1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['landline']))));
-    $emailadd1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['emailadd']))));
-    $despo1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['despo']))));
-    $classn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['classn']))));
-    $idenn1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['idenn']))));
-    $sssnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['sssnum']))));
-    $pagibignum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['pagibignum']))));
-    $phnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['phnum']))));
-    $tinnum1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['tinnum']))));
-    $e_person1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_person']))));
-    $e_address1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_address']))));
-    $e_contact1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['e_contact']))));
-    $policed1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['policed']))));
+    $gendern = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['gendern'])))));
+    $civiln1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['civiln'])))));
+    $cpnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['cpnum'])))));
+    $landline1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['landline'])))));
+    $emailadd1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['emailadd'])))));
+    $despo1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['despo'])))));
+    $classn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['classn'])))));
+    $idenn1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['idenn'])))));
+    $sssnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['sssnum'])))));
+    $pagibignum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['pagibignum'])))));
+    $phnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['phnum'])))));
+    $tinnum1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['tinnum'])))));
+    $e_person1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_person'])))));
+    $e_address1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_address'])))));
+    $e_contact1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['e_contact'])))));
+    $policed1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['policed'])))));
     $datepol = date_create($policed1x);
     $policed1 = date_format($datepol, "m/d/Y");
-    $brgyd1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['brgyd']))));
+    $brgyd1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['brgyd'])))));
     $datebrgy = date_create($brgyd1x);
     $brgyd1 = date_format($datebrgy, "m/d/Y");
-    $nbid1x = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['nbid']))));
+    $nbid1x = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['nbid'])))));
     $datenbi = date_create($nbid1x);
     $nbid1 = date_format($datenbi, "m/d/Y");
-    $psa1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['psa']))));
-    $remarks1 = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks']))));
+    $psa1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['psa'])))));
+    $remarks1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['remarks'])))));
 
     $updateQuery = "UPDATE employees
     SET
@@ -243,7 +243,7 @@ if (isset($_POST['updateit'])) {
 //   For Blacklisting
 if (isset($_POST['blacklist_button'])) {
     $id = $_POST['blacklistID'];
-    $blacklistreason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+    $blacklistreason = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['reason'])))));
     $datenow = date("m/d/Y");
     $actionpoint = "BLACKLISTED";
 
@@ -273,7 +273,7 @@ if (isset($_POST['blacklist_button'])) {
 // For Deleting Applicants. Change status to canceled but not totally deleted in database for records purposes
 if (isset($_POST['delete_applicant_button'])) {
     $id = $_POST['delete_applicant_ID'];
-    $delete_applicant_reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+    $delete_applicant_reason = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['reason'])))));
     $datenow = date("m/d/Y");
     $actionpoint = "CANCELED";
 
@@ -292,7 +292,7 @@ if (isset($_POST['delete_applicant_button'])) {
 // For Undo Blacklisted Applicants
 if (isset($_POST['undo_button_click'])) {
     $undo_blacklisted_id = $_POST['undoblacklist_id'];
-    $undo_blacklist = "UPDATE employees SET actionpoint = '', reasonofaction = '', dateofaction = '' WHERE id = '$undo_blacklisted_id'";
+    $undo_blacklist = "UPDATE employees SET actionpoint = 'ACTIVE', reasonofaction = '', dateofaction = '' WHERE id = '$undo_blacklisted_id'";
 
     $result_editblacklist = mysqli_query($link, $undo_blacklist);
 
@@ -357,7 +357,7 @@ if (isset($_POST['createshortlist'])) {
     } else {
         $_SESSION['errorMessage'] = "Fields must be Filled";
     }
-    header("Location: create_shortlist.php");
+    header("Location: add_shortlist.php");
     exit();
 }
 
@@ -438,7 +438,7 @@ if (isset($_POST['add_shortlist_click'])) {
 if (isset($_POST['unterminate_applicant_button'])) {
 
     $emp_number1 = $_POST['unterminate_applicant_ID'];
-    $unter_reason1 = mysqli_real_escape_String($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+    $unter_reason1 = mysqli_real_escape_String($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['reason'])))));
 
     $unterminate_query = "UPDATE employees SET actionpoint = 'EWB', unter_reason = '$unter_reason1', reasonofaction = '$unter_reason1' WHERE appno = '$emp_number1'";
     $resultemp = mysqli_query($link, $unterminate_query);
@@ -658,7 +658,7 @@ if (isset($_POST['add_to_shortlist'])) {
 // For reverification of applicant that is declined by EWB
 if (isset($_POST['reverification_button'])) {
     $id = $_POST['reverificationID'];
-    $reason = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', (strtoupper($_POST['reason']))));
+    $reason = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['reason'])))));
 
     if (!empty($reason)) {
         $reverification_query = "UPDATE employees SET ewb_status = 'NOT VERIFY' WHERE id = '$id'";
