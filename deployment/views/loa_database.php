@@ -283,6 +283,12 @@ include '../../connect.php';
                                             $fetch = "SELECT * FROM employees WHERE id = '$id'";
                                             $retrieved = $link->query($fetch);
                                             while ($fetched = $retrieved->fetch_assoc()) {
+                                               
+
+                                                //VARIABLE FOR FILE NAME ON ID CARD IN LOA DATABASE
+                                        $name=$fetched['firstnameko'] . " " . $fetched['mnko'] . " " . $fetched['lastnameko']. "-PCN_ID.png";
+                                                //END
+
                                         ?>
                                                 <tr>
                                                     <td><?php echo $row['id'] ?></td>
@@ -298,7 +304,7 @@ include '../../connect.php';
                                                             <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
                                                         </div>
                                                         <div class="pt-1">
-                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="Employee_ID.png" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="<?php echo $name ?>" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -327,6 +333,7 @@ include '../../connect.php';
                                                 $fetch_employee = "SELECT * FROM employees WHERE id = '$id'";
                                                 $fetch_result = $link->query($fetch_employee);
                                                 while ($fetch_row = $fetch_result->fetch_assoc()) {
+
                                                     if (empty($fetch_row['mnko']) || $fetch_row['mnko'] === "NA" || $fetch_row['mnko'] === "N/A") {
                                                         $name = $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'];
                                                     } else {

@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
                 $text2 = $row['job_title'];
                 $text3 = $row['emp_id'];
                 $text4 = $select_row['e_person'];
-                $text5 = $select_row['e_address'];
+                $text5 = "    "."   "."    ".$select_row['e_address'];
                 $text6 = $select_row['e_number'];
                 $text7 = $row['sss'];
                 $text8 = $row['tin'];
@@ -49,61 +49,99 @@ if (isset($_GET['id'])) {
 
                 imagedestroy($newImage);
 
+                 //FULL session_name()
                 // Calculate the text box coordinates
-                $textBoxX1 = -300; // Adjust as needed
-                $textBoxY1 = 410; // Adjust as needed
-                $textBoxX2 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY2 = 200; // Adjust as needed
+                $textBoxX1 = 30; // Adjust as needed
+                $textBoxY1 = 430; // Adjust as needed
+                $textBoxX2 = imagesx($image) - 490; // Adjust as needed
+                $textBoxY2 = 377; // Adjust as needed
+
                 // Position
-                $textBoxX12 = -350; // Adjust as needed
-                $textBoxY12 = 500; // Adjust as needed
-                $textBoxX22 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY22 = 200; // Adjust as needed
+                // Y is for height
+                // x is for width
+                $textBoxX12 = 30; // Adjust as needed
+                $textBoxY12 = 520; // Adjust as needed 
+                $textBoxX22 = imagesx($image) - 490; // Adjust as needed width
+                $textBoxY22 = 467; // Adjust as needed start position of height for text box
+
+
                 // ID Number
-                $textBoxX13 = -350; // Adjust as needed
-                $textBoxY13 = 680; // Adjust as needed
-                $textBoxX23 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY23 = 200; // Adjust as needed
+                $textBoxX13 = 30; // Adjust as needed
+                $textBoxY13 = 695; // Adjust as needed
+                $textBoxX23 = imagesx($image) - 490; // Adjust as needed
+                $textBoxY23 = 640; // Adjust as needed
+
+
                 // Contact Person
-                $textBoxX14 = 750; // Adjust as needed
-                $textBoxY14 = 190; // Adjust as needed
-                $textBoxX24 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY24 = 200; // Adjust as needed
+                $textBoxX14 = 640; // Adjust as needed
+                $textBoxY14 = 200; // Adjust as needed
+                $textBoxX24 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY24 = 150; // Adjust as needed
+
+
                 // Contact Address
-                $textBoxX15 = 710; // Adjust as needed
-                $textBoxY15 = 245; // Adjust as needed
-                $textBoxX25 = imagesx($image) - 50; // Adjust as needed
+                $textBoxX15 = 510; // Adjust as needed
+                $textBoxY15 = 295; // Adjust as needed
+                $textBoxX25 = imagesx($image) - 40; // Adjust as needed
                 $textBoxY25 = 200; // Adjust as needed
+
+
                 // Contact Number
-                $textBoxX16 = 650; // Adjust as needed
-                $textBoxY16 = 330; // Adjust as needed
-                $textBoxX26 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY26 = 200; // Adjust as needed
+                $textBoxX16 = 615; // Adjust as needed
+                $textBoxY16 = 348; // Adjust as needed
+                $textBoxX26 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY26 = 298; // Adjust as needed
+
+
                 // SSS
-                $textBoxX17 = 650; // Adjust as needed
-                $textBoxY17 = 380; // Adjust as needed
-                $textBoxX27 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY27 = 200; // Adjust as needed
+                $textBoxX17 = 585; // Adjust as needed
+                $textBoxY17 = 402; // Adjust as needed
+                $textBoxX27 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY27 = 350; // Adjust as needed
+
+
                 // TIN
-                $textBoxX18 = 650; // Adjust as needed
-                $textBoxY18 = 440; // Adjust as needed
-                $textBoxX28 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY28 = 200; // Adjust as needed
+                $textBoxX18 = 585; // Adjust as needed
+                $textBoxY18 = 452; // Adjust as needed
+                $textBoxX28 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY28 = 404; // Adjust as needed
+
+
                 // PHILHEALTH
-                $textBoxX19 = 700; // Adjust as needed
-                $textBoxY19 = 490; // Adjust as needed
-                $textBoxX29 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY29 = 200; // Adjust as needed
+                $textBoxX19 = 620; // Adjust as needed
+                $textBoxY19 = 506; // Adjust as needed
+                $textBoxX29 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY29 = 455; // Adjust as needed
+
+
                 // HDMF
-                $textBoxX110 = 650; // Adjust as needed
-                $textBoxY110 = 540; // Adjust as needed
-                $textBoxX210 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY210 = 200; // Adjust as needed
+                $textBoxX110 = 585; // Adjust as needed
+                $textBoxY110 = 560; // Adjust as needed
+                $textBoxX210 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY210 = 509; // Adjust as needed
+
                 // BIRTHDAY
-                $textBoxX111 = 650; // Adjust as needed
-                $textBoxY111 = 590; // Adjust as needed
-                $textBoxX211 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY211 = 200; // Adjust as needed
+                $textBoxX111 = 585; // Adjust as needed
+                $textBoxY111 = 615; // Adjust as needed
+                $textBoxX211 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY211 = 560; // Adjust as needed
+
+                // Text box border color (RGB values)
+                $borderColor = imagecolorallocate($image, 255, 0, 0); // Red color in this example
+
+                 // Draw borders around text boxes
+//full name          imagerectangle($image, $textBoxX1, $textBoxY1, $textBoxX2, $textBoxY2, $borderColor);
+//position           imagerectangle($image, $textBoxX12, $textBoxY12, $textBoxX22, $textBoxY22, $borderColor);
+//ID Number          imagerectangle($image, $textBoxX13, $textBoxY13, $textBoxX23, $textBoxY23, $borderColor);
+ //Contact Person    imagerectangle($image, $textBoxX14, $textBoxY14, $textBoxX24, $textBoxY24, $borderColor);          
+//Contact Person     imagerectangle($image, $textBoxX15, $textBoxY15, $textBoxX25, $textBoxY25, $borderColor); 
+//Contact Number     imagerectangle($image, $textBoxX16, $textBoxY16, $textBoxX26, $textBoxY26, $borderColor); 
+//SSS No.            imagerectangle($image, $textBoxX17, $textBoxY17, $textBoxX27, $textBoxY27, $borderColor); 
+//TIN No.            imagerectangle($image, $textBoxX18, $textBoxY18, $textBoxX28, $textBoxY28, $borderColor); 
+//PHIL No.           imagerectangle($image, $textBoxX19, $textBoxY19, $textBoxX29, $textBoxY29, $borderColor); 
+//HDMF No.           imagerectangle($image, $textBoxX110, $textBoxY110, $textBoxX210, $textBoxY210, $borderColor);
+//*BIRTHDAY         imagerectangle($image, $textBoxX111, $textBoxY111, $textBoxX211, $textBoxY211, $borderColor); 
+
 
                 // Calculate the maximum line width within the text box
                 $maxLineWidth = $textBoxX2 - $textBoxX1;
@@ -134,95 +172,168 @@ if (isset($_GET['id'])) {
                 $textLines = wordwrap($text, 30, "\n", true);
                 $textLines2 = wordwrap($text2, 30, "\n", true);
                 $textLines3 = wordwrap($text3, 30, "\n", true);
-                $textLines4 = wordwrap($text4, 35, "\n", true);
-                $textLines5 = wordwrap($text5, 40, "\n", true);
-                $textLines6 = wordwrap($text6, 40, "\n", true);
-                $textLines7 = wordwrap($text7, 40, "\n", true);
-                $textLines8 = wordwrap($text8, 40, "\n", true);
-                $textLines9 = wordwrap($text9, 40, "\n", true);
-                $textLines10 = wordwrap($text10, 40, "\n", true);
-                $textLines11 = wordwrap($text11, 40, "\n", true);
+                $textLines4 = wordwrap($text4, 25, "\n", true);
+                $textLines5 = wordwrap($text5, 33, "\n", true);
+                $textLines6 = wordwrap($text6, 11, "\n", true);
+                $textLines7 = wordwrap($text7, 10, "\n", true);
+                $textLines8 = wordwrap($text8, 12, "\n", true);
+                $textLines9 = wordwrap($text9, 12, "\n", true);
+                $textLines10 = wordwrap($text10, 12, "\n", true);
+                $textLines11 = wordwrap($text11, 25, "\n", true);
 
                 // Calculate and set the text position for center alignment
                 // Fullname
-                $textX = $textBoxX1 + ($maxLineWidth - imagettfbbox(24, 0, $font, $textLines)['2']) / 2;
+                $totalTextWidth0 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX = $textBoxX1 + ($maxLineWidth - $totalTextWidth0) / 2;
                 $textY = $textBoxY1;
-                // Position
-                $textX2 = $textBoxX12 + ($maxLineWidth2 - imagettfbbox(24, 0, $font, $textLines2)['2']) / 2;
-                $textY2 = $textBoxY12;
-                // ID Number
-                $textX3 = $textBoxX13 + ($maxLineWidth3 - imagettfbbox(24, 0, $font, $textLines3)['2']) / 2;
-                $textY3 = $textBoxY13;
-                // Contact Person
-                $textX4 = $textBoxX14 + ($maxLineWidth4 - imagettfbbox(24, 0, $font, $textLines4)['2']) / 2;
-                $textY4 = $textBoxY14;
-                // Contact Address
-                $textX5 = $textBoxX15 + ($maxLineWidth5 - imagettfbbox(24, 0, $font, $textLines5)['2']) / 2;
-                $textY5 = $textBoxY15;
-                // Contact Number
-                $textX6 = $textBoxX16 + ($maxLineWidth6 - imagettfbbox(24, 0, $font, $textLines6)['2']) / 2;
-                $textY6 = $textBoxY16;
-                // SSS
-                $textX7 = $textBoxX17 + ($maxLineWidth7 - imagettfbbox(24, 0, $font, $textLines7)['2']) / 2;
-                $textY7 = $textBoxY17;
-                // TIN
-                $textX8 = $textBoxX18 + ($maxLineWidth8 - imagettfbbox(24, 0, $font, $textLines8)['2']) / 2;
-                $textY8 = $textBoxY18;
-                // PHILHEALTH
-                $textX9 = $textBoxX19 + ($maxLineWidth9 - imagettfbbox(24, 0, $font, $textLines9)['2']) / 2;
-                $textY9 = $textBoxY19;
-                // HDMF
-                $textX10 = $textBoxX110 + ($maxLineWidth10 - imagettfbbox(24, 0, $font, $textLines10)['2']) / 2;
-                $textY10 = $textBoxY110;
-                // BIRTHDAY
-                $textX11 = $textBoxX111 + ($maxLineWidth11 - imagettfbbox(24, 0, $font, $textLines11)['2']) / 2;
-                $textY11 = $textBoxY111;
+                $lineHeight1 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight1 = count(explode("\n", $textLines)) * $lineHeight1;
+                $textY += ($textBoxY2 - $textBoxY1 - $totalTextHeight1) / 2;
+                 
 
+                // Position
+                //for auto center
+                $totalTextWidth2 = imagettfbbox(18, 0, $font, $textLines2)['2'] - imagettfbbox(18, 0, $font, $textLines2)['0'];
+                $textX2 = $textBoxX12 + ($maxLineWidth2 - $totalTextWidth2) / 2;
+                $textY2 = $textBoxY12;
+                $lineHeight2 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight2 = count(explode("\n", $textLines2)) * $lineHeight2;
+                $textY2 += ($textBoxY22 - $textBoxY12 - $totalTextHeight2) / 2;
+    
+
+                // ID Number
+                $totalTextWidth3 = imagettfbbox(18, 0, $font, $textLines3)['2'] - imagettfbbox(18, 0, $font, $textLines3)['0'];
+                $textX3 = $textBoxX13 + ($maxLineWidth3 - $totalTextWidth3) / 2;
+                $textY3 = $textBoxY13;
+                $lineHeight3 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight3 = count(explode("\n", $textLines3)) * $lineHeight3;
+                $textY3 += ($textBoxY23 - $textBoxY13 - $totalTextHeight3) / 2;
+               
+
+
+
+                // Contact Person
+                $totalTextWidth4 = imagettfbbox(14, 0, $font, $textLines4)['2'] - imagettfbbox(14, 0, $font, $textLines4)['0'];
+                $textX4 = $textBoxX14 + ($maxLineWidth4 - $totalTextWidth4) / 2;
+                $textY4 = $textBoxY14;
+                $lineHeight4 = 10; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight4 = count(explode("\n", $textLines4)) * $lineHeight4;
+                $textY4 += ($textBoxY24 - $textBoxY14 - $totalTextHeight4) / 2;
+        
+
+                // Contact Address
+                $totalTextWidth5 = imagettfbbox(14, 0, $font, $textLines5)['2'] - imagettfbbox(14, 0, $font, $textLines5)['0'];
+                $textX5 = $textBoxX15 + ($maxLineWidth5 - $totalTextWidth5) / 2;
+                $textY5 = $textBoxY15;
+                $lineHeight5 = 25; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight5 = count(explode("\n", $textLines5)) * $lineHeight5;
+                $textY5 += ($textBoxY25 - $textBoxY15 - $totalTextHeight5) / 2;
+                
+
+
+                // Contact Number
+                 $totalTextWidth6 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX6 = $textBoxX16 + ($maxLineWidth6 - $totalTextWidth6) / 2;
+                $textY6 = $textBoxY16;
+                $lineHeight6= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight6 = count(explode("\n", $textLines6)) * $lineHeight6;
+                $textY6 += ($textBoxY26 - $textBoxY16 - $totalTextHeight6) / 2;
+                
+
+
+                // SSS
+                $totalTextWidth7 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX7 = $textBoxX17 + ($maxLineWidth7 - $totalTextWidth7) / 2;
+                $textY7 = $textBoxY17;
+                $lineHeight7= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight7 = count(explode("\n", $textLines7)) * $lineHeight7;
+                $textY7 += ($textBoxY27 - $textBoxY17 - $totalTextHeight7) / 2;
+                
+
+                // TIN
+                $totalTextWidth8 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX8 = $textBoxX18 + ($maxLineWidth8 - $totalTextWidth8) / 2;
+                $textY8 = $textBoxY18;
+                $lineHeight8= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight8 = count(explode("\n", $textLines8)) * $lineHeight8;
+                $textY8 += ($textBoxY28 - $textBoxY18 - $totalTextHeight8) / 2;
+               
+
+
+                // PHILHEALTH
+                $totalTextWidth9 = imagettfbbox(30, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
+                $textX9 = $textBoxX19 + ($maxLineWidth9 - $totalTextWidth9) / 2;
+                $textY9 = $textBoxY19;
+                $lineHeight9= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight9 = count(explode("\n", $textLines9)) * $lineHeight9;
+                $textY9 += ($textBoxY29 - $textBoxY19 - $totalTextHeight9) / 2;
+              
+                // HDMF
+                $totalTextWidth10 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX10 = $textBoxX110 + ($maxLineWidth10 - $totalTextWidth10) / 2;
+                $textY10 = $textBoxY110;
+                $lineHeight10= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight10 = count(explode("\n", $textLines10)) * $lineHeight10;
+                $textY10 += ($textBoxY210 - $textBoxY110 - $totalTextHeight10) / 2;
+                
+
+                // BIRTHDAY
+                $totalTextWidth11 = imagettfbbox(32, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
+                $textX11 = $textBoxX111 + ($maxLineWidth11 - $totalTextWidth11) / 2;
+                $textY11 = $textBoxY111;
+                $lineHeight11= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight11 = count(explode("\n", $textLines11)) * $lineHeight11;
+                $textY11 += ($textBoxY211 - $textBoxY111 - $totalTextHeight11) / 2;
+              
+
+
+                
                 // Add text lines to the image with center alignment
                 foreach (explode("\n", $textLines) as $line) {
                     imagettftext($image, 18, 0, $textX, $textY, $black, $font, $line);
-                    $textY += 30; // Adjust the line height as needed
+                    $textY += $lineHeight1; // Adjust the line height as needed
                 }
 
+              // Draw the text on the image with middle alignment
                 foreach (explode("\n", $textLines2) as $line2) {
-                    imagettftext($image, 18, 0, $textX2, $textY2, $black, $font, $line2);
-                    $textY2 += 30; // Adjust the line height as needed
+                 imagettftext($image, 18, 0, $textX2, $textY2, $black, $font, $line2); // Font size is 18, adjust as needed
+                $textY2 += $lineHeight2; // Move to the next line// Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines3) as $line3) {
                     imagettftext($image, 18, 0, $textX3, $textY3, $black, $font, $line3);
-                    $textY3 += 30; // Adjust the line height as needed
+                    $textY3 += $lineHeight3; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines4) as $line4) {
-                    imagettftext($image, 15, 0, $textX4, $textY4, $black, $font, $line4);
-                    $textY4 += 30; // Adjust the line height as needed
+                    imagettftext($image, 14, 0, $textX4, $textY4, $black, $font, $line4);
+                    $textY4 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines5) as $line5) {
-                    imagettftext($image, 15, 0, $textX5, $textY5, $black, $font, $line5);
-                    $textY5 += 30; // Adjust the line height as needed
+                    imagettftext($image, 14, 0, $textX5, $textY5, $black, $font, $line5);
+                    $textY5 += 18; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines6) as $line6) {
-                    imagettftext($image, 15, 0, $textX6, $textY6, $black, $font, $line6);
-                    $textY6 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX6, $textY6, $black, $font, $line6);
+                    $textY6 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines7) as $line7) {
-                    imagettftext($image, 15, 0, $textX7, $textY7, $black, $font, $line7);
-                    $textY7 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX7, $textY7, $black, $font, $line7);
+                    $textY7 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines8) as $line8) {
-                    imagettftext($image, 15, 0, $textX8, $textY8, $black, $font, $line8);
-                    $textY8 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX8, $textY8, $black, $font, $line8);
+                    $textY8 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines9) as $line9) {
-                    imagettftext($image, 15, 0, $textX9, $textY9, $black, $font, $line9);
-                    $textY9 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX9, $textY9, $black, $font, $line9);
+                    $textY9 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines10) as $line10) {
-                    imagettftext($image, 15, 0, $textX10, $textY10, $black, $font, $line10);
-                    $textY10 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX10, $textY10, $black, $font, $line10);
+                    $textY10 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines11) as $line11) {
-                    imagettftext($image, 15, 0, $textX11, $textY11, $black, $font, $line11);
-                    $textY11 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX11, $textY11, $black, $font, $line11);
+                    $textY11 += 20; // Adjust the line height as needed
                 }
 
                 header("Content-Type: image/png");
@@ -244,7 +355,7 @@ if (isset($_GET['id'])) {
                 $text2 = $row['job_title'];
                 $text3 = $row['emp_id'];
                 $text4 = $select_row['e_person'];
-                $text5 = $select_row['e_address'];
+                $text5 = "    "."   "."    ".$select_row['e_address'];
                 $text6 = $select_row['e_number'];
                 $text7 = $row['sss'];
                 $text8 = $row['tin'];
@@ -265,66 +376,105 @@ if (isset($_GET['id'])) {
 
                 imagedestroy($newImage);
 
-                // Calculate the text box coordinates
-                $textBoxX1 = -280; // Adjust as needed
-                $textBoxY1 = 420; // Adjust as needed
-                $textBoxX2 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY2 = 200; // Adjust as needed
+                 $textBoxX1 = 30; // Adjust as needed
+                $textBoxY1 = 434; // Adjust as needed
+                $textBoxX2 = imagesx($image) - 483; // Adjust as needed
+                $textBoxY2 = 385; // Adjust as needed
+
                 // Position
-                $textBoxX12 = -350; // Adjust as needed
-                $textBoxY12 = 500; // Adjust as needed
-                $textBoxX22 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY22 = 200; // Adjust as needed
+                // Y is for height
+                // x is for width
+                $textBoxX12 = 30; // Adjust as needed
+                $textBoxY12 = 515; // Adjust as needed 
+                $textBoxX22 = imagesx($image) - 483; // Adjust as needed width
+                $textBoxY22 = 465; // Adjust as needed start position of height for text box
+
+
                 // ID Number
-                $textBoxX13 = -600; // Adjust as needed
-                $textBoxY13 = 670; // Adjust as needed
-                $textBoxX23 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY23 = 200; // Adjust as needed
+                $textBoxX13 = 30; // Adjust as needed
+                $textBoxY13 = 685; // Adjust as needed
+                $textBoxX23 = imagesx($image) - 709; // Adjust as needed
+                $textBoxY23 = 635; // Adjust as needed
+
+
                 // Contact Person
-                $textBoxX14 = 750; // Adjust as needed
-                $textBoxY14 = 190; // Adjust as needed
-                $textBoxX24 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY24 = 200; // Adjust as needed
+                $textBoxX14 = 640; // Adjust as needed
+                $textBoxY14 = 195; // Adjust as needed
+                $textBoxX24 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY24 = 150; // Adjust as needed
+
+
                 // Contact Address
-                $textBoxX15 = 710; // Adjust as needed
-                $textBoxY15 = 245; // Adjust as needed
-                $textBoxX25 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY25 = 200; // Adjust as needed
+                $textBoxX15 = 510; // Adjust as needed
+                $textBoxY15 = 295; // Adjust as needed
+                $textBoxX25 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY25 = 195; // Adjust as needed
+
+
                 // Contact Number
-                $textBoxX16 = 650; // Adjust as needed
-                $textBoxY16 = 330; // Adjust as needed
-                $textBoxX26 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY26 = 200; // Adjust as needed
+                $textBoxX16 = 615; // Adjust as needed
+                $textBoxY16 = 348; // Adjust as needed
+                $textBoxX26 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY26 = 298; // Adjust as needed
+
+
                 // SSS
-                $textBoxX17 = 650; // Adjust as needed
-                $textBoxY17 = 380; // Adjust as needed
-                $textBoxX27 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY27 = 200; // Adjust as needed
+                $textBoxX17 = 585; // Adjust as needed
+                $textBoxY17 = 402; // Adjust as needed
+                $textBoxX27 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY27 = 350; // Adjust as needed
+
+
                 // TIN
-                $textBoxX18 = 650; // Adjust as needed
-                $textBoxY18 = 440; // Adjust as needed
-                $textBoxX28 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY28 = 200; // Adjust as needed
+                $textBoxX18 = 585; // Adjust as needed
+                $textBoxY18 = 452; // Adjust as needed
+                $textBoxX28 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY28 = 404; // Adjust as needed
+
+
                 // PHILHEALTH
-                $textBoxX19 = 700; // Adjust as needed
-                $textBoxY19 = 490; // Adjust as needed
-                $textBoxX29 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY29 = 200; // Adjust as needed
+                $textBoxX19 = 620; // Adjust as needed
+                $textBoxY19 = 506; // Adjust as needed
+                $textBoxX29 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY29 = 455; // Adjust as needed
+
+
                 // HDMF
-                $textBoxX110 = 650; // Adjust as needed
-                $textBoxY110 = 540; // Adjust as needed
-                $textBoxX210 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY210 = 200; // Adjust as needed
+                $textBoxX110 = 585; // Adjust as needed
+                $textBoxY110 = 560; // Adjust as needed
+                $textBoxX210 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY210 = 509; // Adjust as needed
+
                 // BIRTHDAY
-                $textBoxX111 = 650; // Adjust as needed
-                $textBoxY111 = 590; // Adjust as needed
-                $textBoxX211 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY211 = 200; // Adjust as needed
-                // DATE END
-                $textBoxX112 = -230; // Adjust as needed
-                $textBoxY112 = 670; // Adjust as needed
-                $textBoxX212 = imagesx($image) - 50; // Adjust as needed
-                $textBoxY212 = 200; // Adjust as needed
+                $textBoxX111 = 585; // Adjust as needed
+                $textBoxY111 = 615; // Adjust as needed
+                $textBoxX211 = imagesx($image) - 40; // Adjust as needed
+                $textBoxY211 = 560; // Adjust as needed
+
+
+                 // END DATE
+                $textBoxX112 = 255; // Adjust as needed
+                $textBoxY112 = 685; // Adjust as needed
+                $textBoxX212 = imagesx($image) - 483; // Adjust as needed
+                $textBoxY212 = 635; // Adjust as needed
+
+                // Text box border color (RGB values)
+                $borderColor = imagecolorallocate($image, 255, 0, 0); // Red color in this example
+
+                 // Draw borders around text boxes
+//full name          imagerectangle($image, $textBoxX1, $textBoxY1, $textBoxX2, $textBoxY2, $borderColor);
+//position           imagerectangle($image, $textBoxX12, $textBoxY12, $textBoxX22, $textBoxY22, $borderColor);
+//          imagerectangle($image, $textBoxX13, $textBoxY13, $textBoxX23, $textBoxY23, $borderColor);
+//Contact Person    imagerectangle($image, $textBoxX14, $textBoxY14, $textBoxX24, $textBoxY24, $borderColor);          
+//Contact Person     imagerectangle($image, $textBoxX15, $textBoxY15, $textBoxX25, $textBoxY25, $borderColor); 
+//Contact Number     imagerectangle($image, $textBoxX16, $textBoxY16, $textBoxX26, $textBoxY26, $borderColor); 
+//SSS No.            imagerectangle($image, $textBoxX17, $textBoxY17, $textBoxX27, $textBoxY27, $borderColor); 
+//TIN No.            imagerectangle($image, $textBoxX18, $textBoxY18, $textBoxX28, $textBoxY28, $borderColor); 
+//PHIL No.           imagerectangle($image, $textBoxX19, $textBoxY19, $textBoxX29, $textBoxY29, $borderColor); 
+//HDMF No.           imagerectangle($image, $textBoxX110, $textBoxY110, $textBoxX210, $textBoxY210, $borderColor);
+//BIRTHDAY           imagerectangle($image, $textBoxX111, $textBoxY111, $textBoxX211, $textBoxY211, $borderColor);
+//END DATE        imagerectangle($image, $textBoxX112, $textBoxY112, $textBoxX212, $textBoxY212, $borderColor); 
+
 
                 // Calculate the maximum line width within the text box
                 $maxLineWidth = $textBoxX2 - $textBoxX1;
@@ -348,8 +498,8 @@ if (isset($_GET['id'])) {
                 $maxLineWidth10 = $textBoxX210 - $textBoxX110;
                 // BIRTHDAY
                 $maxLineWidth11 = $textBoxX211 - $textBoxX111;
-                // DATE END
-                $maxLineWidth12 = $textBoxX212 - $textBoxX12;
+                // END DATE
+                $maxLineWidth12 = $textBoxX212 - $textBoxX112;  
 
                 // Split the text into lines that fit within the max width
                 $textLines = wordwrap($text, 30, "\n", true);
@@ -367,91 +517,165 @@ if (isset($_GET['id'])) {
 
                 // Calculate and set the text position for center alignment
                 // Fullname
-                $textX = $textBoxX1 + ($maxLineWidth - imagettfbbox(24, 0, $font, $textLines)['2']) / 2;
+                $totalTextWidth0 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $textX = $textBoxX1 + ($maxLineWidth - $totalTextWidth0) / 2;
                 $textY = $textBoxY1;
+                $lineHeight1 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight1 = count(explode("\n", $textLines)) * $lineHeight1;
+                $textY += ($textBoxY2 - $textBoxY1 - $totalTextHeight1) / 2;
+                 
+
                 // Position
-                $textX2 = $textBoxX12 + ($maxLineWidth2 - imagettfbbox(24, 0, $font, $textLines2)['2']) / 2;
+                //for auto center
+                $totalTextWidth2 = imagettfbbox(18, 0, $font, $textLines2)['2'] - imagettfbbox(18, 0, $font, $textLines2)['0'];
+                $textX2 = $textBoxX12 + ($maxLineWidth2 - $totalTextWidth2) / 2;
                 $textY2 = $textBoxY12;
+                $lineHeight2 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight2 = count(explode("\n", $textLines2)) * $lineHeight2;
+                $textY2 += ($textBoxY22 - $textBoxY12 - $totalTextHeight2) / 2;
+    
+
                 // ID Number
-                $textX3 = $textBoxX13 + ($maxLineWidth3 - imagettfbbox(24, 0, $font, $textLines3)['2']) / 2;
+                $totalTextWidth3 = imagettfbbox(18, 0, $font, $textLines3)['2'] - imagettfbbox(18, 0, $font, $textLines3)['0'];
+                $textX3 = $textBoxX13 + ($maxLineWidth3 - $totalTextWidth3) / 2;
                 $textY3 = $textBoxY13;
+                $lineHeight3 = -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight3 = count(explode("\n", $textLines3)) * $lineHeight3;
+                $textY3 += ($textBoxY23 - $textBoxY13 - $totalTextHeight3) / 2;
+               
+
+
+
                 // Contact Person
-                $textX4 = $textBoxX14 + ($maxLineWidth4 - imagettfbbox(24, 0, $font, $textLines4)['2']) / 2;
+                $totalTextWidth4 = imagettfbbox(14, 0, $font, $textLines4)['2'] - imagettfbbox(14, 0, $font, $textLines4)['0'];
+                $textX4 = $textBoxX14 + ($maxLineWidth4 - $totalTextWidth4) / 2;
                 $textY4 = $textBoxY14;
+                $lineHeight4 = 10; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight4 = count(explode("\n", $textLines4)) * $lineHeight4;
+                $textY4 += ($textBoxY24 - $textBoxY14 - $totalTextHeight4) / 2;
+        
+
                 // Contact Address
-                $textX5 = $textBoxX15 + ($maxLineWidth5 - imagettfbbox(24, 0, $font, $textLines5)['2']) / 2;
+                $totalTextWidth5 = imagettfbbox(14, 0, $font, $textLines5)['2'] - imagettfbbox(14, 0, $font, $textLines5)['0'];
+                $textX5 = $textBoxX15 + ($maxLineWidth5 - $totalTextWidth5) / 2;
                 $textY5 = $textBoxY15;
+                $lineHeight5 = 25; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight5 = count(explode("\n", $textLines5)) * $lineHeight5;
+                $textY5 += ($textBoxY25 - $textBoxY15 - $totalTextHeight5) / 2;
+                
+
+
                 // Contact Number
-                $textX6 = $textBoxX16 + ($maxLineWidth6 - imagettfbbox(24, 0, $font, $textLines6)['2']) / 2;
+                 $totalTextWidth6 = imagettfbbox(30, 0, $font, $textLines6)['2'] - imagettfbbox(18, 0, $font, $textLines6)['0'];
+                $textX6 = $textBoxX16 + ($maxLineWidth6 - $totalTextWidth6) / 2;
                 $textY6 = $textBoxY16;
+                $lineHeight6= -17; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight6 = count(explode("\n", $textLines6)) * $lineHeight6;
+                $textY6 += ($textBoxY26 - $textBoxY16 - $totalTextHeight6) / 2;
+                
+
+
                 // SSS
-                $textX7 = $textBoxX17 + ($maxLineWidth7 - imagettfbbox(24, 0, $font, $textLines7)['2']) / 2;
+                $totalTextWidth7 = imagettfbbox(35, 0, $font, $textLines7)['2'] - imagettfbbox(18, 0, $font, $textLines7)['0'];
+                $textX7 = $textBoxX17 + ($maxLineWidth7 - $totalTextWidth7) / 2;
                 $textY7 = $textBoxY17;
+                $lineHeight7= -19; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight7 = count(explode("\n", $textLines7)) * $lineHeight7;
+                $textY7 += ($textBoxY27 - $textBoxY17 - $totalTextHeight7) / 2;
+                
+
                 // TIN
-                $textX8 = $textBoxX18 + ($maxLineWidth8 - imagettfbbox(24, 0, $font, $textLines8)['2']) / 2;
+                $totalTextWidth8 = imagettfbbox(35, 0, $font, $textLines8)['2'] - imagettfbbox(18, 0, $font, $textLines8)['0'];
+                $textX8 = $textBoxX18 + ($maxLineWidth8 - $totalTextWidth8) / 2;
                 $textY8 = $textBoxY18;
+                $lineHeight8= -19; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight8 = count(explode("\n", $textLines8)) * $lineHeight8;
+                $textY8 += ($textBoxY28 - $textBoxY18 - $totalTextHeight8) / 2;
+               
+
+
                 // PHILHEALTH
-                $textX9 = $textBoxX19 + ($maxLineWidth9 - imagettfbbox(24, 0, $font, $textLines9)['2']) / 2;
+                $totalTextWidth9 = imagettfbbox(30, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
+                $textX9 = $textBoxX19 + ($maxLineWidth9 - $totalTextWidth9) / 2;
                 $textY9 = $textBoxY19;
+                $lineHeight9= -19; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight9 = count(explode("\n", $textLines9)) * $lineHeight9;
+                $textY9 += ($textBoxY29 - $textBoxY19 - $totalTextHeight9) / 2;
+              
                 // HDMF
-                $textX10 = $textBoxX110 + ($maxLineWidth10 - imagettfbbox(24, 0, $font, $textLines10)['2']) / 2;
+                $totalTextWidth10 = imagettfbbox(35, 0, $font, $textLines10)['2'] - imagettfbbox(18, 0, $font, $textLines10)['0'];
+                $textX10 = $textBoxX110 + ($maxLineWidth10 - $totalTextWidth10) / 2;
                 $textY10 = $textBoxY110;
+                $lineHeight10= -19; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight10 = count(explode("\n", $textLines10)) * $lineHeight10;
+                $textY10 += ($textBoxY210 - $textBoxY110 - $totalTextHeight10) / 2;
+                
+
                 // BIRTHDAY
-                $textX11 = $textBoxX111 + ($maxLineWidth11 - imagettfbbox(24, 0, $font, $textLines11)['2']) / 2;
+                $totalTextWidth11 = imagettfbbox(32, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
+                $textX11 = $textBoxX111 + ($maxLineWidth11 - $totalTextWidth11) / 2;
                 $textY11 = $textBoxY111;
-                // DATE END
-                $textX12 = $textBoxX112 + ($maxLineWidth12 - imagettfbbox(24, 0, $font, $textLines12)['2']) / 2;
+                $lineHeight11= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight11 = count(explode("\n", $textLines11)) * $lineHeight11;
+                $textY11 += ($textBoxY211 - $textBoxY111 - $totalTextHeight11) / 2;
+
+                // END DATE
+                $totalTextWidth12 = imagettfbbox(18, 0, $font, $textLines12)['2'] - imagettfbbox(18, 0, $font, $textLines12)['0'];
+                $textX12 = $textBoxX112 + ($maxLineWidth12 - $totalTextWidth12) / 2;
                 $textY12 = $textBoxY112;
+                $lineHeight12= -15; // Adjust as needed for vertical spacing between lines
+                $totalTextHeight12 = count(explode("\n", $textLines12)) * $lineHeight12;
+                $textY12 += ($textBoxY212 - $textBoxY112 - $totalTextHeight12) / 2;
 
                 // Add text lines to the image with center alignment
                 foreach (explode("\n", $textLines) as $line) {
                     imagettftext($image, 18, 0, $textX, $textY, $black, $font, $line);
-                    $textY += 30; // Adjust the line height as needed
+                    $textY += $lineHeight1; // Adjust the line height as needed
                 }
 
                 foreach (explode("\n", $textLines2) as $line2) {
                     imagettftext($image, 18, 0, $textX2, $textY2, $black, $font, $line2);
-                    $textY2 += 30; // Adjust the line height as needed
+                    $textY2 += $lineHeight2; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines3) as $line3) {
                     imagettftext($image, 18, 0, $textX3, $textY3, $black, $font, $line3);
-                    $textY3 += 30; // Adjust the line height as needed
+                    $textY3 += $lineHeight3; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines4) as $line4) {
-                    imagettftext($image, 15, 0, $textX4, $textY4, $black, $font, $line4);
-                    $textY4 += 30; // Adjust the line height as needed
+                    imagettftext($image, 14, 0, $textX4, $textY4, $black, $font, $line4);
+                    $textY4 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines5) as $line5) {
-                    imagettftext($image, 15, 0, $textX5, $textY5, $black, $font, $line5);
-                    $textY5 += 30; // Adjust the line height as needed
+                    imagettftext($image, 14, 0, $textX5, $textY5, $black, $font, $line5);
+                    $textY5 += 18; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines6) as $line6) {
-                    imagettftext($image, 15, 0, $textX6, $textY6, $black, $font, $line6);
-                    $textY6 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX6, $textY6, $black, $font, $line6);
+                    $textY6 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines7) as $line7) {
-                    imagettftext($image, 15, 0, $textX7, $textY7, $black, $font, $line7);
-                    $textY7 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX7, $textY7, $black, $font, $line7);
+                    $textY7 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines8) as $line8) {
-                    imagettftext($image, 15, 0, $textX8, $textY8, $black, $font, $line8);
-                    $textY8 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX8, $textY8, $black, $font, $line8);
+                    $textY8 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines9) as $line9) {
-                    imagettftext($image, 15, 0, $textX9, $textY9, $black, $font, $line9);
-                    $textY9 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX9, $textY9, $black, $font, $line9);
+                    $textY9 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines10) as $line10) {
-                    imagettftext($image, 15, 0, $textX10, $textY10, $black, $font, $line10);
-                    $textY10 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX10, $textY10, $black, $font, $line10);
+                    $textY10 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines11) as $line11) {
-                    imagettftext($image, 15, 0, $textX11, $textY11, $black, $font, $line11);
-                    $textY11 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX11, $textY11, $black, $font, $line11);
+                    $textY11 += 20; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines12) as $line12) {
-                    imagettftext($image, 15, 0, $textX12, $textY12, $black, $font, $line12);
-                    $textY12 += 30; // Adjust the line height as needed
+                    imagettftext($image, 18, 0, $textX12, $textY12, $black, $font, $line12);
+                    $textY12 += 20; // Adjust the line height as needed
                 }
 
                 header("Content-Type: image/png");

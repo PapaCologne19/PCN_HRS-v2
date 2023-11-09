@@ -341,7 +341,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <label class="form-label">SSS</label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="number" name="sssnum" maxlength="10" class="form-control" placeholder="">
+                                                    <input type="number" name="sssnum" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form-control" placeholder="">
                                                 </div>
                                             </div>
 
@@ -350,7 +350,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <label class="form-label">Pag-IBIG</label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="number" name="pagibignum" maxlength="12" class="form-control" placeholder="">
+                                                    <input type="number" name="pagibignum" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control" placeholder="">
                                                 </div>
                                             </div>
 
@@ -359,7 +359,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <label class="form-label">PhilHealth</label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="number" name="phnum" maxlength="12" class="form-control" placeholder="">
+                                                    <input type="number" name="phnum" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control" placeholder="">
                                                 </div>
                                             </div>
 
@@ -368,7 +368,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <label class="form-label">TIN</label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="number" name="tinnum" maxlength="12" class="form-control" placeholder="">
+                                                    <input type="number" name="tinnum" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;" class="form-control" placeholder="">
                                                 </div>
                                             </div>
 
