@@ -170,11 +170,11 @@ if (isset($_GET['id'])) {
 
                 // Split the text into lines that fit within the max width
                 $textLines = wordwrap($text, 30, "\n", true);
-                $textLines2 = wordwrap($text2, 30, "\n", true);
+                $textLines2 = wordwrap($text2, 20, "\n", true);
                 $textLines3 = wordwrap($text3, 30, "\n", true);
                 $textLines4 = wordwrap($text4, 25, "\n", true);
                 $textLines5 = wordwrap($text5, 33, "\n", true);
-                $textLines6 = wordwrap($text6, 11, "\n", true);
+                $textLines6 = wordwrap($text6, 23, "\n", true);
                 $textLines7 = wordwrap($text7, 10, "\n", true);
                 $textLines8 = wordwrap($text8, 12, "\n", true);
                 $textLines9 = wordwrap($text9, 12, "\n", true);
@@ -232,7 +232,7 @@ if (isset($_GET['id'])) {
 
 
                 // Contact Number
-                 $totalTextWidth6 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                 $totalTextWidth6 = imagettfbbox(18, 0, $font, $textLines6)['2'] - imagettfbbox(18, 0, $font, $textLines6)['0'];
                 $textX6 = $textBoxX16 + ($maxLineWidth6 - $totalTextWidth6) / 2;
                 $textY6 = $textBoxY16;
                 $lineHeight6= -15; // Adjust as needed for vertical spacing between lines
@@ -242,7 +242,7 @@ if (isset($_GET['id'])) {
 
 
                 // SSS
-                $totalTextWidth7 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $totalTextWidth7 = imagettfbbox(18, 0, $font, $textLines7)['2'] - imagettfbbox(18, 0, $font, $textLines7)['0'];
                 $textX7 = $textBoxX17 + ($maxLineWidth7 - $totalTextWidth7) / 2;
                 $textY7 = $textBoxY17;
                 $lineHeight7= -15; // Adjust as needed for vertical spacing between lines
@@ -251,7 +251,7 @@ if (isset($_GET['id'])) {
                 
 
                 // TIN
-                $totalTextWidth8 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $totalTextWidth8 = imagettfbbox(18, 0, $font, $textLines8)['2'] - imagettfbbox(18, 0, $font, $textLines8)['0'];
                 $textX8 = $textBoxX18 + ($maxLineWidth8 - $totalTextWidth8) / 2;
                 $textY8 = $textBoxY18;
                 $lineHeight8= -15; // Adjust as needed for vertical spacing between lines
@@ -261,7 +261,7 @@ if (isset($_GET['id'])) {
 
 
                 // PHILHEALTH
-                $totalTextWidth9 = imagettfbbox(30, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
+                $totalTextWidth9 = imagettfbbox(18, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
                 $textX9 = $textBoxX19 + ($maxLineWidth9 - $totalTextWidth9) / 2;
                 $textY9 = $textBoxY19;
                 $lineHeight9= -15; // Adjust as needed for vertical spacing between lines
@@ -269,7 +269,7 @@ if (isset($_GET['id'])) {
                 $textY9 += ($textBoxY29 - $textBoxY19 - $totalTextHeight9) / 2;
               
                 // HDMF
-                $totalTextWidth10 = imagettfbbox(18, 0, $font, $textLines)['2'] - imagettfbbox(18, 0, $font, $textLines)['0'];
+                $totalTextWidth10 = imagettfbbox(18, 0, $font, $textLines10)['2'] - imagettfbbox(18, 0, $font, $textLines10)['0'];
                 $textX10 = $textBoxX110 + ($maxLineWidth10 - $totalTextWidth10) / 2;
                 $textY10 = $textBoxY110;
                 $lineHeight10= -15; // Adjust as needed for vertical spacing between lines
@@ -278,7 +278,7 @@ if (isset($_GET['id'])) {
                 
 
                 // BIRTHDAY
-                $totalTextWidth11 = imagettfbbox(32, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
+                $totalTextWidth11 = imagettfbbox(18, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
                 $textX11 = $textBoxX111 + ($maxLineWidth11 - $totalTextWidth11) / 2;
                 $textY11 = $textBoxY111;
                 $lineHeight11= -15; // Adjust as needed for vertical spacing between lines
@@ -313,27 +313,27 @@ if (isset($_GET['id'])) {
                 }
                 foreach (explode("\n", $textLines6) as $line6) {
                     imagettftext($image, 18, 0, $textX6, $textY6, $black, $font, $line6);
-                    $textY6 += 20; // Adjust the line height as needed
+                    $textY6 += $lineHeight6; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines7) as $line7) {
                     imagettftext($image, 18, 0, $textX7, $textY7, $black, $font, $line7);
-                    $textY7 += 20; // Adjust the line height as needed
+                    $textY7 += $lineHeight7; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines8) as $line8) {
                     imagettftext($image, 18, 0, $textX8, $textY8, $black, $font, $line8);
-                    $textY8 += 20; // Adjust the line height as needed
+                    $textY8 += $lineHeight8; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines9) as $line9) {
                     imagettftext($image, 18, 0, $textX9, $textY9, $black, $font, $line9);
-                    $textY9 += 20; // Adjust the line height as needed
+                    $textY9 += $lineHeight9; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines10) as $line10) {
                     imagettftext($image, 18, 0, $textX10, $textY10, $black, $font, $line10);
-                    $textY10 += 20; // Adjust the line height as needed
+                    $textY10 += $lineHeight10; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines11) as $line11) {
                     imagettftext($image, 18, 0, $textX11, $textY11, $black, $font, $line11);
-                    $textY11 += 20; // Adjust the line height as needed
+                    $textY11 += $lineHeight11; // Adjust the line height as needed
                 }
 
                 header("Content-Type: image/png");
@@ -566,17 +566,17 @@ if (isset($_GET['id'])) {
 
 
                 // Contact Number
-                 $totalTextWidth6 = imagettfbbox(30, 0, $font, $textLines6)['2'] - imagettfbbox(18, 0, $font, $textLines6)['0'];
+                 $totalTextWidth6 = imagettfbbox(18, 0, $font, $textLines6)['2'] - imagettfbbox(18, 0, $font, $textLines6)['0'];
                 $textX6 = $textBoxX16 + ($maxLineWidth6 - $totalTextWidth6) / 2;
                 $textY6 = $textBoxY16;
-                $lineHeight6= -17; // Adjust as needed for vertical spacing between lines
+                $lineHeight6= -19; // Adjust as needed for vertical spacing between lines
                 $totalTextHeight6 = count(explode("\n", $textLines6)) * $lineHeight6;
                 $textY6 += ($textBoxY26 - $textBoxY16 - $totalTextHeight6) / 2;
                 
 
 
                 // SSS
-                $totalTextWidth7 = imagettfbbox(35, 0, $font, $textLines7)['2'] - imagettfbbox(18, 0, $font, $textLines7)['0'];
+                $totalTextWidth7 = imagettfbbox(18, 0, $font, $textLines7)['2'] - imagettfbbox(18, 0, $font, $textLines7)['0'];
                 $textX7 = $textBoxX17 + ($maxLineWidth7 - $totalTextWidth7) / 2;
                 $textY7 = $textBoxY17;
                 $lineHeight7= -19; // Adjust as needed for vertical spacing between lines
@@ -585,7 +585,7 @@ if (isset($_GET['id'])) {
                 
 
                 // TIN
-                $totalTextWidth8 = imagettfbbox(35, 0, $font, $textLines8)['2'] - imagettfbbox(18, 0, $font, $textLines8)['0'];
+                $totalTextWidth8 = imagettfbbox(18, 0, $font, $textLines8)['2'] - imagettfbbox(18, 0, $font, $textLines8)['0'];
                 $textX8 = $textBoxX18 + ($maxLineWidth8 - $totalTextWidth8) / 2;
                 $textY8 = $textBoxY18;
                 $lineHeight8= -19; // Adjust as needed for vertical spacing between lines
@@ -595,7 +595,7 @@ if (isset($_GET['id'])) {
 
 
                 // PHILHEALTH
-                $totalTextWidth9 = imagettfbbox(30, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
+                $totalTextWidth9 = imagettfbbox(18, 0, $font, $textLines9)['2'] - imagettfbbox(18, 0, $font, $textLines9)['0'];
                 $textX9 = $textBoxX19 + ($maxLineWidth9 - $totalTextWidth9) / 2;
                 $textY9 = $textBoxY19;
                 $lineHeight9= -19; // Adjust as needed for vertical spacing between lines
@@ -603,7 +603,7 @@ if (isset($_GET['id'])) {
                 $textY9 += ($textBoxY29 - $textBoxY19 - $totalTextHeight9) / 2;
               
                 // HDMF
-                $totalTextWidth10 = imagettfbbox(35, 0, $font, $textLines10)['2'] - imagettfbbox(18, 0, $font, $textLines10)['0'];
+                $totalTextWidth10 = imagettfbbox(18, 0, $font, $textLines10)['2'] - imagettfbbox(18, 0, $font, $textLines10)['0'];
                 $textX10 = $textBoxX110 + ($maxLineWidth10 - $totalTextWidth10) / 2;
                 $textY10 = $textBoxY110;
                 $lineHeight10= -19; // Adjust as needed for vertical spacing between lines
@@ -612,7 +612,7 @@ if (isset($_GET['id'])) {
                 
 
                 // BIRTHDAY
-                $totalTextWidth11 = imagettfbbox(32, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
+                $totalTextWidth11 = imagettfbbox(18, 0, $font, $textLines11)['2'] - imagettfbbox(18, 0, $font, $textLines11)['0'];
                 $textX11 = $textBoxX111 + ($maxLineWidth11 - $totalTextWidth11) / 2;
                 $textY11 = $textBoxY111;
                 $lineHeight11= -15; // Adjust as needed for vertical spacing between lines
@@ -633,9 +633,10 @@ if (isset($_GET['id'])) {
                     $textY += $lineHeight1; // Adjust the line height as needed
                 }
 
+              // Draw the text on the image with middle alignment
                 foreach (explode("\n", $textLines2) as $line2) {
-                    imagettftext($image, 18, 0, $textX2, $textY2, $black, $font, $line2);
-                    $textY2 += $lineHeight2; // Adjust the line height as needed
+                 imagettftext($image, 18, 0, $textX2, $textY2, $black, $font, $line2); // Font size is 18, adjust as needed
+                $textY2 += $lineHeight2; // Move to the next line// Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines3) as $line3) {
                     imagettftext($image, 18, 0, $textX3, $textY3, $black, $font, $line3);
@@ -651,31 +652,31 @@ if (isset($_GET['id'])) {
                 }
                 foreach (explode("\n", $textLines6) as $line6) {
                     imagettftext($image, 18, 0, $textX6, $textY6, $black, $font, $line6);
-                    $textY6 += 20; // Adjust the line height as needed
+                    $textY6 += $lineHeight6; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines7) as $line7) {
                     imagettftext($image, 18, 0, $textX7, $textY7, $black, $font, $line7);
-                    $textY7 += 20; // Adjust the line height as needed
+                    $textY7 += $lineHeight7; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines8) as $line8) {
                     imagettftext($image, 18, 0, $textX8, $textY8, $black, $font, $line8);
-                    $textY8 += 20; // Adjust the line height as needed
+                    $textY8 += $lineHeight8; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines9) as $line9) {
                     imagettftext($image, 18, 0, $textX9, $textY9, $black, $font, $line9);
-                    $textY9 += 20; // Adjust the line height as needed
+                    $textY9 += $lineHeight9; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines10) as $line10) {
                     imagettftext($image, 18, 0, $textX10, $textY10, $black, $font, $line10);
-                    $textY10 += 20; // Adjust the line height as needed
+                    $textY10 += $lineHeight10; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines11) as $line11) {
                     imagettftext($image, 18, 0, $textX11, $textY11, $black, $font, $line11);
-                    $textY11 += 20; // Adjust the line height as needed
+                    $textY11 += $lineHeight11; // Adjust the line height as needed
                 }
                 foreach (explode("\n", $textLines12) as $line12) {
                     imagettftext($image, 18, 0, $textX12, $textY12, $black, $font, $line12);
-                    $textY12 += 20; // Adjust the line height as needed
+                    $textY12 += $lineHeight12; // Adjust the line height as needed
                 }
 
                 header("Content-Type: image/png");

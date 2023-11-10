@@ -468,7 +468,7 @@ if (isset($_POST['remove_button_click'])) {
             echo json_encode($response);
             exit;
         } else {
-            $query_delete = "DELETE FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
+            $query_delete = "UPDATE shortlist_master SET is_deleted = '1' WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
             $result_delete = mysqli_query($link, $query_delete);
 
             if ($result_delete) {
@@ -494,7 +494,7 @@ if (isset($_POST['remove_button_click'])) {
                 echo json_encode($response);
                 exit;
             } else {
-                $query_deleted = "DELETE FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
+                $query_deleted = "UPDATE shortlist_master SET is_deleted = '1' WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
                 $result_deleted = mysqli_query($link, $query_deleted);
 
                 if ($result_deleted) {

@@ -216,10 +216,10 @@ include '../../connect.php';
 
                                             <div class="row mt-3">
                                                 <div class="col-md-2">
-                                                    <label class="form-label">Cell Phone Number </label>
+                                                    <label class="form-label">Cellphone Number </label>
                                                 </div>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="cpnum" value="<?php echo $rowed["cpnum"] ?>" class="form-control" placeholder="">
+                                                    <input type="text" name="cpnum" value="<?php echo $rowed["cpnum"] ?>" maxlength="14" oninput="formatContactNumber(this)" class="form-control" placeholder="">
                                                 </div>
                                             </div>
 
@@ -458,6 +458,8 @@ include '../../connect.php';
             </div>
         </div>
     </div>
+    
+    </script>
     <?php include '../components/footer.php'; ?>
 </body>
 

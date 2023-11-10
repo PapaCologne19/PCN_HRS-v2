@@ -100,7 +100,7 @@ if (isset($_POST['Back'])) {
 
 <body>
 
-  <div class="container">
+  <div class="container-fluid">
 
     <?php
 
@@ -149,161 +149,161 @@ if (isset($_POST['Back'])) {
 
 
 
-<form action="" class="row">
+<form action="" class="form-group">
 
- <div class="row ">
-            <div class="col-md-6">
+ <div class="row">
+            <div class="col-md-4 col-sm-4">
               <label class="form-label">Employee Number</label>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
               <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['id'] . '" class="form-group" readonly>
             </div>
           </div>
 
  <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Employment Status</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
    <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['employment_status'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Client</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['client_name'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Project</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['place_assigned'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Employment Start Date</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['loa_start_date'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Employment End Date</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['loa_end_date'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Outlet</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['outlet'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Area</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['address_assigned'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">SSS Number</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['sss'] . '" class="form-group" readonly>
  </div>
 </div>
 
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Philhealth Number</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['philhealth'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Pag-ibig Number</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['pagibig'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">TIN Number</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['tin'] . '" class="form-group" readonly>
  </div>
 </div>
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Birthdate</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap['birthday'] . '" class="form-group" readonly>
  </div>
 </div>
 
   
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Salary</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['basic_salary'] . '" class="form-group" readonly>
  </div>
 </div>
 
 
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">Job Title</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['job_title'] . '" class="form-group" readonly>
  </div>
 </div>
  
 <div class="row ">
- <div class="col-md-6">
+ <div class="col-md-4 col-sm-4">
    <label class="form-label">LOA Number</label>
  </div>
- <div class="col-md-6">
+ <div class="col-md-8">
     <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['emp_id'] . '" class="form-group" readonly>
  </div>
 </div>
 
 
   <div class="row ">
-    <div class="col-md-6">
+    <div class="col-md-4 col-sm-4">
       <label class="form-label">ID Number</label>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <input type="text" name = "newshortlist" class="form-control" value= "' . $rowap1['emp_id'] . '" class="form-group" readonly>
     </div>
   </div>
