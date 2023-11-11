@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 03:27 AM
+-- Generation Time: Nov 11, 2023 at 08:58 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -30,61 +30,50 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `applicant` (
   `id` int(11) NOT NULL,
-  `tracking` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `photopath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dapplied` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `appno` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `source` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `lastnameko` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `firstnameko` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mnko` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `extnname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `paddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `cityn` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `regionn` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `peraddress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `age` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gendern` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `civiln` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `cpnum` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `landline` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `emailadd` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `despo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `classn` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `idenn` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sssnum` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `pagibignum` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phnum` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tinnum` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `policed` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `brgyd` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nbid` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `psa` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `remarks` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `actionpoint` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `reasonofaction` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `dateofaction` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ewbdeploy` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ewbdate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `e_person` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `e_address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `e_number` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ter_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ter_person` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `res_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `res_person` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `end_con` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ter_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `unter_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `res_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `retrench_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `retrench_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `retrench_personel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `float_date` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `float_reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `float_personel` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `middlename` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `extension_name` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `age` int(11) NOT NULL,
+  `mobile_number` varchar(255) NOT NULL,
+  `email_address` varchar(255) NOT NULL,
+  `birthday` date NOT NULL,
+  `present_address` varchar(255) NOT NULL,
+  `applicant_status` varchar(25) NOT NULL DEFAULT 'ACTIVE',
+  `resume_attachment` varchar(255) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `applicant`
+--
+
+INSERT INTO `applicant` (`id`, `username`, `password`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `applicant_status`, `resume_attachment`, `date_created`) VALUES
+(1, 'jpgomera19', '$2y$10$IUd4GxDVM5sqwjqHpm.zUe2bsT109kf2PhsoYTfGjHgNE7vLJ7U3W', 'JAMES PHILIP', 'AMANTE', 'GOMERA', '', 'Male', 22, '09101465183', 'jpgomera19@gmail.com', '2001-06-19', '#27 BANSALANGIN ST PAYATAS B', 'ACTIVE', '', '2023-11-11 00:41:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applicant_resume`
+--
+
+CREATE TABLE `applicant_resume` (
+  `id` int(11) NOT NULL,
+  `applicant_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `resume_file` varchar(255) NOT NULL,
+  `date_applied` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `applicant_resume`
+--
+
+INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `resume_file`, `date_applied`) VALUES
+(6, 1, 705, 'adasd.pdf', '2023-11-11 15:09:30');
 
 -- --------------------------------------------------------
 
@@ -2098,7 +2087,7 @@ CREATE TABLE `deployment` (
 --
 
 INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_return`, `is_deleted`) VALUES
-(13, 'HR Assistant', 759, '11/04/2023', 11, 2147483647, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '1', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, '', '', '', '2023-11-09 08:21:01', '', 0);
+(13, 'HR Assistant', 759, '11/04/2023', 11, 2147483647, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, '', '', '', '2023-11-09 08:21:01', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2172,7 +2161,8 @@ CREATE TABLE `deployment_history` (
 
 INSERT INTO `deployment_history` (`id`, `shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_updated`, `date_return`, `is_deleted`) VALUES
 (45, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 11, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Probationary', 'Maintenance Integration Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-09 08:21:01', '', NULL, 0),
-(46, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-09 08:22:38', '2023-11-09 16:22:38', NULL, 0);
+(46, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-09 08:22:38', '2023-11-09 16:22:38', NULL, 0),
+(47, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-10 04:06:03', '2023-11-10 12:06:03', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2357,7 +2347,7 @@ INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `so
 (11, '759', '../../upload/6545a3e6d1cff.png', '2023-11-04 14:59:06', '759', 'FACEBOOK', 'DOE', 'JOHN', 'SMITH', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2001-08-31', '22', 'MALE', 'SINGLE', '09123456789', '', 'JOHNDOE@GMAIL.COM', 'IT', 'CLASS 1', 'CHUBBY', '8888888888', '999999999999', '777777777777', '666666666666', '2023-11-04', '2023-11-04', '2023-11-04', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '2023-11-04 14:25:24', 'VERIFIED', 'INCOMPLETE REQUIREMENTS', 'COMPLETED THE REQUIREMENTS', '11/04/2023', 'MARY SMITH ', '#27 BANSALANGIN ST PAYATAS B', '09123456987', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', 'FUENTES, PATTY', 0),
 (12, '760', '../../upload/6545eb0bcce74.png', '11/04/2023 07:56:11 AM', '760', 'WALK-IN', 'TAMAD', 'JUAN', 'JUNIOR', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2000-11-11', '22', 'MALE', 'SINGLE', '09101465183', '', 'JUANTAMAD@GMAIL.COM', 'IT SUPPORT', 'CLASS 1', 'WITH TATTOO', '12312313123', '12312312312', '12312312312', '12312312312', '2023-11-21', '2023-11-09', '2023-11-17', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/09/2023', 'NOT VERIFY', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
 (13, '761', '../../upload/652f6f9305f7d.png', '2023-11-04 14:59:06', '761', 'WALK-IN', 'TEST', 'TEST', 'TEST', 'N/A', '', '#27 BANSALANGIN ST PAYATAS B', 'ALABEL (CAPITAL)', '12', '#27 BANSALANGIN ST PAYATAS B', '2001-01-01', '22', 'MALE', 'SINGLE WITH ONE DEPENDENT', '09101465183', '', 'JUANTAMAD3@GMAIL.COM', 'IT SUPPORT', 'MODEL CLASS A', 'CURLY HAIR', '12312313123', '12312312312', '12312312312', '12312312312', '2023-11-09', '2023-11-22', '2023-11-25', 'WITHOUT', 'REMARKS', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
-(15, '805', '../../upload/654c91b1d9167.png', '2023-11-09 16:00:50', '805', 'BAGONG SOURCES', 'GOMERA', 'JAMES PHILIP', ' AMANTE', 'ADASD', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', 'ASD', '2023-11-29', '0', 'FEMALE', 'SINGLE', '09101 465183', 'ASDAD', 'ASDASDAS@EMAIL.COM', 'SOFTWARE ENGINEER', 'CLASS 1', 'PROBLEM WITH LETTER I', '12312313123', '12312312312', '222222222222', '12312312312', '2023-11-10', '2023-11-10', '2023-11-13', 'WITHOUT', 'REMARKS', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0);
+(15, '805', '../../upload/654c91b1d9167.png', '2023-11-09 16:00:50', '805', 'BAGONG SOURCES', 'GOMERA', 'JAMES PHILIP', ' AMANTE', 'ADASD', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', 'ASD', '2023-11-29', '0', 'FEMALE', 'SINGLE', '09101465183', 'ASDAD', 'ASDASDAS@EMAIL.COM', 'SOFTWARE ENGINEER', 'CLASS 1', 'PROBLEM WITH LETTER I', '12312313123', '12312312312', '222222222222', '12312312312', '2023-11-10', '2023-11-10', '2023-11-13', 'WITHOUT', 'REMARKS', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0);
 
 -- --------------------------------------------------------
 
@@ -3173,7 +3163,8 @@ CREATE TABLE `loa_files` (
 --
 
 INSERT INTO `loa_files` (`id`, `loa_main_id`, `file_name`, `file_location`, `date_modified`, `status`) VALUES
-(1, 15, 'BD1-ULP-Bundler-weekly-for-ULP-Q3-PCN-OG-SMKT-A1113-SURF-FABCON-69ML-6-1-Q3-Only.docx', '../loa_template_directory/', '2023-11-09 08:17:46', 1);
+(1, 15, 'BD1-ULP-Bundler-weekly-for-ULP-Q3-PCN-OG-SMKT-A1113-SURF-FABCON-69ML-6-1-Q3-Only.docx', '../loa_template_directory/', '2023-11-09 08:17:46', 0),
+(2, 16, 'Medical-certificate-fitness-for-duty_Consultants-1.docx', '../loa_template_directory/', '2023-11-10 04:04:52', 1);
 
 -- --------------------------------------------------------
 
@@ -3239,7 +3230,8 @@ CREATE TABLE `loa_maintenance_word` (
 --
 
 INSERT INTO `loa_maintenance_word` (`id`, `loa_name`, `division`, `date_created`, `date_updated`, `is_default`, `is_deleted`, `applicant_name`, `applicant_address`, `client_name`, `place_assigned`, `address_assigned`, `job_title`, `employment_status`, `start_date`, `end_date`, `basic_pay`, `outlet`, `no_work_days`, `issued_day`, `issued_month`, `issued_year`, `pb_deployment_personel`, `pb_dpdesignation`, `pb_supervisor`, `pb_sdesignation`, `eb_project_supervisor`, `eb_psdesignation`, `ab_head`, `ab_hdesignation`, `ab_project_supervisor`, `ab_psdesignation`, `sss_no`, `philhealth_no`, `pagibig_no`, `tin_no`, `applicant_id`, `applicant_contact`, `communication_allowance`, `transpo_meal_allowance`, `ecola`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `trans`, `total_sum`, `shortlist_id`, `loa_tracker`) VALUES
-(15, 'New Template', 'BD1', '2023-11-09 08:17:46', '2023-11-09 08:17:46', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33');
+(15, 'New Template', 'BD1', '2023-11-09 08:17:46', '2023-11-09 08:17:46', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33'),
+(16, 'IBANG TEMPLATE', 'BD1', '2023-11-10 04:04:52', '2023-11-10 04:04:52', 0, 0, 'Value1', 'Value2', 'Value3', 'Value4', 'Value5', 'Value6', 'Value7', 'Value8', 'Deo9', 'Value10', 'Value11a', 'Value12', 'Value13', 'Value14', 'Value15', 'Value16', 'Value17', 'Value18', 'Value19', 'Value20', 'Value21', 'Value22', 'Value23', 'Value24', 'Value25', 'Value26', 'Value27', 'Value28', 'Value29', 'Value30', 'Value31', 'Value10a', 'Value10b', 'Value10c', 'Value10d', 'Value10e', 'Value10f', 'Value10g', 'Value10h', NULL, 'TotalValue', 'Value32', 'Value33');
 
 -- --------------------------------------------------------
 
@@ -3420,7 +3412,15 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (158, 'deployment', '11/09/2023', '2023-11-09 16:12:20', 'DEPLOYMENT login Accepted'),
 (159, 'admin', '11/09/2023', '2023-11-09 16:17:24', 'ADMIN login Accepted'),
 (160, 'deployment', '11/10/2023', '2023-11-10 08:29:19', 'DEPLOYMENT login Accepted'),
-(161, 'deployment', '11/10/2023', '2023-11-10 10:25:48', 'DEPLOYMENT login Accepted');
+(161, 'deployment', '11/10/2023', '2023-11-10 10:25:48', 'DEPLOYMENT login Accepted'),
+(162, 'recruitment', '11/10/2023', '2023-11-10 10:29:00', 'RECRUITMENT login Accepted'),
+(163, 'deployment', '11/10/2023', '2023-11-10 10:30:17', 'DEPLOYMENT login Accepted'),
+(164, 'admin', '11/10/2023', '2023-11-10 12:04:15', 'ADMIN login Accepted'),
+(165, 'deployment', '11/10/2023', '2023-11-10 12:05:00', 'DEPLOYMENT login Accepted'),
+(166, 'admin', '11/10/2023', '2023-11-10 12:05:41', 'ADMIN login Accepted'),
+(167, 'recruitment', '11/11/2023', '2023-11-11 13:49:12', 'RECRUITMENT login Accepted'),
+(168, 'mrf', '11/11/2023', '2023-11-11 14:13:51', 'MRF login Accepted'),
+(169, 'mrf', '11/11/2023', '2023-11-11 14:14:54', 'MRF login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3497,10 +3497,10 @@ CREATE TABLE `mrf` (
 --
 
 INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `client_address`, `project_title`, `ce_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
-(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-04 01:34:12'),
-(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-04 01:35:16'),
-(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', 'BUSS. MANAGER', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-04 01:35:18'),
-(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-04 01:35:20');
+(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-11 02:53:25'),
+(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-11 06:20:57'),
+(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', 'BUSS. MANAGER', '', '5', '3', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-11 03:11:12'),
+(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREAS', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-11 01:03:34');
 
 -- --------------------------------------------------------
 
@@ -3721,18 +3721,20 @@ CREATE TABLE `projects` (
   `start_date` varchar(255) DEFAULT NULL,
   `end_date` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL COMMENT '1=active; 0=inactive',
-  `is_deleted` varchar(255) DEFAULT '0'
+  `is_deleted` varchar(255) DEFAULT '0',
+  `approved_by` varchar(255) NOT NULL,
+  `date_approved` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`) VALUES
-(703, 1, 'IT SUPPORT', 'PCN PROMOPRO INC.', '3', '2023-09-06', '2023-12-31', '1', '0'),
-(704, 2, 'HR ASSISTANT', 'PCN PROMOPRO INC.', '8', '2023-11-29', '2024-03-31', '1', '0'),
-(705, 3, 'MERCHANDISER', 'UNILEVER FOOD SOLUTIONS', '8', '2023-12-06', '2024-06-30', '1', '0'),
-(706, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0');
+INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`, `approved_by`, `date_approved`) VALUES
+(703, 1, 'IT SUPPORT', 'PCN PROMOPRO INC.', '3', '2023-09-06', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
+(704, 2, 'HR ASSISTANT', 'PCN PROMOPRO INC.', '8', '2023-11-29', '2024-03-31', '1', '0', '', '2023-11-11 08:52:59'),
+(705, 3, 'MERCHANDISER', 'UNILEVER FOOD SOLUTIONS', '8', '2023-12-06', '2024-06-30', '1', '0', '', '2023-11-11 08:52:59'),
+(706, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59');
 
 -- --------------------------------------------------------
 
@@ -3799,6 +3801,34 @@ INSERT INTO `region` (`id`, `psgcCode`, `regDesc`, `regCode`, `tr`) VALUES
 (17, '150000000', 'AUTONOMOUS REGION IN MUSLIM MINDANAO (ARMM)', '15', 'ARMM'),
 (15, '130000000', 'NATIONAL CAPITAL REGION (NCR)', '13', 'NCR'),
 (18, '180000000', 'N/A', '18', 'NA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rejected_applicants_history`
+--
+
+CREATE TABLE `rejected_applicants_history` (
+  `id` int(11) NOT NULL,
+  `applicant_id` int(11) NOT NULL,
+  `job_applied` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `firstname` varchar(255) DEFAULT NULL,
+  `middlename` varchar(255) DEFAULT NULL,
+  `lastname` varchar(255) DEFAULT NULL,
+  `extension_name` varchar(255) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `mobile_number` varchar(15) DEFAULT NULL,
+  `email_address` varchar(255) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `present_address` text,
+  `applicant_status` varchar(20) DEFAULT NULL,
+  `resume_attachment` varchar(255) DEFAULT NULL,
+  `number_of_months` int(11) NOT NULL DEFAULT '3',
+  `date_applied` datetime NOT NULL,
+  `date_rejected` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -3909,7 +3939,7 @@ CREATE TABLE `synch` (
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
 (1, '1', '2023-11-09'),
-(2, 'Shortlist', '11/09/2023');
+(2, 'Shortlist', '11/11/2023');
 
 -- --------------------------------------------------------
 
@@ -3961,7 +3991,7 @@ CREATE TABLE `track` (
 --
 
 INSERT INTO `track` (`id`, `appno`) VALUES
-(1, '827'),
+(1, '828'),
 (2, '25');
 
 -- --------------------------------------------------------
@@ -3996,6 +4026,14 @@ INSERT INTO `users` (`id`, `uname`, `pname`, `approve`) VALUES
 --
 ALTER TABLE `applicant`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `applicant_resume`
+--
+ALTER TABLE `applicant_resume`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `applicant_id` (`applicant_id`),
+  ADD KEY `project_id` (`project_id`);
 
 --
 -- Indexes for table `attrition`
@@ -4215,6 +4253,12 @@ ALTER TABLE `region`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rejected_applicants_history`
+--
+ALTER TABLE `rejected_applicants_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
@@ -4267,7 +4311,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `applicant_resume`
+--
+ALTER TABLE `applicant_resume`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `attrition`
@@ -4339,7 +4389,7 @@ ALTER TABLE `deployment`
 -- AUTO_INCREMENT for table `deployment_history`
 --
 ALTER TABLE `deployment_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `distinguishing_qualification_marks`
@@ -4417,19 +4467,19 @@ ALTER TABLE `loa`
 -- AUTO_INCREMENT for table `loa_files`
 --
 ALTER TABLE `loa_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `loa_maintenance_word`
 --
 ALTER TABLE `loa_maintenance_word`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `mrf`
@@ -4460,6 +4510,12 @@ ALTER TABLE `projects`
 --
 ALTER TABLE `recruitment_approve_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `rejected_applicants_history`
+--
+ALTER TABLE `rejected_applicants_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `shortlist_details`
@@ -4500,6 +4556,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `applicant_resume`
+--
+ALTER TABLE `applicant_resume`
+  ADD CONSTRAINT `applicant_resume_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `applicant` (`id`),
+  ADD CONSTRAINT `applicant_resume_ibfk_2` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`);
 
 --
 -- Constraints for table `loa_files`
