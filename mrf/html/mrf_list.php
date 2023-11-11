@@ -127,7 +127,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <div class="columns">
                                                         <button type="button" class="btn btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon" style="color: black !important;"></i></button>
                                                     </div>
-                                                    <div class="columns">
+                                                    <!-- <div class="columns">
                                                         <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
                                                             <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
                                                             <button type="button" class="btn btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon" style="color: black !important;"></i></button>
@@ -136,7 +136,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                     <div class="columns">
                                                         <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
                                                         <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </td>
                                         </tr>

@@ -74,7 +74,7 @@ if (isset($_POST['next'])) {
     } else {
         $_SESSION['errorMessage'] = "Applicant is already in Database! In: " . $row['actionpoint'];
     }
-    header("Location: applicant.php");
+    header("Location: employees.php");
     exit();
 }
 
@@ -235,7 +235,7 @@ if (isset($_POST['updateit'])) {
     } else {
         $_SESSION['errorMessage'] = "Update Error!";
     }
-    header("Location: applicant.php");
+    header("Location: employees.php");
     exit(0);
 }
 

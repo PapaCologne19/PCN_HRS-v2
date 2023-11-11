@@ -23,6 +23,16 @@
       </a>
     </li>
     <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">MRF SECTION</span>
+    </li>
+    <!-- Accept MRF-->
+    <li class="menu-item">
+      <a href="accept_mrf.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">MRF</div>
+      </a>
+    </li>
+    <li class="menu-header small text-uppercase">
       <span class="menu-header-text">EWB CONCERN</span>
     </li>
     <!-- For Requirements-->
@@ -34,6 +44,13 @@
     </li>
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">RECRUITMENT MENU</span>
+    </li>
+    <!-- Applicant -->
+    <li class="menu-item">
+      <a href="applicant.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Shortlisting</div>
+      </a>
     </li>
     <!-- Take Applicant Photo -->
     <li class="menu-item">
@@ -55,9 +72,9 @@
     </li>
     <!-- Applicant -->
     <li class="menu-item">
-      <a href="applicant.php" class="menu-link">
+      <a href="employees.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">Applicant</div>
+        <div data-i18n="Analytics">Employee</div>
       </a>
     </li>
     <!-- Print an entry -->
@@ -99,13 +116,7 @@
       </a>
     </li>
     
-    <!-- Accept MRF-->
-    <li class="menu-item">
-      <a href="accept_mrf.php" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">MRF</div>
-      </a>
-    </li>
+    
     
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">REPORTS</span>

@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../../connect.php';
 
 $view_id = $_POST['id'];
 $query = "SELECT * FROM mrf WHERE id = '$view_id'";
@@ -12,7 +12,6 @@ if (!$result) {
 $row = $result->fetch_assoc();
 
 ?>
-
 <div class="container">
     <div class="row">
         <div class="header">

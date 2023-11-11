@@ -706,8 +706,30 @@
             });
          });
       });
-
       
+
+      // Viewing of MRF
+      $(document).ready(function() {
+            $('tbody').on('click', '.btnview', function() {
+                var Id = $(this).prev('.ids').val();
+                $('#viewmrf').modal('show');
+
+                // load the corresponding question(s) for the clicked row
+                $.ajax({
+                    url: 'view_mrf.php',
+                    type: 'post',
+                    data: {
+                        id: Id
+                    },
+                    success: function(response) {
+                        $('#viewmrf .modal-body').html(response);
+                    },
+                    error: function() {
+                        alert('Error.');
+                    }
+                });
+            });
+        });
 
       // For checkboxes of selecting applicants for shortlist
       const selectAll = document.getElementById('select-all');
