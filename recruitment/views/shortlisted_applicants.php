@@ -80,6 +80,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <th>Contact Number</th>
                                                 <th>Date Applied</th>
                                                 <th>Resume</th>
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -101,11 +102,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['mobile_number'] ?></td>
                                                     <td><?php echo $row['date_applied'] ?></td>
                                                     <td>
-                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $row['id']; ?>" title="View Resume" style="text-decoration: underline; box-shadow: none !important; outline: none !important;"><?php echo $row['resume_file'] ?></button>
+                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#viewResume-<?php echo $row['id']; ?>" title="View Resume" style="text-decoration: underline; box-shadow: none !important; outline: none !important;"><?php echo $row['resume_file'] ?></button>
                                                     </td>
 
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal-<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="viewResume-<?php echo $row['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
@@ -122,17 +123,63 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <td><?php echo $row['status'] ?></td>
 
                                                     <td>
-                                                        <a href="shortlisted_applicants.php?id=<?php echo $rows['id'] ?>" class="btn btn-primary">Shortlist</a>
-                                                        <button class="btn btn-danger">Reject</button>
+                                                        <?php
+                                                            if ($row['status'] === 'PENDING') {
+                                                        ?>
+                                                            <input type="hidden" class="exampleModalID" value="<?php echo $row['id'] ?>">
+                                                            <button type="button" class="btn btn-primary btntooltips exampleModal" title="Screening"><i class="bi bi-telephone"></i></button>
+                                                            <button class="btn btn-danger">Reject</button>
+                                                        <?php 
+                                                            } elseif ($row['status'] === 'NOT QUALIFIED' && empty($row['project_status'])) { 
+                                                        ?>
+                                                            <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
+                                                            <button type="button" class="btn btn-info editBtn">Edit</button>
+                                                        <?php 
+                                                            } elseif ($row['status'] === 'QUALIFIED' && empty($row['project_status'])) { 
+                                                        ?>
+                                                            <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
+                                                            <button type="button" class="btn btn-info editBtn">Edit</button>
+                                                        <?php 
+                                                            } 
+                                                        ?>
                                                     </td>
+                                                <?php } ?>
                                             </tr>
-                                        <?php } ?>
                                         </tbody>
                                     </table>
 
 
+                                    <!-- Modal for Screening -->
+                                    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal for Editing Screening -->
+                                    <div class="modal fade" id="editBtn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                 </div>
@@ -141,8 +188,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     </div>
                 </div>
             </div>
-        </div>
-        <?php include '../components/footer.php'; ?>
+            <script>
+
+            </script>
+            <?php include '../components/footer.php'; ?>
     </body>
 
     </html>

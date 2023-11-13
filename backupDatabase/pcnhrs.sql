@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2023 at 08:58 AM
+-- Generation Time: Nov 13, 2023 at 10:16 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -65,15 +65,18 @@ CREATE TABLE `applicant_resume` (
   `applicant_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `resume_file` varchar(255) NOT NULL,
-  `date_applied` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `status` varchar(255) NOT NULL DEFAULT 'FOR SCREENING',
+  `project_status` varchar(255) NOT NULL,
+  `date_applied` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_deleted` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `applicant_resume`
 --
 
-INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `resume_file`, `date_applied`) VALUES
-(6, 1, 705, 'adasd.pdf', '2023-11-11 15:09:30');
+INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `resume_file`, `status`, `project_status`, `date_applied`, `is_deleted`) VALUES
+(6, 1, 705, 'adasd.pdf', 'QUALIFIED', '', '2023-11-11 15:09:30', 0);
 
 -- --------------------------------------------------------
 
@@ -3420,7 +3423,11 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (166, 'admin', '11/10/2023', '2023-11-10 12:05:41', 'ADMIN login Accepted'),
 (167, 'recruitment', '11/11/2023', '2023-11-11 13:49:12', 'RECRUITMENT login Accepted'),
 (168, 'mrf', '11/11/2023', '2023-11-11 14:13:51', 'MRF login Accepted'),
-(169, 'mrf', '11/11/2023', '2023-11-11 14:14:54', 'MRF login Accepted');
+(169, 'mrf', '11/11/2023', '2023-11-11 14:14:54', 'MRF login Accepted'),
+(170, 'recruitment', '11/13/2023', '2023-11-13 08:31:49', 'RECRUITMENT login Accepted'),
+(171, 'mrf', '11/13/2023', '2023-11-13 15:15:34', 'MRF login Accepted'),
+(172, 'recruitment', '11/13/2023', '2023-11-13 15:29:03', 'RECRUITMENT login Accepted'),
+(173, 'mrf', '11/13/2023', '2023-11-13 16:14:22', 'MRF login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3739,6 +3746,45 @@ INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `id` int(11) NOT NULL,
+  `resume_id` int(11) NOT NULL,
+  `applicant_name` varchar(255) NOT NULL,
+  `interviewer` varchar(255) NOT NULL,
+  `position_applied` varchar(255) NOT NULL,
+  `date_interviewed` varchar(255) NOT NULL,
+  `relevant_educ_background` int(11) NOT NULL,
+  `related_work_exp` int(11) NOT NULL,
+  `related_computer_skills` int(11) NOT NULL,
+  `verbal_comm_skills` int(11) NOT NULL,
+  `cooperation` int(11) NOT NULL,
+  `personality` int(11) NOT NULL,
+  `intelligence` int(11) NOT NULL,
+  `diction` int(11) NOT NULL,
+  `others` int(11) NOT NULL,
+  `IQ` int(11) NOT NULL,
+  `english` int(11) NOT NULL,
+  `math` int(11) NOT NULL,
+  `result` varchar(255) NOT NULL COMMENT 'pass or failed',
+  `interview_details` varchar(255) NOT NULL,
+  `project_status` varchar(255) NOT NULL,
+  `project_approved_by` varchar(255) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `resume_id`, `applicant_name`, `interviewer`, `position_applied`, `date_interviewed`, `relevant_educ_background`, `related_work_exp`, `related_computer_skills`, `verbal_comm_skills`, `cooperation`, `personality`, `intelligence`, `diction`, `others`, `IQ`, `english`, `math`, `result`, `interview_details`, `project_status`, `project_approved_by`, `date_added`) VALUES
+(18, 6, 'JAMES PHILIP GOMERA', 'DEO VILL', 'MERCHANDISER', 'November 13, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', 'AHAHAHHAA', '', 'James Philip Gomera', '2023-11-13 15:12:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `recruitment_approve_history`
 --
 
@@ -3938,8 +3984,8 @@ CREATE TABLE `synch` (
 --
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
-(1, '1', '2023-11-09'),
-(2, 'Shortlist', '11/11/2023');
+(1, '1', '2023-11-13'),
+(2, 'Shortlist', '11/13/2023');
 
 -- --------------------------------------------------------
 
@@ -4241,6 +4287,13 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `resume_id` (`resume_id`);
+
+--
 -- Indexes for table `recruitment_approve_history`
 --
 ALTER TABLE `recruitment_approve_history`
@@ -4479,7 +4532,7 @@ ALTER TABLE `loa_maintenance_word`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
 -- AUTO_INCREMENT for table `mrf`
@@ -4504,6 +4557,12 @@ ALTER TABLE `pcn_emp`
 --
 ALTER TABLE `projects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=707;
+
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `recruitment_approve_history`
@@ -4569,6 +4628,12 @@ ALTER TABLE `applicant_resume`
 --
 ALTER TABLE `loa_files`
   ADD CONSTRAINT `loa_files_ibfk_1` FOREIGN KEY (`loa_main_id`) REFERENCES `loa_maintenance_word` (`id`);
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`resume_id`) REFERENCES `applicant_resume` (`id`);
 
 --
 -- Constraints for table `shortlist_details`

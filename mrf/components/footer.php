@@ -8,6 +8,35 @@
    <script src="../assets/vendor/js/menu.js"></script>
    <!-- endbuild -->
 
+   <script>
+      // For Update Screening
+      $(document).ready(function() {
+         $('tbody').on('click', '.btnsearch', function() {
+            var Id = $(this).prev('.project_id').val();
+            $('#projectModal').modal('show');
+
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'ratings.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#projectModal .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
+            });
+         });
+      });
+
+      
+   </script>
+
+
+
    <!-- Data Table -->
    <script>
       new DataTable('#example');

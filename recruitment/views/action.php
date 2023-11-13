@@ -208,15 +208,15 @@ if (isset($_POST['updateit'])) {
         $updated_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
 
 
-        $insert_history = "INSERT INTO `employee_update_history`(`tracking_no`, `photo`, `date_applied`, 
-        `app_number`, `source`, `fullname`, `present_address`,
-         `city`, `region`, `birthday`, `age`, 
-         `gender`, `civil_status`, `contact_number`, 
-         `landline`, `email`, `desired_position`, `classification`, 
-         `indentification`, `sss`, `philhealth`, `pagibig`,
-          `tin`, `police`, `barangay`, `nbi`, `psa`, 
-          `e_person`, `e_address`, `e_number`, `remarks`,
-           `created_by`, `updated_by`) 
+        $insert_history = "INSERT INTO employee_update_history(tracking_no, photo, date_applied, 
+        app_number, source, fullname, present_address,
+         city, region, birthday, age, 
+         gender, civil_status, contact_number, 
+         landline, email, desired_position, classification, 
+         indentification, sss, philhealth, pagibig,
+          tin, police, barangay, nbi, psa, 
+          e_person, e_address, e_number, remarks,
+           created_by, updated_by) 
         VALUES ('$tracking_no', '$photo', '$date_applied', '$app_number', 
         '$source', '$fullname', '$present_address', '$city', '$region',
         '$birthday', '$age', '$gender', '$civil_status', '$contact_number',
@@ -823,5 +823,308 @@ if (isset($_POST['updatePhotoBtn'])) {
     }
 
     header("Location: update_applicants.php?id=$id");
+    exit(0);
+}
+
+// For Ratings - PASSED
+if (isset($_POST['passBtn'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $applicant = $link->real_escape_string($_POST['applicant']);
+    $position_applied = $link->real_escape_string($_POST['position_applied']);
+    $interviewer = $link->real_escape_string($_POST['interviewer']);
+    $date_now = $link->real_escape_string($_POST['date_now']);
+    $relevant_educ_background = $link->real_escape_string($_POST['relevant_educ_background']);
+    $related_work_experience = $link->real_escape_string($_POST['related_work_experience']);
+    $related_computer_skills = $link->real_escape_string($_POST['related_computer_skills']);
+    $verbal_communication_skills = $link->real_escape_string($_POST['verbal_communication_skills']);
+    $cooperation = $link->real_escape_string($_POST['cooperation']);
+    $personality = $link->real_escape_string($_POST['personality']);
+    $intelligence = $link->real_escape_string($_POST['intelligence']);
+    $diction = $link->real_escape_string($_POST['diction']);
+    $others = $link->real_escape_string($_POST['others']);
+    $IQ = $link->real_escape_string($_POST['IQ']);
+    $english = $link->real_escape_string($_POST['english']);
+    $math = $link->real_escape_string($_POST['math']);
+    $interview_details = $link->real_escape_string($_POST['interview_details']);
+    $status = "QUALIFIED";
+
+    if (
+        empty($relevant_educ_background) && empty($related_work_experience) && empty($related_computer_skills)
+        && empty($verbal_communication_skills) && empty($cooperation) && empty($personality)
+        && empty($intelligence) && empty($diction) && empty($others)
+        && empty($IQ) && empty($english) && empty($math) && empty($interview_details)
+    ) {
+        $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, result)
+        VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$status')";
+        $result = $link->query($query);
+        if ($result) {
+            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update_result = $link->query($update);
+
+            if ($update_result) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error in update";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting data";
+        }
+    } else {
+        $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, relevant_educ_background, related_work_exp, related_computer_skills, verbal_comm_skills, cooperation, personality, intelligence, diction, others, IQ, english, math, result, interview_details)
+        VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$relevant_educ_background', '$related_work_experience', '$related_computer_skills', '$verbal_communication_skills', '$cooperation', '$personality', '$intelligence', '$diction', '$others', '$IQ', '$english', '$math', '$status', '$interview_details')";
+        $result = $link->query($query);
+
+        if ($result) {
+            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update_result = $link->query($update);
+
+            if ($update_result) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error in update";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting data";
+        }
+    }
+
+    header("Location: shortlisted_applicants.php?id=$projectID");
+    exit(0);
+}
+
+// FOR Ratings - Failed 1
+if (isset($_POST['failedBtn-1'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $applicant = $link->real_escape_string($_POST['applicant']);
+    $position_applied = $link->real_escape_string($_POST['position_applied']);
+    $interviewer = $link->real_escape_string($_POST['interviewer']);
+    $date_now = $link->real_escape_string($_POST['date_now']);
+    $reason_to_reject = $link->real_escape_string($_POST['reason_to_reject']);
+    $status = "NOT QUALIFIED";
+
+    $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, interview_details, result)
+        VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$reason_to_reject', '$status')";
+    $result = $link->query($query);
+    if ($result) {
+        $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+        $update_result = $link->query($update);
+
+        if ($update_result) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error in update";
+        }
+    } else {
+        $_SESSION["errorMessage"] = "Error in inserting data";
+    }
+    header("Location: shortlisted_applicants.php?id=$projectID");
+    exit(0);
+}
+
+// For Ratings - Failed 2
+if (isset($_POST['failedBtn2'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $applicant = $link->real_escape_string($_POST['applicant']);
+    $position_applied = $link->real_escape_string($_POST['position_applied']);
+    $interviewer = $link->real_escape_string($_POST['interviewer']);
+    $date_now = $link->real_escape_string($_POST['date_now']);
+    $relevant_educ_background = $link->real_escape_string($_POST['relevant_educ_background']);
+    $related_work_experience = $link->real_escape_string($_POST['related_work_experience']);
+    $related_computer_skills = $link->real_escape_string($_POST['related_computer_skills']);
+    $verbal_communication_skills = $link->real_escape_string($_POST['verbal_communication_skills']);
+    $cooperation = $link->real_escape_string($_POST['cooperation']);
+    $personality = $link->real_escape_string($_POST['personality']);
+    $intelligence = $link->real_escape_string($_POST['intelligence']);
+    $diction = $link->real_escape_string($_POST['diction']);
+    $others = $link->real_escape_string($_POST['others']);
+    $IQ = $link->real_escape_string($_POST['IQ']);
+    $english = $link->real_escape_string($_POST['english']);
+    $math = $link->real_escape_string($_POST['math']);
+    $interview_details = $link->real_escape_string($_POST['interview_details']);
+    $status = "NOT QUALIFIED";
+
+    $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, relevant_educ_background, related_work_exp, related_computer_skills, verbal_comm_skills, cooperation, personality, intelligence, diction, others, IQ, english, math, result, interview_details)
+        VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$relevant_educ_background', '$related_work_experience', '$related_computer_skills', '$verbal_communication_skills', '$cooperation', '$personality', '$intelligence', '$diction', '$others', '$IQ', '$english', '$math', '$status', '$interview_details')";
+    $result = $link->query($query);
+
+    if ($result) {
+        $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+        $update_result = $link->query($update);
+
+        if ($update_result) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error in update";
+        }
+    } else {
+        $_SESSION["errorMessage"] = "Error in inserting data";
+    }
+    header("Location: shortlisted_applicants.php?id=$projectID");
+    exit(0);
+}
+
+// For Update Ratings - PASSED
+if (isset($_POST['passUpdateBtn'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $relevant_educ_background = $link->real_escape_string($_POST['relevant_educ_background']);
+    $related_work_experience = $link->real_escape_string($_POST['related_work_experience']);
+    $related_computer_skills = $link->real_escape_string($_POST['related_computer_skills']);
+    $verbal_communication_skills = $link->real_escape_string($_POST['verbal_communication_skills']);
+    $cooperation = $link->real_escape_string($_POST['cooperation']);
+    $personality = $link->real_escape_string($_POST['personality']);
+    $intelligence = $link->real_escape_string($_POST['intelligence']);
+    $diction = $link->real_escape_string($_POST['diction']);
+    $others = $link->real_escape_string($_POST['others']);
+    $IQ = $link->real_escape_string($_POST['IQ']);
+    $english = $link->real_escape_string($_POST['english']);
+    $math = $link->real_escape_string($_POST['math']);
+    $interview_details = $link->real_escape_string($_POST['interview_details']);
+    $status = "QUALIFIED";
+
+    $queryss = "SELECT * FROM ratings WHERE resume_id = '$resumeID'";
+    $resultss = $link->query($queryss);
+    $rowed = $resultss->fetch_assoc();
+
+    if (
+        $rowed['relevant_educ_background'] === $_POST['relevant_educ_background'] &&
+        $rowed['related_work_exp'] === $_POST['related_work_experience'] &&
+        $rowed['related_computer_skills'] === $_POST['related_computer_skills'] &&
+        $rowed['verbal_comm_skills'] === $_POST['verbal_communication_skills'] &&
+        $rowed['cooperation'] === $_POST['cooperation'] &&
+        $rowed['personality'] === $_POST['personality'] &&
+        $rowed['diction'] === $_POST['diction'] &&
+        $rowed['others'] === $_POST['others'] &&
+        $rowed['IQ'] === $_POST['IQ'] &&
+        $rowed['english'] === $_POST['english'] &&
+        $rowed['math'] === $_POST['math'] &&
+        $rowed['interview_details'] === $_POST['interview_details']
+    ) {
+        $_SESSION['warningMessage'] = "Nothing Changes";
+    } else {
+
+        $query = "UPDATE ratings SET relevant_educ_background = '$relevant_educ_background', related_work_exp = '$related_work_experience',
+                related_computer_skills = '$related_computer_skills', verbal_comm_skills = '$verbal_communication_skills', cooperation = '$cooperation', 
+                personality = '$personality', intelligence = '$intelligence', diction = '$diction', others = '$others', IQ = '$IQ', 
+                english = '$english', math = '$math', result = '$status', interview_details = '$interview_details'
+                WHERE resume_id = '$resumeID'";
+        $result = $link->query($query);
+
+        if ($result) {
+            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update_result = $link->query($update);
+
+            if ($update_result) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error in update";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting data";
+        }
+    }
+
+    header("Location: shortlisted_applicants.php?id=$projectID");
+    exit(0);
+}
+
+// FOR Ratings - Failed 1
+if (isset($_POST['updatefailedBtn-1'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $reason_to_reject = $link->real_escape_string($_POST['reason_to_reject']);
+    $status = "NOT QUALIFIED";
+
+    $queryss = "SELECT * FROM ratings WHERE resume_id = '$resumeID'";
+    $resultss = $link->query($queryss);
+    $rowed = $resultss->fetch_assoc();
+
+    if ($rowed['interview_details'] === $reason_to_reject) {
+        $_SESSION['warningMessage'] = "Nothing Changes";
+    } else {
+        $query = "UPDATE ratings SET interview_details = '$reason_to_reject' WHERE resume_id = '$resumeID'";
+        $result = $link->query($query);
+        if ($result) {
+            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update_result = $link->query($update);
+
+            if ($update_result) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error in update";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting data";
+        }
+    }
+    header("Location: shortlisted_applicants.php?id=$projectID");
+    exit(0);
+}
+
+// For Update Ratings - Failed 2
+if (isset($_POST['updatefailedBtn2'])) {
+    $resumeID = $link->real_escape_string($_POST['resumeID']);
+    $projectID = $link->real_escape_string($_POST['projectID']);
+    $relevant_educ_background = $link->real_escape_string($_POST['relevant_educ_background']);
+    $related_work_experience = $link->real_escape_string($_POST['related_work_experience']);
+    $related_computer_skills = $link->real_escape_string($_POST['related_computer_skills']);
+    $verbal_communication_skills = $link->real_escape_string($_POST['verbal_communication_skills']);
+    $cooperation = $link->real_escape_string($_POST['cooperation']);
+    $personality = $link->real_escape_string($_POST['personality']);
+    $intelligence = $link->real_escape_string($_POST['intelligence']);
+    $diction = $link->real_escape_string($_POST['diction']);
+    $others = $link->real_escape_string($_POST['others']);
+    $IQ = $link->real_escape_string($_POST['IQ']);
+    $english = $link->real_escape_string($_POST['english']);
+    $math = $link->real_escape_string($_POST['math']);
+    $interview_details = $link->real_escape_string($_POST['interview_details']);
+    $status = "NOT QUALIFIED";
+
+    $queryss = "SELECT * FROM ratings WHERE resume_id = '$resumeID'";
+    $resultss = $link->query($queryss);
+    $rowed = $resultss->fetch_assoc();
+
+    if (
+        $rowed['relevant_educ_background'] === $_POST['relevant_educ_background'] &&
+        $rowed['related_work_exp'] === $_POST['related_work_experience'] &&
+        $rowed['related_computer_skills'] === $_POST['related_computer_skills'] &&
+        $rowed['verbal_comm_skills'] === $_POST['verbal_communication_skills'] &&
+        $rowed['cooperation'] === $_POST['cooperation'] &&
+        $rowed['personality'] === $_POST['personality'] &&
+        $rowed['diction'] === $_POST['diction'] &&
+        $rowed['others'] === $_POST['others'] &&
+        $rowed['IQ'] === $_POST['IQ'] &&
+        $rowed['english'] === $_POST['english'] &&
+        $rowed['math'] === $_POST['math'] &&
+        $rowed['interview_details'] === $_POST['interview_details']
+    ) {
+        $_SESSION['warningMessage'] = "Nothing Changes";
+    } else {
+
+        $query = "UPDATE ratings SET relevant_educ_background = '$relevant_educ_background', related_work_exp = '$related_work_experience',
+                related_computer_skills = '$related_computer_skills', verbal_comm_skills = '$verbal_communication_skills', cooperation = '$cooperation', 
+                personality = '$personality', intelligence = '$intelligence', diction = '$diction', others = '$others', IQ = '$IQ', 
+                english = '$english', math = '$math', result = '$status', interview_details = '$interview_details'
+                WHERE resume_id = '$resumeID'";
+        $result = $link->query($query);
+
+        if ($result) {
+            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update_result = $link->query($update);
+
+            if ($update_result) {
+                $_SESSION['successMessage'] = "Successss";
+            } else {
+                $_SESSION['errorMessage'] = "Error in update";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting data";
+        }
+    }
+
+    header("Location: shortlisted_applicants.php?id=$projectID");
     exit(0);
 }

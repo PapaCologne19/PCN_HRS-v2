@@ -706,30 +706,77 @@
             });
          });
       });
-      
+
 
       // Viewing of MRF
       $(document).ready(function() {
-            $('tbody').on('click', '.btnview', function() {
-                var Id = $(this).prev('.ids').val();
-                $('#viewmrf').modal('show');
+         $('tbody').on('click', '.btnview', function() {
+            var Id = $(this).prev('.ids').val();
+            $('#viewmrf').modal('show');
 
-                // load the corresponding question(s) for the clicked row
-                $.ajax({
-                    url: 'view_mrf.php',
-                    type: 'post',
-                    data: {
-                        id: Id
-                    },
-                    success: function(response) {
-                        $('#viewmrf .modal-body').html(response);
-                    },
-                    error: function() {
-                        alert('Error.');
-                    }
-                });
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'view_mrf.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#viewmrf .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
             });
-        });
+         });
+      });
+
+      // For Screening
+      $(document).ready(function() {
+         $('tbody').on('click', '.exampleModal', function() {
+            var Id = $(this).prev('.exampleModalID').val();
+            $('#exampleModal').modal('show');
+
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'ratings.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#exampleModal .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
+            });
+         });
+      });
+
+      // For Update Screening
+      $(document).ready(function() {
+         $('tbody').on('click', '.editBtn', function() {
+            var Id = $(this).prev('.editID').val();
+            $('#editBtn').modal('show');
+
+            // load the corresponding question(s) for the clicked row
+            $.ajax({
+               url: 'update_ratings.php',
+               type: 'post',
+               data: {
+                  id: Id
+               },
+               success: function(response) {
+                  $('#editBtn .modal-body').html(response);
+               },
+               error: function() {
+                  alert('Error.');
+               }
+            });
+         });
+      });
+
 
       // For checkboxes of selecting applicants for shortlist
       const selectAll = document.getElementById('select-all');
@@ -753,6 +800,8 @@
             }
          });
       });
+
+      
    </script>
    <!-- Data Table -->
    <script>

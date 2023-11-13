@@ -90,7 +90,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <td><?php echo $rows['ewb_count']?></td>
                                                 <td><?php echo $rows['project_title']?></td>
                                                 <td>
-                                                    <a href="shortlisted_applicants.php?id=<?php echo $rows['id']?>" class="btn btn-primary">Go</a>
+                                                    <a href="shortlisted_applicants.php?id=<?php echo $rows['id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
                                                 </td>
                                             </tr>
                                             <?php }?>

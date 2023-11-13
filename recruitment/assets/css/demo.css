@@ -33,7 +33,7 @@
   padding: 4px 18px !important;
   border-radius: 4px !important;
   position: absolute !important;
-  top: 135% !important; /* Position the tooltip above the element */
+  bottom: 135% !important; /* Position the tooltip above the element */
   left: 50% !important;
   transform: translateX(-50%) !important;
   opacity: 0 !important;

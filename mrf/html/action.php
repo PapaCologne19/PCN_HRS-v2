@@ -192,3 +192,27 @@ if (isset($_POST['delete_button_click'])) {
         header("Location: mrf_list.php");
     }
 }
+
+// For REJECTION OF APPLICANTS
+if (isset($_POST['reject_button'])) {
+    $id = $link->real_escape_string($_POST['editID']);
+    $reason = $link->real_escape_string($_POST['reason']);
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $project_status = 'REJECTED';
+
+    $query = "UPDATE ratings SET interview_details = '$reason', project_status = '$project_status', project_approved_by = '$approved_by' WHERE resume_id = '$id'";
+    $result = $link->query($query);
+    if ($result) {
+        $update = "UPDATE applicant_resume SET project_status = '$project_status' WHERE id = '$id'";
+        $update_result = $link->query($update);
+        if ($update_result) {
+            $_SESSION['successMessage'] = "Success!";
+        } else {
+            $_SESSION['errorMessage'] = "Error in Rejection: ";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error in updating ratings: ";
+    }
+    header("Location: mrf_list.php");
+    exit(0);
+}
