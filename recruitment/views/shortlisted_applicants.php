@@ -85,17 +85,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <?php
-                                                $id = $_GET['id'];
-                                                $query = "SELECT applicant.*, project.*, resume.*, DATE_FORMAT(resume.date_applied, '%M %d, %Y') as date_applied
+                                            <?php
+                                            $id = $_GET['id'];
+                                            $query = "SELECT applicant.*, project.*, resume.*, DATE_FORMAT(resume.date_applied, '%M %d, %Y') as date_applied
                                                     FROM applicant applicant, projects project, applicant_resume resume
                                                     WHERE applicant.id = resume.applicant_id 
                                                     AND project.id = resume.project_id 
                                                     AND project.id = '$id'";
-                                                $result = $link->query($query);
-                                                while ($row = $result->fetch_assoc()) {
-                                                ?>
+                                            $result = $link->query($query);
+                                            while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                                <tr>
                                                     <td><?php echo $row['lastname'] . ", " . $row['firstname'] . " " . $row['middlename'] ?></td>
                                                     <td><?php echo $row['gender'] ?></td>
                                                     <td><?php echo $row['age'] ?></td>
@@ -127,27 +127,28 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                     <td>
                                                         <?php
-                                                            if ($row['status'] === 'PENDING') {
+                                                        if ($row['status'] === 'PENDING' || $row['status'] === 'FOR SCREENING') {
                                                         ?>
                                                             <input type="hidden" class="exampleModalID" value="<?php echo $row['id'] ?>">
                                                             <button type="button" class="btn btn-primary btntooltips exampleModal" title="Screening"><i class="bi bi-telephone"></i></button>
                                                             <button class="btn btn-danger">Reject</button>
-                                                        <?php 
-                                                            } elseif ($row['status'] === 'NOT QUALIFIED' && empty($row['project_status'])) { 
+                                                        <?php
+                                                        } elseif ($row['status'] === 'NOT QUALIFIED' && empty($row['project_status'])) {
                                                         ?>
                                                             <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
                                                             <button type="button" class="btn btn-info editBtn">Edit</button>
-                                                        <?php 
-                                                            } elseif ($row['status'] === 'QUALIFIED' && empty($row['project_status'])) { 
+                                                        <?php
+                                                        } elseif ($row['status'] === 'QUALIFIED' && empty($row['project_status'])) {
                                                         ?>
                                                             <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
                                                             <button type="button" class="btn btn-info editBtn">Edit</button>
-                                                        <?php 
-                                                            } 
+                                                        <?php
+                                                        }
                                                         ?>
                                                     </td>
-                                                <?php } ?>
-                                            </tr>
+                                                </tr>
+
+                                            <?php } ?>
                                         </tbody>
                                     </table>
 

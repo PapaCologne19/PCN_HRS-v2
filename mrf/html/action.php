@@ -1,6 +1,8 @@
 <?php
 include 'connect.php';
 session_start();
+date_default_timezone_set('Asia/Manila');
+$date_now = date('Y-m-d H:i:s');
 
 // For Adding MRF
 if (isset($_POST['process'])) {
@@ -216,3 +218,127 @@ if (isset($_POST['reject_button'])) {
     header("Location: mrf_list.php");
     exit(0);
 }
+
+// For approving applicants
+if (isset($_POST['approve_applicants_button_click'])) {
+    $id = $_POST['approve_applicants_id'];
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $project_status = "FOR DEPLOYMENT";
+
+    $query = "UPDATE ratings SET project_status = '$project_status', project_approved_by = '$approved_by', date_project_status = '$date_now' WHERE resume_id = '$id'";
+    $result = $link->query($query);
+
+    if ($result) {
+        $update = "UPDATE applicant_resume SET project_status = '$project_status' WHERE id = '$id'";
+        $update_result = $link->query($update);
+
+        if ($update_result) {
+            $fetching = "SELECT applicant.*, project.*, resumes.* 
+            FROM applicant applicant, projects project, applicant_resume resumes 
+            WHERE applicant.id = resumes.applicant_id
+            AND project.id = resumes.project_id 
+            AND resumes.id = '$id'";
+            $fetch_result = $link->query($fetching);
+            $fetch_row = $fetch_result->fetch_assoc();
+
+            $project_title = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['project_title']))));
+            $mrf_tracking = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['mrf_tracking']))));
+            $client_company_id = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['client_company_id']))));
+            $project_id = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['project_id']))));
+
+            $source = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['source']))));
+            $firstname = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['firstname']))));
+            $middlename = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['middlename']))));
+            $lastname = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['lastname']))));
+            $extension_name = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['extension_name']))));
+            $gender = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['gender']))));
+            $civil_status = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['civil_status']))));
+            $age = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['age']))));
+            $mobile_number = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['mobile_number']))));
+            $email_address = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['email_address']))));
+            $birthday = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['birthday']))));
+            $present_address = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['present_address']))));
+            $city = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['city']))));
+            $region = chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['region']))));
+            $photoko = '../../upload/default_id_image.png';
+
+            $query_tracking = "SELECT * FROM track WHERE id = '1'";
+            $resulttracking = mysqli_query($link, $query_tracking);
+            while ($rowtr = mysqli_fetch_assoc($resulttracking)) {
+                $newtracking = $rowtr['appno'] + 1;
+
+                $insert_applicant = "INSERT INTO employees (appno, tracking, photopath, dapplied, source, despo, firstnameko, mnko, lastnameko, extnname, gendern, civiln, age, cpnum, emailadd, birthday, paddress, regionn, cityn) 
+                VALUES ('$newtracking', '$newtracking', '$photoko', '$date_now', '$source', '$project_title', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$present_address', '$region', '$city')";
+                $insert_result = $link->query($insert_applicant);
+
+                if ($insert_result) {
+                    $last_id = mysqli_insert_id($link);
+                    $select_applicant = "SELECT * FROM employees WHERE id = '$last_id'";
+                    $select_applicant_result = $link->query($select_applicant);
+
+                    while ($select_applicant_row = $select_applicant_result->fetch_assoc()) {
+                        $employee_id = $select_applicant_row['id'];
+                        $appno = $select_applicant_row['appno'];
+                        $check = "SELECT project FROM shortlist_details WHERE project = '$project_title'";
+                        $check_result = $link->query($check);
+                        $datecreated = date('m/d/Y');
+                        if ($check_result->num_rows === 0) {
+                            $shortlist_status = 'ACTIVE';
+
+                            $insert_shortlist_details = "INSERT INTO shortlist_details (shortlistname, project, mrf_tracking, client, datecreated, activity, project_id) 
+                            VALUES ('$project_title', '$project_title', '$mrf_tracking', '$client_company_id', '$datecreated', '$shortlist_status', '$project_id')";
+                            $insert_shortlist_details_result = $link->query($insert_shortlist_details);
+
+                            if ($insert_shortlist_details_result) {
+                                $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
+                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
+                                $insert_shortlist_master_result = $link->query($insert_shortlist_master);
+
+                                if ($insert_shortlist_master_result) {
+                                    $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
+                                    $result_tracking = mysqli_query($link, $update_tracking);
+                                    if ($result_tracking) {
+                                        $_SESSION['successMessage'] = "Success";
+                                    } else {
+                                        $_SESSION['errorMessage'] = "Error in updating tracking number";
+                                    }
+                                } else {
+                                    $_SESSION[] = "Error in inserting to shortlist master";
+                                }
+                            } else {
+                                $_SESSION['errorMessage'] = "Error in inserting shortlist details";
+                            }
+                        } else {
+                            $_SESSION['errorMessage'] = "Project is already in shortlist details";
+                            $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
+                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
+                            $insert_shortlist_master_result = $link->query($insert_shortlist_master);
+
+                            if ($insert_shortlist_master_result) {
+                                $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
+                                $result_tracking = mysqli_query($link, $update_tracking);
+                                if ($result_tracking) {
+                                    $_SESSION['successMessage'] = "Success";
+                                } else {
+                                    $_SESSION['errorMessage'] = "Error in updating tracking number";
+                                }
+                            } else {
+                                $_SESSION[] = "Error in inserting to shortlist master";
+                            }
+                        }
+                    }
+                } else {
+                    $_SESSION['errorMessage'] = "Error in inserting applicant to employee table";
+                }
+            }
+        } else {
+            $_SESSION['errorMessage'] = "Error in inserting to applicant resume";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error in approving applicant";
+    }
+    header("Location: mrf_list.php");
+    exit(0);
+}
+
+

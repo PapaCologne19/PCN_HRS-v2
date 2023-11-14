@@ -59,6 +59,14 @@
          }
       }
 
+      // Date Format
+    flatpickr("#birthdate", {
+      dateFormat: "m/d/Y", // Set the desired date format (MM-DD-YYYY)
+      altInput: true, // Enable the alternate input field
+      altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
+      placeholder: "Select a date", // Set the text for the placeholder
+    });
+
       // For camera
       function myFunctioncam() {
          Webcam.set({
@@ -79,63 +87,34 @@
       }
 
 
-
-
-      $(document).ready(function() {
-         $("#myTab a").click(function(e) {
-            e.preventDefault();
-            $(this).tab('show');
-         });
-      });
-
-      $(document).ready(function() {
-         $("#e99").DataTable();
-      });
-
-
       // For Regions
       $("#regionn").on("change", function() {
+   var x_values = $("#regionn").find(":selected").val();
 
-         var x_values = $("#regionn").find(":selected").val();
+   $.ajax({
+      url: 'ajaxregion.php',
+      type: 'POST',
+      data: {
+         city_code: x_values
+      },
+      success: function(result) {
+         result = JSON.parse(result);
 
-         $.ajax({
-            url: 'ajaxregion.php',
-            type: 'POST',
-            //dataType:'JSON',
-            data: {
-               city_code: x_values
-            },
-            success: function(result) {
+         // Empty the options of the specific dropdown with ID 'cityn'
+         $("#cityn").empty();
 
-               result = JSON.parse(result);
-
-               //Empty option on change
-               var select = document.getElementById("cityn");
-               var length = select.options.length;
-
-               for (i = length - 1; i >= 0; i--) {
-                  select.options[i] = null;
-               }
-               //end
-
-               result.forEach(function(item, index) {
-
-                  //console.log(item[2]);
-
-                  var option = document.createElement("option");
-                  option.text = item['city_name'];
-                  option.value = item['city_name'];
-                  var select = document.getElementById("cityn");
-                  select.appendChild(option);
-               });
-            },
-
-            error: function(result) {
-               console.log(result)
-            }
+         // Append new options
+         result.forEach(function(item, index) {
+            var option = $("<option>").text(item['city_name']).val(item['city_name']);
+            $("#cityn").append(option);
          });
+      },
+      error: function(result) {
+         console.log(result)
+      }
+   });
+});
 
-      });
 
 
       // For Blacklisting
@@ -776,6 +755,8 @@
             });
          });
       });
+
+      
 
 
       // For checkboxes of selecting applicants for shortlist

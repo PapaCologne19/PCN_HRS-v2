@@ -1,8 +1,8 @@
 <?php 
     include 'connect.php';
 
-    if (isset($_POST['division'])) {
-        $selectedDivisionForClient = $_POST['division'];
+    if (isset($_POST['region'])) {
+        $selectedDivisionForClient = $_POST['region'];
     
         // Prepare a SQL query to retrieve employee data for the selected division
         $query = "SELECT fullname, position FROM pcn_emp WHERE division = ? AND employment_status = 'REGULAR'";

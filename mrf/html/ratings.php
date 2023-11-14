@@ -9,7 +9,7 @@ session_start();
     }
 </style>
 <div class="container">
-    <table class="table" id="example">
+    <table class="table table-sm" id="example">
         <thead>
             <tr>
                 <th>Applicant Name</th>
@@ -18,22 +18,23 @@ session_start();
                 <th>Contact Number</th>
                 <th>Date Applied</th>
                 <th>Resume</th>
-                <th>Status</th>
+                <th>Recruitment Status</th>
+                <th>Project Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <?php
-                $id = $_POST['id'];
-                $query = "SELECT applicant.*, project.*, resume.*, DATE_FORMAT(resume.date_applied, '%M %d, %Y') as date_applied
+            <?php
+            $id = $_POST['id'];
+            $query = "SELECT applicant.*, project.*, resume.*, DATE_FORMAT(resume.date_applied, '%M %d, %Y') as date_applied
                                                                     FROM applicant applicant, projects project, applicant_resume resume
                                                                     WHERE applicant.id = resume.applicant_id 
                                                                     AND project.id = resume.project_id 
                                                                     AND project.id = '$id'";
-                $result = $link->query($query);
-                while ($row = $result->fetch_assoc()) {
-                ?>
+            $result = $link->query($query);
+            while ($row = $result->fetch_assoc()) {
+            ?>
+                <tr>
                     <td><?php echo $row['lastname'] . ", " . $row['firstname'] . " " . $row['middlename'] ?></td>
                     <td><?php echo $row['gender'] ?></td>
                     <td><?php echo $row['age'] ?></td>
@@ -62,95 +63,78 @@ session_start();
                         </div>
                     </div>
                     <td><?php echo $row['status'] ?></td>
+                    <td><?php echo $row['project_status'] ?></td>
 
                     <td>
-                        <?php
-                        if ($row['status'] === 'QUALIFIED' && empty($row['project_status'])) {
-                        ?>
-                            <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
-                            <button type="button" class="btn btn-info actionBtn" data-bs-toggle="modal" data-bs-target="#actionBtn">Action</button>
-                            <br>
-                            <button type="button" class="btn btn-primary btnApprove btntooltips" id="btnApprove" title="Search">Deploy</button>
-                            <button type="button" class="btn btn-danger btnReject btntooltips" id="btnReject" title="Search">Reject</button>
+                        <div class="contain">
+                            <?php
+                            if ($row['status'] === 'QUALIFIED' && $row['project_status'] === 'PENDING') {
+                            ?>
+                                <div class="columns">
+                                    <input type="hidden" class="approve_applicants_ID" value="<?php echo $row['id'] ?>">
+                                    <button type="button" class="btn btn-primary btn-sm btnApprove btntooltips" id="btnApprove" title="Search">Deploy</button>
+                                </div>
+                                <div class="columns">
+                                    <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
+                                    <button type="button" class="btn btn-danger btn-sm btnReject btntooltips" id="btnReject" title="Search">Reject</button>
+                                </div>
 
-                        <?php
-                        }
-                        ?>
+                            <?php
+                            } else {
+                            ?>
+
+                            <?php } ?>
+                        </div>
                     </td>
-                <?php } ?>
-            </tr>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 
 
 </div>
 <script>
-    // For Deploying Applicants
+    // For approving applicants
     $(document).ready(function() {
         $('.btnApprove').click(function(e) {
             e.preventDefault();
 
-            var editID = $(this).closest("tr").find('.editID').val();
+            var approve_applicants_ID = $(this).closest("tr").find('.approve_applicants_ID').val();
 
-            // Close the modal
             $('#projectModal').modal('hide'); // Replace 'yourModalID' with the actual ID of your modal
 
             // Wait for the modal to close, then show SweetAlert
             setTimeout(function() {
                 Swal.fire({
-                    title: "Are you sure you want to deploy this person?",
+                    title: "Are you sure you want to approve?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Yes",
-                    cancelButtonText: "Cancel",
-                    showCloseButton: true,
-                    html: '<input type="text" id="blacklistReason" placeholder="Enter reason for blacklisting" class="swal2-input">',
-                    inputAttributes: {
-                        allowEnterKey: false
-                    },
-                    customClass: {
-                        container: 'sweet-alert-above-modal'
-                    },
-                    preConfirm: () => {
-                        var reason = document.getElementById("blacklistReason").value;
-                        if (!reason) {
-                            Swal.showValidationMessage("Reason is required");
-                        }
-                        return {
-                            reason: reason
-                        };
-                    },
-                    willClose: function() {
-                        location.reload(); // Refresh the page
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var reason = result.value.reason;
-                        if (reason) {
-                            $.ajax({
-                                type: "POST",
-                                url: "action.php",
-                                data: {
-                                    "reject_button": 1,
-                                    "editID": editID,
-                                    "reason": reason,
-                                },
-                                success: function(response) {
-                                    Swal.fire({
-                                        title: "Successfully Rejected!",
-                                        icon: "success",
-                                    });
-                                },
-                                error: function(xhr, status, error) {
-                                    console.log("AJAX Error: " + error);
-                                }
-                            });
-                        }
+                    cancelButtonText: "No",
+                }).then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "action.php",
+                            data: {
+                                "approve_applicants_button_click": 1,
+                                "approve_applicants_id": approve_applicants_ID,
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Successfully Undo!",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            }
+                        });
                     }
                 });
-            }, 100); // Adjust the timeout duration if needed
+            }, 100);
         });
     });
+
 
     // For Rejecting Applicants
     $(document).ready(function() {

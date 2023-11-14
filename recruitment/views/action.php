@@ -1128,3 +1128,78 @@ if (isset($_POST['updatefailedBtn2'])) {
     header("Location: shortlisted_applicants.php?id=$projectID");
     exit(0);
 }
+
+// Update Employees' Information (Without Mandatories)
+if (isset($_POST['submit_update'])) {
+    $update_id = $_POST['update_id'];
+    $lastnameko = $link->real_escape_string($_POST['lastnameko']);
+    $firstnameko = $link->real_escape_string($_POST['firstnameko']);
+    $mnko = $link->real_escape_string($_POST['mnko']);
+    $extnname = $link->real_escape_string($_POST['extnname']);
+    $paddress = $link->real_escape_string($_POST['paddress']);
+    $regionn = $link->real_escape_string($_POST['regionn']);
+    $cityn = $link->real_escape_string($_POST['cityn']);
+    $peraddress = $link->real_escape_string($_POST['peraddress']);
+    $birthday = $link->real_escape_string($_POST['birthday']);
+    $agen = $link->real_escape_string($_POST['agen']);
+    $gendern = $link->real_escape_string($_POST['gendern']);
+    $civiln = $link->real_escape_string($_POST['civiln']);
+    $cpnum = $link->real_escape_string($_POST['cpnum']);
+    $landline = $link->real_escape_string($_POST['landline']);
+    $emailadd = $link->real_escape_string($_POST['emailadd']);
+    $despo = $link->real_escape_string($_POST['despo']);
+    $classn = $link->real_escape_string($_POST['classn']);
+    $idenn = $link->real_escape_string($_POST['idenn']);
+    $sssnum = $link->real_escape_string($_POST['sssnum']);
+    $pagibignum = $link->real_escape_string($_POST['pagibignum']);
+    $phnum = $link->real_escape_string($_POST['phnum']);
+    $tinnum = $link->real_escape_string($_POST['tinnum']);
+    $policed = $link->real_escape_string($_POST['policed']);
+    $brgyd = $link->real_escape_string($_POST['brgyd']);
+    $nbid = $link->real_escape_string($_POST['nbid']);
+    $psa = $link->real_escape_string($_POST['psa']);
+    $e_person = $link->real_escape_string($_POST['e_person']);
+    $e_address = $link->real_escape_string($_POST['e_address']);
+    $e_contact = $link->real_escape_string($_POST['e_contact']);
+    $remarks = $link->real_escape_string($_POST['remarks']);
+
+    $file = $_FILES['waiver'];
+    $filename = $_FILES["waiver"]["name"];
+    $tempname = $_FILES["waiver"]["tmp_name"];
+    $folder = "../201 Files/" . $filename;
+
+    $folderDestination = $folder;
+
+    if (empty($sssnum) || $sssnum === '' || empty($pagibignum) || $pagibignum === '' || empty($phnum) || $phnum === '' || empty($file) || $file === '') {
+        // $_SESSION['errorMessage'] = "Please upload waiver";
+        echo "Please upload waiver";
+    } else {
+        move_uploaded_file($tempname, $folderDestination);
+        $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
+            `peraddress`='$peraddress', `cityn`='$cityn', `regionn`='$regionn', `birthday`='$birthday',
+            `age`='$agen', `gendern`='$gendern', `civiln`='$civiln', `cpnum`='$cpnum',
+            `landline`='$landline', `emailadd`='$emailadd', `despo`='$despo', `classn`='$classn',
+            `idenn`='$idenn', `sssnum`='$sssnum', `pagibignum`='$pagibignum', `phnum`='$phnum',
+            `tinnum`='$tinnum', `policed`='$policed', `brgyd`='$brgyd', `nbid`='$nbid',
+            `psa`='$psa', `remarks`='$remarks', `e_person`='$e_person',
+            `e_address`='$e_address', `e_number`='$e_contact' 
+            WHERE id = '$update_id'";
+
+        $result = $link->query($query);
+
+        if ($result) {
+             $insert_file = "INSERT INTO 201_files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
+            $insert_file_result = $link->query($insert_file);
+
+            if ($insert_file_result) {
+                $_SESSION['successMessage'] = "Successful";
+            } else {
+                $_SESSION['errorMessage'] = "Error in inserting waiver";
+            }
+        } else {
+            $_SESSION['errorMessage'] = "Error in updating data";
+        }
+    }
+    // header("Location: deploy.php");
+    exit(0);
+}

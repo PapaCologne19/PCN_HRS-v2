@@ -52,7 +52,7 @@ if (isset($_POST['create_loa'])) {
     $loa_upload_directory = "../loa_template_directory/";
     $loa_filename = $_FILES["template"]["name"];
     $loa_template_file = $loa_upload_directory . basename($_FILES["template"]["name"]);
-    $upload_file = 1;
+    $upload_file = 1; 
 
     if ($_FILES["template"]["size"] <= 5242880) {
         $allowedExtensions = ["pdf", "doc", "docx"];
