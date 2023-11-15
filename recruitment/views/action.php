@@ -1190,7 +1190,7 @@ if (isset($_POST['submit_update'])) {
         $result = $link->query($query);
 
         if ($result) {
-             $insert_file = "INSERT INTO 201_files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
+             $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
             $insert_file_result = $link->query($insert_file);
  
             if ($insert_file_result) {

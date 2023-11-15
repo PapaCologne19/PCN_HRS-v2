@@ -7,7 +7,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     <html lang="en">
 
     <head>
+   
         <?php include '../components/header.php'; ?>
+        
         <title>Deploy</title>
     </head>
 
@@ -296,7 +298,31 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                 <div class="title">
                                                                                     <h2 class="fs-4 text-center mb-3"><?php echo $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'] ?>'s Details</h2>
                                                                                 </div>
-                                                                                <form action="action.php" method="POST" class="form-group" enctype="multipart/form-data">
+                                                                                <script>
+            function validateForm() {
+                var sssnum = document.getElementById('sssnum').value;
+                var phnum = document.getElementById('phnum').value;
+                var pagibignum = document.getElementById('pagibignum').value;
+                var waiver = document.getElementById('waiver');
+ 
+                console.log('SSS: ', sssnum);
+                console.log('Pagibig: ', pagibignum);
+                console.log('Philhealth: ', phnum);
+                console.log('Waiver: ', waiver);
+                // If both first name and last name are empty, make file input required
+                if (sssnum.trim() === '' || phnum.trim()) {
+                    // Check if file input is empty
+                    if (!waiver.value) {
+                        alert('File is required!');
+                        return false; // Prevent form submission
+                    }
+                }
+
+                // Continue with form submission if validation passes
+                return true;
+            }
+        </script>
+                                                                                <form action="action.php" method="POST" class="form-group" enctype="multipart/form-data" onsubmit="return validateForm();">
                                                                                     <input type="hidden" name="update_id" id="update_id" value="<?php echo $fetch_row['id'] ?>">
                                                                                     <div class="row mt-3">
                                                                                         <div class="col-md-2">
@@ -513,7 +539,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" value="<?php echo $fetch_row["sssnum"] ?>" oninput="formValidate(this.value, 'sssnum')" class="form-control">
+                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" class="form-control">
                                                                                         </div>
                                                                                     </div>
 
@@ -523,7 +549,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" value="<?php echo $fetch_row["pagibignum"] ?>" oninput="formValidate(this.value, 'pagibignum')" class="form-control">
+                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" class="form-control">
                                                                                         </div>
                                                                                     </div>
 
@@ -533,7 +559,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" value="<?php echo $fetch_row["phnum"] ?>" oninput="formValidate(this.value, 'phnum')" class="form-control">
+                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" class="form-control">
                                                                                         </div>
                                                                                     </div>
 
@@ -636,7 +662,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="file" name="waiver" id="waiver" onchange="formValidate(this.value, 'waiver')" class="form-control">
+                                                                                            <input type="file" name="waiver" id="waiver" class="form-control">
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-md-12">
@@ -678,7 +704,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     // Add your other validation logic here
                 }
             }
-
         </script>
         <?php include '../components/footer.php'; ?>
     </body>
