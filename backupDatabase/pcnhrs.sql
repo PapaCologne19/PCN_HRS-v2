@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 10:18 AM
+-- Generation Time: Nov 15, 2023 at 04:53 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -25,24 +25,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `201_files`
+-- Table structure for table `201files`
 --
 
-CREATE TABLE `201_files` (
+CREATE TABLE `201files` (
   `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
   `waiver_filename` varchar(255) NOT NULL,
   `waiver_date_submitted` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `201_files`
+-- Dumping data for table `201files`
 --
 
-INSERT INTO `201_files` (`id`, `waiver_filename`, `waiver_date_submitted`) VALUES
-(1, 'adasd.pdf', '0000-00-00'),
-(2, '', '0000-00-00'),
-(3, '', '0000-00-00'),
-(4, 'adasd.pdf', '0000-00-00');
+INSERT INTO `201files` (`id`, `employee_id`, `waiver_filename`, `waiver_date_submitted`) VALUES
+(6, 0, 'adasd.pdf', '2023-11-15'),
+(7, 0, 'adasd.pdf', '2023-11-15');
 
 -- --------------------------------------------------------
 
@@ -83,7 +82,9 @@ INSERT INTO `applicant` (`id`, `source`, `username`, `password`, `firstname`, `m
 (2, '', 'johndoe123', '$2y$10$y13OEE/5lEFiNIv8nQnHBOPttpSwLN.tjgrk13GtZw3.slRkshFL6', 'John', 'Smith', 'Doe', '', 'Male', '', 22, 2147483647, 'johndoe123@test.com', '2001-12-06', 'Tagaroon St. Barangay Tinagiliran', '', '', 'ACTIVE', '', '', '2023-11-14 02:37:49'),
 (3, '', 'jerryboy123', '$2y$10$dK4wHGDpE3DUc9TiMlNx2ufTSssW0vRMHgjrPDtjZATBETCVgfU2S', 'Jerry', 'Malatek', 'Malandutay', '', 'Male', '', 15, 2147483647, 'jerryboy123@gmail.com', '2005-06-19', 'Bansalangin st. Payatas B', '', '', 'ACTIVE', '', '', '2023-11-14 05:22:49'),
 (5, 'REFERRAL', 'levi123', '$2y$10$lhMB3zhVutt0.c/7KHt7heGeuZC4.CbP.TEtXO196Hgw.IhKzdvfS', 'Levi', 'Malandutay', 'Mabangis', '', 'Male', '', 22, 2147483647, 'levimabangis@gmail.com', '2001-06-13', 'Bansalangin st. Payatas B', 'QUEZON CITY', '13', 'ACTIVE', '', '', '2023-11-14 06:44:13'),
-(7, 'SOCIAL MEDIA', 'test123', '$2y$10$fVXOPjgFamC9tzLVooGaXeeRpWmWmj9DqtLG/wXrSHHHpJ/aIq0L.', 'test', 'Test', 'Test', 'Test', 'Male', 'Single', 22, 2147483647, 'test@gmail.com', '01/01/2001', 'Bansalangin st. Payatas B', 'QUEZON CITY', '13', 'ACTIVE', '', '', '2023-11-14 07:17:05');
+(7, 'SOCIAL MEDIA', 'test123', '$2y$10$fVXOPjgFamC9tzLVooGaXeeRpWmWmj9DqtLG/wXrSHHHpJ/aIq0L.', 'test', 'Test', 'Test', 'Test', 'Male', 'Single', 22, 2147483647, 'test@gmail.com', '01/01/2001', 'Bansalangin st. Payatas B', 'QUEZON CITY', '13', 'ACTIVE', '', '', '2023-11-14 07:17:05'),
+(8, 'REFERRAL', 'mary123', '$2y$10$IU9TPkTG5s/BX6HGJ1G7I.VPs3tfKCGfeKtNMf/mCaDlnGEbOENre', 'Mary', 'Doe', 'Smith', '', 'Female', 'Married', 39, 2147483647, 'marysmith123@gmail.com', '1984-07-19', 'Bansalangin st. Payatas B', 'ABULUG', '02', 'ACTIVE', '', '', '2023-11-15 00:57:20'),
+(9, 'REFERRAL', 'google123', '$2y$10$NexhPWNDILruVG2cKVY//.4Mgr4SUivvmtNfJN8r5z1HEg8314Bsm', 'Google', 'Google ', 'Chrome', '', 'Male', 'Single', 26, 2147483647, 'google@gmail.com', '07/17/1997', 'Bansalangin st. Payatas B', 'AKBAR', '15', 'ACTIVE', '', '', '2023-11-15 03:17:35');
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,7 @@ CREATE TABLE `applicant_resume` (
   `project_status` varchar(255) NOT NULL DEFAULT 'PENDING',
   `date_applied` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `applicant_resume`
@@ -111,7 +112,9 @@ INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `resume_file
 (7, 2, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 10:38:16', 0),
 (8, 3, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 13:23:26', 0),
 (9, 5, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 14:44:35', 0),
-(10, 7, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 15:18:14', 0);
+(10, 7, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 15:18:14', 0),
+(11, 8, 704, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-15 09:21:25', 0),
+(12, 9, 703, 'Vecteezy-License-Information.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-15 11:18:58', 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +132,7 @@ CREATE TABLE `attrition` (
   `effectivity_date` varchar(255) NOT NULL,
   `by` varchar(255) NOT NULL,
   `action` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -176,7 +179,7 @@ CREATE TABLE `blacklist_history` (
   `dateofaction` varchar(255) NOT NULL,
   `ewbdeploy` varchar(255) NOT NULL,
   `ewbdate` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,7 @@ CREATE TABLE `categories` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -211,7 +214,7 @@ CREATE TABLE `channels` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channels`
@@ -1903,7 +1906,7 @@ CREATE TABLE `classifications` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `classifications`
@@ -1915,7 +1918,8 @@ INSERT INTO `classifications` (`id`, `description`, `is_deleted`) VALUES
 (3, 'Model Class A', 0),
 (4, 'Model Class B', 0),
 (5, 'Edi shengssss', 1),
-(6, 'dasdadas', 1);
+(6, 'dasdadas', 1),
+(7, 'Edi sheng', 1);
 
 -- --------------------------------------------------------
 
@@ -1932,7 +1936,7 @@ CREATE TABLE `client_company` (
   `branch` varchar(255) DEFAULT NULL,
   `address` varchar(1000) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_company`
@@ -1975,7 +1979,7 @@ CREATE TABLE `client_project` (
   `status` varchar(255) NOT NULL DEFAULT '1' COMMENT '0=active, 1=inactive',
   `is_deleted` int(11) DEFAULT '0',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_project`
@@ -2003,7 +2007,7 @@ CREATE TABLE `data` (
   `typenya` varchar(255) NOT NULL,
   `approve` varchar(255) NOT NULL,
   `idnum` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data`
@@ -2033,7 +2037,7 @@ CREATE TABLE `department` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `division` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `department`
@@ -2118,14 +2122,16 @@ CREATE TABLE `deployment` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_return` varchar(255) NOT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deployment`
 --
 
 INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_return`, `is_deleted`) VALUES
-(13, 'HR Assistant', 759, '11/04/2023', 11, 2147483647, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, '', '', '', '2023-11-09 08:21:01', '', 0);
+(13, 'HR Assistant', 759, '11/04/2023', 11, 2147483647, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, '', '', '', '2023-11-09 08:21:01', '', 0),
+(14, 'HR Assistant', 848, '11/15/2023', 34, 123123, 123123, 123123, 123123, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2024-01-31', '2024-08-31', 'HR', 'MERCHANDISING', '2023_HR_848', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'Department Store', 'Core', 'Probationary', 'Brand Ambassador', '2', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6 DAYS', 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 12343, '', '', '', '2023-11-15 02:49:09', '', 0),
+(15, 'IT Support', 850, '11/15/2023', 35, 123123, 123123, 123123, 123123, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-23', '2023-11-24', 'STRAT', 'MERCHANDISING', '2023_STRAT_850', 'PCN PROMOPRO INC.', 'IT SUPPORT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'Department Store', 'Selecta', 'Project Based', 'Assistant Software Engineer', '1', 'NOT RETURN', '16000', '50', '0', '0', '1500', '0', '1500', '1500', '1500', 'Deployment Remarks Updated', '6 DAYS', 'CUBAO AREA', 'sdfsdf', 'sdfsdf', 'sdfsdfsd', 'fsdfsdfsd', 'fsdfsd', 'sdfsd', 'sdfsd', 'Ariel B. Co', 'sdf', 2147483647, '', '', '', '2023-11-15 03:26:30', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2191,7 +2197,7 @@ CREATE TABLE `deployment_history` (
   `date_updated` varchar(255) NOT NULL,
   `date_return` date DEFAULT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deployment_history`
@@ -2200,7 +2206,9 @@ CREATE TABLE `deployment_history` (
 INSERT INTO `deployment_history` (`id`, `shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_updated`, `date_return`, `is_deleted`) VALUES
 (45, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 11, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Probationary', 'Maintenance Integration Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-09 08:21:01', '', NULL, 0),
 (46, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-09 08:22:38', '2023-11-09 16:22:38', NULL, 0),
-(47, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-10 04:06:03', '2023-11-10 12:06:03', NULL, 0);
+(47, 'HR Assistant', 759, 'DOE, JOHN SMITH', '11/04/2023', 13, '8888888888', '777777777777', '999999999999', '666666666666', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-10', '2024-02-29', 'HR', 'ACTIVATION', '2023_HR_759', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'General Trade', 'Selecta', 'Regular', 'Maintenance Integration Engineer', '2', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-10 04:06:03', '2023-11-10 12:06:03', NULL, 0),
+(48, 'HR Assistant', 848, 'SMITH, MARY DOE', '11/15/2023', 34, '123123', '123123', '123123', '123123', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2024-01-31', '2024-08-31', 'HR', 'MERCHANDISING', '2023_HR_848', 'PCN PROMOPRO INC.', 'HR ASSISTANT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'Department Store', 'Core', 'Probationary', 'Brand Ambassador', '2', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, 'CUBAO AREA', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'Secret Agent', 'Ako', 'Secret', 'Siya', 'Secret din', 'Header', 'Headers', 123, NULL, NULL, NULL, '2023-11-15 02:49:09', '', NULL, 0),
+(49, 'IT Support', 850, 'CHROME, GOOGLE GOOGLE', '11/15/2023', 35, '123123', '123123', '123123', '123123', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-23', '2023-11-24', 'STRAT', 'MERCHANDISING', '2023_STRAT_850', 'PCN PROMOPRO INC.', 'IT SUPPORT', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'Department Store', 'Selecta', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '50.00', '0.00', '0.00', '1500.00', '0.00', '1500.00', '1500.00', '1500.00', 'Deployment Remarks Updated', 6, 'CUBAO AREA', 'sdfsdf', 'sdfsdf', 'sdfsdfsd', 'fsdfsdfsd', 'fsdfsd', 'sdfsd', 'sdfsd', 'Ariel B. Co', 'sdf', 2147483647, NULL, NULL, NULL, '2023-11-15 03:26:31', '', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2212,7 +2220,7 @@ CREATE TABLE `deploy_status` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `deploy_status`
@@ -2232,7 +2240,7 @@ CREATE TABLE `distinguishing_qualification_marks` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `distinguishing_qualification_marks`
@@ -2271,7 +2279,7 @@ CREATE TABLE `divisions` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `divisions`
@@ -2298,7 +2306,7 @@ CREATE TABLE `empcounter` (
   `id` int(11) NOT NULL,
   `appno` varchar(255) NOT NULL,
   `counter` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `empcounter`
@@ -2374,7 +2382,7 @@ CREATE TABLE `employees` (
   `created_by` varchar(255) NOT NULL,
   `ewb_verified_by` varchar(255) NOT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
@@ -2382,7 +2390,7 @@ CREATE TABLE `employees` (
 
 INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `source`, `lastnameko`, `firstnameko`, `mnko`, `extnname`, `maiden_name`, `paddress`, `cityn`, `regionn`, `peraddress`, `birthday`, `age`, `gendern`, `civiln`, `cpnum`, `landline`, `emailadd`, `despo`, `classn`, `idenn`, `sssnum`, `pagibignum`, `phnum`, `tinnum`, `policed`, `brgyd`, `nbid`, `psa`, `remarks`, `actionpoint`, `reasonofaction`, `dateofaction`, `ewbdeploy`, `ewbdate`, `ewb_status`, `ewb_reason`, `recruitment_reason`, `ewb_date_declined`, `e_person`, `e_address`, `e_number`, `ter_date`, `ter_person`, `res_date`, `res_person`, `end_con`, `ter_reason`, `unter_reason`, `res_reason`, `retrench_date`, `retrench_reason`, `retrench_personel`, `created_by`, `ewb_verified_by`, `is_deleted`) VALUES
 (10, '758', '../../upload/6548a15bd8ef55.96756817.png', '11/04/2023 02:37:09 AM', '758', 'FACEBOOK', 'GOMERA', 'JAMES PHILIP', 'AMANTE', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2001-06-19', '22', 'MALE', 'SINGLE', '09101465183', '', 'JPGOMERA19@GMAIL.COM', 'IT', 'MODEL CLASS A', 'MARK 1', '12312313123', '12312312312', '12312312312', '12312312312', '2023-11-04', '2023-11-04', '2023-11-04', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/06/2023', 'NOT VERIFY', '', '', '', 'MAMA', 'MAMA ADDRESS', 'MAMA NUMBER', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
-(11, '759', '../../upload/6545a3e6d1cff.png', '2023-11-04 14:59:06', '759', 'FACEBOOK', 'DOE', 'JOHN', 'SMITH', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2001-08-31', '22', 'MALE', 'SINGLE', '09123456789', '', 'JOHNDOE@GMAIL.COM', 'IT', 'CLASS 1', 'CHUBBY', '8888888888', '999999999999', '777777777777', '666666666666', '2023-11-04', '2023-11-04', '2023-11-04', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '2023-11-04 14:25:24', 'VERIFIED', 'INCOMPLETE REQUIREMENTS', 'COMPLETED THE REQUIREMENTS', '11/04/2023', 'MARY SMITH ', '#27 BANSALANGIN ST PAYATAS B', '09123456987', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', 'FUENTES, PATTY', 0),
+(11, '759', '../../upload/65543684d26869.96249539.png', '2023-11-04 14:59:06', '759', 'FACEBOOK', 'DOE', 'JOHN', 'SMITH', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2001-08-31', '22', 'MALE', 'SINGLE', '09123456789', '', 'JOHNDOE@GMAIL.COM', 'IT', 'CLASS 1', 'CHUBBY', '8888888888', '999999999999', '777777777777', '666666666666', '2023-11-04', '2023-11-04', '2023-11-04', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '2023-11-04 14:25:24', 'VERIFIED', 'INCOMPLETE REQUIREMENTS', 'COMPLETED THE REQUIREMENTS', '11/04/2023', 'MARY SMITH ', '#27 BANSALANGIN ST PAYATAS B', '09123456987', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', 'FUENTES, PATTY', 0),
 (12, '760', '../../upload/6545eb0bcce74.png', '11/04/2023 07:56:11 AM', '760', 'WALK-IN', 'TAMAD', 'JUAN', 'JUNIOR', '', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '2000-11-11', '22', 'MALE', 'SINGLE', '09101465183', '', 'JUANTAMAD@GMAIL.COM', 'IT SUPPORT', 'CLASS 1', 'WITH TATTOO', '12312313123', '12312312312', '12312312312', '12312312312', '2023-11-21', '2023-11-09', '2023-11-17', 'WITH', 'REMARKS', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/09/2023', 'NOT VERIFY', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
 (13, '761', '../../upload/652f6f9305f7d.png', '2023-11-04 14:59:06', '761', 'WALK-IN', 'TEST', 'TEST', 'TEST', 'N/A', '', '#27 BANSALANGIN ST PAYATAS B', 'ALABEL (CAPITAL)', '12', '#27 BANSALANGIN ST PAYATAS B', '2001-01-01', '22', 'MALE', 'SINGLE WITH ONE DEPENDENT', '09101465183', '', 'JUANTAMAD3@GMAIL.COM', 'IT SUPPORT', 'MODEL CLASS A', 'CURLY HAIR', '12312313123', '12312312312', '12312312312', '12312312312', '2023-11-09', '2023-11-22', '2023-11-25', 'WITHOUT', 'REMARKS', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
 (15, '805', '../../upload/654c91b1d9167.png', '2023-11-09 16:00:50', '805', 'BAGONG SOURCES', 'GOMERA', 'JAMES PHILIP', ' AMANTE', 'ADASD', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', 'ASD', '2023-11-29', '0', 'FEMALE', 'SINGLE', '09101465183', 'ASDAD', 'ASDASDAS@EMAIL.COM', 'SOFTWARE ENGINEER', 'CLASS 1', 'PROBLEM WITH LETTER I', '12312313123', '12312312312', '222222222222', '12312312312', '2023-11-10', '2023-11-10', '2023-11-13', 'WITHOUT', 'REMARKS', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', 'DEO VILL', '', 0),
@@ -2390,7 +2398,9 @@ INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `so
 (28, '838', '../../upload/default_id_image.png', '2023-11-14 11:27:09', '838', '', 'GOMERA', 'JAMES PHILIP', 'AMANTE', 'asdas', '', '#27 BANSALANGIN ST PAYATAS B', 'CALOOCAN CITY', '13', 'Bansalangin st. Payatas B', '2001-06-19', '22', 'MALE', 'Single', '09101465183', '', 'JPGOMERA19@GMAIL.COM', 'Assistant Software Engineer', 'Class 1', 'N/A', '', '', '', '', '2023-11-15', '2023-11-24', '2023-11-18', '', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (29, '839', '../../upload/default_id_image.png', '2023-11-14 13:24:01', '839', '', 'MALANDUTAY', 'JERRY', 'MALATEK', '', '', 'BANSALANGIN ST. PAYATAS B', '', '', '', '2005-06-19', '15', 'MALE', '', '09123456789', '', 'JERRYBOY123@GMAIL.COM', '', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (32, '846', '../../upload/default_id_image.png', '2023-11-14 14:52:40', '846', 'REFERRAL', 'MABANGIS', 'LEVI', 'MALANDUTAY', '', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '', '2001-06-13', '22', 'MALE', '', '09101465183', '', 'LEVIMABANGIS@GMAIL.COM', 'MERCHANDISER', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
-(33, '847', '../../upload/default_id_image.png', '2023-11-14 15:21:13', '847', 'SOCIAL MEDIA', 'TEST', 'TEST', 'TEST', 'TEST', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '', '01/01/2001', '22', 'MALE', 'SINGLE', '2147483647', '', 'TEST@GMAIL.COM', 'MERCHANDISER', 'Class 1', 'Mark 1', '', '', '', '', '2023-11-15', '2023-11-22', '2023-11-23', '', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
+(33, '847', '../../upload/default_id_image.png', '2023-11-14 15:21:13', '847', 'SOCIAL MEDIA', 'TEST', 'TEST', 'TEST', 'TEST', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '', '01/01/2001', '22', 'MALE', 'SINGLE', '2147483647', '', 'TEST@GMAIL.COM', 'MERCHANDISER', 'Class 1', 'Mark 1', '', '', '', '', '2023-11-15', '2023-11-22', '2023-11-23', '', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
+(34, '848', '../../upload/6554369d564a38.62088118.png', '2023-11-15 10:36:40', '848', 'REFERRAL', 'SMITH', 'MARY', 'DOE', '', '', 'BANSALANGIN ST. PAYATAS B', 'ABULUG', '02', 'Bansalangin st. Payatas B', '01/01/2001', '39', 'FEMALE', 'MARRIED', '09101465183', '', 'MARYSMITH123@GMAIL.COM', 'HR ASSISTANT', 'Class 1', 'Problem with Letter I', '123123', '123123', '123123', '123123', '2023-11-23', '2023-11-24', '2023-11-24', 'With', 'remarks', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/15/2023', 'NOT VERIFY', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
+(35, '850', '../../upload/default.png', '2023-11-15 11:22:21', '850', 'REFERRAL', 'CHROME', 'GOOGLE', 'GOOGLE', '', '', 'BANSALANGIN ST. PAYATAS B', 'AKBAR', '15', 'Bansalangin st. Payatas B', '07/17/1997', '26', 'MALE', 'SINGLE', '09101465183', '', 'GOOGLE@GMAIL.COM', 'IT SUPPORT', 'Class 1', 'Mark 1', '123123', '123123', '123123', '123123', '2023-11-23', '2023-11-25', '2023-11-27', 'With', 'remarks', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/15/2023', 'NOT VERIFY', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2435,7 +2445,7 @@ CREATE TABLE `employee_update_history` (
   `updated_by` varchar(255) NOT NULL,
   `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` int(11) NOT NULL DEFAULT '0' COMMENT '0=active, 1=deleted'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_update_history`
@@ -2467,7 +2477,7 @@ CREATE TABLE `employment_status` (
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   `is_status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employment_status`
@@ -2488,7 +2498,7 @@ CREATE TABLE `ewb_choices` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_deleted` tinyint(1) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ewb_choices`
@@ -2541,7 +2551,7 @@ CREATE TABLE `ewb_declined_history` (
   `ewb_reason` varchar(3000) NOT NULL,
   `ewb_declined_by` varchar(255) NOT NULL,
   `ewb_date_declined` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ewb_declined_history`
@@ -2569,7 +2579,7 @@ CREATE TABLE `ewb_verification_history` (
   `address` varchar(255) NOT NULL,
   `remarks` varchar(255) NOT NULL,
   `verified_by` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ewb_verification_history`
@@ -2590,7 +2600,7 @@ CREATE TABLE `excuse_letter` (
   `excuse_remarks` varchar(3000) NOT NULL,
   `created_by` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `excuse_letter`
@@ -2645,7 +2655,7 @@ CREATE TABLE `excuse_letter_history` (
   `created_by` varchar(255) NOT NULL,
   `position` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `excuse_letter_history`
@@ -2696,7 +2706,7 @@ INSERT INTO `excuse_letter_history` (`id`, `app_number`, `excuse_remarks`, `crea
 CREATE TABLE `gender` (
   `id` int(11) NOT NULL,
   `gender` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gender`
@@ -2721,7 +2731,7 @@ CREATE TABLE `job_title` (
   `code` varchar(100) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job_title`
@@ -3177,7 +3187,7 @@ CREATE TABLE `loa` (
   `applicantname` varchar(255) NOT NULL,
   `appaddress` varchar(255) NOT NULL,
   `project_title` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa`
@@ -3199,14 +3209,14 @@ CREATE TABLE `loa_files` (
   `file_location` varchar(255) NOT NULL DEFAULT '',
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa_files`
 --
 
 INSERT INTO `loa_files` (`id`, `loa_main_id`, `file_name`, `file_location`, `date_modified`, `status`) VALUES
-(1, 15, 'BD1-ULP-Bundler-weekly-for-ULP-Q3-PCN-OG-SMKT-A1113-SURF-FABCON-69ML-6-1-Q3-Only.docx', '../loa_template_directory/', '2023-11-09 08:17:46', 0),
+(1, 15, 'BD1-ULP-Bundler-weekly-for-ULP-Q3-PCN-OG-SMKT-A1113-SURF-FABCON-69ML-6-1-Q3-Only.docx', '../loa_template_directory/', '2023-11-09 08:17:46', 1),
 (2, 16, 'Medical-certificate-fitness-for-duty_Consultants-1.docx', '../loa_template_directory/', '2023-11-10 04:04:52', 1);
 
 -- --------------------------------------------------------
@@ -3266,7 +3276,7 @@ CREATE TABLE `loa_maintenance_word` (
   `total_sum` varchar(255) DEFAULT NULL,
   `shortlist_id` varchar(255) DEFAULT NULL,
   `loa_tracker` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `loa_maintenance_word`
@@ -3288,7 +3298,7 @@ CREATE TABLE `log` (
   `Datelog` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
   `activitynya` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `log`
@@ -3470,7 +3480,22 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (173, 'mrf', '11/13/2023', '2023-11-13 16:14:22', 'MRF login Accepted'),
 (174, 'recruitment', '11/14/2023', '2023-11-14 08:19:05', 'RECRUITMENT login Accepted'),
 (175, 'mrf', '11/14/2023', '2023-11-14 08:40:17', 'MRF login Accepted'),
-(176, 'recruitment', '11/14/2023', '2023-11-14 09:08:14', 'RECRUITMENT login Accepted');
+(176, 'recruitment', '11/14/2023', '2023-11-14 09:08:14', 'RECRUITMENT login Accepted'),
+(177, 'recruitment', '11/15/2023', '2023-11-15 08:20:26', 'RECRUITMENT login Accepted'),
+(178, 'admin', '11/15/2023', '2023-11-15 08:20:39', 'ADMIN login Accepted'),
+(179, 'admin', '11/15/2023', '2023-11-15 08:37:25', 'ADMIN login Accepted'),
+(180, 'mrf', '11/15/2023', '2023-11-15 08:37:57', 'MRF login Accepted'),
+(181, 'mrf', '11/15/2023', '2023-11-15 09:11:24', 'MRF login Accepted'),
+(182, 'recruitment', '11/15/2023', '2023-11-15 10:26:51', 'RECRUITMENT login Accepted'),
+(183, 'mrf', '11/15/2023', '2023-11-15 10:36:25', 'MRF login Accepted'),
+(184, 'recruitment', '11/15/2023', '2023-11-15 10:38:12', 'RECRUITMENT login Accepted'),
+(185, 'deployment', '11/15/2023', '2023-11-15 10:47:39', 'DEPLOYMENT login Accepted'),
+(186, 'recruitment', '11/15/2023', '2023-11-15 10:53:04', 'RECRUITMENT login Accepted'),
+(187, 'deployment', '11/15/2023', '2023-11-15 10:54:08', 'DEPLOYMENT login Accepted'),
+(188, 'mrf', '11/15/2023', '2023-11-15 11:22:01', 'MRF login Accepted'),
+(189, 'deployment', '11/15/2023', '2023-11-15 11:24:04', 'DEPLOYMENT login Accepted'),
+(190, 'recruitment', '11/15/2023', '2023-11-15 11:24:44', 'RECRUITMENT login Accepted'),
+(191, 'admin', '11/15/2023', '2023-11-15 11:25:23', 'ADMIN login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3493,6 +3518,7 @@ CREATE TABLE `mrf` (
   `client_address` varchar(255) NOT NULL,
   `project_title` varchar(255) NOT NULL,
   `ce_number` varchar(255) NOT NULL,
+  `po_number` varchar(255) NOT NULL,
   `position` varchar(255) NOT NULL,
   `position_detail` varchar(255) NOT NULL,
   `np_male` varchar(20) NOT NULL,
@@ -3540,17 +3566,18 @@ CREATE TABLE `mrf` (
   `is_approve` int(11) NOT NULL DEFAULT '0',
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mrf`
 --
 
-INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `client_address`, `project_title`, `ce_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
-(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-11 02:53:25'),
-(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-11 06:20:57'),
-(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', 'BUSS. MANAGER', '', '5', '3', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-11 03:11:12'),
-(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREAS', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-11 01:03:34');
+INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `client_address`, `project_title`, `ce_number`, `po_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
+(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', '0', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-11 02:53:25'),
+(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', '0', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-11 06:20:57'),
+(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', '0', 'BUSS. MANAGER', '', '5', '3', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-11 03:11:12'),
+(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', '0', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREAS', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-11 01:03:34'),
+(1000, '5', 'NEW', '', 'INHOUSE', 'PROVINCIAL', '', '', '', 'BD1', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'PROJECT TITLE', '12312313', '6546546', 'BUSS. MANAGER', '', '123', '123', '180CM', '152CM', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'KUMAKAIN NG BALA', '0', '0', '0', '0', '', '', 'PROBATIONARY', '', '15-30', '2023-11-16', '2023-11-17', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-11-16', 'ARELLANO, JENNY AVILA', 'SR. ACCOUNT MANAGER OIC', '11/15/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-15 02:21:23', '2023-11-15 02:29:54');
 
 -- --------------------------------------------------------
 
@@ -3564,7 +3591,7 @@ CREATE TABLE `mrf_access` (
   `access_code` varchar(255) NOT NULL,
   `dateto` varchar(255) NOT NULL,
   `emp_no` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mrf_access`
@@ -3589,7 +3616,7 @@ CREATE TABLE `pcn_emp` (
   `department_unit` varchar(255) NOT NULL,
   `area` varchar(255) NOT NULL,
   `employment_status` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pcn_emp`
@@ -3774,7 +3801,7 @@ CREATE TABLE `projects` (
   `is_deleted` varchar(255) DEFAULT '0',
   `approved_by` varchar(255) NOT NULL,
   `date_approved` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projects`
@@ -3784,7 +3811,8 @@ INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_i
 (703, 1, 'IT SUPPORT', 'PCN PROMOPRO INC.', '3', '2023-09-06', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
 (704, 2, 'HR ASSISTANT', 'PCN PROMOPRO INC.', '8', '2023-11-29', '2024-03-31', '1', '0', '', '2023-11-11 08:52:59'),
 (705, 3, 'MERCHANDISER', 'UNILEVER FOOD SOLUTIONS', '8', '2023-12-06', '2024-06-30', '1', '0', '', '2023-11-11 08:52:59'),
-(706, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59');
+(706, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
+(707, 5, 'PROJECT TITLE', 'UNILEVER PHILIPPINES INC.', '246', '2023-11-16', '2023-11-17', '1', '0', '', '2023-11-15 10:29:54');
 
 -- --------------------------------------------------------
 
@@ -3818,7 +3846,7 @@ CREATE TABLE `ratings` (
   `date_project_status` varchar(255) NOT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ratings`
@@ -3829,7 +3857,9 @@ INSERT INTO `ratings` (`id`, `resume_id`, `applicant_name`, `interviewer`, `posi
 (19, 7, 'John Doe', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 5, 4, 3, 4, 3, 2, 5, 4, 5, 68, 69, 70, 'QUALIFIED', 'Interview Details', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 11:24:05', 0, '2023-11-14 10:40:33'),
 (20, 8, 'Jerry Malandutay', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 13:24:01', 0, '2023-11-14 13:23:49'),
 (21, 9, 'Levi Mabangis', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 14:52:40', 0, '2023-11-14 14:44:49'),
-(22, 10, 'test Test', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 15:21:13', 0, '2023-11-14 15:19:13');
+(22, 10, 'test Test', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 15:21:13', 0, '2023-11-14 15:19:13'),
+(23, 11, 'Mary Smith', 'DEO VILL', 'HR ASSISTANT', 'November 15, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-15 10:36:40', 0, '2023-11-15 10:36:10'),
+(24, 12, 'Google Chrome', 'DEO VILL', 'IT SUPPORT', 'November 15, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-15 11:22:21', 0, '2023-11-15 11:19:30');
 
 -- --------------------------------------------------------
 
@@ -3850,7 +3880,7 @@ CREATE TABLE `recruitment_approve_history` (
   `address` varchar(255) NOT NULL,
   `remarks` varchar(3000) NOT NULL,
   `approved_by` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recruitment_approve_history`
@@ -3923,7 +3953,7 @@ CREATE TABLE `rejected_applicants_history` (
   `number_of_months` int(11) NOT NULL DEFAULT '3',
   `date_applied` datetime NOT NULL,
   `date_rejected` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -3940,7 +3970,7 @@ CREATE TABLE `shortlist_details` (
   `datecreated` varchar(255) NOT NULL,
   `activity` varchar(255) NOT NULL,
   `project_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shortlist_details`
@@ -3970,7 +4000,7 @@ CREATE TABLE `shortlist_master` (
   `ewbdate` varchar(255) NOT NULL,
   `projectnya` varchar(255) NOT NULL,
   `deployment_status` varchar(255) NOT NULL DEFAULT 'FOR DEPLOYMENT'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shortlist_master`
@@ -3990,7 +4020,9 @@ INSERT INTO `shortlist_master` (`id`, `employee_id`, `project_name`, `shortlistn
 (131, 28, '', 'MERCHANDISER', '838', 0, '11/14/2023', '', '', '', 'FOR DEPLOYMENT'),
 (132, 29, '', 'MERCHANDISER', '839', 0, '11/14/2023', '', '', '', 'FOR DEPLOYMENT'),
 (135, 32, '', 'MERCHANDISER', '846', 0, '11/14/2023', '', '', '', 'FOR DEPLOYMENT'),
-(136, 33, '', 'MERCHANDISER', '847', 0, '11/14/2023', '', '', '', 'FOR DEPLOYMENT');
+(136, 33, '', 'MERCHANDISER', '847', 0, '11/14/2023', '', '', '', 'FOR DEPLOYMENT'),
+(137, 34, '', 'HR ASSISTANT', '848', 0, '11/15/2023', 'EWB', '11/15/2023', '', 'DEPLOYED'),
+(138, 35, '', 'IT SUPPORT', '850', 0, '11/15/2023', 'EWB', '11/15/2023', '', 'DEPLOYED');
 
 -- --------------------------------------------------------
 
@@ -4002,7 +4034,7 @@ CREATE TABLE `sources` (
   `id` bigint(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `is_deleted` tinyint(4) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sources`
@@ -4032,15 +4064,15 @@ CREATE TABLE `synch` (
   `id` int(11) NOT NULL,
   `katsing` varchar(255) NOT NULL,
   `datenow1` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `synch`
 --
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
-(1, '1', '2023-11-13'),
-(2, 'Shortlist', '11/14/2023');
+(1, '1', '2023-11-15'),
+(2, 'Shortlist', '11/15/2023');
 
 -- --------------------------------------------------------
 
@@ -4054,7 +4086,7 @@ CREATE TABLE `tax_status` (
   `description` varchar(255) NOT NULL,
   `is_deleted` varchar(1) NOT NULL DEFAULT '0',
   `civil_status_id` bigint(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tax_status`
@@ -4085,14 +4117,14 @@ INSERT INTO `tax_status` (`id`, `code`, `description`, `is_deleted`, `civil_stat
 CREATE TABLE `track` (
   `id` int(11) NOT NULL,
   `appno` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `track`
 --
 
 INSERT INTO `track` (`id`, `appno`) VALUES
-(1, '847'),
+(1, '850'),
 (2, '25');
 
 -- --------------------------------------------------------
@@ -4106,7 +4138,7 @@ CREATE TABLE `users` (
   `uname` varchar(255) NOT NULL,
   `pname` varchar(255) NOT NULL,
   `approve` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -4123,9 +4155,9 @@ INSERT INTO `users` (`id`, `uname`, `pname`, `approve`) VALUES
 --
 
 --
--- Indexes for table `201_files`
+-- Indexes for table `201files`
 --
-ALTER TABLE `201_files`
+ALTER TABLE `201files`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4422,22 +4454,22 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `201_files`
+-- AUTO_INCREMENT for table `201files`
 --
-ALTER TABLE `201_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `201files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `applicant_resume`
 --
 ALTER TABLE `applicant_resume`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `attrition`
@@ -4473,7 +4505,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `classifications`
 --
 ALTER TABLE `classifications`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `client_company`
@@ -4503,13 +4535,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `deployment`
 --
 ALTER TABLE `deployment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `deployment_history`
 --
 ALTER TABLE `deployment_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `distinguishing_qualification_marks`
@@ -4533,7 +4565,7 @@ ALTER TABLE `empcounter`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `employee_update_history`
@@ -4599,13 +4631,13 @@ ALTER TABLE `loa_maintenance_word`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT for table `mrf`
 --
 ALTER TABLE `mrf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 
 --
 -- AUTO_INCREMENT for table `mrf_access`
@@ -4623,13 +4655,13 @@ ALTER TABLE `pcn_emp`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=707;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=708;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `recruitment_approve_history`
@@ -4653,7 +4685,7 @@ ALTER TABLE `shortlist_details`
 -- AUTO_INCREMENT for table `shortlist_master`
 --
 ALTER TABLE `shortlist_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `synch`
