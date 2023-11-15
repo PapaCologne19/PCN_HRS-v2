@@ -137,7 +137,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
 
                 var verified_id = $(this).closest("tr").find('.verified_id').val();
                 Swal.fire({
-                    title: "Are you sure you want to verify this?",
+                    title: "Are you sure you want to verify?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Yes!",
@@ -154,7 +154,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                             success: function(response) {
 
                                 Swal.fire({
-                                    title: "Successfully Verified!",
+                                    title: "Success",
                                     icon: "success"
                                 }).then((result) => {
                                     location.reload();
@@ -175,7 +175,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                 var decline_ewbID = $(this).closest("tr").find('.decline_ewbID').val();
 
                 Swal.fire({
-                    title: "Are you sure you want to decline this?",
+                    title: "Are you sure you want to decline?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Yes, decline it!",
@@ -213,7 +213,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                 },
                                 success: function(response) {
                                     Swal.fire({
-                                        title: "Successfully Declined!",
+                                        title: "Success",
                                         icon: "success",
                                     }).then((result) => {
                                         location.reload();

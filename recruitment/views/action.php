@@ -1,6 +1,8 @@
 <?php
 session_start();
 include '../../connect.php';
+date_default_timezone_set('Asia/Manila');
+$date_now = date('Y-m-d H:i:s');
 header('Content-Type: text/html; charset=utf-8');
 
 // For Inserting Applicant in database
@@ -66,7 +68,7 @@ if (isset($_POST['next'])) {
         $InsertApplicantResult = mysqli_query($link, $InsertApplicantQuery);
 
         if ($InsertApplicantResult) {
-            $_SESSION['successMessage'] = "Successful!";
+            $_SESSION['successMessage'] = "Success!";
             unset($_SESSION["photoko"]);
         } else {
             $_SESSION['errorMessage'] = "Error in inserting applicant";
@@ -228,7 +230,7 @@ if (isset($_POST['updateit'])) {
         $insert_result = $link->query($insert_history);
 
         if ($insert_result) {
-            $_SESSION['successMessage'] = "Update Successful!";
+            $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in inserting to history!";
         }
@@ -260,7 +262,7 @@ if (isset($_POST['blacklist_button'])) {
             $blacklist_history_result = mysqli_query($link, $blacklist_history_query);
 
             if ($blacklist_history_result) {
-                $_SESSION['successMessage'] = "Blacklist successfully!";
+                $_SESSION['successMessage'] = "Success!";
                 header("Location: recruitment.php");
             } else {
                 $_SESSION['errorMessage'] = "Blacklist error!";
@@ -281,7 +283,7 @@ if (isset($_POST['delete_applicant_button'])) {
     $delete_applicant_result = mysqli_query($link, $delete_applicant_query);
 
     if ($delete_applicant_result) {
-        $_SESSION['successMessage'] = "Successfully Deleted!";
+        $_SESSION['successMessage'] = "Success!";
         header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Delete error!";
@@ -297,7 +299,7 @@ if (isset($_POST['undo_button_click'])) {
     $result_editblacklist = mysqli_query($link, $undo_blacklist);
 
     if ($result_editblacklist) {
-        $_SESSION['successMessage'] = "Blacklist reverted";
+        $_SESSION['successMessage'] = "Success!";
         header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Error";
@@ -313,7 +315,7 @@ if (isset($_POST['undo_canceled_button_click'])) {
     $result_editcancel = mysqli_query($link, $undo_cancel);
 
     if ($result_editcancel) {
-        $_SESSION['successMessage'] = "Successful";
+        $_SESSION['successMessage'] = "Success";
         header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Error";
@@ -347,7 +349,7 @@ if (isset($_POST['createshortlist'])) {
             $result = mysqli_query($link, $query);
 
             if ($result) {
-                $_SESSION['successMessage'] = "Shortlist Created";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in creating shortlist title";
             }
@@ -386,7 +388,7 @@ if (isset($_POST['add_shortlist_click'])) {
         //             $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id','$data', '$id1', '$dtnow')";
         //             $results2 = mysqli_query($link, $query2);
         //             if ($results2) {
-        //                 $response = array('message' => 'Successfully added to the shortlist');
+        //                 $response = array('message' => 'Successly added to the shortlist');
         //                 echo json_encode($response);
         //                 exit;
         //             } else {
@@ -417,7 +419,7 @@ if (isset($_POST['add_shortlist_click'])) {
             $results3 = mysqli_query($link, $query3);
 
             if ($results3) {
-                $response = array('message' => 'Successfully added to the shortlist');
+                $response = array('message' => 'SSuccess!');
                 echo json_encode($response);
                 exit;
             } else {
@@ -444,7 +446,7 @@ if (isset($_POST['unterminate_applicant_button'])) {
     $resultemp = mysqli_query($link, $unterminate_query);
 
     if ($resultemp) {
-        $_SESSION['succesMessage'] = "Untermination successful";
+        $_SESSION['succesMessage'] = "Success!";
         header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Untermination error!";
@@ -472,7 +474,7 @@ if (isset($_POST['remove_button_click'])) {
             $result_delete = mysqli_query($link, $query_delete);
 
             if ($result_delete) {
-                $response = array('message' => 'Successfully removed from the shortlist');
+                $response = array('message' => 'Success!');
                 echo json_encode($response);
                 exit;
             } else {
@@ -498,7 +500,7 @@ if (isset($_POST['remove_button_click'])) {
                 $result_deleted = mysqli_query($link, $query_deleted);
 
                 if ($result_deleted) {
-                    $response = array('message' => 'Successfully removed from the shortlist');
+                    $response = array('message' => 'Success!');
                     echo json_encode($response);
                     exit;
                 } else {
@@ -533,7 +535,7 @@ if (isset($_POST['deploy_button_click'])) {
             $query_update = "UPDATE shortlist_master SET ewb = 'EWB', ewbdate = '$dtnow' WHERE appnumto = '$id1'";
             $result_update = mysqli_query($link, $query_update);
             if ($result_update) {
-                $_SESSION['successMessage'] = "Applicant transferred for EWB Checking!";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error";
             }
@@ -587,9 +589,9 @@ if (isset($_POST['add_to_shortlist'])) {
                 //             $results2 = mysqli_query($link, $query2);
 
                 //             if ($results2) {
-                //                 // User successfully added to the shortlist
-                //                 $response[] = array('message' => 'Successfully added to the shortlist');
-                //                 $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                //                 // User successly added to the shortlist
+                //                 $response[] = array('message' => 'Successly added to the shortlist');
+                //                 $_SESSION['successMessage'] = 'Successly added to the shortlist';
                 //             } else {
                 //                 // Insertion failed
                 //                 $response[] = array('message' => 'Not Added due to Duplication!');
@@ -616,9 +618,9 @@ if (isset($_POST['add_to_shortlist'])) {
                     $results3 = mysqli_query($link, $query3);
 
                     if ($results3) {
-                        // User successfully added to the shortlist
-                        $response[] = array('message' => 'Successfully added to the shortlist');
-                        $_SESSION['successMessage'] = 'Successfully added to the shortlist';
+                        // User successly added to the shortlist
+                        $response[] = array('message' => 'Success!');
+                        $_SESSION['successMessage'] = 'Success!';
                     } else {
                         // Insertion failed
                         $response[] = array('message' => 'Not Added due to Duplication!');
@@ -697,7 +699,7 @@ if (isset($_POST['reverification_button'])) {
                 $results = $link->query($insert);
 
                 if ($results) {
-                    $_SESSION['successMessage'] = "Successful";
+                    $_SESSION['successMessage'] = "Success";
                     exit();
                 } else {
                     $_SESSION["errorMessage"] = "Error!!!";
@@ -726,7 +728,7 @@ if (isset($_POST['provideMRF_button_click'])) {
     $result = mysqli_query($link, $query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Provided";
+        $_SESSION['successMessage'] = "Success!";
     } else {
         $_SESSION['errorMessage'] = "Error";
     }
@@ -757,7 +759,7 @@ if (isset($_POST['acceptMRF_button_click'])) {
             VALUES ('$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
             $result_insert = $link->query($insert_db);
             if ($result_insert) {
-                $_SESSION['successMessage'] = "Successfully Accepted";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error";
             }
@@ -805,7 +807,7 @@ if (isset($_POST['updatePhotoBtn'])) {
                     $result = $link->query($updateRoomImageQuery);
 
                     if ($result) {
-                        $_SESSION['successMessage'] = "Successfully Updated";
+                        $_SESSION['successMessage'] = "Success!";
                     } else {
                         $_SESSION['errorMessage'] = "Failed to upload picture";
                     }
@@ -863,7 +865,7 @@ if (isset($_POST['passBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
-                $_SESSION['successMessage'] = "Success";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -880,7 +882,7 @@ if (isset($_POST['passBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
-                $_SESSION['successMessage'] = "Success";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -912,7 +914,7 @@ if (isset($_POST['failedBtn-1'])) {
         $update_result = $link->query($update);
 
         if ($update_result) {
-            $_SESSION['successMessage'] = "Success";
+            $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in update";
         }
@@ -955,7 +957,7 @@ if (isset($_POST['failedBtn2'])) {
         $update_result = $link->query($update);
 
         if ($update_result) {
-            $_SESSION['successMessage'] = "Success";
+            $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in update";
         }
@@ -1018,7 +1020,7 @@ if (isset($_POST['passUpdateBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
-                $_SESSION['successMessage'] = "Success";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -1052,7 +1054,7 @@ if (isset($_POST['updatefailedBtn-1'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
-                $_SESSION['successMessage'] = "Success";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -1116,7 +1118,7 @@ if (isset($_POST['updatefailedBtn2'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
-                $_SESSION['successMessage'] = "Successss";
+                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -1190,9 +1192,9 @@ if (isset($_POST['submit_update'])) {
         if ($result) {
              $insert_file = "INSERT INTO 201_files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
             $insert_file_result = $link->query($insert_file);
-
+ 
             if ($insert_file_result) {
-                $_SESSION['successMessage'] = "Successful";
+                $_SESSION['successMessage'] = "Success";
             } else {
                 $_SESSION['errorMessage'] = "Error in inserting waiver";
             }
@@ -1200,6 +1202,6 @@ if (isset($_POST['submit_update'])) {
             $_SESSION['errorMessage'] = "Error in updating data";
         }
     }
-    // header("Location: deploy.php");
+    header("Location: deploy.php");
     exit(0);
 }

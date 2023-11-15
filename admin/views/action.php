@@ -52,7 +52,7 @@ if (isset($_POST['create_loa'])) {
     $loa_upload_directory = "../loa_template_directory/";
     $loa_filename = $_FILES["template"]["name"];
     $loa_template_file = $loa_upload_directory . basename($_FILES["template"]["name"]);
-    $upload_file = 1; 
+    $upload_file = 1;
 
     if ($_FILES["template"]["size"] <= 5242880) {
         $allowedExtensions = ["pdf", "doc", "docx"];
@@ -90,7 +90,7 @@ if (isset($_POST['create_loa'])) {
                 if ($result2) {
                     if ($upload_file === 1) {
                         if (move_uploaded_file($_FILES["template"]["tmp_name"], $loa_template_file)) {
-                            $_SESSION["successMessage"] = "LOA Successfully Created";
+                            $_SESSION["successMessage"] = "Success";
                         } else {
                             ini_set('display_errors', 1);
                             ini_set('display_startup_errors', 1);
@@ -118,7 +118,7 @@ if (isset($_POST['create_loa'])) {
 }
 
 // Updating LOA Template File
-if(isset($_POST['change_file_btn'])){
+if (isset($_POST['change_file_btn'])) {
     $id = $link->real_escape_string($_POST['loatemplate_id']);
     $loa_upload_directory = "../loa_template_directory/";
     $loa_filename = $_FILES["loatemplate_file"]["name"];
@@ -132,27 +132,24 @@ if(isset($_POST['change_file_btn'])){
             $query = "UPDATE loa_files SET file_name = '$loa_filename', file_location = '$loa_upload_directory' WHERE id = '$id'";
             $result = $link->query($query);
 
-            if($result){
+            if ($result) {
                 if ($upload_file === 1) {
                     if (move_uploaded_file($_FILES["loatemplate_file"]["tmp_name"], $loa_template_file)) {
-                        $_SESSION["successMessage"] = "LOA Successfully Updated";
+                        $_SESSION["successMessage"] = "Success";
                     } else {
                         $_SESSION["errorMessage"] = "Error in Updating files.";
                     }
                 } else {
                     $_SESSION["errorMessage"] = "Your file was not uploaded.";
                 }
-            }
-            else{
+            } else {
                 $_SESSION["errorMessage"] = "Your file was not uploaded.";
             }
-        }
-        else{
+        } else {
             $_SESSION["errorMessage"] = "Sorry, only PDF, DOC, and DOCX files are allowed.";
             $upload_file = 0;
         }
-    }
-    else{
+    } else {
         $_SESSION["errorMessage"] = "Sorry, your file is too large. Max file is 5MB";
         $upload_file = 0;
     }
@@ -168,7 +165,7 @@ if (isset($_POST['make_default_button_click'])) {
     $result_id = $link->query($query_id);
 
     if ($result_id) {
-        $_SESSION['successMessage'] = "Set as default Successful";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Set as default error";
     }
@@ -184,7 +181,7 @@ if (isset($_POST['make_inactive_button_click'])) {
     $result_inactive_id = $link->query($query_inactive_id);
 
     if ($result_inactive_id) {
-        $_SESSION['successMessage'] = "Set as inactive Successful";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Set as inactive error";
     }
@@ -201,7 +198,7 @@ if (isset($_POST['addCategoryBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -220,7 +217,7 @@ if (isset($_POST['updateCategoryBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -237,7 +234,7 @@ if (isset($_POST['delete_category_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -253,7 +250,7 @@ if (isset($_POST['undo_delete_category_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -270,7 +267,7 @@ if (isset($_POST['addChannelBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -289,7 +286,7 @@ if (isset($_POST['updateChannelBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -306,7 +303,7 @@ if (isset($_POST['delete_channel_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -322,7 +319,7 @@ if (isset($_POST['undo_delete_channel_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -339,7 +336,7 @@ if (isset($_POST['addClassificationBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -358,7 +355,7 @@ if (isset($_POST['updateClassificationBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -375,7 +372,7 @@ if (isset($_POST['delete_classification_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -391,7 +388,7 @@ if (isset($_POST['undo_delete_classification_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -412,7 +409,7 @@ if (isset($_POST['addClientCompanyBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Added";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Adding";
     }
@@ -433,7 +430,7 @@ if (isset($_POST['updateClientCompanyBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -449,7 +446,7 @@ if (isset($_POST['delete_client_company_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -465,7 +462,7 @@ if (isset($_POST['undo_delete_client_company_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -482,7 +479,7 @@ if (isset($_POST['addDivisionBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -501,7 +498,7 @@ if (isset($_POST['updateDivisionBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -518,7 +515,7 @@ if (isset($_POST['delete_division_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -534,7 +531,7 @@ if (isset($_POST['undo_delete_division_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -551,7 +548,7 @@ if (isset($_POST['addIdentificationMarkBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -570,7 +567,7 @@ if (isset($_POST['updateIdentificationMarkBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -587,7 +584,7 @@ if (isset($_POST['delete_identification_mark_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -603,7 +600,7 @@ if (isset($_POST['undo_delete_identification_mark_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -620,7 +617,7 @@ if (isset($_POST['addSourceBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Added";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
         }
@@ -639,7 +636,7 @@ if (isset($_POST['updateSourceBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $_SESSION['successMessage'] = "Successfully Updated";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
         }
@@ -656,7 +653,7 @@ if (isset($_POST['delete_source_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -672,7 +669,7 @@ if (isset($_POST['undo_delete_source_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -693,7 +690,7 @@ if (isset($_POST['addProjectBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Added";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Adding";
     }
@@ -714,11 +711,11 @@ if (isset($_POST['updateProjectBtn'])) {
         $query = "UPDATE client_project SET project_title = '$project_title', client_company_name = '$client_company_name', ewb_count = '$ewb_count', start_date = '$start_date', end_date = '$end_date' WHERE id = '$id'";
         $result = $link->query($query);
 
-            if ($result) {
-                $_SESSION['successMessage'] = "Successfully Updated";
-            } else {
-                $_SESSION['errorMessage'] = "Error in Updating";
-            }
+        if ($result) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error in Updating";
+        }
     } else {
         $_SESSION['errorMessage'] = "Please complete all the fields";
     }
@@ -734,7 +731,7 @@ if (isset($_POST['delete_project_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Updated";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -750,7 +747,7 @@ if (isset($_POST['undo_delete_project_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -766,7 +763,7 @@ if (isset($_POST['change_project_status_active_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Change";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -782,7 +779,7 @@ if (isset($_POST['change_project_status_inactive_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Change";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -798,7 +795,7 @@ if (isset($_POST['delete_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Deleted";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Deleting";
     }
@@ -814,7 +811,7 @@ if (isset($_POST['undo_delete_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }
@@ -830,7 +827,7 @@ if (isset($_POST['delete_loa_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Deleted";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
     }
@@ -846,7 +843,7 @@ if (isset($_POST['undo_delete_loa_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $_SESSION['successMessage'] = "Successfully Undo";
+        $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
     }

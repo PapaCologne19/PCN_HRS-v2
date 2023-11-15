@@ -66,16 +66,15 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             <?php
                                             $query = "SELECT * FROM mrf";
                                             $result = $link->query($query);
-                                            while($row = $result->fetch_assoc()){
-                                                if(empty($row['tracking'])){
+                                            while ($row = $result->fetch_assoc()) {
+                                                if (empty($row['tracking'])) {
                                                     $track = 0;
                                                     $track++;
-                                                }
-                                                else{
+                                                } else {
                                                     $track = $row['tracking'] + 1;
                                                 }
                                             }
-                                            
+
                                             ?>
                                             <label for="" class="form-label">TRACKING NUMBER</label>
                                             <input type="text" name="tracking_number" id="tracking_number" class="form-control" value="<?php echo $track ?>" readonly>
@@ -112,7 +111,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 $result_select_division = $link->query($query_select_division);
                                                 while ($row_select = $result_select_division->fetch_assoc()) {
                                                 ?>
-                                                    <option value="<?php echo $row_select['division'] ?>"><?php echo $row_select['description'] ?> (<?php echo $row_select['division'] ?>)</option>
+                                                    <option value="<?php echo $row_select['division'] ?>"><?php echo $row_select['division'] ?> (<?php echo $row_select['description'] ?>)</option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -126,8 +125,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </select>
                                         </div>
                                         <div class="col-md-4 mt-3">
-                                            <label for="" class="form-label">Project Title</label>
-                                            <input type="text" name="projectTitle" id="projectTitle" class="form-control" required>
+                                            <label for="" class="form-label">CE Number</label>
+                                            <input type="text" name="ce_number" id="ce_number" class="form-control" required>
                                         </div>
 
                                         <div class="col-md-4 mt-3">
@@ -144,44 +143,52 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </select>
                                         </div>
 
+
+
                                         <div class="col-md-4 mt-3">
-                                            <label for="" class="form-label">CE Number</label>
-                                            <input type="text" name="ce_number" id="ce_number" class="form-control" required>
+                                            <label for="" class="form-label">Project Title</label>
+                                            <input type="text" name="projectTitle" id="projectTitle" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-4 mt-3">
+                                            <label for="" class="form-label">PO Number</label>
+                                            <input type="text" name="po_number" id="po_number" class="form-control" required>
                                         </div>
 
                                         <!-- FOR POSITION -->
                                         <center>
                                             <h4 class="fs-4 mt-4">POSITION</h4>
-                                        </center>
-                                        <div class="row cs1">
-                                            <div class="col-md-12">
-                                                <div class="form-group" id="inhouse">
-                                                    <select class="form-select cbo" name="position" id="position"> ;
-                                                        <option value="" disabled selected>Please select One</option>
-                                                        <option>ACCOUNT EXECUTIVE</option>
-                                                        <option>BUSS. MANAGER</option>
-                                                        <option>ACCOUNT MANAGER</option>
-                                                        <option>OPERATIONS MANAGER</option>
-                                                        <option>PROJECT MANAGER</option>
-                                                        <option>PROJECT COORDINATOR</option>
-                                                        <option>AREA COORDINATOR</option>
-                                                        <option>BILLING ASST.</option>
-                                                        <option>TRAINER</option>
-                                                        <option>ENCODER</option>
-                                                        <option>MERCHANDISING SUPERVISOR</option>
-                                                        <option>OPERATIONS SUPERVISOR</option>
-                                                        <option>OTHER</option>
-                                                    </select>
+                                            <div class="row cs1">
+                                                <div class="col-md-6">
+                                                    <div class="form-group" id="inhouse">
+                                                        <select class="form-select cbo" name="position" id="position"> ;
+                                                            <option value="" disabled selected>Please select One</option>
+                                                            <option>ACCOUNT EXECUTIVE</option>
+                                                            <option>BUSS. MANAGER</option>
+                                                            <option>ACCOUNT MANAGER</option>
+                                                            <option>OPERATIONS MANAGER</option>
+                                                            <option>PROJECT MANAGER</option>
+                                                            <option>PROJECT COORDINATOR</option>
+                                                            <option>AREA COORDINATOR</option>
+                                                            <option>BILLING ASST.</option>
+                                                            <option>TRAINER</option>
+                                                            <option>ENCODER</option>
+                                                            <option>MERCHANDISING SUPERVISOR</option>
+                                                            <option>OPERATIONS SUPERVISOR</option>
+                                                            <option>OTHER</option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="text" name="other_position" id="other_position" class="form-control" onfocusout="myFunction_focusout()">
                                                 </div>
-                                                <input type="text" name="other_position" id="other_position" class="form-control" onfocusout="myFunction_focusout()">
                                             </div>
-                                        </div>
+                                        </center>
+
                                         <!--=================================================================================-->
                                         <div class="form-group" id="field">
                                             <div class="row cs1">
-                                                <div class="column ">
-                                                    <div class="containerx ">
-                                                          <label class="form-control">
+                                                <div class="column col-md-4">
+                                                    <div class="containerx">
+                                                         <label class="form-control">
                                                             <input type="radio" name="radio" value="Push Girl" />
                                                             Push Girl
                                                         </label>
@@ -200,7 +207,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
 
                                                           <label class="form-control">
@@ -225,7 +232,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
 
                                                           <label class="form-control">
@@ -250,7 +257,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
                                                         <br>
                                                         <h5>Others</h5>
@@ -267,22 +274,30 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             <h4 class="fs-4 mt-4">JOB REQUIREMENTS / QUALIFICATIONS</h4>
                                         </center>
                                         <label for="" class="form-label mt-3">No. of People</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <input type="text" name="number_male" id="number_male" placeholder="Male" class="form-control">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <input type="text" name="number_female" id="number_female" placeholder="Female" class="form-control">
                                         </div>
 
                                         <label for="" class="form-label mt-3">Height Requirements</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <input type="text" name="height_male" id="height_male" placeholder="Male" class="form-control">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <input type="text" name="height_female" id="height_female" placeholder="Female" class="form-control">
                                         </div>
 
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-1">
+                                            <input type="hidden" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <input type="hidden" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-3 mt-3">
                                             <label for="" class="form-label">Educational Background</label>
                                             <select name="educational_background" id="educational_background" class="form-select" required>
                                                 <option value="" selected disabled></option>
@@ -295,35 +310,35 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                         <!-- PERSONALITY -->
                                         <label for="" class="form-label mt-4">Personality</label>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="pleasing_personality" id="pleasing_personality" value="Pleasing Personality" class="form-check-input">
                                             <label for="pleasing_personality" class="form-check-label">Pleasing Personality</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="good_moral" id="good_moral" value="Good Moral" class="form-check-input">
                                             <label for="" class="form-check-label">With Good Moral Character</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="work_experience" id="work_experience" value="With Work Experience" class="form-check-input">
                                             <label for="" class="form-check-label">With Work Experience</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="good_communication" id="good_communication" value="Good communication skills" class="form-check-input">
                                             <label for="" class="form-check-label">Good Communication Skills</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="physically_fit" id="physically_fit" value="Physically fit / good built" class="form-check-input">
                                             <label for="" class="form-check-label">Physically Fit / Good Build</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <input type="checkbox" name="articulate" id="articulate" value="Articulate" class="form-check-input">
                                             <label for="" class="form-check-label">Articulate</label>
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col-md-1">
+                                        <div class="row form-group mt-3">
+                                            <div class="col-md-0">
                                                 <label for="" class="form-label">Others</label>
                                             </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-3">
                                                 <input type="text" name="other_personality" id="other_personality" class="form-control">
                                             </div>
                                         </div>
@@ -335,50 +350,49 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </center>
 
                                         <div class="row mt-3">
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Basic Salary: </label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control salary_package" name="basic_salary" id="basic_salary" required>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control salary_package" name="basic_salary" id="basic_salary" value="0" required>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Transpo Allowance: </label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control salary_package" name="transportation_allowance" id="transportation_allowance" required>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control salary_package" name="transportation_allowance" id="transportation_allowance" value="0" required>
                                             </div>
 
-                                            <div class="col-md-2 ">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Meal Allowance: </label>
                                             </div>
-                                            <div class="col-md-4 mt-2">
-                                                <input type="text" class="form-control salary_package" name="meal_allowance" id="meal_allowance" required>
+                                            <div class="col-md-2 mt-2">
+                                                <input type="text" class="form-control salary_package" name="meal_allowance" id="meal_allowance" value="0" required>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Comm. Allowance: </label>
                                             </div>
-                                            <div class="col-md-4 mt-2">
-                                                <input type="text" class="form-control salary_package" name="communication_allowance" id="communication_allowance" required>
+                                            <div class="col-md-2 mt-2">
+                                                <input type="text" class="form-control salary_package" name="communication_allowance" id="communication_allowance" value="0" required>
                                             </div>
                                             <div class="col-md-1">
                                                 <label for="" class="form-label">Others: </label>
                                             </div>
-                                            <div class="col-md-5 mt-2">
+                                            <div class="col-md-2 mt-2">
                                                 <input type="text" class="form-control salary_package" name="other_salary_package" id="other_salary_package">
                                             </div>
                                         </div>
 
                                         <center>
-                                            <div class="col-md-8 mt-4">
+                                            <div class="col-md-5 mt-4">
 
                                                 <label for="" class="form-label mt-3 fs-6">Employment Status</label>
 
                                                 <select name="employment_status" id="employment_status" class="form-select">
                                                     <option value="" selected disabled></option>
                                                     <option value="Project Based">Project Based</option>
-                                                    <option value="Probationary">Probationary (180 Days)</option>
-                                                    <option value="Regular">Regular</option>
+                                                    <option value="Probationary">Probationary (179 Days)</option>
                                                     <option value="Co-Terminus">Co-Terminus</option>
                                                 </select>
                                             </div>
@@ -389,55 +403,75 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <label for="" class="form-label mt-3 fs-6">Work Schedule and Others</label>
                                             </center>
                                             <div class="row mt-3">
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Salary Schedule: </label>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-2">
                                                     <input type="text" class="form-control salary_package" name="salary_schedule" id="salary_schedule" required>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Work Days: </label>
                                                 </div>
-                                                <div class="col-md-4 ">
+                                                <div class="col-md-2 ">
                                                     <input type="text" class="form-control salary_package" name="work_days" id="work_days" required>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Time Schedule: </label>
                                                 </div>
-                                                <div class="col-md-4 mt-2">
+                                                <div class="col-md-2 mt-2">
                                                     <input type="text" class="form-control salary_package" name="time_schedule" id="time_schedule" required>
                                                 </div>
-                                                <div class="col-md-2 mt-3">
+                                                <div class="col-md-1 mt-3">
                                                     <label for="" class="form-label">Day-Off: </label>
-                                                </div> 
-                                                <div class="col-md-4 mt-2">
+                                                </div>
+                                                <div class="col-md-2 mt-2">
                                                     <input type="text" class="form-control salary_package" name="day_off" id="day_off" required>
                                                 </div>
-                                                <div class="col-md-2 mt-3">
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+
+                                                <div class="col-md-1 mt-3">
                                                     <label for="" class="form-label">Outlet: </label>
                                                 </div>
-                                                <div class="col-md-4 mt-2">
+                                                <div class="col-md-3 mt-2">
                                                     <input type="text" class="form-control salary_package" name="outlet" id="outlet" required>
                                                 </div>
 
                                             </div>
+                                            <div class="col-md-2 mt-5">
+                                                <label for="" class="form-label fs-6">Work Duration</label>
+                                            </div>
                                             <div class="row mt-3">
-                                                <div class="col-md-2">
-                                                    <label for="" class="form-label">Work Duration: </label>
-                                                </div>
-                                                <div class="row col-md-4">
-                                                    <div class="col-md-2">
+
+                                                <div class="row col-md-5">
+                                                    <div class="col-md-1">
                                                         <label for="" class="form-label">From:</label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-4">
                                                         <input type="date" class="form-control salary_package" name="work_duration_start" id="work_duration_start" required>
                                                     </div>
-                                                </div>
-                                                <div class="row col-md-4">
+                                                <!-- </div>
+                                                <div class="row col-md-3"> -->
                                                     <div class="col-md-1">
                                                         <label for="" class="form-label">To:</label>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-4">
                                                         <input type="date" class="form-control salary_package" name="work_duration_end" id="work_duration_end" required>
                                                     </div>
                                                 </div>

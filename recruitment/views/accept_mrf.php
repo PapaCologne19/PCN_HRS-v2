@@ -74,9 +74,19 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             $result = mysqli_query($link, $query);
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                 $uid1 = $row['uid'];
-                                                $totalneed = $row['np_male'] + $row['np_female'];
-                                                $totalprovided = $row['s_male'] + $row['s_female'];
                                                 $fullname = $row['prepared_by'];
+
+                                                $project_title = $row['project_title'];
+                                                $needed = $row['np_male'] + $row['np_female'];
+                                                $selected = "SELECT mrf.*, project.*, resumes.* 
+                                                FROM mrf mrf, projects project, applicant_resume resumes 
+                                                WHERE mrf.tracking = project.mrf_tracking 
+                                                AND resumes.project_id = project.id 
+                                                AND project.project_title = '$project_title'
+                                                AND resumes.status = 'QUALIFIED'";
+                                                $selected_result = $link->query($selected);
+
+                                                $provided = $selected_result->num_rows;
 
                                                 if ($row['hr_personnel'] == "YES") { ?>
                                                     <tr>
@@ -89,8 +99,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php  } else { ?>
                                                             <td> <?php echo $row['position'] ?> </td>
                                                         <?php } ?>
-                                                        <td style=" text-align: center;"> <?php echo $totalneed ?> </td>
-                                                        <td style=" text-align: center;"> <?php echo $totalprovided ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $needed ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $provided ?> </td>
 
                                                         <td>
                                                             <form action="" method="POST">
@@ -109,8 +119,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } else { ?>
                                                             <td> <?php echo $row['position'] ?> </td>
                                                         <?php } ?>
-                                                        <td style=" text-align: center;"> <?php echo $totalneed ?> </td>
-                                                        <td style=" text-align: center;"> <?php echo $totalprovided ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $needed ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $provided ?> </td>
 
                                                         <td>
                                                             <form action="" method="POST">

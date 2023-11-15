@@ -34,7 +34,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Set as default Successful!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -71,7 +71,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Set as inactive Successful!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -91,7 +91,7 @@
 
             var deleteCategoryID = $(this).closest("tr").find('.deleteCategoryID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -108,7 +108,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -128,7 +128,7 @@
 
             var undoDeletedCategoryID = $(this).closest("tr").find('.undoDeletedCategoryID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -145,7 +145,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -165,7 +165,7 @@
 
             var deleteChannelID = $(this).closest("tr").find('.deleteChannelID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -182,7 +182,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -202,7 +202,7 @@
 
             var undoDeletedChannelID = $(this).closest("tr").find('.undoDeletedChannelID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -219,7 +219,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -239,7 +239,7 @@
 
             var deleteClassificationID = $(this).closest("tr").find('.deleteClassificationID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -256,7 +256,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -276,7 +276,7 @@
 
             var undoDeletedClassificationID = $(this).closest("tr").find('.undoDeletedClassificationID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -293,7 +293,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -313,7 +313,7 @@
 
             var deleteClientCompanyID = $(this).closest("tr").find('.deleteClientCompanyID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -330,7 +330,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -350,7 +350,7 @@
 
             var undoDeletedClientCompanyID = $(this).closest("tr").find('.undoDeletedClientCompanyID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -367,7 +367,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -387,7 +387,7 @@
 
             var deleteDivisionID = $(this).closest("tr").find('.deleteDivisionID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -404,7 +404,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -424,7 +424,7 @@
 
             var undoDeletedDivisionID = $(this).closest("tr").find('.undoDeletedDivisionID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -441,7 +441,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -461,7 +461,7 @@
 
             var deleteIdentificationMarkID = $(this).closest("tr").find('.deleteIdentificationMarkID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -478,7 +478,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -498,7 +498,7 @@
 
             var undoDeletedIdentificationMarkID = $(this).closest("tr").find('.undoDeletedIdentificationMarkID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -515,7 +515,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -535,7 +535,7 @@
 
             var deleteSourceID = $(this).closest("tr").find('.deleteSourceID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -552,7 +552,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -572,7 +572,7 @@
 
             var undoDeletedSourceID = $(this).closest("tr").find('.undoDeletedSourceID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -589,7 +589,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -610,7 +610,7 @@
 
             var deleteProjectID = $(this).closest("tr").find('.deleteProjectID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -627,7 +627,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -647,7 +647,7 @@
 
             var undoDeletedProjectID = $(this).closest("tr").find('.undoDeletedProjectID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -664,7 +664,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -758,7 +758,7 @@
 
             var deletedHistoryID = $(this).closest("tr").find('.deletedHistoryID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -775,7 +775,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -795,7 +795,7 @@
 
             var undoDeletedHistoryID = $(this).closest("tr").find('.undoDeletedHistoryID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -812,7 +812,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -832,7 +832,7 @@
 
             var deleteLOA_ID = $(this).closest("tr").find('.deleteLOA_ID').val();
             Swal.fire({
-               title: "Are you sure you want to delete this?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -849,7 +849,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Deleted",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -869,7 +869,7 @@
 
             var undoDeleteLOA_ID = $(this).closest("tr").find('.undoDeleteLOA_ID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
@@ -886,7 +886,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successful Undo",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();

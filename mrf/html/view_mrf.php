@@ -465,7 +465,7 @@ $row = $result->fetch_assoc();
                         <td rowspan="6">
                             <div class="form-check">
                                 <?php
-                                if ($row['employment_stat'] === 'Project Based') {
+                                if ($row['employment_stat'] === 'PROJECT BASED') {
                                 ?>
                                     <input type="checkbox" name="" id="" class="form-check-input" checked>
                                 <?php } else { ?>
@@ -475,27 +475,17 @@ $row = $result->fetch_assoc();
                             </div>
                             <div class="form-check">
                                 <?php
-                                if ($row['employment_stat'] === 'Probationary') {
+                                if ($row['employment_stat'] === 'PROBATIONARY') {
                                 ?>
                                     <input type="checkbox" name="" id="" class="form-check-input" checked>
                                 <?php } else { ?>
                                     <input type="checkbox" name="" id="" class="form-check-input">
                                 <?php } ?>
-                                <label for="" class="form-check-label">Probationary (180 Days)</label>
+                                <label for="" class="form-check-label">Probationary (179 Days)</label>
                             </div>
                             <div class="form-check">
                                 <?php
-                                if ($row['employment_stat'] === 'Regular') {
-                                ?>
-                                    <input type="checkbox" name="" id="" class="form-check-input" checked>
-                                <?php } else { ?>
-                                    <input type="checkbox" name="" id="" class="form-check-input">
-                                <?php } ?>
-                                <label for="" class="form-check-label">Regular</label>
-                            </div>
-                            <div class="form-check">
-                                <?php
-                                if ($row['employment_stat'] === 'Other') {
+                                if ($row['employment_stat'] === 'OTHER') {
                                 ?>
                                     <input type="checkbox" name="" id="" class="form-check-input" checked>
                                 <?php } else { ?>

@@ -52,6 +52,13 @@
         <div data-i18n="Analytics">Shortlisting</div>
       </a>
     </li>
+    <!-- Deploy Applicant-->
+    <li class="menu-item">
+      <a href="deploy.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Deploy</div>
+      </a>
+    </li>
     <!-- Take Applicant Photo -->
     <li class="menu-item">
       <a href="take_photo.php" class="menu-link">
@@ -88,33 +95,27 @@
       <span class="menu-header-text">SHORTLISTING MENU</span>
     </li>
     <!-- Create Shortlist Title -->
-    <li class="menu-item">
+    <!-- <li class="menu-item">
       <a href="create_shortlist.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Create Shortlist Title</div>
       </a>
-    </li>
+    </li> -->
     <!-- Add Applicant to Shortlist -->
-    <li class="menu-item">
+    <!-- <li class="menu-item">
       <a href="add_shortlist.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Add to Shortlist</div>
       </a>
-    </li>
+    </li> -->
     <!-- Remove Applicant to Shortlist -->
-    <li class="menu-item">
+    <!-- <li class="menu-item">
       <a href="remove_shortlist.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Remove to Shortlist</div>
       </a>
-    </li>
-    <!-- Deploy Applicant-->
-    <li class="menu-item">
-      <a href="deploy.php" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">Deploy</div>
-      </a>
-    </li>
+    </li> -->
+    
     
     
     

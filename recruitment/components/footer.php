@@ -125,11 +125,11 @@
             var blacklistingID = $(this).closest("tr").find('.blackbtnID').val();
 
             Swal.fire({
-               title: "Are you sure you want to blacklist this person?",
+               title: "Are you sure you want to blacklist?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, blacklist it!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes",
+               cancelButtonText: "No",
                showCloseButton: true, // Add a close button
 
                // Customize the content of the modal
@@ -166,7 +166,7 @@
                         },
                         success: function(response) {
                            Swal.fire({
-                              title: "Successfully Blacklisted!",
+                              title: "Success!",
                               icon: "success",
                            }).then((result) => {
                               location.reload();
@@ -191,11 +191,11 @@
             var deleteApplicantID = $(this).closest("tr").find('.deleteID').val();
 
             Swal.fire({
-               title: "Are you sure you want to delete this person?",
+               title: "Are you sure you want to delete?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, delete it!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
                showCloseButton: true, // Add a close button
 
                // Customize the content of the modal
@@ -228,7 +228,7 @@
                         },
                         success: function(response) {
                            Swal.fire({
-                              title: "Successfully Deleted!",
+                              title: "Success",
                               icon: "success",
                            }).then((result) => {
                               location.reload();
@@ -251,11 +251,11 @@
 
             var undoblacklistID = $(this).closest("tr").find('.undoblacklistID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this blacklisted applicant?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, undo this!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -268,7 +268,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successfully Undo!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -288,11 +288,11 @@
 
             var undocanceledID = $(this).closest("tr").find('.undocanceledID').val();
             Swal.fire({
-               title: "Are you sure you want to undo this canceled applicant?",
+               title: "Are you sure you want to undo?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, undo this!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -305,7 +305,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successfully Undo!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -346,7 +346,7 @@
                         var jsonResponse = JSON.parse(response);
                         if (jsonResponse.message === "Successfully added to the shortlist") {
                            Swal.fire({
-                              title: "Successfully Added!",
+                              title: "Success",
                               icon: "success"
                            }).then((result) => {
                               location.reload();
@@ -379,11 +379,11 @@
             var unterminateID = $(this).closest("tr").find('.emp_number').val();
 
             Swal.fire({
-               title: "Are you sure you want to unterminate this person?",
+               title: "Are you sure you want to unterminate?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, unterminate it!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
                showCloseButton: true, // Add a close button
 
                // Customize the content of the modal
@@ -416,7 +416,7 @@
                         },
                         success: function(response) {
                            Swal.fire({
-                              title: "Successfully Unterminated!",
+                              title: "Success",
                               icon: "success",
                            }).then((result) => {
                               location.reload();
@@ -466,11 +466,11 @@
             var shad = $(this).closest("tr").find('.shad').val();
 
             Swal.fire({
-               title: "Are you sure you want to remove this from the shortlist?",
+               title: "Are you sure you want to remove?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, remove it!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -486,7 +486,7 @@
                         var jsonResponse = JSON.parse(response);
                         if (jsonResponse.message === "Successfully removed from the shortlist") {
                            Swal.fire({
-                              title: "Successfully Removed!",
+                              title: "Success",
                               icon: "success"
                            }).then((result) => {
                               location.reload();
@@ -517,11 +517,11 @@
 
             var appnum_ID = $(this).closest("tr").find('.appno_deploy').val();
             Swal.fire({
-               title: "Are you sure you want to deploy this applicant?",
+               title: "Are you sure you want to deploy?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, deploy this!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -534,7 +534,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successfully Deployed!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -596,7 +596,7 @@
                         },
                         success: function(response) {
                            Swal.fire({
-                              title: "Successful!",
+                              title: "Success",
                               icon: "success",
                            }).then((result) => {
                               location.reload();
@@ -619,11 +619,11 @@
 
             var provideID = $(this).closest("tr").find('.mrf_id').val();
             Swal.fire({
-               title: "Are you sure you want to provide to this MRF?",
+               title: "Are you sure you want to provide an MRF?",
                icon: "warning",
                showCancelButton: true,
                confirmButtonText: "Yes",
-               cancelButtonText: "No, cancel",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -636,7 +636,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successfully Provided!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
@@ -659,8 +659,8 @@
                title: "Are you sure you want to accept this MRF?",
                icon: "warning",
                showCancelButton: true,
-               confirmButtonText: "Yes, accept it!",
-               cancelButtonText: "No, cancel",
+               confirmButtonText: "Yes!",
+               cancelButtonText: "No",
             }).then((willDelete) => {
                if (willDelete.isConfirmed) {
                   $.ajax({
@@ -673,7 +673,7 @@
                      success: function(response) {
 
                         Swal.fire({
-                           title: "Successfully Accepted!",
+                           title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();

@@ -255,7 +255,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     </html>
 <?php
 } else {
-    $_SESSION['errorMessage'] = "Hacker ka ba?!";
     header('Location: ../../index.php');
     session_destroy();
     exit();

@@ -101,6 +101,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             <th class="text-center">ID</th>
                                             <th class="text-center">Tracking Number</th>
                                             <th class="text-center">Project Title</th>
+                                            <th class="text-center">Needed</th>
+                                            <th class="text-center">Provided</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -112,12 +114,25 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             $inputDate = $row['dt_now'];
                                             $timestamp = strtotime($inputDate);
                                             $formattedDate = date("F d, Y", $timestamp);
+                                            $project_title = $row['project_title'];
+                                            $needed = $row['np_male'] + $row['np_female'];
+                                            $selected = "SELECT mrf.*, project.*, resumes.* 
+                                            FROM mrf mrf, projects project, applicant_resume resumes 
+                                            WHERE mrf.tracking = project.mrf_tracking 
+                                            AND resumes.project_id = project.id 
+                                            AND project.project_title = '$project_title'
+                                            AND resumes.status = 'QUALIFIED'";
+                                            $selected_result = $link->query($selected);
+
+                                            $provided = $selected_result->num_rows;
                                         ?>
                                             <tr>
                                                 <td class="text-center"><?php echo $formattedDate ?></td>
                                                 <td class="text-center"><?php echo $row['id'] ?></td>
                                                 <td class="text-center"><?php echo $row['tracking'] ?></td>
                                                 <td class="text-center"><?php echo $row['project_title'] ?></td>
+                                                <td class="text-center"><?php echo $needed ?></td>
+                                                <td class="text-center"><?php echo $provided ?></td>
                                                 <td class="text-center">
                                                     <div class="contain">
                                                         <div class="columns">
@@ -150,7 +165,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php }  ?>
                                     </tbody>
                                 </table>
 
@@ -235,8 +250,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                         title: "Are you sure you want to delete this MRF?",
                         icon: "warning",
                         showCancelButton: true,
-                        confirmButtonText: "Yes, delete it!",
-                        cancelButtonText: "No, cancel",
+                        confirmButtonText: "Yes!",
+                        cancelButtonText: "No",
                     }).then((willDelete) => {
                         if (willDelete.isConfirmed) {
                             $.ajax({
@@ -249,7 +264,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 success: function(response) {
 
                                     Swal.fire({
-                                        title: "Successfully Deleted!",
+                                        title: "Success!",
                                         icon: "success"
                                     }).then((result) => {
                                         location.reload();
@@ -269,7 +284,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     </html>
 <?php
 } else {
-    $_SESSION['errorMessage'] = "Hacker ka ba?!";
     header('Location: ../../index.php');
     session_destroy();
     exit();

@@ -43,7 +43,7 @@ if (isset($_POST['verify_button_click'])) {
                 $results_emp = $link->query($insert_emp);
 
                 if ($results_emp) {
-                    $_SESSION['successMessage'] = "Verification Successful!";
+                    $_SESSION['successMessage'] = "Success";
                 } else {
                     $_SESSION["errorMessage"] = "Error!!!";
                 }
@@ -121,7 +121,7 @@ if (isset($_POST['declined_button'])) {
         $declined_history_result = mysqli_query($link, $declined_history_query);
 
         if ($declined_history_result) {
-            $_SESSION['successMessage'] = "Declined successfully!";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Declined error!";
         }
@@ -142,7 +142,7 @@ if (isset($_POST['processmultiple'])) {
             $query = "UPDATE employees SET ewbdeploy = '$ewbc1m', ewbdate = '$dtnow' WHERE appno = '$selected'";
             $result = mysqli_query($link, $query);
             if($result){
-                $_SESSION['successMessage'] = "Multiple Entry to Database Succesful";
+                $_SESSION['successMessage'] = "Success";
             }
             else{
                 $_SESSION['errorMessage'] = "Multiple Entry to Database Error";

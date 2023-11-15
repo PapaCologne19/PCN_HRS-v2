@@ -106,7 +106,6 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
 </html>
 <?php 
 }else{
-    $_SESSION['errorMessage'] = "Hacker ka 'no?";
     header("Location: ../../logout.php");
     session_destroy();
     exit(0);

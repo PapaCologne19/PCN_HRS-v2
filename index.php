@@ -291,7 +291,7 @@ if (isset($_POST['SavenewUser1'])) {
 
 </head>
 
-<body onload="myFunction()" style="background-image: url(bg3a.jpg); background-size:100% 100%; background-repeat: no-repeat;">
+<body onload="myFunction()" style="background-image: url(assets/img/bg3a.jpg); background-size:100% 100%; background-repeat: no-repeat;">
 
   <?php
   if (isset($_SESSION['successMessage'])) { ?>
@@ -465,6 +465,5 @@ if (isset($_POST['SavenewUser1'])) {
     function myFunction() {
       document.getElementById("loader").style.display = "none";
       document.getElementById("wrapper").style.display = "none";
-
     }
   </script>

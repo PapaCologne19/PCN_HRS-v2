@@ -125,7 +125,7 @@ if (isset($_POST['create_loa'])) {
                 $update = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
                 $update_result = $link->query($update);
                 if ($update_result) {
-                    $_SESSION['successMessage'] = "Create LOA Success";
+                    $_SESSION['successMessage'] = "Success";
                 } else {
                     $_SESSION['errorMessage'] = "SQL Errorsss: " . $link->error;
                 }
@@ -280,7 +280,7 @@ if (isset($_POST['update_loa'])) {
         $result_history = $link->query($query_history);
 
         if ($result_history) {
-            $_SESSION['successMessage'] = "Updating LOA success";
+            $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in inserting LOA to history";
         }

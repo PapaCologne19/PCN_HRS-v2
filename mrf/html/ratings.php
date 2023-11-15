@@ -122,7 +122,7 @@ session_start();
                             },
                             success: function(response) {
                                 Swal.fire({
-                                    title: "Successfully Undo!",
+                                    title: "Success!",
                                     icon: "success"
                                 }).then((result) => {
                                     location.reload();
@@ -149,7 +149,7 @@ session_start();
             // Wait for the modal to close, then show SweetAlert
             setTimeout(function() {
                 Swal.fire({
-                    title: "Are you sure you want to reject this person?",
+                    title: "Are you sure you want to reject?",
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Yes",
@@ -188,7 +188,7 @@ session_start();
                                 },
                                 success: function(response) {
                                     Swal.fire({
-                                        title: "Successfully Rejected!",
+                                        title: "Success!",
                                         icon: "success",
                                     });
                                 },
