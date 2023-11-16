@@ -755,8 +755,8 @@ if (isset($_POST['acceptMRF_button_click'])) {
             $work_duration_end = $query_row['work_duration_end'];
             $status = "1";
 
-            $insert_db = "INSERT INTO projects (mrf_id,mrf_tracking, project_title, client_company_id, ewb_count, start_date, end_date, status) 
-            VALUES ('$mrf_val1', '$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
+            $insert_db = "INSERT INTO projects (mrf_tracking, project_title, client_company_id, ewb_count, start_date, end_date, status) 
+            VALUES ('$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
             $result_insert = $link->query($insert_db);
             if ($result_insert) {
                 $_SESSION['successMessage'] = "Success!";
@@ -1131,7 +1131,7 @@ if (isset($_POST['updatefailedBtn2'])) {
     exit(0);
 }
 
-// Update Employees' Information (Without Mandatories)
+
 if (isset($_POST['submit_update'])) {
     $update_id = $_POST['update_id'];
     $lastnameko = $link->real_escape_string($_POST['lastnameko']);
@@ -1172,11 +1172,24 @@ if (isset($_POST['submit_update'])) {
 
     $folderDestination = $folder;
 
-    if (empty($sssnum) || $sssnum === '' || empty($pagibignum) || $pagibignum === '' || empty($phnum) || $phnum === '') {
-        // $_SESSION['errorMessage'] = "Please upload waiver";
-        echo "Please upload waiver";
+    // Check if any of the optional fields is empty and the file input is also empty
+    if ((empty($sssnum) || empty($pagibignum) || empty($phnum)) && empty($filename)) {
+        $_SESSION['errorMessage'] = 'File is required!';
+        header('Location: deploy.php');
+        exit(0);
+        // echo "Please provide at least one optional field or upload a waiver file.";
     } else {
+        // Continue with your existing logic
+        if (empty($sssnum)) {
+            // Handle the case when $sssnum is empty
+        }
+
+        // ... (your existing code)
+
+        // Move the uploaded file to the destination folder
         move_uploaded_file($tempname, $folderDestination);
+
+        // Continue with your existing logic
         $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
             `peraddress`='$peraddress', `cityn`='$cityn', `regionn`='$regionn', `birthday`='$birthday',
             `age`='$agen', `gendern`='$gendern', `civiln`='$civiln', `cpnum`='$cpnum',
@@ -1190,18 +1203,22 @@ if (isset($_POST['submit_update'])) {
         $result = $link->query($query);
 
         if ($result) {
-             $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
+            // Continue with your existing logic for database updates
+
+            // Insert into 201files table
+            $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
             $insert_file_result = $link->query($insert_file);
- 
+
             if ($insert_file_result) {
                 $_SESSION['successMessage'] = "Success";
             } else {
                 $_SESSION['errorMessage'] = "Error in inserting waiver";
-            }
+            } 
         } else {
             $_SESSION['errorMessage'] = "Error in updating data";
         }
     }
-    header("Location: deploy.php");
-    exit(0);
+    // ... (rest of your code)
 }
+
+

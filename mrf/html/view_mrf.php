@@ -514,7 +514,30 @@ $row = $result->fetch_assoc();
                     </tr>
                     <tr>
                         <td></td>
-                        <td>Outlet: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['outlet'] ?></i></td>
+                        <?php
+                        $outlet = $row['outlet'];
+                        $html = '';
+                        if (!empty($outlet)) {
+                            $data = json_decode($outlet, true);
+                            if (!empty($data['ops'])) {
+                                $html = '<ul>';
+                                foreach ($data['ops'] as $op) {
+                                    if (!empty($op['insert'])) {
+                                        $text = trim($op['insert']);
+                                        $attributes = isset($op['attributes']) ? $op['attributes'] : []; // Check if 'attributes' key exists
+                                        if (!empty($attributes) && isset($attributes['list']) && $attributes['list'] == 'bullet' && !empty($text)) {
+                                            $html .= '<li>' . $text . '</li>';
+                                        } elseif (!empty($text)) {
+                                            $html .= '<li>' . $text . '</li>';
+                                        }
+                                    }
+                                }
+                                $html .= '</ul>';
+                            }
+                        }
+
+                        ?>
+                        <td>Outlet: <i><?php echo $html; ?></i></td>
                     </tr>
                 </tbody>
             </table>

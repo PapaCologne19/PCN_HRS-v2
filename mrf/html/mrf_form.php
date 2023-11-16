@@ -111,7 +111,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 $result_select_division = $link->query($query_select_division);
                                                 while ($row_select = $result_select_division->fetch_assoc()) {
                                                 ?>
-                                                    <option value="<?php echo $row_select['division'] ?>"><?php echo $row_select['division'] ?> (<?php echo $row_select['description'] ?>)</option>
+                                                    <option value="<?php echo $row_select['division'] . '|' . $row_select['description']; ?>"><?php echo $row_select['division'] ?> (<?php echo $row_select['description'] ?>)</option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -449,8 +449,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <div class="col-md-1 mt-3">
                                                     <label for="" class="form-label">Outlet: </label>
                                                 </div>
-                                                <div class="col-md-3 mt-2">
-                                                    <input type="text" class="form-control salary_package" name="outlet" id="outlet" required>
+                                                <div class="col-md-5 mt-4 mb-5">
+                                                    <!-- <input type="text" class="form-control salary_package" name="outlet" id="outlet" required> -->
+                                                    <div id="editor"></div>
+                                                    <textarea name="outlet" id="outlet" style="position: absolute; left: -9999px;"></textarea>
                                                 </div>
 
                                             </div>
@@ -509,9 +511,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <option value="" selected disabled>Please select</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-6">
-                                            <button type="submit" class="btn btn-primary" name="process">Process</button>
+                                        <center>
+                                        <div class="col-md-6 mt-5 mb-5 ">
+                                            <button type="submit" class="btn btn-primary btn-xl " name="process">Process</button>
                                         </div>
+                                        </center>
                                     </form>
                                 </div>
                             </div>
@@ -721,6 +725,18 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     $('#id').val(data[0]);
                 });
             });
+
+            // For QUILL
+      var quill = new Quill('#editor', {
+         placeholder: 'Type outlet here...',
+         theme: 'snow',
+         debug: 'info',
+         });
+
+         $('form').submit(function (event) {
+         $('#outlet').val(JSON.stringify(quill.getContents()));
+         return true;
+      });
         </script>
         <?php include '../components/footer.php'; ?>
     </body>

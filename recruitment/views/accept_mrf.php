@@ -58,6 +58,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <table id="example" class="table" style="width:100%; font-size: 14px !important;">
                                         <thead>
                                             <tr>
+                                                <th> MRF ID </th>
                                                 <th> FILLED BY </th>
                                                 <th> LOCATION </th>
                                                 <th> PROJECT TITLE </th>
@@ -87,9 +88,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 $selected_result = $link->query($selected);
 
                                                 $provided = $selected_result->num_rows;
+                                                $selected_row = $selected_result->fetch_assoc();
 
                                                 if ($row['hr_personnel'] == "YES") { ?>
                                                     <tr>
+                                                        <td> <?php echo $row['id'] ?> </td>
                                                         <td> <?php echo $row['prepared_by'] ?> </td>
                                                         <td> <?php echo $row['location'] ?> </td>
                                                         <td> <?php echo $row['project_title'] ?> </td>
@@ -106,11 +109,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             <form action="" method="POST">
                                                                 <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
                                                                 <button type="button" class="btn btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_row['project_id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
                                                             </form>
                                                         </td>
                                                     </tr>
                                                 <?php } else { ?>
                                                     <tr>
+                                                        <td> <?php echo $row['id'] ?> </td>
                                                         <td> <?php echo $fullname ?> </td>
                                                         <td> <?php echo $row['location'] ?> </td>
                                                         <td> <?php echo $row['project_title'] ?> </td>
@@ -126,9 +131,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             <form action="" method="POST">
                                                             <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
                                                                 <button type="button" class="btn btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $row['id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
 
                                                                 <input type="hidden" name="mrf_ids" class="mrf_ids" value="<?php echo $row['id'] ?>">
                                                                 <button type="button" name="r_mrfs" class="btn btn-success r_mrfs" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accept MRF"><i class="bi bi-send-check"></i></button>
+                                                                
                                                             </form>
                                                         </td>
                                                     </tr>

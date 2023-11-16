@@ -55,7 +55,7 @@ $datenow = date("m/d/Y h:i:s A");
                                         <center>
                                             <h4 class="fs-4">PROJECT DETAILS</h4>
                                         </center>
-                                        <input type="hidden" name="updateID" value="<?php echo $rows['id'] ?>">
+                                        <input type="hidden" name="updateID" value="<?php echo $edit_id ?>">
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">TRACKING NUMBER</label>
                                             <input type="text" name="tracking_number" id="tracking_number" class="form-control" value="<?php echo $rows['tracking'] ?>" readonly>
@@ -63,7 +63,7 @@ $datenow = date("m/d/Y h:i:s A");
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">MRF Category</label>
                                             <select name="mrf_category" id="mrf_category" onchange="showCategory()" class="form-select cbo" required>
-                                                <option value="<?php echo $rows['mrf_category'] ?>" selected disabled><?php echo $rows['mrf_category'] ?></option>
+                                                <option value="<?php echo $rows['mrf_category'] ?>" selected><?php echo $rows['mrf_category'] ?></option>
                                                 <option value="NEW">NEW</option>
                                                 <option value="REPLACEMENT">REPLACEMENT</option>
                                                 <option value="RELIEVER">RELIEVER</option>
@@ -71,27 +71,28 @@ $datenow = date("m/d/Y h:i:s A");
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label" id="name-label">Name</label>
-                                            <input type="text" class="form-control" name="category_name" id="category_name" style="display: none !important;">
+                                            <input type="text" class="form-control" name="category_name" id="category_name" style="display: none;">
                                         </div>
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">MRF Type</label>
                                             <select name="mrf_type" id="mrf_type" onchange="validate_type()" class="form-select cbo" required>
-                                                <option value="<?php echo $rows['type'] ?>" selected disabled><?php echo $rows['type'] ?></option>
+                                                <option value="<?php echo $rows['type'] ?>" selected><?php echo $rows['type'] ?></option>
                                                 <option value="INHOUSE">INHOUSE</option>
                                                 <option value="FIELD FORCE">FIELD FORCE</option>
                                             </select>
                                         </div>
+
+
                                         <div class="col-md-4 mt-3">
-                                            <label for="" class="form-label">Client</label>
-                                            <hr>
-                                            <select name="client" id="client" class="form-select" required>
-                                                <option value="<?php echo $rows['client'] ?>" selected disabled><?php echo $rows['client'] ?></option>
+                                            <label for="" class="form-label">Division</label>
+                                            <select name="division" id="division" class="form-select" required>
+                                                <option value="<?php echo $rows['division'] . '|' . $rows['department'] ?>" selected><?php echo $rows['division'] ?> (<?php echo $rows['department'] ?>)</option>
                                                 <?php
-                                                $query = "SELECT * FROM client_company WHERE is_deleted = '0' ORDER BY company_name ASC";
-                                                $result = $link->query($query);
-                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                $query_select_division = "SELECT * FROM department";
+                                                $result_select_division = $link->query($query_select_division);
+                                                while ($row_select = $result_select_division->fetch_assoc()) {
                                                 ?>
-                                                    <option value="<?php echo $row['company_name'] ?>"><?php echo $row['company_name'] ?></option>
+                                                    <option value="<?php echo $row_select['division'] . '|' . $row_select['description']; ?>"><?php echo $row_select['division'] ?> (<?php echo $row_select['description'] ?>)</option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -99,31 +100,9 @@ $datenow = date("m/d/Y h:i:s A");
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">Location</label>
                                             <select name="location" id="location" class="form-select" required>
-                                                <option value="<?php echo $rows['location'] ?>" selected disabled><?php echo $rows['location'] ?></option>
+                                                <option value="<?php echo $rows['location'] ?>" selected><?php echo $rows['location'] ?></option>
                                                 <option value="NCR">NCR</option>
                                                 <option value="PROVINCIAL">PROVINCIAL</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mt-3">
-                                            <label for="" class="form-label">Project Title</label>
-                                            <input type="text" name="projectTitle" id="projectTitle" class="form-control" value="<?php echo $rows['project_title'] ?>" required>
-                                        </div>
-                                        <div class="col-md-4 mt-3">
-                                            <label for="" class="form-label">Division</label>
-                                            <select name="division" id="division" class="form-select" required>
-                                                <option value="<?php echo $rows['division'] ?>" disabled selected><?php echo $rows['division'] ?></option>
-                                                <option value="HR">HR</option>
-                                                <option value="BSG">BSG</option>
-                                                <option value="BD1">BD1</option>
-                                                <option value="BD2">BD2</option>
-                                                <option value="BD3">BD3</option>
-                                                <option value="FINANCE">FINANCE</option>
-                                                <option value="HR">HR</option>
-                                                <option value="PPI">PPI</option>
-                                                <option value="STRAT">STRAT</option>
-                                                <option value="EXECOM">EXECOM</option>
-                                                <option value="MANCOM">MANCOM</option>
-
                                             </select>
                                         </div>
                                         <div class="col-md-4 mt-3">
@@ -131,114 +110,214 @@ $datenow = date("m/d/Y h:i:s A");
                                             <input type="text" name="ce_number" id="ce_number" class="form-control" value="<?php echo $rows['ce_number'] ?>" required>
                                         </div>
 
+                                        <div class="col-md-4 mt-3">
+                                            <label for="" class="form-label">Client</label>
+                                            <select name="client" id="client" class="form-select" required>
+                                                <option value="<?php echo $rows['client'] ?>" selected><?php echo $rows['client'] ?></option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4 mt-3">
+                                            <label for="" class="form-label">Client Address</label>
+                                            <select name="client_address" id="client_address" class="form-select">
+                                                <option value="<?php echo $rows['client_address'] ?>" selected><?php echo $rows['client_address'] ?></option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="col-md-4 mt-3">
+                                            <label for="" class="form-label">Project Title</label>
+                                            <input type="text" name="projectTitle" id="projectTitle" class="form-control" value="<?php echo $rows['project_title'] ?>" required>
+                                        </div>
+
+                                        <div class="col-md-4 mt-3">
+                                            <label for="" class="form-label">PO Number</label>
+                                            <input type="text" name="po_number" id="po_number" class="form-control" value="<?php echo $rows['po_number'] ?>" required>
+                                        </div>
+
                                         <!-- FOR POSITION -->
                                         <center>
                                             <h4 class="fs-4 mt-4">POSITION</h4>
-                                        </center>
-                                        <div class="row cs1">
-                                            <div class="col-md-12">
-                                                <div class="form-group" id="inhouse">
-                                                    <select class="form-select cbo" name="position" id="position"> ;
-                                                        <option value="" disabled selected>Please select One</option>
-                                                        <option>ACCOUNT EXECUTIVE</option>
-                                                        <option>BUSS. MANAGER</option>
-                                                        <option>ACCOUNT MANAGER</option>
-                                                        <option>OPERATIONS MANAGER</option>
-                                                        <option>PROJECT MANAGER</option>
-                                                        <option>PROJECT COORDINATOR</option>
-                                                        <option>AREA COORDINATOR</option>
-                                                        <option>BILLING ASST.</option>
-                                                        <option>TRAINER</option>
-                                                        <option>ENCODER</option>
-                                                        <option>MERCHANDISING SUPERVISOR</option>
-                                                        <option>OPERATIONS SUPERVISOR</option>
-                                                        <option>OTHER</option>
-                                                    </select>
+                                            <div class="row cs1">
+                                                <div class="col-md-6">
+                                                    <div class="form-group" id="inhouse">
+                                                        <select class="form-select cbo" name="position" id="position"> ;
+                                                            <option value="<?php echo $rows['position'] ?>" selected><?php echo $rows['position'] ?></option>
+                                                            <option>ACCOUNT EXECUTIVE</option>
+                                                            <option>BUSS. MANAGER</option>
+                                                            <option>ACCOUNT MANAGER</option>
+                                                            <option>OPERATIONS MANAGER</option>
+                                                            <option>PROJECT MANAGER</option>
+                                                            <option>PROJECT COORDINATOR</option>
+                                                            <option>AREA COORDINATOR</option>
+                                                            <option>BILLING ASST.</option>
+                                                            <option>TRAINER</option>
+                                                            <option>ENCODER</option>
+                                                            <option>MERCHANDISING SUPERVISOR</option>
+                                                            <option>OPERATIONS SUPERVISOR</option>
+                                                            <option>OTHER</option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="text" name="other_position" id="other_position" class="form-control" onfocusout="myFunction_focusout()">
                                                 </div>
-                                                <input type="text" name="other_position" id="other_position" class="form-control" onfocusout="myFunction_focusout()">
                                             </div>
-                                        </div>
+                                        </center>
+
                                         <!--=================================================================================-->
                                         <div class="form-group" id="field">
                                             <div class="row cs1">
-                                                <div class="column ">
-                                                    <div class="containerx ">
-                                                          <label class="form-control">
-                                                            <input type="radio" name="radio" value="Push Girl" />
+                                                <div class="column col-md-4">
+                                                    <div class="containerx">
+                                                         <label class="form-control">
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Push Girl')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Push Girl
                                                         </label>
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Demo Girl" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Demo Girl')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Demo Girl
                                                         </label>
                                                         <label class="form-control">
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Promo Girl')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             <input type="radio" name="radio" value="Promo Girl" />
                                                             Promo Girl
                                                         </label>
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Sampler" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Sampler')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Sampler
                                                         </label>
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
 
                                                           <label class="form-control">
-                                                            <input type="radio" name="radio" value="Merchandiser" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Merchandiser')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Merchandiser
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Helper" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Helper')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Helper
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Mystery Buyer" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Mystery Buyer')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Mystery Buyer
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Validator">
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Validator')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Validator
                                                         </label>
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
 
                                                           <label class="form-control">
-                                                            <input type="radio" name="radio" value="Promoter" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Promoter')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Promoter
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Encoder" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Encoder')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Encoder
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Coordinator" />
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Coordinator')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Coordinator
                                                         </label>
 
                                                         <label class="form-control">
-                                                            <input type="radio" name="radio" value="Bundler">
+                                                            <?php
+                                                            if ($rows['position'] === strtoupper('Bundler')) {
+                                                            ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" checked />
+                                                            <?php } else { ?>
+                                                                <input type="radio" name="radio" value="<?php echo strtoupper($rows['position']) ?>" />
+                                                            <?php } ?>
                                                             Bundler
                                                         </label>
                                                     </div>
                                                 </div>
 
-                                                <div class="column">
+                                                <div class="column col-md-4">
                                                     <div class="containerx">
                                                         <br>
                                                         <h5>Others</h5>
                                                         <p>Please Specify</p>
 
-                                                        <input type="text" name="other_position1" id="other_position1" value="" class="form-control" onfocusout="myFunction_focusout()">
+                                                        <input type="text" name="other_position1" id="other_position1" value="<?php echo strtoupper($rows['position_detail']) ?>" class="form-control" onfocusout="myFunction_focusout()">
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,25 +328,33 @@ $datenow = date("m/d/Y h:i:s A");
                                             <h4 class="fs-4 mt-4">JOB REQUIREMENTS / QUALIFICATIONS</h4>
                                         </center>
                                         <label for="" class="form-label mt-3">No. of People</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="number_male" id="number_male" placeholder="Male" value="<?php echo $rows['np_male'] ?>" class="form-control">
+                                        <div class="col-md-4">
+                                            <input type="text" name="number_male" id="number_male" placeholder="Male" class="form-control" value="<?php echo $rows['np_male'] ?>">
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="number_female" id="number_female" placeholder="Female" value="<?php echo $rows['np_female'] ?>" class="form-control">
+                                        <div class="col-md-4">
+                                            <input type="text" name="number_female" id="number_female" placeholder="Female" class="form-control" value="<?php echo $rows['np_female'] ?>">
                                         </div>
 
                                         <label for="" class="form-label mt-3">Height Requirements</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="height_male" id="height_male" placeholder="Male" value="<?php echo $rows['height_r'] ?>" class="form-control">
+                                        <div class="col-md-4">
+                                            <input type="text" name="height_male" id="height_male" placeholder="Male" class="form-control" value="<?php echo $rows['height_r'] ?>">
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="text" name="height_female" id="height_female" placeholder="Female" value="<?php echo $rows['height_female'] ?>" class="form-control">
+                                        <div class="col-md-4">
+                                            <input type="text" name="height_female" id="height_female" placeholder="Female" class="form-control" value="<?php echo $rows['height_female'] ?>">
                                         </div>
 
-                                        <div class="col-md-12 mt-3">
+                                        <div class="col-md-1">
+                                            <input type="hidden" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <input type="hidden" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-3 mt-3">
                                             <label for="" class="form-label">Educational Background</label>
                                             <select name="educational_background" id="educational_background" class="form-select" required>
-                                                <option value="" selected disabled></option>
+                                                <option value="<?php echo $rows['edu'] ?>" selected><?php echo $rows['edu'] ?></option>
                                                 <option value="High School Graduate">High School Graduate</option>
                                                 <option value="College Level">College Level</option>
                                                 <option value="College Graduate">College Graduate</option>
@@ -277,78 +364,77 @@ $datenow = date("m/d/Y h:i:s A");
 
                                         <!-- PERSONALITY -->
                                         <label for="" class="form-label mt-4">Personality</label>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['pleasing_personality'])) {
+                                            if ($rows['pleasing_personality'] === strtoupper('Pleasing Personality')) {
                                             ?>
                                                 <input type="checkbox" name="pleasing_personality" id="pleasing_personality" value="Pleasing Personality" class="form-check-input" checked>
-                                                <label for="pleasing_personality" class="form-check-label">Pleasing Personality</label>
                                             <?php } else { ?>
                                                 <input type="checkbox" name="pleasing_personality" id="pleasing_personality" value="Pleasing Personality" class="form-check-input">
-                                                <label for="pleasing_personality" class="form-check-label">Pleasing Personality</label>
                                             <?php } ?>
+                                            <label for="pleasing_personality" class="form-check-label">Pleasing Personality</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['moral'])) {
+                                            if ($rows['moral'] === strtoupper('Good Moral')) {
                                             ?>
                                                 <input type="checkbox" name="good_moral" id="good_moral" value="Good Moral" class="form-check-input" checked>
-                                                <label for="" class="form-check-label">With Good Moral Character</label>
                                             <?php } else { ?>
                                                 <input type="checkbox" name="good_moral" id="good_moral" value="Good Moral" class="form-check-input">
-                                                <label for="" class="form-check-label">With Good Moral Character</label>
                                             <?php } ?>
+
+                                            <label for="" class="form-check-label">With Good Moral Character</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['work_experience'])) {
+                                            if ($rows['work_experience'] === strtoupper('With Work Experience')) {
                                             ?>
                                                 <input type="checkbox" name="work_experience" id="work_experience" value="With Work Experience" class="form-check-input" checked>
-                                                <label for="" class="form-check-label">With Work Experience</label>
                                             <?php } else { ?>
                                                 <input type="checkbox" name="work_experience" id="work_experience" value="With Work Experience" class="form-check-input">
-                                                <label for="" class="form-check-label">With Work Experience</label>
                                             <?php } ?>
+
+                                            <label for="" class="form-check-label">With Work Experience</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['comm_skills'])) {
+                                            if ($rows['comm_skills'] === strtoupper('Good communication skills')) {
                                             ?>
                                                 <input type="checkbox" name="good_communication" id="good_communication" value="Good communication skills" class="form-check-input" checked>
-                                                <label for="" class="form-check-label">Good Communication Skills</label>
                                             <?php } else { ?>
                                                 <input type="checkbox" name="good_communication" id="good_communication" value="Good communication skills" class="form-check-input">
-                                                <label for="" class="form-check-label">Good Communication Skills</label>
                                             <?php } ?>
+
+                                            <label for="" class="form-check-label">Good Communication Skills</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['physically'])) {
+                                            if ($rows['physically'] === strtoupper('Physically fit / good built')) {
                                             ?>
                                                 <input type="checkbox" name="physically_fit" id="physically_fit" value="Physically fit / good built" class="form-check-input" checked>
-                                                <label for="" class="form-check-label">Physically Fit / Good Build</label>
                                             <?php } else { ?>
                                                 <input type="checkbox" name="physically_fit" id="physically_fit" value="Physically fit / good built" class="form-check-input">
-                                                <label for="" class="form-check-label">Physically Fit / Good Build</label>
                                             <?php } ?>
+
+                                            <label for="" class="form-check-label">Physically Fit / Good Build</label>
                                         </div>
-                                        <div class="col-md-12 form-check">
+                                        <div class="col-md-5 form-check">
                                             <?php
-                                            if (!empty($rows['articulate'])) {
+                                            if ($rows['articulate'] === strtoupper('articulate')) {
                                             ?>
-                                                <input type="checkbox" name="articulate" id="articulate" value="Articulate" class="form-check-input" checked>
-                                                <label for="" class="form-check-label">Articulate</label>
+                                                <input type="checkbox" name="articulate" id="articulate" value="articulate" class="form-check-input" checked>
                                             <?php } else { ?>
-                                                <input type="checkbox" name="articulate" id="articulate" value="Articulate" class="form-check-input">
-                                                <label for="" class="form-check-label">Articulate</label>
+                                                <input type="checkbox" name="articulate" id="articulate" value="articulate" class="form-check-input">
                                             <?php } ?>
+
+                                            <label for="" class="form-check-label">Articulate</label>
                                         </div>
-                                        <div class="row form-group">
-                                            <div class="col-md-1">
+                                        <div class="row form-group mt-3">
+                                            <div class="col-md-0">
                                                 <label for="" class="form-label">Others</label>
                                             </div>
-                                            <div class="col-md-5">
-                                                <input type="text" name="other_personality" id="other_personality" value="<?php echo $rows['others'] ?>" class="form-control">
+                                            <div class="col-md-3">
+                                                <input type="text" name="other_personality" id="other_personality" class="form-control" value="<?php echo $rows['others'] ?>">
                                             </div>
                                         </div>
 
@@ -359,50 +445,49 @@ $datenow = date("m/d/Y h:i:s A");
                                         </center>
 
                                         <div class="row mt-3">
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Basic Salary: </label>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-2">
                                                 <input type="text" class="form-control salary_package" name="basic_salary" id="basic_salary" value="<?php echo $rows['basic_salary'] ?>" required>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Transpo Allowance: </label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control salary_package" name="transportation_allowance" value="<?php echo $rows['transpo'] ?>" id="transportation_allowance" required>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control salary_package" name="transportation_allowance" id="transportation_allowance" value="<?php echo $rows['transpo'] ?>" required>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Meal Allowance: </label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control salary_package" name="meal_allowance" value="<?php echo $rows['meal'] ?>" id="meal_allowance" required>
+                                            <div class="col-md-2 mt-2">
+                                                <input type="text" class="form-control salary_package" name="meal_allowance" id="meal_allowance" value="<?php echo $rows['meal'] ?>" required>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-1">
                                                 <label for="" class="form-label">Comm. Allowance: </label>
                                             </div>
-                                            <div class="col-md-4">
-                                                <input type="text" class="form-control salary_package" name="communication_allowance" value="<?php echo $rows['comm'] ?>" id="communication_allowance" required>
+                                            <div class="col-md-2 mt-2">
+                                                <input type="text" class="form-control salary_package" name="communication_allowance" id="communication_allowance" value="<?php echo $rows['comm'] ?>" required>
                                             </div>
                                             <div class="col-md-1">
                                                 <label for="" class="form-label">Others: </label>
                                             </div>
-                                            <div class="col-md-5">
-                                                <input type="text" class="form-control salary_package" name="other_salary_package" value="<?php echo $rows['other_allow'] ?>" id="other_salary_package">
+                                            <div class="col-md-2 mt-2">
+                                                <input type="text" class="form-control salary_package" name="other_salary_package" id="other_salary_package" value="<?php echo $rows['other_allow'] ?>">
                                             </div>
                                         </div>
 
                                         <center>
-                                            <div class="col-md-8 mt-4">
+                                            <div class="col-md-5 mt-4">
 
                                                 <label for="" class="form-label mt-3 fs-6">Employment Status</label>
 
                                                 <select name="employment_status" id="employment_status" class="form-select">
-                                                    <option value="<?php echo $rows['employment_stat'] ?>" selected disabled><?php echo $rows['employment_stat'] ?></option>
+                                                    <option value="<?php echo $rows['employment_stat'] ?>" selected><?php echo $rows['employment_stat'] ?></option>
                                                     <option value="Project Based">Project Based</option>
-                                                    <option value="Probationary">Probationary (180 Days)</option>
-                                                    <option value="Regular">Regular</option>
+                                                    <option value="Probationary">Probationary (179 Days)</option>
                                                     <option value="Co-Terminus">Co-Terminus</option>
                                                 </select>
                                             </div>
@@ -413,47 +498,105 @@ $datenow = date("m/d/Y h:i:s A");
                                                 <label for="" class="form-label mt-3 fs-6">Work Schedule and Others</label>
                                             </center>
                                             <div class="row mt-3">
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Salary Schedule: </label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="salary_schedule" value="<?php echo $rows['salary_sched'] ?>" id="salary_schedule" required>
+                                                <div class="col-md-2">
+                                                    <input type="text" class="form-control salary_package" name="salary_schedule" id="salary_schedule" value="<?php echo $rows['salary_sched'] ?>" required>
                                                 </div>
-
-                                                <div class="col-md-2 mt-3">
-                                                    <label for="" class="form-label">Work Duration: </label>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="work_duration" value="<?php echo $rows['work_duration'] ?>" id="work_duration" required>
-                                                </div>
-
-                                                <div class="col-md-2 mt-3">
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Work Days: </label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="work_days" value="<?php echo $rows['work_days'] ?>" id="work_days" required>
+                                                <div class="col-md-2 ">
+                                                    <input type="text" class="form-control salary_package" name="work_days" id="work_days" value="<?php echo $rows['work_days'] ?>" required>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-1">
                                                     <label for="" class="form-label">Time Schedule: </label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="time_schedule" value="<?php echo $rows['time_sched'] ?>" id="time_schedule" required>
+                                                <div class="col-md-2 mt-2">
+                                                    <input type="text" class="form-control salary_package" name="time_schedule" id="time_schedule" value="<?php echo $rows['time_sched'] ?>" required>
                                                 </div>
-                                                <div class="col-md-2 mt-3">
+                                                <div class="col-md-1 mt-3">
                                                     <label for="" class="form-label">Day-Off: </label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="day_off" value="<?php echo $rows['day_off'] ?>" id="day_off" required>
+                                                <div class="col-md-2 mt-2">
+                                                    <input type="text" class="form-control salary_package" name="day_off" id="day_off" value="<?php echo $rows['day_off'] ?>" required>
                                                 </div>
-                                                <div class="col-md-2 mt-3">
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+                                                <div class="col-md-2 ">
+                                                    <input type="hidden" class="form-control salary_package">
+                                                </div>
+
+                                                <div class="col-md-1 mt-3">
                                                     <label for="" class="form-label">Outlet: </label>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control salary_package" name="outlet" id="outlet" value="<?php echo $rows['outlet'] ?>" required>
+                                                <div class="col-md-5 mt-4 mb-5">
+                                                    <?php
+                                                    $outlet = $rows['outlet'];
+                                                    $html = '';
+                                                    if (!empty($outlet)) {
+                                                        $data = json_decode($outlet, true);
+                                                        if (!empty($data['ops'])) {
+                                                            $html = '<ul>';
+                                                            foreach ($data['ops'] as $op) {
+                                                                if (!empty($op['insert'])) {
+                                                                    $text = trim($op['insert']);
+                                                                    $attributes = isset($op['attributes']) ? $op['attributes'] : []; // Check if 'attributes' key exists
+                                                                    if (!empty($attributes) && isset($attributes['list']) && $attributes['list'] == 'bullet' && !empty($text)) {
+                                                                        $html .= '<li>' . $text . '</li>';
+                                                                    } elseif (!empty($text)) {
+                                                                        $html .= '<li>' . $text . '</li>';
+                                                                    }
+                                                                }
+                                                            }
+                                                            $html .= '</ul>';
+                                                        }
+                                                    }
+
+                                                    ?>
+                                                    <div id="editor_update"><?php echo $html; ?></div>
+                                                    <textarea name="outlet" id="outlet_update" style="position: absolute; left: -9999px;"></textarea>
                                                 </div>
 
-                                            </div>
 
+
+                                            </div>
+                                            <div class="col-md-2 mt-5">
+                                                <label for="" class="form-label fs-6">Work Duration</label>
+                                            </div>
+                                            <div class="row mt-3">
+
+                                                <div class="row col-md-5">
+                                                    <div class="col-md-1">
+                                                        <label for="" class="form-label">From:</label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="date" class="form-control salary_package" name="work_duration_start" id="work_duration_start" value="<?php echo $rows['work_duration_start'] ?>" required>
+                                                    </div>
+                                                    <!-- </div>
+                                                <div class="row col-md-3"> -->
+                                                    <div class="col-md-1">
+                                                        <label for="" class="form-label">To:</label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input type="date" class="form-control salary_package" name="work_duration_end" id="work_duration_end" value="<?php echo $rows['work_duration_end'] ?>" required>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <center>
@@ -468,7 +611,7 @@ $datenow = date("m/d/Y h:i:s A");
                                         </center>
                                         <div class="col-md-6 mt-3">
                                             <label for="" class="form-label">Date Requested</label>
-                                            <input type="text" name="date_requested" value="<?php echo $rows['dt_now'] ?>" id="date_requested" class="form-control" readonly>
+                                            <input type="text" name="date_requested" value="<?php echo $datenow ?>" id="date_requested" class="form-control" readonly>
                                         </div>
                                         <div class="col-md-6 mt-3">
                                             <label for="" class="form-label">Date Needed</label>
@@ -477,21 +620,21 @@ $datenow = date("m/d/Y h:i:s A");
                                         <div class="col-md-6">
                                             <label for="" class="form-label">Directly Reporting To</label>
                                             <select name="direct_report" id="direct_report" class="form-select" required>
-                                                <option value="<?php echo $rows['drt'] ?>" selected disabled><?php echo $rows['drt'] ?></option>
+                                                <option value="<?php echo $rows['drt'] ?>" selected><?php echo $rows['drt'] ?></option>
                                             </select>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label for="" class="form-label">Requestee Position</label>
                                             <select name="job_position" id="job_position" class="form-select">
-                                                <option value="<?php echo $rows['rp'] ?>" selected disabled><?php echo $rows['rp'] ?></option>
+                                                <option value="<?php echo $rows['rp'] ?>" selected><?php echo $rows['rp'] ?></option>
                                             </select>
                                         </div>
-                                        <div class="col-md-6 mt-5 mb-5">
-                                            <button type="submit" name="updatemrf" class="btn btn-primary" id="updatemrf">Update</button>
-                                            <button type="reset" name="" class="btn btn-secondary">Reset</button>
-                                            <a href="mrf_list.php" class="btn btn-dark">Back</a>
-                                        </div>
+                                        <center>
+                                            <div class="col-md-6 mt-5 mb-5 ">
+                                                <button type="submit" class="btn btn-primary btn-xl " name="updatemrf">Update</button>
+                                            </div>
+                                        </center>
                                     </form>
                                 </div>
                             </div>
@@ -506,7 +649,20 @@ $datenow = date("m/d/Y h:i:s A");
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
+            // For QUILL Update
+            var quill = new Quill('#editor_update', {
+                placeholder: 'Type outlet here...',
+                theme: 'snow',
+                debug: 'info',
+            });
+
+            $('form').submit(function(event) {
+                $('#outlet_update').val(JSON.stringify(quill.getContents()));
+                return true;
+            });
+
             var employeeData = [];
+            var clientData = [];
 
             $(document).ready(function() {
                 // Add an event listener to the "Division" dropdown
@@ -534,6 +690,7 @@ $datenow = date("m/d/Y h:i:s A");
                         });
                     }
                 });
+
 
                 $('#direct_report').change(function() {
                     var selectedEmployee = $(this).val();
@@ -566,6 +723,68 @@ $datenow = date("m/d/Y h:i:s A");
                     }
                 }
             });
+
+
+
+            // Client Company
+            $(document).ready(function() {
+                // Add an event listener to the "Division" dropdown
+                $('#division').change(function() {
+                    var selectedDivisionClient = $(this).val();
+                    if (selectedDivisionClient) {
+                        // Make an AJAX request to fetch employee data for the selected division
+                        $.ajax({
+                            url: 'get_client_company.php', // Replace with your server-side script
+                            method: 'POST',
+                            data: {
+                                division: selectedDivisionClient
+                            },
+                            dataType: 'json',
+                            success: function(data) {
+                                // Update the employeeData array with the fetched data
+                                clientData = data;
+                                var directReportDropdown = $('#client');
+                                directReportDropdown.empty();
+                                directReportDropdown.append('<option value="" selected disabled></option>');
+                                $.each(data, function(key, value) {
+                                    directReportDropdown.append('<option value="' + value.company_name + '">' + value.company_name + '</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('#client').change(function() {
+                var selectedClient = $(this).val();
+                var clientAddressDropdown = $('#client_address');
+
+                // Check if a valid employee is selected
+                if (selectedClient) {
+                    // Retrieve the employee's position from the updated employeeData array
+                    var address = getClientAddress(selectedClient);
+
+                    // Update the "Requestee Position" dropdown
+                    clientAddressDropdown.empty();
+                    clientAddressDropdown.append('<option value="' + address + '">' + address + '</option>');
+                } else {
+                    // Clear the "Requestee Position" dropdown if no employee is selected
+                    clientAddressDropdown.empty();
+                    clientAddressDropdown.append('<option value="" selected disabled>Please select</option>');
+                }
+            });
+
+            // Function to retrieve the position for the selected employee
+            function getClientAddress(clientName) {
+                var client = clientData.find(function(client) {
+                    return client.company_name === clientName;
+                });
+                if (client) {
+                    return client.address;
+                } else {
+                    return "Address not found";
+                }
+            }
         </script>
         <script type="text/javascript">
             document.getElementById('other_position').style.visibility = 'hidden';

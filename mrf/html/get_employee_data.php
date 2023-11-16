@@ -2,8 +2,8 @@
     include 'connect.php';
 
     if (isset($_POST['division'])) {
-        $selectedDivisionForClient = $_POST['division']; 
-    
+        $selected_value = $_POST['division']; 
+        list($selectedDivisionForClient, $description) = explode('|', $selected_value);
         // Prepare a SQL query to retrieve employee data for the selected division
         $query = "SELECT fullname, position FROM pcn_emp WHERE division = ? AND employment_status = 'REGULAR'";
     

@@ -2,7 +2,9 @@
     include 'connect.php';
 
     if (isset($_POST['division'])) {
-        $selectedDivisionClient = $_POST['division'];
+        $selected_value = $_POST['division'];
+        list($selectedDivisionClient, $description) = explode('|', $selected_value);
+
     
         // Prepare a SQL query to retrieve employee data for the selected division
         $query = "SELECT company_name, address

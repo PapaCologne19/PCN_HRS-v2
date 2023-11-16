@@ -114,13 +114,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             $inputDate = $row['dt_now'];
                                             $timestamp = strtotime($inputDate);
                                             $formattedDate = date("F d, Y", $timestamp);
+                                            $id = $row['id'];
                                             $project_title = $row['project_title'];
                                             $needed = $row['np_male'] + $row['np_female'];
+
+
                                             $selected = "SELECT mrf.*, project.*, resumes.* 
                                             FROM mrf mrf, projects project, applicant_resume resumes 
                                             WHERE mrf.tracking = project.mrf_tracking 
                                             AND resumes.project_id = project.id 
-                                            AND project.project_title = '$project_title'
+                                            AND project.project_title = '$project_title' 
+                                            AND project.mrf_id = '$id'
                                             AND resumes.status = 'QUALIFIED'";
                                             $selected_result = $link->query($selected);
 
@@ -142,17 +146,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <div class="columns">
                                                             <button type="button" class="btn btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon" style="color: black !important;"></i></button>
                                                         </div>
+                                                        
                                                         <div class="columns">
-                                                            <?php
-                                                            $select = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";
-                                                            $result_select = $link->query($select);
-                                                            while ($select_row = $result_select->fetch_assoc()) {
-                                                            ?>
-                                                                <input type="hidden" name="project_id" class="project_id" id="project_id" value="<?php echo $select_row['id']; ?>">
-                                                                <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
-                                                            <?php } ?>
-                                                        </div>
-                                                        <!-- <div class="columns">
                                                         <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
                                                             <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
                                                             <button type="button" class="btn btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon" style="color: black !important;"></i></button>
@@ -161,7 +156,23 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <div class="columns">
                                                         <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
                                                         <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
-                                                    </div> -->
+                                                    </div>
+                                                    <div class="columns">
+                                                            <?php
+                                                            $select = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";
+                                                            $result_select = $link->query($select);
+                                                            while ($select_row = $result_select->fetch_assoc()) {
+
+                                                                if($result_select->num_rows > 0){
+                                                            ?>
+                                                                <input type="hidden" name="project_id" class="project_id" id="project_id" value="<?php echo $select_row['id']; ?>">
+                                                                <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
+                                                            <?php } else{ ?>
+                                                                <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none !important;"><i class="bi bi-search"></i></button>
+
+                                                        
+                                                            <?php }} ?>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>

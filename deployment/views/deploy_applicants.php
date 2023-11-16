@@ -61,7 +61,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>App No.</th>
                                             <th>Name</th>
                                             <th>SSS</th>
                                             <th>PagIBIG</th>
@@ -96,7 +95,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         ?>
                                         <tr>
                                                 <td><?php echo $rows['id'] ?></td>
-                                                <td><?php echo $rows['appno'] ?></td>
                                                 <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
                                                 <td><?php echo $rows['sssnum'] ?></td>
                                                 <td><?php echo $rows['pagibignum'] ?></td>
@@ -147,7 +145,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             } elseif (trim($rows['deployment_status'] === 'FOR DEPLOYMENT')) { ?>
                                                 <tr>
                                                     <td><?php echo $rows['id'] ?></td>
-                                                    <td><?php echo $rows['appno'] ?></td>
                                                     <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
                                                     <td><?php echo $rows['sssnum'] ?></td>
                                                     <td><?php echo $rows['pagibignum'] ?></td>
@@ -223,7 +220,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     </html>
 <?php
 } else {
-    $_SESSION['errorMessage'] = "Hacker ka 'no?";
     header("Location: ../../index.php");
     exit(0);
 }

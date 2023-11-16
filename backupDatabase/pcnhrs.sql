@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2023 at 04:53 AM
+-- Generation Time: Nov 16, 2023 at 10:23 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -41,7 +41,8 @@ CREATE TABLE `201files` (
 
 INSERT INTO `201files` (`id`, `employee_id`, `waiver_filename`, `waiver_date_submitted`) VALUES
 (6, 0, 'adasd.pdf', '2023-11-15'),
-(7, 0, 'adasd.pdf', '2023-11-15');
+(7, 0, 'adasd.pdf', '2023-11-15'),
+(8, 0, 'adasd.pdf', '2023-11-15');
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ CREATE TABLE `applicant` (
 --
 
 INSERT INTO `applicant` (`id`, `source`, `username`, `password`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`, `applicant_status`, `resume_attachment`, `image`, `date_created`) VALUES
-(1, '', 'jpgomera19', '$2y$10$IUd4GxDVM5sqwjqHpm.zUe2bsT109kf2PhsoYTfGjHgNE7vLJ7U3W', 'JAMES PHILIP', 'AMANTE', 'GOMERA', '', 'Male', '', 22, 2147483647, 'jpgomera19@gmail.com', '2001-06-19', '#27 BANSALANGIN ST PAYATAS B', '', '', 'ACTIVE', '', '', '2023-11-11 00:41:19'),
+(1, '', 'jpgomera19', '$2y$10$IUd4GxDVM5sqwjqHpm.zUe2bsT109kf2PhsoYTfGjHgNE7vLJ7U3W', 'JAMES PHILIP', 'AMANTE', 'GOMERA', '', 'Male', '', 22, 2147483647, 'jpgomera19@gmail.com', '2001-06-19', '#27 BANSALANGIN ST PAYATAS B', '', '', 'ACTIVE', '', '404.png', '2023-11-11 00:41:19'),
 (2, '', 'johndoe123', '$2y$10$y13OEE/5lEFiNIv8nQnHBOPttpSwLN.tjgrk13GtZw3.slRkshFL6', 'John', 'Smith', 'Doe', '', 'Male', '', 22, 2147483647, 'johndoe123@test.com', '2001-12-06', 'Tagaroon St. Barangay Tinagiliran', '', '', 'ACTIVE', '', '', '2023-11-14 02:37:49'),
 (3, '', 'jerryboy123', '$2y$10$dK4wHGDpE3DUc9TiMlNx2ufTSssW0vRMHgjrPDtjZATBETCVgfU2S', 'Jerry', 'Malatek', 'Malandutay', '', 'Male', '', 15, 2147483647, 'jerryboy123@gmail.com', '2005-06-19', 'Bansalangin st. Payatas B', '', '', 'ACTIVE', '', '', '2023-11-14 05:22:49'),
 (5, 'REFERRAL', 'levi123', '$2y$10$lhMB3zhVutt0.c/7KHt7heGeuZC4.CbP.TEtXO196Hgw.IhKzdvfS', 'Levi', 'Malandutay', 'Mabangis', '', 'Male', '', 22, 2147483647, 'levimabangis@gmail.com', '2001-06-13', 'Bansalangin st. Payatas B', 'QUEZON CITY', '13', 'ACTIVE', '', '', '2023-11-14 06:44:13'),
@@ -114,7 +115,13 @@ INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `resume_file
 (9, 5, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 14:44:35', 0),
 (10, 7, 705, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-14 15:18:14', 0),
 (11, 8, 704, 'adasd.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-15 09:21:25', 0),
-(12, 9, 703, 'Vecteezy-License-Information.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-15 11:18:58', 0);
+(12, 9, 703, 'Vecteezy-License-Information.pdf', 'QUALIFIED', 'FOR DEPLOYMENT', '2023-11-15 11:18:58', 0),
+(13, 1, 710, 'adasd.pdf', 'FOR SCREENING', 'PENDING', '2023-11-16 15:26:07', 0),
+(14, 1, 711, 'adasd.pdf', 'FOR SCREENING', 'PENDING', '2023-11-16 15:27:55', 0),
+(15, 1, 709, '16021479.docx', 'FOR SCREENING', 'PENDING', '2023-11-16 15:30:48', 0),
+(16, 1, 712, 'adasd.pdf', 'FOR SCREENING', 'PENDING', '2023-11-16 17:11:36', 0),
+(17, 8, 712, '16021479.docx', 'QUALIFIED', 'PENDING', '2023-11-16 17:12:01', 0),
+(18, 8, 713, 'adasd.pdf', 'QUALIFIED', 'PENDING', '2023-11-16 17:17:47', 0);
 
 -- --------------------------------------------------------
 
@@ -2398,7 +2405,7 @@ INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `appno`, `so
 (28, '838', '../../upload/default_id_image.png', '2023-11-14 11:27:09', '838', '', 'GOMERA', 'JAMES PHILIP', 'AMANTE', 'asdas', '', '#27 BANSALANGIN ST PAYATAS B', 'CALOOCAN CITY', '13', 'Bansalangin st. Payatas B', '2001-06-19', '22', 'MALE', 'Single', '09101465183', '', 'JPGOMERA19@GMAIL.COM', 'Assistant Software Engineer', 'Class 1', 'N/A', '', '', '', '', '2023-11-15', '2023-11-24', '2023-11-18', '', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (29, '839', '../../upload/default_id_image.png', '2023-11-14 13:24:01', '839', '', 'MALANDUTAY', 'JERRY', 'MALATEK', '', '', 'BANSALANGIN ST. PAYATAS B', '', '', '', '2005-06-19', '15', 'MALE', '', '09123456789', '', 'JERRYBOY123@GMAIL.COM', '', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (32, '846', '../../upload/default_id_image.png', '2023-11-14 14:52:40', '846', 'REFERRAL', 'MABANGIS', 'LEVI', 'MALANDUTAY', '', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '', '2001-06-13', '22', 'MALE', '', '09101465183', '', 'LEVIMABANGIS@GMAIL.COM', 'MERCHANDISER', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
-(33, '847', '../../upload/default_id_image.png', '2023-11-14 15:21:13', '847', 'SOCIAL MEDIA', 'TEST', 'TEST', 'TEST', 'TEST', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '', '01/01/2001', '22', 'MALE', 'SINGLE', '2147483647', '', 'TEST@GMAIL.COM', 'MERCHANDISER', 'Class 1', 'Mark 1', '', '', '', '', '2023-11-15', '2023-11-22', '2023-11-23', '', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
+(33, '847', '../../upload/default_id_image.png', '2023-11-14 15:21:13', '847', 'SOCIAL MEDIA', 'TEST', 'TEST', 'TEST', 'TEST', '', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '01/01/2001', '22', 'MALE', 'SINGLE', '09101465183', '', 'TEST@GMAIL.COM', 'MERCHANDISER', 'Class 1', 'Mark 1', '1231231312', '12312312312', '12312312312', '12312312312', '2023-11-15', '2023-11-22', '2023-11-23', 'With', 'remarks', 'ACTIVE', '', '', '', '', '', '', '', '', 'JAMES PHILIP AMANTE GOMERA', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (34, '848', '../../upload/6554369d564a38.62088118.png', '2023-11-15 10:36:40', '848', 'REFERRAL', 'SMITH', 'MARY', 'DOE', '', '', 'BANSALANGIN ST. PAYATAS B', 'ABULUG', '02', 'Bansalangin st. Payatas B', '01/01/2001', '39', 'FEMALE', 'MARRIED', '09101465183', '', 'MARYSMITH123@GMAIL.COM', 'HR ASSISTANT', 'Class 1', 'Problem with Letter I', '123123', '123123', '123123', '123123', '2023-11-23', '2023-11-24', '2023-11-24', 'With', 'remarks', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/15/2023', 'NOT VERIFY', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (35, '850', '../../upload/default.png', '2023-11-15 11:22:21', '850', 'REFERRAL', 'CHROME', 'GOOGLE', 'GOOGLE', '', '', 'BANSALANGIN ST. PAYATAS B', 'AKBAR', '15', 'Bansalangin st. Payatas B', '07/17/1997', '26', 'MALE', 'SINGLE', '09101465183', '', 'GOOGLE@GMAIL.COM', 'IT SUPPORT', 'Class 1', 'Mark 1', '123123', '123123', '123123', '123123', '2023-11-23', '2023-11-25', '2023-11-27', 'With', 'remarks', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/15/2023', 'NOT VERIFY', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
 
@@ -3495,7 +3502,12 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (188, 'mrf', '11/15/2023', '2023-11-15 11:22:01', 'MRF login Accepted'),
 (189, 'deployment', '11/15/2023', '2023-11-15 11:24:04', 'DEPLOYMENT login Accepted'),
 (190, 'recruitment', '11/15/2023', '2023-11-15 11:24:44', 'RECRUITMENT login Accepted'),
-(191, 'admin', '11/15/2023', '2023-11-15 11:25:23', 'ADMIN login Accepted');
+(191, 'admin', '11/15/2023', '2023-11-15 11:25:23', 'ADMIN login Accepted'),
+(192, 'recruitment', '11/15/2023', '2023-11-15 15:42:40', 'RECRUITMENT login Accepted'),
+(193, 'deployment', '11/16/2023', '2023-11-16 09:47:18', 'DEPLOYMENT login Accepted'),
+(194, 'mrf', '11/16/2023', '2023-11-16 10:08:29', 'MRF login Accepted'),
+(195, 'recruitment', '11/16/2023', '2023-11-16 10:33:47', 'RECRUITMENT login Accepted'),
+(196, 'recruitment', '11/16/2023', '2023-11-16 14:25:40', 'RECRUITMENT login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3514,6 +3526,7 @@ CREATE TABLE `mrf` (
   `class` varchar(255) NOT NULL,
   `class_detail` varchar(255) NOT NULL,
   `division` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
   `client` varchar(255) NOT NULL,
   `client_address` varchar(255) NOT NULL,
   `project_title` varchar(255) NOT NULL,
@@ -3548,7 +3561,7 @@ CREATE TABLE `mrf` (
   `work_days` varchar(255) NOT NULL,
   `time_sched` varchar(255) NOT NULL,
   `day_off` varchar(255) NOT NULL,
-  `outlet` varchar(255) NOT NULL,
+  `outlet` longtext NOT NULL,
   `date_needed` varchar(255) NOT NULL,
   `drt` varchar(255) NOT NULL,
   `rp` varchar(255) NOT NULL,
@@ -3572,12 +3585,17 @@ CREATE TABLE `mrf` (
 -- Dumping data for table `mrf`
 --
 
-INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `client`, `client_address`, `project_title`, `ce_number`, `po_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
-(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', '0', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-11 02:53:25'),
-(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', '0', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-11 06:20:57'),
-(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', '0', 'BUSS. MANAGER', '', '5', '3', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-11 03:11:12'),
-(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', '0', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREAS', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-11 01:03:34'),
-(1000, '5', 'NEW', '', 'INHOUSE', 'PROVINCIAL', '', '', '', 'BD1', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'PROJECT TITLE', '12312313', '6546546', 'BUSS. MANAGER', '', '123', '123', '180CM', '152CM', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'KUMAKAIN NG BALA', '0', '0', '0', '0', '', '', 'PROBATIONARY', '', '15-30', '2023-11-16', '2023-11-17', '6 DAYS', '8AM TO 5PM', 'SUNDAY', 'OUYTLET', '2023-11-16', 'ARELLANO, JENNY AVILA', 'SR. ACCOUNT MANAGER OIC', '11/15/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-15 02:21:23', '2023-11-15 02:29:54');
+INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `department`, `client`, `client_address`, `project_title`, `ce_number`, `po_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
+(996, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'STRAT', '', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'IT SUPPORT', '123456789', '0', 'OTHER', 'IT SUPPORT', '3', '0', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '16000', '0', '0', '0', '0', '', 'PROJECT BASED', '', '10-25', '2023-09-06', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-09-05', 'VILLAVICENCIO, RODEO DE GUZMAN', 'MIS SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:15:23', '2023-11-11 02:53:25'),
+(997, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'HR', '', 'PCN PROMOPRO INC.', '27 CRESTA ST. BRGY. MALAMIG, MANDALUYONG CITY', 'HR ASSISTANT', '987654321', '0', 'OTHER', 'HR ASSISTANT', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-29', '2024-03-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-30', 'LABASAN, NOEL OCHOA', 'HRIS SPECIALIST', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:18:48', '2023-11-11 06:20:57'),
+(998, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', '', 'UNILEVER FOOD SOLUTIONS', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'MERCHANDISER', '987654321', '0', 'BUSS. MANAGER', '', '5', '3', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'REGULAR', '', '10-25', '2023-12-06', '2024-06-30', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-12-01', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:26:03', '2023-11-11 03:11:12'),
+(999, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', '', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', '98765432112', '0', 'MERCHANDISING SUPERVISOR', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '0', '', 'PROBATIONARY', '', '10-25', '2023-11-30', '2023-12-31', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREAS', '2023-11-30', 'FORCADILLA, RUBY GACIS', 'ACCOUNT SUPERVISOR', '11/04/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-04 01:29:30', '2023-11-11 01:03:34'),
+(1001, '6', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'SELECTA', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'HR ASSISTANT', '987654321', '13123123', 'ACCOUNT EXECUTIVE', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', 'MARUNONG MAG-MYSQL', '0', '0', '0', '0', '0', '', '', '', '10-25', '2023-11-17', '2023-11-18', '6 DAYS', '8 TO 5', 'SUNDAY', 'CUBAO AREA', '2023-11-17', 'MARALIT, DIANNE MARICRIS GARCIA', 'ACCOUNT SUPERVISOR', '11/16/2023', '', '', '', '', '', '21', 'GOMERA, JAMES PHILIP', '', 'ADASDASDASD', 0, 0, '2023-11-16 02:29:02', '2023-11-16 08:55:55'),
+(1011, '7', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'BUSINESS MANAGER', '987654321', '564654654', 'BUSS. MANAGER', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '24000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-17', '2023-11-30', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"North Avenue\\t\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Quezon Avenue\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"GMA-Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Araneta-Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Santolan Anapolis\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Ortigas\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Shaw Boulevard\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Boni\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Guadalupe\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Buendia\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Ayala\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Magallanes\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Taft\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', '2023-11-23', 'MARALIT, DIANNE MARICRIS GARCIA', 'ACCOUNT SUPERVISOR', '11/16/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHAHAHH SA', 0, 1, '2023-11-16 06:15:23', '2023-11-16 06:25:51'),
+(1012, '8', 'NEW', '', 'FIELD FORCE', 'PROVINCIAL', '', '', '', 'BD2', 'BU2', 'HUAWEI', '53RD FLOOR PBCOM TOWER, AYALA AVENUE CORNER VA RUFINO ST. MAKATI CITY, PHILIPPINES', 'ADASDASDASD', '987654321', 'ASDASDASD', 'DEMO GIRL', 'ASDASD', '123123', '1231312', '', '', 'COLLEGE LEVEL', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', '', '', '', '', '0', '0', '0', '0', '', '', 'PROBATIONARY', '', '10-25', '2023-11-23', '2023-11-17', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"North Avenue\\t\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Quezon Avenue\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"GMA-Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Araneta-Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Santolan Anapolis\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Ortigas\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Shaw Boulevard\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Boni\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Guadalupe\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Buendia\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Ayala\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Magallanes\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Taft\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', '2023-11-21', 'MAGNO, RICHARD REYES', 'MERCHANDISING SUPERVISOR', '11/16/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'DADASDA', 0, 1, '2023-11-16 06:23:03', '2023-11-16 07:57:00'),
+(1013, '9', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'BEST CENTER', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'PROJECT MANAGER', '5465464563', '5465498198', 'PROJECT MANAGER', '', '32', '3', '', '', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', '', '', '35000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-17', '2023-12-08', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"North Avenue\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Quezon Avenue\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', '2023-11-23', 'VARGAS, KAREN SERA', 'ACTIVATION SUPERVISOR', '11/16/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'ADASDA', 0, 1, '2023-11-16 06:28:11', '2023-11-16 07:59:27'),
+(1014, '10', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'BU2', 'PHILUSA CORPORATION', '16 CORNER SHAW BOULEVARD, PASIG, 1603 METRO MANILA', 'ACCOUNT MANAGER', '987654321', '11312131326556', 'ACCOUNT MANAGER', '', '2', '2', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', '', '', '0', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-17', '2023-11-30', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Cubao / Araneta\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Manila\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', '2023-11-24', 'GARCIA, REYCHELYN BALARAO', 'MERCHANDISING SUPERVISOR', '11/16/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHAHAHAH', 0, 1, '2023-11-16 09:07:37', '2023-11-16 09:08:07'),
+(1015, '11', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'SELECTA', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'ACCOUNT MANAGER', '987654321', '13123123', 'ACCOUNT MANAGER', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', '', '', '25000', '0', '0', '0', '', '', 'PROBATIONARY', '', '10-25', '2023-11-17', '2023-11-23', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"GMA / Kamuning\\nMandaluyong \\n\"}]}', '2023-11-24', 'ORMACIDO, ANGELICA INGCO', 'MERCHANDISING MANAGER', '11/16/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHA', 0, 1, '2023-11-16 09:14:08', '2023-11-16 09:14:17');
 
 -- --------------------------------------------------------
 
@@ -3791,6 +3809,7 @@ INSERT INTO `pcn_emp` (`id`, `user_id_number`, `fullname`, `division`, `position
 
 CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
+  `mrf_id` int(11) NOT NULL,
   `mrf_tracking` int(11) NOT NULL,
   `project_title` varchar(255) DEFAULT NULL,
   `client_company_id` varchar(255) DEFAULT NULL,
@@ -3807,12 +3826,18 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
-INSERT INTO `projects` (`id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`, `approved_by`, `date_approved`) VALUES
-(703, 1, 'IT SUPPORT', 'PCN PROMOPRO INC.', '3', '2023-09-06', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
-(704, 2, 'HR ASSISTANT', 'PCN PROMOPRO INC.', '8', '2023-11-29', '2024-03-31', '1', '0', '', '2023-11-11 08:52:59'),
-(705, 3, 'MERCHANDISER', 'UNILEVER FOOD SOLUTIONS', '8', '2023-12-06', '2024-06-30', '1', '0', '', '2023-11-11 08:52:59'),
-(706, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
-(707, 5, 'PROJECT TITLE', 'UNILEVER PHILIPPINES INC.', '246', '2023-11-16', '2023-11-17', '1', '0', '', '2023-11-15 10:29:54');
+INSERT INTO `projects` (`id`, `mrf_id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`, `approved_by`, `date_approved`) VALUES
+(703, 0, 1, 'IT SUPPORT', 'PCN PROMOPRO INC.', '3', '2023-09-06', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
+(704, 0, 2, 'HR ASSISTANT', 'PCN PROMOPRO INC.', '8', '2023-11-29', '2024-03-31', '1', '0', '', '2023-11-11 08:52:59'),
+(705, 0, 3, 'MERCHANDISER', 'UNILEVER FOOD SOLUTIONS', '8', '2023-12-06', '2024-06-30', '1', '0', '', '2023-11-11 08:52:59'),
+(706, 0, 4, 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-30', '2023-12-31', '1', '0', '', '2023-11-11 08:52:59'),
+(707, 0, 5, 'PROJECT TITLE', 'UNILEVER PHILIPPINES INC.', '246', '2023-11-16', '2023-11-17', '1', '0', '', '2023-11-15 10:29:54'),
+(708, 0, 7, 'HR ASSISTANT', 'UNILEVER PHILIPPINES INC.', '8', '2023-11-24', '2023-11-17', '1', '0', '', '2023-11-16 10:37:48'),
+(709, 0, 8, 'ADASDASDASD', 'HUAWEI', '1354435', '2023-11-23', '2023-11-17', '1', '0', '', '2023-11-16 14:25:48'),
+(710, 0, 7, 'BUSINESS MANAGER', 'UNILEVER RFM SELECTA ICE CREAM INC.', '8', '2023-11-17', '2023-11-30', '1', '0', '', '2023-11-16 14:25:51'),
+(711, 0, 9, 'PROJECT MANAGER', 'UNILEVER RFM SELECTA ICE CREAM INC.', '35', '2023-11-17', '2023-12-08', '1', '0', '', '2023-11-16 14:28:36'),
+(712, 1014, 10, 'ACCOUNT MANAGER', 'PHILUSA CORPORATION', '4', '2023-11-17', '2023-11-30', '1', '0', '', '2023-11-16 17:08:07'),
+(713, 1015, 11, 'ACCOUNT MANAGER', 'UNILEVER PHILIPPINES INC.', '8', '2023-11-17', '2023-11-23', '1', '0', '', '2023-11-16 17:14:17');
 
 -- --------------------------------------------------------
 
@@ -3859,7 +3884,9 @@ INSERT INTO `ratings` (`id`, `resume_id`, `applicant_name`, `interviewer`, `posi
 (21, 9, 'Levi Mabangis', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 14:52:40', 0, '2023-11-14 14:44:49'),
 (22, 10, 'test Test', 'DEO VILL', 'MERCHANDISER', 'November 14, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-14 15:21:13', 0, '2023-11-14 15:19:13'),
 (23, 11, 'Mary Smith', 'DEO VILL', 'HR ASSISTANT', 'November 15, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-15 10:36:40', 0, '2023-11-15 10:36:10'),
-(24, 12, 'Google Chrome', 'DEO VILL', 'IT SUPPORT', 'November 15, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-15 11:22:21', 0, '2023-11-15 11:19:30');
+(24, 12, 'Google Chrome', 'DEO VILL', 'IT SUPPORT', 'November 15, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'James Philip Gomera', '2023-11-15 11:22:21', 0, '2023-11-15 11:19:30'),
+(25, 17, 'Mary Smith', 'DEO VILL', 'ACCOUNT MANAGER', 'November 16, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-16 17:19:04'),
+(26, 18, 'Mary Smith', 'DEO VILL', 'ACCOUNT MANAGER', 'November 16, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-16 17:19:18');
 
 -- --------------------------------------------------------
 
@@ -4072,7 +4099,7 @@ CREATE TABLE `synch` (
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
 (1, '1', '2023-11-15'),
-(2, 'Shortlist', '11/15/2023');
+(2, 'Shortlist', '11/16/2023');
 
 -- --------------------------------------------------------
 
@@ -4457,7 +4484,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `201files`
 --
 ALTER TABLE `201files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `applicant`
@@ -4469,7 +4496,7 @@ ALTER TABLE `applicant`
 -- AUTO_INCREMENT for table `applicant_resume`
 --
 ALTER TABLE `applicant_resume`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `attrition`
@@ -4631,13 +4658,13 @@ ALTER TABLE `loa_maintenance_word`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 
 --
 -- AUTO_INCREMENT for table `mrf`
 --
 ALTER TABLE `mrf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1016;
 
 --
 -- AUTO_INCREMENT for table `mrf_access`
@@ -4655,13 +4682,13 @@ ALTER TABLE `pcn_emp`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=708;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=714;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `recruitment_approve_history`

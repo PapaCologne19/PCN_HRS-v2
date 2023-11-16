@@ -224,7 +224,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 <td style="border-right: 1px solid white !important;">
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Push Girl') {
+                                        if ($row['position'] === strtoupper('Push Girl')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -234,7 +234,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Demo Girl') {
+                                        if ($row['position'] === strtoupper('Demo Girl')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -244,7 +244,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Promo Girl') {
+                                        if ($row['position'] === strtoupper('Promo Girl')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -254,7 +254,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Sampler') {
+                                        if ($row['position'] === strtoupper('Sampler')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -266,7 +266,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 <td style="border-right: 1px solid white !important;">
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Merchandiser') {
+                                        if ($row['position'] === strtoupper('Merchandiser')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -277,7 +277,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Helper') {
+                                        if ($row['position'] === strtoupper('Helper')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -287,7 +287,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Mystery Buyer') {
+                                        if ($row['position'] === strtoupper('Mystery Buyer')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -297,7 +297,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Validator') {
+                                        if ($row['position'] === strtoupper('Validator')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -309,7 +309,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 <td style="border-right: 1px solid white !important;">
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Promoter') {
+                                        if ($row['position'] === strtoupper('Promoter')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -319,7 +319,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Encoder') {
+                                        if ($row['position'] === strtoupper('Encoder')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -329,7 +329,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Coordinator') {
+                                        if ($row['position'] === strtoupper('Coordinator')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -339,7 +339,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Bundler') {
+                                        if ($row['position'] === strtoupper('Bundler')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -351,7 +351,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 <td>
                                     <div class="form-check col-md-12">
                                         <?php
-                                        if ($row['position'] === 'Others') {
+                                        if ($row['position'] === strtoupper('Others')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -362,10 +362,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <div class="col-md-12">
                                         <?php
                                         if (
-                                            $row['position'] === 'Push Girl' || $row['position'] === 'Demo Girl' || $row['position'] === 'Promo Girl'
-                                            || $row['position'] === 'Sampler' || $row['position'] === 'Merchandiser' || $row['position'] === 'Helper' || $row['position'] === 'Mystery Buyer'
-                                            || $row['position'] === 'Validator' || $row['position'] === 'Promoter' || $row['position'] === 'Encoder' || $row['position'] === 'Coordinator'
-                                            || $row['position'] === 'Coordinator' || $row['position'] === 'Bundler'
+                                            $row['position'] === strtoupper('Push Girl') || $row['position'] === strtoupper('Demo Girl') || $row['position'] === strtoupper('Promo Girl')
+                                            || $row['position'] === strtoupper('Sampler') || $row['position'] === strtoupper('Merchandiser') || $row['position'] === strtoupper('Helper') || $row['position'] === strtoupper('Mystery Buyer')
+                                            || $row['position'] === strtoupper('Validator') || $row['position'] === strtoupper('Promoter') || $row['position'] === strtoupper('Encoder') || $row['position'] === strtoupper('Coordinator')
+                                            || $row['position'] === strtoupper('Coordinator') || $row['position'] === strtoupper('Bundler')
                                         ) {
                                         ?>
                                             <input type="text" name="" id="" class="form-control" value="<?php echo $row['position_detail'] ?>">
@@ -398,7 +398,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                 <td rowspan="7" colspan="4" style="border-left: 1px solid white !important;">
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['pleasing_personality'] === 'Pleasing Personality') {
+                                        if ($row['pleasing_personality'] === strtoupper('Pleasing Personality')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -408,7 +408,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['moral'] === 'Good Moral') {
+                                        if ($row['moral'] === strtoupper('Good Moral')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -418,7 +418,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['work_experience'] === 'With Work Experience') {
+                                        if ($row['work_experience'] === strtoupper('With Work Experience')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -428,7 +428,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['comm_skills'] === 'Good communication skills') {
+                                        if ($row['comm_skills'] === strtoupper('Good communication skills')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -438,7 +438,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['physically'] === 'Physically fit / good built') {
+                                        if ($row['physically'] === strtoupper('Physically fit / good built')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -448,7 +448,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </div>
                                     <div class="col-md-12 form-check" style=" padding-left: 8rem;">
                                         <?php
-                                        if ($row['articulate'] === 'Articulate') {
+                                        if ($row['articulate'] === strtoupper('Articulate')) {
                                         ?>
                                             <input type="checkbox" name="" id="" class="form-check-input" checked>
                                         <?php } else { ?>
@@ -599,7 +599,30 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>Outlet: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['outlet'] ?></i></td>
+                                <?php
+                        $outlet = $row['outlet'];
+                        $html = '';
+                        if (!empty($outlet)) {
+                            $data = json_decode($outlet, true);
+                            if (!empty($data['ops'])) {
+                                $html = '<ul>';
+                                foreach ($data['ops'] as $op) {
+                                    if (!empty($op['insert'])) {
+                                        $text = trim($op['insert']);
+                                        $attributes = isset($op['attributes']) ? $op['attributes'] : []; // Check if 'attributes' key exists
+                                        if (!empty($attributes) && isset($attributes['list']) && $attributes['list'] == 'bullet' && !empty($text)) {
+                                            $html .= '<li>' . $text . '</li>';
+                                        } elseif (!empty($text)) {
+                                            $html .= '<li>' . $text . '</li>';
+                                        }
+                                    }
+                                }
+                                $html .= '</ul>';
+                            }
+                        }
+
+                        ?>
+                                <td>Outlet: <i><?php echo $html; ?></i></td>
                             </tr>
                         </tbody>
                     </table>

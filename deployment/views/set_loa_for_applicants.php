@@ -303,7 +303,7 @@ $row = $result->fetch_assoc();
                     <label for="" class="form-label">Ecola</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="ecola" id="ecola" class="form-control">
+                    <input type="text" name="ecola" id="ecola" class="form-control" value="0">
                 </div>
             </div>
 
@@ -342,7 +342,7 @@ $row = $result->fetch_assoc();
                     <label for="" class="form-label">Internet Allowance</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="internet_allowance" id="internet_allowance" class="form-control">
+                    <input type="text" name="internet_allowance" id="internet_allowance" class="form-control" value="0">
                 </div>
             </div>
 
@@ -366,7 +366,7 @@ $row = $result->fetch_assoc();
                     <label for="" class="form-label">Outbase Meal</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="outbase_meal" id="outbase_meal" class="form-control">
+                    <input type="text" name="outbase_meal" id="outbase_meal" class="form-control" value="0">
                 </div>
             </div>
 
@@ -375,7 +375,7 @@ $row = $result->fetch_assoc();
                     <label for="" class="form-label">Special Allowance</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="special_allowance" id="special_allowance" class="form-control">
+                    <input type="text" name="special_allowance" id="special_allowance" class="form-control" value="0">
                 </div>
             </div>
 
@@ -384,7 +384,7 @@ $row = $result->fetch_assoc();
                     <label for="" class="form-label">Position Allowance</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="position_allowance" id="position_allowance" class="form-control">
+                    <input type="text" name="position_allowance" id="position_allowance" class="form-control" value="0">
                 </div>
             </div>
 
@@ -425,17 +425,34 @@ $row = $result->fetch_assoc();
                     <?php } ?>
                 </div>
             </div>
+
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <label for="" class="form-label">Supervisor</label>
+                    <label for="" class="form-label">Prepared By</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="supervisor" id="supervisor" class="form-control">
+                    <input type="text" name="deployment_personnel" id="deployment_personnel" class="form-control">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <label for="" class="form-label">Field Supervisor</label>
+                    <label for="" class="form-label">Designation</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="deployment_personnel_designation" id="deployment_personnel_designation" class="form-control">
+                </div>
+            </div>
+
+
+
+
+
+
+
+            
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label for="" class="form-label">Noted By</label>
                 </div>
                 <div class="col-md-9">
                     <input type="text" name="field_supervisor" id="field_supervisor" class="form-control">
@@ -451,18 +468,10 @@ $row = $result->fetch_assoc();
             </div>
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <label for="" class="form-label">Deployment Personnel</label>
+                    <label for="" class="form-label">Field Supervisor</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="deployment_personnel" id="deployment_personnel" class="form-control">
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <label for="" class="form-label">Designation</label>
-                </div>
-                <div class="col-md-9">
-                    <input type="text" name="deployment_personnel_designation" id="deployment_personnel_designation" class="form-control">
+                    <input type="text" name="supervisor" id="supervisor" class="form-control"  value="N/A">
                 </div>
             </div>
             <div class="row mt-3">
@@ -484,7 +493,7 @@ $row = $result->fetch_assoc();
 
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <label for="" class="form-label">Head</label>
+                    <label for="" class="form-label">Department Head</label>
                 </div>
                 <div class="col-md-9">
                     <input type="text" name="head" id="head" class="form-control">
