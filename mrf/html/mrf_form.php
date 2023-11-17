@@ -66,9 +66,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             <?php
                                             $query = "SELECT * FROM mrf";
                                             $result = $link->query($query);
+                                            $track = 1;
+
                                             while ($row = $result->fetch_assoc()) {
                                                 if (empty($row['tracking'])) {
-                                                    $track = 0;
                                                     $track++;
                                                 } else {
                                                     $track = $row['tracking'] + 1;

@@ -60,12 +60,12 @@
       }
 
       // Date Format
-    flatpickr("#birthdate", {
-      dateFormat: "m/d/Y", // Set the desired date format (MM-DD-YYYY)
-      altInput: true, // Enable the alternate input field
-      altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
-      placeholder: "Select a date", // Set the text for the placeholder
-    });
+      flatpickr("#birthdate", {
+         dateFormat: "m/d/Y", // Set the desired date format (MM-DD-YYYY)
+         altInput: false, // Enable the alternate input field
+         altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
+         placeholder: "Select a date", // Set the text for the placeholder
+      });
 
       // For camera
       function myFunctioncam() {
@@ -89,348 +89,355 @@
 
       // For Regions
       $("#regionn").on("change", function() {
-   var x_values = $("#regionn").find(":selected").val();
+         var x_values = $("#regionn").find(":selected").val();
 
-   $.ajax({
-      url: 'ajaxregion.php',
-      type: 'POST',
-      data: {
-         city_code: x_values
-      },
-      success: function(result) {
-         result = JSON.parse(result);
+         $.ajax({
+            url: 'ajaxregion.php',
+            type: 'POST',
+            data: {
+               city_code: x_values
+            },
+            success: function(result) {
+               result = JSON.parse(result);
 
-         // Empty the options of the specific dropdown with ID 'cityn'
-         $("#cityn").empty();
+               // Empty the options of the specific dropdown with ID 'cityn'
+               $("#cityn").empty();
 
-         // Append new options
-         result.forEach(function(item, index) {
-            var option = $("<option>").text(item['city_name']).val(item['city_name']);
-            $("#cityn").append(option);
+               // Append new options
+               result.forEach(function(item, index) {
+                  var option = $("<option>").text(item['city_name']).val(item['city_name']);
+                  $("#cityn").append(option);
+               });
+            },
+            error: function(result) {
+               console.log(result)
+            }
          });
-      },
-      error: function(result) {
-         console.log(result)
-      }
-   });
-});
+      });
 
 
 
       // For Blacklisting
-      $(document).ready(function() {
-         $('.blackbtn').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.blackbtn', function(e) {
+         // Prevent the default behavior of the button
+         e.preventDefault();
 
-            var blacklistingID = $(this).closest("tr").find('.blackbtnID').val();
+         // Get data attributes from the button
+         var blacklistingID = $(this).closest("tr").find('.blackbtnID').val();
 
-            Swal.fire({
-               title: "Are you sure you want to blacklist?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes",
-               cancelButtonText: "No",
-               showCloseButton: true, // Add a close button
 
-               // Customize the content of the modal
-               html: '<input type="text" id="blacklistReason" placeholder="Enter reason for blacklisting" class="swal2-input">',
+         // Show SweetAlert confirmation dialog
+         Swal.fire({
+            title: "Are you sure you want to blacklist?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+            showCloseButton: true, // Add a close button
 
-               preConfirm: () => {
-                  // Retrieve the entered reason from the input field
-                  var reason = document.getElementById("blacklistReason").value;
+            // Customize the content of the modal
+            html: '<input type="text" id="blacklistReason" placeholder="Enter reason for blacklisting" class="swal2-input">',
 
-                  if (!reason) {
-                     Swal.showValidationMessage("Reason is required");
-                  }
+            preConfirm: () => {
+               // Retrieve the entered reason from the input field
+               var reason = document.getElementById("blacklistReason").value;
 
-                  // Log the reason to the console for debugging
-                  console.log("Reason for blacklisting: " + reason);
+               if (!reason) {
+                  Swal.showValidationMessage("Reason is required");
+               }
+               // Log the reason to the console for debugging
+               console.log("Reason for blacklisting: " + reason);
 
+               // Send the reason along with the AJAX request
+               return {
+                  reason: reason
+               };
+            }
+         }).then((result) => {
+            if (result.isConfirmed) {
+               var reason = result.value.reason; // Get the reason entered by the user
+               if (reason) {
                   // Send the reason along with the AJAX request
-                  return {
-                     reason: reason
-                  };
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "blacklist_button": 1,
+                        "blacklistID": blacklistingID,
+                        "reason": reason, // Include the reason
+                     },
+                     success: function(response) {
+                        Swal.fire({
+                           title: "Success!",
+                           icon: "success",
+                        }).then((result) => {
+                           location.reload();
+                        });
+                     },
+                     error: function(xhr, status, error) {
+                        console.log("AJAX Error: " + error);
+                     }
+                  });
                }
-            }).then((result) => {
-               if (result.isConfirmed) {
-                  var reason = result.value.reason; // Get the reason entered by the user
-                  if (reason) {
-                     // Send the reason along with the AJAX request
-                     $.ajax({
-                        type: "POST",
-                        url: "action.php",
-                        data: {
-                           "blacklist_button": 1,
-                           "blacklistID": blacklistingID,
-                           "reason": reason, // Include the reason
-                        },
-                        success: function(response) {
-                           Swal.fire({
-                              title: "Success!",
-                              icon: "success",
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        },
-                        error: function(xhr, status, error) {
-                           console.log("AJAX Error: " + error);
-                        }
-                     });
-                  }
-               }
-            });
+            }
          });
       });
+
+
 
 
       // For deleting Applicants
-      $(document).ready(function() {
-         $('.deletebtn').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.deletebtn', function(e) {
+         // Prevent the default behavior of the button
+         e.preventDefault();
 
-            var deleteApplicantID = $(this).closest("tr").find('.deleteID').val();
+         // Get data attributes from the button
+         var deleteApplicantID = $(this).closest("tr").find('.deleteID').val();
 
-            Swal.fire({
-               title: "Are you sure you want to delete?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-               showCloseButton: true, // Add a close button
 
-               // Customize the content of the modal
-               html: '<input type="text" id="deleteReason" placeholder="Enter reason for delete" class="swal2-input">',
+         // Show SweetAlert confirmation dialog
+         Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+            showCloseButton: true, // Add a close button
 
-               preConfirm: () => {
-                  // Retrieve the entered reason from the input field
-                  var reason = document.getElementById("deleteReason").value;
+            // Customize the content of the modal
+            html: '<input type="text" id="deleteReason" placeholder="Enter reason for delete" class="swal2-input">',
 
-                  if (!reason) {
-                     Swal.showValidationMessage("Reason is required");
-                  }
+            preConfirm: () => {
+               // Retrieve the entered reason from the input field
+               var reason = document.getElementById("deleteReason").value;
+
+               if (!reason) {
+                  Swal.showValidationMessage("Reason is required");
+               }
+               // Send the reason along with the AJAX request
+               return {
+                  reason: reason
+               };
+            }
+         }).then((result) => {
+            if (result.isConfirmed) {
+               var reason = result.value.reason; // Get the reason entered by the user
+               if (reason) {
                   // Send the reason along with the AJAX request
-                  return {
-                     reason: reason
-                  };
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "delete_applicant_button": 1,
+                        "delete_applicant_ID": deleteApplicantID,
+                        "reason": reason, // Include the reason
+                     },
+                     success: function(response) {
+                        Swal.fire({
+                           title: "Success",
+                           icon: "success",
+                        }).then((result) => {
+                           location.reload(); // Reload the page after successful deletion
+                        });
+                     },
+                     error: function(xhr, status, error) {
+                        console.log("AJAX Error: " + error);
+                     }
+                  });
                }
-            }).then((result) => {
-               if (result.isConfirmed) {
-                  var reason = result.value.reason; // Get the reason entered by the user
-                  if (reason) {
-                     // Send the reason along with the AJAX request
-                     $.ajax({
-                        type: "POST",
-                        url: "action.php",
-                        data: {
-                           "delete_applicant_button": 1,
-                           "delete_applicant_ID": deleteApplicantID,
-                           "reason": reason, // Include the reason
-                        },
-                        success: function(response) {
-                           Swal.fire({
-                              title: "Success",
-                              icon: "success",
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        },
-                        error: function(xhr, status, error) {
-                           console.log("AJAX Error: " + error);
-                        }
-                     });
-                  }
-               }
-            });
+            }
          });
       });
+
 
       // For Undo Blacklisted Applicants
-      $(document).ready(function() {
-         $('.undoblacklistbtn').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.undoblacklistbtn', function(e) {
+         e.preventDefault();
 
-            var undoblacklistID = $(this).closest("tr").find('.undoblacklistID').val();
-            Swal.fire({
-               title: "Are you sure you want to undo?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "undo_button_click": 1,
-                        "undoblacklist_id": undoblacklistID,
-                     },
-                     success: function(response) {
+         var undoblacklistID = $(this).closest("tr").find('.undoblacklistID').val();
 
-                        Swal.fire({
-                           title: "Success",
-                           icon: "success"
-                        }).then((result) => {
-                           location.reload();
-                        });
-
-                     }
-                  });
-               }
-            });
+         Swal.fire({
+            title: "Are you sure you want to undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_button_click": 1,
+                     "undoblacklist_id": undoblacklistID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
          });
       });
+
 
       // For Undo Canceled Applicants
-      $(document).ready(function() {
-         $('.undocanceledbtn').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.undocanceledbtn', function(e) {
+         e.preventDefault();
 
-            var undocanceledID = $(this).closest("tr").find('.undocanceledID').val();
-            Swal.fire({
-               title: "Are you sure you want to undo?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "undo_canceled_button_click": 1,
-                        "undocanceled_id": undocanceledID,
-                     },
-                     success: function(response) {
+         var undocanceledID = $(this).closest("tr").find('.undocanceledID').val();
 
+         Swal.fire({
+            title: "Are you sure you want to undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_canceled_button_click": 1,
+                     "undocanceled_id": undocanceledID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+
+      // For Adding Applicants to shortlist
+      $('#example').on('click', '.add_shortlist_btn', function(e) {
+         e.preventDefault();
+
+         var appno_ids = $(this).closest("tr").find('.appno_id').val();
+         var app_number = $(this).closest("tr").find('.app_number').val();
+
+         Swal.fire({
+            title: "Are you sure you want to add this?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, add it!",
+            cancelButtonText: "No, cancel",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "add_shortlist_click": 1,
+                     "appno_id_click": appno_ids,
+                     "appno_number_click": app_number,
+                  },
+                  success: function(response) {
+                     // Parse the response as JSON
+                     var jsonResponse = JSON.parse(response);
+                     if (jsonResponse.message === "Successfully added to the shortlist") {
                         Swal.fire({
                            title: "Success",
                            icon: "success"
                         }).then((result) => {
                            location.reload();
                         });
-
-                     }
-                  });
-               }
-            });
-         });
-      });
-
-      // For Adding Applicants to shortlist
-      $(document).ready(function() {
-         $('.add_shortlist_btn').click(function(e) {
-            e.preventDefault();
-
-            var appno_ids = $(this).closest("tr").find('.appno_id').val();
-            var app_number = $(this).closest("tr").find('.app_number').val();
-            Swal.fire({
-               title: "Are you sure you want to add this?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes, add it!",
-               cancelButtonText: "No, cancel",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "add_shortlist_click": 1,
-                        "appno_id_click": appno_ids,
-                        "appno_number_click": app_number,
-                     },
-                     success: function(response) {
-                        // Parse the response as JSON
-                        var jsonResponse = JSON.parse(response);
-                        if (jsonResponse.message === "Successfully added to the shortlist") {
-                           Swal.fire({
-                              title: "Success",
-                              icon: "success"
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        } else {
-                           Swal.fire({
-                              title: "Already Shortlisted",
-                              icon: "error"
-                           });
-                        }
-                     },
-                     error: function() {
+                     } else {
                         Swal.fire({
                            title: "Already Shortlisted",
                            icon: "error"
                         });
                      }
-                  });
-               }
-            });
+                  },
+                  error: function() {
+                     Swal.fire({
+                        title: "Already Shortlisted",
+                        icon: "error"
+                     });
+                  }
+               });
+            }
          });
       });
+
 
 
       // For Undo termination of Applicants
-      $(document).ready(function() {
-         $('.unterminate_me').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.unterminate_me', function(e) {
+         e.preventDefault();
 
-            var unterminateID = $(this).closest("tr").find('.emp_number').val();
+         var unterminateID = $(this).closest("tr").find('.emp_number').val();
 
-            Swal.fire({
-               title: "Are you sure you want to unterminate?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-               showCloseButton: true, // Add a close button
+         Swal.fire({
+            title: "Are you sure you want to unterminate?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+            showCloseButton: true,
 
-               // Customize the content of the modal
-               html: '<input type="text" id="unterminateReason" placeholder="Enter reason for untermination" class="swal2-input">',
+            // Customize the content of the modal
+            html: '<input type="text" id="unterminateReason" placeholder="Enter reason for untermination" class="swal2-input">',
 
-               preConfirm: () => {
-                  // Retrieve the entered reason from the input field
-                  var reason = document.getElementById("unterminateReason").value;
+            preConfirm: () => {
+               // Retrieve the entered reason from the input field
+               var reason = document.getElementById("unterminateReason").value;
 
-                  if (!reason) {
-                     Swal.showValidationMessage("Reason is required");
-                  }
+               if (!reason) {
+                  Swal.showValidationMessage("Reason is required");
+               }
+               // Send the reason along with the AJAX request
+               return {
+                  reason: reason
+               };
+            }
+         }).then((result) => {
+            if (result.isConfirmed) {
+               var reason = result.value.reason; // Get the reason entered by the user
+               if (reason) {
                   // Send the reason along with the AJAX request
-                  return {
-                     reason: reason
-                  };
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "unterminate_applicant_button": 1,
+                        "unterminate_applicant_ID": unterminateID,
+                        "reason": reason,
+                     },
+                     success: function(response) {
+                        Swal.fire({
+                           title: "Success",
+                           icon: "success",
+                        }).then((result) => {
+                           location.reload();
+                        });
+                     },
+                     error: function(xhr, status, error) {
+                        console.log("AJAX Error: " + error);
+                     }
+                  });
                }
-            }).then((result) => {
-               if (result.isConfirmed) {
-                  var reason = result.value.reason; // Get the reason entered by the user
-                  if (reason) {
-                     // Send the reason along with the AJAX request
-                     $.ajax({
-                        type: "POST",
-                        url: "action.php",
-                        data: {
-                           "unterminate_applicant_button": 1,
-                           "unterminate_applicant_ID": unterminateID,
-                           "reason": reason, // Include the reason
-                        },
-                        success: function(response) {
-                           Swal.fire({
-                              title: "Success",
-                              icon: "success",
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        },
-                        error: function(xhr, status, error) {
-                           console.log("AJAX Error: " + error);
-                        }
-                     });
-                  }
-               }
-            });
+            }
          });
       });
+
 
       // For Viewing details
       $(document).ready(function() {
@@ -458,233 +465,234 @@
 
 
       // For removing the applicants from the shortlist table
-      $(document).ready(function() {
-         $('.remove').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.remove', function(e) {
+         e.preventDefault();
 
-            var app_num = $(this).closest("tr").find('.shadowE1').val();
-            var shad = $(this).closest("tr").find('.shad').val();
+         var app_num = $(this).closest("tr").find('.shadowE1').val();
+         var shad = $(this).closest("tr").find('.shad').val();
 
-            Swal.fire({
-               title: "Are you sure you want to remove?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "remove_button_click": 1,
-                        "app_num": app_num,
-                        "shad": shad,
-                     },
-                     success: function(response) {
-                        // Parse the response as JSON
-                        var jsonResponse = JSON.parse(response);
-                        if (jsonResponse.message === "Successfully removed from the shortlist") {
-                           Swal.fire({
-                              title: "Success",
-                              icon: "success"
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        } else {
-                           Swal.fire({
-                              title: jsonResponse.message, // Display the error message from the server
-                              icon: "error"
-                           });
-                        }
-                     },
-                     error: function(xhr, status, error) {
+         Swal.fire({
+            title: "Are you sure you want to remove?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "remove_button_click": 1,
+                     "app_num": app_num,
+                     "shad": shad,
+                  },
+                  success: function(response) {
+                     // Parse the response as JSON
+                     var jsonResponse = JSON.parse(response);
+                     if (jsonResponse.message === "Successfully removed from the shortlist") {
                         Swal.fire({
-                           title: "Error: " + error, // Display a generic error message
+                           title: "Success",
+                           icon: "success"
+                        }).then((result) => {
+                           location.reload();
+                        });
+                     } else {
+                        Swal.fire({
+                           title: jsonResponse.message, // Display the error message from the server
                            icon: "error"
                         });
                      }
-                  });
-               }
-            });
-         });
-      });
-
-      // For deployment of applicants (Not Verify)
-      $(document).ready(function() {
-         $('.addtoewb').click(function(e) {
-            e.preventDefault();
-
-            var appnum_ID = $(this).closest("tr").find('.appno_deploy').val();
-            Swal.fire({
-               title: "Are you sure you want to deploy?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "deploy_button_click": 1,
-                        "deploy_id": appnum_ID,
-                     },
-                     success: function(response) {
-
-                        Swal.fire({
-                           title: "Success",
-                           icon: "success"
-                        }).then((result) => {
-                           location.reload();
-                        });
-
-                     }
-                  });
-               }
-            });
-         });
-      });
-
-      // For reverification of applicant that is declined by EWB
-      $(document).ready(function() {
-         $('.for_reverification_btn').click(function(e) {
-            e.preventDefault();
-
-            var for_reverification_id = $(this).closest("tr").find('.for_reverification_id').val();
-
-            Swal.fire({
-               title: "Input Remarks",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Send",
-               cancelButtonText: "Cancel",
-               showCloseButton: true, // Add a close button
-
-               // Customize the content of the modal
-               html: '<input type="text" id="reverificationReason" placeholder="Enter remarks" class="swal2-input">',
-
-               preConfirm: () => {
-                  // Retrieve the entered reason from the input field
-                  var reason = document.getElementById("reverificationReason").value;
-
-                  if (!reason) {
-                     Swal.showValidationMessage("Reason is required");
-                  }
-
-                  // Log the reason to the console for debugging
-                  console.log("Reason for blacklisting: " + reason);
-
-                  // Send the reason along with the AJAX request
-                  return {
-                     reason: reason
-                  };
-               }
-            }).then((result) => {
-               if (result.isConfirmed) {
-                  var reason = result.value.reason; // Get the reason entered by the user
-                  if (reason) {
-                     // Send the reason along with the AJAX request
-                     $.ajax({
-                        type: "POST",
-                        url: "action.php",
-                        data: {
-                           "reverification_button": 1,
-                           "reverificationID": for_reverification_id,
-                           "reason": reason, // Include the reason
-                        },
-                        success: function(response) {
-                           Swal.fire({
-                              title: "Success",
-                              icon: "success",
-                           }).then((result) => {
-                              location.reload();
-                           });
-                        },
-                        error: function(xhr, status, error) {
-                           console.log("AJAX Error: " + error);
-                        }
+                  },
+                  error: function(xhr, status, error) {
+                     Swal.fire({
+                        title: "Error: " + error, // Display a generic error message
+                        icon: "error"
                      });
                   }
-               }
-            });
+               });
+            }
          });
       });
+
+
+      // For deployment of applicants (Not Verify)
+      $('#example').on('click', '.addtoewb', function(e) {
+         e.preventDefault();
+
+         var appnum_ID = $(this).closest("tr").find('.appno_deploy').val();
+
+         Swal.fire({
+            title: "Are you sure you want to deploy?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "deploy_button_click": 1,
+                     "deploy_id": appnum_ID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+
+      // For reverification of applicant that is declined by EWB
+      $('#example').on('click', '.for_reverification_btn', function(e) {
+         e.preventDefault();
+
+         var for_reverification_id = $(this).closest("tr").find('.for_reverification_id').val();
+
+         Swal.fire({
+            title: "Input Remarks",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Send",
+            cancelButtonText: "Cancel",
+            showCloseButton: true,
+
+            // Customize the content of the modal
+            html: '<input type="text" id="reverificationReason" placeholder="Enter remarks" class="swal2-input">',
+
+            preConfirm: () => {
+               // Retrieve the entered reason from the input field
+               var reason = document.getElementById("reverificationReason").value;
+
+               if (!reason) {
+                  Swal.showValidationMessage("Reason is required");
+               }
+
+               // Log the reason to the console for debugging
+               console.log("Reason for reverification: " + reason);
+
+               // Send the reason along with the AJAX request
+               return {
+                  reason: reason
+               };
+            }
+         }).then((result) => {
+            if (result.isConfirmed) {
+               var reason = result.value.reason; // Get the reason entered by the user
+               if (reason) {
+                  // Send the reason along with the AJAX request
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "reverification_button": 1,
+                        "reverificationID": for_reverification_id,
+                        "reason": reason,
+                     },
+                     success: function(response) {
+                        Swal.fire({
+                           title: "Success",
+                           icon: "success",
+                        }).then((result) => {
+                           location.reload();
+                        });
+                     },
+                     error: function(xhr, status, error) {
+                        console.log("AJAX Error: " + error);
+                     }
+                  });
+               }
+            }
+         });
+      });
+
 
       // For MRF providing shortlist
-      $(document).ready(function() {
-         $('.r_mrf').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.r_mrf', function(e) {
+         e.preventDefault();
 
-            var provideID = $(this).closest("tr").find('.mrf_id').val();
-            Swal.fire({
-               title: "Are you sure you want to provide an MRF?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "provideMRF_button_click": 1,
-                        "provideID": provideID,
-                     },
-                     success: function(response) {
+         var provideID = $(this).closest("tr").find('.mrf_id').val();
 
-                        Swal.fire({
-                           title: "Success",
-                           icon: "success"
-                        }).then((result) => {
-                           location.reload();
-                        });
-
-                     }
-                  });
-               }
-            });
+         Swal.fire({
+            title: "Are you sure you want to provide an MRF?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "provideMRF_button_click": 1,
+                     "provideID": provideID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
          });
       });
+
 
       // For accepting MRF
-      $(document).ready(function() {
-         $('.r_mrfs').click(function(e) {
-            e.preventDefault();
+      $('#example').on('click', '.r_mrfs', function(e) {
+         e.preventDefault();
 
-            var acceptID = $(this).closest("tr").find('.mrf_ids').val();
-            Swal.fire({
-               title: "Are you sure you want to accept this MRF?",
-               icon: "warning",
-               showCancelButton: true,
-               confirmButtonText: "Yes!",
-               cancelButtonText: "No",
-            }).then((willDelete) => {
-               if (willDelete.isConfirmed) {
-                  $.ajax({
-                     type: "POST",
-                     url: "action.php",
-                     data: {
-                        "acceptMRF_button_click": 1,
-                        "acceptID": acceptID,
-                     },
-                     success: function(response) {
+         var acceptID = $(this).closest("tr").find('.mrf_ids').val();
 
-                        Swal.fire({
-                           title: "Success",
-                           icon: "success"
-                        }).then((result) => {
-                           location.reload();
-                        });
-
-                     }
-                  });
-               }
-            });
+         Swal.fire({
+            title: "Are you sure you want to accept this MRF?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "acceptMRF_button_click": 1,
+                     "acceptID": acceptID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
          });
       });
+
 
 
       // Viewing of MRF
@@ -756,7 +764,7 @@
          });
       });
 
-      
+
 
 
       // For checkboxes of selecting applicants for shortlist
@@ -781,8 +789,6 @@
             }
          });
       });
-
-      
    </script>
    <!-- Data Table -->
    <script>

@@ -70,7 +70,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $resultx = mysqli_query($link, "SELECT * FROM employees where actionpoint = 'CANCELED'");
+                                        $resultx = mysqli_query($link, "SELECT * FROM employees where is_deleted = '1'");
                                         while ($rowx = mysqli_fetch_assoc($resultx)) {
                                             $inputDate = $rowx['birthday'];
                                             $timestamp = strtotime($inputDate);
@@ -87,7 +87,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                 <td>
                                                     <form action="" method="POST">
                                                         <input type="hidden" name="undocanceledID" class="undocanceledID" id="undocanceledID" value="<?php echo $rowx['id'] ?>">
-                                                        <button type="submit" name="undocanceledbtn" class="btn btn-default undocanceledbtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Undo Canceled">
+                                                        <button type="submit" name="undocanceledbtn" class="btn btn-secondary undocanceledbtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Undo Canceled">
                                                             <i class="bi bi-arrow-counterclockwise"></i>
                                                         </button>
                                                     </form>

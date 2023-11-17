@@ -70,7 +70,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </h4>
                                     </div>
                                     <hr>
-
+                                    <div class="container mt-4 mb-4">
+                                        <button type="button" class="btn btn-dark" title="Add Applicants to Shortlist" data-bs-toggle="modal" data-bs-target="#addApplicantsToShortlist">Add</button>
+                                    </div>
                                     <table class="table" id="example">
                                         <thead>
                                             <tr>
@@ -78,6 +80,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <th>gender</th>
                                                 <th>Age</th>
                                                 <th>Contact Number</th>
+                                                <th>Location</th>
                                                 <th>Date Applied</th>
                                                 <th>Resume</th>
                                                 <th>Status</th>
@@ -100,9 +103,21 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['gender'] ?></td>
                                                     <td><?php echo $row['age'] ?></td>
                                                     <td><?php echo $row['mobile_number'] ?></td>
+                                                    <td><?php echo $row['present_address'] . ", " . $row['city']; ?></td>
                                                     <td><?php echo $row['date_applied'] ?></td>
                                                     <td>
-                                                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#viewResume-<?php echo $row['id']; ?>" title="View Resume" style="text-decoration: underline; box-shadow: none !important; outline: none !important;"><?php echo $row['resume_file'] ?></button>
+                                                        <?php
+                                                        $resumeFilePath = $row['resume_path'] . "/" . $row['resume_file'];
+                                                        $fileExtension = pathinfo($resumeFilePath, PATHINFO_EXTENSION);
+
+                                                        if (strtolower($fileExtension) === 'pdf') {
+                                                            // Display in modal using iframe
+                                                            echo '<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#viewResume-' . $row['id'] . '" title="View Resume" style="text-decoration: underline; box-shadow: none !important; outline: none !important;">' . $row['resume_file'] . '</button>';
+                                                        } else {
+                                                            // Download link
+                                                            echo '<a href="' . $resumeFilePath . '" download="' . $row['resume_file'] . '" class="btntooltips" title="Download Resume" style="text-decoration: underline; color: #83A2FF;">' . $row['resume_file'] . '</a>';
+                                                        }
+                                                        ?>
                                                     </td>
 
                                                     <!-- Modal -->
@@ -114,8 +129,12 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <iframe <?php echo 'src="../../../pcn_OLA/resumeStorage/' . $row['resume_file'] . '"'; ?> height="1000" width="100%"></iframe>
-
+                                                                    <?php
+                                                                    if (strtolower($fileExtension) === 'pdf') {
+                                                                        // Display PDF in iframe
+                                                                        echo '<iframe src="' . $resumeFilePath . '" height="1000" width="100%"></iframe>';
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -123,6 +142,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- End of Modal -->
+
+
                                                     <td><?php echo $row['status'] ?></td>
 
                                                     <td>
@@ -182,6 +204,120 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </div>
                                     </div>
 
+                                    <!-- Modal for Adding Applicants in Shortlisting -->
+                                    <div class="modal fade" id="addApplicantsToShortlist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <form action="action.php" method="POST" class="form-group row" enctype="multipart/form-data">
+                                                            <?php
+                                                                $job_id = $_GET['id'];
+                                                            ?>
+                                                            <input type="hidden" name="job_id" value="<?php echo $job_id?>">
+                                                            <div class="col-md-12">
+                                                                <label for="source" class="form-label">Source</label>
+                                                                <input list="sources" name="source" id="source" class="form-control">
+                                                                <datalist id="sources">
+                                                                    <option value="REFERRAL">REFERRAL</option>
+                                                                    <option value="NON REFERRAL">NON REFERRAL</option>
+                                                                </datalist>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Firstname</label>
+                                                                <input type="text" name="firstname" id="firstname" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Middlename</label>
+                                                                <input type="text" name="middlename" id="middlename" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Lastname</label>
+                                                                <input type="text" name="lastname" id="lastname" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Extension Name</label>
+                                                                <input type="text" name="extension_name" id="extension_name" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-12 mt-1">
+                                                                <label for="" class="form-label">Gender</label>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Male" required checked>
+                                                                    <label class="form-check-label" for="gender">Male</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Female" required>
+                                                                    <label class="form-check-label" for="gender">Female</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Civil Status</label>
+                                                                <select name="civil_status" id="civil_status" class="form-select" required>
+                                                                    <option value=""></option>
+                                                                    <option value="Single">Single</option>
+                                                                    <option value="Married">Married</option>
+                                                                    <option value="Widowed">Widowed</option>
+                                                                    <option value="Separated">Separated</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Mobile Number</label>
+                                                                <input type="number" name="mobile_number" id="mobile_number" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Email Address</label>
+                                                                <input type="email" name="email_address" id="email_address" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Birthday</label>
+                                                                <input type="date" name="birthday" id="birthdate" onchange="calculateAge()" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <input type="hidden" name="age" class="form-control" id="age">
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Present Address</label>
+                                                                <input type="text" name="address" id="address" class="form-control" required>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Region</label>
+                                                                <select name="region" id="regionn" class="form-select" required>
+                                                                    <option value=""></option>
+                                                                    <?php
+                                                                    $select_region = "SELECT * FROM region";
+                                                                    $select_region_result = $link->query($select_region);
+                                                                    while ($select_region_row = mysqli_fetch_assoc($select_region_result)) {
+                                                                    ?>
+                                                                        <option value="<?php echo $select_region_row['regCode'] ?>"><?php echo $select_region_row['regDesc'] ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">City</label>
+                                                                <select name="city" id="cityn" class="form-select">
+
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <label for="" class="form-label">Resume File</label>
+                                                                <input type="file" name="resume_file" id="resume_file" class="form-control" required>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" name="create_shortlist_applicant">Submit</button>
+                                                </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </div>
@@ -190,7 +326,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 </div>
             </div>
             <script>
-
             </script>
             <?php include '../components/footer.php'; ?>
     </body>

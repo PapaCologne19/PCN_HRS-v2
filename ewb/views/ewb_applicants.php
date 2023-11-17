@@ -111,7 +111,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                                         <div class="container-fluid">
                                                                             <div class="row ">
                                                                                 <center>
-                                                                                    <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px;">
+                                                                                    <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="width:200px;height:200px; object-fit: cover; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
                                                                                 </center>
                                                                             </div>
                                                                             <div class="row mt-5">

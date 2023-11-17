@@ -57,7 +57,7 @@ include '../../connect.php';
                                             <center>
                                                 <div class="row">
                                                     <div class="col-md-12 mt-3">
-                                                        <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="flex: none; width: 230px;height: 230px; object-fit: contain;">
+                                                        <img src="<?php echo $rowed["photopath"] ?>" alt="" class="img-circle" style="flex: none; width: 230px;height: 230px; object-fit: cover; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mt-3">

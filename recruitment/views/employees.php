@@ -87,7 +87,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $resultx = mysqli_query($link, "SELECT *, DATE_FORMAT(birthday, '%M %d %Y') AS birthday FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'SHORTLISTED' AND actionpoint <> 'CANCELED'");
+                                            $resultx = mysqli_query($link, "SELECT *, DATE_FORMAT(birthday, '%M %d %Y') AS birthday FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'CANCELED' AND is_deleted <> '1'");
                                             while ($rowx = mysqli_fetch_assoc($resultx)) { ?>
                                                 <tr>
                                                     <td> <?php echo $rowx['id'] ?> </td>

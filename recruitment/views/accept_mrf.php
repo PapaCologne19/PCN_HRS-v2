@@ -55,6 +55,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </h4>
                                     </div>
                                     <hr>
+                                    
                                     <table id="example" class="table" style="width:100%; font-size: 14px !important;">
                                         <thead>
                                             <tr>
@@ -65,7 +66,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <th> POSITION </th>
                                                 <th> NEEDED </thh>
                                                 <th> PROVIDED </th>
-                                                <th> RECEIVED BY: </th>
+                                                <th> FOR SCREENING </th>
+                                                <th> ACTION </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -79,13 +81,26 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                 $project_title = $row['project_title'];
                                                 $needed = $row['np_male'] + $row['np_female'];
+
                                                 $selected = "SELECT mrf.*, project.*, resumes.* 
                                                 FROM mrf mrf, projects project, applicant_resume resumes 
                                                 WHERE mrf.tracking = project.mrf_tracking 
                                                 AND resumes.project_id = project.id 
                                                 AND project.project_title = '$project_title'
                                                 AND resumes.status = 'QUALIFIED'";
+
                                                 $selected_result = $link->query($selected);
+
+                                                $selected_screening = "SELECT mrf.*, project.*, resumes.* 
+                                                FROM mrf mrf, projects project, applicant_resume resumes 
+                                                WHERE mrf.tracking = project.mrf_tracking 
+                                                AND resumes.project_id = project.id 
+                                                AND project.project_title = '$project_title'
+                                                AND resumes.status = 'FOR SCREENING'";
+
+                                                $selected_screening_result = $link->query($selected_screening);
+                                                $for_screening = $selected_screening_result->num_rows;
+                                                $selected_screening_row = $selected_screening_result->fetch_assoc();
 
                                                 $provided = $selected_result->num_rows;
                                                 $selected_row = $selected_result->fetch_assoc();
@@ -104,12 +119,19 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } ?>
                                                         <td style=" text-align: center;"> <?php echo $needed ?> </td>
                                                         <td style=" text-align: center;"> <?php echo $provided ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $for_screening ?> </td>
 
                                                         <td>
                                                             <form action="" method="POST">
                                                                 <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
                                                                 <button type="button" class="btn btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
+                                                            <?php 
+                                                                if($selected_row['status'] === 'QUALIFIED'){
+                                                            ?>
                                                                 <a href="shortlisted_applicants.php?id=<?php echo $selected_row['project_id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                            <?php } elseif($selected_screening_row['status'] === 'FOR SCREENING'){?>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_screening_row['project_id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                            <?php }?>
                                                             </form>
                                                         </td>
                                                     </tr>

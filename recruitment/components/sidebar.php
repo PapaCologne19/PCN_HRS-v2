@@ -1,3 +1,22 @@
+<style>
+  .notification {
+    color: black;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    background-color: #D80032 !important;
+    color: white;
+  }
+</style>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="index.html" class="app-brand-link">
@@ -27,9 +46,24 @@
     </li>
     <!-- Accept MRF-->
     <li class="menu-item">
-      <a href="accept_mrf.php" class="menu-link">
+      <a href="accept_mrf.php" class="menu-link ">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">MRF</div>
+        <div data-i18n="Analytics">MRF 
+          <span class="notification badge">
+            <?php 
+              $get = "SELECT * FROM mrf WHERE is_deleted = '0' AND hr_personnel != 'YES'";
+              $get_result = $link->query($get);
+              while($get_row = $get_result->fetch_assoc()){
+                if($notification = $get_result->num_rows){
+                  echo '<span class="badge rounded-pill bg-danger">'.$notification.'</span>';
+                }
+                else{
+                  echo "";
+                }
+              }
+            ?>
+          </span>
+        </div>
       </a>
     </li>
     <li class="menu-header small text-uppercase">
@@ -115,10 +149,10 @@
         <div data-i18n="Analytics">Remove to Shortlist</div>
       </a>
     </li> -->
-    
-    
-    
-    
+
+
+
+
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">REPORTS</span>
     </li>

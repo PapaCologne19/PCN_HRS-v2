@@ -263,13 +263,13 @@ if (isset($_POST['blacklist_button'])) {
 
             if ($blacklist_history_result) {
                 $_SESSION['successMessage'] = "Success!";
-                header("Location: recruitment.php");
             } else {
                 $_SESSION['errorMessage'] = "Blacklist error!";
-                header("Location: recruitment.php");
             }
         }
     }
+    header("Location: employees.php");
+    exit(0);
 }
 
 // For Deleting Applicants. Change status to canceled but not totally deleted in database for records purposes
@@ -277,18 +277,17 @@ if (isset($_POST['delete_applicant_button'])) {
     $id = $_POST['delete_applicant_ID'];
     $delete_applicant_reason = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['reason'])))));
     $datenow = date("m/d/Y");
-    $actionpoint = "CANCELED";
 
-    $delete_applicant_query = "UPDATE employees SET actionpoint = '$actionpoint', reasonofaction = '$delete_applicant_reason', dateofaction = '$datenow' WHERE id = '$id'";
+    $delete_applicant_query = "UPDATE employees SET is_deleted = '1', reasonofaction = '$delete_applicant_reason', dateofaction = '$datenow' WHERE id = '$id'";
     $delete_applicant_result = mysqli_query($link, $delete_applicant_query);
 
     if ($delete_applicant_result) {
         $_SESSION['successMessage'] = "Success!";
-        header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Delete error!";
-        header("Location: recruitment.php");
     }
+    header("Location: employees.php");
+    exit(0);
 }
 
 // For Undo Blacklisted Applicants
@@ -300,27 +299,27 @@ if (isset($_POST['undo_button_click'])) {
 
     if ($result_editblacklist) {
         $_SESSION['successMessage'] = "Success!";
-        header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Error";
-        header("Location: recruitment.php");
     }
+    header("Location: employees.php");
+    exit(0);
 }
 
 // For Undo Canceled Applicants
 if (isset($_POST['undo_canceled_button_click'])) {
     $undo_canceled_id = $_POST['undocanceled_id'];
-    $undo_cancel = "UPDATE employees SET actionpoint = 'ACTIVE', reasonofaction = '', dateofaction = '' WHERE id = '$undo_canceled_id'";
+    $undo_cancel = "UPDATE employees SET is_deleted = '0', reasonofaction = '', dateofaction = '' WHERE id = '$undo_canceled_id'";
 
     $result_editcancel = mysqli_query($link, $undo_cancel);
 
     if ($result_editcancel) {
         $_SESSION['successMessage'] = "Success";
-        header("Location: recruitment.php");
     } else {
         $_SESSION['errorMessage'] = "Error";
-        header("Location: recruitment.php");
     }
+    header("Location: list_of_canceled.php");
+    exit(0);
 }
 
 // For creating shortlist title
@@ -1190,9 +1189,9 @@ if (isset($_POST['submit_update'])) {
         $result = $link->query($query);
 
         if ($result) {
-             $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
+            $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
             $insert_file_result = $link->query($insert_file);
- 
+
             if ($insert_file_result) {
                 $_SESSION['successMessage'] = "Success";
             } else {
@@ -1203,5 +1202,89 @@ if (isset($_POST['submit_update'])) {
         }
     }
     header("Location: deploy.php");
+    exit(0);
+}
+
+// For Adding Applicants in Shortlisting
+if (isset($_POST['create_shortlist_applicant'])) {
+    $source = $link->real_escape_string($_POST['source']);
+    $firstname = $link->real_escape_string($_POST['firstname']);
+    $middlename = $link->real_escape_string($_POST['middlename']);
+    $lastname = $link->real_escape_string($_POST['lastname']);
+    $extension_name = $link->real_escape_string($_POST['extension_name']);
+    $gender = $link->real_escape_string($_POST['gender']);
+    $civil_status = $link->real_escape_string($_POST['civil_status']);
+    $age = $link->real_escape_string($_POST['age']);
+    $mobile_number = $link->real_escape_string($_POST['mobile_number']);
+    $email_address = $link->real_escape_string($_POST['email_address']);
+    $birthday = $link->real_escape_string($_POST['birthday']);
+    $address = $link->real_escape_string($_POST['address']);
+    $region = $link->real_escape_string($_POST['region']);
+    $city = $link->real_escape_string($_POST['city']);
+
+    $file = $_FILES['resume_file'];
+    $filename = $_FILES["resume_file"]["name"];
+    $tempname = $_FILES["resume_file"]["tmp_name"];
+
+    // Get the MIME type of the uploaded file
+    $file_type = mime_content_type($tempname);
+
+    // List of allowed MIME types
+    $allowed_types = array('application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+
+    // Check if the MIME type is in the list of allowed types
+    if (!in_array($file_type, $allowed_types)) {
+        $_SESSION['errorMessage'] = "Please upload PDF and Docx file only.";
+    }
+
+    $today = date("Y-m-d");
+
+    if (!empty($filename)) {
+        $insert = "INSERT INTO applicant (`source`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`)
+            VALUES ('$source', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$address', '$city', '$region')";
+        $insert_result = $link->query($insert);
+
+        if ($insert_result) {
+            $applicant_id = $link->insert_id;
+            $job_id = $_POST['job_id'];
+            $applicant_name = $firstname . " " . $middlename . " " . $lastname . " " . $extension_name;
+            $folder_name = $applicant_name;
+            $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
+
+            
+
+
+            
+
+            if (mkdir("{$destination}", 0777)) {
+                $applicant_name_subfolder = "Requirements";
+                $folder_name_subfolder = $applicant_name_subfolder;
+                $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+
+                mkdir("{$destination_subfolder}", 0777);
+                $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
+                $result = mysqli_query($link, $sql);
+                if($result){
+                    if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
+                        $_SESSION['successMessage'] = "File uploaded successfully";
+                    } else {
+                        $_SESSION["errorMessage"] = "Error in uploading file.";
+                    }
+                }
+                else {
+                    $_SESSION["errorMessage"] = "Error in inserting file: " . mysqli_error($link);
+                }
+            } 
+            else {
+                $_SESSION["errorMessage"] = "Error in inserting file: " . mysqli_error($link);
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error in inserting applicant: " . mysqli_error($link);
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Failed to upload file";
+    }
+
+    header("location: shortlisted_applicants.php?id=$job_id");
     exit(0);
 }

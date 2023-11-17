@@ -146,32 +146,33 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <div class="columns">
                                                             <button type="button" class="btn btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon" style="color: black !important;"></i></button>
                                                         </div>
-                                                        
+
                                                         <div class="columns">
-                                                        <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
-                                                            <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
-                                                            <button type="button" class="btn btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon" style="color: black !important;"></i></button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="columns">
-                                                        <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
-                                                        <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
-                                                    </div>
-                                                    <div class="columns">
+                                                            <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
+                                                                <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
+                                                                <button type="button" class="btn btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon" style="color: black !important;"></i></button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="columns">
+                                                            <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
+                                                            <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
+                                                        </div>
+                                                        <div class="columns">
                                                             <?php
                                                             $select = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";
                                                             $result_select = $link->query($select);
                                                             while ($select_row = $result_select->fetch_assoc()) {
 
-                                                                if($result_select->num_rows > 0){
+                                                                if ($result_select->num_rows > 0) {
                                                             ?>
-                                                                <input type="hidden" name="project_id" class="project_id" id="project_id" value="<?php echo $select_row['id']; ?>">
-                                                                <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
-                                                            <?php } else{ ?>
-                                                                <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none !important;"><i class="bi bi-search"></i></button>
+                                                                    <input type="hidden" name="project_id" class="project_id" id="project_id" value="<?php echo $select_row['id']; ?>">
+                                                                    <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
+                                                                <?php } else { ?>
+                                                                    <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none !important;"><i class="bi bi-search"></i></button>
 
-                                                        
-                                                            <?php }} ?>
+
+                                                            <?php }
+                                                            } ?>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -213,8 +214,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </div>
                                     </div>
                                 </div>
-                               
-                                
+
+
 
 
 
@@ -252,39 +253,39 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
 
             // Deleting MRF
-            $(document).ready(function() {
-                $('.btndelete').click(function(e) {
-                    e.preventDefault();
+            $('#example').on('click', '.btndelete', function(e) {
+                e.preventDefault();
 
-                    var deleteID = $(this).closest("tr").find('.delete_id').val();
-                    Swal.fire({
-                        title: "Are you sure you want to delete this MRF?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonText: "Yes!",
-                        cancelButtonText: "No",
-                    }).then((willDelete) => {
-                        if (willDelete.isConfirmed) {
-                            $.ajax({
-                                type: "POST",
-                                url: "action.php",
-                                data: {
-                                    "delete_button_click": 1,
-                                    "deleteIDs": deleteID,
-                                },
-                                success: function(response) {
+                var deleteID = $(this).closest("tr").find('.delete_id').val();
 
-                                    Swal.fire({
-                                        title: "Success!",
-                                        icon: "success"
-                                    }).then((result) => {
-                                        location.reload();
-                                    });
-
-                                }
-                            });
-                        }
-                    });
+                Swal.fire({
+                    title: "Are you sure you want to delete this MRF?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes!",
+                    cancelButtonText: "No",
+                }).then((willDelete) => {
+                    if (willDelete.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "action.php",
+                            data: {
+                                "delete_button_click": 1,
+                                "deleteIDs": deleteID,
+                            },
+                            success: function(response) {
+                                Swal.fire({
+                                    title: "Success!",
+                                    icon: "success"
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.log("AJAX Error: " + error);
+                            }
+                        });
+                    }
                 });
             });
         </script>
