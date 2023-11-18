@@ -250,6 +250,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 </div>
             </div>
         </div>
+        <?php include '../components/footer.php'; ?>
     </body>
 
     </html>

@@ -298,7 +298,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                 <div class="title">
                                                                                     <h2 class="fs-4 text-center mb-3"><?php echo $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'] ?>'s Details</h2>
                                                                                 </div>
-                                                                                <script>
+                                                                                <!-- <script>
             function validateForm() {
                 var sssnum = document.getElementById('sssnum').value;
                 var phnum = document.getElementById('phnum').value;
@@ -321,7 +321,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 // Continue with form submission if validation passes
                 return true;
             }
-        </script>
+        </script> -->
                                                                                 <form action="action.php" method="POST" class="form-group" enctype="multipart/form-data" onsubmit="return validateForm();">
                                                                                     <input type="hidden" name="update_id" id="update_id" value="<?php echo $fetch_row['id'] ?>">
                                                                                     <div class="row mt-3">
@@ -539,7 +539,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" class="form-control">
+                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" minlength="10" class="form-control" value="<?php echo $fetch_row['sssnum']?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -549,7 +549,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" class="form-control">
+                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['pagibignum']?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -559,7 +559,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" class="form-control">
+                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['phnum']?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -569,7 +569,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="tinnum" maxlength="12" value="<?php echo $fetch_row["tinnum"] ?>" class="form-control">
+                                                                                            <input type="text" name="tinnum" maxlength="12" minlength="12" value="<?php echo $fetch_row["tinnum"] ?>" class="form-control" value="<?php echo $fetch_row['tinnum']?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -694,17 +694,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 </div>
             </div>
         </div>
-        <script>
-            function formValidate(value, fieldName) {
-                if (value === '') {
-                    console.log(`${fieldName} is empty. Please enter a value.`);
-                    // Add any additional logic or visual feedback for the user as needed
-                } else {
-                    console.log(`${fieldName} is not empty. Validating...`);
-                    // Add your other validation logic here
-                }
-            }
-        </script>
+       
         <?php include '../components/footer.php'; ?>
     </body>
 

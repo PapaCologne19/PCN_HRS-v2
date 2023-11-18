@@ -266,6 +266,8 @@ if (isset($_POST['approve_applicants_button_click'])) {
             $client_company_id = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['client_company_id'])))));
             $project_id = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['project_id'])))));
 
+            $applicant_id = $fetch_row['applicant_id'];
+            $project_id = $fetch_row['project_id'];
             $source = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['source'])))));
             $firstname = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['firstname'])))));
             $middlename = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['middlename'])))));
@@ -285,31 +287,63 @@ if (isset($_POST['approve_applicants_button_click'])) {
             $query_tracking = "SELECT * FROM track WHERE id = '1'";
             $resulttracking = mysqli_query($link, $query_tracking);
             while ($rowtr = mysqli_fetch_assoc($resulttracking)) {
-                $newtracking = $rowtr['appno'] + 1;
+                $notification = "Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).";
+                $insert_notif = "INSERT INTO applicant_notifications(applicant_id, project_id, notification) VALUES('$applicant_id', '$project_id', '$notification')";
+                $insert_notif_result = $link->query($insert_notif);
 
-                $insert_applicant = "INSERT INTO employees (appno, tracking, photopath, dapplied, source, despo, firstnameko, mnko, lastnameko, extnname, gendern, civiln, age, cpnum, emailadd, birthday, paddress, regionn, cityn) 
-                VALUES ('$newtracking', '$newtracking', '$photoko', '$date_now', '$source', '$project_title', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$present_address', '$region', '$city')";
-                $insert_result = $link->query($insert_applicant);
+                if ($insert_notif_result) {
 
-                if ($insert_result) {
-                    $last_id = mysqli_insert_id($link);
-                    $select_applicant = "SELECT * FROM employees WHERE id = '$last_id'";
-                    $select_applicant_result = $link->query($select_applicant);
+                    $update_status_resume_hide = "UPDATE applicant_resume SET project_status = 'ALREADY PASSED', is_deleted = '1' WHERE applicant_id = '$applicant_id' AND project_status = 'PENDING'";
+                    $update_status_resume_hide_result = $link->query($update_status_resume_hide);
 
-                    while ($select_applicant_row = $select_applicant_result->fetch_assoc()) {
-                        $employee_id = $select_applicant_row['id'];
-                        $appno = $select_applicant_row['appno'];
-                        $check = "SELECT project FROM shortlist_details WHERE project = '$project_title'";
-                        $check_result = $link->query($check);
-                        $datecreated = date('m/d/Y');
-                        if ($check_result->num_rows === 0) {
-                            $shortlist_status = 'ACTIVE';
+                    if($update_status_resume_hide_result){
+                    $newtracking = $rowtr['appno'] + 1;
 
-                            $insert_shortlist_details = "INSERT INTO shortlist_details (shortlistname, project, mrf_tracking, client, datecreated, activity, project_id) 
+                    $insert_applicant = "INSERT INTO employees (appno, app_id, tracking, photopath, dapplied, source, despo, firstnameko, mnko, lastnameko, extnname, gendern, civiln, age, cpnum, emailadd, birthday, paddress, regionn, cityn) 
+                    VALUES ('$newtracking', '$applicant_id', '$newtracking', '$photoko', '$date_now', '$source', '$project_title', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$present_address', '$region', '$city')";
+                    $insert_result = $link->query($insert_applicant);
+
+                    if ($insert_result) {
+                        $last_id = mysqli_insert_id($link);
+                        $select_applicant = "SELECT * FROM employees WHERE id = '$last_id'";
+                        $select_applicant_result = $link->query($select_applicant);
+
+                        while ($select_applicant_row = $select_applicant_result->fetch_assoc()) {
+                            $employee_id = $select_applicant_row['id'];
+                            $appno = $select_applicant_row['appno'];
+                            $check = "SELECT project FROM shortlist_details WHERE project = '$project_title'";
+                            $check_result = $link->query($check);
+                            $datecreated = date('m/d/Y');
+                            if ($check_result->num_rows === 0) {
+                                $shortlist_status = 'ACTIVE';
+
+                                $insert_shortlist_details = "INSERT INTO shortlist_details (shortlistname, project, mrf_tracking, client, datecreated, activity, project_id) 
                             VALUES ('$project_title', '$project_title', '$mrf_tracking', '$client_company_id', '$datecreated', '$shortlist_status', '$project_id')";
-                            $insert_shortlist_details_result = $link->query($insert_shortlist_details);
+                                $insert_shortlist_details_result = $link->query($insert_shortlist_details);
 
-                            if ($insert_shortlist_details_result) {
+                                if ($insert_shortlist_details_result) {
+                                    $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
+                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
+                                    $insert_shortlist_master_result = $link->query($insert_shortlist_master);
+
+                                    if ($insert_shortlist_master_result) {
+
+                                        $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
+                                        $result_tracking = mysqli_query($link, $update_tracking);
+                                        if ($result_tracking) {
+
+                                            $_SESSION['successMessage'] = "Success";
+                                        } else {
+                                            $_SESSION['errorMessage'] = "Error in updating tracking number";
+                                        }
+                                    } else {
+                                        $_SESSION[] = "Error in inserting to shortlist master";
+                                    }
+                                } else {
+                                    $_SESSION['errorMessage'] = "Error in inserting shortlist details";
+                                }
+                            } else {
+                                $_SESSION['errorMessage'] = "Project is already in shortlist details";
                                 $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
                                 VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
                                 $insert_shortlist_master_result = $link->query($insert_shortlist_master);
@@ -325,40 +359,26 @@ if (isset($_POST['approve_applicants_button_click'])) {
                                 } else {
                                     $_SESSION[] = "Error in inserting to shortlist master";
                                 }
-                            } else {
-                                $_SESSION['errorMessage'] = "Error in inserting shortlist details";
-                            }
-                        } else {
-                            $_SESSION['errorMessage'] = "Project is already in shortlist details";
-                            $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
-                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
-                            $insert_shortlist_master_result = $link->query($insert_shortlist_master);
-
-                            if ($insert_shortlist_master_result) {
-                                $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
-                                $result_tracking = mysqli_query($link, $update_tracking);
-                                if ($result_tracking) {
-                                    $_SESSION['successMessage'] = "Success";
-                                } else {
-                                    $_SESSION['errorMessage'] = "Error in updating tracking number";
-                                }
-                            } else {
-                                $_SESSION[] = "Error in inserting to shortlist master";
                             }
                         }
+                    } else {
+                        $_SESSION['errorMessage'] = "Error in inserting applicant to employee table";
                     }
                 } else {
-                    $_SESSION['errorMessage'] = "Error in inserting applicant to employee table";
+                    $_SESSION['errorMessage'] = "Error in inserting";
+                }
+                    // 
+                } else {
+                    $_SESSION['errorMessage'] = "Error in inserting";
                 }
             }
         } else {
             $_SESSION['errorMessage'] = "Error in inserting to applicant resume";
         }
+        
     } else {
         $_SESSION['errorMessage'] = "Error in approving applicant";
     }
     header("Location: mrf_list.php");
     exit(0);
 }
-
-

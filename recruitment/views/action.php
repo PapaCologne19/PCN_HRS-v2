@@ -1251,31 +1251,26 @@ if (isset($_POST['create_shortlist_applicant'])) {
             $folder_name = $applicant_name;
             $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
 
-            
 
 
-            
 
-            if (mkdir("{$destination}", 0777)) {
-                $applicant_name_subfolder = "Requirements";
-                $folder_name_subfolder = $applicant_name_subfolder;
-                $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
 
-                mkdir("{$destination_subfolder}", 0777);
-                $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
-                $result = mysqli_query($link, $sql);
-                if($result){
-                    if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
-                        $_SESSION['successMessage'] = "File uploaded successfully";
-                    } else {
-                        $_SESSION["errorMessage"] = "Error in uploading file.";
-                    }
+
+            mkdir("{$destination}", 0777);
+            $applicant_name_subfolder = "Requirements";
+            $folder_name_subfolder = $applicant_name_subfolder;
+            $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+
+            mkdir("{$destination_subfolder}", 0777);
+            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
+            $result = mysqli_query($link, $sql);
+            if ($result) {
+                if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
+                    $_SESSION['successMessage'] = "File uploaded successfully";
+                } else {
+                    $_SESSION["errorMessage"] = "Error in uploading file.";
                 }
-                else {
-                    $_SESSION["errorMessage"] = "Error in inserting file: " . mysqli_error($link);
-                }
-            } 
-            else {
+            } else {
                 $_SESSION["errorMessage"] = "Error in inserting file: " . mysqli_error($link);
             }
         } else {
