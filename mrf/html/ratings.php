@@ -202,4 +202,7 @@ session_start();
             }, 100); // Adjust the timeout duration if needed
         });
     });
+
+
+    new DataTable('#example');
 </script>

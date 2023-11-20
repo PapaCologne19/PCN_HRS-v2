@@ -78,7 +78,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $queries = "SELECT shortlist.*, employee.* 
+                                        $queries = "SELECT shortlist.*, employee.*, shortlist.project_status AS for_loa_status
                                                     FROM shortlist_master shortlist, employees employee
                                                     WHERE shortlist.employee_id = employee.id 
                                                     AND shortlistnameto = '$shortlist_id'";
@@ -142,7 +142,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 </tr>
                                                 <!-- IF HINDI PA NADEDEPLOY -->
                                             <?php
-                                            } elseif (trim($rows['deployment_status'] === 'FOR DEPLOYMENT')) { ?>
+                                            } elseif ($rows['deployment_status'] === 'FOR DEPLOYMENT' && $rows['for_loa_status'] === "FOR LOA") { ?>
                                                 <tr>
                                                     <td><?php echo $rows['id'] ?></td>
                                                     <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
@@ -158,7 +158,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $rows['ewbdeploy'] ?></td>
                                                     <td><?php echo $rows['remarks'] ?></td>
                                                     <td>
-                                                        <?php if (!empty($rows['ewb_status'])) { ?>
+                                                        <?php if ($rows['deployment_status'] === 'FOR DEPLOYMENT' && $rows['for_loa_status'] === "FOR LOA") { ?>
                                                             <input type="hidden" name="deployID" id="deployID" class="deployID" value="<?php echo $rows['id'] ?>">
                                                             <button type="button" name="deploy" class="btn btn-primary open-modal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Deploy and Appoint LOA"><i class="bi bi-folder-check"></i></button>
                                                         <?php } else { ?>

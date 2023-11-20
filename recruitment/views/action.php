@@ -569,44 +569,6 @@ if (isset($_POST['add_to_shortlist'])) {
                 $rowac = mysqli_fetch_assoc($resultac);
                 $emp_id = $rowac['id'];
 
-                // if ($rowac['actionpoint'] === "ACTIVE") {
-                //     // Update the action point for this user
-                //     $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
-                //     $results1 = mysqli_query($link, $query1);
-
-                //     if ($results1) {
-                //         $dtnow = date("m/d/Y");
-
-                //         // Check if this user is not already in the shortlist
-                //         $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1'";
-                //         $resultchk = mysqli_query($link, $querychk);
-
-                //         if (mysqli_num_rows($resultchk) === 0) {
-                //             // Insert this user into the shortlist
-                //             $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) 
-                //             VALUES('$emp_id', '$data', '$id1', '$dtnow')";
-                //             $results2 = mysqli_query($link, $query2);
-
-                //             if ($results2) {
-                //                 // User successly added to the shortlist
-                //                 $response[] = array('message' => 'Successly added to the shortlist');
-                //                 $_SESSION['successMessage'] = 'Successly added to the shortlist';
-                //             } else {
-                //                 // Insertion failed
-                //                 $response[] = array('message' => 'Not Added due to Duplication!');
-                //                 $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                //             }
-                //         } else {
-                //             // User already exists in the shortlist
-                //             $response[] = array('message' => 'Not Added due to Duplication!');
-                //             $_SESSION['errorMessage'] = 'Not Added due to Duplication!';
-                //         }
-                //     } else {
-                //         // Error updating the action point
-                //         $response[] = array('message' => 'Error: Query failed during update');
-                //         $_SESSION['errorMessage'] = 'Error: Query failed during update';
-                //     }
-                // } else {
                 // User action point is not ACTIVE
                 $dtnow = date("m/d/Y");
                 $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";

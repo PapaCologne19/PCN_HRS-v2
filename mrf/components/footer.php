@@ -31,18 +31,13 @@
             });
          });
       });
-
-
-      
-
-      
    </script>
-
-
 
    <!-- Data Table -->
    <script>
       new DataTable('#example');
+      var myModal = new bootstrap.Modal(document.getElementById('projectModal'));
+
    </script>
 
    <!-- Tooltips Enabler -->

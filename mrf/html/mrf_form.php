@@ -469,7 +469,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <div class="col-md-4">
                                                         <input type="date" class="form-control salary_package" name="work_duration_start" id="work_duration_start" required>
                                                     </div>
-                                                <!-- </div>
+                                                    <!-- </div>
                                                 <div class="row col-md-3"> -->
                                                     <div class="col-md-1">
                                                         <label for="" class="form-label">To:</label>
@@ -513,9 +513,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </select>
                                         </div>
                                         <center>
-                                        <div class="col-md-6 mt-5 mb-5 ">
-                                            <button type="submit" class="btn btn-primary btn-xl " name="process">Process</button>
-                                        </div>
+                                            <div class="col-md-6 mt-5 mb-5 ">
+                                                <button type="submit" class="btn btn-primary btn-xl " name="process">Process</button>
+                                            </div>
                                         </center>
                                     </form>
                                 </div>
@@ -728,16 +728,16 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
             });
 
             // For QUILL
-      var quill = new Quill('#editor', {
-         placeholder: 'Type outlet here...',
-         theme: 'snow',
-         debug: 'info',
-         });
+            var quill = new Quill('#editor', {
+                placeholder: 'Type outlet here...',
+                theme: 'snow',
+                debug: 'info',
+            });
 
-         $('form').submit(function (event) {
-         $('#outlet').val(JSON.stringify(quill.getContents()));
-         return true;
-      });
+            $('form').submit(function(event) {
+                $('#outlet').val(JSON.stringify(quill.getContents()));
+                return true;
+            });
         </script>
         <?php include '../components/footer.php'; ?>
     </body>

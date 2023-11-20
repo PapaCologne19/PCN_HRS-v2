@@ -239,6 +239,7 @@ if (isset($_POST['reject_button'])) {
     exit(0);
 }
 
+
 // For approving applicants
 if (isset($_POST['approve_applicants_button_click'])) {
     $id = $_POST['approve_applicants_id'];
@@ -296,42 +297,62 @@ if (isset($_POST['approve_applicants_button_click'])) {
                     $update_status_resume_hide = "UPDATE applicant_resume SET project_status = 'ALREADY PASSED', is_deleted = '1' WHERE applicant_id = '$applicant_id' AND project_status = 'PENDING'";
                     $update_status_resume_hide_result = $link->query($update_status_resume_hide);
 
-                    if($update_status_resume_hide_result){
-                    $newtracking = $rowtr['appno'] + 1;
+                    if ($update_status_resume_hide_result) {
+                        $newtracking = $rowtr['appno'] + 1;
 
-                    $insert_applicant = "INSERT INTO employees (appno, app_id, tracking, photopath, dapplied, source, despo, firstnameko, mnko, lastnameko, extnname, gendern, civiln, age, cpnum, emailadd, birthday, paddress, regionn, cityn) 
+                        $insert_applicant = "INSERT INTO employees (appno, app_id, tracking, photopath, dapplied, source, despo, firstnameko, mnko, lastnameko, extnname, gendern, civiln, age, cpnum, emailadd, birthday, paddress, regionn, cityn) 
                     VALUES ('$newtracking', '$applicant_id', '$newtracking', '$photoko', '$date_now', '$source', '$project_title', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$present_address', '$region', '$city')";
-                    $insert_result = $link->query($insert_applicant);
+                        $insert_result = $link->query($insert_applicant);
 
-                    if ($insert_result) {
-                        $last_id = mysqli_insert_id($link);
-                        $select_applicant = "SELECT * FROM employees WHERE id = '$last_id'";
-                        $select_applicant_result = $link->query($select_applicant);
+                        if ($insert_result) {
+                            $last_id = mysqli_insert_id($link);
+                            $select_applicant = "SELECT * FROM employees WHERE id = '$last_id'";
+                            $select_applicant_result = $link->query($select_applicant);
 
-                        while ($select_applicant_row = $select_applicant_result->fetch_assoc()) {
-                            $employee_id = $select_applicant_row['id'];
-                            $appno = $select_applicant_row['appno'];
-                            $check = "SELECT project FROM shortlist_details WHERE project = '$project_title'";
-                            $check_result = $link->query($check);
-                            $datecreated = date('m/d/Y');
-                            if ($check_result->num_rows === 0) {
-                                $shortlist_status = 'ACTIVE';
+                            while ($select_applicant_row = $select_applicant_result->fetch_assoc()) {
+                                $employee_id = $select_applicant_row['id'];
+                                $appno = $select_applicant_row['appno'];
+                                $check = "SELECT project FROM shortlist_details WHERE project = '$project_title'";
+                                $check_result = $link->query($check);
+                                $datecreated = date('m/d/Y');
+                                if ($check_result->num_rows === 0) {
+                                    $shortlist_status = 'ACTIVE';
 
-                                $insert_shortlist_details = "INSERT INTO shortlist_details (shortlistname, project, mrf_tracking, client, datecreated, activity, project_id) 
+                                    $insert_shortlist_details = "INSERT INTO shortlist_details (shortlistname, project, mrf_tracking, client, datecreated, activity, project_id) 
                             VALUES ('$project_title', '$project_title', '$mrf_tracking', '$client_company_id', '$datecreated', '$shortlist_status', '$project_id')";
-                                $insert_shortlist_details_result = $link->query($insert_shortlist_details);
+                                    $insert_shortlist_details_result = $link->query($insert_shortlist_details);
 
-                                if ($insert_shortlist_details_result) {
+                                    if ($insert_shortlist_details_result) {
+                                        $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
+                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
+                                        $insert_shortlist_master_result = $link->query($insert_shortlist_master);
+
+                                        if ($insert_shortlist_master_result) {
+
+                                            $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
+                                            $result_tracking = mysqli_query($link, $update_tracking);
+                                            if ($result_tracking) {
+
+                                                $_SESSION['successMessage'] = "Success";
+                                            } else {
+                                                $_SESSION['errorMessage'] = "Error in updating tracking number";
+                                            }
+                                        } else {
+                                            $_SESSION[] = "Error in inserting to shortlist master";
+                                        }
+                                    } else {
+                                        $_SESSION['errorMessage'] = "Error in inserting shortlist details";
+                                    }
+                                } else {
+                                    $_SESSION['errorMessage'] = "Project is already in shortlist details";
                                     $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
                                 VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
                                     $insert_shortlist_master_result = $link->query($insert_shortlist_master);
 
                                     if ($insert_shortlist_master_result) {
-
                                         $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
                                         $result_tracking = mysqli_query($link, $update_tracking);
                                         if ($result_tracking) {
-
                                             $_SESSION['successMessage'] = "Success";
                                         } else {
                                             $_SESSION['errorMessage'] = "Error in updating tracking number";
@@ -339,34 +360,14 @@ if (isset($_POST['approve_applicants_button_click'])) {
                                     } else {
                                         $_SESSION[] = "Error in inserting to shortlist master";
                                     }
-                                } else {
-                                    $_SESSION['errorMessage'] = "Error in inserting shortlist details";
-                                }
-                            } else {
-                                $_SESSION['errorMessage'] = "Project is already in shortlist details";
-                                $insert_shortlist_master = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto)
-                                VALUES('$employee_id', '$project_title', '$appno', '$datecreated')";
-                                $insert_shortlist_master_result = $link->query($insert_shortlist_master);
-
-                                if ($insert_shortlist_master_result) {
-                                    $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
-                                    $result_tracking = mysqli_query($link, $update_tracking);
-                                    if ($result_tracking) {
-                                        $_SESSION['successMessage'] = "Success";
-                                    } else {
-                                        $_SESSION['errorMessage'] = "Error in updating tracking number";
-                                    }
-                                } else {
-                                    $_SESSION[] = "Error in inserting to shortlist master";
                                 }
                             }
+                        } else {
+                            $_SESSION['errorMessage'] = "Error in inserting applicant to employee table";
                         }
                     } else {
-                        $_SESSION['errorMessage'] = "Error in inserting applicant to employee table";
+                        $_SESSION['errorMessage'] = "Error in inserting";
                     }
-                } else {
-                    $_SESSION['errorMessage'] = "Error in inserting";
-                }
                     // 
                 } else {
                     $_SESSION['errorMessage'] = "Error in inserting";
@@ -375,10 +376,92 @@ if (isset($_POST['approve_applicants_button_click'])) {
         } else {
             $_SESSION['errorMessage'] = "Error in inserting to applicant resume";
         }
-        
     } else {
         $_SESSION['errorMessage'] = "Error in approving applicant";
     }
     header("Location: mrf_list.php");
     exit(0);
+}
+
+
+// For adding requests of LOA
+if (isset($_POST['add_request_loa_btn'])) {
+    $selected_applicants = (array)$_POST['applicants'];
+    $selected_shortlist = (array)$_POST['shortlist'];
+
+    $combinedArray = array_combine($selected_applicants, $selected_shortlist);
+
+
+    $project_id = $link->real_escape_string($_POST['project_id']);
+    $start_date = $link->real_escape_string($_POST['start_date']);
+    $end_date = $link->real_escape_string($_POST['end_date']);
+    $category = $link->real_escape_string($_POST['category']);
+    $division = $link->real_escape_string($_POST['division']);
+    $locator = $link->real_escape_string($_POST['locator']);
+    $client_name = $link->real_escape_string($_POST['client_name']);
+    $place_assigned = $link->real_escape_string($_POST['place_assigned']);
+    $address_assigned = $link->real_escape_string($_POST['address_assigned']);
+    $channel = $link->real_escape_string($_POST['channel']);
+    $department = $link->real_escape_string($_POST['department']);
+    $employment_status = $link->real_escape_string($_POST['employment_status']);
+    $job_title = $link->real_escape_string($_POST['job_title']);
+    $basic_salary = $link->real_escape_string($_POST['basic_salary']);
+    $ecola = $link->real_escape_string($_POST['ecola']);
+    $communication_allowance = $link->real_escape_string($_POST['communication_allowance']);
+    $transportation_allowance = $link->real_escape_string($_POST['transportation_allowance']);
+    $internet_allowance = $link->real_escape_string($_POST['internet_allowance']);
+    $meal_allowance = $link->real_escape_string($_POST['meal_allowance']);
+    $outbase_meal = $link->real_escape_string($_POST['outbase_meal']);
+    $special_allowance = $link->real_escape_string($_POST['special_allowance']);
+    $position_allowance = $link->real_escape_string($_POST['position_allowance']);
+    $no_of_days = $link->real_escape_string($_POST['no_of_days']);
+    $outlet = $link->real_escape_string($_POST['outlet']);
+    $requested_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+
+    $response = array();
+
+    if (!empty($selected_applicants)) {
+        foreach ($combinedArray as $applicants_id => $shortlist_id) {
+            $query = "INSERT INTO loa_requests (employee_id, project_id, shortlist_id, start_date, end_date,
+            category, division, locator, client_name, 
+            place_assigned, client_address, department, employment_status, 
+            job_title, basic_salary, ecola, communication_allowance, 
+            transportation_allowance, internet_allowance, meal_allowance, outbase_meal,
+            special_allowance, position_allowance, no_days_of_work, outlet, requested_by) 
+            VALUES ('$applicants_id', '$project_id', '$shortlist_id', '$start_date', '$end_date',
+            '$category', '$division', '$locator', '$client_name',
+            '$place_assigned', '$address_assigned', '$department', '$employment_status',
+            '$job_title', '$basic_salary', '$ecola', '$communication_allowance',
+            '$transportation_allowance' ,'$internet_allowance', '$meal_allowance', '$outbase_meal', 
+            '$special_allowance', '$position_allowance', '$no_of_days', '$outlet', '$requested_by')";
+
+            $result = $link->query($query);
+
+            if ($result) {
+                $project_status = "FOR LOA";
+                $update = "UPDATE shortlist_master 
+                SET project_status = '$project_status' 
+                WHERE employee_id = '$applicants_id' AND id = '$shortlist_id'";
+                $stmt = $link->query($update);
+                
+                if($stmt){
+                    $response[] = array('message' => 'Success!');
+                    $_SESSION['successMessage'] = 'Success!';
+                }
+                else{
+                    $_SESSION[] = "Error in updating project status";
+                }
+            } else {
+                $response[] = array('message' => 'Error!' . mysqli_error($link));
+                $_SESSION['errorMessage'] = 'Error!' . mysqli_error($link);
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Please select at least one applicant";
+    }
+
+    echo json_encode($response);
+    mysqli_close($link);
+    header("Location: request_loa.php?id=$project_id");
+    exit;
 }

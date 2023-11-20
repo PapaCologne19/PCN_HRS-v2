@@ -174,6 +174,18 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             <?php }
                                                             } ?>
                                                         </div>
+                                                        <div class="columns">
+                                                        <?php
+                                                            $selects = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";
+                                                            $result_selects = $link->query($selects);
+                                                            while ($selects_row = $result_selects->fetch_assoc()) {
+
+                                                                if ($result_selects->num_rows > 0) {
+                                                        ?>
+                                                            <button type="button" class="btn btn-default" onclick="location.href = 'request_loa.php?id=<?php echo $selects_row['id'];?>'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Request LOA"><i class="bi bi-file-arrow-up"></i></button>
+                                                        <?php }
+                                                            } ?>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -206,7 +218,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Show a second modal and hide this one with the button below.
                                             </div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
