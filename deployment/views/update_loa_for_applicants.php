@@ -3,7 +3,6 @@ session_start();
 include '../../connect.php';
 
 $deploy_id = $_POST['id'];
-echo $deploy_id;
 $query = "SELECT shortlist.*, employee.* 
 FROM shortlist_master shortlist, employees employee
 WHERE shortlist.employee_id = employee.id 
@@ -332,19 +331,43 @@ $row = $result->fetch_assoc();
                     <input type="text" name="no_of_days" id="no_of_days" class="form-control" value="<?php echo $query_row['no_of_days'] ?>">
                 </div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-3 mb-5">
                 <div class="col-md-3">
                     <label for="" class="form-label">Outlet</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="outlet" id="outlet" class="form-control" value="<?php echo $query_row['outlet'] ?>">
+                <?php
+                    $outlet = $query_row['outlet'];
+                    $html = '';
+                    if (!empty($outlet)) {
+                        $data = json_decode($outlet, true);
+                        if (!empty($data['ops'])) {
+                            $html = '<ul>';
+                            foreach ($data['ops'] as $op) {
+                                if (!empty($op['insert'])) {
+                                    $text = trim($op['insert']);
+                                    $attributes = isset($op['attributes']) ? $op['attributes'] : []; // Check if 'attributes' key exists
+                                    if (!empty($attributes) && isset($attributes['list']) && $attributes['list'] == 'bullet' && !empty($text)) {
+                                        $html .= '<li>' . $text . '</li>';
+                                    } elseif (!empty($text)) {
+                                        $html .= '<li>' . $text . '</li>';
+                                    }
+                                }
+                            }
+                            $html .= '</ul>';
+                        }
+                    }
+
+                    ?>
+                    <div id="editor"><?php echo $html ?></div>
+                    <textarea name="outlet" id="outlet" style="position: absolute; left: -9999px;"></textarea>
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-md-3">
+                <div class="col-md-3 mt-5">
                     <label for="" class="form-label">Supervisor</label>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 mt-5">
                     <input type="text" name="supervisor" id="supervisor" class="form-control" value="<?php echo $query_row['supervisor'] ?>">
                 </div>
             </div>
@@ -433,3 +456,17 @@ $row = $result->fetch_assoc();
         </div>
     </form>
 </div>
+
+<script>
+    // For QUILL
+    var quill = new Quill('#editor', {
+        placeholder: 'Type outlet here...',
+        theme: 'snow',
+        debug: 'info',
+    });
+
+    $('form').submit(function(event) {
+        $('#outlet').val(JSON.stringify(quill.getContents()));
+        return true;
+    });
+</script>

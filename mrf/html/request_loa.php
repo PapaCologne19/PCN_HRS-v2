@@ -97,10 +97,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 ?>
                                                     <tr>
                                                         <td>
-                                                            <input type="hidden" class="form-check-input" name="shortlist[]" id="shortlist" value="<?php echo $row['shortlist_id'] ; ?>">
-                                                            <input type="checkbox" class="form-check-input" name="applicants[]" id="applicants" value="<?php echo $row['employee_id'] ; ?>">
+                                                            <input type="checkbox" class="form-check-control" name="applicants[]" value="<?php echo $row['employee_id'] . " | " . $row['shortlist_id']; ?>">
                                                         </td>
-                                                        <td><?php echo $row['lastnameko'] . ", " . $row['firstnameko'] . " " . $row['mnko'] ?></td>
+
+                                                        <td><?php echo $row['lastnameko'] . ", " . $row['firstnameko'] . " " . $row['mnko'] . " " . $row['extnname']?></td>
                                                         <td><?php echo $row['gendern'] ?></td>
                                                         <td><?php echo $row['age'] ?></td>
                                                         <td><?php echo $row['cpnum'] ?></td>
@@ -181,19 +181,28 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
                                                             <input type="hidden" name="employee_id" value="<?php echo $query_select_row['employee_id'] ?>">
                                                             <input type="hidden" name="project_id" value="<?php echo $id ?>">
                                                             <input type="hidden" name="project_title" value="<?php echo $query_select_row['project_title'] ?>">
-                                                            <div class="col-md-12">
-                                                                <label for="" class="form-label">LOA Date Start</label>
-                                                                <input type="date" name="start_date" class="form-control" id="start_date">
+
+
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-3">
+                                                                    <label for="" class="form-label">LOA Date Start</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <input type="date" name="start_date" class="form-control" id="start_date">
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <label for="" class="form-label">LOA Date End</label>
-                                                                <input type="date" name="end_date" class="form-control" id="end_date">
+
+                                                            <div class="row mt-3">
+                                                                <div class="col-md-3">
+                                                                    <label for="" class="form-label">LOA Date End</label>
+                                                                </div>
+                                                                <div class="col-md-9">
+                                                                    <input type="date" name="end_date" class="form-control" id="end_date">
+                                                                </div>
                                                             </div>
-                                                        </div>
 
 
 
@@ -205,7 +214,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             $project_title = $fetch_row['project'];
                                                             $mrf_tracking = $fetch_row['mrf_tracking'];
                                                         ?>
-                                                            
+
 
                                                             <div class="row mt-3">
                                                                 <div class="col-md-3">
@@ -224,7 +233,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                             <div class="row mt-3">
                                                                 <div class="col-md-3">
                                                                     <label for="" class="form-label">Employment Status</label>
@@ -505,7 +514,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 </div>
                                                             </div>
 
-                                                            
+
 
                                                             <div class="row mt-3">
                                                                 <div class="col-md-9">

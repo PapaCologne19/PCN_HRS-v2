@@ -39,3 +39,7 @@
 <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
 <script src="../assets/vendor/js/helpers.js"></script>
 <script src="../assets/js/config.js"></script>
+
+<!-- Main Quill library -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>

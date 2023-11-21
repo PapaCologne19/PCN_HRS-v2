@@ -106,8 +106,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['present_address'] . ", " . $row['city']; ?></td>
                                                     <td><?php echo $row['date_applied'] ?></td>
                                                     <td>
-                                                        <?php
-                                                        $resumeFilePath = $row['resume_path'] . "/" . $row['resume_file'];
+                                                        <?php                               
+                                                        $resumeFilePath = "../../../pcn_OLA/" . $row['resume_path'] . "/Requirements/" . $row['resume_file'];
                                                         $fileExtension = pathinfo($resumeFilePath, PATHINFO_EXTENSION);
 
                                                         if (strtolower($fileExtension) === 'pdf') {

@@ -386,10 +386,7 @@ if (isset($_POST['approve_applicants_button_click'])) {
 
 // For adding requests of LOA
 if (isset($_POST['add_request_loa_btn'])) {
-    $selected_applicants = (array)$_POST['applicants'];
-    $selected_shortlist = (array)$_POST['shortlist'];
-
-    $combinedArray = array_combine($selected_applicants, $selected_shortlist);
+    $selected_applicants = isset($_POST['applicants']) ? $_POST['applicants'] : array();
 
 
     $project_id = $link->real_escape_string($_POST['project_id']);
@@ -421,14 +418,19 @@ if (isset($_POST['add_request_loa_btn'])) {
     $response = array();
 
     if (!empty($selected_applicants)) {
-        foreach ($combinedArray as $applicants_id => $shortlist_id) {
+        foreach ($selected_applicants as $selected_value) {
+            $parts = explode(" | ", $selected_value);
+
+            $employee_id = $parts[0];
+            $shortlist_id = $parts[1];
+
             $query = "INSERT INTO loa_requests (employee_id, project_id, shortlist_id, start_date, end_date,
             category, division, locator, client_name, 
             place_assigned, client_address, department, employment_status, 
             job_title, basic_salary, ecola, communication_allowance, 
             transportation_allowance, internet_allowance, meal_allowance, outbase_meal,
             special_allowance, position_allowance, no_days_of_work, outlet, requested_by) 
-            VALUES ('$applicants_id', '$project_id', '$shortlist_id', '$start_date', '$end_date',
+            VALUES ('$employee_id', '$project_id', '$shortlist_id', '$start_date', '$end_date',
             '$category', '$division', '$locator', '$client_name',
             '$place_assigned', '$address_assigned', '$department', '$employment_status',
             '$job_title', '$basic_salary', '$ecola', '$communication_allowance',
@@ -441,7 +443,7 @@ if (isset($_POST['add_request_loa_btn'])) {
                 $project_status = "FOR LOA";
                 $update = "UPDATE shortlist_master 
                 SET project_status = '$project_status' 
-                WHERE employee_id = '$applicants_id' AND id = '$shortlist_id'";
+                WHERE employee_id = '$employee_id' AND id = '$shortlist_id'";
                 $stmt = $link->query($update);
                 
                 if($stmt){

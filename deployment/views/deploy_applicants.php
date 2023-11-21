@@ -126,7 +126,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <td>DEPLOYED</td>
                                                 <td><?php echo $rows['remarks'] ?></td>
                                                 <td>
-                                                    <?php  if (!empty($rows['ewb_status'])) { ?>
+                                                    <?php  if ($rows['deployment_status'] === 'DEPLOYED' && $rows['for_loa_status'] === "FOR LOA") { ?>
                                                         <div class="mb-1">
                                                             <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
                                                             <button type="button" name="deploy" class="btn btn-primary updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>

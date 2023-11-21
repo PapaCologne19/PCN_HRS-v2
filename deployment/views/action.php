@@ -7,13 +7,18 @@ $date = date('Y-m-d H:i:s');
 // For creating LOA of Applicants
 if (isset($_POST['create_loa'])) {
     $id = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['id'])));
+    $project_id = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['project_id'])));
     $shortlist_title = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['shortlist_title'])));
     $appno = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['appno'])));
     $date_shortlisted = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['date_shortlisted'])));
     $status = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['status'])));
     $type = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['type'])));
     $start_loa = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['start_loa'])));
+    $start_loa_date = new DateTime($start_loa);
+    $start_loa_formatted = $start_loa_date->format('F j, Y');
     $end_loa = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['end_loa'])));
+    $end_loa_date = new DateTime($end_loa);
+    $end_loa_formatted = $end_loa_date->format('F j, Y');
     $division = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['division'])));
     $category = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['category'])));
     $locator = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['locator'])));
@@ -52,7 +57,7 @@ if (isset($_POST['create_loa'])) {
     $check_id_result = $link->query($check_id);
     $check_id_row = $check_id_result->fetch_assoc();
 
-    if($loa_id !== $check_id_row['emp_id']){
+    if ($loa_id !== $check_id_row['emp_id']) {
         $get_data = "SELECT * FROM employees WHERE id = '$id'";
         $get_result = $link->query($get_data);
         $get_row = $get_result->fetch_assoc();
@@ -67,7 +72,7 @@ if (isset($_POST['create_loa'])) {
         $tin = $get_row['tinnum'];
         $address = $get_row['paddress'];
         $contact_number = $get_row['cpnum'];
-    
+
         $query = "INSERT INTO `deployment`(`shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
             `contact_number`, `loa_status`, `type`, `loa_start_date`, 
@@ -92,9 +97,9 @@ if (isset($_POST['create_loa'])) {
             '$supervisor', '$field_supervisor', '$field_supervisor_designation', '$deployment_personnel', 
             '$deployment_personnel_designation', '$project_supervisor', '$project_supervisor_designation', 
             '$head', '$head_designation', '$loa_id')";
-    
+
         $result = $link->query($query);
-    
+
         if ($result) {
             $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
@@ -120,13 +125,33 @@ if (isset($_POST['create_loa'])) {
             '$supervisor', '$field_supervisor', '$field_supervisor_designation', '$deployment_personnel', 
             '$deployment_personnel_designation', '$project_supervisor', '$project_supervisor_designation', 
             '$head', '$head_designation', '$loa_id')";
-    
+
             $result_history = $link->query($query_history);
-    
+
             if ($result_history) {
                 $update_shortlist_query = "UPDATE shortlist_master SET deployment_status = 'DEPLOYED' WHERE employee_id = '$id' AND shortlistnameto = '$shortlist_title'";
                 $update_shortlist_result = $link->query($update_shortlist_query);
                 if ($update_shortlist_result) {
+
+                    $select = "SELECT * FROM employees WHERE id = '$id'";
+                    $select_result = $link->query($select);
+                    $select_row = $select_result->fetch_assoc();
+                    $applicant_id = $select_row['app_id'];
+
+                    $select_resume_path = "SELECT * FROM applicant_resume WHERE applicant_id = '$applicant_id' AND project_id = '$project_id'";
+                    $select_resume_path_result = $link->query($select_resume_path);
+                    $select_resume_path_row = $select_resume_path_result->fetch_assoc();
+
+                    $folder_path = $select_resume_path_row['resume_path'];
+                    
+                    $applicant_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
+                    $folder_name = $applicant_name;
+                    $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
+                    $folder_name_subfolder = $applicant_name_subfolder;
+                    $destination_subfolder = "../../../pcn_OLA/" . $folder_path . "/" . $folder_name_subfolder;
+
+                    mkdir("{$destination_subfolder}", 0777);
+
                     $update = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
                     $update_result = $link->query($update);
                     if ($update_result) {
@@ -143,12 +168,11 @@ if (isset($_POST['create_loa'])) {
         } else {
             $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
         }
-    }
-    else{
+    } else {
         $_SESSION['errorMessage'] = "ID number is already exist";
     }
 
-    
+
     header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
     exit(0);
 }
@@ -186,7 +210,7 @@ if (isset($_POST['update_loa'])) {
     $position_allowance = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['position_allowance'])));
     $deployment_remarks = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['deployment_remarks'])));
     $no_of_days = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['no_of_days'])));
-    $outlet = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['outlet'])));
+    $outlet =  mysqli_real_escape_string($link, $_POST['outlet']);
     $supervisor = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['supervisor'])));
     $field_supervisor = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['field_supervisor'])));
     $field_supervisor_designation = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['field_supervisor_designation'])));

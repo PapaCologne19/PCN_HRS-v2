@@ -334,7 +334,7 @@
          });
 
       });
-      
+
       // For Deploying Applicants and Creating LOA
       $(document).ready(function() {
          $('tbody').on('click', '.open-modal', function() {

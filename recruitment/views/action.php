@@ -1209,11 +1209,11 @@ if (isset($_POST['create_shortlist_applicant'])) {
         if ($insert_result) {
             $applicant_id = $link->insert_id;
             $job_id = $_POST['job_id'];
-            $applicant_name = $firstname . " " . $middlename . " " . $lastname . " " . $extension_name;
+            $applicant_name = chop($firstname . " " . $middlename . " " . $lastname . " " . $extension_name);
             $folder_name = $applicant_name;
             $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
 
-
+ 
 
 
 
@@ -1222,9 +1222,10 @@ if (isset($_POST['create_shortlist_applicant'])) {
             $applicant_name_subfolder = "Requirements";
             $folder_name_subfolder = $applicant_name_subfolder;
             $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+            $folder_path =  "201 Files/" . $folder_name;
 
             mkdir("{$destination_subfolder}", 0777);
-            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
+            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$folder_path')";
             $result = mysqli_query($link, $sql);
             if ($result) {
                 if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {

@@ -24,15 +24,44 @@ if ($result) {
         $template_row = $template_result->fetch_assoc();
         $file_name = $template_row['file_name'];
         $template = "../../admin/loa_template_directory/" . $file_name;
-        $file_path = "loa_files/";
+
+
+
 
 
         while ($selected_row = $selected_result->fetch_assoc()) {
+            $start_loa = $row['loa_start_date'];
+            $start_loa_date = new DateTime($start_loa);
+            $start_loa_formatted = $start_loa_date->format('F j, Y');
+            $end_loa = $row['loa_end_date'];
+            $end_loa_date = new DateTime($end_loa);
+            $end_loa_formatted = $end_loa_date->format('F j, Y');
+
+            $applicant_id = $selected_row['app_id'];
+            $project_title = $row['shortlist_title'];
+
+
+
+            $select_resume_path = "SELECT * FROM applicant_resume
+            WHERE applicant_id = '$applicant_id'";
+            $select_resume_path_result = $link->query($select_resume_path);
+            $select_resume_path_row = $select_resume_path_result->fetch_assoc();
+
+            $folder_path = $select_resume_path_row['resume_path'];
+
+
+
+            $applicant_name = chop($selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'] . " " . $selected_row['extnname']);
+            $folder_name = $applicant_name;
+            $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
+            $folder_name_subfolder = $applicant_name_subfolder;
+            $destination_subfolder = "../../../pcn_OLA/" . $folder_path . "/" . $applicant_name_subfolder . "/" . $applicant_name_subfolder;
+
+
             $applicant_name = $selected_row['lastnameko'] . ", " . $selected_row['firstnameko'] . " " . $selected_row['mnko'];
-            if($selected_row['mnko'] === "" || $selected_row['mnko'] === "N/A" || $selected_row['mnko'] === "NA"){
+            if ($selected_row['mnko'] === "" || $selected_row['mnko'] === "N/A" || $selected_row['mnko'] === "NA") {
                 $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['lastnameko'];
-            }
-            else{
+            } else {
                 $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'];
             }
             $applicant_address = $row['address'];
@@ -48,7 +77,27 @@ if ($result) {
             $formattedDate_start = date_format($dateObj, 'F j, Y');
             $formattedDate_end = date_format($dateObj2, 'F j, Y');
             $basic_pay = $row['basic_salary'];
+
             $outlet = $row['outlet'];
+            $outlet = $row['outlet'];
+            $concatenatedText = '';
+
+            if (!empty($outlet)) {
+                $data = json_decode($outlet, true);
+                if (!empty($data['ops'])) {
+                    foreach ($data['ops'] as $op) {
+                        if (isset($op['insert'])) {
+                            $text = trim($op['insert']);
+                            if (!empty($text)) {
+                                $concatenatedText .= $text . ', ';
+                            }
+                        }
+                    }
+
+                    // Remove the trailing comma and space
+                    $concatenatedText = rtrim($concatenatedText, ', ');
+                }
+            }
             $no_work_days = $row['no_of_days'];
             $date_issued = $row['date_created'];
             $date = date_create($date_issued);
@@ -100,7 +149,7 @@ if ($result) {
             $document->setValue('Value10', $basic_pay);
 
 
-            $document->setValue('Value11a', iconv('UTF-8', 'UTF-8', $outlet));
+            $document->setValue('Value11a', $concatenatedText);
             $document->setValue('Value12', $no_work_days);
             $document->setValue('Value13', $issued_day);
             $document->setValue('Value14', $issued_month);
@@ -138,13 +187,14 @@ if ($result) {
             $document->setValue('Value33', $loa_tracker);
 
             // Save the document
-            $document->save($file_path . 'LOA_Downloaded_file.docx');
+            $document->save($destination_subfolder . ".docx");
         }
     }
 
+
     // Once all processing is done, initiate the download
     header("Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-    header("Content-Disposition: attachment; filename=LOA_Downloaded_file.docx");
-    readfile($file_path . 'LOA_Downloaded_file.docx');
+    header("Content-Disposition: attachment; filename=" . $applicant_name . "_LOA.docx");
+    readfile($destination_subfolder . ".docx");
 }
 ?>
