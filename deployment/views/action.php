@@ -13,6 +13,7 @@ if (isset($_POST['create_loa'])) {
     $date_shortlisted = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['date_shortlisted'])));
     $status = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['status'])));
     $type = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['type'])));
+    $project_start_date = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['start_loa'])));
     $start_loa = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['start_loa'])));
     $start_loa_date = new DateTime($start_loa);
     $start_loa_formatted = $start_loa_date->format('F j, Y');
@@ -75,7 +76,7 @@ if (isset($_POST['create_loa'])) {
 
         $query = "INSERT INTO `deployment`(`shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
-            `contact_number`, `loa_status`, `type`, `loa_start_date`, 
+            `contact_number`, `loa_status`, `type`, `project_start_date`, `loa_start_date`, 
             `loa_end_date`, `division`, `category`, `locator`, `client_name`,
             `place_assigned`, `address_assigned`, `channel`, `department`, 
             `employment_status`, `job_title`, `loa_template`, 
@@ -87,7 +88,7 @@ if (isset($_POST['create_loa'])) {
             `head`, `head_designation`, `emp_id`) 
             VALUES ('$shortlist_title', '$appno', '$date_shortlisted', '$id', 
             '$sss', '$philhealth', '$pagibig', '$tin','$address', 
-            '$contact_number','$status', '$type', '$start_loa', 
+            '$contact_number','$status', '$type', '$project_start_date', '$start_loa', 
             '$end_loa', '$division', '$category', '$locator', '$client_name',
             '$place_assigned', '$address_assigned', '$channel', '$department', 
             '$employment_status', '$job_title', '$loa_template', 
