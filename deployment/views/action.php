@@ -325,3 +325,45 @@ if (isset($_POST['update_loa'])) {
     header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
     exit(0);
 }
+
+
+if(isset($_POST['insert_typeBtn'])){
+    $deployment_id = $link->real_escape_string($_POST['deployment_id']);
+    $employee_id = $link->real_escape_string($_POST['employee_id']);
+    $category = $link->real_escape_string($_POST['category']);
+    $position = $link->real_escape_string($_POST['position']);
+    $project_title = $link->real_escape_string($_POST['project_title']);
+    $employee_status = $link->real_escape_string($_POST['employee_status']);
+    $start_date = $link->real_escape_string($_POST['start_date']);
+    $outlet = $link->real_escape_string($_POST['outlet']);
+    $date_created = $link->real_escape_string($_POST['date_created']);
+    $name = $link->real_escape_string($_POST['name']);
+    $type_of_separations = $link->real_escape_string($_POST['type_of_separations']);
+    $effectivity_date = $link->real_escape_string($_POST['effectivity_date']);
+    $process_by = $link->real_escape_string($_POST['process_by']);
+
+    $get_loa_requestedBy = "SELECT deployment.*, loa_requested.*
+    FROM deployment deployment, loa_requests loa_requested
+    WHERE deployment.employee_id = loa_requested.employee_id
+    AND deployment.shortlist_title = loa_requested.place_assigned 
+    AND loa_requested.employee_id = '$employee_id'";
+    $get_loa_requested_by_result = $link->query($get_loa_requestedBy);
+    $get_loa_requested_by_row = $get_loa_requested_by_result->fetch_assoc();
+
+    $loa_requested_by = $get_loa_requested_by_row['requested_by'];
+    $shortlist_title = $get_loa_requested_by_row['place_assigned'];
+
+    $insert_type = "INSERT INTO separation (deployment_id, employee_id, employee_name, category, position, project_title, employment_status, date_start, outlet, type_of_separation, effectivity_date, process_by, loa_request_by) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $link->prepare($insert_type);
+    $stmt->bind_param("iisssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $effectivity_date, $process_by, $loa_requested_by);
+
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
+
+}

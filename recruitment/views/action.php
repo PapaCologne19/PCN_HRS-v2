@@ -1246,3 +1246,22 @@ if (isset($_POST['create_shortlist_applicant'])) {
     header("location: shortlisted_applicants.php?id=$job_id");
     exit(0);
 }
+
+if(isset($_POST['backout_applicant_button_click'])){
+    $employee_id = $link->real_escape_string($_POST['employee_id']);
+    $shortlist_id = $link->real_escape_string($_POST['shortlist_id']);
+    $is_deleted = '1';
+    $deployment_status = 'BACK OUT';
+
+    $query = "UPDATE shortlist_master SET is_deleted = ?, deployment_status = ? WHERE id = ? AND employee_id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param('ssss', $is_deleted, $deployment_status, $shortlist_id, $employee_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: deploy.php");
+    exit(0);
+}       

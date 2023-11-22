@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 10:00 AM
+-- Generation Time: Nov 22, 2023 at 04:07 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -2162,6 +2162,7 @@ CREATE TABLE `deployment` (
   `contact_number` int(15) NOT NULL,
   `loa_status` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
+  `project_start_date` varchar(255) NOT NULL,
   `loa_start_date` varchar(255) NOT NULL,
   `loa_end_date` varchar(255) NOT NULL,
   `division` varchar(255) NOT NULL,
@@ -2200,7 +2201,8 @@ CREATE TABLE `deployment` (
   `emp_id` int(11) NOT NULL,
   `id_remarks` varchar(255) NOT NULL,
   `clearance` varchar(255) NOT NULL,
-  `signed_loa` varchar(255) NOT NULL DEFAULT 'UNRETURN',
+  `signed_loa_file` varchar(255) NOT NULL DEFAULT 'UNRETURN',
+  `signed_loa_status` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_return` varchar(255) NOT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
@@ -2210,10 +2212,10 @@ CREATE TABLE `deployment` (
 -- Dumping data for table `deployment`
 --
 
-INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `app_id`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa`, `date_created`, `date_return`, `is_deleted`) VALUES
-(1, 'BUSINESS MANAGER', 13, '11/18/2023', 0, 12, 0, 0, 0, 0, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-21', '2023-11-30', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, '', '', 'UNRETURN', '2023-11-21 02:05:21', '', 0),
-(5, 'BUSINESS MANAGER', 16, '11/21/2023', 0, 15, 1231231312, 2147483647, 2147483647, 2147483647, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '50000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', '', 'UNRETURN', '2023-11-21 06:12:48', '', 0),
-(7, 'IT SUPPORT', 18, '11/21/2023', 21, 17, 1231231312, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', 'NOT RETURN', '25000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, '', '', 'UNRETURN', '2023-11-21 07:32:51', '', 0);
+INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `app_id`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `project_start_date`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `signed_loa_file`, `signed_loa_status`, `date_created`, `date_return`, `is_deleted`) VALUES
+(1, 'BUSINESS MANAGER', 13, '11/18/2023', 0, 12, 0, 0, 0, 0, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-21', '2023-11-30', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, '', '', '', 'UNRETURN', '2023-11-21 02:05:21', '', 0),
+(5, 'BUSINESS MANAGER', 16, '11/21/2023', 0, 15, 1231231312, 2147483647, 2147483647, 2147483647, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '50000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', '', '', 'UNRETURN', '2023-11-21 06:12:48', '', 0),
+(7, 'IT SUPPORT', 18, '11/21/2023', 21, 17, 1231231312, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', 'NOT RETURN', '25000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, '', '', 'HEHE HEHE HEHE_LOA (3).docx', 'SUBMITTED', '2023-11-21 07:32:51', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2653,6 +2655,13 @@ CREATE TABLE `excuse_letter` (
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `excuse_letter`
+--
+
+INSERT INTO `excuse_letter` (`id`, `app_number`, `excuse_remarks`, `created_by`, `created_date`) VALUES
+(1, 18, 'HEHEHEHEHHEHEHEHEHEHEHEHEHEh', 'Labasan, Noel', '2023-11-21 17:06:17');
+
 -- --------------------------------------------------------
 
 --
@@ -2667,6 +2676,13 @@ CREATE TABLE `excuse_letter_history` (
   `position` varchar(255) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `excuse_letter_history`
+--
+
+INSERT INTO `excuse_letter_history` (`id`, `app_number`, `excuse_remarks`, `created_by`, `position`, `created_date`) VALUES
+(1, 18, 'HEHEHEHEHHEHEHEHEHEHEHEHEHEh', 'Labasan, Noel', '', '2023-11-21 17:06:17');
 
 -- --------------------------------------------------------
 
@@ -3371,7 +3387,10 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (49, 'deployment', '11/21/2023', '2023-11-21 15:08:15', 'DEPLOYMENT login Accepted'),
 (50, 'recruitment', '11/21/2023', '2023-11-21 16:24:50', 'RECRUITMENT login Accepted'),
 (51, 'mrf', '11/21/2023', '2023-11-21 16:26:55', 'MRF login Accepted'),
-(52, 'deployment', '11/21/2023', '2023-11-21 16:50:32', 'DEPLOYMENT login Accepted');
+(52, 'deployment', '11/21/2023', '2023-11-21 16:50:32', 'DEPLOYMENT login Accepted'),
+(53, 'deployment', '11/21/2023', '2023-11-21 17:05:48', 'DEPLOYMENT login Accepted'),
+(54, 'recruitment', '11/22/2023', '2023-11-22 09:08:16', 'RECRUITMENT login Accepted'),
+(55, 'deployment', '11/22/2023', '2023-11-22 09:28:52', 'DEPLOYMENT login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3826,6 +3845,36 @@ CREATE TABLE `rejected_applicants_history` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `separation`
+--
+
+CREATE TABLE `separation` (
+  `id` int(11) NOT NULL,
+  `deployment_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `employee_name` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `project_title` varchar(255) NOT NULL,
+  `employment_status` varchar(255) NOT NULL,
+  `date_start` varchar(255) NOT NULL,
+  `outlet` longtext NOT NULL,
+  `type_of_separation` varchar(255) NOT NULL,
+  `effectivity_date` varchar(255) NOT NULL,
+  `process_by` varchar(255) NOT NULL,
+  `loa_request_by` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `separation`
+--
+
+INSERT INTO `separation` (`id`, `deployment_id`, `employee_id`, `employee_name`, `category`, `position`, `project_title`, `employment_status`, `date_start`, `outlet`, `type_of_separation`, `effectivity_date`, `process_by`, `loa_request_by`) VALUES
+(1, 7, 17, 'HEHE HEHE HEHE ghjgh', 'ACTIVATION', 'ACCOUNT EXECUTIVE', 'IT SUPPORT', 'Project Based', '', '{\\\"ops\\\":[{\\\"insert\\\":\\\"Cubao Kamuning\\\"},{\\\"attributes\\\":{\\\"list\\\":\\\"bullet\\\"},\\\"insert\\\":\\\"\\\\n\\\"}]}', 'BACKOUT', '2023-11-30', 'Noel Labasan', 'James Philip Gomera');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shortlist_details`
 --
 
@@ -3874,7 +3923,7 @@ CREATE TABLE `shortlist_master` (
 --
 
 INSERT INTO `shortlist_master` (`id`, `employee_id`, `project_name`, `shortlistnameto`, `appnumto`, `is_deleted`, `dateto`, `ewb`, `ewbdate`, `projectnya`, `deployment_status`, `project_status`) VALUES
-(11, 11, '', 'IT SUPPORT', '12', 0, '11/18/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR REQUEST'),
+(11, 11, '', 'IT SUPPORT', '12', 1, '11/18/2023', '', '', '', 'BACK OUT', 'FOR REQUEST'),
 (12, 12, '', 'BUSINESS MANAGER', '13', 0, '11/18/2023', '', '', '', 'DEPLOYED', 'FOR LOA'),
 (10, 10, '', 'BUSINESS MANAGER', '11', 0, '11/18/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR LOA'),
 (13, 13, '', 'IT SUPPORT', '14', 0, '11/18/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR REQUEST'),
@@ -3930,7 +3979,7 @@ CREATE TABLE `synch` (
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
 (1, '1', '2023-11-20'),
-(2, 'Shortlist', '11/21/2023');
+(2, 'Shortlist', '11/22/2023');
 
 -- --------------------------------------------------------
 
@@ -3984,6 +4033,30 @@ CREATE TABLE `track` (
 INSERT INTO `track` (`id`, `appno`) VALUES
 (1, '18'),
 (2, '25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `types_of_separation`
+--
+
+CREATE TABLE `types_of_separation` (
+  `id` int(11) NOT NULL,
+  `type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `types_of_separation`
+--
+
+INSERT INTO `types_of_separation` (`id`, `type`) VALUES
+(1, 'RESIGNED'),
+(2, 'TERMINATED'),
+(4, 'AWOL'),
+(5, 'RETRENCHED'),
+(6, 'DECEASED'),
+(7, 'WITH DOLE'),
+(8, 'BACKOUT');
 
 -- --------------------------------------------------------
 
@@ -4275,6 +4348,12 @@ ALTER TABLE `rejected_applicants_history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `separation`
+--
+ALTER TABLE `separation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
@@ -4311,6 +4390,12 @@ ALTER TABLE `tax_status`
 -- Indexes for table `track`
 --
 ALTER TABLE `track`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `types_of_separation`
+--
+ALTER TABLE `types_of_separation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4471,13 +4556,13 @@ ALTER TABLE `ewb_verification_history`
 -- AUTO_INCREMENT for table `excuse_letter`
 --
 ALTER TABLE `excuse_letter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `excuse_letter_history`
 --
 ALTER TABLE `excuse_letter_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `gender`
@@ -4513,7 +4598,7 @@ ALTER TABLE `loa_requests`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `mrf`
@@ -4558,6 +4643,12 @@ ALTER TABLE `rejected_applicants_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `separation`
+--
+ALTER TABLE `separation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
@@ -4586,6 +4677,12 @@ ALTER TABLE `tax_status`
 --
 ALTER TABLE `track`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `types_of_separation`
+--
+ALTER TABLE `types_of_separation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

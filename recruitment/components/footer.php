@@ -693,6 +693,45 @@
          });
       });
 
+      // For Backout Applicants
+      $('#example').on('click', '.deleteInfoBtn', function(e) {
+         e.preventDefault();
+
+         var employee_id = $(this).closest("tr").find('.employee_id').val();
+         var shortlist_id = $(this).closest("tr").find('.shortlist_id').val();
+
+         Swal.fire({
+            title: "Confirming this applicant is backout?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "backout_applicant_button_click": 1,
+                     "employee_id": employee_id,
+                     "shortlist_id": shortlist_id,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
 
 
       // Viewing of MRF

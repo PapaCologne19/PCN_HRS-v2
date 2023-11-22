@@ -93,24 +93,24 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             // IF DEPLOYED NA
                                             if ($rows['deployment_status'] === 'DEPLOYED') {
                                         ?>
-                                        <tr>
-                                                <td><?php echo $rows['id'] ?></td>
-                                                <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
-                                                <td><?php echo $rows['sssnum'] ?></td>
-                                                <td><?php echo $rows['pagibignum'] ?></td>
-                                                <td><?php echo $rows['phnum'] ?></td>
-                                                <td><?php echo $rows['tinnum'] ?></td>
-                                                <td><?php echo $formattedDate_birthday ?></td>
-                                                <td><?php echo $rows['cpnum'] ?></td>
-                                                <?php
-                                                $deployment_query = "SELECT * FROM deployment WHERE employee_id = '$id'";
-                                                $deployment_result = $link->query($deployment_query);
-                                                $deployment_row = $deployment_result->fetch_assoc();
+                                                <tr>
+                                                    <td><?php echo $rows['id'] ?></td>
+                                                    <td><?php echo $rows['lastnameko'], ", " . $rows['firstnameko'] . " " . $rows['mnko'] ?></td>
+                                                    <td><?php echo $rows['sssnum'] ?></td>
+                                                    <td><?php echo $rows['pagibignum'] ?></td>
+                                                    <td><?php echo $rows['phnum'] ?></td>
+                                                    <td><?php echo $rows['tinnum'] ?></td>
+                                                    <td><?php echo $formattedDate_birthday ?></td>
+                                                    <td><?php echo $rows['cpnum'] ?></td>
+                                                    <?php
+                                                    $deployment_query = "SELECT * FROM deployment WHERE employee_id = '$id'";
+                                                    $deployment_result = $link->query($deployment_query);
+                                                    $deployment_row = $deployment_result->fetch_assoc();
                                                     $loa_start_date = $deployment_row['loa_start_date'];
                                                     $loa_end_date = $deployment_row['loa_end_date'];
                                                     $dateObj = date_create_from_format('Y-m-d', $loa_start_date);
                                                     $dateObj2 = date_create_from_format('Y-m-d', $loa_end_date);
- 
+
                                                     if ($dateObj !== false && $dateObj2 !== false) {
                                                         $formattedDate_start = date_format($dateObj, 'F j, Y');
                                                         $formattedDate_end = date_format($dateObj2, 'F j, Y');
@@ -118,28 +118,107 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         // Handle the case where date parsing fails
                                                         echo "Date parsing failed for one or both dates.";
                                                     }
-                                                ?>
+                                                    ?>
                                                     <td><?php echo $formattedDate_start; ?></td>
                                                     <td><?php echo $formattedDate_end; ?></td>
                                                     <td><?php echo $deployment_row['employment_status']; ?></td>
-                                                
-                                                <td>DEPLOYED</td>
-                                                <td><?php echo $rows['remarks'] ?></td>
-                                                <td>
-                                                    <?php  if ($rows['deployment_status'] === 'DEPLOYED' && $rows['for_loa_status'] === "FOR LOA") { ?>
-                                                        <div class="mb-1">
-                                                            <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
-                                                            <button type="button" name="deploy" class="btn btn-primary updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>
-                                                        </div>
-                                                        <div class="mt-1">
-                                                            <a href="download_loa.php?id=<?php echo $rows['id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                        </div>
 
-                                                    <?php } else { ?>
-                                                        <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
-                                                    <?php } ?>
-                                                </td>
-</tr>
+                                                    <td>DEPLOYED</td>
+                                                    <td><?php echo $rows['remarks'] ?></td>
+                                                    <td>
+                                                        <?php if ($rows['deployment_status'] === 'DEPLOYED' && $rows['for_loa_status'] === "FOR LOA") { ?>
+                                                            <div class="mb-1">
+                                                                <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
+                                                                <button type="button" name="deploy" class="btn btn-primary updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>
+                                                            </div>
+                                                            <div class="mt-1">
+                                                                <a href="download_loa.php?id=<?php echo $rows['id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                            </div>
+                                                            <div class="mt-1">
+                                                                <button type="button" class="btn btn-danger clearBtn" data-bs-toggle="modal" data-bs-target="#clearModal-<?php echo $rows['id'] ?>" title="Clear">
+                                                                    <i class="bi bi-trash"></i>
+                                                                </button>
+                                                            </div>
+
+
+                                                            <!-- Modal for Clear -->
+                                                            <div class="modal fade" id="clearModal-<?php echo $rows['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="container">
+                                                                                <?php 
+                                                                                    $select = "SELECT deployment.*, employee.*, deployment.id AS deployment_id 
+                                                                                    FROM deployment deployment, employees employee 
+                                                                                    WHERE deployment.employee_id = employee.id
+                                                                                    AND deployment.employee_id = '" . $rows['id'] . "'";
+                                                                                    $select_result = $link->query($select);
+                                                                                    $select_row = $select_result->fetch_assoc();
+                                                                                ?>
+                                                                                <form action="action.php" method="post" class="row">
+                                                                                    <input type="hidden" name="deployment_id" value="<?php echo $select_row['deployment_id']?>">
+                                                                                    <input type="hidden" name="employee_id" value="<?php echo $select_row['employee_id']?>">
+                                                                                    <input type="hidden" name="category" value="<?php echo $select_row['category']?>">
+                                                                                    <input type="hidden" name="position" value="<?php echo $select_row['job_title']?>">
+                                                                                    <input type="hidden" name="project_title" value="<?php echo $select_row['shortlist_title']?>">
+                                                                                    <input type="hidden" name="employee_status" value="<?php echo $select_row['employment_status']?>">
+                                                                                    <input type="hidden" name="start_date" value="<?php echo $select_row['project_start_date']?>">
+                                                                                    <input type="hidden" name="outlet" value="<?php echo htmlspecialchars($select_row['outlet']); ?>">
+
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Date created</label>
+                                                                                        <input type="date" name="date_created" id="date_create" class="form-control" required>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Name</label>
+                                                                                        <input type="text" name="name" id="name" class="form-control" value="<?php echo $select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname'] ?>" readonly>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Types of Separation</label>
+                                                                                        <input list="type_of_separations" id="type_of_separation" class="form-control" name="type_of_separations" required>
+                                                                                        <datalist id="type_of_separations">
+                                                                                            <?php 
+                                                                                                $select_type = "SELECT * FROM types_of_separation";
+                                                                                                $select_type_result = $link->query($select_type);
+                                                                                                while($select_type_row = $select_type_result->fetch_assoc()){
+                                                                                            ?>
+                                                                                            <option value="<?php echo $select_type_row['type'];?>"><?php echo $select_type_row['type'];?></option>
+                                                                                            <?php }?>
+                                                                                        </datalist>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Effectivity Date</label>
+                                                                                        <input type="date" name="effectivity_date" id="effectivity_date" class="form-control" required>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Process By</label>
+                                                                                        <input type="text" name="process_by" id="process_by" class="form-control" value="<?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];?>" readonly>
+                                                                                    </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit" name="insert_typeBtn" class="btn btn-primary">Process</button>
+                                                                        </div>
+                                                                        </form>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+
+
+                                                        <?php } else { ?>
+                                                            <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
                                                 <!-- IF HINDI PA NADEDEPLOY -->
                                             <?php
                                             } elseif ($rows['deployment_status'] === 'FOR DEPLOYMENT' && $rows['for_loa_status'] === "FOR LOA") { ?>

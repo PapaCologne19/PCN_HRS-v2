@@ -265,8 +265,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                                         <?php
                                                                         if ($rowx['psa'] === '') { ?>
-                                                                            <button type="button" name="editInfos" class="btn btn-success mt-1 mb-1 updateInfoBtn" data-bs-target="#updateInfoModal-<?php echo $rowx['id'] ?>" data-bs-toggle="modal" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Update Mandatory">
+                                                                            <button type="button" name="editInfos" class="btn btn-success mt-1 mb-1 updateInfoBtn" data-bs-target="#updateInfoModal-<?php echo $rowx['id'] ?>" data-bs-toggle="modal" title="Update Mandatories">
                                                                                 <i class="bi bi-folder-plus"></i>
+                                                                            </button>
+                                                                            <input type="hidden" name="employee_id" class="employee_id" value="<?php echo $rowx['id'];?>">
+                                                                            <input type="hidden" name="shortlist_id" class="shortlist_id" value="<?php echo $rowx1['id'];?>">
+                                                                            <button type="button" name="deleteInfos" class="btn btn-danger mt-1 mb-1 deleteInfoBtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Backout Applicant">
+                                                                                <i class="bi bi-trash"></i>
                                                                             </button>
                                                                         <?php } else { ?>
                                                                             <button type="submit" name="addtoewb" class="btn btn-primary notification mt-1 mb-1 addtoewb" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">

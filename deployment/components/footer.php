@@ -335,6 +335,7 @@
 
       });
 
+
       // For Deploying Applicants and Creating LOA
       $(document).ready(function() {
          $('tbody').on('click', '.open-modal', function() {
@@ -385,6 +386,18 @@
    <!-- Data Table -->
    <script>
       new DataTable('#example');
+
+      // For QUILL
+      var quill = new Quill('#editor', {
+         placeholder: 'Type outlet here...',
+         theme: 'snow',
+         debug: 'info',
+      });
+
+      $('form').submit(function(event) {
+         $('#outlet').val(JSON.stringify(quill.getContents()));
+         return true;
+      });
    </script>
 
    <!-- Tooltips Enabler -->
