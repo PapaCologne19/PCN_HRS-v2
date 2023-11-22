@@ -359,7 +359,15 @@ if(isset($_POST['insert_typeBtn'])){
     $stmt->bind_param("iisssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $effectivity_date, $process_by, $loa_requested_by);
 
     if($stmt->execute()){
-        $_SESSION['successMessage'] = "Success";
+        $update_clearance = "UPDATE deployment SET clearance = ? WHERE id = ?";
+        $update_clearance_result = $link->prepare($update_clearance);
+        $update_clearance_result->bind_param('si', $type_of_separations, $deployment_id);
+        if($update_clearance_result->execute()){
+            $_SESSION['successMessage'] = "Success";
+        }
+        else{
+            $_SESSION['errorMessage'] = "Error";
+        }
     }
     else{
         $_SESSION['errorMessage'] = "Error";

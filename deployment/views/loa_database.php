@@ -262,9 +262,11 @@ include '../../connect.php';
                                             <th>Category</th>
                                             <th>Name</th>
                                             <th>Project</th>
+                                            <th>Project Start</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
                                             <th>Employment Status</th>
+                                            <th>Project Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -296,9 +298,11 @@ include '../../connect.php';
                                                     <td><?php echo $row['category'] ?></td>
                                                     <td><?php echo $fetched['lastnameko'] . ", " . $fetched['firstnameko'] . " " . $fetched['mnko'] ?></td>
                                                     <td><?php echo $row['place_assigned'] ?></td>
+                                                    <td><?php echo $row['project_start_date'] ?></td>
                                                     <td><?php echo $formattedDate_start ?></td>
                                                     <td><?php echo $formattedDate_end ?></td>
                                                     <td><?php echo $row['employment_status'] ?></td>
+                                                    <td><?php echo $row['clearance'] ?></td>
                                                     <td>
                                                         <div class="mb-1">
                                                             <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
