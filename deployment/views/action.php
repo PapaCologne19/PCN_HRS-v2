@@ -74,6 +74,21 @@ if (isset($_POST['create_loa'])) {
         $address = $get_row['paddress'];
         $contact_number = $get_row['cpnum'];
 
+        $select = "SELECT * FROM employees WHERE id = '$id'";
+        $select_result = $link->query($select);
+        $select_row = $select_result->fetch_assoc();
+        $applicant_id = $select_row['app_id'];
+
+        $applicant_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
+        $folder_name = $applicant_name;
+        $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
+        $folder_name_subfolder = $applicant_name_subfolder;
+        $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+        $folder_path = "201 Files/" . $applicant_name . "/" . $applicant_name_subfolder;
+
+        mkdir("{$destination_subfolder}", 0777);
+
+
         $query = "INSERT INTO `deployment`(`shortlist_title`, `appno`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
             `contact_number`, `loa_status`, `type`, `project_start_date`, `loa_start_date`, 
@@ -85,7 +100,7 @@ if (isset($_POST['create_loa'])) {
             `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, 
             `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, 
             `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, 
-            `head`, `head_designation`, `emp_id`) 
+            `head`, `head_designation`, `loa_folder_path`, `emp_id`) 
             VALUES ('$shortlist_title', '$appno', '$date_shortlisted', '$id', 
             '$sss', '$philhealth', '$pagibig', '$tin','$address', 
             '$contact_number','$status', '$type', '$project_start_date', '$start_loa', 
@@ -97,12 +112,21 @@ if (isset($_POST['create_loa'])) {
             '$position_allowance', '$deployment_remarks', '$no_of_days', '$outlet', 
             '$supervisor', '$field_supervisor', '$field_supervisor_designation', '$deployment_personnel', 
             '$deployment_personnel_designation', '$project_supervisor', '$project_supervisor_designation', 
-            '$head', '$head_designation', '$loa_id')";
+            '$head', '$head_designation', '$destination_subfolder', '$loa_id')";
 
         $result = $link->query($query);
 
         if ($result) {
-            $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
+
+            $deployment_id = $link->insert_id;
+            $insert_folder = "INSERT INTO folder (applicant_id, employee_id, deployment_id, folder_name, folder_path) 
+            VALUES('$applicant_id', '$id', '$deployment_id', '$folder_name_subfolder', '$folder_path')";
+            $insert_folder_result = $link->query($insert_folder);
+            if ($insert_folder_result) {
+
+
+
+                $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
             `contact_number`, `loa_status`, `type`, `loa_start_date`, 
             `loa_end_date`, `division`, `category`, `locator`, `client_name`,
@@ -127,44 +151,27 @@ if (isset($_POST['create_loa'])) {
             '$deployment_personnel_designation', '$project_supervisor', '$project_supervisor_designation', 
             '$head', '$head_designation', '$loa_id')";
 
-            $result_history = $link->query($query_history);
+                $result_history = $link->query($query_history);
 
-            if ($result_history) {
-                $update_shortlist_query = "UPDATE shortlist_master SET deployment_status = 'DEPLOYED' WHERE employee_id = '$id' AND shortlistnameto = '$shortlist_title'";
-                $update_shortlist_result = $link->query($update_shortlist_query);
-                if ($update_shortlist_result) {
-
-                    $select = "SELECT * FROM employees WHERE id = '$id'";
-                    $select_result = $link->query($select);
-                    $select_row = $select_result->fetch_assoc();
-                    $applicant_id = $select_row['app_id'];
-
-                    $select_resume_path = "SELECT * FROM applicant_resume WHERE applicant_id = '$applicant_id' AND project_id = '$project_id'";
-                    $select_resume_path_result = $link->query($select_resume_path);
-                    $select_resume_path_row = $select_resume_path_result->fetch_assoc();
-
-                    $folder_path = $select_resume_path_row['resume_path'];
-                    
-                    $applicant_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
-                    $folder_name = $applicant_name;
-                    $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
-                    $folder_name_subfolder = $applicant_name_subfolder;
-                    $destination_subfolder = "../../../pcn_OLA/" . $folder_path . "/" . $folder_name_subfolder;
-
-                    mkdir("{$destination_subfolder}", 0777);
-
-                    $update = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
-                    $update_result = $link->query($update);
-                    if ($update_result) {
-                        $_SESSION['successMessage'] = "Success";
+                if ($result_history) {
+                    $update_shortlist_query = "UPDATE shortlist_master SET deployment_status = 'DEPLOYED' WHERE employee_id = '$id' AND shortlistnameto = '$shortlist_title'";
+                    $update_shortlist_result = $link->query($update_shortlist_query);
+                    if ($update_shortlist_result) {
+                        $update = "UPDATE shortlist_master SET is_deleted = '1' WHERE employee_id = '$id' AND shortlistnameto != '$shortlist_title'";
+                        $update_result = $link->query($update);
+                        if ($update_result) {
+                            $_SESSION['successMessage'] = "Success";
+                        } else {
+                            $_SESSION['errorMessage'] = "SQL Errorsss: " . $link->error;
+                        }
                     } else {
-                        $_SESSION['errorMessage'] = "SQL Errorsss: " . $link->error;
+                        $_SESSION['errorMessage'] = "SQL Errorss: " . $link->error;
                     }
                 } else {
-                    $_SESSION['errorMessage'] = "SQL Errorss: " . $link->error;
+                    $_SESSION['errorMessage'] = "SQL Errors: " . $link->error;
                 }
             } else {
-                $_SESSION['errorMessage'] = "SQL Errors: " . $link->error;
+                $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
             }
         } else {
             $_SESSION['errorMessage'] = "SQL Error: " . $link->error;
@@ -328,7 +335,7 @@ if (isset($_POST['update_loa'])) {
 }
 
 
-if(isset($_POST['insert_typeBtn'])){
+if (isset($_POST['insert_typeBtn'])) {
     $deployment_id = $link->real_escape_string($_POST['deployment_id']);
     $employee_id = $link->real_escape_string($_POST['employee_id']);
     $category = $link->real_escape_string($_POST['category']);
@@ -359,20 +366,17 @@ if(isset($_POST['insert_typeBtn'])){
     $stmt = $link->prepare($insert_type);
     $stmt->bind_param("iisssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $effectivity_date, $process_by, $loa_requested_by);
 
-    if($stmt->execute()){
+    if ($stmt->execute()) {
         $update_clearance = "UPDATE deployment SET clearance = ? WHERE id = ?";
         $update_clearance_result = $link->prepare($update_clearance);
         $update_clearance_result->bind_param('si', $type_of_separations, $deployment_id);
-        if($update_clearance_result->execute()){
+        if ($update_clearance_result->execute()) {
             $_SESSION['successMessage'] = "Success";
-        }
-        else{
+        } else {
             $_SESSION['errorMessage'] = "Error";
         }
-    }
-    else{
+    } else {
         $_SESSION['errorMessage'] = "Error";
     }
-header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
-
+    header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
 }

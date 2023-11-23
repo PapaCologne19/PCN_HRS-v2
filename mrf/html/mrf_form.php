@@ -74,7 +74,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 } else {
                                                     $track = $row['tracking'] + 1;
                                                 }
-                                            }
+                                            } 
 
                                             ?>
                                             <label for="" class="form-label">TRACKING NUMBER</label>

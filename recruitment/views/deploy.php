@@ -7,9 +7,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     <html lang="en">
 
     <head>
-   
+
         <?php include '../components/header.php'; ?>
-        
+
         <title>Deploy</title>
     </head>
 
@@ -268,8 +268,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                             <button type="button" name="editInfos" class="btn btn-success mt-1 mb-1 updateInfoBtn" data-bs-target="#updateInfoModal-<?php echo $rowx['id'] ?>" data-bs-toggle="modal" title="Update Mandatories">
                                                                                 <i class="bi bi-folder-plus"></i>
                                                                             </button>
-                                                                            <input type="hidden" name="employee_id" class="employee_id" value="<?php echo $rowx['id'];?>">
-                                                                            <input type="hidden" name="shortlist_id" class="shortlist_id" value="<?php echo $rowx1['id'];?>">
+                                                                            <input type="hidden" name="employee_id" class="employee_id" value="<?php echo $rowx['id']; ?>">
+                                                                            <input type="hidden" name="shortlist_id" class="shortlist_id" value="<?php echo $rowx1['id']; ?>">
                                                                             <button type="button" name="deleteInfos" class="btn btn-danger mt-1 mb-1 deleteInfoBtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Backout Applicant">
                                                                                 <i class="bi bi-trash"></i>
                                                                             </button>
@@ -544,7 +544,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" minlength="10" class="form-control" value="<?php echo $fetch_row['sssnum']?>">
+                                                                                            <input type="text" name="sssnum" id="sssnum" maxlength="10" minlength="10" class="form-control" value="<?php echo $fetch_row['sssnum'] ?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -554,7 +554,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['pagibignum']?>">
+                                                                                            <input type="text" name="pagibignum" id="pagibignum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['pagibignum'] ?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -564,7 +564,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['phnum']?>">
+                                                                                            <input type="text" name="phnum" id="phnum" maxlength="12" minlength="12" class="form-control" value="<?php echo $fetch_row['phnum'] ?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -574,7 +574,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="text" name="tinnum" maxlength="12" minlength="12" value="<?php echo $fetch_row["tinnum"] ?>" class="form-control" value="<?php echo $fetch_row['tinnum']?>">
+                                                                                            <input type="text" name="tinnum" maxlength="12" minlength="12" value="<?php echo $fetch_row["tinnum"] ?>" class="form-control" value="<?php echo $fetch_row['tinnum'] ?>">
                                                                                         </div>
                                                                                     </div>
 
@@ -699,7 +699,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 </div>
             </div>
         </div>
-       
+
         <?php include '../components/footer.php'; ?>
     </body>
 

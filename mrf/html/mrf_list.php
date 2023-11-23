@@ -147,6 +147,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             <button type="button" class="btn btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon" style="color: black !important;"></i></button>
                                                         </div>
 
+                                                        <?php 
+                                                            if($row['is_approve'] === '1'){
+                                                        ?>
+
+                                                        <?php } else{ ?>
                                                         <div class="columns">
                                                             <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
                                                                 <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
@@ -157,6 +162,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
                                                             <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
                                                         </div>
+                                                        <?php }?>
+
                                                         <div class="columns">
                                                             <?php
                                                             $select = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";

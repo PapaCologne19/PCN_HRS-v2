@@ -1213,7 +1213,7 @@ if (isset($_POST['create_shortlist_applicant'])) {
             $folder_name = $applicant_name;
             $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
 
- 
+
 
 
 
@@ -1225,7 +1225,7 @@ if (isset($_POST['create_shortlist_applicant'])) {
             $folder_path =  "201 Files/" . $folder_name;
 
             mkdir("{$destination_subfolder}", 0777);
-            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$folder_path')";
+            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
             $result = mysqli_query($link, $sql);
             if ($result) {
                 if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
@@ -1247,7 +1247,7 @@ if (isset($_POST['create_shortlist_applicant'])) {
     exit(0);
 }
 
-if(isset($_POST['backout_applicant_button_click'])){
+if (isset($_POST['backout_applicant_button_click'])) {
     $employee_id = $link->real_escape_string($_POST['employee_id']);
     $shortlist_id = $link->real_escape_string($_POST['shortlist_id']);
     $is_deleted = '1';
@@ -1256,12 +1256,106 @@ if(isset($_POST['backout_applicant_button_click'])){
     $query = "UPDATE shortlist_master SET is_deleted = ?, deployment_status = ? WHERE id = ? AND employee_id = ?";
     $stmt = $link->prepare($query);
     $stmt->bind_param('ssss', $is_deleted, $deployment_status, $shortlist_id, $employee_id);
-    if($stmt->execute()){
+    if ($stmt->execute()) {
         $_SESSION['successMessage'] = "Success";
-    }
-    else{
+    } else {
         $_SESSION['errorMessage'] = "Error";
     }
     header("Location: deploy.php");
     exit(0);
-}       
+}
+
+
+// For Adding Folders: update_applicants.php > 201 Files section
+if (isset($_POST['create_folder_btn'])) {
+    $employee_id = $_POST['employee_id'];
+    $folder_name_subfolder = $_POST['folder_name'];
+
+    // Selecting Employees table so we can fetch the Applicant ID
+    $select = "SELECT * FROM employees WHERE id = ?";
+    $select_result = $link->prepare($select);
+    $select_result->bind_param("i", $employee_id);
+    $select_result->execute();
+
+    $get_result = $select_result->get_result();
+    $select_row = $get_result->fetch_assoc();
+    $applicant_id = $select_row['app_id'];
+    $firstname = $select_row['firstnameko'];
+    $middlename = $select_row['mnko'];
+    $lastname = $select_row['lastnameko'];
+    $extension_name = $select_row['extnname'];
+
+    $applicant_name = chop($firstname . " " . $middlename . " " . $lastname . " " . $extension_name);
+    $folder_name = $applicant_name;
+    $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
+
+    $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+    $folder_path =  "201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+
+    if (mkdir("{$destination_subfolder}", 0777)) {
+        $query = "INSERT INTO folder (applicant_id, employee_id, folder_name, folder_path) VALUES(?, ?, ?, ?)";
+        $stmt = $link->prepare($query);
+        $stmt->bind_param("iiss", $applicant_id, $employee_id, $folder_name_subfolder, $folder_path);
+        if ($stmt->execute()) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error" . $link->error;
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Folder is already exist";
+    }
+
+    header("Location: update_applicants.php?id=$employee_id");
+}
+
+// For Adding Multiple Files in Update_applicants.php > 201 Files Section (REQUIREMENTS' FILES)
+if (isset($_POST['upload_file_btn'])) {
+    $employee_id = $_POST['employee_id'];
+    $folder_id = $_POST['folder_id'];
+    $files = $_FILES['files'];
+
+
+    // Selecting Employees table so we can fetch the Applicant ID
+    $select = "SELECT * FROM employees WHERE id = ?";
+    $select_result = $link->prepare($select);
+    $select_result->bind_param("i", $employee_id);
+    $select_result->execute();
+
+    $get_result = $select_result->get_result();
+    $select_row = $get_result->fetch_assoc();
+    $applicant_id = $select_row['app_id'];
+
+    // Selecting Folder table so we can fetch the datas in that table
+    $select_folder = "SELECT * FROM folder WHERE id = ? AND applicant_id = ?";
+    $stmt = $link->prepare($select_folder);
+
+    if ($stmt === false) {
+        die("Error in query preparation: " . $link->error);
+    }
+
+    $stmt->bind_param("ii", $folder_id, $applicant_id);
+    $stmt->execute();
+
+    $get_stmt = $stmt->get_result();
+    while ($rows = $get_stmt->fetch_assoc()) {
+        $path = "../../../pcn_OLA/" . $rows['folder_path'] . "/";
+        // Let's now insert the data in 201 files table
+        foreach ($files['tmp_name'] as $key => $tmp_name) {
+            $targetFile = $path . basename($files['name'][$key]);
+            $filename = basename($files['name'][$key]);
+            
+            $inserts = "INSERT INTO 201files(applicant_id, employee_id, folder_id, requirements_files) 
+            VALUES (?, ?, ?, ?)";
+            $insert_result = $link->prepare($inserts);
+            $insert_result->bind_param("ssss", $applicant_id, $employee_id, $folder_id, $filename);
+            if ($insert_result->execute()) {
+                move_uploaded_file($tmp_name, $targetFile);
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error";
+            }
+        }
+    }
+    header("Location: files.php?id=$employee_id&folder_id=$folder_id");
+    exit(0);
+}
