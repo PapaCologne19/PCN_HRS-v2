@@ -25,6 +25,14 @@
   margin-right: 1rem !important;
 }
 
+.contain {
+  display: grid;
+  grid-template-columns: 0fr 0fr;
+  grid-template-rows: 0fr 0fr;
+  gap: 5px;
+  margin: 0 auto;
+}
+
 /* ! For .layout-navbar-fixed added fix padding top tpo .layout-page */
 /* Detached navbar */
 .layout-navbar-fixed .layout-wrapper:not(.layout-horizontal):not(.layout-without-menu) .layout-page {

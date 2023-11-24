@@ -34,6 +34,10 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["username"] = $rowd["uname"];
         $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
+        $_SESSION["user_id"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
+        $_SESSION["user_type"] = $rowd["typenya"];
+
 
         $dtnow = date("m/d/Y");
 
@@ -55,6 +59,9 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["username"] = $rowd["uname"];
         $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
+        $_SESSION["user_id"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
+        $_SESSION["user_type"] = $rowd["typenya"];
 
         $dtnow = date("m/d/Y");
 
@@ -75,6 +82,9 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["username"] = $rowd["uname"];
         $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
+        $_SESSION["user_id"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
+        $_SESSION["user_type"] = $rowd["typenya"];
 
         $dtnow = date("m/d/Y");
 
@@ -95,6 +105,9 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["username"] = $rowd["uname"];
         $_SESSION["password"] =  $rowd["pname"];
         $_SESSION["data"] = $rowd["id"];
+        $_SESSION["user_id"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
+        $_SESSION["user_type"] = $rowd["typenya"];
 
         $dtnow = date("m/d/Y");
 
@@ -118,6 +131,10 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["darkk"] = "mrf";
         $_SESSION["dept"] = $rowd["fms"];
         $_SESSION["id"] = $rowd["id"];
+        $_SESSION["user_id"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
+        $_SESSION["user_type"] = $rowd["typenya"];
+
 
         $dtnow = date("m/d/Y");
 
@@ -137,6 +154,7 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["dmark1"] = $rowd["typenya"];
         $_SESSION["darkk"] = "Cashier";
         $_SESSION["data"] = $rowd["id"];
+        $_SESSION["division"] = $rowd["fms"];
         $dtnow = date("m/d/Y");
 
         $query6 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'Cashier login Accepted')";
@@ -178,6 +196,8 @@ if (isset($_POST['SubButton'])) {
         $_SESSION["dmark1"] = $rowd["typenya"];
         $_SESSION["data"] = $rowd["id"];
         $_SESSION["darkk"] = "green";
+        $_SESSION["user_id"] = $rowd["id"];
+
         //log control
         $dtnow = date("m/d/Y");
 

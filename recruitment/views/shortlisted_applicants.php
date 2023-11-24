@@ -27,6 +27,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
     <body>
         <?php
+   
         if (isset($_SESSION['successMessage'])) { ?>
             <script>
                 Swal.fire({
@@ -106,7 +107,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['present_address'] . ", " . $row['city']; ?></td>
                                                     <td><?php echo $row['date_applied'] ?></td>
                                                     <td>
-                                                        <?php                               
+                                                        <?php
                                                         $resumeFilePath = "../../../pcn_OLA/" . $row['resume_path'] . "/Requirements/" . $row['resume_file'];
                                                         $fileExtension = pathinfo($resumeFilePath, PATHINFO_EXTENSION);
 
@@ -151,19 +152,29 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php
                                                         if ($row['status'] === 'PENDING' || $row['status'] === 'FOR SCREENING') {
                                                         ?>
-                                                            <input type="hidden" class="exampleModalID" value="<?php echo $row['id'] ?>">
-                                                            <button type="button" class="btn btn-primary btntooltips exampleModal" title="Screening"><i class="bi bi-telephone"></i></button>
-                                                            <button class="btn btn-danger">Reject</button>
+
+                                                            <div class="contain">
+                                                                <div class="columns">
+                                                                    <input type="hidden" class="exampleModalID resume_id" value="<?php echo $row['id'] ?>">
+                                                                    <input type="hidden" class="exampleModalID mrf_id" value="<?php echo $_GET['id'] ?>">
+                                                                    <button type="button" class="btn btn-sm btn-primary btntooltips exampleModal" title="Screening"><i class="bi bi-telephone"></i></button>
+                                                                </div>
+                                                                <div class="columns">
+                                                                    <input type="hidden" class="exampleModalID resume_id" value="<?php echo $row['id'] ?>">
+                                                                    <input type="hidden" class="exampleModalID mrf_id" value="<?php echo $_GET['id'] ?>">
+                                                                    <button class="btn btn-sm btn-danger btnRejectShortlistedApplicant">Reject</button>
+                                                                </div>
+                                                            </div>
                                                         <?php
                                                         } elseif ($row['status'] === 'NOT QUALIFIED' && empty($row['project_status'])) {
                                                         ?>
                                                             <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
-                                                            <button type="button" class="btn btn-info editBtn">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-info editBtn">Edit</button>
                                                         <?php
                                                         } elseif ($row['status'] === 'QUALIFIED' && empty($row['project_status'])) {
                                                         ?>
                                                             <input type="hidden" class="editID" value="<?php echo $row['id'] ?>">
-                                                            <button type="button" class="btn btn-info editBtn">Edit</button>
+                                                            <button type="button" class="btn btn-sm btn-info editBtn">Edit</button>
                                                         <?php
                                                         }
                                                         ?>
@@ -216,9 +227,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <div class="container">
                                                         <form action="action.php" method="POST" class="form-group row" enctype="multipart/form-data">
                                                             <?php
-                                                                $job_id = $_GET['id'];
+                                                            $job_id = $_GET['id'];
                                                             ?>
-                                                            <input type="hidden" name="job_id" value="<?php echo $job_id?>">
+                                                            <input type="hidden" name="job_id" value="<?php echo $job_id ?>">
                                                             <div class="col-md-12">
                                                                 <label for="source" class="form-label">Source</label>
                                                                 <input list="sources" name="source" id="source" class="form-control">

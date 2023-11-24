@@ -88,7 +88,7 @@ if(isset($_SESSION['username'], $_SESSION['password'])){
                                                 <?php } ?>
                                                 <td>
                                                     <div class="columns">
-                                                        <button type="submit" name="Editbtn" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#view_applicants-<?php echo $rowx['id'] ?>">
+                                                        <button type="submit" name="Editbtn" class="btn btn-info btn-sm" title="View Applicant Information" data-bs-toggle="modal" data-bs-target="#view_applicants-<?php echo $rowx['id'] ?>">
                                                             <i class="bi bi-eye"></i>
                                                         </button>
                                                     </div>

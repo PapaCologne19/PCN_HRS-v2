@@ -52,6 +52,12 @@
         <div data-i18n="Analytics">Verified Applicants</div>
       </a>
     </li>
+    <li class="menu-item">
+      <a href="ewb_backout_applicants.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Backout Applicants</div>
+      </a>
+    </li>
     <!-- EWB Reports -->
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">EWB reports</span>

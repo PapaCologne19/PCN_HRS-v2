@@ -304,11 +304,13 @@ include '../../connect.php';
                                                     <td><?php echo $row['employment_status'] ?></td>
                                                     <td><?php echo $row['clearance'] ?></td>
                                                     <td>
-                                                        <div class="mb-1">
-                                                            <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                        </div>
-                                                        <div class="pt-1">
-                                                            <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="<?php echo $name ?>" class="btn btn-primary" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                                                        <div class="contain">
+                                                            <div class="columns">
+                                                                <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                            </div>
+                                                            <div class="columns">
+                                                                <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="<?php echo $name ?>" class="btn btn-secondary btn-sm" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>

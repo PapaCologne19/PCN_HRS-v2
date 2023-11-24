@@ -8,7 +8,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
     <head>
         <?php include '../components/header.php'; ?>
-        <title>Verified Applicants</title>
+        <title>Backout Applicants</title>
     </head>
 
     <body>
@@ -49,7 +49,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                     <hr>
                                     <div class="title justify-content-center align-items-center mx-auto text-center">
                                         <h4 class="fs-4">
-                                            VERIFIED APPLICANTS
+                                            BACKOUT APPLICANTS
                                         </h4>
                                     </div>
                                     <hr>
@@ -58,27 +58,29 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             <tr>
                                                 <th>DATE CREATED</th>
                                                 <th>App No</th>
-                                                <th>Name</th> 
+                                                <th>Name</th>
                                                 <th>SSS</th>
                                                 <th>PAGIBIG</th>
                                                 <th>PHILHEALTH</th>
                                                 <th>TIN</th>
                                                 <th>BIRTHDAY</th>
                                                 <th>ADDRESS</th>
-                                                <th>DATE VERIFIED</th>
+                                                <th>DATE BACKOUT</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $query = "SELECT *, 
-                                                DATE_FORMAT(birthday, '%M %d %Y') AS birthday 
-                                                FROM employees WHERE ewb_status = 'VERIFIED'";
+                                            $query = "SELECT employee.*, shortlist.*, 
+                                                DATE_FORMAT(employee.birthday, '%M %d %Y') AS birthday 
+                                                FROM employees employee, shortlist_master shortlist
+                                                WHERE employee.id = shortlist.employee_id
+                                                AND shortlist.deployment_status = 'BACKOUT'";
                                             $result = $link->query($query);
                                             while ($row = $result->fetch_assoc()) {
                                                 $dapplied = $row['dapplied'];
-                                                $formattedDatedapplied = date('m/d/Y H:i:s', strtotime($dapplied));
-                                                $ewbdate = $row['ewbdate'];
-                                                $formattedDate = date('m/d/Y H:i:s', strtotime($ewbdate));
+                                                $formattedDatedapplied = date('F d, Y H:i:s', strtotime($dapplied));
+                                                $ewbdate = $row['date_backout'];
+                                                $formattedDate = date('F d, Y H:i:s ', strtotime($ewbdate));
 
                                             ?>
                                                 <tr>

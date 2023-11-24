@@ -5,7 +5,12 @@ date_default_timezone_set('Asia/Manila');
 $date_now = date('Y-m-d H:i:s');
 header('Content-Type: text/html; charset=utf-8');
 
-// For Inserting Applicant in database
+$user_id = $_SESSION['user_id'];
+$user_division = $_SESSION['division'];
+$personnel = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+$user_type = $_SESSION['user_type'];
+
+// For Inserting Employee in database
 if (isset($_POST['next'])) {
     $photoko2 = $_SESSION["photoko"];
     $dapplied1 = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['dapplied'])))));
@@ -68,6 +73,12 @@ if (isset($_POST['next'])) {
         $InsertApplicantResult = mysqli_query($link, $InsertApplicantQuery);
 
         if ($InsertApplicantResult) {
+            $transaction = "ADD EMPLOYEE - " . $firstnameko1 . " " . $mnko1 . " " . $lastnameko1 . " " . $extnname1;
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
             $_SESSION['successMessage'] = "Success!";
             unset($_SESSION["photoko"]);
         } else {
@@ -230,6 +241,14 @@ if (isset($_POST['updateit'])) {
         $insert_result = $link->query($insert_history);
 
         if ($insert_result) {
+
+            $transaction = "UPDATE EMPLOYEE - " . $firstnameko1 . " " . $mnko1 . " " . $lastnameko1 . " " . $extnname1;
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in inserting to history!";
@@ -262,6 +281,14 @@ if (isset($_POST['blacklist_button'])) {
             $blacklist_history_result = mysqli_query($link, $blacklist_history_query);
 
             if ($blacklist_history_result) {
+
+                $transaction = "BLACKLIST EMPLOYEE - " . $id;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Blacklist error!";
@@ -282,6 +309,14 @@ if (isset($_POST['delete_applicant_button'])) {
     $delete_applicant_result = mysqli_query($link, $delete_applicant_query);
 
     if ($delete_applicant_result) {
+
+        $transaction = "DELETE EMPLOYEE - " . $id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success!";
     } else {
         $_SESSION['errorMessage'] = "Delete error!";
@@ -298,11 +333,44 @@ if (isset($_POST['undo_button_click'])) {
     $result_editblacklist = mysqli_query($link, $undo_blacklist);
 
     if ($result_editblacklist) {
+
+        $transaction = "UNBLACKLIST EMPLOYEE - " . $undo_blacklisted_id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success!";
     } else {
         $_SESSION['errorMessage'] = "Error";
     }
-    header("Location: employees.php");
+    header("Location: list_of_blacklisted.php");
+    exit(0);
+}
+
+// For Undo Backout Applicants
+if (isset($_POST['undo_backout_button_click'])) {
+    $undo_backout_id = $_POST['undobackout_id'];
+    $undo_backout = "UPDATE employees SET actionpoint = 'ACTIVE', reasonofaction = '', dateofaction = '' WHERE id = '$undo_backout_id'";
+
+    $result_editbackout = mysqli_query($link, $undo_backout);
+
+    if ($result_editbackout) {
+
+        $transaction = "UNBACKOUT EMPLOYEE - " . $undo_backout_id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+        $_SESSION['successMessage'] = "Success!";
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: list_of_backout.php");
     exit(0);
 }
 
@@ -314,6 +382,14 @@ if (isset($_POST['undo_canceled_button_click'])) {
     $result_editcancel = mysqli_query($link, $undo_cancel);
 
     if ($result_editcancel) {
+
+        $transaction = "UNBACKOUT EMPLOYEE - " . $undo_canceled_id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error";
@@ -348,6 +424,15 @@ if (isset($_POST['createshortlist'])) {
             $result = mysqli_query($link, $query);
 
             if ($result) {
+
+                $transaction = "CREATE SHORTLIST TITLE - " . $newshortlist1;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in creating shortlist title";
@@ -372,43 +457,6 @@ if (isset($_POST['add_shortlist_click'])) {
     $querytac = "SELECT * FROM employees WHERE appno = '$id1'";
     $resultac = mysqli_query($link, $querytac);
     while ($rowac = mysqli_fetch_assoc($resultac)) {
-
-        // if ($rowac['actionpoint'] === "ACTIVE") {
-        //     $query1 = "UPDATE employees SET actionpoint = 'SHORTLISTED' WHERE appno = '$id1'";
-        //     $results1 = mysqli_query($link, $query1);
-
-        //     if ($results1) {
-        //         $dtnow = date("m/d/Y");
-
-        //         $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto = '$id1' ";
-        //         $resultchk = mysqli_query($link, $querychk);
-        //         if (mysqli_num_rows($resultchk) === 0) {
-        //             // kapag wala pang user name na kaparehas
-        //             $query2 = "INSERT INTO shortlist_master(employee_id, shortlistnameto, appnumto, dateto) VALUES('$app_id','$data', '$id1', '$dtnow')";
-        //             $results2 = mysqli_query($link, $query2);
-        //             if ($results2) {
-        //                 $response = array('message' => 'Successly added to the shortlist');
-        //                 echo json_encode($response);
-        //                 exit;
-        //             } else {
-        //                 $response = array('message' => 'Not Added due to Duplication!');
-        //                 echo json_encode($response);
-        //                 exit;
-        //             }
-        //         } else {
-        //             $response = array('message' => 'Not Added due to Duplication!');
-        //             echo json_encode($response);
-        //             exit;
-        //         }
-        //     } else {
-        //         $_SESSION['errorMessage'] = "Not Added due to duplication!";
-        //         error_log("Query 1 failed: " . mysqli_error($link));
-        //         // You can also include more detailed error information in your JSON response.
-        //         $response = array('message' => 'Error: Query 1 failed');
-        //         echo json_encode($response);
-        //         exit;
-        //     }
-        // } else {
         $dtnow = date("m/d/Y");
         $querychk = "SELECT * FROM shortlist_master WHERE shortlistnameto = '$data' AND appnumto='$id1' ";
         $resultchk = mysqli_query($link, $querychk);
@@ -418,7 +466,14 @@ if (isset($_POST['add_shortlist_click'])) {
             $results3 = mysqli_query($link, $query3);
 
             if ($results3) {
-                $response = array('message' => 'SSuccess!');
+                $transaction = "ADDED APPLICANT TO SHORTLIST - " . $data;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+                $response = array('message' => 'Success!');
                 echo json_encode($response);
                 exit;
             } else {
@@ -432,7 +487,6 @@ if (isset($_POST['add_shortlist_click'])) {
             exit;
         }
     }
-    // }
 }
 
 // For untermination of applicants
@@ -445,6 +499,13 @@ if (isset($_POST['unterminate_applicant_button'])) {
     $resultemp = mysqli_query($link, $unterminate_query);
 
     if ($resultemp) {
+        $transaction = "UNTERMINATE EMPLOYEE - " . $emp_number1;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['succesMessage'] = "Success!";
         header("Location: recruitment.php");
     } else {
@@ -473,6 +534,14 @@ if (isset($_POST['remove_button_click'])) {
             $result_delete = mysqli_query($link, $query_delete);
 
             if ($result_delete) {
+
+                $transaction = "REMOVE APPLICANT FROM SHORTLIST - " . $data;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
                 $response = array('message' => 'Success!');
                 echo json_encode($response);
                 exit;
@@ -499,6 +568,15 @@ if (isset($_POST['remove_button_click'])) {
                 $result_deleted = mysqli_query($link, $query_deleted);
 
                 if ($result_deleted) {
+
+                    $transaction = "REMOVE APPLICANT FROM SHORTLIST - " . $data;
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
+
                     $response = array('message' => 'Success!');
                     echo json_encode($response);
                     exit;
@@ -534,6 +612,14 @@ if (isset($_POST['deploy_button_click'])) {
             $query_update = "UPDATE shortlist_master SET ewb = 'EWB', ewbdate = '$dtnow' WHERE appnumto = '$id1'";
             $result_update = mysqli_query($link, $query_update);
             if ($result_update) {
+
+                $transaction = "DEPLOY APPLICANT (NOT VERIFIED) - " . $id1;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error";
@@ -579,6 +665,14 @@ if (isset($_POST['add_to_shortlist'])) {
                     $results3 = mysqli_query($link, $query3);
 
                     if ($results3) {
+
+                        $transaction = "ADD EMPLOYEES TO SHORTLIST - " . $data;
+                        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                            VALUES (?, ?, ?, ?, ?)";
+                        $transaction_log_result = $link->prepare($transaction_log);
+                        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                        $transaction_log_result->execute();
+
                         // User successly added to the shortlist
                         $response[] = array('message' => 'Success!');
                         $_SESSION['successMessage'] = 'Success!';
@@ -660,6 +754,15 @@ if (isset($_POST['reverification_button'])) {
                 $results = $link->query($insert);
 
                 if ($results) {
+
+                    $transaction = "REVERIFY EMPLOYEE - " . $id;
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                            VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
+
                     $_SESSION['successMessage'] = "Success";
                     exit();
                 } else {
@@ -689,6 +792,15 @@ if (isset($_POST['provideMRF_button_click'])) {
     $result = mysqli_query($link, $query);
 
     if ($result) {
+
+        $transaction = "PROVIDE SHORTLIST TO MRF - " . $mrf_val1;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success!";
     } else {
         $_SESSION['errorMessage'] = "Error";
@@ -720,6 +832,14 @@ if (isset($_POST['acceptMRF_button_click'])) {
             VALUES ('$mrf_val1', '$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
             $result_insert = $link->query($insert_db);
             if ($result_insert) {
+
+                $transaction = "ACCEPT MRF - " . $mrf_val1;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error";
@@ -768,6 +888,14 @@ if (isset($_POST['updatePhotoBtn'])) {
                     $result = $link->query($updateRoomImageQuery);
 
                     if ($result) {
+                        $transaction = "UPDATE THE PHOTO OF EMPLOYEE - " . $id;
+                        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                        $transaction_log_result = $link->prepare($transaction_log);
+                        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                        $transaction_log_result->execute();
+
+
                         $_SESSION['successMessage'] = "Success!";
                     } else {
                         $_SESSION['errorMessage'] = "Failed to upload picture";
@@ -826,6 +954,14 @@ if (isset($_POST['passBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
+                $transaction = "RATE APPLICANT (PASSED) - " . $applicant;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
@@ -843,6 +979,15 @@ if (isset($_POST['passBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
+
+                $transaction = "RATE APPLICANT (PASSED) - " . $applicant;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
@@ -875,6 +1020,15 @@ if (isset($_POST['failedBtn-1'])) {
         $update_result = $link->query($update);
 
         if ($update_result) {
+
+            $transaction = "RATE APPLICANT (FAILED) - " . $applicant . "- Reason to reject: " . $reason_to_reject;
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in update";
@@ -918,6 +1072,13 @@ if (isset($_POST['failedBtn2'])) {
         $update_result = $link->query($update);
 
         if ($update_result) {
+            $transaction = "RATE APPLICANT (FAILED) - " . $applicant . "- Interview Details " . $interview_details;
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success!";
         } else {
             $_SESSION['errorMessage'] = "Error in update";
@@ -981,6 +1142,14 @@ if (isset($_POST['passUpdateBtn'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
+
+                $transaction = "UPDATE RATINGS OF APPLICANT (PASSED) - Interview Details " . $interview_details;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
@@ -1014,7 +1183,17 @@ if (isset($_POST['updatefailedBtn-1'])) {
             $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
             $update_result = $link->query($update);
 
+
             if ($update_result) {
+
+                $transaction = "UPDATE RATINGS OF APPLICANT (FAILED) - Reason of rejection: " . $reason_to_reject;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
@@ -1079,6 +1258,15 @@ if (isset($_POST['updatefailedBtn2'])) {
             $update_result = $link->query($update);
 
             if ($update_result) {
+
+                $transaction = "UPDATE RATINGS OF APPLICANT (FAILED) - Interview Details: " . $interview_details;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                    VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
@@ -1137,7 +1325,6 @@ if (isset($_POST['submit_update'])) {
         // $_SESSION['errorMessage'] = "Please upload waiver";
         echo "Please upload waiver";
     } else {
-        move_uploaded_file($tempname, $folderDestination);
         $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
             `peraddress`='$peraddress', `cityn`='$cityn', `regionn`='$regionn', `birthday`='$birthday',
             `age`='$agen', `gendern`='$gendern', `civiln`='$civiln', `cpnum`='$cpnum',
@@ -1151,11 +1338,35 @@ if (isset($_POST['submit_update'])) {
         $result = $link->query($query);
 
         if ($result) {
-            $insert_file = "INSERT INTO 201files (waiver_filename, waiver_date_submitted) VALUES ('$filename', '$date_now')";
+            $select_201files = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
+            $select_201files_result = $link->query($select_201files);
+            $select_201files_row = $select_201files_result->fetch_assoc();
+            $folder_id = $select_201files_row['id'];
+
+            $select_employee = "SELECT * FROM employees WHERE id = '$update_id'";
+            $select_employee_result = $link->query($select_employee);
+            $select_employee_row = $select_employee_result->fetch_assoc();
+            $applicant_id = $select_employee_row['id'];
+
+            $insert_file = "INSERT INTO 201files (applicant_id, employee_id, folder_id, waiver_filename, waiver_date_submitted) 
+                            VALUES ('$applicant_id', '$update_id', '$folder_id', '$filename', '$date_now')";
             $insert_file_result = $link->query($insert_file);
 
             if ($insert_file_result) {
-                $_SESSION['successMessage'] = "Success";
+                if (move_uploaded_file($tempname, $folderDestination)) {
+
+                    $transaction = "UPDATE EMPLOYEE'S INFORMATION (WITHOUT MANDATORIES) " . $firstnameko . ", " . $mnko . " " . $lastnameko . " " . $mnko;
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
+
+                    $_SESSION['successMessage'] = "Success";
+                } else {
+                    $_SESSION['errorMessage'] = "Error in inserting waiver file";
+                }
             } else {
                 $_SESSION['errorMessage'] = "Error in inserting waiver";
             }
@@ -1169,20 +1380,21 @@ if (isset($_POST['submit_update'])) {
 
 // For Adding Applicants in Shortlisting
 if (isset($_POST['create_shortlist_applicant'])) {
-    $source = $link->real_escape_string($_POST['source']);
-    $firstname = $link->real_escape_string($_POST['firstname']);
-    $middlename = $link->real_escape_string($_POST['middlename']);
-    $lastname = $link->real_escape_string($_POST['lastname']);
-    $extension_name = $link->real_escape_string($_POST['extension_name']);
-    $gender = $link->real_escape_string($_POST['gender']);
-    $civil_status = $link->real_escape_string($_POST['civil_status']);
-    $age = $link->real_escape_string($_POST['age']);
-    $mobile_number = $link->real_escape_string($_POST['mobile_number']);
-    $email_address = $link->real_escape_string($_POST['email_address']);
-    $birthday = $link->real_escape_string($_POST['birthday']);
-    $address = $link->real_escape_string($_POST['address']);
-    $region = $link->real_escape_string($_POST['region']);
-    $city = $link->real_escape_string($_POST['city']);
+    $source = $link->real_escape_string(chop(strtoupper($_POST['source'])));
+    $firstname = $link->real_escape_string(chop(strtoupper($_POST['firstname'])));
+    $middlename = $link->real_escape_string(chop(strtoupper($_POST['middlename'])));
+    $lastname = $link->real_escape_string(chop(strtoupper($_POST['lastname'])));
+    $extension_name = $link->real_escape_string(chop(strtoupper($_POST['extension_name'])));
+    $gender = $link->real_escape_string(chop(strtoupper($_POST['gender'])));
+    $civil_status = $link->real_escape_string(chop(strtoupper($_POST['civil_status'])));
+    $age = $link->real_escape_string(chop(strtoupper($_POST['age'])));
+    $mobile_number = $link->real_escape_string(chop(strtoupper($_POST['mobile_number'])));
+    $email_address = $link->real_escape_string(chop(strtoupper($_POST['email_address'])));
+    $birthday = $link->real_escape_string(chop(strtoupper($_POST['birthday'])));
+    $address = $link->real_escape_string(chop(strtoupper($_POST['address'])));
+    $region = $link->real_escape_string(chop(strtoupper($_POST['region'])));
+    $city = $link->real_escape_string(chop(strtoupper($_POST['city'])));
+    $job_id = $_POST['job_id'];
 
     $file = $_FILES['resume_file'];
     $filename = $_FILES["resume_file"]["name"];
@@ -1197,67 +1409,119 @@ if (isset($_POST['create_shortlist_applicant'])) {
     // Check if the MIME type is in the list of allowed types
     if (!in_array($file_type, $allowed_types)) {
         $_SESSION['errorMessage'] = "Please upload PDF and Docx file only.";
-    }
+    } else {
 
-    $today = date("Y-m-d");
+        $today = date("Y-m-d");
 
-    if (!empty($filename)) {
-        $insert = "INSERT INTO applicant (`source`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`)
+        if (!empty($filename)) {
+            $insert = "INSERT INTO applicant (`source`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`)
             VALUES ('$source', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$address', '$city', '$region')";
-        $insert_result = $link->query($insert);
+            $insert_result = $link->query($insert);
 
-        if ($insert_result) {
-            $applicant_id = $link->insert_id;
-            $job_id = $_POST['job_id'];
-            $applicant_name = chop($firstname . " " . $middlename . " " . $lastname . " " . $extension_name);
-            $folder_name = $applicant_name;
-            $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
+            if ($insert_result) {
+                $applicant_id = $link->insert_id;
+                $applicant_name = chop($firstname . " " . $middlename . " " . $lastname . " " . $extension_name);
+                $folder_name = $applicant_name;
+                $destination = "../../../pcn_OLA/201 Files/" . $folder_name;
+
+                mkdir("{$destination}", 0777);
+                $applicant_name_subfolder = "Requirements";
+                $folder_name_subfolder = $applicant_name_subfolder;
+                $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+                $folder_path =  "201 Files/" . $folder_name . "/" . $applicant_name_subfolder;
+
+                mkdir("{$destination_subfolder}", 0777);
 
 
+                $select_folder = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
+                $select_folder_result = $link->query($select_folder);
+                $select_folder_row = $select_folder_result->fetch_assoc();
+
+                if ($select_folder_result->num_rows === 0) {
+
+                    $insert_folder = "INSERT INTO folder (applicant_id, folder_name, folder_path) VALUES(?, ?, ?)";
+                    $insert_folder_result = $link->prepare($insert_folder);
+                    $insert_folder_result->bind_param("iss", $applicant_id, $applicant_name_subfolder, $folder_path);
+
+                    if ($insert_folder_result->execute()) {
+                        $folder_id = $insert_folder_result->insert_id;
+                        $insert_201files = "INSERT INTO 201files (applicant_id, folder_id, requirements_files, requirements_files_uploaded) 
+                                        VALUES ('$applicant_id', '$folder_id', '$filename', '$date_now')";
+                        $insert_201files_result = $link->query($insert_201files);
+                        if ($insert_201files_result) {
+                            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, folder_id, resume_file, resume_path)
+                                    VALUES('$applicant_id', '$job_id', '$folder_id', '$filename', '$destination_subfolder')";
+                            $result = mysqli_query($link, $sql);
+                            if ($result) {
+
+                                $transaction = strtoupper(chop("ADDING APPLICANT " . $firstname . " " . $middlename . " " . $lastnameko . " " . $extension_name . " TO SHORTLIST"));
+                                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+                                $transaction_log_result = $link->prepare($transaction_log);
+                                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                                $transaction_log_result->execute();
 
 
-
-
-            mkdir("{$destination}", 0777);
-            $applicant_name_subfolder = "Requirements";
-            $folder_name_subfolder = $applicant_name_subfolder;
-            $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
-            $folder_path =  "201 Files/" . $folder_name;
-
-            mkdir("{$destination_subfolder}", 0777);
-            $sql = "INSERT INTO applicant_resume(applicant_id, project_id, resume_file, resume_path) VALUES('$applicant_id', '$job_id', '$filename', '$destination_subfolder')";
-            $result = mysqli_query($link, $sql);
-            if ($result) {
-                if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
-                    $_SESSION['successMessage'] = "File uploaded successfully";
+                                if (move_uploaded_file($tempname, $destination_subfolder . DIRECTORY_SEPARATOR . $filename)) {
+                                    $_SESSION['successMessage'] = "Success";
+                                } else {
+                                    $_SESSION["errorMessage"] = "Error in uploading file.";
+                                }
+                            }
+                        }
+                    } else {
+                        $_SESSION["errorMessage"] = "Error" . mysqli_error($link);
+                    }
                 } else {
-                    $_SESSION["errorMessage"] = "Error in uploading file.";
+                    $_SESSION["errorMessage"] = "Error" . mysqli_error($link);
                 }
             } else {
-                $_SESSION["errorMessage"] = "Error in inserting file: " . mysqli_error($link);
+                $_SESSION["errorMessage"] = "Error in inserting applicant: " . mysqli_error($link);
             }
         } else {
-            $_SESSION["errorMessage"] = "Error in inserting applicant: " . mysqli_error($link);
+            $_SESSION['errorMessage'] = "Failed to upload file";
         }
-    } else {
-        $_SESSION['errorMessage'] = "Failed to upload file";
     }
-
     header("location: shortlisted_applicants.php?id=$job_id");
     exit(0);
 }
 
+
+// For Backout Employee
 if (isset($_POST['backout_applicant_button_click'])) {
     $employee_id = $link->real_escape_string($_POST['employee_id']);
     $shortlist_id = $link->real_escape_string($_POST['shortlist_id']);
     $is_deleted = '1';
-    $deployment_status = 'BACK OUT';
+    $deployment_status = 'BACKOUT';
 
-    $query = "UPDATE shortlist_master SET is_deleted = ?, deployment_status = ? WHERE id = ? AND employee_id = ?";
+    $query = "UPDATE shortlist_master SET is_deleted = ?, deployment_status = ?, date_backout = ? WHERE id = ? AND employee_id = ?";
     $stmt = $link->prepare($query);
-    $stmt->bind_param('ssss', $is_deleted, $deployment_status, $shortlist_id, $employee_id);
+    $stmt->bind_param('sssss', $is_deleted, $deployment_status, $date_now, $shortlist_id, $employee_id);
     if ($stmt->execute()) {
-        $_SESSION['successMessage'] = "Success";
+        $sql = "UPDATE employees SET actionpoint = ? WHERE id = ?";
+        $sql_result = $link->prepare($sql);
+        $sql_result->bind_param("si", $deployment_status, $employee_id);
+        if ($sql_result->execute()) {
+            $backout_history = "INSERT INTO backout_history (employee_id, backout_date) VALUES (?, ?)";
+            $backout_history_result = $link->prepare($backout_history);
+            $backout_history_result->bind_param("is", $employee_id, $date_now);
+            if ($backout_history_result->execute()) {
+
+                $transaction = "BACKOUT EMPLOYEE " . $employee_id;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error";
+            }
+        } else {
+            $_SESSION['errorMessage'] = "Error";
+        }
     } else {
         $_SESSION['errorMessage'] = "Error";
     }
@@ -1297,6 +1561,15 @@ if (isset($_POST['create_folder_btn'])) {
         $stmt = $link->prepare($query);
         $stmt->bind_param("iiss", $applicant_id, $employee_id, $folder_name_subfolder, $folder_path);
         if ($stmt->execute()) {
+
+            $transaction = "ADDED FOLDER FOR EMPLOYEE " . $employee_id . " FOLDER NAME: " . $folder_name_subfolder;
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error" . $link->error;
@@ -1343,12 +1616,21 @@ if (isset($_POST['upload_file_btn'])) {
         foreach ($files['tmp_name'] as $key => $tmp_name) {
             $targetFile = $path . basename($files['name'][$key]);
             $filename = basename($files['name'][$key]);
-            
+
             $inserts = "INSERT INTO 201files(applicant_id, employee_id, folder_id, requirements_files) 
             VALUES (?, ?, ?, ?)";
             $insert_result = $link->prepare($inserts);
             $insert_result->bind_param("ssss", $applicant_id, $employee_id, $folder_id, $filename);
             if ($insert_result->execute()) {
+
+                $transaction = "ADDED FILES FOR EMPLOYEE " . $employee_id . " FILE NAME: " . $filename;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 move_uploaded_file($tmp_name, $targetFile);
                 $_SESSION['successMessage'] = "Success";
             } else {
@@ -1358,4 +1640,32 @@ if (isset($_POST['upload_file_btn'])) {
     }
     header("Location: files.php?id=$employee_id&folder_id=$folder_id");
     exit(0);
+}
+
+// For Rejecting Applicants in Shortlited_applicants.php
+if (isset($_POST['reject_applicant_recruitment_button_click'])) {
+    $resume_id = $_POST['resume_id'];
+    $mrf_id = $_POST['mrf_id'];
+    $is_deleted = "1";
+    $status = "NOT QUALIFIED";
+
+    $query = "UPDATE applicant_resume SET status = ?, is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("ssi", $status, $is_deleted, $resume_id);
+
+    if ($stmt->execute()) {
+
+        $transaction = "REJECT APPLICANT";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
+        $_SESSION["successMessage"] = "Success";
+    } else {
+        $_SESSION["errorMessage"] = "Error";
+    }
+    header("Location: shortlisted_applicants.php?id=$mrf_id");
 }

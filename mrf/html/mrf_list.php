@@ -141,10 +141,10 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <div class="contain">
                                                         <div class="columns">
                                                             <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
-                                                            <button type="button" class="btn btnview btntooltips" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon" style="color: black !important;"></i></button>
+                                                            <button type="button" class="btn btn-primary btn-sm btnview btntooltips" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
                                                         </div>
                                                         <div class="columns">
-                                                            <button type="button" class="btn btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon" style="color: black !important;"></i></button>
+                                                            <button type="button" class="btn btn-dark btn-sm btnprint" id="btnprint" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Print MRF" onclick="location.href = 'print_mrf.php?id=<?php echo $row['id'] ?>'"><i class="bi bi-printer icon"></i></button>
                                                         </div>
 
                                                         <?php 
@@ -155,12 +155,12 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <div class="columns">
                                                             <a href="edit_mrf.php?id=<?php echo $row['id'] ?>" method="post" style="width: 0% !important;">
                                                                 <input type="hidden" name="edit_id" class="edit_id" id="edit_id" value="<?php echo $row['id']; ?>">
-                                                                <button type="button" class="btn btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon" style="color: black !important;"></i></button>
+                                                                <button type="button" class="btn btn-success btn-sm btnedit" name="btnedit" id="btnedit" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit MRF"><i class="bi bi-gear icon"></i></button>
                                                             </a>
                                                         </div>
                                                         <div class="columns">
                                                             <input type="hidden" name="delete_id" class="delete_id" id="delete_id" value="<?php echo $row['id']; ?>">
-                                                            <button type="button" class="btn btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon" style="color: black !important;"></i></button>
+                                                            <button type="button" class="btn btn-danger btn-sm btndelete" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete MRF"><i class="bi bi-trash3 icon"></i></button>
                                                         </div>
                                                         <?php }?>
 
@@ -173,9 +173,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 if ($result_select->num_rows > 0) {
                                                             ?>
                                                                     <input type="hidden" name="project_id" class="project_id" id="project_id" value="<?php echo $select_row['id']; ?>">
-                                                                    <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
+                                                                    <button type="button" class="btn btn-info btn-sm btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-search"></i></button>
                                                                 <?php } else { ?>
-                                                                    <button type="button" class="btn btn-default btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none !important;"><i class="bi bi-search"></i></button>
+                                                                    <button type="button" class="btn btn-secondary btn-sm btnsearch btntooltips" id="btnsearch" title="Search" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none !important;"><i class="bi bi-search"></i></button>
 
 
                                                             <?php }
@@ -189,14 +189,16 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                                 if ($result_selects->num_rows > 0) {
                                                         ?>
-                                                            <button type="button" class="btn btn-default" onclick="location.href = 'request_loa.php?id=<?php echo $selects_row['id'];?>'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Request LOA"><i class="bi bi-file-arrow-up"></i></button>
+                                                            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href = 'request_loa.php?id=<?php echo $selects_row['id'];?>'" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Request LOA"><i class="bi bi-file-arrow-up"></i></button>
                                                         <?php }
                                                             } ?>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php }  ?>
+                                        <?php }  
+                                            
+                                        ?>
                                     </tbody>
                                 </table>
 

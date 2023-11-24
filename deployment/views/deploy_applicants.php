@@ -9,6 +9,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
     <head>
         <?php include '../components/header.php'; ?>
         <title>Deploy Applicant</title>
+
+        
     </head>
 
     <body>
@@ -127,17 +129,26 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $rows['remarks'] ?></td>
                                                     <td>
                                                         <?php if ($rows['deployment_status'] === 'DEPLOYED' && $rows['for_loa_status'] === "FOR LOA") { ?>
-                                                            <div class="mb-1">
-                                                                <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
-                                                                <button type="button" name="deploy" class="btn btn-primary updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>
-                                                            </div>
-                                                            <div class="mt-1">
-                                                                <a href="download_loa.php?id=<?php echo $rows['id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
-                                                            </div>
-                                                            <div class="mt-1">
-                                                                <button type="button" class="btn btn-danger clearBtn" data-bs-toggle="modal" data-bs-target="#clearModal-<?php echo $rows['id'] ?>" title="Clear">
-                                                                    <i class="bi bi-trash"></i>
-                                                                </button>
+                                                            <div class="contain">
+                                                                <div class="columns">
+                                                                    <input type="hidden" name="deployUpdateID" id="deployUpdateID" class="deployUpdateID" value="<?php echo $rows['id'] ?>">
+                                                                    <button type="button" name="deploy" class="btn btn-info btn-sm updateDeployOpenModal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Update"><i class="bi bi-gear"></i></button>
+                                                                </div>
+                                                                <div class="columns">
+                                                                    <a href="download_loa.php?id=<?php echo $rows['id'] ?>" name="download_deploy" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                                </div>
+                                                                <div class="columns">
+                                                                    <button type="button" class="btn btn-success btn-sm clearBtn" data-bs-toggle="modal" data-bs-target="#clearModal-<?php echo $rows['id'] ?>" title="Separation">
+                                                                        <i class="bi bi-trash"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="columns">
+                                                                    <input type="hidden" value="<?php echo $rows['id'] ?>" class="backOutID">
+                                                                    <input type="hidden" value="<?php echo $_GET['shortlist_title'] ?>" name="project_title">
+                                                                    <button type="button" class="btn btn-danger btn-sm backOutBtn" data-bs-toggle="tooltip" data-bs-title="Backout Applicant">
+                                                                    <i class="bi bi-x-octagon-fill"></i>
+                                                                    </button>
+                                                                </div>
                                                             </div>
 
 
@@ -158,8 +169,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                     AND deployment.employee_id = '" . $rows['id'] . "'";
                                                                                     $select_result = $link->query($select);
                                                                                     $select_row = $select_result->fetch_assoc();
+                                                                                    $date_now = date('Y-m-d');
                                                                                 ?>
-                                                                                <form action="action.php" method="post" class="row">
+                                                                                <form action="action.php" method="post" class="row" enctype="multipart/form-data">
                                                                                     <input type="hidden" name="deployment_id" value="<?php echo $select_row['deployment_id']?>">
                                                                                     <input type="hidden" name="employee_id" value="<?php echo $select_row['employee_id']?>">
                                                                                     <input type="hidden" name="category" value="<?php echo $select_row['category']?>">
@@ -170,8 +182,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                     <input type="hidden" name="outlet" value="<?php echo htmlspecialchars($select_row['outlet']); ?>">
 
                                                                                     <div class="col-md-12 mt-2">
-                                                                                        <label for="" class="form-label">Date created</label>
-                                                                                        <input type="date" name="date_created" id="date_create" class="form-control" required>
+                                                                                        <input type="date" name="date_created" id="date_create" class="form-control" value="<?php echo $date_now; ?>" style="display: none !important;">
                                                                                     </div>
                                                                                     <div class="col-md-12 mt-2">
                                                                                         <label for="" class="form-label">Name</label>
@@ -191,12 +202,20 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </datalist>
                                                                                     </div>
                                                                                     <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Reason</label>
+                                                                                        <textarea name="reason_of_separation" id="reason_of_separation" class="form-control" cols="30" rows="3"></textarea>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
                                                                                         <label for="" class="form-label">Effectivity Date</label>
                                                                                         <input type="date" name="effectivity_date" id="effectivity_date" class="form-control" required>
                                                                                     </div>
                                                                                     <div class="col-md-12 mt-2">
                                                                                         <label for="" class="form-label">Process By</label>
                                                                                         <input type="text" name="process_by" id="process_by" class="form-control" value="<?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];?>" readonly>
+                                                                                    </div>
+                                                                                    <div class="col-md-12 mt-2">
+                                                                                        <label for="" class="form-label">Attach File/s</label>
+                                                                                        <input type="file" name="files[]" id="files" class="form-control" multiple required>
                                                                                     </div>
                                                                             </div>
                                                                         </div>
@@ -215,7 +234,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
 
                                                         <?php } else { ?>
-                                                            <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
+                                                            <button type="button" name="deploy" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateDeployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;"></button>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>
@@ -239,7 +258,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td>
                                                         <?php if ($rows['deployment_status'] === 'FOR DEPLOYMENT' && $rows['for_loa_status'] === "FOR LOA") { ?>
                                                             <input type="hidden" name="deployID" id="deployID" class="deployID" value="<?php echo $rows['id'] ?>">
-                                                            <button type="button" name="deploy" class="btn btn-primary open-modal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Deploy and Appoint LOA"><i class="bi bi-folder-check"></i></button>
+                                                            <button type="button" name="deploy" class="btn btn-primary btn-sm open-modal" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Deploy and Appoint LOA"><i class="bi bi-folder-check"></i></button>
                                                         <?php } else { ?>
                                                             <button type="button" name="deploy" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deployModal-<?php echo $rows['id'] ?>" style="visibility: hidden !important;">Not empty</button>
                                                         <?php } ?>

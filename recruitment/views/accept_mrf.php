@@ -124,13 +124,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <td>
                                                             <form action="" method="POST">
                                                                 <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
-                                                                <button type="button" class="btn btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
+                                                                <button type="button" class="btn btn-sm btn-primary btnview btntooltips" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
                                                             <?php 
                                                                 if($selected_row['status'] === 'QUALIFIED'){
                                                             ?>
-                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_row['project_id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_row['project_id']?>" class="btn btn-sm btn-secondary btntooltips" title="View"><i class="bi bi-search"></i></a>
                                                             <?php } elseif($selected_screening_row['status'] === 'FOR SCREENING'){?>
-                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_screening_row['project_id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $selected_screening_row['project_id']?>" class="btn btn-sm btn-secondary btntooltips" title="View"><i class="bi bi-search"></i></a>
                                                             <?php }?>
                                                             </form>
                                                         </td>
@@ -152,11 +152,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <td>
                                                             <form action="" method="POST">
                                                             <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
-                                                                <button type="button" class="btn btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
+                                                                <button type="button" class="btn btn-sm btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
                                                                 <a href="shortlisted_applicants.php?id=<?php echo $row['id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
 
                                                                 <input type="hidden" name="mrf_ids" class="mrf_ids" value="<?php echo $row['id'] ?>">
-                                                                <button type="button" name="r_mrfs" class="btn btn-success r_mrfs" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accept MRF"><i class="bi bi-send-check"></i></button>
+                                                                <button type="button" name="r_mrfs" class="btn btn-sm btn-success r_mrfs" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accept MRF"><i class="bi bi-send-check"></i></button>
                                                                 
                                                             </form>
                                                         </td>

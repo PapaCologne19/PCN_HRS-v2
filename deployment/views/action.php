@@ -126,7 +126,7 @@ if (isset($_POST['create_loa'])) {
 
 
 
-                $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
+                $query_history = "INSERT INTO `deployment_history`(`deployment_id`, `shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
             `contact_number`, `loa_status`, `type`, `loa_start_date`, 
             `loa_end_date`, `division`, `category`, `locator`, `client_name`,
@@ -138,7 +138,7 @@ if (isset($_POST['create_loa'])) {
             `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, 
             `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, 
             `head`, `head_designation`, `emp_id`) 
-            VALUES ('$shortlist_title', '$appno', '$fullname', '$date_shortlisted', '$id', 
+            VALUES ('$deployment_id' ,'$shortlist_title', '$appno', '$fullname', '$date_shortlisted', '$id', 
             '$sss', '$philhealth', '$pagibig', '$tin','$address', 
             '$contact_number','$status', '$type', '$start_loa', 
             '$end_loa', '$division', '$category', '$locator', '$client_name',
@@ -334,7 +334,7 @@ if (isset($_POST['update_loa'])) {
     exit(0);
 }
 
-
+// TYPE OF SEPARATION
 if (isset($_POST['insert_typeBtn'])) {
     $deployment_id = $link->real_escape_string($_POST['deployment_id']);
     $employee_id = $link->real_escape_string($_POST['employee_id']);
@@ -344,33 +344,115 @@ if (isset($_POST['insert_typeBtn'])) {
     $employee_status = $link->real_escape_string($_POST['employee_status']);
     $start_date = $link->real_escape_string($_POST['start_date']);
     $outlet = $link->real_escape_string($_POST['outlet']);
+    $reason_of_separation = $link->real_escape_string($_POST['reason_of_separation']);
     $date_created = $link->real_escape_string($_POST['date_created']);
     $name = $link->real_escape_string($_POST['name']);
     $type_of_separations = $link->real_escape_string($_POST['type_of_separations']);
     $effectivity_date = $link->real_escape_string($_POST['effectivity_date']);
     $process_by = $link->real_escape_string($_POST['process_by']);
 
-    $get_loa_requestedBy = "SELECT deployment.*, loa_requested.*
-    FROM deployment deployment, loa_requests loa_requested
-    WHERE deployment.employee_id = loa_requested.employee_id
+    $files = $_FILES['files'];
+
+    // Selecting Employees table so we can fetch the Applicant ID
+    $select = "SELECT * FROM employees WHERE id = ?";
+    $select_result = $link->prepare($select);
+    $select_result->bind_param("i", $employee_id);
+    if($select_result->execute()){
+
+    $get_result = $select_result->get_result();
+    $select_row = $get_result->fetch_assoc();
+    $applicant_id = $select_row['app_id'];
+
+    $folder_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
+
+    // Selecting Folder table so we can fetch the datas in that table
+    $select_folder = "SELECT * FROM folder WHERE applicant_id = ? AND employee_id = ? AND folder_name = ?";
+    $stmt2 = $link->prepare($select_folder);
+    $stmt2->bind_param("iis", $applicant_id, $employee_id, $folder_name);
+    if($stmt2->execute()){
+        $get_stmt = $stmt2->get_result();
+    while ($rows = $get_stmt->fetch_assoc()) {
+        foreach ($files['tmp_name'] as $key => $tmp_name) {
+
+            $get_loa_requestedBy = "SELECT deployment.*, loa_requested.*, employee.*
+    FROM deployment deployment, loa_requests loa_requested, employees employee
+    WHERE employee.id = loa_requested.employee_id
+    AND employee.id = deployment.employee_id 
+    AND deployment.employee_id = loa_requested.employee_id
     AND deployment.shortlist_title = loa_requested.place_assigned 
     AND loa_requested.employee_id = '$employee_id'";
-    $get_loa_requested_by_result = $link->query($get_loa_requestedBy);
-    $get_loa_requested_by_row = $get_loa_requested_by_result->fetch_assoc();
+            $get_loa_requested_by_result = $link->query($get_loa_requestedBy);
+            $get_loa_requested_by_row = $get_loa_requested_by_result->fetch_assoc();
 
-    $loa_requested_by = $get_loa_requested_by_row['requested_by'];
-    $shortlist_title = $get_loa_requested_by_row['place_assigned'];
+            $loa_requested_by = $get_loa_requested_by_row['requested_by'];
+            $shortlist_title = $get_loa_requested_by_row['place_assigned'];
 
-    $insert_type = "INSERT INTO separation (deployment_id, employee_id, employee_name, category, position, project_title, employment_status, date_start, outlet, type_of_separation, effectivity_date, process_by, loa_request_by) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $link->prepare($insert_type);
-    $stmt->bind_param("iisssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $effectivity_date, $process_by, $loa_requested_by);
 
+            $update_clearance = "UPDATE deployment SET clearance = ? WHERE id = ?";
+            $update_clearance_result = $link->prepare($update_clearance);
+            $update_clearance_result->bind_param('si', $type_of_separations, $deployment_id);
+            if ($update_clearance_result->execute()) {
+
+                $path = "../../../pcn_OLA/" . $rows['folder_path'] . "/";
+                $folder_id = $rows['id'];
+
+                $targetFile = $path . basename($files['name'][$key]);
+                $filename = basename($files['name'][$key]);
+
+                $inserts = "INSERT INTO 201files(applicant_id, employee_id, folder_id, requirements_files) 
+                                VALUES (?, ?, ?, ?)";
+                $insert_result = $link->prepare($inserts);
+                $insert_result->bind_param("ssss", $applicant_id, $employee_id, $folder_id, $filename);
+
+
+                if ($insert_result->execute()) {
+                    $insert_type = "INSERT INTO separation (deployment_id, employee_id, employee_name, category, position, project_title, employment_status, date_start, outlet, type_of_separation, reason, files, effectivity_date, process_by, loa_request_by) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    $stmt = $link->prepare($insert_type);
+                    $stmt->bind_param("iisssssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $reason, $filename, $effectivity_date, $process_by, $loa_requested_by);
+
+                    if ($stmt->execute()) {
+                        move_uploaded_file($tmp_name, $targetFile);
+                        $_SESSION['successMessage'] = "Success";
+                    } else {
+                        $_SESSION['errorMessage'] = "Error" . $link->error;
+                    }
+                } else {
+                    $_SESSION['errorMessage'] = "Error" . $link->error;
+                }
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
+            }
+        }
+    }
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error" . $link->error;
+    }
+}
+else{
+    $_SESSION['errorMessage'] = "Error" . $link->error;
+}
+    
+    // header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
+}
+
+
+// For Backout Employee
+if (isset($_POST['backout_employee_deployment_button_click'])) {
+    $deployment_id = $_POST['backout_id'];
+    $project_title = $_POST['project_title'];
+    $backout = "BACKOUT";
+    $is_deleted = "1";
+
+    $query = "UPDATE deployment SET clearance = ?, is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("ssi", $backout, $is_deleted, $deployment_id);
     if ($stmt->execute()) {
-        $update_clearance = "UPDATE deployment SET clearance = ? WHERE id = ?";
-        $update_clearance_result = $link->prepare($update_clearance);
-        $update_clearance_result->bind_param('si', $type_of_separations, $deployment_id);
-        if ($update_clearance_result->execute()) {
+        $sql = "UPDATE deployment_history SET clearance = ? WHERE deployment_id = ?";
+        $sql_result = $link->prepare($sql);
+        $sql_result->bind_param("si", $backout, $deployment_id);
+        if ($sql_result->execute()) {
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error";
@@ -378,5 +460,6 @@ if (isset($_POST['insert_typeBtn'])) {
     } else {
         $_SESSION['errorMessage'] = "Error";
     }
-    header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
+    header("Location: deploy_applicants.php?shortlist_title=$project_title");
+    exit(0);
 }

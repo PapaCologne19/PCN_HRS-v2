@@ -287,6 +287,42 @@
          });
       });
 
+      // For Undo Backout Applicants
+      $('#example').on('click', '.undobackoutbtn', function(e) {
+         e.preventDefault();
+
+         var undobackoutID = $(this).closest("tr").find('.undobackoutID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_backout_button_click": 1,
+                     "undobackout_id": undobackoutID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
 
       // For Undo Canceled Applicants
       $('#example').on('click', '.undocanceledbtn', function(e) {
@@ -732,6 +768,44 @@
          });
       });
 
+      // For Rejecting Applicants (Shortlisted_applicants.php)
+      $('#example').on('click', '.btnRejectShortlistedApplicant', function(e) {
+         e.preventDefault();
+
+         var resume_id = $(this).closest("tr").find('.resume_id').val();
+         var mrf_id = $(this).closest("tr").find('.mrf_id').val();
+
+         Swal.fire({
+            title: "Reject this applicant?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "reject_applicant_recruitment_button_click": 1,
+                     "resume_id": resume_id,
+                     "mrf_id": mrf_id,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
 
 
       // Viewing of MRF

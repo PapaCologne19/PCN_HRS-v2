@@ -168,6 +168,11 @@
           </a>
         </li>
         <li class="menu-item">
+          <a href="list_of_backout.php" class="menu-link">
+            <div data-i18n="Container">List of Backout</div>
+          </a>
+        </li>
+        <li class="menu-item">
           <a href="list_of_canceled.php" class="menu-link">
             <div data-i18n="Container">List of Canceled</div>
           </a>

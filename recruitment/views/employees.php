@@ -87,7 +87,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $resultx = mysqli_query($link, "SELECT *, DATE_FORMAT(birthday, '%M %d %Y') AS birthday FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'CANCELED' AND is_deleted <> '1'");
+                                            $resultx = mysqli_query($link, "SELECT * FROM employees WHERE actionpoint <> 'BLACKLISTED' AND actionpoint <> 'REJECTED' AND actionpoint <> 'CANCELED' AND is_deleted <> '1'");
                                             while ($rowx = mysqli_fetch_assoc($resultx)) { ?>
                                                 <tr>
                                                     <td> <?php echo $rowx['id'] ?> </td>
@@ -96,33 +96,45 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td> <?php echo $rowx['emailadd'] ?> </td>
                                                     <td> <?php echo $rowx['cpnum'] ?> </td>
                                                     <td> <?php echo $rowx['birthday'] ?> </td>
-                                                    <td> <?php echo $rowx['peraddress'] ?> </td>
-                                                    <td class="badge bg-success rounded-pill p-2 text-white"><?php echo $rowx['actionpoint']; ?></td>
+                                                    <td> <?php echo $rowx['paddress'] ?> </td>
+                                                    <td>
+                                                        <?php 
+                                                            if($rowx['actionpoint'] === "ACTIVE"){
+                                                        ?>
+                                                        <span class="badge bg-success rounded-pill text-white text-center">
+                                                            <?php echo $rowx['actionpoint']; ?>
+                                                        </span>
+                                                        <?php } else{?>
+                                                            <span class="badge bg-dark rounded-pill text-white text-center">
+                                                            <?php echo $rowx['actionpoint']; ?>
+                                                        </span>
+                                                        <?php }?>
+                                                    </td>
                                                     <td>
                                                         <div class="contain">
                                                             <div class="columns">
-                                                                <a href="update_applicants.php?id=<?php echo $rowx['id'] ?>" name="Editbtn" class="btn btn-default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Applicant">
+                                                                <a href="update_applicants.php?id=<?php echo $rowx['id'] ?>" name="Editbtn" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Applicant">
                                                                     <i class="bi bi-pencil-square"></i>
                                                                 </a>
                                                             </div>
 
                                                             <div class="columns">
                                                                 <input type="hidden" name="blackbtnID" class="blackbtnID" value="<?php echo $rowx['id'] ?>">
-                                                                <button type="button" name="blackbtn" class="btn btn-default blackbtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Blacklist">
+                                                                <button type="button" name="blackbtn" class="btn btn-sm btn-dark blackbtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Blacklist">
                                                                     <i class="bi bi-person-fill-x"></i>
                                                                 </button>
                                                             </div>
 
                                                             <div class="columns">
                                                                 <input type="hidden" name="deleteID" class="deleteID" value="<?php echo $rowx['id'] ?>">
-                                                                <button type="button" name="deletebtn" class="btn btn-default deletebtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Applicant">
+                                                                <button type="button" name="deletebtn" class="btn btn-sm btn-danger deletebtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete Applicant">
                                                                     <i class="bi bi-trash"></i>
                                                                 </button>
                                                             </div>
 
                                                             <div class="columns">
                                                                 <input type="hidden" name="downloadinfoID" class="downloadinfoID" value="<?php echo $rowx['id'] ?>">
-                                                                <a href="export_applicant.php?id=<?php echo $rowx['id'] ?>" name="downloadinfobtn" class="btn btn-default downloadinfobtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Applicant Information">
+                                                                <a href="export_applicant.php?id=<?php echo $rowx['id'] ?>" name="downloadinfobtn" class="btn btn-sm btn-info downloadinfobtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Applicant Information">
                                                                     <i class="bi bi-download"></i>
                                                                 </a>
                                                             </div>

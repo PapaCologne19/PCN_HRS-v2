@@ -265,7 +265,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                                                         <?php
                                                                         if ($rowx['psa'] === '') { ?>
-                                                                            <button type="button" name="editInfos" class="btn btn-success mt-1 mb-1 updateInfoBtn" data-bs-target="#updateInfoModal-<?php echo $rowx['id'] ?>" data-bs-toggle="modal" title="Update Mandatories">
+                                                                            <button type="button" name="editInfos" class="btn btn-primary mt-1 mb-1 updateInfoBtn" data-bs-target="#updateInfoModal-<?php echo $rowx['id'] ?>" data-bs-toggle="modal" title="Update Mandatories">
                                                                                 <i class="bi bi-folder-plus"></i>
                                                                             </button>
                                                                             <input type="hidden" name="employee_id" class="employee_id" value="<?php echo $rowx['id']; ?>">
@@ -273,8 +273,8 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                             <button type="button" name="deleteInfos" class="btn btn-danger mt-1 mb-1 deleteInfoBtn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Backout Applicant">
                                                                                 <i class="bi bi-trash"></i>
                                                                             </button>
-                                                                        <?php } else { ?>
-                                                                            <button type="submit" name="addtoewb" class="btn btn-primary notification mt-1 mb-1 addtoewb" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
+                                                                        <?php } else { ?>                                     <!-- notification -->
+                                                                            <button type="submit" name="addtoewb" class="btn btn-success mt-1 mb-1 addtoewb" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Deploy">
                                                                                 <i class="bi bi-layer-forward"></i>
                                                                             </button>
 
@@ -303,30 +303,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                 <div class="title">
                                                                                     <h2 class="fs-4 text-center mb-3"><?php echo $fetch_row['firstnameko'] . " " . $fetch_row['lastnameko'] ?>'s Details</h2>
                                                                                 </div>
-                                                                                <!-- <script>
-            function validateForm() {
-                var sssnum = document.getElementById('sssnum').value;
-                var phnum = document.getElementById('phnum').value;
-                var pagibignum = document.getElementById('pagibignum').value;
-                var waiver = document.getElementById('waiver');
- 
-                console.log('SSS: ', sssnum);
-                console.log('Pagibig: ', pagibignum);
-                console.log('Philhealth: ', phnum);
-                console.log('Waiver: ', waiver);
-                // If both first name and last name are empty, make file input required
-                if (sssnum.trim() === '' || phnum.trim()) {
-                    // Check if file input is empty
-                    if (!waiver.value) {
-                        alert('File is required!');
-                        return false; // Prevent form submission
-                    }
-                }
-
-                // Continue with form submission if validation passes
-                return true;
-            }
-        </script> -->
+              
                                                                                 <form action="action.php" method="POST" class="form-group" enctype="multipart/form-data" onsubmit="return validateForm();">
                                                                                     <input type="hidden" name="update_id" id="update_id" value="<?php echo $fetch_row['id'] ?>">
                                                                                     <div class="row mt-3">

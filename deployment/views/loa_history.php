@@ -68,7 +68,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <td><?php echo $formattedDate_end?></td>
                                                 <td><?php echo $row['employment_status']?></td>
                                                 <td>
-                                                    <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                    <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
                                                 </td>
                                             </tr>
                                             <?php }?>

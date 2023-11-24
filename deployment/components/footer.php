@@ -381,6 +381,43 @@
             });
          });
       });
+
+      // For Back Out Applicants
+      $('#example').on('click', '.backOutBtn', function(e) {
+         e.preventDefault();
+
+         var backOutID = $(this).closest("tr").find('.backOutID').val();
+
+         Swal.fire({
+            title: "Confirm Backout?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "backout_employee_deployment_button_click": 1,
+                     "backout_id": backOutID,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
    </script>
 
    <!-- Data Table -->
@@ -399,7 +436,7 @@
          return true;
       });
    </script>
-
+ 
    <!-- Tooltips Enabler -->
    <script>
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
