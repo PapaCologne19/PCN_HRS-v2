@@ -940,12 +940,20 @@ if (isset($_POST['passBtn'])) {
     $interview_details = $link->real_escape_string($_POST['interview_details']);
     $status = "QUALIFIED";
 
-    if (
-        empty($relevant_educ_background) && empty($related_work_experience) && empty($related_computer_skills)
-        && empty($verbal_communication_skills) && empty($cooperation) && empty($personality)
-        && empty($intelligence) && empty($diction) && empty($others)
-        && empty($IQ) && empty($english) && empty($math) && empty($interview_details)
-    ) {
+    if (empty($relevant_educ_background) 
+        && empty($related_work_experience) 
+        && empty($related_computer_skills)
+        && empty($verbal_communication_skills) 
+        && empty($cooperation) 
+        && empty($personality)
+        && empty($intelligence) 
+        && empty($diction) 
+        && empty($others)
+        && empty($IQ) 
+        && empty($english) 
+        && empty($math) 
+        && empty($interview_details)) {
+
         $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, result)
         VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$status')";
         $result = $link->query($query);
@@ -986,9 +994,13 @@ if (isset($_POST['passBtn'])) {
                 $transaction_log_result = $link->prepare($transaction_log);
                 $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
                 $transaction_log_result->execute();
+                if($transaction_log_result){
+                    $_SESSION['successMessage'] = "Success!";
+                }
+                else {
+                    $_SESSION['errorMessage'] = "Error in update";
+                }
 
-
-                $_SESSION['successMessage'] = "Success!";
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -1317,9 +1329,10 @@ if (isset($_POST['submit_update'])) {
     $file = $_FILES['waiver'];
     $filename = $_FILES["waiver"]["name"];
     $tempname = $_FILES["waiver"]["tmp_name"];
-    $folder = "../201 Files/" . $filename;
+    $applicant_name = chop($firstnameko . " " . $mnko . " " . $lastnameko . " " . $extnname);
+    $folder = "201 Files/" . $applicant_name . "/Requirements/";
 
-    $folderDestination = $folder;
+    $folderDestination = "../../../pcn_OLA/201 Files/" . $applicant_name . "/Requirements/";
 
     if (empty($sssnum) || $sssnum === '' || empty($pagibignum) || $pagibignum === '' || empty($phnum) || $phnum === '') {
         // $_SESSION['errorMessage'] = "Please upload waiver";

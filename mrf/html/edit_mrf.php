@@ -133,7 +133,7 @@ $datenow = date("m/d/Y h:i:s A");
 
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">PO Number</label>
-                                            <input type="text" name="po_number" id="po_number" class="form-control" value="<?php echo $rows['po_number'] ?>" required>
+                                            <input type="text" name="po_number" id="po_number" class="form-control" value="<?php echo $rows['po_number'] ?>">
                                         </div>
 
                                         <!-- FOR POSITION -->

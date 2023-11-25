@@ -552,45 +552,40 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
         </div>
         <!-- Add this script block after your HTML content -->
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const selectAll = document.getElementById('select-all');
-                const userCheckboxes = document.querySelectorAll('input[name="applicants[]"]');
-                const someElement = document.getElementById('form_request_loa'); // Replace 'your-form-id' with the actual ID of your form
+            document.addEventListener('DOMContentLoaded', function () {
+    const table = $('#example').DataTable(); // Replace 'your-table-id' with the actual ID of your DataTable
 
-                // Check if 'selectAll' exists before adding an event listener
-                if (selectAll) {
-                    selectAll.addEventListener('change', function() {
-                        userCheckboxes.forEach((checkbox) => {
-                            checkbox.checked = selectAll.checked;
-                        });
-                    });
-                }
+    const selectAll = document.getElementById('select-all');
 
-                // Add event listeners to user checkboxes to track selections
-                userCheckboxes.forEach((checkbox) => {
-                    checkbox.addEventListener('change', function() {
-                        // Check if at least one user checkbox is checked
-                        const atLeastOneChecked = Array.from(userCheckboxes).some((cb) => cb.checked);
+    // Add event listener to 'Select All'
+    if (selectAll) {
+        selectAll.addEventListener('change', function () {
+            // Use DataTables API to select/deselect rows across all pages
+            table.rows().select(selectAll.checked);
+        });
+    }
 
-                        // Update "Select All" accordingly
-                        if (selectAll) {
-                            selectAll.checked = atLeastOneChecked && [...userCheckboxes].every((cb) => cb.checked);
-                        }
-                    });
-                });
+    // Add event listener to checkboxes in the table
+    $('#your-table-id tbody').on('change', 'input[name="applicants[]"]', function () {
+        // Update 'Select All' based on the selection status of checkboxes
+        selectAll.checked = table.rows({
+            selected: true
+        }).count() === table.rows().count();
+    });
 
-                // Add event listener for form submission
-                if (someElement) {
-                    someElement.addEventListener('submit', function(event) {
-                        const atLeastOneChecked = Array.from(userCheckboxes).some((cb) => cb.checked);
+    // Add event listener for form submission
+    $('#form_request_loa').submit(function (event) {
+        const atLeastOneChecked = table.rows({
+            selected: true
+        }).count() > 0;
 
-                        if (!atLeastOneChecked) {
-                            alert('Please select at least one recipient');
-                            event.preventDefault(); // Prevent the default action (e.g., form submission)
-                        }
-                    });
-                }
-            });
+        if (!atLeastOneChecked) {
+            alert('Please select at least one recipient');
+            event.preventDefault(); // Prevent the default action (e.g., form submission)
+        }
+    });
+});
+
 
             // For QUILL
             var quill = new Quill('#editor', {

@@ -57,6 +57,12 @@
 
       <ul class="menu-sub">
         <li class="menu-item">
+          <a href="applicant_maintenance.php" class="menu-link">
+            <div data-i18n="Accordion">Applicant Maintenance</div>
+          </a>
+        </li>
+
+        <li class="menu-item">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <div data-i18n="Accordion">Recruitment Maintenance</div>
           </a>
@@ -134,6 +140,7 @@
           </ul>
         </li>
       </ul>
+
 
     </li>
 

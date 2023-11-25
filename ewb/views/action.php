@@ -2,6 +2,11 @@
 session_start();
 include '../../connect.php';
 
+$user_id = $_SESSION['user_id'];
+$user_division = $_SESSION['division'];
+$personnel = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+$user_type = $_SESSION['user_type'];
+
 // For Verification of Applicants
 if (isset($_POST['verify_button_click'])) {
     date_default_timezone_set('Asia/Manila');
@@ -43,6 +48,14 @@ if (isset($_POST['verify_button_click'])) {
                 $results_emp = $link->query($insert_emp);
 
                 if ($results_emp) {
+
+                    $transaction = chop(strtoupper("VERIFIED " . $ewbid1));
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
                     $_SESSION['successMessage'] = "Success";
                 } else {
                     $_SESSION["errorMessage"] = "Error!!!";
@@ -121,6 +134,15 @@ if (isset($_POST['declined_button'])) {
         $declined_history_result = mysqli_query($link, $declined_history_query);
 
         if ($declined_history_result) {
+
+            $transaction = chop(strtoupper("DECLINED " . $id . " Reason: " . $ewb_reason));
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Declined error!";
@@ -141,15 +163,22 @@ if (isset($_POST['processmultiple'])) {
         foreach ($_POST['check_list'] as $selected) {
             $query = "UPDATE employees SET ewbdeploy = '$ewbc1m', ewbdate = '$dtnow' WHERE appno = '$selected'";
             $result = mysqli_query($link, $query);
-            if($result){
+            if ($result) {
+
+                $transaction = chop(strtoupper("PROCESS"));
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                VALUES (?, ?, ?, ?, ?)";
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
+
+
                 $_SESSION['successMessage'] = "Success";
-            }
-            else{
+            } else {
                 $_SESSION['errorMessage'] = "Multiple Entry to Database Error";
             }
         }
-    } 
-    else {
+    } else {
         $_SESSION['errorMessage'] = "Selection Empty Nothing to Process";
     }
     header("Location: ewb_transaction.php");

@@ -2,6 +2,11 @@
 session_start();
 include '../../connect.php';
 
+$user_id = $_SESSION['user_id'];
+$user_division = $_SESSION['division'];
+$personnel = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+$user_type = $_SESSION['user_type'];
+
 // For Creating LOA Template
 if (isset($_POST['create_loa'])) {
     $loa_title = mysqli_real_escape_string($link, preg_replace('/\s+/', ' ', ($_POST['loa_title'])));
@@ -90,6 +95,15 @@ if (isset($_POST['create_loa'])) {
                 if ($result2) {
                     if ($upload_file === 1) {
                         if (move_uploaded_file($_FILES["template"]["tmp_name"], $loa_template_file)) {
+
+                            $transaction = "CREATE LOA TEMPLATE";
+                            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                VALUES (?, ?, ?, ?, ?)";
+                            $transaction_log_result = $link->prepare($transaction_log);
+                            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                            $transaction_log_result->execute();
+
+
                             $_SESSION["successMessage"] = "Success";
                         } else {
                             ini_set('display_errors', 1);
@@ -135,6 +149,12 @@ if (isset($_POST['change_file_btn'])) {
             if ($result) {
                 if ($upload_file === 1) {
                     if (move_uploaded_file($_FILES["loatemplate_file"]["tmp_name"], $loa_template_file)) {
+                        $transaction = "UPDATE LOA TEMPLATE";
+                        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                            VALUES (?, ?, ?, ?, ?)";
+                        $transaction_log_result = $link->prepare($transaction_log);
+                        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                        $transaction_log_result->execute();
                         $_SESSION["successMessage"] = "Success";
                     } else {
                         $_SESSION["errorMessage"] = "Error in Updating files.";
@@ -165,6 +185,13 @@ if (isset($_POST['make_default_button_click'])) {
     $result_id = $link->query($query_id);
 
     if ($result_id) {
+        $transaction = "SET LOA TEMPLATE AS DEFAULT";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Set as default error";
@@ -181,6 +208,14 @@ if (isset($_POST['make_inactive_button_click'])) {
     $result_inactive_id = $link->query($query_inactive_id);
 
     if ($result_inactive_id) {
+
+        $transaction = "SET LOA TEMPLATE AS INACTIVE";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Set as inactive error";
@@ -198,6 +233,12 @@ if (isset($_POST['addCategoryBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+            $transaction = "ADD CATEGORY (" . $category_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -217,6 +258,14 @@ if (isset($_POST['updateCategoryBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE CATEGORY (" . $category_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -234,6 +283,14 @@ if (isset($_POST['delete_category_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETE CATEGORY " . $id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -250,6 +307,14 @@ if (isset($_POST['undo_delete_category_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED CATEGORY " . $id;
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -267,6 +332,14 @@ if (isset($_POST['addChannelBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "ADD CHANNEL (" . $channel_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -286,6 +359,13 @@ if (isset($_POST['updateChannelBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+            $transaction = "UPDATE CHANNEL (" . $channel_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -303,6 +383,14 @@ if (isset($_POST['delete_channel_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETE CHANNEL (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -319,6 +407,15 @@ if (isset($_POST['undo_delete_channel_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETE CHANNEL (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -336,6 +433,15 @@ if (isset($_POST['addClassificationBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "ADD CLASSIFICATION (" . $classification_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -355,6 +461,14 @@ if (isset($_POST['updateClassificationBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE CLASSIFICATION (" . $classification_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -372,6 +486,14 @@ if (isset($_POST['delete_classification_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETE CLASSIFICATION (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -388,6 +510,14 @@ if (isset($_POST['undo_delete_classification_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED CLASSIFICATION (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -409,6 +539,13 @@ if (isset($_POST['addClientCompanyBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
+        $transaction = "ADD CLIENT COMPANY (" . $client_company_name . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Adding";
@@ -430,6 +567,15 @@ if (isset($_POST['updateClientCompanyBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UPDATE CLIENT COMPANY (" . $client_company_name . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -446,6 +592,14 @@ if (isset($_POST['delete_client_company_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETE CLIENT COMPANY (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -462,6 +616,15 @@ if (isset($_POST['undo_delete_client_company_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED CLIENT COMPANY (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -479,6 +642,15 @@ if (isset($_POST['addDivisionBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "ADD DIVISION (" . $division_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -498,6 +670,14 @@ if (isset($_POST['updateDivisionBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE DIVISION (" . $division_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -515,6 +695,15 @@ if (isset($_POST['delete_division_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETED DIVISION (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -531,6 +720,13 @@ if (isset($_POST['undo_delete_division_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+        $transaction = "UNDO DELETED DIVISION (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -548,6 +744,14 @@ if (isset($_POST['addIdentificationMarkBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "ADD INDENTIFICATION MARK (" . $identification_mark . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -567,6 +771,15 @@ if (isset($_POST['updateIdentificationMarkBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE INDENTIFICATION MARK (" . $identification_mark . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -584,6 +797,15 @@ if (isset($_POST['delete_identification_mark_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETE INDENTIFICATION MARK (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -600,6 +822,15 @@ if (isset($_POST['undo_delete_identification_mark_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED INDENTIFICATION MARK (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -617,6 +848,14 @@ if (isset($_POST['addSourceBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "ADD SOURCE (" . $source_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Adding";
@@ -636,6 +875,15 @@ if (isset($_POST['updateSourceBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE SOURCE (" . $source_name . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -653,6 +901,14 @@ if (isset($_POST['delete_source_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETED SOURCE (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -669,6 +925,13 @@ if (isset($_POST['undo_delete_source_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+        $transaction = "UNDO DELETED SOURCE (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -690,6 +953,15 @@ if (isset($_POST['addProjectBtn'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "ADD PROJECT (" . $project_title . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Adding";
@@ -712,6 +984,14 @@ if (isset($_POST['updateProjectBtn'])) {
         $result = $link->query($query);
 
         if ($result) {
+
+            $transaction = "UPDATE PROJECT (" . $project_title . ")";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Updating";
@@ -731,6 +1011,15 @@ if (isset($_POST['delete_project_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETED PROJECT (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -747,6 +1036,12 @@ if (isset($_POST['undo_delete_project_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+        $transaction = "UNDO DELETED PROJECT (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -763,6 +1058,15 @@ if (isset($_POST['change_project_status_active_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "CHANGE PROJECT STATUS OF (" . $id . ") TO ACTIVE";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -779,6 +1083,15 @@ if (isset($_POST['change_project_status_inactive_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "CHANGE PROJECT STATUS OF (" . $id . ") TO INACTIVE";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -795,6 +1108,15 @@ if (isset($_POST['delete_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETED HISTORY OF (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Deleting";
@@ -811,6 +1133,15 @@ if (isset($_POST['undo_delete_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED HISTORY OF (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";
@@ -827,6 +1158,15 @@ if (isset($_POST['delete_loa_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "DELETED LOA HISTORY OF (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Updating";
@@ -843,6 +1183,15 @@ if (isset($_POST['undo_delete_loa_history_button'])) {
     $result = $link->query($query);
 
     if ($result) {
+
+        $transaction = "UNDO DELETED LOA HISTORY OF (" . $id . ")";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
     } else {
         $_SESSION['errorMessage'] = "Error in Undo";

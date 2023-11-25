@@ -4,6 +4,11 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 $date_now = date('Y-m-d H:i:s');
 
+$user_id = $_SESSION['user_id'];
+$user_division = $_SESSION['division'];
+$personnel = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+$user_type = $_SESSION['user_type'];
+
 // For Adding MRF
 if (isset($_POST['process'])) {
     $tracking_number = mysqli_real_escape_string($link, chop(preg_replace('/\s+/', ' ', (strtoupper($_POST['tracking_number'])))));
@@ -73,6 +78,15 @@ if (isset($_POST['process'])) {
     $result = $link->query($query);
     $id = mysqli_insert_id($link);
     if ($result) {
+
+        $transaction = "CREATE MRF";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
+
         $_SESSION['successMessage'] = "Success";
         header("Location: mrf_list.php?id=$id");
     } else {
@@ -191,6 +205,14 @@ if (isset($_POST['updatemrf'])) {
     $update_result = $link->query($update_query);
 
     if ($update_result) {
+
+        $transaction = "UPDATE MRF";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
         header("Location: mrf_list.php");
     } else {
@@ -199,6 +221,7 @@ if (isset($_POST['updatemrf'])) {
     }
 }
 
+// Delete MRF
 if (isset($_POST['delete_button_click'])) {
     $delete_id = $_POST['deleteIDs'];
     $delete_status = "1";
@@ -207,6 +230,14 @@ if (isset($_POST['delete_button_click'])) {
     $delete_result = $link->query($delete_query);
 
     if ($delete_result) {
+
+        $transaction = "DELETE MRF";
+        $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+        $transaction_log_result = $link->prepare($transaction_log);
+        $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+        $transaction_log_result->execute();
+
         $_SESSION['successMessage'] = "Success";
         header("Location: mrf_list.php");
     } else {
@@ -228,6 +259,15 @@ if (isset($_POST['reject_button'])) {
         $update = "UPDATE applicant_resume SET project_status = '$project_status' WHERE id = '$id'";
         $update_result = $link->query($update);
         if ($update_result) {
+
+            $transaction = "REJECT APPLICANT";
+            $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+            $transaction_log_result = $link->prepare($transaction_log);
+            $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+            $transaction_log_result->execute();
+
+
             $_SESSION['successMessage'] = "Success";
         } else {
             $_SESSION['errorMessage'] = "Error in Rejection: ";
@@ -332,6 +372,13 @@ if (isset($_POST['approve_applicants_button_click'])) {
                                             $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
                                             $result_tracking = mysqli_query($link, $update_tracking);
                                             if ($result_tracking) {
+
+                                                $transaction = "APPROVED APPLICANT " . $applicant_id;
+                                                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                                    VALUES (?, ?, ?, ?, ?)";
+                                                $transaction_log_result = $link->prepare($transaction_log);
+                                                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                                                $transaction_log_result->execute();
 
                                                 $_SESSION['successMessage'] = "Success";
                                             } else {
@@ -445,12 +492,18 @@ if (isset($_POST['add_request_loa_btn'])) {
                 SET project_status = '$project_status' 
                 WHERE employee_id = '$employee_id' AND id = '$shortlist_id'";
                 $stmt = $link->query($update);
-                
-                if($stmt){
+
+                if ($stmt) {
+                    $transaction = "ADD LOA REQUEST";
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
                     $response[] = array('message' => 'Success!');
                     $_SESSION['successMessage'] = 'Success!';
-                }
-                else{
+                } else {
                     $_SESSION[] = "Error in updating project status";
                 }
             } else {

@@ -64,7 +64,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         </center>
                                         <div class="col-md-4 mt-3">
                                             <?php
-                                            $query = "SELECT * FROM mrf";
+                                            $query = "SELECT * FROM mrf ORDER BY id ASC";
                                             $result = $link->query($query);
                                             $track = 1;
 
@@ -153,7 +153,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                         <div class="col-md-4 mt-3">
                                             <label for="" class="form-label">PO Number</label>
-                                            <input type="text" name="po_number" id="po_number" class="form-control" required>
+                                            <input type="text" name="po_number" id="po_number" class="form-control">
                                         </div>
 
                                         <!-- FOR POSITION -->

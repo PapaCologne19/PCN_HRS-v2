@@ -73,7 +73,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         <tbody>
 
                                             <?php
-                                            $query = "SELECT * FROM mrf WHERE is_deleted = '0'";
+                                            $query = "SELECT * FROM mrf WHERE is_deleted = '0' ORDER BY id DESC";
                                             $result = mysqli_query($link, $query);
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                 $uid1 = $row['uid'];
@@ -148,12 +148,14 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } ?>
                                                         <td style=" text-align: center;"> <?php echo $needed ?> </td>
                                                         <td style=" text-align: center;"> <?php echo $provided ?> </td>
+                                                        <td style=" text-align: center;"> <?php echo $for_screening ?> </td>
+
 
                                                         <td>
                                                             <form action="" method="POST">
                                                             <input type="hidden" name="ids" class="ids" id="ids" value="<?php echo $row['id']; ?>">
                                                                 <button type="button" class="btn btn-sm btn-primary btnview" title="View MRF" data-bs-toggle="modal" data-bs-target="#viewmrf"><i class="bi bi-eye icon"></i></button>
-                                                                <a href="shortlisted_applicants.php?id=<?php echo $row['id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                                <a href="shortlisted_applicants.php?id=<?php echo $row['id']?>" class="btn btn-secondary btn-sm btntooltips" title="View"><i class="bi bi-search"></i></a>
 
                                                                 <input type="hidden" name="mrf_ids" class="mrf_ids" value="<?php echo $row['id'] ?>">
                                                                 <button type="button" name="r_mrfs" class="btn btn-sm btn-success r_mrfs" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Accept MRF"><i class="bi bi-send-check"></i></button>

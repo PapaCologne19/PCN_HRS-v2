@@ -27,7 +27,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
     <body>
         <?php
-   
+
         if (isset($_SESSION['successMessage'])) { ?>
             <script>
                 Swal.fire({
@@ -152,11 +152,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php
                                                         if ($row['status'] === 'PENDING' || $row['status'] === 'FOR SCREENING') {
                                                         ?>
-
                                                             <div class="contain">
                                                                 <div class="columns">
-                                                                    <input type="hidden" class="exampleModalID resume_id" value="<?php echo $row['id'] ?>">
-                                                                    <input type="hidden" class="exampleModalID mrf_id" value="<?php echo $_GET['id'] ?>">
+                                                                    <input type="hidden" class="exampleModalID" value="<?php echo $row['id'] ?>">
                                                                     <button type="button" class="btn btn-sm btn-primary btntooltips exampleModal" title="Screening"><i class="bi bi-telephone"></i></button>
                                                                 </div>
                                                                 <div class="columns">
