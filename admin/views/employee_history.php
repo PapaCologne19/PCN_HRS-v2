@@ -73,12 +73,12 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php
                                                         if ($row['is_deleted'] === '0') {
                                                         ?>
-                                                            <button type="button" class="btn btn-info btntooltips" data-bs-toggle="modal" data-bs-target="#viewDetails-<?php echo $row['id'] ?>" title="View"><i class="bi bi-eye"></i></button>
+                                                            <button type="button" class="btn btn-info  btn-sm  btntooltips" data-bs-toggle="modal" data-bs-target="#viewDetails-<?php echo $row['id'] ?>" title="View"><i class="bi bi-eye"></i></button>
                                                             <input type="hidden" class="deletedHistoryID" value="<?php echo $row['id'] ?>">
-                                                            <button type="button" class="btn btn-danger btntooltips deletedHistoryBtn" title="Delete"><i class="bi bi-trash"></i></button>
+                                                            <button type="button" class="btn btn-danger  btn-sm  btntooltips deletedHistoryBtn" title="Delete"><i class="bi bi-trash"></i></button>
                                                         <?php } else { ?>
                                                             <input type="hidden" class="undoDeletedHistoryID" value="<?php echo $row['id'] ?>">
-                                                            <button type="button" class="btn btn-secondary btntooltips undoDeletedHistoryBtn" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                                            <button type="button" class="btn btn-secondary  btn-sm  btntooltips undoDeletedHistoryBtn" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>

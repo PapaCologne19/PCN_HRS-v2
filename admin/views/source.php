@@ -81,13 +81,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         ?>
                                                             <div class="contains">
                                                                 <div class="columns">
-                                                                    <button class="btn btn-success btntooltips" data-bs-toggle="modal" data-bs-target="#updateSource-<?php echo $row['id'] ?>" title="Edit Source">
+                                                                    <button class="btn btn-success btn-sm  btntooltips" data-bs-toggle="modal" data-bs-target="#updateSource-<?php echo $row['id'] ?>" title="Edit Source">
                                                                         <i class="bi bi-pencil-square"></i>
                                                                     </button>
                                                                 </div>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="deleteSourceID" class="deleteSourceID" id="deleteSourceID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-danger btntooltips deleteSourceBtn" title="Delete Source">
+                                                                    <button class="btn btn-danger btntooltips btn-sm  deleteSourceBtn" title="Delete Source">
                                                                         <i class="bi bi-trash3"></i>
                                                                     </button>
                                                                 </div>
@@ -95,7 +95,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } else { ?>
                                                             <div class="columns">
                                                                 <input type="hidden" name="undoDeletedSourceID" class="undoDeletedSourceID" id="undoDeletedSourceID" value="<?php echo $row['id'] ?>">
-                                                                <button class="btn btn-secondary btntooltips undoDeletedSourceBtn" title="Undo Deleted Source">
+                                                                <button class="btn btn-secondary btntooltips btn-sm  undoDeletedSourceBtn" title="Undo Deleted Source">
                                                                     <i class="bi bi-arrow-counterclockwise"></i>
                                                                 </button>
                                                             </div>

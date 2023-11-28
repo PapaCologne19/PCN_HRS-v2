@@ -939,6 +939,8 @@ if (isset($_POST['passBtn'])) {
     $math = $link->real_escape_string($_POST['math']);
     $interview_details = $link->real_escape_string($_POST['interview_details']);
     $status = "QUALIFIED";
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $approved_date = date('Y-m-d');
 
     if (empty($relevant_educ_background) 
         && empty($related_work_experience) 
@@ -958,7 +960,7 @@ if (isset($_POST['passBtn'])) {
         VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$status')";
         $result = $link->query($query);
         if ($result) {
-            $update = "UPDATE applicant_resume SET status = '$status' WHERE id = '$resumeID'";
+            $update = "UPDATE applicant_resume SET status = '$status', recruitment_approved_by = '$approved_by', recruitment_action_date = '$approved_date' WHERE id = '$resumeID'";
             $update_result = $link->query($update);
 
             if ($update_result) {
@@ -1409,6 +1411,13 @@ if (isset($_POST['create_shortlist_applicant'])) {
     $city = $link->real_escape_string(chop(strtoupper($_POST['city'])));
     $job_id = $_POST['job_id'];
 
+    // Auto Generating of USERNAME and PASSWORD
+    $randomNumber = mt_rand(100, 999);
+    $username = "applicant" . $randomNumber;
+    // In password, we used applicant123456789 as their default password but we hashed it for security purposes.
+    $password = "applicant123456789";
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
     $file = $_FILES['resume_file'];
     $filename = $_FILES["resume_file"]["name"];
     $tempname = $_FILES["resume_file"]["tmp_name"];
@@ -1427,8 +1436,8 @@ if (isset($_POST['create_shortlist_applicant'])) {
         $today = date("Y-m-d");
 
         if (!empty($filename)) {
-            $insert = "INSERT INTO applicant (`source`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`)
-            VALUES ('$source', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$address', '$city', '$region')";
+            $insert = "INSERT INTO applicant (`username`, `password`, `source`, `firstname`, `middlename`, `lastname`, `extension_name`, `gender`, `civil_status`, `age`, `mobile_number`, `email_address`, `birthday`, `present_address`, `city`, `region`)
+            VALUES ('$username', '$hashed_password', '$source', '$firstname', '$middlename', '$lastname', '$extension_name', '$gender', '$civil_status', '$age', '$mobile_number', '$email_address', '$birthday', '$address', '$city', '$region')";
             $insert_result = $link->query($insert);
 
             if ($insert_result) {

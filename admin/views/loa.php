@@ -70,14 +70,14 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 <?php
                                                                 if ($row['status'] === '0') { ?>
                                                                     <input type="hidden" name="template_id" class="template_id" value="<?php echo $row["id"] ?>">
-                                                                    <button type="button" class="btn btn-secondary make_default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as default (Active)"><i class="bi bi-pin"></i></button>
+                                                                    <button type="button" class="btn btn-secondary  btn-sm  make_default" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as default (Active)"><i class="bi bi-pin"></i></button>
                                                                 <?php } else { ?>
                                                                     <input type="hidden" name="template_inactive_id" class="template_inactive_id" value="<?php echo $row["id"] ?>">
-                                                                    <button type="button" class="btn btn-secondary make_inactive" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as Inactive"><i class="bi bi-pencil"></i></i></button>
+                                                                    <button type="button" class="btn btn-secondary  btn-sm  make_inactive" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Set as Inactive"><i class="bi bi-pencil"></i></i></button>
                                                                 <?php  } ?>
                                                             </div>
                                                             <div class="columns">
-                                                                <button type="button" class="btn btn-dark btntooltips" data-bs-toggle="modal" data-bs-target="#changeLOATemplate-<?php echo $row['id'] ?>" title="Change LOA Template">
+                                                                <button type="button" class="btn btn-dark btn-sm btntooltips" data-bs-toggle="modal" data-bs-target="#changeLOATemplate-<?php echo $row['id'] ?>" title="Change LOA Template">
                                                                     <i class="bi bi-filetype-docx"></i>
                                                                 </button>
                                                             </div>

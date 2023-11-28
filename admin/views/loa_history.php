@@ -71,16 +71,16 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <div class="contains">
                                                     <?php if($row['is_deleted'] === '0'){ ?>
                                                         <div class="columns">
-                                                            <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                            <a href="download_loa_history.php?id=<?php echo $row['employee_id'] ?>" name="download_deploy" class="btn btn-primary btn-sm " data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
                                                         </div>
                                                         <div class="columns">
                                                             <input type="hidden" class="deleteLOA_ID" id="deleteLOA_ID" value="<?php echo $row['id']?>">
-                                                            <button type="button" class="btn btn-danger deleteLOA_Btn btntooltips" title="Delete"><i class="bi bi-trash"></i></button>
+                                                            <button type="button" class="btn btn-danger deleteLOA_Btn btn-sm  btntooltips" title="Delete"><i class="bi bi-trash"></i></button>
                                                         </div>
                                                     <?php }else { ?>
                                                         <div class="columns">
                                                             <input type="hidden" class="undoDeleteLOA_ID" id="undoDeleteLOA_ID" value="<?php echo $row['id']?>">
-                                                            <button type="button" class="btn btn-secondary undoDeleteLOA_Btn btntooltips" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                                            <button type="button" class="btn btn-secondary undoDeleteLOA_Btn btn-sm  btntooltips" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
                                                         </div>
                                                     <?php }?>
                                                     </div>

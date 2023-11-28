@@ -57,12 +57,6 @@
 
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="applicant_maintenance.php" class="menu-link">
-            <div data-i18n="Accordion">Applicant Maintenance</div>
-          </a>
-        </li>
-
-        <li class="menu-item">
           <a href="javascript:void(0)" class="menu-link menu-toggle">
             <div data-i18n="Accordion">Recruitment Maintenance</div>
           </a>
@@ -130,6 +124,13 @@
               </a>
             </li>
 
+            <!-- For Type of Separation -->
+            <li class="menu-item">
+              <a href="type_of_separation.php" class="menu-link">
+                <div data-i18n="User interface">Type of Separation</div>
+              </a>
+            </li>
+
             <!-- For LOA - LOA Word Format -->
             <li class="menu-item">
               <a href="create_loa.php" class="menu-link">
@@ -170,17 +171,17 @@
     <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-detail"></i>
-        <div data-i18n="Form Elements">Form Elements</div>
+        <div data-i18n="Form Elements">Account Management</div>
       </a>
       <ul class="menu-sub">
         <li class="menu-item">
-          <a href="forms-basic-inputs.html" class="menu-link">
-            <div data-i18n="Basic Inputs">Basic Inputs</div>
+          <a href="applicant_account_management.php" class="menu-link">
+            <div data-i18n="Basic Inputs">Applicant</div>
           </a>
         </li>
         <li class="menu-item">
-          <a href="forms-input-groups.html" class="menu-link">
-            <div data-i18n="Input groups">Input groups</div>
+          <a href="user_account_management.php" class="menu-link">
+            <div data-i18n="Input groups">User</div>
           </a>
         </li>
       </ul>

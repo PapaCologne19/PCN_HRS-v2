@@ -109,26 +109,26 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                 ?>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="changeProjectStatusInactiveID" class="changeProjectStatusInactiveID" id="changeProjectStatusInactiveID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-dark btntooltips changeProjectStatusInactiveBtn" data-bs-toggle="modal" title="Change Project Status (Inactive)">
+                                                                    <button class="btn btn-dark btntooltips  btn-sm changeProjectStatusInactiveBtn" data-bs-toggle="modal" title="Change Project Status (Inactive)">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </button>
                                                                 </div>
                                                                 <?php }else {?>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="changeProjectStatusActiveID" class="changeProjectStatusActiveID" id="changeProjectStatusActiveID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-dark btntooltips changeProjectStatusActiveBtn" data-bs-toggle="modal" title="Change Project Status (Active)">
+                                                                    <button class="btn btn-dark btntooltips  btn-sm changeProjectStatusActiveBtn" data-bs-toggle="modal" title="Change Project Status (Active)">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </button>
                                                                 </div>
                                                                 <?php }?>
                                                                 <div class="columns">
-                                                                    <button class="btn btn-primary btntooltips" data-bs-toggle="modal" data-bs-target="#updateProject-<?php echo $row['id'] ?>" title="Edit Project">
+                                                                    <button class="btn btn-primary btn-sm  btntooltips" data-bs-toggle="modal" data-bs-target="#updateProject-<?php echo $row['id'] ?>" title="Edit Project">
                                                                         <i class="bi bi-pencil-square"></i>
                                                                     </button>
                                                                 </div>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="deleteProjectID" class="deleteProjectID" id="deleteProjectID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-danger btntooltips deleteProjectBtn" title="Delete Project">
+                                                                    <button class="btn btn-danger btntooltips btn-sm  deleteProjectBtn" title="Delete Project">
                                                                         <i class="bi bi-trash3"></i>
                                                                     </button>
                                                                 </div>
@@ -136,7 +136,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } else { ?>
                                                             <div class="columns">
                                                                 <input type="hidden" name="undoDeletedProjectID" class="undoDeletedProjectID" id="undoDeletedProjectID" value="<?php echo $row['id'] ?>">
-                                                                <button class="btn btn-secondary btntooltips undoDeletedProjectBtn" title="Undo Deleted Project">
+                                                                <button class="btn btn-secondary btntooltips btn-sm  undoDeletedProjectBtn" title="Undo Deleted Project">
                                                                     <i class="bi bi-arrow-counterclockwise"></i>
                                                                 </button>
                                                             </div>

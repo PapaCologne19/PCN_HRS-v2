@@ -15,224 +15,229 @@ if (isset($_POST['SubButton'])) {
     $_SESSION['errorMessage'] = "Invalid Input";
   }
 
-  $query = "SELECT * FROM data WHERE uname = '$Username' AND pname = '$Password' ";
+  $query = "SELECT * FROM data WHERE uname = '$Username' AND approve = '1' AND is_deleted = '0'";
   $result = mysqli_query($link, $query);
 
-  if (mysqli_num_rows($result) === 0) {
-    $_SESSION['errorMessage'] = "No Such User Here!";
-  } 
-  else {
-    $query1 = "SELECT * FROM data WHERE uname = '$Username' and pname = '$Password' and approve = '1'";
+  if (mysqli_num_rows($result) > 0) {
+
+    $query1 = "SELECT * FROM data WHERE uname = '$Username' AND approve = '1' AND is_deleted = '0'";
     $result1 = mysqli_query($link, $query1);
-    while ($rowd = mysqli_fetch_assoc($result1))
 
-      if ($rowd["typenya"] == "EWB") {
+    if ($result1) {
 
-        $_SESSION["dmark"] = $rowd["uname"];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["username"] = $rowd["uname"];
-        $_SESSION["password"] =  $rowd["pname"];
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["user_id"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $_SESSION["user_type"] = $rowd["typenya"];
+      // Start
+      while ($rowd = mysqli_fetch_assoc($result1)) {
+        $hashedPassword = $rowd['pname'];
+        if (password_verify($Password, $hashedPassword)) {
+          if ($rowd["typenya"] == "EWB") {
+            $_SESSION["dmark"] = $rowd["uname"];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] =  $rowd["pname"];
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
 
 
-        $dtnow = date("m/d/Y");
+            $dtnow = date("m/d/Y");
 
-        $query3 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'EWB login Accepted')";
-        $result3 = mysqli_query($link, $query3);
+            $query3 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'EWB login Accepted')";
+            $result3 = mysqli_query($link, $query3);
 
-        if($result3){
-          $_SESSION[] = "Successfully Login";
-          header("location:ewb/index.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "DEPLOYMENT") {
+            if ($result3) {
+              $_SESSION[] = "Successfully Login";
+              header("location:ewb/index.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "DEPLOYMENT") {
 
-        $_SESSION["dmark"] = $rowd["uname"];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["username"] = $rowd["uname"];
-        $_SESSION["password"] =  $rowd["pname"];
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["user_id"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $_SESSION["user_type"] = $rowd["typenya"];
+            $_SESSION["dmark"] = $rowd["uname"];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] =  $rowd["pname"];
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
 
-        $dtnow = date("m/d/Y");
+            $dtnow = date("m/d/Y");
 
-        $query4 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'DEPLOYMENT login Accepted')";
-        $result4  = mysqli_query($link, $query4);
+            $query4 = "INSERT INTO log (Username, Datelog, time, activitynya) VALUES('$Username','$dtnow',now(),'DEPLOYMENT login Accepted')";
+            $result4  = mysqli_query($link, $query4);
 
-        if($result4){
-          $_SESSION[] = "Successfully Login";
-          header("location:deployment/index.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else	if ($rowd["typenya"] === "RECRUITMENT") {
+            if ($result4) {
+              $_SESSION[] = "Successfully Login";
+              header("location:deployment/index.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else	if ($rowd["typenya"] === "RECRUITMENT") {
 
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["username"] = $rowd["uname"];
-        $_SESSION["password"] =  $rowd["pname"];
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["user_id"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $_SESSION["user_type"] = $rowd["typenya"];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] =  $rowd["pname"];
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
 
-        $dtnow = date("m/d/Y");
+            $dtnow = date("m/d/Y");
 
-        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'RECRUITMENT login Accepted')";
-        $result5 = mysqli_query($link, $query5);
+            $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'RECRUITMENT login Accepted')";
+            $result5 = mysqli_query($link, $query5);
 
-        if ($result5) {
-          $_SESSION['successMessage'] = "Successfully Login";
-          $message = $_SESSION['successMessage'];
-          header("Location: recruitment/index.php");
+            if ($result5) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              $message = $_SESSION['successMessage'];
+              header("Location: recruitment/index.php");
+            } else {
+              $_SESSION['errorMessage'] = "Error Login";
+            }
+          } elseif ($rowd["typenya"] === "ADMIN") {
+
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] =  $rowd["pname"];
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
+
+            $dtnow = date("m/d/Y");
+
+            $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'ADMIN login Accepted')";
+            $result5 = mysqli_query($link, $query5);
+
+            if ($result5) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              $message = $_SESSION['successMessage'];
+              header("Location: admin/?$message");
+            } else {
+              $_SESSION['errorMessage'] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "MRF") {
+
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] = $rowd["pname"];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
+            $_SESSION["darkk"] = "mrf";
+            $_SESSION["dept"] = $rowd["fms"];
+            $_SESSION["id"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
+
+
+            $dtnow = date("m/d/Y");
+
+            $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'MRF login Accepted')";
+            $result5 = mysqli_query($link, $query5);
+
+            if ($result5) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("location: mrf/index.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "CASHIER") {
+
+            $_SESSION["dmark"] = $rowd[1];
+            $_SESSION["dmark1"] = $rowd["typenya"];
+            $_SESSION["darkk"] = "Cashier";
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $dtnow = date("m/d/Y");
+
+            $query6 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'Cashier login Accepted')";
+            $result6 = mysqli_query($link, $query6);
+
+            if ($result6) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("location:cashier.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "REPORT") {
+
+            $_SESSION["dmark"] = $rowd[1];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["dmark1"] = $rowd["typenya"];
+            $_SESSION["darkk"] = "report";
+            $_SESSION["dept"] = "Report";
+            $_SESSION["data"] = $rowd["id"];
+
+            $dtnow = date("m/d/Y");
+
+            $query7 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'report log in identified')";
+            $result7 = mysqli_query($link, $query7);
+
+            if ($result7) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("location:report.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "ADMIN") {
+            $_SESSION["dmark"] = $rowd[1];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["dmark1"] = $rowd["typenya"];
+            $_SESSION["data"] = $rowd["id"];
+            $_SESSION["darkk"] = "green";
+            $_SESSION["user_id"] = $rowd["id"];
+
+            //log control
+            $dtnow = date("m/d/Y");
+
+            $query8 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'Admin login Accepted')";
+            $result8 = mysqli_query($link, $query8);
+
+            if ($result8) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("Location: adminfinal.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($rowd["typenya"] == "OTHERS") {
+            $_SESSION["dmark"] = $rowd[1];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["dmark1"] = $rowd[3] . $rowd[4];
+            $_SESSION["data"] = $rowd["id"];
+
+            $dtnow = date("m/d/Y");
+
+            $query9 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'OTHERS login Accepted')";
+            $result9 = mysqli_query($link, $query9);
+
+            if ($result9) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("location:declaration.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+          } else if ($resultsss = mysqli_query($link, "SELECT * FROM data WHERE uname = '$Username' AND pname = '$Password' AND approve = '0'")); {
+            $_SESSION['errorMessage'] = "User not allowed by MIS, Please notify Mike or Deo";
+          }
+          // End
         } else {
-          $_SESSION['errorMessage'] = "Error Login";
+          $_SESSION['errorMessage'] = "Wrong username or password";
         }
-      } elseif ($rowd["typenya"] === "ADMIN") {
-
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["username"] = $rowd["uname"];
-        $_SESSION["password"] =  $rowd["pname"];
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["user_id"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $_SESSION["user_type"] = $rowd["typenya"];
-
-        $dtnow = date("m/d/Y");
-
-        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'ADMIN login Accepted')";
-        $result5 = mysqli_query($link, $query5);
-
-        if ($result5) {
-          $_SESSION['successMessage'] = "Successfully Login";
-          $message = $_SESSION['successMessage'];
-          header("Location: admin/?$message");
-        } else {
-          $_SESSION['errorMessage'] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "MRF") {
-
-        $_SESSION["username"] = $rowd["uname"];
-        $_SESSION["password"] = $rowd["pname"];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
-        $_SESSION["darkk"] = "mrf";
-        $_SESSION["dept"] = $rowd["fms"];
-        $_SESSION["id"] = $rowd["id"];
-        $_SESSION["user_id"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $_SESSION["user_type"] = $rowd["typenya"];
-
-
-        $dtnow = date("m/d/Y");
-
-        $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'MRF login Accepted')";
-        $result5 = mysqli_query($link, $query5);
-
-        if($result5){
-          $_SESSION['successMessage'] = "Successfully Login";
-          header("location: mrf/index.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "CASHIER") {
-
-        $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["dmark1"] = $rowd["typenya"];
-        $_SESSION["darkk"] = "Cashier";
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["division"] = $rowd["fms"];
-        $dtnow = date("m/d/Y");
-
-        $query6 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'Cashier login Accepted')";
-        $result6 = mysqli_query($link, $query6);
-
-        if($result6){
-          $_SESSION['successMessage'] = "Successfully Login";
-          header("location:cashier.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "REPORT") {
-
-        $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd["typenya"];
-        $_SESSION["darkk"] = "report";
-        $_SESSION["dept"] = "Report";
-        $_SESSION["data"] = $rowd["id"];
-
-        $dtnow = date("m/d/Y");
-
-        $query7 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'report log in identified')";
-        $result7 = mysqli_query($link, $query7);
-
-        if($result7){
-          $_SESSION['successMessage'] = "Successfully Login";
-          header("location:report.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "ADMIN") {
-        $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd["typenya"];
-        $_SESSION["data"] = $rowd["id"];
-        $_SESSION["darkk"] = "green";
-        $_SESSION["user_id"] = $rowd["id"];
-
-        //log control
-        $dtnow = date("m/d/Y");
-
-        $query8 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'Admin login Accepted')";
-        $result8 = mysqli_query($link, $query8);
-
-        if($result8){
-          $_SESSION['successMessage'] = "Successfully Login";
-          header("Location: adminfinal.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($rowd["typenya"] == "OTHERS") {
-        $_SESSION["dmark"] = $rowd[1];
-        $_SESSION["firstname"] = $rowd["firstname"];
-        $_SESSION["lastname"] = $rowd['lastname'];
-        $_SESSION["dmark1"] = $rowd[3] . $rowd[4];
-        $_SESSION["data"] = $rowd["id"];
-
-        $dtnow = date("m/d/Y");
-
-        $query9 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(), 'OTHERS login Accepted')";
-        $result9 = mysqli_query($link, $query9);
-
-        if($result9){
-          $_SESSION['successMessage'] = "Successfully Login";
-          header("location:declaration.php");
-        }
-        else{
-          $_SESSION["errorMessage"] = "Error Login";
-        }
-      } else if ($resultsss = mysqli_query($link, "SELECT * FROM data WHERE uname = '$Username' AND pname = '$Password' AND approve = '0'")); {
-        $_SESSION['errorMessage'] = "User not allowed by MIS, Please notify Mike or Deo";
+      }
+    } else {
+      $_SESSION['errorMessage'] = "Wrong username or password";
     }
+  } else {
+    $_SESSION['errorMessage'] = "No User found";
   }
 }
 
@@ -304,7 +309,9 @@ if (isset($_POST['SavenewUser1'])) {
     * {
       font-family: 'Inter', sans-serif;
     }
-    .username::placeholder, .password::placeholder{
+
+    .username::placeholder,
+    .password::placeholder {
       color: white !important;
     }
   </style>
@@ -357,7 +364,7 @@ if (isset($_POST['SavenewUser1'])) {
     <h2>
       <font color="white">LOG IN</font>
     </h2>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
 
       <div class="form-group mt-3">
         <label class="form-label">
@@ -365,7 +372,7 @@ if (isset($_POST['SavenewUser1'])) {
         </label>
         <input type="username" name="Username" class="form-control username" placeholder="Please enter username" style="height:45px;width:250px;background: #445793 !important; color: white !important; " autofocus>
       </div>
-      
+
 
       <div class="form-group mt-4 mb-4">
         <label class="form-label">

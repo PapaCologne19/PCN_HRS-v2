@@ -81,13 +81,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         ?>
                                                             <div class="contains">
                                                                 <div class="columns">
-                                                                    <button class="btn btn-success btntooltips" data-bs-toggle="modal" data-bs-target="#updateDivision-<?php echo $row['id'] ?>" title="Edit Division">
+                                                                    <button class="btn btn-success btn-sm  btntooltips" data-bs-toggle="modal" data-bs-target="#updateDivision-<?php echo $row['id'] ?>" title="Edit Division">
                                                                         <i class="bi bi-pencil-square"></i>
                                                                     </button>
                                                                 </div>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="deleteDivisionID" class="deleteDivisionID" id="deleteDivisionID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-danger btntooltips deleteDivisionBtn" title="Delete Division">
+                                                                    <button class="btn btn-danger btntooltips btn-sm  deleteDivisionBtn" title="Delete Division">
                                                                         <i class="bi bi-trash3"></i>
                                                                     </button>
                                                                 </div>
@@ -95,7 +95,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } else { ?>
                                                             <div class="columns">
                                                                 <input type="hidden" name="undoDeletedDivisionID" class="undoDeletedDivisionID" id="undoDeletedDivisionID" value="<?php echo $row['id'] ?>">
-                                                                <button class="btn btn-secondary btntooltips undoDeletedDivisionBtn" title="Undo Deleted Division">
+                                                                <button class="btn btn-secondary btntooltips btn-sm  undoDeletedDivisionBtn" title="Undo Deleted Division">
                                                                     <i class="bi bi-arrow-counterclockwise"></i>
                                                                 </button>
                                                             </div>

@@ -80,13 +80,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         ?>
                                                             <div class="contains">
                                                                 <div class="columns">
-                                                                    <button class="btn btn-success btntooltips" data-bs-toggle="modal" data-bs-target="#updateClassification-<?php echo $row['id'] ?>" title="Edit Classification">
+                                                                    <button class="btn btn-success btn-sm  btntooltips" data-bs-toggle="modal" data-bs-target="#updateClassification-<?php echo $row['id'] ?>" title="Edit Classification">
                                                                         <i class="bi bi-pencil-square"></i>
                                                                     </button>
                                                                 </div>
                                                                 <div class="columns">
                                                                     <input type="hidden" name="deleteClassificationID" class="deleteClassificationID" id="deleteClassificationID" value="<?php echo $row['id'] ?>">
-                                                                    <button class="btn btn-danger btntooltips deleteClassificationBtn" title="Delete Classification">
+                                                                    <button class="btn btn-danger btntooltips btn-sm  deleteClassificationBtn" title="Delete Classification">
                                                                         <i class="bi bi-trash3"></i>
                                                                     </button>
                                                                 </div>
@@ -94,7 +94,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php } else { ?>
                                                             <div class="columns">
                                                                 <input type="hidden" name="undoDeletedClassificationID" class="undoDeletedClassificationID" id="undoDeletedClassificationID" value="<?php echo $row['id'] ?>">
-                                                                <button class="btn btn-secondary btntooltips undoDeletedClassificationBtn" title="Undo Deleted Classification">
+                                                                <button class="btn btn-secondary btntooltips btn-sm  undoDeletedClassificationBtn" title="Undo Deleted Classification">
                                                                     <i class="bi bi-arrow-counterclockwise"></i>
                                                                 </button>
                                                             </div>

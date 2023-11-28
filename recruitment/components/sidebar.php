@@ -179,9 +179,20 @@
         </li>
         <li class="menu-item">
           <a href="view_database.php" class="menu-link">
-            <div data-i18n="Container">View Database</div>
+            <div data-i18n="Container">Applicant Database Report</div>
           </a>
         </li>
+        <li class="menu-item">
+          <a href="mrf_report.php" class="menu-link">
+            <div data-i18n="Container">MRF Report</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="employee_report.php" class="menu-link">
+            <div data-i18n="Container">Employee Report</div>
+          </a>
+        </li>
+
       </ul>
     </li>
     <li class="menu-item">

@@ -48,7 +48,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                     <?php include '../components/navbar.php'; ?>
 
                     <!-- Content -->
-                    <div class="content-wrapper mt-3">
+                    <!-- <div class="content-wrapper mt-3">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-8 mb-4 order-0">
@@ -122,9 +122,11 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+
+
                                 <!-- Total Revenue -->
-                                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                                <!-- <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
                                     <div class="card">
                                         <div class="row row-bordered g-0">
                                             <div class="col-md-8">
@@ -172,9 +174,12 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+
+
+
                                 <!--/ Total Revenue -->
-                                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                                <!-- <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
                                     <div class="row">
                                         <div class="col-6 mb-4">
                                             <div class="card">
@@ -243,7 +248,9 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                
                             </div>
                         </div>
                     </div>

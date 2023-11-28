@@ -1199,3 +1199,219 @@ if (isset($_POST['undo_delete_loa_history_button'])) {
     header("Location: loa_history.php");
     exit(0);
 }
+
+// For Creating User
+if (isset($_POST['create_user_btn'])) {
+    $id_number = $_POST['id_number'];
+    $firstname = $_POST['firstname'];
+    $middlename = $_POST['middlename'];
+    $lastname = $_POST['lastname'];
+    $contact_number = $_POST['contact_number'];
+    $email_address = $_POST['email_address'];
+    $division = $_POST['division'];
+    $user_account_type = $_POST['user_account_type'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $status = "1";
+
+    $check_user = "SELECT uname FROM data WHERE uname = ?";
+    $check_user_result = $link->prepare($check_user);
+    $check_user_result->bind_param("s", $username);
+    $check_user_result->execute();
+    $check_user_result->store_result();
+
+    if ($check_user_result->num_rows() === 0) {
+
+        $query = "INSERT INTO data(idnum, firstname, mi, lastname, contactno, emailadd, fms, typenya, uname, pname, approve) 
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $link->prepare($query);
+        $stmt->bind_param("issssssssss", $id_number, $firstname, $middlename, $lastname, $contact_number, $email_address, $division, $user_account_type, $username, $hashed_password, $status);
+        if ($stmt->execute()) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Username is already exist!";
+    }
+    header("Location: user_account_management.php");
+    exit(0);
+}
+
+// For Updating User
+if (isset($_POST['update_user_btn'])) {
+    $update_id = $_POST['update_id'];
+    $id_number = $_POST['id_number'];
+    $firstname = $_POST['firstname'];
+    $middlename = $_POST['middlename'];
+    $lastname = $_POST['lastname'];
+    $contact_number = $_POST['contact_number'];
+    $email_address = $_POST['email_address'];
+    $division = $_POST['division'];
+    $user_account_type = $_POST['user_account_type'];
+
+    $check_user = "SELECT uname FROM data WHERE uname = ?";
+    $check_user_result = $link->prepare($check_user);
+    $check_user_result->bind_param("s", $username);
+    $check_user_result->execute();
+    $check_user_result->store_result();
+
+    if ($check_user_result->num_rows() === 0) {
+
+        $query = "UPDATE data SET idnum = ?, firstname = ?, mi = ?, lastname = ?, contactno = ?, emailadd = ?, fms = ?, typenya = ? WHERE id = ?";
+        $stmt = $link->prepare($query);
+        $stmt->bind_param("sssssssss", $id_number, $firstname, $middlename, $lastname, $contact_number, $email_address, $division, $user_account_type, $update_id);
+        if ($stmt->execute()) {
+            $_SESSION['successMessage'] = "Success";
+        } else {
+            $_SESSION['errorMessage'] = "Error";
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Username is already exist!";
+    }
+    header("Location: user_account_management.php");
+    exit(0);
+}
+
+// For Deleting User
+if (isset($_POST['delete_user_button'])) {
+    $delete_id = $_POST['delete_user_id'];
+    $is_deleted = "1";
+
+    $query = "UPDATE data SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $delete_id);
+    if ($stmt->execute()) {
+        $_SESSION['successMessage'] = "Success";
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: user_account_management.php");
+    exit(0);
+}
+
+// For Undo Deleted User
+if (isset($_POST['undo_delete_user_button'])) {
+    $undo_delete_user_id = $_POST['undo_delete_user_id'];
+    $is_deleted = "0";
+
+    $query = "UPDATE data SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $undo_delete_user_id);
+    if ($stmt->execute()) {
+        $_SESSION['successMessage'] = "Success";
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: user_account_management.php");
+    exit(0);
+}
+
+// For Deleting Applicant
+if(isset($_POST['delete_applicant_account_btn'])){
+    $delete_applicant_id = $_POST['delete_applicant_id'];
+    $is_deleted = "1";
+
+    $query = "UPDATE applicant SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $delete_applicant_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: applicant_account_management.php");
+    exit(0);
+}
+
+// For Undo Deleted Applicant
+if(isset($_POST['undo_delete_applicant_button'])){
+    $undo_delete_applicant_id = $_POST['undo_delete_applicant_id'];
+    $is_deleted = "0";
+
+    $query = "UPDATE applicant SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $undo_delete_applicant_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: applicant_account_management.php");
+    exit(0);
+}
+
+// For Adding Type of Separation
+if(isset($_POST['add_type_of_separationBtn'])){
+    $type = $_POST['type'];
+
+    $query = "INSERT INTO types_of_separation (type) VALUES (?)";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("s", $type);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: type_of_separation.php");
+    exit(0);
+}
+
+// For Updating Type of Separation
+if(isset($_POST['update_type_of_separationBtn'])){
+    $update_separation_id = $_POST['id']; 
+    $type = $_POST['type'];
+
+    $query = "UPDATE types_of_separation SET type = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $type, $update_separation_id);
+
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: type_of_separation.php");
+    exit(0);
+}
+
+// Deleting Types of Separation
+if(isset($_POST['delete_type_of_separation_Btn'])){
+    $delete_separation_id = $_POST['delete_type_of_separation_ID'];
+    $is_deleted = "1";
+
+    $query = "UPDATE types_of_separation SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $delete_separation_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: type_of_separation.php");
+    exit(0);
+}
+
+// For undo deleted Types of Separation
+if(isset($_POST['undo_delete_type_of_separation_button'])){
+    $undo_deleted_type_of_separation = $_POST['undo_type_of_separation_ID'];
+    $is_deleted = "0";
+
+    $query = "UPDATE types_of_separation SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $undo_deleted_type_of_separation);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: type_of_separation.php");
+    exit(0);
+}

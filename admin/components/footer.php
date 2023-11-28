@@ -922,6 +922,229 @@
             }
          });
       });
+
+
+       // Deleting User
+       $('#example').on('click', '.delete_user_btn', function(e) {
+         e.preventDefault();
+
+         var delete_id = $(this).closest("tr").find('.delete_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "delete_user_button": 1,
+                     "delete_user_id": delete_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Undo Deleted User
+      $('#example').on('click', '.undo_deleted_user_btn', function(e) {
+         e.preventDefault();
+
+         var undo_deleted_id = $(this).closest("tr").find('.undo_deleted_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to Undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_delete_user_button": 1,
+                     "undo_delete_user_id": undo_deleted_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Deleting Applicant
+      $('#example').on('click', '.delete_applicant_account_btn', function(e) {
+         e.preventDefault();
+
+         var delete_applicant_id = $(this).closest("tr").find('.delete_applicant_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "delete_applicant_account_btn": 1,
+                     "delete_applicant_id": delete_applicant_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Undo Deleted Applicant
+      $('#example').on('click', '.undo_type_of_separation_Btn', function(e) {
+         e.preventDefault();
+
+         var undo_type_of_separation_ID = $(this).closest("tr").find('.undo_type_of_separation_ID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to Undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_delete_type_of_separation_button": 1,
+                     "undo_type_of_separation_ID": undo_type_of_separation_ID
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Deleting Types of Separation
+      $('#example').on('click', '.delete_type_of_separation_Btn', function(e) {
+         e.preventDefault();
+
+         var delete_type_of_separation_ID = $(this).closest("tr").find('.delete_type_of_separation_ID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "delete_type_of_separation_Btn": 1,
+                     "delete_type_of_separation_ID": delete_type_of_separation_ID
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Undo Deleted Types of Separation
+      $('#example').on('click', '.undo_delete_applicant_account_btn', function(e) {
+         e.preventDefault();
+
+         var undo_delete_applicant_id = $(this).closest("tr").find('.undo_delete_applicant_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to Undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_delete_applicant_button": 1,
+                     "undo_delete_applicant_id": undo_delete_applicant_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
    </script>
 
    <!-- Data Table -->
