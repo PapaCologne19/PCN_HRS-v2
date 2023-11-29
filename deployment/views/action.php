@@ -68,9 +68,9 @@ if (isset($_POST['create_loa'])) {
         $get_result = $link->query($get_data);
         $get_row = $get_result->fetch_assoc();
         if (!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A") {
-            $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'] . " " . $get_row['mnko'];
+            $fullname = chop($get_row['firstnameko'] . ", " . $get_row['mnko'] . " " . $get_row['lastnameko']. " " . $get_row['extnname']);
         } else {
-            $fullname = $get_row['lastnameko'] . ", " . $get_row['firstnameko'];
+            $fullname = chop($get_row['firstnameko'] . ", " . $get_row['lastnameko']);
         }
         $sss = $get_row['sssnum'];
         $pagibig = $get_row['pagibignum'];
@@ -308,7 +308,7 @@ if (isset($_POST['update_loa'])) {
     $result = $link->query($query);
 
     if ($result) {
-        $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, 
+        $query_history = "INSERT INTO `deployment_history`(`shortlist_title`, `appno`, `employee_name`, `date_shortlisted`, `employee_id`, `deployment_id`,
             `sss`, `philhealth`, `pagibig`, `tin`, `address`, 
             `contact_number`, `loa_status`, `type`, `loa_start_date`, 
             `loa_end_date`, `division`, `category`, `locator`, `client_name`,
@@ -320,7 +320,7 @@ if (isset($_POST['update_loa'])) {
             `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, 
             `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, 
             `head`, `head_designation`, `emp_id`, `date_updated`) 
-            VALUES ('$shortlist_title', '$appno', '$fullname', '$date_shortlisted', '$id', 
+            VALUES ('$shortlist_title', '$appno', '$fullname', '$date_shortlisted', '$emp_id', '$id',
             '$sss', '$philhealth', '$pagibig', '$tin','$address', 
             '$contact_number','$status', '$type', '$start_loa', 
             '$end_loa', '$division', '$category', '$locator', '$client_name',

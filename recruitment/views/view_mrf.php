@@ -497,7 +497,19 @@ $row = $result->fetch_assoc();
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid white;">Transpo Allowance: <i style="float: right; margin-right: 1.5rem; margin-right: 1.5rem;"><?php echo $row['transpo'] ?></i></td>
-                        <td style="border-bottom: 1px solid white;">Work Duration: <i style="float: right; margin-right: 1.5rem;"><?php echo $row['work_duration_start'] . " to " . $row['work_duration_end'] ?></i></td>
+                        <td style="border-bottom: 1px solid white;">Work Duration: 
+                            <i style="float: right; margin-right: 1.5rem;">
+                                <?php 
+                                    $work_duration_start = $row['work_duration_start'];
+                                    $work_duration_start_create = date_create($work_duration_start);
+                                    $work_duration_start_format = date_format($work_duration_start_create, "m/d/Y");
+                                    $work_duration_end = $row['work_duration_end'];
+                                    $work_duration_end_create = date_create($work_duration_end);
+                                    $work_duration_end_format = date_format($work_duration_end_create, "m/d/Y");
+                                    echo $work_duration_start_format . " to " . $work_duration_end_format 
+                                ?>
+                            </i>
+                        </td>
                     </tr>
                     <tr>
                         <td style="border-bottom: 1px solid white;">Meal Allowance: <i style="float: right; margin-right: 1.5rem; "><?php echo $row['meal'] ?></i></td>
@@ -571,7 +583,16 @@ $row = $result->fetch_assoc();
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="3">Date Needed: <i style="float: right;text-decoration: none !important;"><?php echo $row['date_needed'] ?></i></td>
+                        <td colspan="3">Date Needed: 
+                            <i style="float: right;text-decoration: none !important;">
+                                <?php 
+                                    $date_needed = $row['date_needed'];
+                                    $date_needed_create = date_create($date_needed);
+                                    $date_needed_format = date_format($date_needed_create, "m/d/Y");
+                                    echo $date_needed_format; 
+                                ?>
+                            </i>
+                        </td>
                         <td style="border-top: 1px solid white;"></td>
                         <td style="border-top: 1px solid white;"></td>
                     </tr>

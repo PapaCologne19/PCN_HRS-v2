@@ -8,6 +8,7 @@ require 'PHPWord.php';
 ini_set('default_charset', 'utf-8');
 
 $id = $_GET['id'];
+$deployment_id = $_GET['deployment_id'];
 
 
 $query = "SELECT * FROM deployment WHERE employee_id = '$id'";
@@ -42,12 +43,12 @@ if ($result) {
 
 
 
-            $select_resume_path = "SELECT * FROM applicant_resume
-            WHERE applicant_id = '$applicant_id'";
-            $select_resume_path_result = $link->query($select_resume_path);
-            $select_resume_path_row = $select_resume_path_result->fetch_assoc();
+            $select_folder_path = "SELECT * FROM folder
+            WHERE applicant_id = '$applicant_id' AND employee_id = '$id' AND deployment_id = '$deployment_id'";
+            $select_folder_path_result = $link->query($select_folder_path);
+            $select_folder_path_row = $select_folder_path_result->fetch_assoc();
 
-            $folder_path = $select_resume_path_row['resume_path'];
+            $folder_path = $select_folder_path_row['folder_path'];
 
 
 
@@ -55,14 +56,14 @@ if ($result) {
             $folder_name = $applicant_name;
             $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
             $folder_name_subfolder = $applicant_name_subfolder;
-            $destination_subfolder = "../../../pcn_OLA/" . $folder_path . "/" . $applicant_name_subfolder . "/" . $applicant_name_subfolder;
+            $destination_subfolder = "../../../pcn_OLA/" . $folder_path . "/";
 
 
             $applicant_name = $selected_row['lastnameko'] . ", " . $selected_row['firstnameko'] . " " . $selected_row['mnko'];
             if ($selected_row['mnko'] === "" || $selected_row['mnko'] === "N/A" || $selected_row['mnko'] === "NA") {
                 $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['lastnameko'];
             } else {
-                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'];
+                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'] . " " . $selected_row['extnname'];
             }
             $applicant_address = $row['address'];
             $client_name = $row['client_name'];

@@ -12,7 +12,7 @@ $output = '';
 $status = mysqli_real_escape_string($link, $_GET['status']);
 $from = mysqli_real_escape_string($link, $_GET['from']);
 $to = mysqli_real_escape_string($link, $_GET['to']);
-
+ 
 
 $query = "SELECT applicant.*, resumes.*, project.*, applicant.id AS applicant_number, resumes.status AS resume_status, DATE_FORMAT(birthday, '%M %d %Y') AS birthday
 FROM applicant applicant, applicant_resume resumes, projects project

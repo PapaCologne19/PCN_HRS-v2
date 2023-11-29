@@ -1415,3 +1415,39 @@ if(isset($_POST['undo_delete_type_of_separation_button'])){
     header("Location: type_of_separation.php");
     exit(0);
 }
+
+// For Deleting Applicants' Resume (Not Permanent)
+if(isset($_POST['delete_resume_Btn'])){
+    $deleted_resume_id = $_POST['delete_resume_id'];
+    $is_deleted = "1";
+
+    $query = "UPDATE applicant_resume SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $deleted_resume_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: applicant_resume.php");
+    exit(0);
+}
+
+// For Undo Deleted Applicants' Resume (Not Permanent)
+if(isset($_POST['undo_delete_resume_button'])){
+    $undo_deleted_resume_id = $_POST['undo_delete_resume_id'];
+    $is_deleted = "0";
+
+    $query = "UPDATE applicant_resume SET is_deleted = ? WHERE id = ?";
+    $stmt = $link->prepare($query);
+    $stmt->bind_param("si", $is_deleted, $undo_deleted_resume_id);
+    if($stmt->execute()){
+        $_SESSION['successMessage'] = "Success";
+    }
+    else{
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: applicant_resume.php");
+    exit(0);
+}

@@ -306,7 +306,7 @@ include '../../connect.php';
                                                     <td>
                                                         <div class="contain">
                                                             <div class="columns">
-                                                                <a href="download_loa.php?id=<?php echo $fetched['id'] ?>" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
+                                                                <a href="download_loa.php?id=<?php echo $fetched['id'] ?>&deployment_id=<?php echo $row['id']?>" class="btn btn-dark btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download LOA"><i class="bi bi-cloud-download"></i></a>
                                                             </div>
                                                             <div class="columns">
                                                                 <a href="print_idcard.php?id=<?php echo $row['id'] ?>" name="name" download="<?php echo $name ?>" class="btn btn-secondary btn-sm" data-id="<?php echo $row['emp_id'] ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download ID"><i class="bi bi-file-earmark-arrow-down"></i></a>

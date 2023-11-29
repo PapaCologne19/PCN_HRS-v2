@@ -97,7 +97,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                         $to_formatted = date_format(new DateTime($to), 'm/d/Y');
 
                                     ?>
-                                    <a href="download_employee_reports.php?status=<?php echo $status?>&from=<?php echo $from?>&to=<?php echo $to?>" class="btn btn-dark mb-4"><i class="bi bi-cloud-download"></i> Export</a>
+                                        <a href="download_employee_reports.php?status=<?php echo $status ?>&from=<?php echo $from ?>&to=<?php echo $to ?>" class="btn btn-dark mb-4"><i class="bi bi-cloud-download"></i> Export</a>
                                         <table id="example" class="table " style="width:100%;font-size:14 !important;">
                                             <thead>
                                                 <tr>
@@ -149,7 +149,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             $formattedDate_nbi = date("F d, Y", $timestamp_nbi);
                                                 ?>
                                                             <tr>
-
                                                                 <td> <?php echo $rowx["dateto"] ?> </td>
                                                                 <td> <?php echo $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] ?> </td>
                                                                 <td> <?php echo $rowx['sssnum'] ?> </td>

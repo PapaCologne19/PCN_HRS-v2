@@ -27,12 +27,11 @@ if ($result) {
 
 
         while ($selected_row = $selected_result->fetch_assoc()) {
-            $applicant_name = $selected_row['lastnameko'] . ", " . $selected_row['firstnameko'] . " " . $selected_row['mnko'];
             if($selected_row['mnko'] === "" || $selected_row['mnko'] === "N/A" || $selected_row['mnko'] === "NA"){
                 $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['lastnameko'];
             }
             else{
-                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'];
+                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'] . " " . $selected_row['extnname'];
             }
             $applicant_address = $row['address'];
             $client_name = $row['client_name'];

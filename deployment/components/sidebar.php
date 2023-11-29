@@ -166,6 +166,11 @@
           </a>
         </li>
         <li class="menu-item">
+          <a href="deployment_history_report.php" class="menu-link">
+            <div data-i18n="Accordion">Deployment History Report</div>
+          </a>
+        </li>
+        <li class="menu-item">
           <a href="create_loa.php" class="menu-link">
             <div data-i18n="Accordion">LOA Database</div>
           </a>

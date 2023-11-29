@@ -942,19 +942,21 @@ if (isset($_POST['passBtn'])) {
     $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
     $approved_date = date('Y-m-d');
 
-    if (empty($relevant_educ_background) 
-        && empty($related_work_experience) 
+    if (
+        empty($relevant_educ_background)
+        && empty($related_work_experience)
         && empty($related_computer_skills)
-        && empty($verbal_communication_skills) 
-        && empty($cooperation) 
+        && empty($verbal_communication_skills)
+        && empty($cooperation)
         && empty($personality)
-        && empty($intelligence) 
-        && empty($diction) 
+        && empty($intelligence)
+        && empty($diction)
         && empty($others)
-        && empty($IQ) 
-        && empty($english) 
-        && empty($math) 
-        && empty($interview_details)) {
+        && empty($IQ)
+        && empty($english)
+        && empty($math)
+        && empty($interview_details)
+    ) {
 
         $query = "INSERT INTO ratings(resume_id, applicant_name, interviewer, position_applied, date_interviewed, result)
         VALUES ('$resumeID', '$applicant', '$interviewer', '$position_applied', '$date_now', '$status')";
@@ -996,13 +998,11 @@ if (isset($_POST['passBtn'])) {
                 $transaction_log_result = $link->prepare($transaction_log);
                 $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
                 $transaction_log_result->execute();
-                if($transaction_log_result){
+                if ($transaction_log_result) {
                     $_SESSION['successMessage'] = "Success!";
-                }
-                else {
+                } else {
                     $_SESSION['errorMessage'] = "Error in update";
                 }
-
             } else {
                 $_SESSION['errorMessage'] = "Error in update";
             }
@@ -1331,16 +1331,9 @@ if (isset($_POST['submit_update'])) {
     $file = $_FILES['waiver'];
     $filename = $_FILES["waiver"]["name"];
     $tempname = $_FILES["waiver"]["tmp_name"];
-    $applicant_name = chop($firstnameko . " " . $mnko . " " . $lastnameko . " " . $extnname);
-    $folder = "201 Files/" . $applicant_name . "/Requirements/";
 
-    $folderDestination = "../../../pcn_OLA/201 Files/" . $applicant_name . "/Requirements/";
 
-    if (empty($sssnum) || $sssnum === '' || empty($pagibignum) || $pagibignum === '' || empty($phnum) || $phnum === '') {
-        // $_SESSION['errorMessage'] = "Please upload waiver";
-        echo "Please upload waiver";
-    } else {
-        $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
+    $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
             `peraddress`='$peraddress', `cityn`='$cityn', `regionn`='$regionn', `birthday`='$birthday',
             `age`='$agen', `gendern`='$gendern', `civiln`='$civiln', `cpnum`='$cpnum',
             `landline`='$landline', `emailadd`='$emailadd', `despo`='$despo', `classn`='$classn',
@@ -1350,44 +1343,46 @@ if (isset($_POST['submit_update'])) {
             `e_address`='$e_address', `e_number`='$e_contact' 
             WHERE id = '$update_id'";
 
-        $result = $link->query($query);
+    $result = $link->query($query);
 
-        if ($result) {
-            $select_201files = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
-            $select_201files_result = $link->query($select_201files);
-            $select_201files_row = $select_201files_result->fetch_assoc();
-            $folder_id = $select_201files_row['id'];
+    if ($result) {
+        $select_employee = "SELECT * FROM employees WHERE id = '$update_id'";
+        $select_employee_result = $link->query($select_employee);
+        $select_employee_row = $select_employee_result->fetch_assoc();
+        $applicant_id = $select_employee_row['app_id'];
 
-            $select_employee = "SELECT * FROM employees WHERE id = '$update_id'";
-            $select_employee_result = $link->query($select_employee);
-            $select_employee_row = $select_employee_result->fetch_assoc();
-            $applicant_id = $select_employee_row['id'];
+        $select_201files = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
+        $select_201files_result = $link->query($select_201files);
+        $select_201files_row = $select_201files_result->fetch_assoc();
+        $folder_id = $select_201files_row['id'];
+                                                // 201 Files/FIREFOX DOE SMITH/Requirements
+        $folderDestination = "../../../pcn_OLA/" . $select_201files_row['folder_path'] . "/";
 
-            $insert_file = "INSERT INTO 201files (applicant_id, employee_id, folder_id, waiver_filename, waiver_date_submitted) 
+        $insert_file = "INSERT INTO 201files (applicant_id, employee_id, folder_id, waiver_filename, waiver_date_submitted) 
                             VALUES ('$applicant_id', '$update_id', '$folder_id', '$filename', '$date_now')";
-            $insert_file_result = $link->query($insert_file);
+        $insert_file_result = $link->query($insert_file);
 
-            if ($insert_file_result) {
-                if (move_uploaded_file($tempname, $folderDestination)) {
-
-                    $transaction = "UPDATE EMPLOYEE'S INFORMATION (WITHOUT MANDATORIES) " . $firstnameko . ", " . $mnko . " " . $lastnameko . " " . $mnko;
-                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+        if ($insert_file_result) {
+            if(move_uploaded_file($tempname, $folderDestination . DIRECTORY_SEPARATOR . $filename)){
+                $transaction = "UPDATE EMPLOYEE'S INFORMATION (WITHOUT MANDATORIES) " . $firstnameko . ", " . $mnko . " " . $lastnameko . " " . $mnko;
+                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
                                         VALUES (?, ?, ?, ?, ?)";
-                    $transaction_log_result = $link->prepare($transaction_log);
-                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
-                    $transaction_log_result->execute();
+                $transaction_log_result = $link->prepare($transaction_log);
+                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                $transaction_log_result->execute();
 
 
-                    $_SESSION['successMessage'] = "Success";
-                } else {
-                    $_SESSION['errorMessage'] = "Error in inserting waiver file";
-                }
-            } else {
-                $_SESSION['errorMessage'] = "Error in inserting waiver";
+                $_SESSION['successMessage'] = "Success";
             }
+            else{
+                $_SESSION['errorMessage'] = "Error in inserting waiver" . $folderDestination;
+            }   
+           
         } else {
-            $_SESSION['errorMessage'] = "Error in updating data";
+            $_SESSION['errorMessage'] = "Error in inserting waiver";
         }
+    } else {
+        $_SESSION['errorMessage'] = "Error in updating data";
     }
     header("Location: deploy.php");
     exit(0);

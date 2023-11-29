@@ -473,13 +473,13 @@ if (isset($_POST['add_request_loa_btn'])) {
 
             $query = "INSERT INTO loa_requests (employee_id, project_id, shortlist_id, start_date, end_date,
             category, division, locator, client_name, 
-            place_assigned, client_address, department, employment_status, 
+            place_assigned, client_address, channel, department, employment_status, 
             job_title, basic_salary, ecola, communication_allowance, 
             transportation_allowance, internet_allowance, meal_allowance, outbase_meal,
             special_allowance, position_allowance, no_days_of_work, outlet, requested_by) 
             VALUES ('$employee_id', '$project_id', '$shortlist_id', '$start_date', '$end_date',
             '$category', '$division', '$locator', '$client_name',
-            '$place_assigned', '$address_assigned', '$department', '$employment_status',
+            '$place_assigned', '$address_assigned', '$channel', '$department', '$employment_status',
             '$job_title', '$basic_salary', '$ecola', '$communication_allowance',
             '$transportation_allowance' ,'$internet_allowance', '$meal_allowance', '$outbase_meal', 
             '$special_allowance', '$position_allowance', '$no_of_days', '$outlet', '$requested_by')";

@@ -1145,6 +1145,81 @@
             }
          });
       });
+
+      // Deleting Applicant Resume (Not Permanent)
+      $('#example').on('click', '.delete_resume_btn', function(e) {
+         e.preventDefault();
+
+         var delete_resume_id = $(this).closest("tr").find('.delete_resume_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "delete_resume_Btn": 1,
+                     "delete_resume_id": delete_resume_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // Undo Deleted Types of Separation
+      $('#example').on('click', '.undo_delete_resume_btn', function(e) {
+         e.preventDefault();
+
+         var undo_delete_resume_id = $(this).closest("tr").find('.undo_delete_resume_id').val();
+
+         Swal.fire({
+            title: "Are you sure you want to Undo?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_delete_resume_button": 1,
+                     "undo_delete_resume_id": undo_delete_resume_id
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
    </script>
 
    <!-- Data Table -->

@@ -23,7 +23,14 @@
       </a>
     </li>
 
-
+    <!-- Components -->
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Applicant Shortlist</span></li>
+    <li class="menu-item">
+      <a href="applicant_resume.php" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-table"></i>
+        <div data-i18n="Tables">Resume</div>
+      </a>
+    </li>
 
     <!-- Components -->
     <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>

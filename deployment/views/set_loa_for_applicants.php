@@ -153,7 +153,7 @@ $row = $result->fetch_assoc();
                 </div>
                 <div class="col-md-9">
                     <select name="channel" id="channel" class="form-select" required>
-                        <option value="">Select</option>
+                        <option value="<?php echo $query_row['channel'] ?>"><?php echo $query_row['channel'] ?></option>
                         <?php
                         $channel_query = "SELECT * FROM channels";
                         $channel_result = $link->query($channel_query);

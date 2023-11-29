@@ -13,7 +13,7 @@ $from = mysqli_real_escape_string($link, $_GET['from']);
 $to = mysqli_real_escape_string($link, $_GET['to']);
 
 
-$query = "SELECT *,  
+$query = "SELECT *,   
 DATE_FORMAT(mrf.date_added, '%M %d %Y') AS date_added 
 FROM mrf 
 WHERE is_deleted = '0' 

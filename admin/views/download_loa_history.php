@@ -27,12 +27,11 @@ if ($result) {
 
 
         while ($selected_row = $selected_result->fetch_assoc()) {
-            $applicant_name = $selected_row['lastnameko'] . ", " . $selected_row['firstnameko'] . " " . $selected_row['mnko'];
             if($selected_row['mnko'] === "" || $selected_row['mnko'] === "N/A" || $selected_row['mnko'] === "NA"){
                 $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['lastnameko'];
             }
             else{
-                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'];
+                $applicant_name = $selected_row['firstnameko'] . " " . $selected_row['mnko'] . " " . $selected_row['lastnameko'] . " " . $selected_row['extnname'];
             }
             $applicant_address = $row['address'];
             $client_name = $row['client_name'];
@@ -48,6 +47,24 @@ if ($result) {
             $formattedDate_end = date_format($dateObj2, 'F j, Y');
             $basic_pay = $row['basic_salary'];
             $outlet = $row['outlet'];
+            $concatenatedText = '';
+
+            if (!empty($outlet)) {
+                $data = json_decode($outlet, true);
+                if (!empty($data['ops'])) {
+                    foreach ($data['ops'] as $op) {
+                        if (isset($op['insert'])) {
+                            $text = trim($op['insert']);
+                            if (!empty($text)) {
+                                $concatenatedText .= $text . ', ';
+                            }
+                        }
+                    }
+
+                    // Remove the trailing comma and space
+                    $concatenatedText = rtrim($concatenatedText, ', ');
+                }
+            }
             $no_work_days = $row['no_of_days'];
             $date_issued = $row['date_created'];
             $date = date_create($date_issued);
@@ -99,7 +116,7 @@ if ($result) {
             $document->setValue('Value10', $basic_pay);
 
 
-            $document->setValue('Value11a', $outlet);
+            $document->setValue('Value11a', $concatenatedText);
             $document->setValue('Value12', $no_work_days);
             $document->setValue('Value13', $issued_day);
             $document->setValue('Value14', $issued_month);

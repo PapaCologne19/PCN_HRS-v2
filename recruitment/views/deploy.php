@@ -237,7 +237,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     } else { ?>
                                                         <tr>
                                                             <td><?php echo $rowx['id'] ?> </td>
-                                                            <td> <?php echo $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] ?> </td>
+                                                            <td> <?php echo $rowx['lastnameko'] . ", " . $rowx['firstnameko'] . " " . $rowx['mnko'] . " " . $rowx['extnname'] ?> </td>
                                                             <td><?php echo $rowx['sssnum'] ?> </td>
                                                             <td><?php echo $rowx["pagibignum"] ?> </td>
                                                             <td><?php echo $rowx["phnum"] ?> </td>
@@ -644,7 +644,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="file" name="waiver" id="waiver" class="form-control">
+                                                                                            <input type="file" name="waiver" id="waiver" class="form-control" required>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-md-12">

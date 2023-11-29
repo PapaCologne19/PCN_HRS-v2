@@ -36,7 +36,6 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
             .form-check-input {
                 pointer-events: none;
-                /* Prevent user interaction with the checkbox */
             }
 
             .contain {

@@ -94,12 +94,16 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 $work_duration_start = $row['work_duration_start'];
                 $work_duration_end = $row['work_duration_end'];
                 $date_needed = $row['date_needed'];
+                $date_requested = $row['dt_now'];
                 $timestamp_work_duration_start = strtotime($work_duration_start);
                 $timestamp_work_duration_end = strtotime($work_duration_end);
                 $timestamp_date_needed = strtotime($date_needed);
+                $timestamp_date_requested = strtotime($date_requested);
                 $formattedDate_work_duration_start = date("F d, Y", $timestamp_work_duration_start);
                 $formattedDate_work_duration_end = date("F d, Y", $timestamp_work_duration_end);
                 $formattedDate_date_needed = date("F d, Y", $timestamp_date_needed);
+                $formattedDate_date_requested = date("F d, Y", $timestamp_date_requested);
+
                 ?>
                 <div class="header">
                     <img src="../assets/img/elements/pcn_logo.jpg" alt="" class="img-responsive justify-content-start logo" width="15%">
@@ -652,7 +656,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="3">Date Requested: <i style="display: block; text-decoration: none !important;"><?php echo $row['dt_now'] ?></i></td>
+                                <td colspan="3">Date Requested: <i style="display: block; text-decoration: none !important;"><?php echo $formattedDate_date_requested ?></i></td>
                                 <td rowspan="3" class="text-center" style=" font-weight: bold;">Prepared / Requested By: <br><br><br> <?php echo $row['prepared_by'] ?></td>
                                 <td></td>
                             </tr>
