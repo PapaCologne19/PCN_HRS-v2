@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 09:35 AM
+-- Generation Time: Nov 29, 2023 at 09:36 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -72,7 +72,17 @@ INSERT INTO `201files` (`id`, `applicant_id`, `project_id`, `employee_id`, `fold
 (83, 36, 0, 21, 32, 'adasd.pdf', '', '', '0000-00-00', '', '', '', ''),
 (84, 36, 0, 21, 32, 'connect.php', '', '', '0000-00-00', '', '', '', ''),
 (85, 38, 0, 0, 33, 'adasd.pdf', '2023-11-28 10:13:47', '', '0000-00-00', '', '', '', ''),
-(86, 39, 0, 0, 34, 'adasd.pdf', '2023-11-28 11:05:04', '', '0000-00-00', '', '', '', '');
+(86, 39, 0, 0, 34, 'adasd.pdf', '2023-11-28 11:05:04', '', '0000-00-00', '', '', '', ''),
+(87, 23, 0, 23, 0, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(88, 23, 0, 23, 0, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(89, 23, 0, 23, 1, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(90, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(91, 40, 0, 23, 35, '', '', 'Array', '2023-11-29', '', '', '', ''),
+(92, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(93, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(94, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(95, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', ''),
+(96, 40, 0, 23, 35, '', '', 'adasd - Copy.pdf', '2023-11-29', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -126,7 +136,8 @@ INSERT INTO `applicant` (`id`, `source`, `referred_by`, `username`, `password`, 
 (36, 'NON REFERRAL', '', 'Max123', '$2y$10$rbE1r2X/hH6evFQnEgZ8MucfmWjm0f5fapKGIKnLKkY6dScGtehxK', 'MAX', 'MATAPANG', 'NANGANGAGAT', '', 'MALE', 'SINGLE', 26, '09101465183', 'MAX@GMAIL.COM', '11/20/1997', 'BANSALANGIN ST. PAYATAS B', 'ALEGRIA R13', '16', 'ACTIVE', '', '2023-11-25 02:00:49', 0),
 (37, 'NON REFERRAL', '', '', '', 'MEMA', 'MEMA', 'MEMA', '', 'MALE', 'SINGLE', 25, '09101465184', 'ADMINS@GMAIL.COM', '11/19/1998', '#27 BANSALANGIN ST PAYATAS BS', 'AGUINALDO', '14', 'ACTIVE', '', '2023-11-25 02:38:10', 0),
 (38, 'NON REFERRAL', '', 'applicant292', '$2y$10$5GDvoJ1S9QR0ZE3mN74n4ecuamrdBeyT.GIIeMdteSSERLKB9/3Ia', 'APPLICANT FIRSTNAME', 'APPLICANT MIDDLENAME', 'APPLICANT LASTNAME', '', 'MALE', 'SINGLE', 26, '09101465183', 'APPLICANT@GMAIL.COM', '11/19/1997', 'BANSALANGIN ST. PAYATAS B', 'QUEZON CITY', '13', 'ACTIVE', '', '2023-11-28 02:13:47', 0),
-(39, 'NON REFERRAL', '', 'applicant610', '$2y$10$dLmKCgBM3mJMMMCvh4Qrlu18uyHceqzLBnBV0QesCU8wXW7ArHZ0y', 'TEST', 'DOE', 'NANGANGAGAT', 'TEST', 'MALE', 'SINGLE', 8, '09101465183', 'TEST123@GMAIL.COM', '11/26/2015', 'BANSALANGIN ST. PAYATAS B', 'AKBAR', '15', 'ACTIVE', '', '2023-11-28 03:05:04', 0);
+(39, 'NON REFERRAL', '', 'applicant610', '$2y$10$dLmKCgBM3mJMMMCvh4Qrlu18uyHceqzLBnBV0QesCU8wXW7ArHZ0y', 'TEST', 'DOE', 'NANGANGAGAT', 'TEST', 'MALE', 'SINGLE', 8, '09101465183', 'TEST123@GMAIL.COM', '11/26/2015', 'BANSALANGIN ST. PAYATAS B', 'AKBAR', '15', 'ACTIVE', '', '2023-11-28 03:05:04', 0),
+(40, 'REFERRAL', 'NOEL LABASAN', 'firefox123', '$2y$10$opGrz/NDSaMnoig1yXjV1O91GCILZreXXb.LwRE68B4KCodpHF3.m', 'FIREFOX', 'DOE', 'SMITH', '', 'MALE', 'SINGLE', 29, '09123456789', 'FIREFOX123@GMAIL.COM', '11/17/1994', 'FIREFOX ST. GOOGLE', 'QUEZON CITY', '13', 'ACTIVE', '', '2023-11-29 01:38:25', 0);
 
 -- --------------------------------------------------------
 
@@ -161,7 +172,8 @@ INSERT INTO `applicant_notifications` (`id`, `applicant_id`, `project_id`, `noti
 (17, 24, 2, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 0, 0),
 (18, 23, 1, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 1, 0),
 (19, 36, 2, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 0, 0),
-(20, 35, 1, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 0, 0);
+(20, 35, 1, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 0, 0),
+(21, 40, 4, 'Congratulations! You have passed. Please submit the mandatory documents (SSS, PhilHealth, Pag-IBIG, TIN).', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -183,6 +195,7 @@ CREATE TABLE `applicant_resume` (
   `project_approved_by` varchar(255) NOT NULL,
   `project_action_date` varchar(255) NOT NULL,
   `date_applied` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_rejected` datetime NOT NULL,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -190,16 +203,17 @@ CREATE TABLE `applicant_resume` (
 -- Dumping data for table `applicant_resume`
 --
 
-INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `folder_id`, `resume_file`, `resume_path`, `status`, `project_status`, `recruitment_approved_by`, `recruitment_action_date`, `project_approved_by`, `project_action_date`, `date_applied`, `is_deleted`) VALUES
-(82, 39, 3, 34, 'adasd.pdf', '../../../pcn_OLA/201 Files/TEST DOE NANGANGAGAT TEST/Requirements', 'QUALIFIED', 'PENDING', 'Firstname Recruitment Lastname Recruitment', '2023-11-28', '', '', '2023-11-28 11:05:04', 0),
-(80, 37, 1, 31, '16021479.docx', '../../../pcn_OLA/201 Files/MEMA MEMA MEMA/Requirements', 'NOT QUALIFIED', 'PENDING', '', '', '', '', '2023-11-25 10:38:10', 1),
-(81, 38, 1, 33, 'adasd.pdf', '../../../pcn_OLA/201 Files/APPLICANT FIRSTNAME APPLICANT MIDDLENAME APPLICANT LASTNAME/Requirements', 'QUALIFIED', 'PENDING', 'Firstname Recruitment Lastname Recruitment', '2023-11-28', '', '', '2023-11-28 10:13:47', 0),
-(71, 29, 2, 22, 'adasd.pdf', '../../../pcn_OLA/201 Files/Test Firstname Test Middlename Test Lastname/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-24 14:20:10', 0),
-(77, 35, 1, 28, 'adasd.pdf', '../../../pcn_OLA/201 Files/MING MING MING MING/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-24 15:36:56', 0),
-(78, 21, 1, 29, 'adasd.pdf', '../201 Files/HEHE HEHE HEHE/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-25 08:23:52', 0),
-(79, 36, 2, 30, 'adasd.pdf', '../201 Files/MAX MATAPANG NANGANGAGAT/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-25 10:01:21', 0),
-(66, 23, 1, 1, 'Vecteezy-License-Information.pdf', '../201 Files/HUHU HUHU HUHU HUHU/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-23 16:27:23', 0),
-(65, 23, 2, 1, 'adasd.pdf', '../201 Files/HUHU HUHU HUHU HUHU/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-23 16:27:09', 0);
+INSERT INTO `applicant_resume` (`id`, `applicant_id`, `project_id`, `folder_id`, `resume_file`, `resume_path`, `status`, `project_status`, `recruitment_approved_by`, `recruitment_action_date`, `project_approved_by`, `project_action_date`, `date_applied`, `date_rejected`, `is_deleted`) VALUES
+(82, 39, 3, 34, 'adasd.pdf', '../../../pcn_OLA/201 Files/TEST DOE NANGANGAGAT TEST/Requirements', 'QUALIFIED', 'PENDING', 'Firstname Recruitment Lastname Recruitment', '2023-11-28', '', '', '2023-11-28 11:05:04', '0000-00-00 00:00:00', 0),
+(80, 37, 1, 31, '16021479.docx', '../../../pcn_OLA/201 Files/MEMA MEMA MEMA/Requirements', 'NOT QUALIFIED', 'PENDING', '', '', '', '', '2023-11-25 10:38:10', '0000-00-00 00:00:00', 0),
+(81, 38, 1, 33, 'adasd.pdf', '../../../pcn_OLA/201 Files/APPLICANT FIRSTNAME APPLICANT MIDDLENAME APPLICANT LASTNAME/Requirements', 'QUALIFIED', 'PENDING', 'Firstname Recruitment Lastname Recruitment', '2023-11-28', '', '', '2023-11-28 10:13:47', '0000-00-00 00:00:00', 0),
+(71, 29, 2, 22, 'adasd.pdf', '../../../pcn_OLA/201 Files/Test Firstname Test Middlename Test Lastname/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-24 14:20:10', '0000-00-00 00:00:00', 0),
+(77, 35, 1, 28, 'adasd.pdf', '../../../pcn_OLA/201 Files/MING MING MING MING/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-24 15:36:56', '0000-00-00 00:00:00', 0),
+(78, 21, 1, 29, 'adasd.pdf', '../201 Files/HEHE HEHE HEHE/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-25 08:23:52', '0000-00-00 00:00:00', 0),
+(79, 36, 2, 30, 'adasd.pdf', '../201 Files/MAX MATAPANG NANGANGAGAT/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-25 10:01:21', '0000-00-00 00:00:00', 0),
+(66, 23, 1, 1, 'Vecteezy-License-Information.pdf', '../201 Files/HUHU HUHU HUHU HUHU/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', '', '', '', '', '2023-11-23 16:27:23', '0000-00-00 00:00:00', 0),
+(65, 23, 2, 1, 'adasd.pdf', '../201 Files/HUHU HUHU HUHU HUHU/Requirements', 'QUALIFIED', 'PENDING', '', '', '', '', '2023-11-23 16:27:09', '0000-00-00 00:00:00', 0),
+(83, 40, 4, 35, 'adasd.pdf', '../201 Files/FIREFOX DOE SMITH/Requirements', 'QUALIFIED', 'FOR DEPLOYMENT', 'Firstname Recruitment Lastname Recruitment', '2023-11-29', '', '', '2023-11-29 09:38:58', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -2174,10 +2188,10 @@ CREATE TABLE `deployment` (
   `date_shortlisted` varchar(255) NOT NULL,
   `app_id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,
-  `sss` int(11) NOT NULL,
-  `philhealth` int(11) NOT NULL,
-  `pagibig` int(11) NOT NULL,
-  `tin` int(11) NOT NULL,
+  `sss` varchar(10) NOT NULL,
+  `philhealth` varchar(12) NOT NULL,
+  `pagibig` varchar(12) NOT NULL,
+  `tin` varchar(12) NOT NULL,
   `address` varchar(255) NOT NULL,
   `contact_number` int(15) NOT NULL,
   `loa_status` varchar(255) NOT NULL,
@@ -2234,12 +2248,13 @@ CREATE TABLE `deployment` (
 --
 
 INSERT INTO `deployment` (`id`, `shortlist_title`, `appno`, `date_shortlisted`, `app_id`, `employee_id`, `sss`, `philhealth`, `pagibig`, `tin`, `address`, `contact_number`, `loa_status`, `type`, `project_start_date`, `loa_start_date`, `loa_end_date`, `division`, `category`, `locator`, `client_name`, `place_assigned`, `address_assigned`, `channel`, `department`, `employment_status`, `job_title`, `loa_template`, `201_remarks`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `deployment_remarks`, `no_of_days`, `outlet`, `supervisor`, `field_supervisor`, `field_designation`, `deployment_personnel`, `deployment_designation`, `project_supervisor`, `projectSupervisor_deployment`, `head`, `head_designation`, `emp_id`, `id_remarks`, `clearance`, `loa_folder_path`, `signed_loa_file`, `signed_loa_status`, `date_created`, `date_return`, `is_deleted`) VALUES
-(1, 'BUSINESS MANAGER', 13, '11/18/2023', 0, 12, 2, 0, 0, 0, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-21', '2023-11-30', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, '', 'ACTIVE', '', '', 'UNRETURN', '2023-11-21 02:05:21', '', 0),
-(5, 'BUSINESS MANAGER', 16, '11/21/2023', 0, 15, 1231231312, 2147483647, 2147483647, 2147483647, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '50000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', 'ACTIVE', '', '', 'UNRETURN', '2023-11-21 06:12:48', '', 0),
-(7, 'IT SUPPORT', 18, '11/21/2023', 21, 17, 1231231312, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', 'NOT RETURN', '25000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, '', 'TERMINATED', '', 'HEHE HEHE HEHE_LOA (3).docx', 'SUBMITTED', '2023-11-21 07:32:51', '', 0),
-(13, 'BUSINESS MANAGER', 19, '11/23/2023', 0, 18, 1231231312, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', 'ACTIVE', '', 'UNRETURN', '', '2023-11-23 02:53:00', '', 0),
-(18, 'BUSINESS MANAGER', 19, '11/23/2023', 0, 18, 1231231312, 2147483647, 2147483647, 2147483647, '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'qweqweqw', 'eqweqwe', 'qweqweqw', 'eqeqwe', 'qweqweqw', 'eqweqw', 'eqweqwe', 'qweqweqwe', 2147483647, '', 'ACTIVE', '../../../pcn_OLA/201 Files/TOM AND JERRY/TOM AND JERRY- From November 25, 2023 To September 26, 2024', 'UNRETURN', '', '2023-11-23 05:15:50', '', 0),
-(19, 'BUSINESS MANAGER', 22, '11/25/2023', 0, 21, 2121212112, 2147483647, 2147483647, 2147483647, 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-30', '2023-11-30', '2024-10-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', '', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 1232313123, '', 'TERMINATED', '../../../pcn_OLA/201 Files/MAX MATAPANG NANGANGAGAT/MAX MATAPANG NANGANGAGAT- From November 30, 2023 To October 31, 2024', 'UNRETURN', '', '2023-11-25 04:43:58', '', 0);
+(1, 'BUSINESS MANAGER', 13, '11/18/2023', 0, 12, '2', '0', '0', '0', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-21', '2023-11-30', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123456, '', 'ACTIVE', '', '', 'UNRETURN', '2023-11-21 02:05:21', '', 0),
+(5, 'BUSINESS MANAGER', 16, '11/21/2023', 0, 15, '1231231312', '2147483647', '2147483647', '2147483647', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '50000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', 'ACTIVE', '', '', 'UNRETURN', '2023-11-21 06:12:48', '', 0),
+(7, 'IT SUPPORT', 18, '11/21/2023', 21, 17, '1231231312', '2147483647', '2147483647', '2147483647', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', 'NOT RETURN', '25000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, '', 'TERMINATED', '', 'HEHE HEHE HEHE_LOA (3).docx', 'SUBMITTED', '2023-11-21 07:32:51', '', 0),
+(13, 'BUSINESS MANAGER', 19, '11/23/2023', 0, 18, '1231231312', '2147483647', '2147483647', '2147483647', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', 'ACTIVE', '', 'UNRETURN', '', '2023-11-23 02:53:00', '', 0),
+(18, 'BUSINESS MANAGER', 19, '11/23/2023', 0, 18, '1231231312', '2147483647', '2147483647', '2147483647', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 'Deployment Remarks Updated', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'qweqweqw', 'eqweqwe', 'qweqweqw', 'eqeqwe', 'qweqweqw', 'eqweqw', 'eqweqwe', 'qweqweqwe', 2147483647, '', 'ACTIVE', '../../../pcn_OLA/201 Files/TOM AND JERRY/TOM AND JERRY- From November 25, 2023 To September 26, 2024', 'UNRETURN', '', '2023-11-23 05:15:50', '', 0),
+(19, 'BUSINESS MANAGER', 22, '11/25/2023', 0, 21, '2121212112', '2147483647', '2147483647', '2147483647', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-30', '2023-11-30', '2024-10-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', 'NOT RETURN', '22000', '0', '0', '0', '0', '0', '0', '0', '0', '', '6', '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 1232313123, '', 'TERMINATED', '../../../pcn_OLA/201 Files/MAX MATAPANG NANGANGAGAT/MAX MATAPANG NANGANGAGAT- From November 30, 2023 To October 31, 2024', 'UNRETURN', '', '2023-11-25 04:43:58', '', 0),
+(20, 'PHARMACY SPECIALIST FUNRUN 2023', 24, '11/29/2023', 0, 23, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'NEW', '2023-12-01', '2023-12-01', '2024-06-30', 'BD2', 'ACTIVATION', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', 'NOT RETURN', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 'deployment Remarks', '6', '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, '', 'ACTIVE', '../../../pcn_OLA/201 Files/FIREFOX DOE SMITH/FIREFOX DOE SMITH- From December 1, 2023 To June 30, 2024', 'UNRETURN', '', '2023-11-29 02:33:53', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2300,8 +2315,8 @@ CREATE TABLE `deployment_history` (
   `head_designation` varchar(255) DEFAULT NULL,
   `emp_id` int(11) DEFAULT NULL,
   `id_remarks` text,
-  `clearance` varchar(255) DEFAULT NULL,
-  `signed_loa` varchar(255) DEFAULT NULL,
+  `clearance` varchar(255) DEFAULT 'ACTIVE',
+  `signed_loa` varchar(255) DEFAULT 'UNRETURN',
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` varchar(255) NOT NULL,
   `date_return` date DEFAULT NULL,
@@ -2321,8 +2336,8 @@ INSERT INTO `deployment_history` (`id`, `deployment_id`, `shortlist_title`, `app
 (7, 0, 'BUSINESS MANAGER', 16, 'TABACHINGCHING, LUNA MALATEK', '11/21/2023', 3, '1231231312', '12312312312', '12312312312', '12312312312', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '50000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"adasdasdas\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"asdas\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"asd\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"asd\"},{\"attributes\":{\"list\":\"ord', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-21 05:00:42', '2023-11-21 13:00:42', NULL, 0),
 (8, 0, 'BUSINESS MANAGER', 16, 'TABACHINGCHING, LUNA MALATEK', '11/21/2023', 15, '1231231312', '12312312312', '12312312312', '12312312312', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '50000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-21 06:11:15', '', NULL, 0),
 (9, 0, 'BUSINESS MANAGER', 16, 'TABACHINGCHING, LUNA MALATEK', '11/21/2023', 15, '1231231312', '12312312312', '12312312312', '12312312312', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2024-08-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '50000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-21 06:12:48', '', NULL, 0),
-(10, 0, 'IT SUPPORT', 18, 'HEHE, HEHE HEHE', '11/21/2023', 17, '1231231312', '623452342345', '546464564564', '565678678967', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2023-11-29', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', NULL, '25000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 6, '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'sdfsdf', 'sdfsdfsd', 'fsdfsdfsd', 'fsdfsd', 'sdfsd', 'sdfsd', 'Ariel B. Co', 'sdf', 2147483647, NULL, NULL, NULL, '2023-11-21 07:18:22', '', NULL, 0),
-(11, 0, 'IT SUPPORT', 18, 'HEHE, HEHE HEHE', '11/21/2023', 17, '1231231312', '623452342345', '546464564564', '565678678967', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', NULL, '25000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Deployment Remarks Updated', 6, '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, NULL, NULL, NULL, '2023-11-21 07:32:51', '', NULL, 0),
+(10, 0, 'IT SUPPORT', 18, 'HEHE, HEHE HEHE', '11/21/2023', 17, '1231231312', '623452342345', '546464564564', '565678678967', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2023-11-29', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', NULL, '25000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 6, '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'sdfsdf', 'sdfsdfsd', 'fsdfsdfsd', 'fsdfsd', 'sdfsd', 'sdfsd', 'Ariel B. Co', 'sdf', 2147483647, NULL, '', NULL, '2023-11-21 07:18:22', '', NULL, 0),
+(11, 0, 'IT SUPPORT', 18, 'HEHE, HEHE HEHE', '11/21/2023', 17, '1231231312', '623452342345', '546464564564', '565678678967', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-22', '2023-11-22', 'BD1', 'ACTIVATION', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'Department Store', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '1', NULL, '25000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Deployment Remarks Updated', 6, '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', '3123123', '12312321', 'fsdfsdfsd', '12312', '123123123', '12312312', '31231231', '23123123', 2147483647, NULL, '', NULL, '2023-11-21 07:32:51', '', NULL, 0),
 (12, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 123424234, NULL, NULL, NULL, '2023-11-23 02:38:18', '', NULL, 0),
 (13, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 1232113, NULL, NULL, NULL, '2023-11-23 02:41:14', '', NULL, 0),
 (14, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 545435345, NULL, NULL, NULL, '2023-11-23 02:48:16', '', NULL, 0),
@@ -2334,7 +2349,13 @@ INSERT INTO `deployment_history` (`id`, `deployment_id`, `shortlist_title`, `app
 (20, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'Department Store', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Deployment Remarks Updated', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'dasdas', 'dasdasdasd', 'adas', 'dasdasda', 'asdasdasda', 'sdasdasd', 'asdasdas', 'dasdasdas', 2147483647, NULL, NULL, NULL, '2023-11-23 05:10:45', '', NULL, 0),
 (21, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Deployment Remarks Updated', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 'qwerty', 2147483647, NULL, NULL, NULL, '2023-11-23 05:13:59', '', NULL, 0),
 (22, 0, 'BUSINESS MANAGER', 19, 'JERRY, TOM AND', '11/23/2023', 18, '1231231312', '312312312312', '123123123123', '234234234534', '#27 BANSALANGIN ST PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-25', '2024-09-26', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'Deployment Remarks Updated', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'qweqweqw', 'eqweqwe', 'qweqweqw', 'eqeqwe', 'qweqweqw', 'eqweqw', 'eqweqwe', 'qweqweqwe', 2147483647, NULL, NULL, NULL, '2023-11-23 05:15:50', '', NULL, 0),
-(23, 19, 'BUSINESS MANAGER', 22, 'NANGANGAGAT, MAX MATAPANG', '11/25/2023', 21, '2121212112', '456456456456', '544564564564', '564564564564', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-30', '2024-10-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 1232313123, NULL, NULL, NULL, '2023-11-25 04:43:58', '', NULL, 0);
+(23, 19, 'BUSINESS MANAGER', 22, 'NANGANGAGAT, MAX MATAPANG', '11/25/2023', 21, '2121212112', '456456456456', '544564564564', '564564564564', 'BANSALANGIN ST. PAYATAS B', 2147483647, 'DEPLOYED', 'NEW', '2023-11-30', '2024-10-31', 'BD1', 'ACTIVATION', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'General Trade', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '1', NULL, '22000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'Mr. Secret Supervisor', 'Ms. Secret Agent', 'MIS Supervisor', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 1232313123, NULL, NULL, NULL, '2023-11-25 04:43:58', '', NULL, 0),
+(24, 20, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 23, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', '', '2023-12-01', '2024-06-30', 'BD2', 'ACTIVATION', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-29 02:33:53', '', NULL, 0),
+(25, 20, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 20, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'NEW', '2023-12-01', '2024-06-30', 'BD2', 'ACTIVATION', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-29 02:34:35', '2023-11-29 10:34:35', NULL, 0),
+(26, 0, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 20, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'NEW', '2023-12-01', '2024-06-30', 'BD2', 'MERCHANDISING', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-29 02:58:34', '2023-11-29 10:58:34', NULL, 0),
+(27, 0, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 23, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'RENEWAL', '2023-12-01', '2024-06-30', 'BD2', 'MERCHANDISING', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-29 03:00:44', '2023-11-29 11:00:44', NULL, 0),
+(28, 20, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 23, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'NEW', '2023-12-01', '2024-06-30', 'BD2', 'MERCHANDISING', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, NULL, NULL, '2023-11-29 05:44:13', '2023-11-29 13:44:13', NULL, 0),
+(29, 20, 'PHARMACY SPECIALIST FUNRUN 2023', 24, 'SMITH, FIREFOX DOE', '11/29/2023', 23, '', '', '', '', 'FIREFOX ST. GOOGLE', 2147483647, 'DEPLOYED', 'NEW', '2023-12-01', '2024-06-30', 'BD2', 'ACTIVATION', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'Department Store', 'BU3', 'Project Based', 'Assistant Software Engineer', '1', NULL, '16000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'deployment Remarks', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'N/A', 'Ms. Secret Agent', 'Secret Agent', 'James Philip Gomera', 'IT Support', 'Noel Labasan', 'HR Specialist', 'Ariel B.co', 'HR Head', 2147483647, NULL, 'ACTIVE', 'UNRETURN', '2023-11-29 05:51:49', '2023-11-29 13:51:49', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -2527,7 +2548,8 @@ INSERT INTO `employees` (`id`, `tracking`, `photopath`, `dapplied`, `app_id`, `a
 (19, '20', '../../upload/default.png', '2023-11-23 14:56:22', 24, '20', 'REFERRAL', 'HIHI', 'HIHI', 'HIHI', 'HIHI', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '', '', '0', 'MALE', 'SINGLE', '09123456789', '', 'HIHI@GMAIL.COM', 'BUSINESS MANAGER', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (20, '21', '../../upload/default.png', '2023-11-23 16:29:09', 23, '21', 'REFERRAL', 'HUHU', 'HUHU', 'HUHU', 'HUHU', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '#27 BANSALANGIN ST PAYATAS B', '11/20/2008', '122', 'MALE', 'SINGLE', '09101465183', '', 'HUHU@GMAIL.COM', 'IT SUPPORT', 'Model Class A', 'Straight Hair', '1231231231', '123123123123', '123123123123', '123123123123', '', '', '', 'With', 'wrwerwerwerwrwer', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/25/2023', 'NOT VERIFY', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '#27 BANSALANGIN ST PAYATAS B', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
 (21, '22', '../../upload/default.png', '2023-11-25 11:54:41', 36, '22', 'NON REFERRAL', 'NANGANGAGAT', 'MAX', 'MATAPANG', '', '', 'BANSALANGIN ST. PAYATAS B', 'ALEGRIA R13', '16', '#27 BANSALANGIN ST PAYATAS B', '11/23/2023', '26', 'MALE', 'SINGLE', '09101465183', '', 'MAX@GMAIL.COM', 'BUSINESS MANAGER', 'Model Class B', 'Short Hair', '2121212112', '544564564564', '456456456456', '564564564564', '', '', '', 'With', 'Pusa siya Guys', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/25/2023', 'NOT VERIFY', '', '', '', 'JAMES PHILIP AMANTE GOMERA', '#27 BANSALANGIN ST PAYATAS B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
-(22, '23', '../../upload/default.png', '2023-11-25 12:26:07', 35, '23', 'NON REFERRAL', 'MING', 'MING', 'MING', 'MING', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '', '11/22/2007', '16', 'MALE', 'SINGLE', '09101465183', '', 'MING@GMAIL.COM', 'IT SUPPORT', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
+(22, '23', '../../upload/default.png', '2023-11-25 12:26:07', 35, '23', 'NON REFERRAL', 'MING', 'MING', 'MING', 'MING', '', '#27 BANSALANGIN ST PAYATAS B', 'QUEZON CITY', '13', '', '11/22/2007', '16', 'MALE', 'SINGLE', '09101465183', '', 'MING@GMAIL.COM', 'IT SUPPORT', '', '', '', '', '', '', '', '', '', '', '', 'ACTIVE', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0),
+(23, '24', '../../upload/default.png', '2023-11-29 09:40:06', 40, '24', 'REFERRAL', 'SMITH', 'FIREFOX', 'DOE', '', '', 'FIREFOX ST. GOOGLE', 'QUEZON CITY', '13', 'Bansalangin st. Payatas B', '11/20/1996', '29', 'MALE', 'SINGLE', '09101465183', '', 'FIREFOX123@GMAIL.COM', 'PHARMACY SPECIALIST FUNRUN 2023', 'Model Class A', 'With Eye Glasses', '', '', '', '', '', '', '', 'With', 'remarkss', 'ACTIVE', '', '', 'FOR DEPLOYMENT', '11/29/2023', 'NOT VERIFY', '', '', '', 'mama', 'Bansalangin st. Payatas B', '09101465183', '', '', '', '', '', '', '', '', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2738,7 +2760,7 @@ CREATE TABLE `folder` (
   `employee_id` int(11) NOT NULL,
   `deployment_id` int(11) NOT NULL,
   `folder_name` varchar(255) NOT NULL,
-  `folder_path` varchar(255) NOT NULL,
+  `folder_path` varchar(3000) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2751,7 +2773,7 @@ INSERT INTO `folder` (`id`, `applicant_id`, `employee_id`, `deployment_id`, `fol
 (4, 22, 0, 0, 'Requirements', '201 Files/TOM AND JERRY/Requirements', '2023-11-23 05:15:50'),
 (5, 22, 18, 18, 'TOM AND JERRY- From November 25, 2023 To September 26, 2024', '201 Files/TOM AND JERRY/TOM AND JERRY- From November 25, 2023 To September 26, 2024', '2023-11-23 05:17:22'),
 (7, 22, 18, 0, 'LOA Folder', '201 Files/TOM AND JERRY/LOA Folder', '2023-11-23 06:04:28'),
-(17, 24, 0, 0, 'Requirements', '201 Files/HIHI HIHI HIHI HIHIRequirements', '2023-11-23 08:04:46'),
+(17, 24, 0, 0, 'Requirements', '201 Files/HIHI HIHI HIHI HIHI/Requirements', '2023-11-23 08:04:46'),
 (18, 24, 19, 0, 'LOA Folder', '201 Files/HIHI HIHI HIHI HIHI/LOA Folder', '2023-11-23 08:19:47'),
 (19, 23, 20, 0, 'LOA Folder', '201 Files/HUHU HUHU HUHU HUHU/LOA Folder', '2023-11-23 08:55:21'),
 (20, 27, 0, 0, 'Requirements', '201 Files/Test Firstname Test Middlename Test Lastname/Requirements', '2023-11-24 05:57:53'),
@@ -2763,12 +2785,14 @@ INSERT INTO `folder` (`id`, `applicant_id`, `employee_id`, `deployment_id`, `fol
 (26, 33, 0, 0, 'Requirements', '201 Files/MING MING MING MING/Requirements', '2023-11-24 07:31:06'),
 (27, 34, 0, 0, 'Requirements', '201 Files/MING MING MING MING/Requirements', '2023-11-24 07:34:07'),
 (28, 35, 0, 0, 'Requirements', '201 Files/MING MING MING MING/Requirements', '2023-11-24 07:36:56'),
-(29, 21, 0, 0, 'Requirements', '201 Files/HEHE HEHE HEHERequirements', '2023-11-25 00:23:52'),
-(30, 36, 0, 0, 'Requirements', '201 Files/MAX MATAPANG NANGANGAGATRequirements', '2023-11-25 02:01:21'),
+(29, 21, 0, 0, 'Requirements', '201 Files/HEHE HEHE HEHE/Requirements', '2023-11-25 00:23:52'),
+(30, 36, 0, 0, 'Requirements', '201 Files/MAX MATAPANG NANGANGAGAT/Requirements', '2023-11-25 02:01:21'),
 (31, 37, 0, 0, 'Requirements', '201 Files/MEMA MEMA MEMA/Requirements', '2023-11-25 02:38:10'),
 (32, 36, 21, 19, 'MAX MATAPANG NANGANGAGAT- From November 30, 2023 To October 31, 2024', '201 Files/MAX MATAPANG NANGANGAGAT/MAX MATAPANG NANGANGAGAT- From November 30, 2023 To October 31, 2024', '2023-11-25 04:43:58'),
 (33, 38, 0, 0, 'Requirements', '201 Files/APPLICANT FIRSTNAME APPLICANT MIDDLENAME APPLICANT LASTNAME/Requirements', '2023-11-28 02:13:47'),
-(34, 39, 0, 0, 'Requirements', '201 Files/TEST DOE NANGANGAGAT TEST/Requirements', '2023-11-28 03:05:04');
+(34, 39, 0, 0, 'Requirements', '201 Files/TEST DOE NANGANGAGAT TEST/Requirements', '2023-11-28 03:05:04'),
+(35, 40, 0, 0, 'Requirements', '201 Files/FIREFOX DOE SMITH/Requirements', '2023-11-29 01:38:58'),
+(36, 40, 23, 20, 'FIREFOX DOE SMITH- From December 1, 2023 To June 30, 2024', '201 Files/FIREFOX DOE SMITH/FIREFOX DOE SMITH- From December 1, 2023 To June 30, 2024', '2023-11-29 02:33:53');
 
 -- --------------------------------------------------------
 
@@ -3373,6 +3397,7 @@ CREATE TABLE `loa_requests` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `category` varchar(255) NOT NULL,
+  `channel` varchar(255) NOT NULL,
   `division` varchar(255) NOT NULL,
   `locator` varchar(255) NOT NULL,
   `client_name` varchar(255) NOT NULL,
@@ -3399,11 +3424,8 @@ CREATE TABLE `loa_requests` (
 -- Dumping data for table `loa_requests`
 --
 
-INSERT INTO `loa_requests` (`id`, `employee_id`, `project_id`, `shortlist_id`, `start_date`, `end_date`, `category`, `division`, `locator`, `client_name`, `place_assigned`, `client_address`, `department`, `employment_status`, `job_title`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `no_days_of_work`, `outlet`, `requested_by`) VALUES
-(1, 15, 2, 15, '2023-11-22', '2024-08-31', 'ACTIVATION', 'BD1', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '50000', '0', '0', '0', '0', '0', '0', '0', '0', 6, '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'James Philip Gomera'),
-(2, 17, 1, 17, '2023-11-22', '2023-11-22', 'ACTIVATION', 'BD1', '2023_BD1_12', 'UNILEVER PHILIPPINES INC.', 'IT SUPPORT', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'CORE', 'Project Based', 'ACCOUNT EXECUTIVE', '25000', '0', '0', '0', '0', '0', '0', '0', '0', 6, '{\"ops\":[{\"insert\":\"Cubao Kamuning\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'James Philip Gomera'),
-(4, 18, 2, 18, '2023-11-25', '2024-09-26', 'ACTIVATION', 'BD1', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arena Philippine\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\\n\"}]}', 'James Philip Gomera'),
-(5, 21, 2, 31, '2023-11-30', '2024-10-31', 'ACTIVATION', 'BD1', '2023_BD1_13', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'BUSINESS MANAGER', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'SELECTA', 'Project Based', 'BUSS. MANAGER', '22000', '0', '0', '0', '0', '0', '0', '0', '0', 6, '{\"ops\":[{\"insert\":\"Philippine Arena\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'James Philip Gomera');
+INSERT INTO `loa_requests` (`id`, `employee_id`, `project_id`, `shortlist_id`, `start_date`, `end_date`, `category`, `channel`, `division`, `locator`, `client_name`, `place_assigned`, `client_address`, `department`, `employment_status`, `job_title`, `basic_salary`, `ecola`, `communication_allowance`, `transportation_allowance`, `internet_allowance`, `meal_allowance`, `outbase_meal`, `special_allowance`, `position_allowance`, `no_days_of_work`, `outlet`, `requested_by`) VALUES
+(6, 23, 4, 33, '2023-12-01', '2024-06-30', 'ACTIVATION', '', 'BD2', '2023_BD2_24', 'GLAXOSMITHKLINE', 'PHARMACY SPECIALIST FUNRUN 2023', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'BU3', 'Project Based', 'Assistant Software Engineer', '16000', '0', '0', '0', '0', '0', '0', '0', '0', 6, '{\"ops\":[{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', 'Firstname MRF Lastname MRF');
 
 -- --------------------------------------------------------
 
@@ -3539,7 +3561,29 @@ INSERT INTO `log` (`id`, `Username`, `Datelog`, `time`, `activitynya`) VALUES
 (113, 'recruitment', '11/28/2023', '2023-11-28 09:54:03', 'RECRUITMENT login Accepted'),
 (114, 'recruitment', '11/28/2023', '2023-11-28 09:58:19', 'RECRUITMENT login Accepted'),
 (115, 'recruitment', '11/28/2023', '2023-11-28 09:58:26', 'RECRUITMENT login Accepted'),
-(116, 'recruitment', '11/28/2023', '2023-11-28 11:04:24', 'RECRUITMENT login Accepted');
+(116, 'recruitment', '11/28/2023', '2023-11-28 11:04:24', 'RECRUITMENT login Accepted'),
+(117, 'admin', '11/29/2023', '2023-11-29 08:32:58', 'ADMIN login Accepted'),
+(118, 'admin', '11/29/2023', '2023-11-29 08:58:16', 'ADMIN login Accepted'),
+(119, 'deployment', '11/29/2023', '2023-11-29 08:58:40', 'DEPLOYMENT login Accepted'),
+(120, 'recruitment', '11/29/2023', '2023-11-29 09:00:47', 'RECRUITMENT login Accepted'),
+(121, 'mrf', '11/29/2023', '2023-11-29 09:25:00', 'MRF login Accepted'),
+(122, 'recruitment', '11/29/2023', '2023-11-29 09:25:22', 'RECRUITMENT login Accepted'),
+(123, 'mrf', '11/29/2023', '2023-11-29 09:28:12', 'MRF login Accepted'),
+(124, 'mrf', '11/29/2023', '2023-11-29 09:29:04', 'MRF login Accepted'),
+(125, 'mrf', '11/29/2023', '2023-11-29 10:24:08', 'MRF login Accepted'),
+(126, 'ewb', '11/29/2023', '2023-11-29 10:26:26', 'EWB login Accepted'),
+(127, 'deployment', '11/29/2023', '2023-11-29 10:27:10', 'DEPLOYMENT login Accepted'),
+(128, 'admin', '11/29/2023', '2023-11-29 10:35:13', 'ADMIN login Accepted'),
+(129, 'deployment', '11/29/2023', '2023-11-29 10:38:45', 'DEPLOYMENT login Accepted'),
+(130, 'admin', '11/29/2023', '2023-11-29 11:06:41', 'ADMIN login Accepted'),
+(131, 'recruitment', '11/29/2023', '2023-11-29 11:36:42', 'RECRUITMENT login Accepted'),
+(132, 'mrf', '11/29/2023', '2023-11-29 12:34:16', 'MRF login Accepted'),
+(133, 'recruitment', '11/29/2023', '2023-11-29 12:45:18', 'RECRUITMENT login Accepted'),
+(134, 'deployment', '11/29/2023', '2023-11-29 13:01:21', 'DEPLOYMENT login Accepted'),
+(135, 'admin', '11/29/2023', '2023-11-29 13:05:22', 'ADMIN login Accepted'),
+(136, 'recruitment', '11/29/2023', '2023-11-29 13:24:18', 'RECRUITMENT login Accepted'),
+(137, 'deployment', '11/29/2023', '2023-11-29 13:55:19', 'DEPLOYMENT login Accepted'),
+(138, 'mrf', '11/29/2023', '2023-11-29 14:17:38', 'MRF login Accepted');
 
 -- --------------------------------------------------------
 
@@ -3620,7 +3664,8 @@ CREATE TABLE `mrf` (
 INSERT INTO `mrf` (`id`, `tracking`, `mrf_category`, `mrf_category_name`, `type`, `location`, `location_detail`, `class`, `class_detail`, `division`, `department`, `client`, `client_address`, `project_title`, `ce_number`, `po_number`, `position`, `position_detail`, `np_male`, `np_female`, `height_r`, `height_female`, `edu`, `others_edu`, `pleasing_personality`, `moral`, `work_experience`, `comm_skills`, `physically`, `articulate`, `others`, `basic_salary`, `transpo`, `meal`, `comm`, `other_allow`, `other_allow_detail`, `employment_stat`, `emplo_other_details`, `salary_sched`, `work_duration_start`, `work_duration_end`, `work_days`, `time_sched`, `day_off`, `outlet`, `date_needed`, `drt`, `rp`, `dt_now`, `hatian`, `s_male`, `s_female`, `pooling`, `hr_personnel`, `uid`, `prepared_by`, `short_list_id`, `special_requirements_others`, `is_deleted`, `is_approve`, `date_added`, `date_updated`) VALUES
 (1017, '2', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'SELECTA', 'UNILEVER RFM SELECTA ICE CREAM INC.', 'MANGGAHAN LIGHT INDUSTRIAL PARK, PASIG CITY', 'BUSINESS MANAGER', '98765432112', '1231313123', 'BUSS. MANAGER', '', '5', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', '', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '22000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-25', '2023-12-09', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Philippine Arena\\n\"}]}', '2023-11-16', 'SALTA, JULIE ANN MANTALA', 'ACTIVATION COORDINATOR', '11/17/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHA', 0, 1, '2023-11-17 11:45:59', '2023-11-20 01:06:04'),
 (1018, '3', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'BU1', 'PHILUSA CORPORATION', '16 CORNER SHAW BOULEVARD, PASIG, 1603 METRO MANILA', 'ENCODER', '9876543213123', '', 'ENCODER', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', '', '', '17000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-12-31', '2024-08-31', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Cubao\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Mandaluyong\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Arayat\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Commonwealth\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"},{\"insert\":\"Caloocan\"},{\"attributes\":{\"list\":\"bullet\"},\"insert\":\"\\n\"}]}', '2023-12-31', 'CEDULA, EDWIN QUIZON', 'MERCHANDISING SUPERVISOR', '11/25/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', '', 0, 1, '2023-11-25 11:19:27', '2023-11-25 03:37:02'),
-(1016, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'CORE', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'IT SUPPORT', '987654321', '123456', 'ACCOUNT EXECUTIVE', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '22000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-18', '2023-11-30', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Cubao\\nKamuning\\n\"}]}', '2023-11-16', 'MARALIT, DIANNE MARICRIS GARCIA', 'ACCOUNT SUPERVISOR', '11/17/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHA', 0, 1, '2023-11-17 11:44:44', '2023-11-23 01:25:39');
+(1016, '1', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD1', 'CORE', 'UNILEVER PHILIPPINES INC.', '7TH FLOOR BONIFACIO STOPOVER CORPORATE CENTER 31ST STREET CORNER 2ND AVENUE, BONIFACIO GLOBAL CITY FORT BONIFACIO, TAGUIG CITY', 'IT SUPPORT', '987654321', '123456', 'ACCOUNT EXECUTIVE', '', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '22000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-18', '2023-11-30', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Cubao\\nKamuning\\n\"}]}', '2023-11-16', 'MARALIT, DIANNE MARICRIS GARCIA', 'ACCOUNT SUPERVISOR', '11/17/2023', '', '', '', '', 'YES', '21', 'GOMERA, JAMES PHILIP', '', 'HAHAHAHA', 0, 1, '2023-11-17 11:44:44', '2023-11-23 01:25:39'),
+(1019, '4', 'NEW', '', 'INHOUSE', 'NCR', '', '', '', 'BD2', 'BU3', 'GLAXOSMITHKLINE', '2266 CHINO ROCES AVENUE, MAKATI CITY / 31ST FLOOR ONE WORLD PLACE 32ND ST., BONIFACIO GLOBAL CITY', 'PHARMACY SPECIALIST FUNRUN 2023', '9876543212313', '1234654654', 'OTHER', 'PHARMACY SPECIALIST', '3', '5', '0', '0', 'COLLEGE GRADUATE', '', 'PLEASING PERSONALITY', 'GOOD MORAL', 'WITH WORK EXPERIENCE', 'GOOD COMMUNICATION SKILLS', 'PHYSICALLY FIT / GOOD BUILT', 'ARTICULATE', '', '16000', '0', '0', '0', '', '', 'PROJECT BASED', '', '10-25', '2023-11-10', '2024-02-29', '6 DAYS', '8 TO 5', 'SUNDAY', '{\"ops\":[{\"insert\":\"Mandaluyong\\n\"}]}', '2023-11-30', 'CENDAÃ‘A, RICHVON DE GUZMAN', 'ADMIN SUPERVISOR', '11/29/2023', '', '', '', '', 'YES', '26', 'LASTNAME MRF, FIRSTNAME MRF', '', '', 0, 1, '2023-11-29 09:29:30', '2023-11-29 01:34:24');
 
 -- --------------------------------------------------------
 
@@ -3854,7 +3899,8 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`id`, `mrf_id`, `mrf_tracking`, `project_title`, `client_company_id`, `ewb_count`, `start_date`, `end_date`, `status`, `is_deleted`, `approved_by`, `date_approved`) VALUES
 (1, 1016, 1, 'IT SUPPORT', 'UNILEVER PHILIPPINES INC.', '8', '2023-11-18', '2023-11-30', '1', '0', '', '2023-11-17 11:47:46'),
 (2, 1017, 2, 'BUSINESS MANAGER', 'UNILEVER RFM SELECTA ICE CREAM INC.', '10', '2023-11-25', '2023-12-09', '1', '0', '', '2023-11-17 11:47:49'),
-(3, 1018, 3, 'ENCODER', 'PHILUSA CORPORATION', '8', '2023-12-31', '2024-08-31', '1', '0', '', '2023-11-25 11:37:02');
+(3, 1018, 3, 'ENCODER', 'PHILUSA CORPORATION', '8', '2023-12-31', '2024-08-31', '1', '0', '', '2023-11-25 11:37:02'),
+(4, 1019, 4, 'PHARMACY SPECIALIST FUNRUN 2023', 'GLAXOSMITHKLINE', '8', '2023-11-10', '2024-02-29', '1', '0', '', '2023-11-29 09:31:06');
 
 -- --------------------------------------------------------
 
@@ -3918,7 +3964,8 @@ INSERT INTO `ratings` (`id`, `resume_id`, `applicant_name`, `interviewer`, `posi
 (28, 71, 'Test Firstname Test Lastname', 'DEO VILL', 'BUSINESS MANAGER', 'November 25, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-25 10:15:48'),
 (32, 78, 'HEHE HEHE', 'DEO VILL', 'IT SUPPORT', 'November 25, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-25 10:37:19'),
 (33, 82, 'TEST NANGANGAGAT', 'Firstname Recruitment Lastname Recruitment', 'ENCODER', 'November 28, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-28 11:11:38'),
-(34, 81, 'APPLICANT FIRSTNAME APPLICANT LASTNAME', 'Firstname Recruitment Lastname Recruitment', 'IT SUPPORT', 'November 28, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-28 11:20:55');
+(34, 81, 'APPLICANT FIRSTNAME APPLICANT LASTNAME', 'Firstname Recruitment Lastname Recruitment', 'IT SUPPORT', 'November 28, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', '', '', '', 0, '2023-11-28 11:20:55'),
+(35, 83, 'FIREFOX SMITH', 'Firstname Recruitment Lastname Recruitment', 'PHARMACY SPECIALIST FUNRUN 2023', 'November 29, 2023', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'QUALIFIED', '', 'FOR DEPLOYMENT', 'Firstname MRF Lastname MRF', '2023-11-29 09:40:06', 0, '2023-11-29 09:39:38');
 
 -- --------------------------------------------------------
 
@@ -4062,7 +4109,8 @@ CREATE TABLE `shortlist_details` (
 
 INSERT INTO `shortlist_details` (`id`, `shortlistname`, `project`, `mrf_tracking`, `client`, `datecreated`, `activity`, `project_id`) VALUES
 (8, 'IT SUPPORT', 'IT SUPPORT', 1, 'UNILEVER PHILIPPINES INC.', '11/18/2023', 'ACTIVE', 1),
-(7, 'BUSINESS MANAGER', 'BUSINESS MANAGER', 2, 'UNILEVER RFM SELECTA ICE CREAM INC.', '11/18/2023', 'ACTIVE', 2);
+(7, 'BUSINESS MANAGER', 'BUSINESS MANAGER', 2, 'UNILEVER RFM SELECTA ICE CREAM INC.', '11/18/2023', 'ACTIVE', 2),
+(9, 'PHARMACY SPECIALIST FUNRUN 2023', 'PHARMACY SPECIALIST FUNRUN 2023', 4, 'GLAXOSMITHKLINE', '11/29/2023', 'ACTIVE', 4);
 
 -- --------------------------------------------------------
 
@@ -4112,7 +4160,8 @@ INSERT INTO `shortlist_master` (`id`, `employee_id`, `project_name`, `shortlistn
 (29, 17, '', 'BUSINESS MANAGER', '18', 0, '11/24/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR REQUEST', ''),
 (30, 20, '', 'BUSINESS MANAGER', '21', 0, '11/24/2023', 'EWB', '11/25/2023', '', 'FOR DEPLOYMENT', 'FOR REQUEST', ''),
 (31, 21, '', 'BUSINESS MANAGER', '22', 0, '11/25/2023', 'EWB', '11/25/2023', '', 'DEPLOYED', 'FOR LOA', ''),
-(32, 22, '', 'IT SUPPORT', '23', 0, '11/25/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR REQUEST', '');
+(32, 22, '', 'IT SUPPORT', '23', 0, '11/25/2023', '', '', '', 'FOR DEPLOYMENT', 'FOR REQUEST', ''),
+(33, 23, '', 'PHARMACY SPECIALIST FUNRUN 2023', '24', 0, '11/29/2023', 'EWB', '11/29/2023', '', 'DEPLOYED', 'FOR LOA', '');
 
 -- --------------------------------------------------------
 
@@ -4162,7 +4211,7 @@ CREATE TABLE `synch` (
 
 INSERT INTO `synch` (`id`, `katsing`, `datenow1`) VALUES
 (1, '1', '2023-11-28'),
-(2, 'Shortlist', '11/28/2023');
+(2, 'Shortlist', '11/29/2023');
 
 -- --------------------------------------------------------
 
@@ -4214,7 +4263,7 @@ CREATE TABLE `track` (
 --
 
 INSERT INTO `track` (`id`, `appno`) VALUES
-(1, '23'),
+(1, '24'),
 (2, '25');
 
 -- --------------------------------------------------------
@@ -4286,7 +4335,26 @@ INSERT INTO `transaction_log` (`id`, `user_id`, `transaction`, `personnel`, `use
 (50, 22, 'DELETED LOA HISTORY OF (23)', 'admin admin', 'ADMIN', 'ADMIN', '2023-11-28 13:01:26'),
 (51, 22, 'UNDO DELETED LOA HISTORY OF (23)', 'admin admin', 'ADMIN', 'ADMIN', '2023-11-28 13:01:30'),
 (52, 22, 'SET LOA TEMPLATE AS DEFAULT', 'admin admin', 'ADMIN', 'ADMIN', '2023-11-28 13:02:01'),
-(53, 22, 'SET LOA TEMPLATE AS INACTIVE', 'admin admin', 'ADMIN', 'ADMIN', '2023-11-28 13:02:07');
+(53, 22, 'SET LOA TEMPLATE AS INACTIVE', 'admin admin', 'ADMIN', 'ADMIN', '2023-11-28 13:02:07'),
+(54, 25, 'DELETED LOA HISTORY OF (1)', 'Noel Labasan', 'ADMIN', 'HR', '2023-11-29 08:57:08'),
+(55, 25, 'UNDO DELETED LOA HISTORY OF (1)', 'Noel Labasan', 'ADMIN', 'HR', '2023-11-29 08:57:10'),
+(56, 25, 'DELETED LOA HISTORY OF (23)', 'Noel Labasan', 'ADMIN', 'HR', '2023-11-29 08:57:14'),
+(57, 25, 'UNDO DELETED LOA HISTORY OF (23)', 'Noel Labasan', 'ADMIN', 'HR', '2023-11-29 08:57:20'),
+(58, 26, 'CREATE MRF', 'Firstname MRF Lastname MRF', 'MRF', 'HR', '2023-11-29 09:29:30'),
+(59, 30, 'ACCEPT MRF - 1019', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 09:31:06'),
+(60, 30, 'RATE APPLICANT (PASSED) - FIREFOX SMITH', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 09:39:38'),
+(61, 26, 'APPROVED APPLICANT 40', 'Firstname MRF Lastname MRF', 'MRF', 'HR', '2023-11-29 09:40:06'),
+(62, 30, 'UPDATE EMPLOYEE\'S INFORMATION (WITHOUT MANDATORIES) FIREFOX, DOE SMITH DOE', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 10:09:56'),
+(63, 30, 'UPDATE EMPLOYEE\'S INFORMATION (WITHOUT MANDATORIES) FIREFOX, DOE SMITH DOE', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 10:13:28'),
+(64, 30, 'UPDATE EMPLOYEE\'S INFORMATION (WITHOUT MANDATORIES) FIREFOX, DOE SMITH DOE', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 10:20:53'),
+(65, 30, 'DEPLOY APPLICANT (NOT VERIFIED) - 24', 'Firstname Recruitment Lastname Recruitment', 'RECRUITMENT', 'HR', '2023-11-29 10:23:02'),
+(66, 26, 'ADD LOA REQUEST', 'Firstname MRF Lastname MRF', 'MRF', 'HR', '2023-11-29 10:25:33'),
+(67, 27, 'DEPLOYED EMPLOYEE AND CREATE LOA FOR - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 10:33:53'),
+(68, 27, 'UPDATE LOA OF - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 10:34:35'),
+(69, 27, 'UPDATE LOA OF - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 10:58:34'),
+(70, 27, 'UPDATE LOA OF - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 11:00:44'),
+(71, 27, 'UPDATE LOA OF - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 13:44:13'),
+(72, 27, 'UPDATE LOA OF - SMITH, FIREFOX DOE', 'Firstname Deployment Lastname Deployment', 'DEPLOYMENT', 'HR', '2023-11-29 13:51:49');
 
 -- --------------------------------------------------------
 
@@ -4685,25 +4753,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `201files`
 --
 ALTER TABLE `201files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `applicant_notifications`
 --
 ALTER TABLE `applicant_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `applicant_resume`
 --
 ALTER TABLE `applicant_resume`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `attrition`
@@ -4775,13 +4843,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `deployment`
 --
 ALTER TABLE `deployment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `deployment_history`
 --
 ALTER TABLE `deployment_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `distinguishing_qualification_marks`
@@ -4805,7 +4873,7 @@ ALTER TABLE `empcounter`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `employee_update_history`
@@ -4847,7 +4915,7 @@ ALTER TABLE `excuse_letter_history`
 -- AUTO_INCREMENT for table `folder`
 --
 ALTER TABLE `folder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `gender`
@@ -4877,19 +4945,19 @@ ALTER TABLE `loa_maintenance_word`
 -- AUTO_INCREMENT for table `loa_requests`
 --
 ALTER TABLE `loa_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `mrf`
 --
 ALTER TABLE `mrf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1019;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1020;
 
 --
 -- AUTO_INCREMENT for table `mrf_access`
@@ -4907,13 +4975,13 @@ ALTER TABLE `pcn_emp`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `recruitment_approve_history`
@@ -4937,13 +5005,13 @@ ALTER TABLE `separation`
 -- AUTO_INCREMENT for table `shortlist_details`
 --
 ALTER TABLE `shortlist_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `shortlist_master`
 --
 ALTER TABLE `shortlist_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `synch`
@@ -4967,7 +5035,7 @@ ALTER TABLE `track`
 -- AUTO_INCREMENT for table `transaction_log`
 --
 ALTER TABLE `transaction_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `types_of_separation`
