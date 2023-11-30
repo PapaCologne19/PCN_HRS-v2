@@ -31,25 +31,9 @@
       </a>
 
       <ul class="menu-sub">
-        <!-- <li class="menu-item">
-                  <a href="javascript:void(0);"class="menu-link menu-toggle">
-                    <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">Deployment</div>
-                  </a>
-                    <ul class="menu-sub">
-                      <li class="menu-item">
-                        <a href="index.php" class="menu-link">
-                          <i class="menu-icon tf-icons bx bx-layout"></i>
-                          <div data-i18n="Layouts">Deployments</div>
-                        </a>
-                      </li>
-                    </ul>
-                </li> -->
-
-
         <li class="menu-item">
           <a href="shortlist.php" class="menu-link">
-            <div data-i18n="Without navbar">Shortlist</div>
+            <div data-i18n="Without navbar">Project</div>
           </a>
         </li>
         <li class="menu-item">
@@ -60,6 +44,11 @@
         <li class="menu-item">
           <a href="loa_history.php" class="menu-link">
             <div data-i18n="Container">LOA History</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="separation.php" class="menu-link">
+            <div data-i18n="Container">Separation</div>
           </a>
         </li>
       </ul>

@@ -32,13 +32,10 @@ function sendApproveEmail($email, $fullname)
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = 'PCN Room Reservation';
         $mail->Body    = '<center>
-                          <div class="container" style="margin: 10rem;">
-                            <div class="logo">
-                                <img src="/images/pcn.png" alt="" width="15%">
-                            </div>
+                          <div class="container">
                             <div class="div-message" style="margin:0 20rem;">
                                 <h3 style="font-family: Arial, Helvetica, sans-serif; text-align: justify;">PCN Morning, ' . $fullname . ', </h3>
-                                <p style="font-family: Arial, Helvetica, sans-serif; text-align: justify; text-indent: 4rem;">Your room reservation has been approved. You can now use the room. Thank you and have a good day.</p>
+                                <p style="font-family: Arial, Helvetica, sans-serif; text-align: justify; text-indent: 4rem;">We would like to inform you that are qualified</p>
                                   <br>
                               </div>
                               <div class="footer-message" style="margin: 0 16rem;">

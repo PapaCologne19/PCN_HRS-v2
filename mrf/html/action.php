@@ -1,5 +1,6 @@
 <?php
 include 'connect.php';
+include 'smtp.php';
 session_start();
 date_default_timezone_set('Asia/Manila');
 $date_now = date('Y-m-d H:i:s');
@@ -314,6 +315,7 @@ if (isset($_POST['approve_applicants_button_click'])) {
             $middlename = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['middlename'])))));
             $lastname = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['lastname'])))));
             $extension_name = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['extension_name'])))));
+            $fullname = $firstname . " " . $middlename . " " . $lastname . " " . $extension_name;
             $gender = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['gender'])))));
             $civil_status = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['civil_status'])))));
             $age = chop(chop(preg_replace('/\s+/', ' ', (strtoupper($fetch_row['age'])))));
@@ -379,7 +381,7 @@ if (isset($_POST['approve_applicants_button_click'])) {
                                                 $transaction_log_result = $link->prepare($transaction_log);
                                                 $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
                                                 $transaction_log_result->execute();
-
+                                                sendApproveEmail($email_address, $fullname);
                                                 $_SESSION['successMessage'] = "Success";
                                             } else {
                                                 $_SESSION['errorMessage'] = "Error in updating tracking number";
@@ -400,12 +402,13 @@ if (isset($_POST['approve_applicants_button_click'])) {
                                         $update_tracking = "UPDATE track SET appno = '$newtracking' WHERE id = '1'";
                                         $result_tracking = mysqli_query($link, $update_tracking);
                                         if ($result_tracking) {
+                                            sendApproveEmail($email_address, $fullname);
                                             $_SESSION['successMessage'] = "Success";
                                         } else {
                                             $_SESSION['errorMessage'] = "Error in updating tracking number";
                                         }
                                     } else {
-                                        $_SESSION[] = "Error in inserting to shortlist master";
+                                        $_SESSION['errorMessage'] = "Error in inserting to shortlist master";
                                     }
                                 }
                             }

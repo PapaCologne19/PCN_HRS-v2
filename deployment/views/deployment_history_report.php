@@ -70,7 +70,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="" class="form-label">From</label>
-                                                <input type="date" name="from_date" id="from_date" class="form-control" required>
+                                                <input type="date" name="from_date" id="from_date" class="form-control" value="2023-11-01" required>
                                             </div>
                                             <div class="col-md-2">
                                                 <label for="" class="form-label">To</label>
@@ -102,12 +102,13 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
                                     <?php
                                     if (isset($_GET['search_btn'])) {
+                                        $names = $_GET['names'];
                                         $status = $_GET['status'];
                                         $from = $_GET['from_date'];
                                         $to = $_GET['to_date'];
                                         $project_title = $_GET['project_title'];
                                     ?>
-                                        <a href="download_deployment_history_report.php?status=<?php echo $status ?>&from=<?php echo $from ?>&to=<?php echo $to ?>" class="btn btn-dark mb-4"><i class="bi bi-cloud-download"></i> Export</a>
+                                        <a href="download_deployment_history_report.php?names=<?php echo $names?>&project_title=<?php echo $project_title?>&status=<?php echo $status ?>&from=<?php echo $from ?>&to=<?php echo $to ?>" class="btn btn-dark mb-4"><i class="bi bi-cloud-download"></i> Export</a>
                                         <table class="table" id="example">
                                             <thead>
                                                 <tr>
@@ -129,6 +130,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 $search = "SELECT *
                                                 FROM deployment_history
                                                 WHERE ('$status' = '' OR clearance = '$status') 
+                                                AND ('$names' = '' OR employee_name = '$names') 
                                                 AND ('$project_title' = '' OR shortlist_title = '$project_title') 
                                                 AND(
                                                     (date_created BETWEEN '$from' AND '$to')

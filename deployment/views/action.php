@@ -68,7 +68,7 @@ if (isset($_POST['create_loa'])) {
         $get_result = $link->query($get_data);
         $get_row = $get_result->fetch_assoc();
         if (!empty($get_row['mnko']) || $get_row['mnko'] != "NA" || $get_row['mnko'] != "N/A") {
-            $fullname = chop($get_row['firstnameko'] . ", " . $get_row['mnko'] . " " . $get_row['lastnameko']. " " . $get_row['extnname']);
+            $fullname = chop($get_row['firstnameko'] . ", " . $get_row['mnko'] . " " . $get_row['lastnameko'] . " " . $get_row['extnname']);
         } else {
             $fullname = chop($get_row['firstnameko'] . ", " . $get_row['lastnameko']);
         }
@@ -372,49 +372,66 @@ if (isset($_POST['insert_typeBtn'])) {
     $effectivity_date = $link->real_escape_string($_POST['effectivity_date']);
     $process_by = $link->real_escape_string($_POST['process_by']);
 
-    $files = $_FILES['files'];
+    if (!empty($_FILES['files']['name'][0])) {
+        $fileCount = count($_FILES['files']['name']);
+        $fileNames = [];
+        $files = $_FILES['files'];
 
-    // Selecting Employees table so we can fetch the Applicant ID
-    $select = "SELECT * FROM employees WHERE id = ?";
-    $select_result = $link->prepare($select);
-    $select_result->bind_param("i", $employee_id);
-    if ($select_result->execute()) {
+        // Selecting Employees table so we can fetch the Applicant ID
+        $select = "SELECT * FROM employees WHERE id = ?";
+        $select_result = $link->prepare($select);
+        $select_result->bind_param("i", $employee_id);
+        if ($select_result->execute()) {
 
-        $get_result = $select_result->get_result();
-        $select_row = $get_result->fetch_assoc();
-        $applicant_id = $select_row['app_id'];
-        echo $applicant_id;
-        echo $employee_id;
+            $get_result = $select_result->get_result();
+            $select_row = $get_result->fetch_assoc();
+            $applicant_id = $select_row['app_id'];
 
-        $select_deployment = "SELECT * FROM deployment WHERE id = ? AND employee_id = ?";
-        $select_deployment_result = $link->prepare($select_deployment);
-        $select_deployment_result->bind_param("ii", $deployment_id, $employee_id);
-        $select_deployment_result->execute();
-        $select_deployment_get_result = $select_deployment_result->get_result();
-        $selected_deployment_row = $select_deployment_get_result->fetch_assoc();
-        $start_loa = $selected_deployment_row['loa_start_date'];
-        $end_loa = $selected_deployment_row['loa_end_date'];
-        $start_loa_date = new DateTime($start_loa);
-        $start_loa_formatted = $start_loa_date->format('F j, Y');
-        $end_loa_date = new DateTime($end_loa);
-        $end_loa_formatted = $end_loa_date->format('F j, Y');
+            $select_deployment = "SELECT * FROM deployment WHERE id = ? AND employee_id = ?";
+            $select_deployment_result = $link->prepare($select_deployment);
+            $select_deployment_result->bind_param("ii", $deployment_id, $employee_id);
+            $select_deployment_result->execute();
+            $select_deployment_get_result = $select_deployment_result->get_result();
+            $selected_deployment_row = $select_deployment_get_result->fetch_assoc();
+            $start_loa = $selected_deployment_row['loa_start_date'];
+            $end_loa = $selected_deployment_row['loa_end_date'];
+            $start_loa_date = new DateTime($start_loa);
+            $start_loa_formatted = $start_loa_date->format('F j, Y');
+            $end_loa_date = new DateTime($end_loa);
+            $end_loa_formatted = $end_loa_date->format('F j, Y');
 
-        $applicant_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
-        $folder_name = $applicant_name;
-        $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
-        $folder_name_subfolder = $applicant_name_subfolder;
-        $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
-        $folder_path = "201 Files/" . $applicant_name . "/" . $applicant_name_subfolder;
+            $applicant_name = chop($select_row['firstnameko'] . " " . $select_row['mnko'] . " " . $select_row['lastnameko'] . " " . $select_row['extnname']);
+            $folder_name = $applicant_name;
+            $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
+            $folder_name_subfolder = $applicant_name_subfolder;
+            $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+            $folder_path = "201 Files/" . $applicant_name . "/" . $applicant_name_subfolder;
 
-        // Selecting Folder table so we can fetch the datas in that table
-        $select_folder = "SELECT * FROM folder WHERE applicant_id = ? AND employee_id = ? AND folder_name = ?";
-        $stmt2 = $link->prepare($select_folder);
-        $stmt2->bind_param("iis", $applicant_id, $employee_id, $folder_name_subfolder);
-        if ($stmt2->execute()) {
-            $get_stmt = $stmt2->get_result();
-            while ($rows = $get_stmt->fetch_assoc()) {
-                foreach ($files['tmp_name'] as $key => $tmp_name) {
+            // Selecting Folder table so we can fetch the datas in that table
+            $select_folder = "SELECT * FROM folder WHERE applicant_id = ? AND employee_id = ? AND folder_name = ?";
+            $stmt2 = $link->prepare($select_folder);
+            $stmt2->bind_param("iis", $applicant_id, $employee_id, $folder_name_subfolder);
+            if ($stmt2->execute()) {
+                $get_stmt = $stmt2->get_result();
+                while ($rows = $get_stmt->fetch_assoc()) {
 
+                    for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
+                        $filename = $_FILES['files']['name'][$i];
+                        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                        $allowed = ['pdf', 'txt', 'doc', 'docx', 'png', 'jpg', 'jpeg', 'gif'];
+                
+                        // Check if file type is valid
+                        if (in_array($ext, $allowed)) {
+                            $newFilename = $filename;
+                            move_uploaded_file($_FILES['files']['tmp_name'][$i], $path . $filename);
+                
+                            $fileNames[] = $newFilename;
+                        } else {
+                            $_SESSION['errorMessage'] = "Error";
+                        }
+                    }
+
+                    $fileNamesStr = implode(',', $fileNames);
                     $get_loa_requestedBy = "SELECT deployment.*, loa_requested.*, employee.*
                         FROM deployment deployment, loa_requests loa_requested, employees employee
                         WHERE employee.id = loa_requested.employee_id
@@ -450,9 +467,14 @@ if (isset($_POST['insert_typeBtn'])) {
                             $insert_type = "INSERT INTO separation (deployment_id, employee_id, employee_name, category, position, project_title, employment_status, date_start, outlet, type_of_separation, reason, files, effectivity_date, process_by, loa_request_by) 
                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                             $stmt = $link->prepare($insert_type);
-                            $stmt->bind_param("iisssssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $reason_of_separation, $filename, $effectivity_date, $process_by, $loa_requested_by);
+                            $stmt->bind_param("iisssssssssssss", $deployment_id, $employee_id, $name, $category, $position, $project_title, $employee_status, $start_date, $outlet, $type_of_separations, $reason_of_separation, $fileNamesStr, $effectivity_date, $process_by, $loa_requested_by);
 
                             if ($stmt->execute()) {
+                                $update_clearance = "UPDATE deployment_history SET clearance = ?, date_separation = ?, prepared_by_separation = ? WHERE deployment_id = ? AND employee_id = ?";
+                                $update_clearance_result = $link->prepare($update_clearance);
+                                $update_clearance_result->bind_param("sii", $type_of_separations, $datenow, $process_by, $deployment_id, $employee_id);
+                                $update_clearance_result->execute();
+
 
                                 $transaction = chop(strtoupper("SET TYPE OF SEPARATION - " . $employee_id . " (" . $type_of_separations . ")"));
                                 $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
@@ -474,12 +496,14 @@ if (isset($_POST['insert_typeBtn'])) {
                         $_SESSION['errorMessage'] = "Error" . $link->error;
                     }
                 }
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
             }
         } else {
             $_SESSION['errorMessage'] = "Error" . $link->error;
         }
     } else {
-        $_SESSION['errorMessage'] = "Error" . $link->error;
+        $_SESSION['errorMessage'] = "Error";
     }
 
     header("Location: deploy_applicants.php?shortlist_title=$shortlist_title");
