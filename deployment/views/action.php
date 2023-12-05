@@ -357,12 +357,13 @@ if (isset($_POST['update_loa'])) {
 
 // TYPE OF SEPARATION
 if (isset($_POST['insert_typeBtn'])) {
+    
     $deployment_id = $link->real_escape_string($_POST['deployment_id']);
     $employee_id = $link->real_escape_string($_POST['employee_id']);
     $category = $link->real_escape_string($_POST['category']);
     $position = $link->real_escape_string($_POST['position']);
     $project_title = $link->real_escape_string($_POST['project_title']);
-    $employee_status = $link->real_escape_string($_POST['employee_status']);
+    $employee_status = $link->real_escape_string($_POST['employee_status']); 
     $start_date = $link->real_escape_string($_POST['start_date']);
     $outlet = $link->real_escape_string($_POST['outlet']);
     $reason_of_separation = $link->real_escape_string($_POST['reason_of_separation']);
@@ -378,21 +379,16 @@ if (isset($_POST['insert_typeBtn'])) {
         $files = $_FILES['files'];
 
         // Selecting Employees table so we can fetch the Applicant ID
-        $select = "SELECT * FROM employees WHERE id = ?";
-        $select_result = $link->prepare($select);
-        $select_result->bind_param("i", $employee_id);
-        if ($select_result->execute()) {
+        $select = "SELECT * FROM employees WHERE id = '$employee_id'";
+        $select_result = $link->query($select);
+        if ($select_result) {
 
-            $get_result = $select_result->get_result();
-            $select_row = $get_result->fetch_assoc();
+            $select_row = $select_result->fetch_assoc();
             $applicant_id = $select_row['app_id'];
 
-            $select_deployment = "SELECT * FROM deployment WHERE id = ? AND employee_id = ?";
-            $select_deployment_result = $link->prepare($select_deployment);
-            $select_deployment_result->bind_param("ii", $deployment_id, $employee_id);
-            $select_deployment_result->execute();
-            $select_deployment_get_result = $select_deployment_result->get_result();
-            $selected_deployment_row = $select_deployment_get_result->fetch_assoc();
+            $select_deployment = "SELECT * FROM deployment WHERE id = '$deployment_id' AND employee_id = '$employee_id'";
+            $select_deployment_result = $link->query($select_deployment);
+            $selected_deployment_row = $select_deployment_result->fetch_assoc();
             $start_loa = $selected_deployment_row['loa_start_date'];
             $end_loa = $selected_deployment_row['loa_end_date'];
             $start_loa_date = new DateTime($start_loa);
@@ -404,16 +400,14 @@ if (isset($_POST['insert_typeBtn'])) {
             $folder_name = $applicant_name;
             $applicant_name_subfolder = $applicant_name . "- From " . $start_loa_formatted . " To " . $end_loa_formatted;
             $folder_name_subfolder = $applicant_name_subfolder;
-            $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder;
+            $destination_subfolder = "../../../pcn_OLA/201 Files/" . $folder_name . "/" . $folder_name_subfolder . "/";
             $folder_path = "201 Files/" . $applicant_name . "/" . $applicant_name_subfolder;
 
             // Selecting Folder table so we can fetch the datas in that table
-            $select_folder = "SELECT * FROM folder WHERE applicant_id = ? AND employee_id = ? AND folder_name = ?";
-            $stmt2 = $link->prepare($select_folder);
-            $stmt2->bind_param("iis", $applicant_id, $employee_id, $folder_name_subfolder);
-            if ($stmt2->execute()) {
-                $get_stmt = $stmt2->get_result();
-                while ($rows = $get_stmt->fetch_assoc()) {
+            $select_folder = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND employee_id = '$employee_id' AND folder_name = '$folder_name_subfolder'";
+            $stmt2 = $link->query($select_folder);
+            if ($stmt2) {
+                while ($rows = $stmt2->fetch_assoc()) {
 
                     for ($i = 0; $i < count($_FILES['files']['name']); $i++) {
                         $filename = $_FILES['files']['name'][$i];
@@ -423,7 +417,7 @@ if (isset($_POST['insert_typeBtn'])) {
                         // Check if file type is valid
                         if (in_array($ext, $allowed)) {
                             $newFilename = $filename;
-                            move_uploaded_file($_FILES['files']['tmp_name'][$i], $path . $filename);
+                            move_uploaded_file($_FILES['files']['tmp_name'][$i], $destination_subfolder . $filename);
                 
                             $fileNames[] = $newFilename;
                         } else {

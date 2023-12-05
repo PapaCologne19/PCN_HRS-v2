@@ -108,7 +108,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                     <td><?php echo $row['date_applied'] ?></td>
                                                     <td>
                                                         <?php
-                                                        $resumeFilePath =$row['resume_path'] . "/" . $row['resume_file'];
+                                                        $resumeFilePath = $row['resume_path'] . "/" . $row['resume_file'];
                                                         $fileExtension = pathinfo($resumeFilePath, PATHINFO_EXTENSION);
 
                                                         if (strtolower($fileExtension) === 'pdf') {
@@ -283,7 +283,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <label for="" class="form-label">Birthday</label>
-                                                                <input type="date" name="birthday" id="birthdate" onchange="calculateAge()" class="form-control" required>
+                                                                <input type="text" name="birthday" id="birthdate" onchange="calculateAge()" class="form-control" autocomplete="off" required>
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <input type="hidden" name="age" class="form-control" id="age">
@@ -335,6 +335,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                 </div>
             </div>
             <script>
+                $('#birthdate')
+                    .datetimepicker({
+                        format: 'm/d/Y',
+                        useCurrent: false,
+                        placeholder: 'Select a date',
+                        timepicker: false,
+                        mask:true
+                    })
+                    .inputmask("99/99/9999", {
+                        placeholder: "mm/dd/yyyy"
+                    });
             </script>
             <?php include '../components/footer.php'; ?>
     </body>

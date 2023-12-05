@@ -13,6 +13,14 @@
   height: 38px;
 }
 
+.contain {
+  display: grid;
+  grid-template-columns: 0fr 0fr;
+  grid-template-rows: 0fr 0fr;
+  gap: 5px;
+  margin: 0 auto;
+}
+
 .app-brand-text.demo {
   font-size: 1.75rem;
   letter-spacing: -0.5px;

@@ -2,30 +2,22 @@
     include 'connect.php';
 
     if (isset($_POST['division'])) {
-        $selected_value = $_POST['division'];
+        $selected_value = $link->real_escape_string($_POST['division']);
         list($selectedDivisionClient, $description) = explode('|', $selected_value);
 
     
         // Prepare a SQL query to retrieve employee data for the selected division
         $query = "SELECT company_name, address
-                    FROM client_company WHERE division = ? AND is_deleted = '0'";
+                    FROM client_company WHERE division = '$selectedDivisionClient' AND is_deleted = '0'";
     
         // Create a prepared statement
-        $stmt = $link->prepare($query);
+        $stmt = $link->query($query);
     
         if ($stmt) {
-            // Bind the parameter
-            $stmt->bind_param("s", $selectedDivisionClient);
-    
-            // Execute the statement
-            $stmt->execute();
-    
-            // Get the result
-            $result = $stmt->get_result();
-    
+           
             // Fetch the data and store it in an array
             $clientData = array();
-            while ($row = $result->fetch_assoc()) {
+            while ($row = $stmt->fetch_assoc()) {
                 $clientData[] = $row;
             }
     

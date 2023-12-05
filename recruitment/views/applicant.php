@@ -90,7 +90,28 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                 <td><?php echo $rows['ewb_count']?></td>
                                                 <td><?php echo $rows['project_title']?></td>
                                                 <td>
-                                                    <a href="shortlisted_applicants.php?id=<?php echo $rows['id']?>" class="btn btn-primary btntooltips" title="View"><i class="bi bi-search"></i></a>
+                                                    <a href="shortlisted_applicants.php?id=<?php echo $rows['id']?>" class="btn btn-primary btntooltips" title="View">
+                                                        <i class="bi bi-search">
+                                                        </i>
+                                                        <span class="notification badge">
+                                                            <?php 
+                                                                $get_resume = "SELECT resumes.*, project.* 
+                                                                FROM applicant_resume resumes, projects project
+                                                                WHERE project.id = resumes.project_id 
+                                                                AND resumes.status = 'FOR SCREENING' AND resumes.is_deleted = '0' AND project.project_title = '" . $rows['project_title'] . "'";
+                                                                $get_resume_result = $link->query($get_resume);
+                                                                while($get_resume_row = $get_resume_result->fetch_assoc()){
+                                                                if($get_resume_notification = $get_resume_result->num_rows){
+                                                                    echo '<span class="badge rounded-pill bg-danger">'.$get_resume_notification.'</span>';
+                                                                }
+                                                                else{
+                                                                    echo "";
+                                                                }
+                                                                }
+                                                            ?>
+                                                    </span>
+                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                             <?php }?>

@@ -50,7 +50,9 @@ include '../../connect.php';
 
                             <div class="card-body">
                                 <div class="container">
-                                    <button type="button" class="btn btn-dark mb-5" data-bs-toggle="modal" data-bs-target="#addFileModal" title="Add Folder"><i class="bi bi-filetype-docx"></i></button>
+                                    <button type="button" class="btn btn-dark mb-5" data-bs-toggle="modal" data-bs-target="#addFileModal" title="Add File">
+                                        <i class="bi bi-filetype-docx"></i>
+                                    </button>
                                     <table class="table" id="example">
                                         <thead>
                                             <tr>
@@ -66,21 +68,54 @@ include '../../connect.php';
                                             $query = "SELECT * FROM employees WHERE id = '$id'";
                                             $result = $link->query($query);
                                             while ($rower = $result->fetch_assoc()) {
+                                                if($_GET['folder_name'] === "Requirements"){
                                                 $applicant_id = $rower['app_id'];
-                                                $select_resume_file = "SELECT * FROM applicant_resume WHERE folder_id = '$folder_id' AND applicant_id = '$applicant_id'";
+                                                $select_resume_file = "SELECT *, 
+                                                DATE_FORMAT(requirements_files_uploaded, '%M %d, %Y') AS requirements_files_uploaded 
+                                                FROM 201files 
+                                                WHERE folder_id = '$folder_id' 
+                                                AND applicant_id = '$applicant_id'
+                                                AND (file_description = 'RESUME'
+                                                OR file_description = 'MANDATORIES'
+                                                OR file_description = 'REQUIREMENTS')";
                                                 $select_resume_file_result = $link->query($select_resume_file);
                                                 while ($select_resume_file_row = $select_resume_file_result->fetch_assoc()) {
+                                                    $select_folder = "SELECT * FROM folder WHERE id = '$folder_id' AND applicant_id = '$applicant_id'";
+                                                    $select_folder_result = $link->query($select_folder);
+                                                    while($select_folder_row = $select_folder_result->fetch_assoc()){
+                                                        $folder_path = "../../../pcn_OLA/" .$select_folder_row['folder_path'] . "/" . $select_resume_file_row['requirements_files'];
+
                                             ?>
                                                     <tr>
                                                         <td>
                                                             <img src="../assets/img/elements/file.png" width="5%" alt="">
-                                                            <a href=""><?php echo $select_resume_file_row['resume_file']; ?></a>
+                                                            <a href="<?php echo $folder_path;?>" download="<?php echo $select_resume_file_row['requirements_files']; ?>"><?php echo $select_resume_file_row['requirements_files']; ?></a>
                                                         </td>
-                                                        <td><?php echo $select_resume_file_row['date_applied']; ?></td>
+                                                        <td><?php echo $select_resume_file_row['requirements_files_uploaded']; ?></td>
                                                     </tr>
                                             <?php
+                                                    }
                                                 }
-                                            } ?>
+                                            } else{ 
+                                                $applicant_id = $rower['app_id'];
+                                                $select_resume_file = "SELECT *, 
+                                                DATE_FORMAT(requirements_files_uploaded, '%M %d, %Y') AS requirements_files_uploaded 
+                                                FROM 201files 
+                                                WHERE folder_id = '$folder_id' 
+                                                AND applicant_id = '$applicant_id'
+                                                AND (file_description = 'SIGNED LOA'
+                                                OR file_description = 'LOA')";
+                                                $select_resume_file_result = $link->query($select_resume_file);
+                                                while ($select_resume_file_row = $select_resume_file_result->fetch_assoc()) {
+                                            ?>
+<tr>
+                                                        <td>
+                                                            <img src="../assets/img/elements/file.png" width="5%" alt="">
+                                                            <a href=""><?php echo $select_resume_file_row['requirements_files']; ?></a>
+                                                        </td>
+                                                        <td><?php echo $select_resume_file_row['requirements_files_uploaded']; ?></td>
+                                                    </tr>
+                                            <?php } }}?>
                                         </tbody>
                                     </table>
 
@@ -98,6 +133,7 @@ include '../../connect.php';
                                                         <form action="action.php" method="POST" class="form-group row" enctype="multipart/form-data">
                                                             <input type="hidden" name="employee_id" id="employee_id" value="<?php echo $_GET['id']?>">
                                                             <input type="hidden" name="folder_id" id="folder_id" value="<?php echo $_GET['folder_id']?>">
+                                                            <input type="hidden" name="folder_name" id="folder_name" value="<?php echo $_GET['folder_name']?>">
                                                             <div class="col-md-12">
                                                                 <label for="" class="form-label">Attach File</label>
                                                                 <input type="file" name="files[]" id="files" class="form-control" required multiple>

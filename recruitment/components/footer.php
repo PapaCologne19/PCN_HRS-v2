@@ -60,12 +60,22 @@
       }
 
       // Date Format
-      flatpickr("#birthdate", {
-         dateFormat: "m/d/Y", // Set the desired date format (MM-DD-YYYY)
-         altInput: false, // Enable the alternate input field
-         altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
-         placeholder: "Select a date", // Set the text for the placeholder
-      });
+      // flatpickr("#birthdate", {
+      //    dateFormat: "m/d/Y", // Set the desired date format (MM-DD-YYYY)
+      //    altInput: false, // Enable the alternate input field
+      //    altFormat: "F j, Y", // Set the format for the alternate input field (placeholder)
+      //    placeholder: "Select a date", // Set the text for the placeholder
+      // });
+
+      // $('#birthdate').datetimepicker({
+      //    // daysOfWeekDisabled: [0,6],
+      //    format: 'MM/DD/YYYY',
+      //    useCurrent: false,
+      //    minDate: new Date
+      // });
+
+
+
 
       // For camera
       function myFunctioncam() {
@@ -790,6 +800,187 @@
                      "reject_applicant_recruitment_button_click": 1,
                      "resume_id": resume_id,
                      "mrf_id": mrf_id,
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // For Passing Pool
+      $('#example').on('click', '.passPoolBtn', function(e) {
+         e.preventDefault();
+
+         var poolID = $(this).closest("tr").find('.poolID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to pass?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "pass_pool_button_click": 1,
+                     "poolID": poolID
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // For Rejecting Pool
+      $('#example').on('click', '.failedPoolBtn', function(e) {
+         e.preventDefault();
+
+         var poolID = $(this).closest("tr").find('.poolID').val();
+
+         Swal.fire({
+            title: "Input Reason",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Send",
+            cancelButtonText: "Cancel",
+            showCloseButton: true,
+
+            // Customize the content of the modal
+            html: `
+            <select id="reverificationReason" class="swal2-select">
+                <option value="FAILED">FAILED</option>
+                <option value="UNREACHABLE">UNREACHABLE</option>
+                <!-- Add more options as needed -->
+            </select>
+        `,
+
+            preConfirm: () => {
+               // Retrieve the selected reason from the select dropdown
+               var reason = document.getElementById("reverificationReason").value;
+
+               if (!reason) {
+                  Swal.showValidationMessage("Reason is required");
+               }
+
+               // Log the reason to the console for debugging
+               console.log("Reason for reverification: " + reason);
+
+               // Send the reason along with the AJAX request
+               return {
+                  reason: reason
+               };
+            }
+         }).then((result) => {
+            if (result.isConfirmed) {
+               var reason = result.value.reason; // Get the reason selected by the user
+               if (reason) {
+                  // Send the reason along with the AJAX request
+                  $.ajax({
+                     type: "POST",
+                     url: "action.php",
+                     data: {
+                        "reject_pool_button_click": 1,
+                        "poolID": poolID,
+                        "reason": reason,
+                     },
+                     success: function(response) {
+                        Swal.fire({
+                           title: "Success",
+                           icon: "success",
+                        }).then((result) => {
+                           location.reload();
+                        });
+                     },
+                     error: function(xhr, status, error) {
+                        console.log("AJAX Error: " + error);
+                     }
+                  });
+               }
+            }
+         });
+      });
+
+
+      // For Deploying Pool
+      $('#example').on('click', '.deployPoolBtn', function(e) {
+         e.preventDefault();
+
+         var poolID = $(this).closest("tr").find('.poolID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to deploy?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "deploy_pool_button_click": 1,
+                     "poolID": poolID
+                  },
+                  success: function(response) {
+                     Swal.fire({
+                        title: "Success",
+                        icon: "success"
+                     }).then((result) => {
+                        location.reload();
+                     });
+                  },
+                  error: function(xhr, status, error) {
+                     console.log("AJAX Error: " + error);
+                  }
+               });
+            }
+         });
+      });
+
+      // For Undo Unreachable Status
+      $('#example').on('click', '.undoUnreachablePool', function(e) {
+         e.preventDefault();
+
+         var undoPoolID = $(this).closest("tr").find('.undoPoolID').val();
+
+         Swal.fire({
+            title: "Are you sure you want to pass?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+         }).then((willDelete) => {
+            if (willDelete.isConfirmed) {
+               $.ajax({
+                  type: "POST",
+                  url: "action.php",
+                  data: {
+                     "undo_pool_button_click": 1,
+                     "undoPoolID": undoPoolID
                   },
                   success: function(response) {
                      Swal.fire({

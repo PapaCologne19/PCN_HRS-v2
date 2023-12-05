@@ -41,6 +41,37 @@
         <div data-i18n="Analytics">Dashboard</div>
       </a>
     </li>
+
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">POOLERS SECTION</span>
+    </li>
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div data-i18n="Layouts">Resume</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="pooler_resume.php" class="menu-link">
+            <div data-i18n="Without navbar">For Screening & Passed</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pooler_deployed.php" class="menu-link">
+            <div data-i18n="Container">Deployed</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pooler_failed.php" class="menu-link">
+            <div data-i18n="Container">Failed</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+
+
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">MRF SECTION</span>
     </li>
@@ -83,7 +114,22 @@
     <li class="menu-item">
       <a href="applicant.php" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">Shortlisting</div>
+        <div data-i18n="Analytics">Shortlisting
+          <span class="notification badge">
+              <?php 
+                $get_resume = "SELECT * FROM applicant_resume WHERE status = 'FOR SCREENING' AND is_deleted = '0'";
+                $get_resume_result = $link->query($get_resume);
+                while($get_resume_row = $get_resume_result->fetch_assoc()){
+                  if($get_resume_notification = $get_resume_result->num_rows){
+                    echo '<span class="badge rounded-pill bg-danger">'.$get_resume_notification.'</span>';
+                  }
+                  else{
+                    echo "";
+                  }
+                }
+              ?>
+            </span>
+        </div>
       </a>
     </li>
     <!-- Deploy Applicant-->

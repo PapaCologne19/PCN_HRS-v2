@@ -147,6 +147,36 @@ if (isset($_POST['SubButton'])) {
             } else {
               $_SESSION["errorMessage"] = "Error Login";
             }
+
+
+          } else if ($rowd["typenya"] == "POOLERS") {
+
+            $_SESSION["username"] = $rowd["uname"];
+            $_SESSION["password"] = $rowd["pname"];
+            $_SESSION["firstname"] = $rowd["firstname"];
+            $_SESSION["lastname"] = $rowd['lastname'];
+            $_SESSION["dmark1"] = $rowd["uname"] . $rowd["pname"];
+            $_SESSION["darkk"] = "mrf";
+            $_SESSION["dept"] = $rowd["fms"];
+            $_SESSION["id"] = $rowd["id"];
+            $_SESSION["user_id"] = $rowd["id"];
+            $_SESSION["division"] = $rowd["fms"];
+            $_SESSION["user_type"] = $rowd["typenya"];
+
+
+            $dtnow = date("m/d/Y");
+
+            $query5 = "INSERT INTO log(Username, Datelog, time, activitynya) VALUES('$Username', '$dtnow', now(),'MRF login Accepted')";
+            $result5 = mysqli_query($link, $query5);
+
+            if ($result5) {
+              $_SESSION['successMessage'] = "Successfully Login";
+              header("location: poolers/index.php");
+            } else {
+              $_SESSION["errorMessage"] = "Error Login";
+            }
+
+
           } else if ($rowd["typenya"] == "CASHIER") {
 
             $_SESSION["dmark"] = $rowd[1];

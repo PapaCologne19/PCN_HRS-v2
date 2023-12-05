@@ -644,7 +644,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                                                         </div>
 
                                                                                         <div class="col-md-10">
-                                                                                            <input type="file" name="waiver" id="waiver" class="form-control" required>
+                                                                                            <input type="file" name="waiver[]" id="waiver" class="form-control" multiple required>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-md-12">

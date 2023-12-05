@@ -13,6 +13,17 @@
 
    <!-- Confirmations Dialog Boxes -->
    <script>
+      // For QUILL
+      var quill = new Quill('#editor', {
+         placeholder: 'Type outlet here...',
+         theme: 'snow'
+      });
+
+      $('form').submit(function(event) {
+         $('#outlet').val(JSON.stringify(quill.getContents()));
+         return true;
+      });
+
       // Date Format
       flatpickr("#myDate", {
          dateFormat: "m-d-Y", // Set the desired date format (MM-DD-YYYY)
@@ -423,18 +434,6 @@
    <!-- Data Table -->
    <script>
       new DataTable('#example');
-
-      // For QUILL
-      var quill = new Quill('#editor', {
-         placeholder: 'Type outlet here...',
-         theme: 'snow',
-         debug: 'info',
-      });
-
-      $('form').submit(function(event) {
-         $('#outlet').val(JSON.stringify(quill.getContents()));
-         return true;
-      });
    </script>
  
    <!-- Tooltips Enabler -->

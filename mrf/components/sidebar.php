@@ -39,7 +39,12 @@
                 <div data-i18n="Analytics">MRF Form</div>
               </a>
             </li>
-        
+            <li class="menu-item">
+              <a href="loa_database.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">LOA Database</div>
+              </a>
+            </li>        
 
             
             

@@ -164,7 +164,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
                                                         <?php }?>
 
                                                         <div class="columns">
-                                                            <?php
+                                                            <?php 
                                                             $select = "SELECT * FROM projects WHERE mrf_tracking = '" . $row['tracking'] . "'";
                                                             $result_select = $link->query($select);
                                                             while ($select_row = $result_select->fetch_assoc()) {

@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
             if ($row['employment_status'] === "REGULAR" || $row['employment_status'] === "Regular" || $row['employment_status'] === "regular") {
                 $image = imagecreatefrompng("../assets/img/elements/IDRegular2.png");
                 $black = imagecolorallocate($image, 0, 0, 0); // Define black color
-                $font = "C:\Windows\Fonts\arial.ttf";
+                $font = "../fonts/arial.ttf";
 
 
                 // Define the text to add

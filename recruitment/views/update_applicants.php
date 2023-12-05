@@ -492,13 +492,13 @@ include '../../connect.php';
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 <?php
                                                 $id = $link->real_escape_string($_GET['id']);
                                                 $query = "SELECT * FROM employees WHERE id = '$id'";
                                                 $result = $link->query($query);
                                                 while ($rower = $result->fetch_assoc()) {
                                                     $applicant_id = $rower['app_id'];
+
                                                     $get_resume = "SELECT DISTINCT *, 
                                                     DATE_FORMAT(date_created, '%M %d %Y') AS date_created 
                                                     FROM folder 
@@ -510,7 +510,13 @@ include '../../connect.php';
                                                         <tr>
                                                             <td>
                                                                 <img src="../assets/img/elements/folder.png" width="5%" alt="">
-                                                                <a href="files.php?id=<?php echo $id; ?>&folder_id=<?php echo $get_resume_row['id']?>"><?php echo $get_resume_row['folder_name']; ?></a>
+                                                                <?php 
+                                                                    if($get_resume_row['folder_name'] === "Requirements"){
+                                                                ?>
+                                                                <a href="files.php?id=<?php echo $id; ?>&folder_id=<?php echo $get_resume_row['id']?>&folder_name=<?php echo $get_resume_row['folder_name']?>"><?php echo $get_resume_row['folder_name']; ?></a>
+                                                                <?php }else{?>
+                                                                <a href="files.php?id=<?php echo $id; ?>&folder_id=<?php echo $get_resume_row['id']?>&folder_name=<?php echo $get_resume_row['folder_name'];?>"><?php echo $get_resume_row['folder_name']; ?></a>
+                                                                <?php }?>
                                                             </td>
                                                             <td><?php echo $get_resume_row['date_created']; ?></td>
                                                         </tr>

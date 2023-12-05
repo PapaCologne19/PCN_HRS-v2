@@ -42,3 +42,8 @@
 
 <!-- Include WebcamJS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+
+<!-- DateTime Picker -->
+<link rel="stylesheet" type="text/css" href="../../node_modules/jquery-datetimepicker/jquery.datetimepicker.css">
+<script src="../../node_modules/jquery-datetimepicker/jquery.js"></script>
+<script src="../../node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>

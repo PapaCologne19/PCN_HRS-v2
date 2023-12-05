@@ -160,6 +160,11 @@
           </a>
         </li>
         <li class="menu-item">
+          <a href="expired_loa_report.php" class="menu-link">
+            <div data-i18n="Accordion">Expired LOA Report</div>
+          </a>
+        </li>
+        <li class="menu-item">
           <a href="create_loa.php" class="menu-link">
             <div data-i18n="Accordion">LOA Database</div>
           </a>

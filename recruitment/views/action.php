@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../connect.php';
+require_once 'smtp.php';
 date_default_timezone_set('Asia/Manila');
 $date_now = date('Y-m-d H:i:s');
 header('Content-Type: text/html; charset=utf-8');
@@ -811,42 +812,53 @@ if (isset($_POST['provideMRF_button_click'])) {
 
 // For accepting MRF
 if (isset($_POST['acceptMRF_button_click'])) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
     $mrf_val1 = $_POST['acceptID'];
-
     $query = "UPDATE mrf SET hr_personnel = 'YES', is_approve = '1' WHERE id = '$mrf_val1'";
     $result = mysqli_query($link, $query);
 
     if ($result) {
         $query_select = "SELECT * FROM mrf WHERE id = '$mrf_val1'";
         $query_result = $link->query($query_select);
-        while ($query_row = $query_result->fetch_assoc()) {
-            $tracking_no = $query_row['tracking'];
-            $project_title = $query_row['project_title'];
-            $client = $query_row['client'];
-            $total = $query_row['np_male'] + $query_row['np_female'];
-            $work_duration_start = $query_row['work_duration_start'];
-            $work_duration_end = $query_row['work_duration_end'];
-            $status = "1";
+        if ($query_result) {
+            while ($query_row = $query_result->fetch_assoc()) {
 
-            $insert_db = "INSERT INTO projects (mrf_id,mrf_tracking, project_title, client_company_id, ewb_count, start_date, end_date, status) 
-            VALUES ('$mrf_val1', '$tracking_no', '$project_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
-            $result_insert = $link->query($insert_db);
-            if ($result_insert) {
+                $tracking_no = $query_row['tracking'];
+                $project_title = $query_row['project_title'];
+                if ($query_row['position'] === "OTHER") {
+                    $job_title = $query_row['position_detail'];
+                } else {
+                    $job_title = $query_row['position'];
+                }
+                $client = $query_row['client'];
+                $total = $query_row['np_male'] + $query_row['np_female'];
+                $work_duration_start = $query_row['work_duration_start'];
+                $work_duration_end = $query_row['work_duration_end'];
+                $status = "1";
 
-                $transaction = "ACCEPT MRF - " . $mrf_val1;
-                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
-                                    VALUES (?, ?, ?, ?, ?)";
-                $transaction_log_result = $link->prepare($transaction_log);
-                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
-                $transaction_log_result->execute();
+                $insert_db = "INSERT INTO projects (mrf_id, mrf_tracking, project_title, job_title, client_company_id, ewb_count, start_date, end_date, status) 
+                VALUES ('$mrf_val1', '$tracking_no', '$project_title', '$job_title', '$client', '$total', '$work_duration_start', '$work_duration_end', '$status')";
+                $result_insert = $link->query($insert_db);
+                if ($result_insert) {
 
-                $_SESSION['successMessage'] = "Success!";
-            } else {
-                $_SESSION['errorMessage'] = "Error";
+                    $transaction = "ACCEPT MRF - " . $mrf_val1;
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+                                        VALUES (?, ?, ?, ?, ?)";
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
+
+                    $_SESSION['successMessage'] = "Success!";
+                } else {
+                    $_SESSION['errorMessage'] = "Error" . $link->error;
+                }
             }
+        } else {
+            $_SESSION['errorMessage'] = "Error" . $link->error;
         }
     } else {
-        $_SESSION['errorMessage'] = "Error";
+        $_SESSION['errorMessage'] = "Error" . $link->error;
     }
 
     header("Location: accept_mrf.php");
@@ -1328,12 +1340,12 @@ if (isset($_POST['submit_update'])) {
     $e_contact = $link->real_escape_string($_POST['e_contact']);
     $remarks = $link->real_escape_string($_POST['remarks']);
 
-    $file = $_FILES['waiver'];
+    $files = $_FILES['waiver'];
     $filename = $_FILES["waiver"]["name"];
     $tempname = $_FILES["waiver"]["tmp_name"];
 
-
-    $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
+    foreach ($files['tmp_name'] as $key => $temp_name) {
+        $query = "UPDATE `employees` SET `lastnameko`='$lastnameko', `firstnameko`='$firstnameko', `mnko`='$mnko', `extnname`='$extnname', `paddress`='$paddress',
             `peraddress`='$peraddress', `cityn`='$cityn', `regionn`='$regionn', `birthday`='$birthday',
             `age`='$agen', `gendern`='$gendern', `civiln`='$civiln', `cpnum`='$cpnum',
             `landline`='$landline', `emailadd`='$emailadd', `despo`='$despo', `classn`='$classn',
@@ -1343,46 +1355,45 @@ if (isset($_POST['submit_update'])) {
             `e_address`='$e_address', `e_number`='$e_contact' 
             WHERE id = '$update_id'";
 
-    $result = $link->query($query);
+        $result = $link->query($query);
 
-    if ($result) {
-        $select_employee = "SELECT * FROM employees WHERE id = '$update_id'";
-        $select_employee_result = $link->query($select_employee);
-        $select_employee_row = $select_employee_result->fetch_assoc();
-        $applicant_id = $select_employee_row['app_id'];
+        if ($result) {
+            $select_employee = "SELECT * FROM employees WHERE id = '$update_id'";
+            $select_employee_result = $link->query($select_employee);
+            $select_employee_row = $select_employee_result->fetch_assoc();
+            $applicant_id = $select_employee_row['app_id'];
 
-        $select_201files = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
-        $select_201files_result = $link->query($select_201files);
-        $select_201files_row = $select_201files_result->fetch_assoc();
-        $folder_id = $select_201files_row['id'];
-                                                // 201 Files/FIREFOX DOE SMITH/Requirements
-        $folderDestination = "../../../pcn_OLA/" . $select_201files_row['folder_path'] . "/";
+            $select_201files = "SELECT * FROM folder WHERE applicant_id = '$applicant_id' AND folder_name = 'Requirements'";
+            $select_201files_result = $link->query($select_201files);
+            $select_201files_row = $select_201files_result->fetch_assoc();
+            $folder_id = $select_201files_row['id'];
+            // 201 Files/FIREFOX DOE SMITH/Requirements
+            $folderDestination = "../../../pcn_OLA/" . $select_201files_row['folder_path'] . "/";
 
-        $insert_file = "INSERT INTO 201files (applicant_id, employee_id, folder_id, waiver_filename, waiver_date_submitted) 
+            $insert_file = "INSERT INTO 201files (applicant_id, employee_id, folder_id, waiver_filename, waiver_date_submitted) 
                             VALUES ('$applicant_id', '$update_id', '$folder_id', '$filename', '$date_now')";
-        $insert_file_result = $link->query($insert_file);
+            $insert_file_result = $link->query($insert_file);
 
-        if ($insert_file_result) {
-            if(move_uploaded_file($tempname, $folderDestination . DIRECTORY_SEPARATOR . $filename)){
-                $transaction = "UPDATE EMPLOYEE'S INFORMATION (WITHOUT MANDATORIES) " . $firstnameko . ", " . $mnko . " " . $lastnameko . " " . $mnko;
-                $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
+            if ($insert_file_result) {
+                if (move_uploaded_file($tempname, $folderDestination . DIRECTORY_SEPARATOR . $filename)) {
+                    $transaction = "UPDATE EMPLOYEE'S INFORMATION (WITHOUT MANDATORIES) " . $firstnameko . ", " . $mnko . " " . $lastnameko . " " . $mnko;
+                    $transaction_log  = "INSERT INTO transaction_log (user_id, transaction, personnel, user_type, division) 
                                         VALUES (?, ?, ?, ?, ?)";
-                $transaction_log_result = $link->prepare($transaction_log);
-                $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
-                $transaction_log_result->execute();
+                    $transaction_log_result = $link->prepare($transaction_log);
+                    $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
+                    $transaction_log_result->execute();
 
 
-                $_SESSION['successMessage'] = "Success";
+                    $_SESSION['successMessage'] = "Success";
+                } else {
+                    $_SESSION['errorMessage'] = "Error in inserting waiver" . $folderDestination;
+                }
+            } else {
+                $_SESSION['errorMessage'] = "Error in inserting waiver";
             }
-            else{
-                $_SESSION['errorMessage'] = "Error in inserting waiver" . $folderDestination;
-            }   
-           
         } else {
-            $_SESSION['errorMessage'] = "Error in inserting waiver";
+            $_SESSION['errorMessage'] = "Error in updating data";
         }
-    } else {
-        $_SESSION['errorMessage'] = "Error in updating data";
     }
     header("Location: deploy.php");
     exit(0);
@@ -1461,9 +1472,10 @@ if (isset($_POST['create_shortlist_applicant'])) {
                     $insert_folder_result->bind_param("iss", $applicant_id, $applicant_name_subfolder, $folder_path);
 
                     if ($insert_folder_result->execute()) {
+                        $file_title = "RESUME";
                         $folder_id = $insert_folder_result->insert_id;
-                        $insert_201files = "INSERT INTO 201files (applicant_id, folder_id, requirements_files, requirements_files_uploaded) 
-                                        VALUES ('$applicant_id', '$folder_id', '$filename', '$date_now')";
+                        $insert_201files = "INSERT INTO 201files (applicant_id, folder_id, requirements_files, requirements_files_uploaded, file_description) 
+                                        VALUES ('$applicant_id', '$folder_id', '$filename', '$date_now', '$file_title')";
                         $insert_201files_result = $link->query($insert_201files);
                         if ($insert_201files_result) {
                             $sql = "INSERT INTO applicant_resume(applicant_id, project_id, folder_id, resume_file, resume_path)
@@ -1602,6 +1614,7 @@ if (isset($_POST['create_folder_btn'])) {
 if (isset($_POST['upload_file_btn'])) {
     $employee_id = $_POST['employee_id'];
     $folder_id = $_POST['folder_id'];
+    $folder_name = $_POST['folder_name'];
     $files = $_FILES['files'];
 
 
@@ -1634,10 +1647,15 @@ if (isset($_POST['upload_file_btn'])) {
             $targetFile = $path . basename($files['name'][$key]);
             $filename = basename($files['name'][$key]);
 
-            $inserts = "INSERT INTO 201files(applicant_id, employee_id, folder_id, requirements_files) 
-            VALUES (?, ?, ?, ?)";
+            if ($folder_name === 'Requirements') {
+                $file_title = "REQUIREMENTS";
+            } else {
+                $file_title = "LOA";
+            }
+            $inserts = "INSERT INTO 201files(applicant_id, employee_id, folder_id, requirements_files, requirements_files_uploaded, file_description) 
+            VALUES (?, ?, ?, ?, ?, ?)";
             $insert_result = $link->prepare($inserts);
-            $insert_result->bind_param("ssss", $applicant_id, $employee_id, $folder_id, $filename);
+            $insert_result->bind_param("ssssss", $applicant_id, $employee_id, $folder_id, $filename, $date_now, $file_title);
             if ($insert_result->execute()) {
 
                 $transaction = "ADDED FILES FOR EMPLOYEE " . $employee_id . " FILE NAME: " . $filename;
@@ -1655,7 +1673,7 @@ if (isset($_POST['upload_file_btn'])) {
             }
         }
     }
-    header("Location: files.php?id=$employee_id&folder_id=$folder_id");
+    header("Location: files.php?id=$employee_id&folder_id=$folder_id&folder_name=$folder_name");
     exit(0);
 }
 
@@ -1677,12 +1695,221 @@ if (isset($_POST['reject_applicant_recruitment_button_click'])) {
                                         VALUES (?, ?, ?, ?, ?)";
         $transaction_log_result = $link->prepare($transaction_log);
         $transaction_log_result->bind_param("issss", $user_id, $transaction, $personnel, $user_type, $user_division);
-        $transaction_log_result->execute();
+        if ($transaction_log_result->execute()) {
 
+            // Select Applicant Name and Email
+            $applicant = "SELECT applicant.*, resumes.*, project.* 
+            FROM applicant applicant, applicant_resume resumes, projects project 
+            WHERE applicant.id = resumes.applicant_id 
+            AND project.id = resumes.project_id
+            AND resumes.id = '$id'";
+            $applicant_fetching = $link->query($applicant);
+            $applicant_fetched = $applicant_fetching->fetch_assoc();
+            $fullname = $applicant_fetched['lastname'] . ", " . $applicant_fetched['firstname'] . " " . $applicant_fetched['middlename'] . " " . $applicant_fetched['extension_name'];
+            $email = $applicant_fetched["email_address"];
+            $position = $applicant_fetched["project_title"];
 
-        $_SESSION["successMessage"] = "Success";
+            // Check if the fetched name and email is not empty
+            if (!empty($fullname) && !empty($email)) {
+                // Function for sending email to the user
+                sendRejectionMessage($email, $fullname, $position);
+                $_SESSION["successMessage"] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Applicant Name and Email is empty";
+            }
+        } else {
+            $_SESSION["errorMessage"] = "Error";
+        }
     } else {
         $_SESSION["errorMessage"] = "Error";
     }
     header("Location: shortlisted_applicants.php?id=$mrf_id");
+}
+
+// For Passing Pooling
+if (isset($_POST['pass_pool_button_click'])) {
+    $poolID = $_POST['poolID'];
+    $status = "PASSED";
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $date_approved = date('Y-m-d');
+
+    $query = "UPDATE applicant_referral SET status = ?, approved_by = ?, date_approved = ?  WHERE id = ?";
+    $result = $link->prepare($query);
+    $result->bind_param("sssi", $status, $approved_by, $date_approved, $poolID);
+
+    if ($result->execute()) {
+        $fetch = "SELECT * FROM applicant_referral WHERE id = '$poolID'";
+        $fetch_result = $link->query($fetch);
+        while ($fetch_row = $fetch_result->fetch_assoc()) {
+            $lastname = $fetch_row['lastname'];
+            $firstname = $fetch_row['firstname'];
+            $middlename = $fetch_row['middlename'];
+            $extension_name = $fetch_row['extension_name'];
+            $desired_position = $fetch_row['desired_position'];
+            $area = $fetch_row['area'];
+            $preferred_outlet = $fetch_row['preferred_outlet'];
+            $contact_number = $fetch_row['contact_number'];
+            $resume_file = $fetch_row['resume_file'];
+            $resume_location = $fetch_row['lastname'];
+            $referred_by_id = $fetch_row['referred_by_id'];
+            $referred_by = $fetch_row['referred_by'];
+            $referred_by_division = $fetch_row['referred_by_division'];
+            $status = $fetch_row['status'];
+
+            $history = "INSERT INTO applicant_referral_history (lastname, firstname, middlename, extension_name, desired_position, area, preferred_outlet, contact_number, resume_file, resume_location, referred_by_id, referred_by, referred_by_division, approved_by, date_approved, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $history_result = $link->prepare($history);
+            $history_result->bind_param("ssssssssssssssss", $lastname, $firstname, $middlename, $extension_name, $desired_position, $area, $preferred_outlet, $contact_number, $resume_file, $resume_location, $referred_by_id, $referred_by, $referred_by_division, $approved_by, $date_approved, $status);
+            if ($history_result->execute()) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: pooler_resume.php");
+    exit(0);
+}
+
+// For Rejecting Pooling
+if (isset($_POST['reject_pool_button_click'])) {
+    $poolID = $_POST['poolID'];
+    $status = $_POST['reason'];
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $date_approved = date('Y-m-d');
+
+    $query = "UPDATE applicant_referral SET status = ?, approved_by = ?, date_approved = ?  WHERE id = ?";
+    $result = $link->prepare($query);
+    $result->bind_param("sssi", $status, $approved_by, $date_approved, $poolID);
+
+    if ($result->execute()) {
+        $fetch = "SELECT * FROM applicant_referral WHERE id = '$poolID'";
+        $fetch_result = $link->query($fetch);
+        while ($fetch_row = $fetch_result->fetch_assoc()) {
+            $lastname = $fetch_row['lastname'];
+            $firstname = $fetch_row['firstname'];
+            $middlename = $fetch_row['middlename'];
+            $extension_name = $fetch_row['extension_name'];
+            $desired_position = $fetch_row['desired_position'];
+            $area = $fetch_row['area'];
+            $preferred_outlet = $fetch_row['preferred_outlet'];
+            $contact_number = $fetch_row['contact_number'];
+            $resume_file = $fetch_row['resume_file'];
+            $resume_location = $fetch_row['lastname'];
+            $referred_by_id = $fetch_row['referred_by_id'];
+            $referred_by = $fetch_row['referred_by'];
+            $referred_by_division = $fetch_row['referred_by_division'];
+            $status = $fetch_row['status'];
+
+            $history = "INSERT INTO applicant_referral_history (lastname, firstname, middlename, extension_name, desired_position, area, preferred_outlet, contact_number, resume_file, resume_location, referred_by_id, referred_by, referred_by_division, approved_by, date_approved, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $history_result = $link->prepare($history);
+            $history_result->bind_param("ssssssssssssssss", $lastname, $firstname, $middlename, $extension_name, $desired_position, $area, $preferred_outlet, $contact_number, $resume_file, $resume_location, $referred_by_id, $referred_by, $referred_by_division, $approved_by, $date_approved, $status);
+            if ($history_result->execute()) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: pooler_resume.php");
+    exit(0);
+}
+
+// For Deploying Pooling
+if (isset($_POST['deploy_pool_button_click'])) {
+    $poolID = $_POST['poolID'];
+    $status = "DEPLOYED";
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $date_approved = date('Y-m-d');
+
+    $query = "UPDATE applicant_referral SET status = ?, approved_by = ?, date_approved = ?  WHERE id = ?";
+    $result = $link->prepare($query);
+    $result->bind_param("sssi", $status, $approved_by, $date_approved, $poolID);
+
+    if ($result->execute()) {
+        $fetch = "SELECT * FROM applicant_referral WHERE id = '$poolID'";
+        $fetch_result = $link->query($fetch);
+        while ($fetch_row = $fetch_result->fetch_assoc()) {
+            $lastname = $fetch_row['lastname'];
+            $firstname = $fetch_row['firstname'];
+            $middlename = $fetch_row['middlename'];
+            $extension_name = $fetch_row['extension_name'];
+            $desired_position = $fetch_row['desired_position'];
+            $area = $fetch_row['area'];
+            $preferred_outlet = $fetch_row['preferred_outlet'];
+            $contact_number = $fetch_row['contact_number'];
+            $resume_file = $fetch_row['resume_file'];
+            $resume_location = $fetch_row['lastname'];
+            $referred_by_id = $fetch_row['referred_by_id'];
+            $referred_by = $fetch_row['referred_by'];
+            $referred_by_division = $fetch_row['referred_by_division'];
+            $status = $fetch_row['status'];
+
+            $history = "INSERT INTO applicant_referral_history (lastname, firstname, middlename, extension_name, desired_position, area, preferred_outlet, contact_number, resume_file, resume_location, referred_by_id, referred_by, referred_by_division, approved_by, date_approved, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $history_result = $link->prepare($history);
+            $history_result->bind_param("ssssssssssssssss", $lastname, $firstname, $middlename, $extension_name, $desired_position, $area, $preferred_outlet, $contact_number, $resume_file, $resume_location, $referred_by_id, $referred_by, $referred_by_division, $approved_by, $date_approved, $status);
+            if ($history_result->execute()) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: pooler_resume.php");
+    exit(0);
+}
+
+// For Undoing Unreachable Pooling
+if (isset($_POST['undo_pool_button_click'])) {
+    $poolID = $_POST['undoPoolID'];
+    $status = "FOR SCREENING";
+    $approved_by = $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+    $date_approved = date('Y-m-d');
+
+    $query = "UPDATE applicant_referral SET status = ?, approved_by = ?, date_approved = ?  WHERE id = ?";
+    $result = $link->prepare($query);
+    $result->bind_param("sssi", $status, $approved_by, $date_approved, $poolID);
+
+    if ($result->execute()) {
+        $fetch = "SELECT * FROM applicant_referral WHERE id = '$poolID'";
+        $fetch_result = $link->query($fetch);
+        while ($fetch_row = $fetch_result->fetch_assoc()) {
+            $lastname = $fetch_row['lastname'];
+            $firstname = $fetch_row['firstname'];
+            $middlename = $fetch_row['middlename'];
+            $extension_name = $fetch_row['extension_name'];
+            $desired_position = $fetch_row['desired_position'];
+            $area = $fetch_row['area'];
+            $preferred_outlet = $fetch_row['preferred_outlet'];
+            $contact_number = $fetch_row['contact_number'];
+            $resume_file = $fetch_row['resume_file'];
+            $resume_location = $fetch_row['lastname'];
+            $referred_by_id = $fetch_row['referred_by_id'];
+            $referred_by = $fetch_row['referred_by'];
+            $referred_by_division = $fetch_row['referred_by_division'];
+            $status = $fetch_row['status'];
+
+            $history = "INSERT INTO applicant_referral_history (lastname, firstname, middlename, extension_name, desired_position, area, preferred_outlet, contact_number, resume_file, resume_location, referred_by_id, referred_by, referred_by_division, approved_by, date_approved, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $history_result = $link->prepare($history);
+            $history_result->bind_param("ssssssssssssssss", $lastname, $firstname, $middlename, $extension_name, $desired_position, $area, $preferred_outlet, $contact_number, $resume_file, $resume_location, $referred_by_id, $referred_by, $referred_by_division, $approved_by, $date_approved, $status);
+            if ($history_result->execute()) {
+                $_SESSION['successMessage'] = "Success";
+            } else {
+                $_SESSION['errorMessage'] = "Error" . $link->error;
+            }
+        }
+    } else {
+        $_SESSION['errorMessage'] = "Error";
+    }
+    header("Location: pooler_resume.php");
+    exit(0);
 }

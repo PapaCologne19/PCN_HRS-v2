@@ -246,7 +246,7 @@ include '../../connect.php';
                 <div class="content-wrapper mt-2">
                     <div class="container">
                         <div class="card">
-                            <div class="container">
+                            <div class="container table-responsive">
                                 <hr>
                                 <div class="title justify-content-center align-items-center mx-auto text-center">
                                     <h4 class="fs-4">
